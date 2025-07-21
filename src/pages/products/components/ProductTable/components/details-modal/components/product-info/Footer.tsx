@@ -9,7 +9,7 @@ export const ProductFooter = ({ product }) => {
         <VStack p="6" spacing="4" align="start">
             <HStack justify="space-between" w="full">
                 <Text fontSize="sm" color={"text.subtext.placeholder.dark"}>
-                    {t('productFooter.soldItems')}
+                    {t('ProductFooter.soldItems')}
                 </Text>
                 <Text fontSize="sm" color="white">
                     {product?.soldItems || "0"}
@@ -17,7 +17,7 @@ export const ProductFooter = ({ product }) => {
             </HStack>
             <HStack justify="space-between" w="full">
                 <Text fontSize="sm" color={"text.subtext.placeholder.dark"}>
-                    {t('productFooter.totalSale')}
+                    {t('ProductFooter.totalSale')}
                 </Text>
                 <HStack spacing="1">
                     <Text fontSize="sm" color="white" fontWeight="medium">

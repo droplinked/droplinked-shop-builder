@@ -18,7 +18,7 @@ function BackButton({ onBackClick }: { onBackClick: () => void }) {
             onClick={onBackClick}
         >
             <AppIcons.BackArrow />
-            {t('fields.pod.backButton')}
+            {t('ProductForm.fields.pod.backButton')}
         </Flex>
     )
 }

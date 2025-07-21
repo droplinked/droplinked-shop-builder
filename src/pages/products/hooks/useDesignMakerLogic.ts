@@ -24,7 +24,7 @@ function useDesignMakerHooks(onClose: () => void) {
 
     const iframeRef = useRef<any>(null)
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('products')
 
     const initializeDesignMaker = async () => {
         try {
@@ -61,7 +61,7 @@ function useDesignMakerHooks(onClose: () => void) {
     const handleDesignMakerError = (error) => {
         if (error && !error.includes('valid nonce')) {
             showToast({
-                message: error || t('products.hooks.errors.designMakerError'),
+                message: error || t('useDesignMakerLogic.errors.designMakerError'),
                 type: 'error',
             })
             setIsLoading(false)
@@ -165,7 +165,7 @@ function useDesignMakerHooks(onClose: () => void) {
         }
         catch (error) {
             showToast({
-                message: error?.message || t('products.hooks.errors.unexpectedError'),
+                message: error?.message || t('useDesignMakerLogic.errors.designMakerError'),
                 type: 'error'
             })
         }

@@ -37,12 +37,12 @@ function PODMint2MerchAccordion() {
 
     return (
         <ProductFormAccordion
-            label={t('accordions.podMint2Merch.label')}
+            label={t('ProductForm.accordions.podMint2Merch.label')}
             accessLevel='Premium'
         >
             <SwitchBox
-                title={t('accordions.podMint2Merch.title')}
-                description={t('accordions.podMint2Merch.description')}
+                title={t('ProductForm.accordions.podMint2Merch.title')}
+                description={t('ProductForm.accordions.podMint2Merch.description')}
                 switchProps={{
                     isDisabled: !m2m_positions_options.length,
                     isChecked: isM2MEnabled,

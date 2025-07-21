@@ -19,8 +19,8 @@ function ProductCollection() {
 
     return (
         <FormFieldWrapper
-            label={t('fields.collection.label')}
-            description={t('fields.collection.description')}
+            label={t('ProductCollection.label')}
+            description={t('ProductCollection.description')}
             errorMessage={errors.productCollectionID}
         >
             <AppSelect
@@ -28,7 +28,7 @@ function ProductCollection() {
                 valueAccessor="_id"
                 labelAccessor="title"
                 selectProps={{
-                    placeholder: t('fields.collection.placeholder'),
+                    placeholder: t('ProductCollection.placeholder'),
                     value: productCollectionID,
                     onChange: (e) => setFieldValue('productCollectionID', e.target.value),
                 }}

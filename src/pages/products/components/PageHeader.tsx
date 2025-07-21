@@ -44,24 +44,24 @@ function PageHeader({ isActionEnabled }: ProductHeaderProps) {
     return (
         <>
             <PageGrid.Header
-                title={t('pageHeader.title')}
-                description={t('pageHeader.description')}
+                title={t('PageHeader.title')}
+                description={t('PageHeader.description')}
                 actionButtons={[
                     {
-                        title: t('pageHeader.actions.reorderProducts'),
+                        title: t('PageHeader.actions.reorderProducts'),
                         variant: 'secondary',
                         leftIcon: <Verticalmove2Md />,
                         isDisabled: !isActionEnabled,
                         onClick: productReorderModal.onOpen,
                     },
                     {
-                        title: t('pageHeader.actions.import'),
+                        title: t('PageHeader.actions.import'),
                         variant: 'secondary',
                         leftIcon: <DownloadMd />,
                         onClick: importProductModal.onOpen,
                     },
                     {
-                        title: t('pageHeader.actions.newProduct'),
+                        title: t('PageHeader.actions.newProduct'),
                         leftIcon: <PlusMd />,
                         wrapper: <ProductTypeSelector />,
                     }

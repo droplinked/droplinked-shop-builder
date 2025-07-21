@@ -33,8 +33,8 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
         >
             <ModalHeaderData
                 icon={<AppIcons.Download />}
-                title={t('importModal.title')}
-                description={t('importModal.description')}
+                title={t('ImportProductModal.title')}
+                description={t('ImportProductModal.description')}
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
@@ -44,7 +44,7 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
                     to={fileTemplate}
                     target="_blank"
                 >
-                    {t('importModal.downloadTemplate')}
+                    {t('ImportProductModal.downloadTemplate')}
                 </InteractiveText>
             </ModalHeaderData>
             <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} importWithUrl={importWithUrl} />

@@ -56,8 +56,8 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
         >
             <ModalHeaderData
                 icon={<DownloadMd color='#fff' />}
-                title={t('identifiedItemsModal.title')}
-                description={t('identifiedItemsModal.description', { count: crawledProductsCount })}
+                title={t('IdentifiedItemsModal.title')}
+                description={t('IdentifiedItemsModal.description', { count: crawledProductsCount })}
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }

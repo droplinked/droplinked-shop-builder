@@ -24,8 +24,8 @@ export default function PODProductVariants() {
 
     return (
         <FormFieldWrapper
-            label={t('fields.pod.productVariants.label')}
-            description={t('fields.pod.productVariants.description')}
+            label={t('ProductForm.pod.productVariants.label')}
+            description={t('ProductForm.pod.productVariants.description')}
             isRequired
             errorMessage={getFieldErrorMessage(errors.sku)}
         >

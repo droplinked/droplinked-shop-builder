@@ -62,10 +62,10 @@ function ProductShareModal({ product, isOpen, onClose }: IProps) {
             activeTab={activeTab} 
             onTabChange={handleTabChange} 
             tabs={[
-              { name: TABS.DIRECT_LINK, label: t('shareModal.tabs.directLink') },
-              { name: TABS.PAYMENT_LINK, label: t('shareModal.tabs.paymentLink') },
-              { name: TABS.PRODUCT_TILE, label: t('shareModal.tabs.productTile') },
-              { name: TABS.SOCIAL_TILE, label: t('shareModal.tabs.socialTile') }
+              { name: TABS.DIRECT_LINK, label: t('ShareModal.tabs.directLink') },
+              { name: TABS.PAYMENT_LINK, label: t('ShareModal.tabs.paymentLink') },
+              { name: TABS.PRODUCT_TILE, label: t('ShareModal.tabs.productTile') },
+              { name: TABS.SOCIAL_TILE, label: t('ShareModal.tabs.socialTile') }
             ]} 
           />
         </Box>

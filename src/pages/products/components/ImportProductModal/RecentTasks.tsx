@@ -56,7 +56,7 @@ export default function RecentTasks({ recentTasks, isLoading, getProducts, getPr
                             variant="ghost"
                             _hover={{ background: "transparent" }}
                             disabled={task.status !== "previews_ready"}
-                            aria-label={t('importModal.recentTasks.viewPreview')}
+                            aria-label={t('RecentTasks.viewPreview')}
                             isLoading={selectedProduct === task._id && getProductsLoading}
                             onClick={() => handleProductClick(task._id)}
                             color="#fff"

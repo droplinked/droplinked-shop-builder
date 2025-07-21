@@ -9,7 +9,7 @@ function ModalHeader({ product }: { product: any }) {
     return (
         <ModalHeaderData
             icon={<AppIcons.HeaderProductBox />}
-            title={t('dropInfoModal.title')}
+            title={t('DropInfoModal.title')}
             modalHeaderProps={{
                 bgColor: "#141414",
                 paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" },

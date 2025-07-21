@@ -7,7 +7,7 @@ function ShippingAccordion() {
     const { t } = useLocaleResources('products');
     
     return (
-        <ProductFormAccordion label={t('accordions.shipping.label')}>
+        <ProductFormAccordion label={t('ProductForm.accordions.shipping.label')}>
             <ProductShippingType />
         </ProductFormAccordion>
     )

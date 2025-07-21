@@ -49,8 +49,8 @@ function PODProductCatalog() {
 
     return (
         <FormFieldWrapper
-            label={t('fields.pod.productCatalog.label')}
-            description={t('fields.pod.productCatalog.description')}
+            label={t('ProductForm.pod.productCatalog.label')}
+            description={t('ProductForm.pod.productCatalog.description')}
             isRequired
         >
             {renderContent()}

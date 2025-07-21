@@ -14,7 +14,7 @@ export default function ProductRoyalty() {
 
     const handleRoyaltyToggle = (checked: boolean) => {
         if (!sku.length) {
-            showToast({ type: "error", message: t('fields.royalty.addSkuFirst') })
+            showToast({ type: "error", message: t('ProductRoyalty.addSkuFirst') })
             return
         }
         setShowInput(checked)
@@ -22,8 +22,8 @@ export default function ProductRoyalty() {
 
     return (
         <SwitchBox
-            title={t('fields.royalty.title')}
-            description={t('fields.royalty.description')}
+            title={t('ProductRoyalty.title')}
+            description={t('ProductRoyalty.description')}
             switchProps={{
                 isChecked: showInput,
                 onChange: (e) => handleRoyaltyToggle(e.target.checked)
@@ -58,7 +58,7 @@ function RoyaltyInput() {
                 min: 0,
                 max: 99.99,
                 step: 0.01,
-                placeholder: t('fields.royalty.placeholder'),
+                placeholder: t('ProductRoyalty.placeholder'),
                 value: royalty !== null ? royalty : "",
                 onChange: handleInputChange
             }}

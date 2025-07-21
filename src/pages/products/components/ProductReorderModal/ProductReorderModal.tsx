@@ -32,7 +32,7 @@ function ProductReorderModal({ isOpen, onClose }: Props) {
             setInitialProducts(data.data)
         },
         onError: () => {
-            showToast({ type: 'error', message: t('common.error') })
+            showToast({ type: 'error', message: t('common:error') })
             onClose()
         }
     })
@@ -50,8 +50,8 @@ function ProductReorderModal({ isOpen, onClose }: Props) {
         >
             <ModalHeaderData
                 icon={<BoxLg color="white" />}
-                title={t('productReorderModal.title')}
-                description={t('productReorderModal.description')}
+                title={t('ProductReorderModal.title')}
+                description={t('ProductReorderModal.description')}
                 modalHeaderProps={{
                     bgColor: '#141414',
                     paddingBlock: { lg: '48px !important', md: '32px !important', base: '16px !important' },

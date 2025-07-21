@@ -20,7 +20,7 @@ function Web3SettingsAccordion() {
     }
 
     return (
-        <ProductFormAccordion label={t('accordions.web3Settings.label')}>
+                    <ProductFormAccordion label={t('ProductForm.accordions.web3Settings.label')}>
             <ProductDrop
                 isProductRecorded={isProductRecorded}
                 isDropEnabled={isDropEnabled}

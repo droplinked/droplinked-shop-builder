@@ -53,7 +53,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             padding={9}
         >
             <AppButton type="button" variant="secondary" isDisabled={isSubmitting} onClick={onClose}>
-                {t('productDrawer.actions.discard')}
+                {t('common:discard')}
             </AppButton>
 
             <Flex gap={4}>
@@ -64,7 +64,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
                     isLoading={isSubmitting && !publish_product}
                     onClick={() => handleAction('save-as-draft')}
                 >
-                    {t('productDrawer.actions.saveAsDraft')}
+                    {t('ProductDrawer.actions.saveAsDraft')}
                 </AppButton>
 
                 <AppButton
@@ -73,7 +73,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
                     isLoading={isSubmitting && publish_product}
                     onClick={() => handleAction('publish-product')}
                 >
-                    {editingProductId ? t('productDrawer.actions.updateProduct') : t('productDrawer.actions.addProduct')}
+                    {editingProductId ? t('ProductDrawer.actions.updateProduct') : t('ProductDrawer.actions.addProduct')}
                 </AppButton>
             </Flex>
         </ChakraDrawerFooter>

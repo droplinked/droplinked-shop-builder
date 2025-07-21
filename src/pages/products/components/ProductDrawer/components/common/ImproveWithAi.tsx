@@ -31,39 +31,39 @@ export default function ImproveWithAi({
     const items = [
         {
             icon: <AppIcons.Light />,
-            title: t('ai.improve.styles.casual'),
+            title: t('ImproveWithAi.styles.casual'),
         },
         {
             icon: <AppIcons.Smile />,
-            title: t('ai.improve.styles.friendly')
+            title: t('ImproveWithAi.styles.friendly')
         },
         {
             icon: <AppIcons.Case />,
-            title: t('ai.improve.styles.professional')
+            title: t('ImproveWithAi.styles.professional')
         },
         {
             icon: <AppIcons.Rocket />,
-            title: t('ai.improve.styles.inspirational')
+            title: t('ImproveWithAi.styles.inspirational')
         },
         {
             icon: <Box sx={{ path: { stroke: "#fff" } }}><AppIcons.MedalStarOutline /></Box>,
-            title: t('ai.improve.styles.luxury')
+            title: t('ImproveWithAi.styles.luxury')
         },
         {
             icon: <AppIcons.Robot />,
-            title: t('ai.improve.styles.techSavvy')
+            title: t('ImproveWithAi.styles.techSavvy')
         },
     ]
 
     const buttons = [
         {
-            title: t('ai.improve.actions.revert'),
+            title: t('ImproveWithAi.actions.revert'),
             icon: <AppIcons.Refresh2 />,
             color: "#fff",
             onClick: handleRevert
         },
         {
-            title: t('ai.improve.actions.tryAgain'),
+            title: t('ImproveWithAi.actions.tryAgain'),
             icon: <AppIcons.Refresh />,
             color: "#2BCFA1",
             onClick: handleTryAgain
@@ -104,7 +104,7 @@ export default function ImproveWithAi({
                             isDisabled={isImproveLoading || isDisabled}
                             leftIcon={<MagicwandSm/>}
                         >
-                            {!isImproveLoading && t('ai.improve.button')}
+                            {!isImproveLoading && t('ImproveWithAi.button')}
                         </AppButton>
                     </MenuButton>
                     <MenuList zIndex={9999} borderRadius={8} background={"neutral.gray.1000"} border={"none"} p={3} minWidth={"150px"}>

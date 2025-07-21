@@ -16,13 +16,13 @@ const CUSTOM_SHIPPINGS_QUERY_KEY = ["custom-shippings"]
 export function useShippingTypes() {
     const hasPermission = useHasPermission()
     const hasCustomShippingPermission = hasPermission("custom_shipping")
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('products')
 
     const [shippingTypes, setShippingTypes] = useState<ShippingType[]>([
         {
             shippingType: "EASY_POST",
-            title: t('products.hooks.shipping.easyPost.title'),
-            description: t('products.hooks.shipping.easyPost.description')
+            title: t('useShippingTypes.easyPost.title'),
+            description: t('useShippingTypes.easyPost.description')
         }
     ])
 

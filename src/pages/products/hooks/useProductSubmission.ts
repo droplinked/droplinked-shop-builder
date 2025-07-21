@@ -28,7 +28,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     const { user: { wallets }, shop } = useAppStore()
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
     const { convertPrice } = useCurrencyConverter()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('products')
 
     // Refs for global state inside the hook
     const shouldOpenCircleModal = useRef(false)
@@ -129,7 +129,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
         ) {
             await fetchLevelUpData()
         }
-        showToast({ message: t('products.hooks.success.productSaved'), type: "success" })
+        showToast({ message: t('useProductSubmission.success.productSaved'), type: "success" })
         closeProductFormDrawer()
         invalidateProductsQuery()
     }
@@ -164,7 +164,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     }
 
     const handleError = (error: any) => {
-        const errorMessage = error?.response?.data?.data?.message || error?.message || t('products.hooks.errors.unexpectedError')
+        const errorMessage = error?.response?.data?.data?.message || error?.message || t('useProductSubmission.errors.unexpectedError')
         showToast({ message: errorMessage, type: "error" })
     }
 

@@ -37,14 +37,14 @@ export default function ProductImages() {
             setFieldValue("media", updatedMedia)
         }
         catch (error) {
-            console.error(t('fields.productImages.fileUploadFailed'), error)
+            console.error(t('ProductForm.fields.productImages.fileUploadFailed'), error)
         }
     }
 
     return (
         <FormFieldWrapper
-            label={t('fields.productImages.label')}
-            description={t('fields.productImages.description')}
+            label={t('ProductForm.fields.productImages.label')}
+            description={t('ProductForm.fields.productImages.description')}
             errorMessage={errors.media?.toString()}
         >
             <Flex direction="column" gap={4}>

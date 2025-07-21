@@ -23,7 +23,7 @@ function ModalContent({ product }) {
       borderRadius={16}
       padding={6}
     >
-      <DetailRow label={t('dropInfoModal.details.deployHash')}>
+      <DetailRow label={t('DropInfoModal.details.deployHash')}>
         <Flex alignItems="center" gap={3}>
           <InteractiveText
             to={transactionUrl}
@@ -35,7 +35,7 @@ function ModalContent({ product }) {
         </Flex>
       </DetailRow>
 
-      <DetailRow label={t('dropInfoModal.details.droppedOn')}>
+      <DetailRow label={t('DropInfoModal.details.droppedOn')}>
         <Flex alignItems="center" gap={2}>
           <BlockchainDisplay blockchain={networkName} show='icon' props={{ width: 20, height: 20 }} />
           <Text fontSize={14} fontWeight={500} color="#FFF">

@@ -9,8 +9,8 @@ function ProductTermsAndConditions() {
 
     return (
         <SwitchBox
-            title={t('fields.termsAndConditions.title')}
-            description={t('fields.termsAndConditions.description')}
+            title={t('ProductTermsAndConditions.title')}
+            description={t('ProductTermsAndConditions.description')}
             switchProps={{
                 isChecked: showMore,
                 onChange: (e) => setShowMore(e.target.checked)
@@ -18,7 +18,7 @@ function ProductTermsAndConditions() {
         >
             {showMore && (
                 <Textarea
-                    placeholder={t('fields.termsAndConditions.placeholder')}
+                    placeholder={t('ProductTermsAndConditions.placeholder')}
                     rows={8}
                 />
             )}

@@ -1,5 +1,5 @@
 {
-  "pageHeader": {
+  "PageHeader": {
     "title": "المنتجات",
     "description": "إدارة المنتجات في مكان واحد. إنشاء وعرض وتتبعها بسهولة هنا.",
     "actions": {
@@ -8,7 +8,103 @@
       "newProduct": "منتج جديد"
     }
   },
-  "productTypes": {
+  "ProductTable": {
+    "columns": {
+      "product": "اسم المنتج",
+      "type": "النوع",
+      "collection": "المجموعة"
+    },
+    "actions": {
+      "dropInfo": "معلومات DROP",
+      "orderPodSample": "طلب عينة POD",
+      "makeStatus": "جعل {{status}}"
+    },
+    "empty": {
+      "title": "لم يتم العثور على منتجات",
+      "description": "ابدأ بإضافة منتجك الأول",
+      "alt": "جدول فارغ"
+    }
+  },
+  "ProductTableActionMenu": {
+    "actions": {
+      "dropInfo": "معلومات DROP",
+      "orderPodSample": "طلب عينة POD",
+      "makeStatus": "جعل {{status}}"
+    }
+  },
+  "ImportProductModal": {
+    "title": "استيراد المنتجات",
+    "description": "استيراد كتالوجات المخزون بسهولة عن طريق رفع ملف CSV أو Excel. كما يمكنك استخدام أداة الجلب لاستيراد منتج واحد أو كتالوج كامل بسهولة من Shopify أو WooCommerce باستخدام رابط URL.",
+    "downloadTemplate": "تحميل القالب",
+    "footer": {
+      "cancel": "إلغاء",
+      "import": "استيراد المنتجات"
+    }
+  },
+  "ImportProductModalFooter": {
+    "cancel": "إلغاء",
+    "import": "استيراد المنتجات"
+  },
+  "FileUpload": {
+    "title": "رفع الملف",
+    "description": "اسحب وأفلت ملفك هنا، أو انقر للتصفح",
+    "supportedFormats": "فقط CSV (حتى 1 ميجابايت)",
+    "maxSize": "الحد الأقصى لحجم الملف: 10 ميجابايت",
+    "dropHere": "أفلت الملف هنا ...",
+    "click": "انقر",
+    "dragDropText": "لإضافة ملف جديد أو اسحب وأفلت هنا.",
+    "uploadFile": "رفع الملف"
+  },
+  "UrlInput": {
+    "title": "الاستيراد من الرابط",
+    "placeholder": "أدخل رابط المنتج من Shopify أو WooCommerce",
+    "description": "استيراد المنتجات مباشرة من رابط متجرك",
+    "error": "رابط غير صحيح. يرجى إدخال رابط صحيح من Shopify أو WooCommerce."
+  },
+  "RecentTasks": {
+    "title": "مهام الاستيراد الحديثة",
+    "noTasks": "لا توجد مهام استيراد حديثة",
+    "viewPreview": "عرض المعاينة",
+    "status": {
+      "pending": "في الانتظار",
+      "processing": "قيد المعالجة",
+      "completed": "مكتمل",
+      "failed": "فشل"
+    }
+  },
+  "IdentifiedItemsModal": {
+    "title": "العناصر المحددة",
+    "description": "حدد مستورد المنتجات بنجاح {count} عنصر.",
+    "maxSelectionLimit": {
+      "title": "تم الوصول للحد الأقصى للاختيار",
+      "description": "لقد اخترت {selected} عنصر من أصل {total} عنصر متاح. لا يمكنك اختيار المزيد من العناصر في هذا الوقت."
+    },
+    "dropRecords": {
+      "title": "Drop (سجلات جواز المنتج الرقمي)",
+      "description": "إنشاء سجلات رقمية على السلسلة للمخزون المحدد أدناه."
+    },
+    "footer": {
+      "importSelected": "استيراد {count} عنصر محدد",
+      "selectItems": "اختر العناصر للاستيراد"
+    }
+  },
+  "IdentifiedItemsFooter": {
+    "importSelected": "استيراد {count} عنصر محدد",
+    "selectItems": "اختر العناصر للاستيراد"
+  },
+  "ItemsTable": {
+    "columns": {
+      "title": "العنوان",
+      "url": "الرابط"
+    },
+    "noTitle": "لا يوجد عنوان",
+    "noItems": "لا توجد عناصر متاحة"
+  },
+  "Pagination": {
+    "previousPage": "الصفحة السابقة",
+    "nextPage": "الصفحة التالية"
+  },
+  "ProductTypeSelector": {
     "physicalItems": {
       "title": "السلع المادية",
       "description": "بيع البضائع الملموسة والسلع المتوفرة حالياً في المخزون."
@@ -26,78 +122,11 @@
       "description": "بيع تذاكر للفعاليات والحفلات الموسيقية والتجمعات الأخرى."
     }
   },
-  "importModal": {
-    "title": "استيراد المنتجات",
-    "description": "استيراد كتالوجات المخزون بسهولة عن طريق رفع ملف CSV أو Excel. كما يمكنك استخدام أداة الجلب لاستيراد منتج واحد أو كتالوج كامل بسهولة من Shopify أو WooCommerce باستخدام رابط URL.",
-    "downloadTemplate": "تحميل القالب",
-    "fileUpload": {
-      "title": "رفع الملف",
-      "description": "اسحب وأفلت ملفك هنا، أو انقر للتصفح",
-      "supportedFormats": "فقط CSV (حتى 1 ميجابايت)",
-      "maxSize": "الحد الأقصى لحجم الملف: 10 ميجابايت",
-      "dropHere": "أفلت الملف هنا ...",
-      "click": "انقر",
-      "dragDropText": "لإضافة ملف جديد أو اسحب وأفلت هنا.",
-      "uploadFile": "رفع الملف"
-    },
-    "urlInput": {
-      "title": "الاستيراد من الرابط",
-      "placeholder": "أدخل رابط المنتج من Shopify أو WooCommerce",
-      "description": "استيراد المنتجات مباشرة من رابط متجرك",
-      "error": "رابط غير صحيح. يرجى إدخال رابط صحيح من Shopify أو WooCommerce."
-    },
-    "recentTasks": {
-      "title": "مهام الاستيراد الحديثة",
-      "noTasks": "لا توجد مهام استيراد حديثة",
-      "viewPreview": "عرض المعاينة",
-      "status": {
-        "pending": "في الانتظار",
-        "processing": "قيد المعالجة",
-        "completed": "مكتمل",
-        "failed": "فشل"
-      }
-    },
-    "footer": {
-      "cancel": "إلغاء",
-      "import": "استيراد المنتجات"
-    }
+  "ProductReorderModal": {
+    "title": "إعادة ترتيب المنتجات",
+    "description": "نظم المنتجات عن طريق السحب والإفلات بالترتيب الذي يجب أن تظهر به في الواجهة الأمامية للمتجر."
   },
-  "productTable": {
-    "columns": {
-      "product": "اسم المنتج",
-      "type": "النوع",
-      "price": "السعر",
-      "status": "الحالة",
-      "collection": "المجموعة",
-      "actions": "الإجراءات"
-    },
-    "actions": {
-      "edit": "تعديل",
-      "delete": "حذف",
-      "duplicate": "نسخ",
-      "view": "عرض",
-      "details": "التفاصيل",
-      "dropInfo": "معلومات DROP",
-      "orderPodSample": "طلب عينة POD",
-      "share": "مشاركة",
-      "remove": "إزالة",
-      "makeStatus": "جعل {{status}}"
-    },
-    "status": {
-      "active": "نشط",
-      "inactive": "غير نشط",
-      "draft": "مسودة",
-      "public": "عام",
-      "private": "خاص"
-    },
-    "empty": {
-      "title": "لم يتم العثور على منتجات",
-      "description": "ابدأ بإضافة منتجك الأول",
-      "alt": "جدول فارغ"
-    }
-  },
-  "productDrawer": {
-    "title": "المنتج",
+  "ProductDrawer": {
     "sections": {
       "basic": "المعلومات الأساسية",
       "pricing": "التسعير",
@@ -107,279 +136,178 @@
       "variants": "المتغيرات"
     },
     "actions": {
-      "discard": "تجاهل",
       "saveAsDraft": "حفظ كمسودة",
       "addProduct": "إضافة منتج",
       "updateProduct": "تحديث المنتج"
     }
   },
-  "common": {
-    "loading": "جاري التحميل...",
-    "error": "حدث خطأ",
-    "success": "نجح",
-    "cancel": "إلغاء",
-    "save": "حفظ",
-    "delete": "حذف",
-    "edit": "تعديل",
-    "close": "إغلاق",
-    "back": "رجوع",
-    "next": "التالي",
-    "previous": "السابق",
-    "search": "بحث",
-    "filter": "تصفية",
-    "sort": "ترتيب",
-    "refresh": "تحديث",
-    "download": "تحميل",
-    "upload": "رفع",
-    "uploading": "جاري الرفع",
-    "import": "استيراد",
-    "export": "تصدير",
-    "or": "أو",
-    "update": "تحديث",
-    "add": "إضافة"
+  "ProductDrawerHeader": {
+    "createProduct": "إنشاء {{productType}}",
+    "updateProduct": "تحديث {{productType}}"
   },
-  "identifiedItemsModal": {
-    "title": "العناصر المحددة",
-    "description": "حدد مستورد المنتجات بنجاح {count} عنصر.",
-    "maxSelectionLimit": {
-      "title": "تم الوصول للحد الأقصى للاختيار",
-      "description": "لقد اخترت {selected} عنصر من أصل {total} عنصر متاح. لا يمكنك اختيار المزيد من العناصر في هذا الوقت."
-    },
-    "dropRecords": {
-      "title": "Drop (سجلات جواز المنتج الرقمي)",
-      "description": "إنشاء سجلات رقمية على السلسلة للمخزون المحدد أدناه."
-    },
-    "table": {
-      "columns": {
-        "title": "العنوان",
-        "url": "الرابط"
+  "ProductDrawerFooter": {
+    "saveAsDraft": "حفظ كمسودة",
+    "addProduct": "إضافة منتج",
+    "updateProduct": "تحديث المنتج"
+  },
+  "ProductForm": {
+    "fields": {
+      "title": {
+        "productName": "اسم المنتج",
+        "eventName": "اسم الفعالية",
+        "description": "أدخل اسم منتج فريد. سيكون هذا مرئياً للعملاء.",
+        "placeholder": "مثال: كوب سيراميك مصنوع يدوياً"
       },
-      "noTitle": "لا يوجد عنوان",
-      "noItems": "لا توجد عناصر متاحة"
-    },
-    "pagination": {
-      "previousPage": "الصفحة السابقة",
-      "nextPage": "الصفحة التالية"
-    },
-    "footer": {
-      "discard": "تجاهل",
-      "importSelected": "استيراد {count} عنصر محدد",
-      "selectItems": "اختر العناصر للاستيراد"
-    }
-  },
-  "fields": {
-    "title": {
-      "productName": "اسم المنتج",
-      "eventName": "اسم الفعالية",
-      "description": "أدخل اسم منتج فريد. سيكون هذا مرئياً للعملاء.",
-      "placeholder": "مثال: كوب سيراميك مصنوع يدوياً"
-    },
-    "termsAndConditions": {
-      "title": "شروط الخدمة المخصصة",
-      "description": "عرض شروط مخصصة خاصة بهذا المنتج، مثل سياسات الإرجاع أو التنبيهات، أثناء الدفع.",
-      "placeholder": "مثال: هذا المنتج غير قابل للإرجاع بعد الشراء أو الشروط القانونية المطبقة على هذا المنتج."
-    },
-    "visibilityStatus": {
-      "label": "حالة الرؤية",
-      "description": "حدد رؤية هذا المنتج. إذا تم إلغاء التفعيل، لن يتمكن العملاء من إضافته إلى سلة التسوق.",
-      "public": {
-        "label": "عام",
-        "tooltip": "سيتمكن العملاء من إضافته إلى سلة التسوق"
+      "termsAndConditions": {
+        "title": "شروط الخدمة المخصصة",
+        "description": "عرض شروط مخصصة خاصة بهذا المنتج، مثل سياسات الإرجاع أو التنبيهات، أثناء الدفع.",
+        "placeholder": "مثال: هذا المنتج غير قابل للإرجاع بعد الشراء أو الشروط القانونية المطبقة على هذا المنتج."
       },
-      "private": {
-        "label": "خاص",
-        "tooltip": "لن يتمكن العملاء من إضافته إلى سلة التسوق"
-      }
-    },
-    "productImages": {
-      "label": "صور المنتج",
-      "description": "رفع صور أو فيديوهات تعرض المنتج بصرياً.",
-      "fileUploadFailed": "فشل في رفع الملف"
-    },
-    "productDescription": {
-      "label": "وصف المنتج",
-      "description": "صف ميزات وتفاصيل المنتج لمساعدة العملاء على فهم ما يشترونه.",
-      "placeholder": "أضف معلومات المنتج هنا..."
-    },
-    "releaseDate": {
-      "title": "تاريخ الإصدار",
-      "description": "حدد تاريخ إصدار محدد لهذا المنتج."
-    },
-    "deliveryMessage": {
-      "title": "رسالة التوصيل",
-      "description": "قدم للعملاء تفاصيل التوصيل المهمة عند الدفع، مثل أوقات الشحن المتوقعة أو التعليمات الخاصة.",
-      "messagePlaceholder": "مثال: التوصيل المتوقع خلال 5-7 أيام عمل، أو تضمين تعليمات توصيل محددة.",
-      "urlPlaceholder": "مثال: www.sample.com"
-    },
-    "affiliate": {
-      "title": "سوق الشركاء",
-      "description": "تفعيل هذا للسماح للمشترين المشاركين باستيراد وبيع هذا المنتج.",
-      "commissionPlaceholder": "15"
-    },
-    "collection": {
-      "label": "المجموعات",
-      "description": "حدد المجموعة التي ستظهر هذا المنتج.",
-      "placeholder": "حدد مجموعة"
-    }
-  },
-  "ai": {
-    "improve": {
-      "button": "تحسين بالذكاء الاصطناعي",
-      "styles": {
-        "casual": "عادي",
-        "friendly": "ودي",
-        "professional": "مهني",
-        "inspirational": "ملهم",
-        "luxury": "فاخر",
-        "techSavvy": "تقني"
+      "visibilityStatus": {
+        "label": "حالة الرؤية",
+        "description": "حدد رؤية هذا المنتج. إذا تم إلغاء التفعيل، لن يتمكن العملاء من إضافته إلى سلة التسوق.",
+        "public": {
+          "label": "عام",
+          "tooltip": "سيتمكن العملاء من إضافته إلى سلة التسوق"
+        },
+        "private": {
+          "label": "خاص",
+          "tooltip": "لن يتمكن العملاء من إضافته إلى سلة التسوق"
+        }
       },
-      "actions": {
-        "revert": "تراجع",
-        "tryAgain": "حاول مرة أخرى"
+      "productImages": {
+        "label": "صور المنتج",
+        "description": "رفع صور أو فيديوهات تعرض المنتج بصرياً.",
+        "fileUploadFailed": "فشل في رفع الملف"
+      },
+      "productDescription": {
+        "label": "وصف المنتج",
+        "description": "صف ميزات وتفاصيل المنتج لمساعدة العملاء على فهم ما يشترونه.",
+        "placeholder": "أضف معلومات المنتج هنا..."
+      },
+      "releaseDate": {
+        "title": "تاريخ الإصدار",
+        "description": "حدد تاريخ إصدار محدد لهذا المنتج."
+      },
+      "deliveryMessage": {
+        "title": "رسالة التوصيل",
+        "description": "قدم للعملاء تفاصيل التوصيل المهمة عند الدفع، مثل أوقات الشحن المتوقعة أو التعليمات الخاصة.",
+        "messagePlaceholder": "مثال: التوصيل المتوقع خلال 5-7 أيام عمل، أو تضمين تعليمات توصيل محددة.",
+        "urlPlaceholder": "مثال: www.sample.com"
+      },
+      "affiliate": {
+        "title": "سوق الشركاء",
+        "description": "تفعيل هذا للسماح للمشترين المشاركين باستيراد وبيع هذا المنتج.",
+        "commissionPlaceholder": "15"
+      },
+      "collection": {
+        "label": "المجموعات",
+        "description": "حدد المجموعة التي ستظهر هذا المنتج.",
+        "placeholder": "حدد مجموعة"
       }
     },
-    "generate": {
-      "title": "إنشاء بالذكاء الاصطناعي",
-      "description": "ملء اسم المنتج ووصفه بناءً على الصورة الافتراضية المختارة.",
-      "errorMessage": "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى."
-    }
-  },
-  "accordions": {
-    "generalInformation": {
-      "label": "المعلومات العامة",
-      "eventSync": {
-        "title": "إشعار مزامنة الفعالية",
-        "description": "اسم الفعالية ووصفها متزامنان مع حساب الفعالية المتصل. لإجراء تحديثات، يرجى التعديل مباشرة في حساب الفعالية. ستظهر التغييرات تلقائياً هنا."
+    "accordions": {
+      "generalInformation": {
+        "label": "المعلومات العامة",
+        "eventSync": {
+          "title": "إشعار مزامنة الفعالية",
+          "description": "اسم الفعالية ووصفها متزامنان مع حساب الفعالية المتصل. لإجراء تحديثات، يرجى التعديل مباشرة في حساب الفعالية. ستظهر التغييرات تلقائياً هنا."
+        }
+      },
+      "additionalDetails": {
+        "label": "تفاصيل إضافية",
+        "keywordsPlaceholder": "اكتب كلمات مفتاحية لمساعدة العملاء في العثور على هذا المنتج...",
+        "customField": {
+          "title": "حقل مخصص",
+          "description": "إضافة معلومات مخصصة لعرضها أثناء الدفع."
+        }
+      },
+      "productVariants": {
+        "priceLabel": "السعر",
+        "priceAndVariantsLabel": "السعر والمتغيرات"
+      },
+      "web3Settings": {
+        "label": "إعدادات Web 3"
+      },
+      "shipping": {
+        "label": "الشحن"
+      },
+      "podDesign": {
+        "label": "تصميم POD"
+      },
+      "podMint2Merch": {
+        "label": "سك إلى البضائع",
+        "title": "سك إلى البضائع",
+        "description": "تمكين العملاء من طباعة أعمالهم الفنية NFT مباشرة على منتج POD."
       }
     },
-    "additionalDetails": {
-      "label": "تفاصيل إضافية",
-      "keywordsPlaceholder": "اكتب كلمات مفتاحية لمساعدة العملاء في العثور على هذا المنتج...",
-      "customField": {
-        "title": "حقل مخصص",
-        "description": "إضافة معلومات مخصصة لعرضها أثناء الدفع."
+    "physicalProductVariants": {
+      "label": "المتغيرات",
+      "description": "أضف إصدارات مختلفة من هذا المنتج (مثل الحجم، اللون).",
+      "addVariantsButton": "إضافة متغيرات",
+      "variantLimitWarning": {
+        "title": "تحذير حد المتغيرات",
+        "description": "لا يمكن إضافة المزيد من المتغيرات. يمكنك إضافة حتى {{maxVariants}} متغير فقط."
       }
     },
-    "productVariants": {
-      "priceLabel": "السعر",
-      "priceAndVariantsLabel": "السعر والمتغيرات"
+    "productShippingType": {
+      "label": "طريقة الشحن",
+      "description": "اختر كيفية شحن هذا المنتج للعملاء.",
+      "customShipping": "شحن مخصص"
     },
-    "web3Settings": {
-      "label": "إعدادات Web 3"
+
+    "variantItemList": {
+      "value": "القيمة",
+      "colorName": "اسم اللون",
+      "enterValue": "أدخل القيمة"
     },
-    "shipping": {
-      "label": "الشحن"
+    "customShippingForm": {
+      "title": "إنشاء شحن مخصص جديد",
+      "description": "أضف خياراً لتوفير تفاصيل الشحن المخصصة.",
+      "titleLabel": "العنوان",
+      "titlePlaceholder": "مثال: التوصيل السريع، الشحن القياسي",
+      "create": "إنشاء",
+      "successMessage": "تم إنشاء خيار الشحن المخصص بنجاح.",
+      "errorMessage": "common:errors.failedToCreate"
     },
-    "podDesign": {
-      "label": "تصميم POD"
+    "variantSelector": {
+      "createCustomVariant": "إنشاء متغير مخصص",
+      "createVariant": "إنشاء \"{{variant}}\"",
+      "placeholder": "مثال: التخزين، المادة",
+      "inputPlaceholder": "اللون، الحجم أو متغير مخصص"
     },
-    "podMint2Merch": {
-      "label": "سك إلى البضائع",
-      "title": "سك إلى البضائع",
-      "description": "تمكين العملاء من طباعة أعمالهم الفنية NFT مباشرة على منتج POD."
+
+    "pod": {
+      "productVariants": {
+        "label": "متغيرات المنتج",
+        "description": "حدد المتغيرات لمنتج POD الخاص بك"
+      },
+      "productCatalog": {
+        "label": "كتالوج المنتجات",
+        "description": "اختر من كتالوج منتجات POD"
+      },
+      "productTemplate": {
+        "label": "قالب المنتج",
+        "description": "حدد قالباً لمنتج POD الخاص بك"
+      },
+      "walletOptions": {
+        "label": "خيارات المحفظة"
+      },
+      "backButton": "العودة إلى الكتالوج"
+    },
+    "royalty": {
+      "title": "العمولة",
+      "description": "حدد نسبة العمولة لهذا المنتج",
+      "addSkuFirst": "يرجى إضافة SKUs أولاً",
+      "placeholder": "0.00"
+    },
+    "bulkPriceUpdater": {
+      "title": "تحديث السعر بالجملة",
+      "description": "تحديث جميع أسعار SKU مرة واحدة",
+      "placeholder": "0.00"
     }
   },
-  "physicalProductVariants": {
-    "label": "المتغيرات",
-    "description": "أضف إصدارات مختلفة من هذا المنتج (مثل الحجم، اللون).",
-    "addVariantsButton": "إضافة متغيرات",
-    "variantLimitWarning": {
-      "title": "تحذير حد المتغيرات",
-      "description": "لا يمكن إضافة المزيد من المتغيرات. يمكنك إضافة حتى {{maxVariants}} متغير فقط."
-    }
-  },
-  "productShippingType": {
-    "label": "طريقة الشحن",
-    "description": "اختر كيفية شحن هذا المنتج للعملاء.",
-    "customShipping": "شحن مخصص"
-  },
-  "productDrop": {
-    "title": "دروب",
-    "description": "تفعيل السجلات على السلسلة لهذا المنتج الرقمي.",
-    "alreadyPublishedError": "تم نشر هذا المنتج بالفعل."
-  },
-  "variantForm": {
-    "type": "النوع",
-    "discard": "تجاهل",
-    "edit": "تعديل",
-    "save": "حفظ"
-  },
-  "variantItemList": {
-    "value": "القيمة",
-    "colorName": "اسم اللون",
-    "enterValue": "أدخل القيمة"
-  },
-  "customShippingForm": {
-    "title": "إنشاء شحن مخصص جديد",
-    "description": "أضف خياراً لتوفير تفاصيل الشحن المخصصة.",
-    "titleLabel": "العنوان",
-    "titlePlaceholder": "مثال: التوصيل السريع، الشحن القياسي",
-    "discard": "تجاهل",
-    "create": "إنشاء",
-    "successMessage": "تم إنشاء خيار الشحن المخصص بنجاح.",
-    "errorMessage": "فشل في إنشاء خيار الشحن المخصص. يرجى المحاولة مرة أخرى."
-  },
-  "variantSelector": {
-    "createCustomVariant": "إنشاء متغير مخصص",
-    "createVariant": "إنشاء \"{{variant}}\"",
-    "placeholder": "مثال: التخزين، المادة",
-    "inputPlaceholder": "اللون، الحجم أو متغير مخصص"
-  },
-  "digitalProductSKU": {
-    "price": "السعر",
-    "pricePlaceholder": "0.00",
-    "quantity": "الكمية",
-    "quantityPlaceholder": "1",
-    "externalID": "المعرف الخارجي",
-    "externalIDPlaceholder": "1"
-  },
-  "detailsModal": {
-    "productInfo": "معلومات المنتج",
-    "orders": "الطلبات",
-    "title": "تفاصيل المنتج",
-    "description": "تتبع مخزون المنتج وبيانات المبيعات والخصومات المطبقة لإدارة الطلبات بسلاسة."
-  },
-  "productFooter": {
-    "soldItems": "العناصر المباعة",
-    "totalSale": "إجمالي المبيعات"
-  },
-  "ordersContent": {
-    "noOrdersAvailable": "لا توجد طلبات متاحة بعد!"
-  },
-  "orderHeader": {
-    "orderNumber": "طلب #{{orderId}}"
-  },
-  "customerInfo": {
-    "fullName": "الاسم الكامل",
-    "emailAddress": "عنوان البريد الإلكتروني"
-  },
-  "orderProducts": {
-    "quantity": "الكمية"
-  },
-  "orderTotal": {
-    "totalPaid": "إجمالي المدفوع"
-  },
-  "shareModal": {
-    "title": "مشاركة المنتج",
-    "description": "شارك منتجك مع الناس حول العالم.",
-    "tabs": {
-      "directLink": "رابط مباشر",
-      "paymentLink": "رابط الدفع",
-      "productTile": "بلاطة المنتج",
-      "socialTile": "بلاطة اجتماعية"
-    },
-    "paymentLink": {
-      "configure": "تكوين",
-      "downloadQRCode": "تحميل رمز QR"
-    },
-    "embedCode": {
-      "title": "كود التضمين",
-      "copied": "تم النسخ",
-      "configure": "تكوين",
-      "needHelp": "تحتاج مساعدة؟ زر مركز المساعدة"
-    }
-  },
-  "confirmationModal": {
+  "ConfirmationModal": {
     "actions": {
       "delete": {
         "title": "حذف المنتج",
@@ -409,7 +337,57 @@
       "defaultMessage": "حدث خطأ ما. يرجى التحديث أو المحاولة مرة أخرى لاحقاً."
     }
   },
-  "dropInfoModal": {
+  "DetailsModal": {
+    "productInfo": "معلومات المنتج",
+    "orders": "الطلبات",
+    "title": "تفاصيل المنتج",
+    "description": "تتبع مخزون المنتج وبيانات المبيعات والخصومات المطبقة لإدارة الطلبات بسلاسة."
+  },
+  "ProductFooter": {
+    "soldItems": "العناصر المباعة",
+    "totalSale": "إجمالي المبيعات"
+  },
+  "OrdersContent": {
+    "noOrdersAvailable": "لا توجد طلبات متاحة بعد!"
+  },
+  "OrderHeader": {
+    "orderNumber": "طلب #{{orderId}}"
+  },
+  "CustomerInfo": {
+    "fullName": "الاسم الكامل",
+    "emailAddress": "عنوان البريد الإلكتروني"
+  },
+  "OrderProducts": {
+    "quantity": "الكمية"
+  },
+  "OrderTotal": {
+    "totalPaid": "إجمالي المدفوع"
+  },
+  "ShareModal": {
+    "title": "مشاركة المنتج",
+    "description": "شارك منتجك مع الناس حول العالم.",
+    "tabs": {
+      "directLink": "رابط مباشر",
+      "paymentLink": "رابط الدفع",
+      "productTile": "بلاطة المنتج",
+      "socialTile": "بلاطة اجتماعية"
+    },
+    "paymentLink": {
+      "configure": "تكوين",
+      "downloadQRCode": "تحميل رمز QR"
+    },
+    "embedCode": {
+      "title": "كود التضمين",
+      "copied": "تم النسخ",
+      "configure": "تكوين",
+      "needHelp": "تحتاج مساعدة؟ زر مركز المساعدة"
+    }
+  },
+  "ShareModalHeader": {
+    "title": "مشاركة المنتج",
+    "description": "شارك منتجك مع الناس حول العالم."
+  },
+  "DropInfoModal": {
     "title": "معلومات Drop",
     "details": {
       "deployHash": "رمز النشر",
@@ -419,8 +397,207 @@
       "alt": "صورة المنتج"
     }
   },
-  "productReorderModal": {
-    "title": "إعادة ترتيب المنتجات",
-    "description": "نظم المنتجات عن طريق السحب والإفلات بالترتيب الذي يجب أن تظهر به في الواجهة الأمامية للمتجر."
+  "EmptyProductList": {
+    "description": "ابدأ بإضافة منتجك الأول",
+    "alt": "جدول فارغ"
+  },
+  "GenerateWithAI": {
+    "title": "إنشاء بالذكاء الاصطناعي",
+    "description": "ملء اسم المنتج ووصفه بناءً على الصورة الافتراضية المختارة."
+  },
+  "ImproveWithAi": {
+    "button": "تحسين بالذكاء الاصطناعي",
+    "styles": {
+      "casual": "عادي",
+      "friendly": "ودي",
+      "professional": "مهني",
+      "inspirational": "ملهم",
+      "luxury": "فاخر",
+      "techSavvy": "تقني"
+    },
+    "actions": {
+      "revert": "تراجع",
+      "tryAgain": "حاول مرة أخرى"
+    }
+  },
+  "useProductSubmission": {
+    "success": {
+      "productSaved": "تم حفظ المنتج بنجاح!"
+    },
+    "errors": {
+      "unexpectedError": "common:errors.unexpectedError"
+    }
+  },
+  "useImportWithUrl": {
+    "success": {
+      "crawlTaskStarted": "تم بدء مهمة الزحف",
+      "crawlTaskDescription": "نقوم بجلب المنتجات من الرابط المقدم. بمجرد أن تصبح حالة المهمة 'جاهزة للمعاينة'، يمكنك اختيار المنتجات التي ترغب في استيرادها.",
+      "importTaskStarted": "تم بدء مهمة الاستيراد",
+      "importTaskDescription": "نقوم باستيراد المنتجات المحددة إلى المخزون الخاص بك. يمكنك عرض المهام الجارية في نافذة استيراد المنتجات."
+    },
+    "errors": {
+      "anErrorOccurred": "common:errors.anErrorOccurred"
+    }
+  },
+  "useImproveAI": {
+    "errors": {
+      "improveAIError": "common:errors.oopsSomethingWentWrong"
+    }
+  },
+  "useDesignMakerLogic": {
+    "errors": {
+      "designMakerError": "common:errors.somethingWentWrong"
+    }
+  },
+  "useShippingTypes": {
+    "easyPost": {
+      "title": "EasyPost",
+      "description": "يحسب تكلفة الشحن الفعلية بناءً على عنوان التسليم لتوفير ملصق شحن."
+    }
+  },
+  "useProductTypeLegality": {
+    "productTypes": {
+      "digital": "رقمي",
+      "physical": "مادي",
+      "pod": "POD",
+      "event": "فعالية"
+    }
+  },
+  "useProductTypeMap": {
+    "digital": "رقمي",
+    "physical": "مادي",
+    "pod": "طباعة عند الطلب",
+    "event": "فعالية"
+  },
+  "ProductBulkPriceUpdater": {
+    "title": "تحديث السعر بالجملة",
+    "description": "تحديث جميع أسعار SKU مرة واحدة",
+    "placeholder": "0.00"
+  },
+  "ProductRoyalty": {
+    "title": "العمولة",
+    "description": "حدد نسبة العمولة لهذا المنتج",
+    "addSkuFirst": "يرجى إضافة SKUs أولاً",
+    "placeholder": "0.00"
+  },
+  "ProductVariantCard": {
+    "colorName": "اللون"
+  },
+  "ProductAffiliate": {
+    "title": "سوق التابعة",
+    "description": "تفعيل هذا للسماح للمشترين المشاركين باستيراد وبيع هذا المنتج.",
+    "commissionPlaceholder": "15"
+  },
+  "ProductReleaseDate": {
+    "title": "تاريخ الإصدار",
+    "description": "حدد تاريخ إصدار محدد لهذا المنتج."
+  },
+  "ProductCollection": {
+    "label": "المجموعات",
+    "description": "حدد المجموعة التي ستظهر هذا المنتج.",
+    "placeholder": "حدد مجموعة"
+  },
+  "ProductVisibilityStatus": {
+    "label": "حالة الرؤية",
+    "description": "حدد رؤية هذا المنتج. إذا تم إلغاء التفعيل، لن يتمكن العملاء من إضافته إلى سلة التسوق.",
+    "public": {
+      "label": "عام",
+      "tooltip": "سيتمكن العملاء من إضافته إلى سلة التسوق"
+    },
+    "private": {
+      "label": "خاص",
+      "tooltip": "لن يتمكن العملاء من إضافته إلى سلة التسوق"
+    }
+  },
+  "ProductDeliveryMessage": {
+    "title": "رسالة التسليم",
+    "description": "قدم للعملاء تفاصيل التسليم المهمة عند الدفع، مثل أوقات الشحن المتوقعة أو التعليمات الخاصة.",
+    "messagePlaceholder": "مثال: التسليم المتوقع خلال 5-7 أيام عمل، أو تضمين تعليمات تسليم محددة.",
+    "urlPlaceholder": "مثال: www.sample.com"
+  },
+  "ProductTermsAndConditions": {
+    "title": "شروط الخدمة المخصصة",
+    "description": "عرض شروط مخصصة خاصة بهذا المنتج، مثل سياسات الإرجاع أو التنبيهات، أثناء الدفع.",
+    "placeholder": "مثال: هذا المنتج غير قابل للإرجاع بعد الشراء أو الشروط القانونية المطبقة على هذا المنتج."
+  },
+  "ProductTitle": {
+    "productName": "اسم المنتج",
+    "eventName": "اسم الفعالية",
+    "description": "أدخل اسم منتج فريد. سيكون هذا مرئياً للعملاء.",
+    "placeholder": "مثال: كوب سيراميك مصنوع يدوياً"
+  },
+  "ProductShippingType": {
+    "label": "طريقة الشحن",
+    "description": "اختر كيفية شحن هذا المنتج للعملاء.",
+    "customShipping": "شحن مخصص"
+  },
+  "CustomShippingForm": {
+    "title": "إنشاء شحن مخصص جديد",
+    "description": "إضافة خيار لتوفير تفاصيل الشحن المخصصة.",
+    "titleLabel": "العنوان",
+    "titlePlaceholder": "مثال: توصيل سريع، شحن قياسي",
+    "successMessage": "تم إنشاء خيار الشحن المخصص بنجاح."
+  },
+  "CustomShippingFileUpload": {
+    "title": "ملف",
+    "description": "تحميل ملف تفاصيل الشحن.",
+    "sampleFile": {
+      "title": "ملف عينة",
+      "description": "استخدم قالب العينة لضمان تنسيق الملف والتفاصيل الصحيحة.",
+      "downloadTemplate": "تحميل القالب"
+    }
+  },
+  "PhysicalProductVariants": {
+    "label": "المتغيرات",
+    "description": "أضف إصدارات مختلفة من هذا المنتج (مثال: الحجم، اللون).",
+    "addVariantsButton": "إضافة متغيرات",
+    "variantLimitWarning": {
+      "title": "تحذير حد المتغيرات",
+      "description": "لا يمكن إضافة المزيد من المتغيرات. يمكنك إضافة ما يصل إلى {{maxVariants}} متغيرات فقط."
+    }
+  },
+  "VariantSelector": {
+    "createCustomVariant": "إنشاء متغير مخصص",
+    "createVariant": "إنشاء \"{{variant}}\"",
+    "placeholder": "مثال: التخزين، المادة",
+    "inputPlaceholder": "اللون، الحجم أو متغير مخصص"
+  },
+  "VariantItemList": {
+    "value": "القيمة",
+    "colorName": "اسم اللون",
+    "enterValue": "أدخل القيمة"
+  },
+  "FileUpload": {
+    "click": "انقر",
+    "orDragDropHere": "أو اسحب وأفلت هنا"
+  },
+  "ProductDrop": {
+    "title": "دروب",
+    "description": "تفعيل السجلات على السلسلة لهذا المنتج الرقمي.",
+    "alreadyPublishedError": "تم نشر هذا المنتج بالفعل."
+  },
+  "DigitalProductSKU": {
+    "price": "السعر",
+    "pricePlaceholder": "0.00",
+    "quantity": "الكمية",
+    "quantityPlaceholder": "1",
+    "externalID": "المعرف الخارجي",
+    "externalIDPlaceholder": "1"
+  },
+  "DropSummary": {
+    "noTransactionLinkAvailable": "لا يوجد رابط معاملة متاح",
+    "unknownNetwork": "شبكة غير معروفة",
+    "noTransactionUrlProvided": "لم يتم توفير رابط المعاملة"
+  },
+  "BlockchainNetworkSelector": {
+    "label": "شبكة البلوكتشين",
+    "description": "اختر شبكة البلوكتشين حيث سيتم تسجيل تفاصيل المنتج كـ NFT.",
+    "placeholder": "حدد الشبكة"
+  },
+  "DropConfigurationPanel": {
+    "productLockNotice": {
+      "title": "إشعار قفل المنتج",
+      "description": "بمجرد إسقاط هذا المنتج، سيتم قفل جميع التفاصيل بشكل دائم ولا يمكن تغييرها."
+    }
   }
 }

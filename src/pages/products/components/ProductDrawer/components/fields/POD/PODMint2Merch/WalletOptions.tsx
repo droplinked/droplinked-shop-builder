@@ -30,7 +30,7 @@ export default function WalletOptions() {
 
     return (
         <FormControl
-            label={t('fields.pod.walletOptions.label')}
+            label={t('ProductForm.fields.pod.walletOptions.label')}
             errorMessage={getFieldErrorMessage(errors.m2m_positions)}
         >
             {

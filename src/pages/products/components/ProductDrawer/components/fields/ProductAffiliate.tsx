@@ -24,8 +24,8 @@ function ProductAffiliate() {
 
     return (
         <SwitchBox
-            title={t('fields.affiliate.title')}
-            description={t('fields.affiliate.description')}
+            title={t('ProductAffiliate.title')}
+            description={t('ProductAffiliate.description')}
             switchProps={{
                 isChecked: values.canBeAffiliated,
                 onChange: (event) => handleToggle(event.target.checked)
@@ -40,7 +40,7 @@ function ProductAffiliate() {
                             min: 0,
                             max: 99.99,
                             step: 0.01,
-                            placeholder: t('fields.affiliate.commissionPlaceholder'),
+                            placeholder: t('ProductAffiliate.commissionPlaceholder'),
                             value: values.commission,
                             onChange: handleCommissionChange
                         }}

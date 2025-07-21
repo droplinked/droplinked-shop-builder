@@ -12,7 +12,7 @@ export const OrderHeader = ({ order }: { order: any }) => {
   return (
     <VStack align="st" justify="space-between" w="full">
       <Text fontSize="base" fontWeight="medium" color="white">
-        {t('orderHeader.orderNumber', { orderId: order.orderId })}
+        {t('OrderHeader.orderNumber', { orderId: order.orderId })}
       </Text>
       <Text fontSize="sm" fontWeight="medium" color="#b1b1b1">
         {dateString} - {timeString}

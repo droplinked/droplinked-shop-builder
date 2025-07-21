@@ -28,7 +28,7 @@ export const useImportWithUrl = (props: Params) => {
     const { updateProductPageState, targetShopUrl, selectedPoolId } = useProductPageStore()
     const { showToast } = useAppToast()
     const queryClient = useQueryClient()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('products')
 
     const { importProductModalController, identifiedItemsModalController } = props
 
@@ -41,8 +41,8 @@ export const useImportWithUrl = (props: Params) => {
             updateProductPageState("targetShopUrl", "")
             getRecentTasks()
             showToast({
-                message: t('products.hooks.success.crawlTaskStarted'),
-                description: t('products.hooks.success.crawlTaskDescription'),
+                message: t('useImportWithUrl.success.crawlTaskStarted'),
+                description: t('useImportWithUrl.success.crawlTaskDescription'),
                 type: "success",
                 options: {
                     duration: 5000,
@@ -50,7 +50,7 @@ export const useImportWithUrl = (props: Params) => {
             })
         },
         onError: (error: any) => {
-            updateProductPageState("crawlerError", error.response.data.data.message || t('products.hooks.errors.anErrorOccurred'))
+            updateProductPageState("crawlerError", error.response.data.data.message || t('useImportWithUrl.errors.anErrorOccurred'))
         }
     })
 
@@ -63,7 +63,7 @@ export const useImportWithUrl = (props: Params) => {
             return data.data
         },
         onError: (error: any) => {
-            showToast({ message: error.response.data.data.message || t('products.hooks.errors.anErrorOccurred'), type: "error" })
+            showToast({ message: error.response.data.data.message || t('useImportWithUrl.errors.anErrorOccurred'), type: "error" })
         }
     })
 
@@ -76,7 +76,7 @@ export const useImportWithUrl = (props: Params) => {
             identifiedItemsModalController.onOpen()
         },
         onError: (error: any) => {
-            showToast({ message: error.response.data.data.message || t('products.hooks.errors.anErrorOccurred'), type: "error" })
+                showToast({ message: error.response.data.data.message || t('useImportWithUrl.errors.anErrorOccurred'), type: "error" })
         }
     })
 
@@ -85,8 +85,8 @@ export const useImportWithUrl = (props: Params) => {
             CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: selectedPoolId, shouldRecord }),
         onSuccess: () => {
             showToast({
-                message: t('products.hooks.success.importTaskStarted'),
-                description: t('products.hooks.success.importTaskDescription'),
+                message: t('useImportWithUrl.success.importTaskStarted'),
+                description: t('useImportWithUrl.success.importTaskDescription'),
                 type: "success",
                 options: {
                     duration: 5000,
@@ -100,7 +100,7 @@ export const useImportWithUrl = (props: Params) => {
         onError: (error: any) => {
             identifiedItemsModalController.onClose()
             importProductModalController.onOpen()
-            showToast({ message: error.response.data.data.message || t('products.hooks.errors.anErrorOccurred'), type: "error" })
+            showToast({ message: error.response.data.data.message || t('useImportWithUrl.errors.anErrorOccurred'), type: "error" })
         }
     })
 

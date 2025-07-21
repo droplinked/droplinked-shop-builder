@@ -16,7 +16,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const { values: { description, title }, setFieldValue } = useProductForm();
     const { showToast } = useAppToast();
     const { hasPaidSubscription } = useAppStore();
-    const { t } = useLocaleResources('common');
+    const { t } = useLocaleResources('products');
 
     const { mutateAsync, isLoading, isSuccess } = useMutation(
         (tone: string) => {
@@ -36,7 +36,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
             },
             onError: () => {
                 updateProductPageState("isGenerateDisabled", false);
-                showToast({ message: t('products.hooks.errors.improveAIError'), type: "error" });
+                showToast({ message: t('common:errors.oopsSomethingWentWrong'), type: "error" });
             }
         }
     );

@@ -35,18 +35,18 @@ function ProductTableActionMenu({ product }: { product: any }) {
     const actions = [
         {
             icon: <AppIcons.Invoice />,
-            title: t('productTable.actions.details'),
+            title: t('common:details'),
             onClick: onDetailsModalOpen
         },
         {
             icon: <AppIcons.EditOutlined />,
-            title: t('productTable.actions.edit'),
+            title: t('common:edit'),
             onClick: () => updateProductPageState("editingProductId", product._id)
         },
         {
             ...product.nftData && {
                 icon: <AppIcons.DropProduct />,
-                title: t('productTable.actions.dropInfo'),
+                title: t('ProductTableActionMenu.actions.dropInfo'),
                 onClick: onDropInfoModalOpen
             }
         },
@@ -54,31 +54,31 @@ function ProductTableActionMenu({ product }: { product: any }) {
             ...product.product_type === "PRINT_ON_DEMAND" &&
             {
                 icon: <AppIcons.Shirt />,
-                title: t('productTable.actions.orderPodSample'),
+                title: t('ProductTableActionMenu.actions.orderPodSample'),
                 onClick: () => navigate("/analytics/products/order/" + product._id)
             },
         },
         {
             icon: <AppIcons.Share />,
-            title: t('productTable.actions.share'),
+            title: t('common:share'),
             onClick: onShareModalOpen
         },
         {
             icon: <AppIcons.Copy />,
-            title: t('productTable.actions.duplicate'),
+            title: t('common:duplicate'),
             onClick: () => handleActionClick("DUPLICATE")
         },
         {
             ...!isProductRecorded &&
             {
                 icon: <AppIcons.Transfer />,
-                title: t('productTable.actions.makeStatus', { status: isProductPublished ? t('productTable.status.draft') : t('productTable.status.public') }),
+                title: t('ProductTableActionMenu.actions.makeStatus', { status: isProductPublished ? t('common:draft') : t('common:public') }),
                 onClick: () => handleActionClick(isProductPublished ? "DRAFT" : "PUBLISH"),
             }
         },
         {
             icon: <AppIcons.RedTrash />,
-            title: t('productTable.actions.remove'),
+            title: t('common:delete'),
             color: "#F24",
             onClick: () => handleActionClick("DELETE")
         }

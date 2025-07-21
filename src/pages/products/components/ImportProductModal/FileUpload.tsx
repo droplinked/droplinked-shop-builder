@@ -18,14 +18,14 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
     })
 
     const dropMessage = isDragActive ?
-        <AppTypography fontSize={14} color="#fff">{t('importModal.fileUpload.dropHere')}</AppTypography>
+        <AppTypography fontSize={14} color="#fff">{t('FileUpload.dropHere')}</AppTypography>
         :
         <>
             <AppTypography fontSize={14} color="#fff">
-                <Box as="span" fontWeight={600} color="#179EF8" textDecoration="underline">{t('importModal.fileUpload.click')}</Box> {" "}
-                {t('importModal.fileUpload.dragDropText')}
+                <Box as="span" fontWeight={600} color="#179EF8" textDecoration="underline">{t('FileUpload.click')}</Box> {" "}
+                {t('FileUpload.dragDropText')}
             </AppTypography>
-            <AppTypography color="text.subtext.placeholder.dark">{t('importModal.fileUpload.supportedFormats')}</AppTypography>
+            <AppTypography color="text.subtext.placeholder.dark">{t('FileUpload.supportedFormats')}</AppTypography>
         </>
 
 
@@ -42,7 +42,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
             cursor="pointer"
             {...getRootProps()}
         >
-            <input {...getInputProps()} type="file" name="file" aria-label={t('importModal.fileUpload.uploadFile')} />
+            <input {...getInputProps()} type="file" name="file" aria-label={t('FileUpload.uploadFile')} />
             <AppIcons.HeaderImage />
             {dropMessage}
         </Flex>

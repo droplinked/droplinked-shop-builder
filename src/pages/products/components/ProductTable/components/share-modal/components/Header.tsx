@@ -16,7 +16,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
   return (
     <Box width="100%">
       <Box marginX="-48px">
-        <ModalHeaderData icon={<ShareLg color="white" />} title={t('shareModal.title')} description={t('shareModal.description')} />
+        <ModalHeaderData icon={<ShareLg />} title={t('ShareModal.title')} description={t('ShareModal.description')} />
       </Box>
       <Box mb="24px" />
       <Flex width="100%" padding="16px 24px 16px 16px" alignItems="center" gap="24px" bg="neutral.gray.800" borderRadius="12px" border="1px solid" borderColor="neutral.gray.800">

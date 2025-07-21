@@ -20,10 +20,10 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
         try {
             const data = { title: shippingTitle, ...uploadedFileData }
             await createCustomShipping(data)
-            showToast({ type: "success", message: t('customShippingForm.successMessage') })
+            showToast({ type: "success", message: t('CustomShippingForm.successMessage') })
             onDiscard()
         } catch (error) {
-            showToast({ type: "error", message: t('customShippingForm.errorMessage') })
+            showToast({ type: "error", message: t('common:errors.failedToCreate') })
         }
     }
 
@@ -38,15 +38,15 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
             padding={4}
         >
             <SectionHeader
-                title={t('customShippingForm.title')}
-                description={t('customShippingForm.description')}
+                title={t('CustomShippingForm.title')}
+                description={t('CustomShippingForm.description')}
             />
 
             <AppInput
-                label={t('customShippingForm.titleLabel')}
+                label={t('CustomShippingForm.titleLabel')}
                 inputProps={{
                     fontSize: 16,
-                    placeholder: t('customShippingForm.titlePlaceholder'),
+                    placeholder: t('CustomShippingForm.titlePlaceholder'),
                     value: shippingTitle,
                     onChange: (e) => setShippingTitle(e.target.value),
                 }}
@@ -65,7 +65,7 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
                     isDisabled={isLoading}
                     onClick={onDiscard}
                 >
-                    {t('customShippingForm.discard')}
+                    {t('common:discard')}
                 </AppButton>
                 <AppButton
                     type="button"
@@ -73,7 +73,7 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
                     isLoading={isLoading}
                     onClick={handleCreate}
                 >
-                    {t('customShippingForm.create')}
+                    {t('common:create')}
                 </AppButton>
             </Flex>
         </Flex>

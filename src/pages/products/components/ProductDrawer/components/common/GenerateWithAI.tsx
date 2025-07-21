@@ -34,7 +34,7 @@ function GenerateWithAI() {
             },
             onError: () => {
                 updateProductPageState('isAiGenerateLoading', false)
-                showToast({ message: t('ai.generate.errorMessage'), type: "error" })
+                showToast({ message: t('common:errors.oopsSomethingWentWrong'), type: "error" })
             }
         }
     )
@@ -74,11 +74,11 @@ function GenerateWithAI() {
                         <Flex flexDirection={"column"} gap={1}>
                             <Flex alignItems="center" gap="6px">
                                 <Text background={isDisabled ? "neutral.gray.650" : "#2bcfa1"} backgroundClip="text" fontSize={14} fontWeight={500}>
-                                    {t('ai.generate.title')}
+                                    {t('GenerateWithAI.title')}
                                 </Text>
                             </Flex>
                             <Text fontSize={12} fontWeight={400} color={isDisabled ? "neutral.gray.650" : "#FFFFFF"}>
-                                {t('ai.generate.description')}
+                                {t('GenerateWithAI.description')}
                             </Text>
                         </Flex>
                     </Flex>

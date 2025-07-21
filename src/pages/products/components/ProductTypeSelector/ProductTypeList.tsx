@@ -14,26 +14,26 @@ function ProductTypeList() {
     const productTypes: ProductTypeOption[] = [
         {
             icon: <BoxLg color='#fff' />,
-            title: t('productTypes.physicalItems.title'),
-            description: t('productTypes.physicalItems.description'),
+            title: t('ProductTypeSelector.physicalItems.title'),
+            description: t('ProductTypeSelector.physicalItems.description'),
             productType: "NORMAL"
         },
         {
             icon: <ImageLg color='#fff' />,
-            title: t('productTypes.digitalGoods.title'),
-            description: t('productTypes.digitalGoods.description'),
+            title: t('ProductTypeSelector.digitalGoods.title'),
+            description: t('ProductTypeSelector.digitalGoods.description'),
             productType: "DIGITAL"
         },
         {
             icon: <ShirtLg color='#fff' />,
-            title: t('productTypes.pod.title'),
-            description: t('productTypes.pod.description'),
+            title: t('ProductTypeSelector.pod.title'),
+            description: t('ProductTypeSelector.pod.description'),
             productType: "PRINT_ON_DEMAND"
         },
         {
             icon: <TicketLg color='#fff' />,
-            title: t('productTypes.events.title'),
-            description: t('productTypes.events.description'),
+            title: t('ProductTypeSelector.events.title'),
+            description: t('ProductTypeSelector.events.description'),
             productType: "EVENT"
         }
     ]

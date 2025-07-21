@@ -11,7 +11,7 @@ function PODDesignAccordion() {
 
     return (
         <ProductFormAccordion
-            label={t('accordions.podDesign.label')}
+            label={t('ProductForm.accordions.podDesign.label')}
             defaultOpen={product_type === "PRINT_ON_DEMAND"}
         >
             <PODProductCatalog />

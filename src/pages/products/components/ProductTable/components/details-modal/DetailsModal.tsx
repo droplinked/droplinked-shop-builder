@@ -49,16 +49,16 @@ function DetailsModal({ product, isOpen, onClose }: IProps) {
       <ModalBody padding="0px !important">
         <Box pt="48px" pb="0px">
           <ModalHeaderData
-            title={t('detailsModal.title')}
-            description={t('detailsModal.description')}
+            title={t('DetailsModal.title')}
+            description={t('DetailsModal.description')}
           />
           <Box mb="24px" />
           <TabButtons 
             activeTab={activeTab} 
             onTabChange={handleTabChange} 
             tabs={[
-              { name: TABS.PRODUCT_INFO, label: t('detailsModal.productInfo') },
-              { name: TABS.ORDERS, label: t('detailsModal.orders') }
+              { name: TABS.PRODUCT_INFO, label: t('DetailsModal.productInfo') },
+              { name: TABS.ORDERS, label: t('DetailsModal.orders') }
             ]} 
           />
         </Box>

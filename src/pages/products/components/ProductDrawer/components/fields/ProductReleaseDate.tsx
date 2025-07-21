@@ -17,8 +17,8 @@ function ProductReleaseDate() {
 
     return (
         <SwitchBox
-            title={t('fields.releaseDate.title')}
-            description={t('fields.releaseDate.description')}
+            title={t('ProductReleaseDate.title')}
+            description={t('ProductReleaseDate.description')}
             switchProps={{
                 isChecked: releaseDateSwitch,
                 onChange: (e) => handleToggleSwitch(e.target.checked)

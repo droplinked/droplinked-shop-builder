@@ -16,13 +16,13 @@ function GeneralInformationAccordion() {
 
     return (
         <ProductFormAccordion
-            label={t('accordions.generalInformation.label')}
+            label={t('ProductForm.accordions.generalInformation.label')}
             defaultOpen={product_type !== "PRINT_ON_DEMAND"}
         >
             {product_type === "EVENT" && (
                 <MessageBox
-                    title={t('accordions.generalInformation.eventSync.title')}
-                    description={t('accordions.generalInformation.eventSync.description')}
+                    title={t('ProductForm.accordions.generalInformation.eventSync.title')}
+                    description={t('ProductForm.accordions.generalInformation.eventSync.description')}
                     theme='warning'
                 />
             )}

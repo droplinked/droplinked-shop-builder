@@ -12,15 +12,15 @@ function ProductTitle() {
     const improveAI = useImproveAI({ type: 'title' });
     const { isImproveLoading, isProTrialModalOpen, handleCloseProTrialModal } = improveAI
 
-    const label = product_type === "EVENT" ? t('fields.title.eventName') : t('fields.title.productName')
+    const label = product_type === "EVENT" ? t('ProductTitle.eventName') : t('ProductTitle.productName')
 
     return (
         <>
             <AppInput
                 label={label}
-                description={t('fields.title.description')}
+                description={t('ProductTitle.description')}
                 inputProps={{
-                    placeholder: t('fields.title.placeholder'),
+                    placeholder: t('ProductTitle.placeholder'),
                     value: title,
                     isRequired: true,
                     fontSize: 16,

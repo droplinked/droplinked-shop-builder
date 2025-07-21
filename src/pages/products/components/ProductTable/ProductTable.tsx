@@ -26,7 +26,7 @@ function ProductTable({ products, isFetching, hasNextPage, fetchNextPage, isFetc
     const columns: ColumnDef<any>[] = [
         {
             accessorKey: '_',
-            header: t('productTable.columns.product'),
+            header: t('ProductTable.columns.product'),
             cell: info => {
                 const { media, title } = info.row.original
                 const imageURL = (media.find(m => m.isMain === "true") ?? media[0])?.thumbnail
@@ -42,18 +42,18 @@ function ProductTable({ products, isFetching, hasNextPage, fetchNextPage, isFetc
         },
         {
             accessorKey: 'lowestSkuPrice',
-            header: t('productTable.columns.price'),
+            header: t('common:price'),
             cell: (info) => {
                 const price = info.getValue() as number
                 if (price) return <FormattedPrice price={price} />
                 return "-"
             }
         },
-        { accessorKey: 'productCollectionID', header: t('productTable.columns.collection'), cell: info => (info.getValue() as any).title },
-        { accessorKey: 'product_type', header: t('productTable.columns.type'), cell: info => productTypeMap[info.getValue() as string] },
+        { accessorKey: 'productCollectionID', header: t('ProductTable.columns.collection'), cell: info => (info.getValue() as any).title },
+        { accessorKey: 'product_type', header: t('ProductTable.columns.type'), cell: info => productTypeMap[info.getValue() as string] },
         {
             accessorKey: 'publish_status',
-            header: t('productTable.columns.status'),
+            header: t('common:status'),
             cell: info => {
                 const { publish_status, purchaseAvailable } = info.row.original
                 return <ProductStatusBadge status={publish_status} purchaseAvailable={purchaseAvailable} />

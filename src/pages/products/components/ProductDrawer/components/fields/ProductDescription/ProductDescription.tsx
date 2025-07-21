@@ -36,8 +36,8 @@ function ProductDescription() {
     return (
         <>
             <FormFieldWrapper
-                label={t('fields.productDescription.label')}
-                description={t('fields.productDescription.description')}
+                label={t('ProductForm.fields.productDescription.label')}
+                description={t('ProductForm.fields.productDescription.description')}
                 errorMessage={errors.description}
             >
                 <AnimatedBox flexProps={{
@@ -70,7 +70,7 @@ function ProductDescription() {
                                 content_css: "dark",
                                 body_id: "loading",
                                 height: 200,
-                                placeholder: t('fields.productDescription.placeholder'),
+                                placeholder: t('ProductForm.fields.productDescription.placeholder'),
                                 menubar: false,
                                 plugins: [
                                     'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',

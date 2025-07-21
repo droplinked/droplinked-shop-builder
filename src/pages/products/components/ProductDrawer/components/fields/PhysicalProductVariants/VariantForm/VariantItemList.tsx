@@ -69,7 +69,7 @@ function VariantItemList({ localProperty, setLocalProperty }: Props) {
                 />
                 <AppInput
                     inputProps={{
-                        placeholder: t('variantItemList.colorName'),
+                        placeholder: t('VariantItemList.colorName'),
                         value: item.caption,
                         onChange: e => handleItemChange('caption', e.target.value, itemIndex)
                     }}
@@ -78,7 +78,7 @@ function VariantItemList({ localProperty, setLocalProperty }: Props) {
             :
             <AppInput
                 inputProps={{
-                    placeholder: t('variantItemList.enterValue'),
+                    placeholder: t('VariantItemList.enterValue'),
                     value: item.value,
                     onChange: e => handleItemChange('value', e.target.value, itemIndex)
                 }}
@@ -100,7 +100,7 @@ function VariantItemList({ localProperty, setLocalProperty }: Props) {
     }
 
     return (
-        <FormControl label={t('variantItemList.value')}>
+        <FormControl label={t('VariantItemList.value')}>
             <Flex direction="column" gap={4}>
                 {localProperty.items.map((item, index) => (
                     <Flex

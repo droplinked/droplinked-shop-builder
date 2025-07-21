@@ -23,7 +23,7 @@ export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggle
         const { _id, product_type, publish_status, digitalDetail, sku } = values
 
         if (_id && product_type === "DIGITAL" && publish_status === "PUBLISHED") {
-            showToast({ type: "error", message: t('productDrop.alreadyPublishedError') })
+            showToast({ type: "error", message: t('ProductDrop.alreadyPublishedError') })
             return
         }
 
@@ -42,8 +42,8 @@ export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggle
 
     return (
         <SwitchBox
-            title={t('productDrop.title')}
-            description={t('productDrop.description')}
+            title={t('ProductDrop.title')}
+            description={t('ProductDrop.description')}
             switchProps={{
                 isChecked: isDropEnabled,
                 onChange: e => handleDropToggle(e.target.checked)

@@ -47,9 +47,9 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
         },
         {
             accessorKey: 'title',
-            header: t('identifiedItemsModal.table.columns.title'),
+            header: t('ItemsTable.columns.title'),
             cell: info => {
-                const title = info.row.original.title ?? t('identifiedItemsModal.table.noTitle')
+                const title = info.row.original.title ?? t('ItemsTable.noTitle')
                 const image = info.row.original.image ?? "#"
                 const truncatedTitle = title.length <= 40 ? title : `${title.slice(0, 40)}...`
 
@@ -69,7 +69,7 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
         },
         {
             accessorKey: 'url',
-            header: t('identifiedItemsModal.table.columns.url'),
+            header: t('ItemsTable.columns.url'),
             cell: info => {
                 const url = info.getValue() as string
                 const truncatedUrl = url.length <= 30 ? url : `${url.slice(0, 30)}...`
@@ -98,7 +98,7 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
             emptyView={
                 <Flex justifyContent="center" py={8}>
                     <Text fontSize={16} fontWeight={500} color="white">
-                        {t('identifiedItemsModal.table.noItems')}
+                        {t('ItemsTable.noItems')}
                     </Text>
                 </Flex>
             }

@@ -21,8 +21,8 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
     const canAddVariants = properties.length < 2
     const isPredefinedOrEmpty = dropdownOptions.includes(inputValue) || !inputValue
     const buttonText = isPredefinedOrEmpty
-        ? t('variantSelector.createCustomVariant')
-        : t('variantSelector.createVariant', { variant: inputValue })
+        ? t('VariantSelector.createCustomVariant')
+        : t('VariantSelector.createVariant', { variant: inputValue })
 
     const handleDropdownOptionClick = ({ selectedVariant, isCustomVariant }) => {
         setInputValue(selectedVariant)
@@ -58,7 +58,7 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
             <AppInput
                 inputProps={{
                     fontSize: 16,
-                    placeholder: t('variantSelector.placeholder'),
+                    placeholder: t('VariantSelector.placeholder'),
                     value: localProperty.value,
                     onChange: handleCustomVariantChange
                 }}
@@ -97,7 +97,7 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
                         disabled={!canAddVariants}
                         maxLength={30}
                         autoCorrect="off"
-                        placeholder={t('variantSelector.inputPlaceholder')}
+                        placeholder={t('VariantSelector.inputPlaceholder')}
                         onChange={e => setInputValue(e.target.value)}
                     />
                     <AppIcons.SelectChevronDown />

@@ -35,7 +35,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     w="40px"
                     h="40px"
                     border="1px solid #292929"
-                    aria-label={t('identifiedItemsModal.pagination.previousPage')}
+                    aria-label={t('Pagination.previousPage')}
                 >
                     {isRTL ? <ChevronrightMd color={iconColor} /> : <ChevronleftMd color={iconColor} />}
                 </Button>
@@ -76,7 +76,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     w="40px"
                     h="40px"
                     border="1px solid #292929"
-                    aria-label={t('identifiedItemsModal.pagination.nextPage')}
+                    aria-label={t('Pagination.nextPage')}
                 >
                     <ChevronrightMd color={currentPage === totalPages ? "#646464" : "#fff"} />
                 </Button>

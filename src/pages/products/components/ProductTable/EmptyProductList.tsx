@@ -20,16 +20,16 @@ function EmptyProductList() {
                 width="420px"
                 height="352px"
                 src="https://upload-file-droplinked.s3.amazonaws.com/34486d750011c9c70ff3a03fce40a866be649d583f049a1dbfa341c551d8e7f6_or.png"
-                alt={t('productTable.empty.alt')}
+                alt={t('EmptyProductList.alt')}
             />
 
             <Text mt="64px" mb="16px" color="#fff">
-                {t('productTable.empty.description')}
+                {t('EmptyProductList.description')}
             </Text>
 
             <ProductTypeSelector placement='top'>
                 <AppButton variant='normal' leftIcon={<PlusSm color='#2BCFA1' />}>
-                    {t('pageHeader.actions.newProduct')}
+                    {t('PageHeader.actions.newProduct')}
                 </AppButton>
             </ProductTypeSelector>
         </Flex>

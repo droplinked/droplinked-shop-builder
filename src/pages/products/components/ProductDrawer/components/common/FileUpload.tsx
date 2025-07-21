@@ -1,6 +1,7 @@
 import { Box, Flex, FlexProps, Spinner } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Accept, useDropzone } from 'react-dropzone'
 
@@ -26,6 +27,7 @@ function FileUpload({
     },
     accept = {}
 }: Props) {
+    const { t } = useLocaleResources('products')
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         multiple,
         accept,
@@ -40,8 +42,8 @@ function FileUpload({
         :
         <>
             <AppTypography fontSize={14} color="#fff">
-                <Box as="span" fontWeight={500} color="#179EF8" textDecoration="underline">Click</Box> {" "}
-                or drag & drop here
+                <Box as="span" fontWeight={500} color="#179EF8" textDecoration="underline">{t('FileUpload.click')}</Box> {" "}
+                {t('FileUpload.orDragDropHere')}
             </AppTypography>
             <AppTypography color="text.subtext.placeholder.dark">{text.footerText}</AppTypography>
         </>

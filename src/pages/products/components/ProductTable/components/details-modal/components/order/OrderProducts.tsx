@@ -35,7 +35,7 @@ export const OrderProducts = (({ products }: { products: any[] }) => {
                   <Badge px="4" py="1" rounded="full" border="1px" borderColor="#282828" textTransform="none" background="transparent">
                     <DotSeparatedList>
                       <Text color="#7b7b7b" fontSize="sm">
-                        {t('orderProducts.quantity')}
+                        {t('OrderProducts.quantity')}
                       </Text>
                       <Text color="white" fontSize="sm"> 
                         {product.quantity}

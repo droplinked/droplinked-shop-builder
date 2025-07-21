@@ -34,8 +34,8 @@ function ProductBulkPriceUpdater() {
 
     return (
         <SwitchBox
-            title={t('fields.bulkPriceUpdater.title')}
-            description={t('fields.bulkPriceUpdater.description')}
+            title={t('ProductBulkPriceUpdater.title')}
+            description={t('ProductBulkPriceUpdater.description')}
             switchProps={{
                 isChecked: fixedPrice,
                 onChange: (e) => setFixedPrice(e.target.checked)
@@ -47,7 +47,7 @@ function ProductBulkPriceUpdater() {
                         type: "number",
                         numberType: "float",
                         value: inputValue,
-                        placeholder: t('fields.bulkPriceUpdater.placeholder'),
+                        placeholder: t('ProductBulkPriceUpdater.placeholder'),
                         onChange: (e) => handleInputChange((parseFloat(e.target.value)))
                     }}
                     leftElement={<CurrencyIcon />}

@@ -33,12 +33,12 @@ function DigitalProductSKU() {
                 sx={{ input: { fontSize: 16 } }}
             >
                 <AppInput
-                    label={t('digitalProductSKU.price')}
+                    label={t('DigitalProductSKU.price')}
                     inputProps={{
                         isRequired: true,
                         type: 'number',
                         numberType: 'float',
-                        placeholder: t('digitalProductSKU.pricePlaceholder'),
+                        placeholder: t('DigitalProductSKU.pricePlaceholder'),
                         value: skuData.price || '',
                         onChange: (e) => handleFieldUpdate('price', parseFloat(e.target.value))
                     }}
@@ -49,13 +49,13 @@ function DigitalProductSKU() {
                 </GridItem>
 
                 <AppInput
-                    label={t('digitalProductSKU.quantity')}
+                    label={t('DigitalProductSKU.quantity')}
                     inputContainerProps={{ padding: '10px' }}
                     inputProps={{
                         type: 'number',
                         numberType: 'int',
                         min: 0,
-                        placeholder: t('digitalProductSKU.quantityPlaceholder'),
+                        placeholder: t('DigitalProductSKU.quantityPlaceholder'),
                         value: skuData.quantity || '',
                         onChange: (e) => handleFieldUpdate('quantity', parseInt(e.target.value))
                     }}
@@ -68,9 +68,9 @@ function DigitalProductSKU() {
                 />
 
                 <AppInput
-                    label={t('digitalProductSKU.externalID')}
+                    label={t('DigitalProductSKU.externalID')}
                     inputProps={{
-                        placeholder: t('digitalProductSKU.externalIDPlaceholder'),
+                        placeholder: t('DigitalProductSKU.externalIDPlaceholder'),
                         value: skuData.externalID || '',
                         onChange: (e) => handleFieldUpdate('externalID', e.target.value)
                     }}

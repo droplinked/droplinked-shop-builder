@@ -1,5 +1,5 @@
 {
-  "pageHeader": {
+  "PageHeader": {
     "title": "Products",
     "description": "Manage products all in one place. Easily create, view, and track them here.",
     "actions": {
@@ -8,7 +8,103 @@
       "newProduct": "New Product"
     }
   },
-  "productTypes": {
+  "ProductTable": {
+    "columns": {
+      "product": "Product Name",
+      "type": "Type",
+      "collection": "Collection"
+    },
+    "actions": {
+      "dropInfo": "DROP Information",
+      "orderPodSample": "Order POD Sample",
+      "makeStatus": "Make {{status}}"
+    },
+    "empty": {
+      "title": "No products found",
+      "description": "Get started by adding your first product",
+      "alt": "Empty Table"
+    }
+  },
+  "ProductTableActionMenu": {
+    "actions": {
+      "dropInfo": "DROP Information",
+      "orderPodSample": "Order POD Sample",
+      "makeStatus": "Make {{status}}"
+    }
+  },
+  "ImportProductModal": {
+    "title": "Import Products",
+    "description": "Import inventory catalogs effortlessly by uploading a CSV or Excel file. Also, you can use our fetch tool to import one product or an entire catalog easily from Shopify or WooCommerce using a URL.",
+    "downloadTemplate": "Download Template",
+    "footer": {
+      "cancel": "Cancel",
+      "import": "Import Products"
+    }
+  },
+  "ImportProductModalFooter": {
+    "cancel": "Cancel",
+    "import": "Import Products"
+  },
+  "FileUpload": {
+    "title": "Upload File",
+    "description": "Drag and drop your file here, or click to browse",
+    "supportedFormats": "Just CSV (Up to 1MB)",
+    "maxSize": "Max file size: 10MB",
+    "dropHere": "Drop the file here ...",
+    "click": "Click",
+    "dragDropText": "to add a new file or drag and drop it here.",
+    "uploadFile": "Upload file"
+  },
+  "UrlInput": {
+    "title": "Import from URL",
+    "placeholder": "Enter product URL from Shopify or WooCommerce",
+    "description": "Import products directly from your store URL",
+    "error": "Invalid URL. Please enter a valid Shopify or WooCommerce URL."
+  },
+  "RecentTasks": {
+    "title": "Recent Import Tasks",
+    "noTasks": "No recent import tasks",
+    "viewPreview": "View Preview",
+    "status": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed"
+    }
+  },
+  "IdentifiedItemsModal": {
+    "title": "Identified Items",
+    "description": "The product importer successfully identified {count} items.",
+    "maxSelectionLimit": {
+      "title": "Maximum selection limit reached",
+      "description": "You have selected {selected} items out of {total} available items. You cannot select more items at this time."
+    },
+    "dropRecords": {
+      "title": "Drop (Digital Product Passport Records)",
+      "description": "Create onchain digital records for the inventory selected below."
+    },
+    "footer": {
+      "importSelected": "Import {count} Selected Items",
+      "selectItems": "Select Items to Import"
+    }
+  },
+  "IdentifiedItemsFooter": {
+    "importSelected": "Import {count} Selected Items",
+    "selectItems": "Select Items to Import"
+  },
+  "ItemsTable": {
+    "columns": {
+      "title": "Title",
+      "url": "URL"
+    },
+    "noTitle": "No Title",
+    "noItems": "No items available"
+  },
+  "Pagination": {
+    "previousPage": "Previous page",
+    "nextPage": "Next page"
+  },
+  "ProductTypeSelector": {
     "physicalItems": {
       "title": "Physical Items",
       "description": "Sell tangible goods and merchandise currently in stock."
@@ -26,78 +122,11 @@
       "description": "Sell tickets for events, concerts, and other gatherings."
     }
   },
-  "importModal": {
-    "title": "Import Products",
-    "description": "Import inventory catalogs effortlessly by uploading a CSV or Excel file. Also, you can use our fetch tool to import one product or an entire catalog easily from Shopify or WooCommerce using a URL.",
-    "downloadTemplate": "Download Template",
-    "fileUpload": {
-      "title": "Upload File",
-      "description": "Drag and drop your file here, or click to browse",
-      "supportedFormats": "Just CSV (Up to 1MB)",
-      "maxSize": "Max file size: 10MB",
-      "dropHere": "Drop the file here ...",
-      "click": "Click",
-      "dragDropText": "to add a new file or drag and drop it here.",
-      "uploadFile": "Upload file"
-    },
-    "urlInput": {
-      "title": "Import from URL",
-      "placeholder": "Enter product URL from Shopify or WooCommerce",
-      "description": "Import products directly from your store URL",
-      "error": "Invalid URL. Please enter a valid Shopify or WooCommerce URL."
-    },
-    "recentTasks": {
-      "title": "Recent Import Tasks",
-      "noTasks": "No recent import tasks",
-      "viewPreview": "View Preview",
-      "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "completed": "Completed",
-        "failed": "Failed"
-      }
-    },
-    "footer": {
-      "cancel": "Cancel",
-      "import": "Import Products"
-    }
+  "ProductReorderModal": {
+    "title": "Reorder Products",
+    "description": "Organize products by dragging and dropping them in the order that they should be displayed on the storefront."
   },
-  "productTable": {
-    "columns": {
-      "product": "Product Name",
-      "type": "Type",
-      "price": "Price",
-      "status": "Status",
-      "collection": "Collection",
-      "actions": "Actions"
-    },
-    "actions": {
-      "edit": "Edit",
-      "delete": "Delete",
-      "duplicate": "Duplicate",
-      "view": "View",
-      "details": "Details",
-      "dropInfo": "DROP Information",
-      "orderPodSample": "Order POD Sample",
-      "share": "Share",
-      "remove": "Remove",
-      "makeStatus": "Make {{status}}"
-    },
-    "status": {
-      "active": "Active",
-      "inactive": "Inactive",
-      "draft": "Draft",
-      "public": "Public",
-      "private": "Private"
-    },
-    "empty": {
-      "title": "No products found",
-      "description": "Get started by adding your first product",
-      "alt": "Empty Table"
-    }
-  },
-  "productDrawer": {
-    "title": "Product",
+  "ProductDrawer": {
     "sections": {
       "basic": "Basic Information",
       "pricing": "Pricing",
@@ -107,279 +136,178 @@
       "variants": "Variants"
     },
     "actions": {
-      "discard": "Discard",
       "saveAsDraft": "Save as Draft",
       "addProduct": "Add Product",
       "updateProduct": "Update Product"
     }
   },
-  "common": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "success": "Success",
-    "cancel": "Cancel",
-    "save": "Save",
-    "delete": "Delete",
-    "edit": "Edit",
-    "close": "Close",
-    "back": "Back",
-    "next": "Next",
-    "previous": "Previous",
-    "search": "Search",
-    "filter": "Filter",
-    "sort": "Sort",
-    "refresh": "Refresh",
-    "download": "Download",
-    "upload": "Upload",
-    "uploading": "Uploading",
-    "import": "Import",
-    "export": "Export",
-    "or": "or",
-    "update": "Update",
-    "add": "Add"
+  "ProductDrawerHeader": {
+    "createProduct": "Create {{productType}}",
+    "updateProduct": "Update {{productType}}"
   },
-  "identifiedItemsModal": {
-    "title": "Identified Items",
-    "description": "The product importer successfully identified {count} items.",
-    "maxSelectionLimit": {
-      "title": "Maximum selection limit reached",
-      "description": "You have selected {selected} items out of {total} available items. You cannot select more items at this time."
-    },
-    "dropRecords": {
-      "title": "Drop (Digital Product Passport Records)",
-      "description": "Create onchain digital records for the inventory selected below."
-    },
-    "table": {
-      "columns": {
-        "title": "Title",
-        "url": "URL"
+  "ProductDrawerFooter": {
+    "saveAsDraft": "Save as Draft",
+    "addProduct": "Add Product",
+    "updateProduct": "Update Product"
+  },
+  "ProductForm": {
+    "fields": {
+      "title": {
+        "productName": "Product Name",
+        "eventName": "Event Name",
+        "description": "Enter a unique product name. This will be visible to customers.",
+        "placeholder": "e.g., Handmade Ceramic Mug"
       },
-      "noTitle": "No Title",
-      "noItems": "No items available"
-    },
-    "pagination": {
-      "previousPage": "Previous page",
-      "nextPage": "Next page"
-    },
-    "footer": {
-      "discard": "Discard",
-      "importSelected": "Import {count} Selected Items",
-      "selectItems": "Select Items to Import"
-    }
-  },
-  "fields": {
-    "title": {
-      "productName": "Product Name",
-      "eventName": "Event Name",
-      "description": "Enter a unique product name. This will be visible to customers.",
-      "placeholder": "e.g., Handmade Ceramic Mug"
-    },
-    "termsAndConditions": {
-      "title": "Custom Term of Service",
-      "description": "Display custom terms specific to this product, such as return policies or disclaimers, during checkout.",
-      "placeholder": "e.g., This product is non-refundable after purchase or legal terms applicable to this product."
-    },
-    "visibilityStatus": {
-      "label": "Visibility Status",
-      "description": "Set the visibility of this product. If deactivated, customers won't be able to add it to their cart.",
-      "public": {
-        "label": "Public",
-        "tooltip": "Customers will be able to add it to their cart"
+      "termsAndConditions": {
+        "title": "Custom Term of Service",
+        "description": "Display custom terms specific to this product, such as return policies or disclaimers, during checkout.",
+        "placeholder": "e.g., This product is non-refundable after purchase or legal terms applicable to this product."
       },
-      "private": {
-        "label": "Private",
-        "tooltip": "Customers won't be able to add it to their cart"
-      }
-    },
-    "productImages": {
-      "label": "Product Images",
-      "description": "Upload images or videos that visually showcase the product.",
-      "fileUploadFailed": "Failed to upload file"
-    },
-    "productDescription": {
-      "label": "Product Description",
-      "description": "Describe product features and details to help customers understand what they're buying.",
-      "placeholder": "Add product information here..."
-    },
-    "releaseDate": {
-      "title": "Release Date",
-      "description": "Select a specific release date for this product."
-    },
-    "deliveryMessage": {
-      "title": "Delivery Message",
-      "description": "Provide customers with important delivery details at checkout, such as estimated shipping times or special instructions.",
-      "messagePlaceholder": "e.g., Expected delivery within 5–7 business days, or include specific delivery instructions.",
-      "urlPlaceholder": "e.g., www.sample.com"
-    },
-    "affiliate": {
-      "title": "Affiliate Market",
-      "description": "Enable this to allow co-sellers to import and sell this product.",
-      "commissionPlaceholder": "15"
-    },
-    "collection": {
-      "label": "Collections",
-      "description": "Select the collection that will feature this product.",
-      "placeholder": "Select a collection"
-    }
-  },
-  "ai": {
-    "improve": {
-      "button": "Improve With AI",
-      "styles": {
-        "casual": "Casual",
-        "friendly": "Friendly",
-        "professional": "Professional",
-        "inspirational": "Inspirational",
-        "luxury": "Luxury",
-        "techSavvy": "Tech_Savvy"
+      "visibilityStatus": {
+        "label": "Visibility Status",
+        "description": "Set the visibility of this product. If deactivated, customers won't be able to add it to their cart.",
+        "public": {
+          "label": "Public",
+          "tooltip": "Customers will be able to add it to their cart"
+        },
+        "private": {
+          "label": "Private",
+          "tooltip": "Customers won't be able to add it to their cart"
+        }
       },
-      "actions": {
-        "revert": "Revert",
-        "tryAgain": "Try Again"
+      "productImages": {
+        "label": "Product Images",
+        "description": "Upload images or videos that visually showcase the product.",
+        "fileUploadFailed": "Failed to upload file"
+      },
+      "productDescription": {
+        "label": "Product Description",
+        "description": "Describe product features and details to help customers understand what they're buying.",
+        "placeholder": "Add product information here..."
+      },
+      "releaseDate": {
+        "title": "Release Date",
+        "description": "Select a specific release date for this product."
+      },
+      "deliveryMessage": {
+        "title": "Delivery Message",
+        "description": "Provide customers with important delivery details at checkout, such as estimated shipping times or special instructions.",
+        "messagePlaceholder": "e.g., Expected delivery within 5–7 business days, or include specific delivery instructions.",
+        "urlPlaceholder": "e.g., www.sample.com"
+      },
+      "affiliate": {
+        "title": "Affiliate Market",
+        "description": "Enable this to allow co-sellers to import and sell this product.",
+        "commissionPlaceholder": "15"
+      },
+      "collection": {
+        "label": "Collections",
+        "description": "Select the collection that will feature this product.",
+        "placeholder": "Select a collection"
       }
     },
-    "generate": {
-      "title": "Generate with AI",
-      "description": "Populate a product name and description based on the chosen default image.",
-      "errorMessage": "Oops! Something went wrong. Please try again."
-    }
-  },
-  "accordions": {
-    "generalInformation": {
-      "label": "General Information",
-      "eventSync": {
-        "title": "Event Sync Notice",
-        "description": "The event name and description are synced with your connected event account. To make updates, please edit directly in your event account. Changes will automatically appear here."
+    "accordions": {
+      "generalInformation": {
+        "label": "General Information",
+        "eventSync": {
+          "title": "Event Sync Notice",
+          "description": "The event name and description are synced with your connected event account. To make updates, please edit directly in your event account. Changes will automatically appear here."
+        }
+      },
+      "additionalDetails": {
+        "label": "Additional Details",
+        "keywordsPlaceholder": "Type keywords to help customers find this product...",
+        "customField": {
+          "title": "Custom Field",
+          "description": "Add custom information to display during checkout."
+        }
+      },
+      "productVariants": {
+        "priceLabel": "Price",
+        "priceAndVariantsLabel": "Price & Variants"
+      },
+      "web3Settings": {
+        "label": "Web 3 Settings"
+      },
+      "shipping": {
+        "label": "Shipping"
+      },
+      "podDesign": {
+        "label": "POD Design"
+      },
+      "podMint2Merch": {
+        "label": "Mint to Merch",
+        "title": "Mint to Merch",
+        "description": "Enable customers to directly print their NFT artwork on the POD product."
       }
     },
-    "additionalDetails": {
-      "label": "Additional Details",
-      "keywordsPlaceholder": "Type keywords to help customers find this product...",
-      "customField": {
-        "title": "Custom Field",
-        "description": "Add custom information to display during checkout."
+    "physicalProductVariants": {
+      "label": "Variants",
+      "description": "Add different versions of this product (e.g., size, color).",
+      "addVariantsButton": "Add Variants",
+      "variantLimitWarning": {
+        "title": "Variant Limit Warning",
+        "description": "Can't add any more variants. You can only add up to {{maxVariants}} variants."
       }
     },
-    "productVariants": {
-      "priceLabel": "Price",
-      "priceAndVariantsLabel": "Price & Variants"
+    "productShippingType": {
+      "label": "Shipping Method",
+      "description": "Choose how to ship this product to customers.",
+      "customShipping": "Custom Shipping"
     },
-    "web3Settings": {
-      "label": "Web 3 Settings"
+
+    "variantItemList": {
+      "value": "Value",
+      "colorName": "Color Name",
+      "enterValue": "Enter Value"
     },
-    "shipping": {
-      "label": "Shipping"
+    "customShippingForm": {
+      "title": "Create New Custom Shipping",
+      "description": "Add an option to provide custom shipping details.",
+      "titleLabel": "Title",
+      "titlePlaceholder": "e.g., Express Delivery, Standard Shipping",
+      "create": "Create",
+      "successMessage": "Your custom shipping option has been created successfully.",
+      "errorMessage": "common:errors.failedToCreate"
     },
-    "podDesign": {
-      "label": "POD Design"
+    "variantSelector": {
+      "createCustomVariant": "Create Custom Variant",
+      "createVariant": "Create \"{{variant}}\"",
+      "placeholder": "e.g., Storage, Material",
+      "inputPlaceholder": "Color, Size or Custom Variant"
     },
-    "podMint2Merch": {
-      "label": "Mint to Merch",
-      "title": "Mint to Merch",
-      "description": "Enable customers to directly print their NFT artwork on the POD product."
+
+    "pod": {
+      "productVariants": {
+        "label": "Product Variants",
+        "description": "Select the variants for your POD product"
+      },
+      "productCatalog": {
+        "label": "Product Catalog",
+        "description": "Choose from our catalog of POD products"
+      },
+      "productTemplate": {
+        "label": "Product Template",
+        "description": "Select a template for your POD product"
+      },
+      "walletOptions": {
+        "label": "Wallet Options"
+      },
+      "backButton": "Back to Catalog"
+    },
+    "royalty": {
+      "title": "Royalty",
+      "description": "Set royalty percentage for this product",
+      "addSkuFirst": "Please add SKUs first",
+      "placeholder": "0.00"
+    },
+    "bulkPriceUpdater": {
+      "title": "Bulk Price Update",
+      "description": "Update all SKU prices at once",
+      "placeholder": "0.00"
     }
   },
-  "physicalProductVariants": {
-    "label": "Variants",
-    "description": "Add different versions of this product (e.g., size, color).",
-    "addVariantsButton": "Add Variants",
-    "variantLimitWarning": {
-      "title": "Variant Limit Warning",
-      "description": "Can't add any more variants. You can only add up to {{maxVariants}} variants."
-    }
-  },
-  "productShippingType": {
-    "label": "Shipping Method",
-    "description": "Choose how to ship this product to customers.",
-    "customShipping": "Custom Shipping"
-  },
-  "productDrop": {
-    "title": "Drop",
-    "description": "Enable onchain records for this digital product.",
-    "alreadyPublishedError": "This product has already been published."
-  },
-  "variantForm": {
-    "type": "Type",
-    "discard": "Discard",
-    "edit": "Edit",
-    "save": "Save"
-  },
-  "variantItemList": {
-    "value": "Value",
-    "colorName": "Color Name",
-    "enterValue": "Enter Value"
-  },
-  "customShippingForm": {
-    "title": "Create New Custom Shipping",
-    "description": "Add an option to provide custom shipping details.",
-    "titleLabel": "Title",
-    "titlePlaceholder": "e.g., Express Delivery, Standard Shipping",
-    "discard": "Discard",
-    "create": "Create",
-    "successMessage": "Your custom shipping option has been created successfully.",
-    "errorMessage": "Failed to create the custom shipping option. Please try again."
-  },
-  "variantSelector": {
-    "createCustomVariant": "Create Custom Variant",
-    "createVariant": "Create \"{{variant}}\"",
-    "placeholder": "e.g., Storage, Material",
-    "inputPlaceholder": "Color, Size or Custom Variant"
-  },
-  "digitalProductSKU": {
-    "price": "Price",
-    "pricePlaceholder": "0.00",
-    "quantity": "Quantity",
-    "quantityPlaceholder": "1",
-    "externalID": "External ID",
-    "externalIDPlaceholder": "1"
-  },
-  "detailsModal": {
-    "productInfo": "Product Info",
-    "orders": "Orders",
-    "title": "Product Details",
-    "description": "Track product inventory, sales data, and applied discounts for seamless order management."
-  },
-  "productFooter": {
-    "soldItems": "Sold Items",
-    "totalSale": "Total Sale"
-  },
-  "ordersContent": {
-    "noOrdersAvailable": "No orders available yet!"
-  },
-  "orderHeader": {
-    "orderNumber": "Order #{{orderId}}"
-  },
-  "customerInfo": {
-    "fullName": "Full Name",
-    "emailAddress": "Email Address"
-  },
-  "orderProducts": {
-    "quantity": "Quantity"
-  },
-  "orderTotal": {
-    "totalPaid": "Total Paid"
-  },
-  "shareModal": {
-    "title": "Share Product",
-    "description": "Share your product with people around the world.",
-    "tabs": {
-      "directLink": "Direct Link",
-      "paymentLink": "Payment Link",
-      "productTile": "Product Tile",
-      "socialTile": "Social Tile"
-    },
-    "paymentLink": {
-      "configure": "Configure",
-      "downloadQRCode": "Download QR Code"
-    },
-    "embedCode": {
-      "title": "Embed Code",
-      "copied": "Copied",
-      "configure": "Configure",
-      "needHelp": "Need Help? Visit Help Center"
-    }
-  },
-  "confirmationModal": {
+  "ConfirmationModal": {
     "actions": {
       "delete": {
         "title": "Delete Product",
@@ -409,7 +337,57 @@
       "defaultMessage": "Something went wrong. Please refresh or try again later."
     }
   },
-  "dropInfoModal": {
+  "DetailsModal": {
+    "productInfo": "Product Info",
+    "orders": "Orders",
+    "title": "Product Details",
+    "description": "Track product inventory, sales data, and applied discounts for seamless order management."
+  },
+  "ProductFooter": {
+    "soldItems": "Sold Items",
+    "totalSale": "Total Sale"
+  },
+  "OrdersContent": {
+    "noOrdersAvailable": "No orders available yet!"
+  },
+  "OrderHeader": {
+    "orderNumber": "Order #{{orderId}}"
+  },
+  "CustomerInfo": {
+    "fullName": "Full Name",
+    "emailAddress": "Email Address"
+  },
+  "OrderProducts": {
+    "quantity": "Quantity"
+  },
+  "OrderTotal": {
+    "totalPaid": "Total Paid"
+  },
+  "ShareModal": {
+    "title": "Share Product",
+    "description": "Share your product with people around the world.",
+    "tabs": {
+      "directLink": "Direct Link",
+      "paymentLink": "Payment Link",
+      "productTile": "Product Tile",
+      "socialTile": "Social Tile"
+    },
+    "paymentLink": {
+      "configure": "Configure",
+      "downloadQRCode": "Download QR Code"
+    },
+    "embedCode": {
+      "title": "Embed Code",
+      "copied": "Copied",
+      "configure": "Configure",
+      "needHelp": "Need Help? Visit Help Center"
+    }
+  },
+  "ShareModalHeader": {
+    "title": "Share Product",
+    "description": "Share your product with people around the world."
+  },
+  "DropInfoModal": {
     "title": "Drop Information",
     "details": {
       "deployHash": "Deploy Hash",
@@ -419,8 +397,207 @@
       "alt": "Product Image"
     }
   },
-  "productReorderModal": {
-    "title": "Reorder Products",
-    "description": "Organize products by dragging and dropping them in the order that they should be displayed on the storefront."
+  "EmptyProductList": {
+    "description": "Get started by adding your first product",
+    "alt": "Empty Table"
+  },
+  "GenerateWithAI": {
+    "title": "Generate with AI",
+    "description": "Populate a product name and description based on the chosen default image."
+  },
+  "ImproveWithAi": {
+    "button": "Improve With AI",
+    "styles": {
+      "casual": "Casual",
+      "friendly": "Friendly",
+      "professional": "Professional",
+      "inspirational": "Inspirational",
+      "luxury": "Luxury",
+      "techSavvy": "Tech_Savvy"
+    },
+    "actions": {
+      "revert": "Revert",
+      "tryAgain": "Try Again"
+    }
+  },
+  "useProductSubmission": {
+    "success": {
+      "productSaved": "The product has been saved successfully!"
+    },
+    "errors": {
+      "unexpectedError": "common:errors.unexpectedError"
+    }
+  },
+  "useImportWithUrl": {
+    "success": {
+      "crawlTaskStarted": "Crawl Task Started",
+      "crawlTaskDescription": "We are crawling products from the provided URL. Once the task status is set to Previews_ready, you can select the products you want to import.",
+      "importTaskStarted": "Import task started",
+      "importTaskDescription": "We are importing selected products to your inventory. You can view ongoing tasks in the Import Products modal."
+    },
+    "errors": {
+      "anErrorOccurred": "common:errors.anErrorOccurred"
+    }
+  },
+  "useImproveAI": {
+    "errors": {
+      "improveAIError": "common:errors.oopsSomethingWentWrong"
+    }
+  },
+  "useDesignMakerLogic": {
+    "errors": {
+      "designMakerError": "common:errors.somethingWentWrong"
+    }
+  },
+  "useShippingTypes": {
+    "easyPost": {
+      "title": "EasyPost",
+      "description": "Calculates the real-time cost of the shipment based on the delivery address to provide a shipping label."
+    }
+  },
+  "useProductTypeLegality": {
+    "productTypes": {
+      "digital": "Digital",
+      "physical": "Physical",
+      "pod": "POD",
+      "event": "Event"
+    }
+  },
+  "useProductTypeMap": {
+    "digital": "Digital",
+    "physical": "Physical",
+    "pod": "Print on Demand",
+    "event": "Event"
+  },
+  "ProductBulkPriceUpdater": {
+    "title": "Bulk Price Update",
+    "description": "Update all SKU prices at once",
+    "placeholder": "0.00"
+  },
+  "ProductRoyalty": {
+    "title": "Royalty",
+    "description": "Set royalty percentage for this product",
+    "addSkuFirst": "Please add SKUs first",
+    "placeholder": "0.00"
+  },
+  "ProductVariantCard": {
+    "colorName": "Color"
+  },
+  "ProductAffiliate": {
+    "title": "Affiliate Market",
+    "description": "Enable this to allow co-sellers to import and sell this product.",
+    "commissionPlaceholder": "15"
+  },
+  "ProductReleaseDate": {
+    "title": "Release Date",
+    "description": "Select a specific release date for this product."
+  },
+  "ProductCollection": {
+    "label": "Collections",
+    "description": "Select the collection that will feature this product.",
+    "placeholder": "Select a collection"
+  },
+  "ProductVisibilityStatus": {
+    "label": "Visibility Status",
+    "description": "Set the visibility of this product. If deactivated, customers won't be able to add it to their cart.",
+    "public": {
+      "label": "Public",
+      "tooltip": "Customers will be able to add it to their cart"
+    },
+    "private": {
+      "label": "Private",
+      "tooltip": "Customers won't be able to add it to their cart"
+    }
+  },
+  "ProductDeliveryMessage": {
+    "title": "Delivery Message",
+    "description": "Provide customers with important delivery details at checkout, such as estimated shipping times or special instructions.",
+    "messagePlaceholder": "e.g., Expected delivery within 5–7 business days, or include specific delivery instructions.",
+    "urlPlaceholder": "e.g., www.sample.com"
+  },
+  "ProductTermsAndConditions": {
+    "title": "Custom Term of Service",
+    "description": "Display custom terms specific to this product, such as return policies or disclaimers, during checkout.",
+    "placeholder": "e.g., This product is non-refundable after purchase or legal terms applicable to this product."
+  },
+  "ProductTitle": {
+    "productName": "Product Name",
+    "eventName": "Event Name",
+    "description": "Enter a unique product name. This will be visible to customers.",
+    "placeholder": "e.g., Handmade Ceramic Mug"
+  },
+  "ProductShippingType": {
+    "label": "Shipping Method",
+    "description": "Choose how to ship this product to customers.",
+    "customShipping": "Custom Shipping"
+  },
+  "CustomShippingForm": {
+    "title": "Create New Custom Shipping",
+    "description": "Add an option to provide custom shipping details.",
+    "titleLabel": "Title",
+    "titlePlaceholder": "e.g., Express Delivery, Standard Shipping",
+    "successMessage": "Your custom shipping option has been created successfully."
+  },
+  "CustomShippingFileUpload": {
+    "title": "File",
+    "description": "Upload Shipping Details File.",
+    "sampleFile": {
+      "title": "Sample File",
+      "description": "Use the sample template to ensure correct file format and details.",
+      "downloadTemplate": "Download Template"
+    }
+  },
+  "PhysicalProductVariants": {
+    "label": "Variants",
+    "description": "Add different versions of this product (e.g., size, color).",
+    "addVariantsButton": "Add Variants",
+    "variantLimitWarning": {
+      "title": "Variant Limit Warning",
+      "description": "Can't add any more variants. You can only add up to {{maxVariants}} variants."
+    }
+  },
+  "VariantSelector": {
+    "createCustomVariant": "Create Custom Variant",
+    "createVariant": "Create \"{{variant}}\"",
+    "placeholder": "e.g., Storage, Material",
+    "inputPlaceholder": "Color, Size or Custom Variant"
+  },
+  "VariantItemList": {
+    "value": "Value",
+    "colorName": "Color Name",
+    "enterValue": "Enter Value"
+  },
+  "FileUpload": {
+    "click": "Click",
+    "orDragDropHere": "or drag & drop here"
+  },
+  "ProductDrop": {
+    "title": "Drop",
+    "description": "Enable onchain records for this digital product.",
+    "alreadyPublishedError": "This product has already been published."
+  },
+  "DigitalProductSKU": {
+    "price": "Price",
+    "pricePlaceholder": "0.00",
+    "quantity": "Quantity",
+    "quantityPlaceholder": "1",
+    "externalID": "External ID",
+    "externalIDPlaceholder": "1"
+  },
+  "DropSummary": {
+    "noTransactionLinkAvailable": "No transaction link available",
+    "unknownNetwork": "Unknown Network",
+    "noTransactionUrlProvided": "No transaction URL provided"
+  },
+  "BlockchainNetworkSelector": {
+    "label": "Blockchain Network",
+    "description": "Choose the blockchain network where product details will be recorded as an NFT.",
+    "placeholder": "Select network"
+  },
+  "DropConfigurationPanel": {
+    "productLockNotice": {
+      "title": "Product Lock Notice",
+      "description": "Once this product is dropped, all details will be permanently locked and cannot be changed."
+    }
   }
 } 

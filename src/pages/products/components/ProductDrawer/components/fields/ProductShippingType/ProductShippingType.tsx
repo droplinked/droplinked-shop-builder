@@ -14,19 +14,19 @@ function ProductShippingType() {
     const { hasCustomShippingPermission, shippingTypes, shippingTypesQuery } = useShippingTypes()
 
     const rightContent = (
-        <BlueButton
-            sx={{ path: { stroke: "#179EF8" } }}
-            onClick={() => hasCustomShippingPermission && setFormVisibility(true)}
-        >
-            <AppIcons.BlackPlus />
-            {t('productShippingType.customShipping')}
-        </BlueButton>
+                    <BlueButton
+                sx={{ path: { stroke: "#179EF8" } }}
+                onClick={() => hasCustomShippingPermission && setFormVisibility(true)}
+            >
+                <AppIcons.BlackPlus />
+                {t('ProductShippingType.customShipping')}
+            </BlueButton>
     )
 
     return (
         <FormFieldWrapper
-            label={t('productShippingType.label')}
-            description={t('productShippingType.description')}
+            label={t('ProductShippingType.label')}
+            description={t('ProductShippingType.description')}
             isRequired
             {...hasCustomShippingPermission && { rightContent }}
         >

@@ -9,7 +9,7 @@ export const OrderTotal = ({ amount, currency }: { amount: number; currency: any
         <VStack align="start" spacing="4" p="6">
           <HStack justify="space-between" w="full">
             <Text fontSize="sm" fontWeight="normal" color="text.subtext.placeholder.dark">
-              {t('orderTotal.totalPaid')}
+              {t('OrderTotal.totalPaid')}
             </Text>
             <HStack spacing="1">
               <Text fontSize="sm" fontWeight="medium" color="white">

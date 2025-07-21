@@ -1,5 +1,4 @@
 import { getShopProductsService } from 'services/product/productServices'
-import { ProductType } from 'pages/products/utils/types'
 import { useInfiniteQuery } from 'react-query'
 import useLocaleResources from '../useLocaleResources/useLocaleResources'
 
@@ -16,12 +15,12 @@ export default function useProducts(searchTerm: string) {
 }
 
 export const useProductTypeMap = () => {
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('products')
     
     return {
-        "DIGITAL": t('hooks.productTypes.digital'),
-        "NORMAL": t('hooks.productTypes.physical'),
-        "PRINT_ON_DEMAND": t('hooks.productTypes.pod'),
-        "EVENT": t('hooks.productTypes.event')
+        "DIGITAL": t('useProductTypeMap.digital'),
+        "NORMAL": t('useProductTypeMap.physical'),
+        "PRINT_ON_DEMAND": t('useProductTypeMap.pod'),
+        "EVENT": t('useProductTypeMap.event')
     }
 }

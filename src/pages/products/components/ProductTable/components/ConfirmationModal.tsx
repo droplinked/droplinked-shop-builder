@@ -26,27 +26,27 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
     const actionMessages = {
         DELETE: {
             icon: <AppIcons.WhiteTrash />,
-            title: t('confirmationModal.actions.delete.title'),
-            description: t('confirmationModal.actions.delete.description'),
-            successMessage: t('confirmationModal.actions.delete.successMessage')
+            title: t('ConfirmationModal.actions.delete.title'),
+            description: t('ConfirmationModal.actions.delete.description'),
+            successMessage: t('ConfirmationModal.actions.delete.successMessage')
         },
         DUPLICATE: {
             icon: <AppIcons.Copy />,
-            title: t('confirmationModal.actions.duplicate.title'),
-            description: t('confirmationModal.actions.duplicate.description'),
-            successMessage: t('confirmationModal.actions.duplicate.successMessage')
+            title: t('ConfirmationModal.actions.duplicate.title'),
+            description: t('ConfirmationModal.actions.duplicate.description'),
+            successMessage: t('ConfirmationModal.actions.duplicate.successMessage')
         },
         PUBLISH: {
             icon: <AppIcons.Transfer />,
-            title: t('confirmationModal.actions.publish.title'),
-            description: t('confirmationModal.actions.publish.description'),
-            successMessage: t('confirmationModal.actions.publish.successMessage')
+            title: t('ConfirmationModal.actions.publish.title'),
+            description: t('ConfirmationModal.actions.publish.description'),
+            successMessage: t('ConfirmationModal.actions.publish.successMessage')
         },
         DRAFT: {
             icon: <AppIcons.Transfer />,
-            title: t('confirmationModal.actions.draft.title'),
-            description: t('confirmationModal.actions.draft.description'),
-            successMessage: t('confirmationModal.actions.draft.successMessage')
+            title: t('ConfirmationModal.actions.draft.title'),
+            description: t('ConfirmationModal.actions.draft.description'),
+            successMessage: t('ConfirmationModal.actions.draft.successMessage')
         }
     }
 
@@ -63,7 +63,7 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
             invalidateProductsQuery()
         }
         catch (error) {
-            const defaultMessage = t('confirmationModal.error.defaultMessage')
+            const defaultMessage = t('ConfirmationModal.error.defaultMessage')
             const errorMessage = error?.response?.data?.data?.message ?? defaultMessage
             showToast({ message: errorMessage, type: "error" })
         }
@@ -93,7 +93,7 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
 
             <ModalBody display="flex" justifyContent="space-between" mb="8" bg="#141414" overflow="hidden">
                 <AppButton variant="secondary" isDisabled={isLoading} onClick={onClose}>
-                    {t('confirmationModal.buttons.cancel')}
+                    {t('ConfirmationModal.buttons.cancel')}
                 </AppButton>
                 <AppButton isLoading={isLoading} onClick={handleAction}>
                     {title}

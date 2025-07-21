@@ -32,7 +32,7 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
             showToast({ message: response.data.message, type: 'success' })
             closeModal()
         } catch (error: any) {
-            const errorMessage = error?.response?.data?.data?.message || t('common.error')
+            const errorMessage = error?.response?.data?.data?.message || t('common:error')
             showToast({ message: errorMessage, type: 'error' })
         }
     }
@@ -53,10 +53,10 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
             paddingBlock="36px !important"
         >
             <AppButton variant="secondary" disabled={isLoading} onClick={closeModal}>
-                {t('importModal.footer.cancel')}
+                {t('ImportProductModalFooter.cancel')}
             </AppButton>
             <AppButton onClick={handleSubmit} isLoading={crawlingLoading || isLoading} isDisabled={!file && !targetShopUrl}>
-                {isLoading ? t('common.uploading') : t('importModal.footer.import')}
+                {isLoading ? t('common:uploading') : t('ImportProductModalFooter.import')}
             </AppButton>
         </ModalFooter>
     )

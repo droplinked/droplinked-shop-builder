@@ -13,18 +13,18 @@ function AdditionalDetailsAccordion() {
     const { values: { tags, pre_purchase_data_fetch, product_type }, setFieldValue } = useProductForm()
 
     return (
-        <ProductFormAccordion label={t('accordions.additionalDetails.label')}>
+        <ProductFormAccordion label={t('ProductForm.accordions.additionalDetails.label')}>
             <ProductVisibilityStatus />
             <KeywordInput
                 keywords={tags}
                 onKeywordsChange={(keywords) => setFieldValue('tags', keywords)}
-                placeholder={t('accordions.additionalDetails.keywordsPlaceholder')}
+                placeholder={t('ProductForm.accordions.additionalDetails.keywordsPlaceholder')}
             />
             <ProductReleaseDate />
 
             <SwitchBox
-                title={t('accordions.additionalDetails.customField.title')}
-                description={t('accordions.additionalDetails.customField.description')}
+                title={t('ProductForm.accordions.additionalDetails.customField.title')}
+                description={t('ProductForm.accordions.additionalDetails.customField.description')}
                 switchProps={{
                     isChecked: pre_purchase_data_fetch,
                     onChange: () => setFieldValue("pre_purchase_data_fetch", !pre_purchase_data_fetch)

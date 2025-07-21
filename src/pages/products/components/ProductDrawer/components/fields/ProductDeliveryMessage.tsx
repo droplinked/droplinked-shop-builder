@@ -29,8 +29,8 @@ function ProductDeliveryMessage() {
 
     return (
         <SwitchBox
-            title={t('fields.deliveryMessage.title')}
-            description={t('fields.deliveryMessage.description')}
+            title={t('ProductDeliveryMessage.title')}
+            description={t('ProductDeliveryMessage.description')}
             switchProps={{
                 isChecked: showDeliveryMessage,
                 onChange: (e) => handleToggle(e.target.checked),
@@ -41,7 +41,7 @@ function ProductDeliveryMessage() {
                     <Textarea
                         value={message || ""}
                         onChange={(e) => updateField("message", e.target.value)}
-                        placeholder={t('fields.deliveryMessage.messagePlaceholder')}
+                        placeholder={t('ProductDeliveryMessage.messagePlaceholder')}
                         rows={8}
                     />
                     <AppInput
@@ -49,7 +49,7 @@ function ProductDeliveryMessage() {
                         inputProps={{
                             value: file_url || "",
                             onChange: (e) => updateField("file_url", e.target.value),
-                            placeholder: t('fields.deliveryMessage.urlPlaceholder'),
+                            placeholder: t('ProductDeliveryMessage.urlPlaceholder'),
                             fontSize: 16,
                         }}
                     />

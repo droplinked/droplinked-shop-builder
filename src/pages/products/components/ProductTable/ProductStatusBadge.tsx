@@ -17,15 +17,15 @@ export default function ProductStatusBadge({ status, purchaseAvailable }: Props)
     const statusMap: Record<string, { label: string, status: "success" | "neutral" | "error" }> = {
         "PUBLISHED": {
             status: "success",
-            label: t('productTable.status.public')
+            label: t('common:public')
         },
         "DRAFTED": {
             status: "neutral",
-            label: t('productTable.status.draft')
+            label: t('common:draft')
         },
         "PRIVATE": {
             status: "error",
-            label: t('productTable.status.private')
+            label: t('common:private')
         }
     }
     

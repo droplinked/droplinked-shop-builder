@@ -4,17 +4,8 @@ import BlueButton from 'components/redesign/button/BlueButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
-// Local translations for this component
-const localEn = {
-  addVariantsButton: "Add Variants"
-}
-
-const localAr = {
-  addVariantsButton: "إضافة متغيرات"
-}
-
 function AddVariantsButton(props: ButtonProps) {
-    const { t } = useLocaleResources('products', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('products')
 
     return (
         <BlueButton
@@ -29,7 +20,7 @@ function AddVariantsButton(props: ButtonProps) {
             {...props}
         >
             <AppIcons.BlackPlus />
-            {t('physicalProductVariants.addVariantsButton')}
+            {t('PhysicalProductVariants.addVariantsButton')}
         </BlueButton>
     )
 }

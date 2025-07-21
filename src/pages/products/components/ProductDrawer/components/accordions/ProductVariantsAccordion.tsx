@@ -11,7 +11,7 @@ function ProductVariantsAccordion() {
     const { t } = useLocaleResources('products');
     const { values: { product_type } } = useProductForm()
 
-    const accordionLabel = product_type === "DIGITAL" ? t('accordions.productVariants.priceLabel') : t('accordions.productVariants.priceAndVariantsLabel')
+    const accordionLabel = product_type === "DIGITAL" ? t('ProductForm.accordions.productVariants.priceLabel') : t('ProductForm.accordions.productVariants.priceAndVariantsLabel')
 
     const VARIANT_CONTENT: Record<ProductType, React.ReactNode> = {
         NORMAL: <PhysicalProductVariants />,

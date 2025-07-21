@@ -51,7 +51,7 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
             padding={4}
         >
             {/* Allows selecting the variant type */}
-            <FormControl label={t('variantForm.type')}>
+            <FormControl label={t('common:type')}>
                 <VariantSelector
                     properties={properties}
                     localProperty={localProperty}
@@ -68,8 +68,8 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
                 gap={4}
                 sx={{ button: { padding: '8px 12px', fontSize: 12, fontWeight: 500 } }}
             >
-                <AppButton variant="secondary" onClick={handleDiscard}>{t('variantForm.discard')}</AppButton>
-                <AppButton onClick={saveToContext}> {editingVariant ? t('variantForm.edit') : t('variantForm.save')}  </AppButton>
+                <AppButton variant="secondary" onClick={handleDiscard}>{t('common:discard')}</AppButton>
+                <AppButton onClick={saveToContext}> {editingVariant ? t('common:edit') : t('common:save')}  </AppButton>
             </Flex>
         </Flex>
     )

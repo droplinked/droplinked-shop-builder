@@ -10,7 +10,7 @@ export const CustomerInfo = ({ customer }: { customer: any }) => {
           {["name", "email"].map((field, idx) => (
             <HStack key={idx} justify="space-between" w="full">
               <Text fontSize="sm" fontWeight="normal" color="text.subtext.placeholder.dark">
-                {field === "name" ? t('customerInfo.fullName') : t('customerInfo.emailAddress')}
+                {field === "name" ? t('CustomerInfo.fullName') : t('CustomerInfo.emailAddress')}
               </Text>
               <Text fontSize="sm" fontWeight="medium" color="white">
                 {customer?.[field] || "----"}

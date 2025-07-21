@@ -61,7 +61,7 @@ const OrdersContent = ({ productId }: { productId: string }) => {
   }
 
   if (!orders.length) {
-    return <AppEmptyPage title={t('ordersContent.noOrdersAvailable')} />;
+    return <AppEmptyPage title={t('OrdersContent.noOrdersAvailable')} />;
   }
 
   return (

@@ -14,8 +14,8 @@ export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard
     const { t } = useLocaleResources('products');
     
     const buttonText = selectedProductsCount > 0
-        ? t('identifiedItemsModal.footer.importSelected', { count: selectedProductsCount })
-        : t('identifiedItemsModal.footer.selectItems')
+        ? t('IdentifiedItemsFooter.importSelected', { count: selectedProductsCount })
+        : t('IdentifiedItemsFooter.selectItems')
 
     return (
         <ModalFooter
@@ -25,7 +25,7 @@ export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard
             paddingBlock="36px !important"
         >
             <AppButton variant="secondary" onClick={onDiscard}>
-                {t('identifiedItemsModal.footer.discard')}
+                {t('common:discard')}
             </AppButton>
             <AppButton
                 isDisabled={selectedProductsCount === 0}

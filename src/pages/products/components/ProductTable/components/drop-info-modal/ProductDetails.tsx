@@ -24,7 +24,7 @@ function ProductDetails({ product }: { product: any }) {
                 height={12}
                 borderRadius={6}
                 src={imageURL}
-                alt={t('dropInfoModal.productDetails.alt')}
+                alt={t('DropInfoModal.productDetails.alt')}
             />
             <Text fontWeight={700} color="white">{title}</Text>
         </Flex>

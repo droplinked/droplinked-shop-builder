@@ -39,10 +39,10 @@ export default function UrlInput({ isDisabled, crawlerError }: Props) {
             <DividerText text={t('common.or')} />
 
             <AppInput
-                label={t('importModal.urlInput.title')}
-                tooltipText={t('importModal.urlInput.description')}
+                label={t('UrlInput.title')}
+                tooltipText={t('UrlInput.description')}
                 inputProps={{
-                    placeholder: t('importModal.urlInput.placeholder'),
+                    placeholder: t('UrlInput.placeholder'),
                     onChange: (e) => handleChange(e.target.value),
                     value: tempValue,
                     type: 'url',

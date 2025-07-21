@@ -33,8 +33,8 @@ export default function PhysicalProductVariants() {
 
     return (
         <FormFieldWrapper
-            label={t('physicalProductVariants.label')}
-            description={t('physicalProductVariants.description')}
+            label={t('PhysicalProductVariants.label')}
+            description={t('PhysicalProductVariants.description')}
             isRequired
             errorMessage={getFieldErrorMessage(errors.sku)}
         >
@@ -51,8 +51,8 @@ export default function PhysicalProductVariants() {
 
                     {!canAddVariants && (
                         <MessageBox
-                            title={t('physicalProductVariants.variantLimitWarning.title')}
-                            description={t('physicalProductVariants.variantLimitWarning.description', { maxVariants: 2 })}
+                            title={t('PhysicalProductVariants.variantLimitWarning.title')}
+                            description={t('PhysicalProductVariants.variantLimitWarning.description', { maxVariants: 2 })}
                             theme="warning"
                         />
                     )}
