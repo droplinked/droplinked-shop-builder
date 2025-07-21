@@ -13,14 +13,16 @@ interface ProPlanFeaturesProps {
 }
 
 const ProPlanFeatures: React.FC<ProPlanFeaturesProps> = ({ isExpanded, isCrossmint, onToggleExpanded }) => {
-  const { t } = useLocaleResources('common');
+  const { t } = useLocaleResources('subscription');
+  const { t: tCommon } = useLocaleResources('common');
+  const { t: tOnboarding } = useLocaleResources('onboarding');
 
   return (
     <>
       {isExpanded && (
         <>
           <Box p={4}>
-            {getFeaturesWithInheritance('BUSINESS', t).map((feature) => (
+            {getFeaturesWithInheritance('BUSINESS', t, tOnboarding).map((feature) => (
               <Flex key={feature} gap={2} mb={4} alignItems="center">
                 <AvailableoutlinedSm color="white" />
                 <Text textColor="neutral.white" flex={1} fontSize="sm">
@@ -37,9 +39,9 @@ const ProPlanFeatures: React.FC<ProPlanFeaturesProps> = ({ isExpanded, isCrossmi
           <Box w="full" h="0" border="1px solid" borderColor="label.primary" />
         <Flex w="full" px={4} py={2} justify="center" alignItems="center" gap={1.5} onClick={onToggleExpanded}>
           <Text fontSize="sm" color="white" fontWeight="normal" lineHeight="tight">
-            {isExpanded ? t('proPlan.features.less') : t('proPlan.features.more')}
+            {isExpanded ? tCommon('proPlan.features.less') : tCommon('proPlan.features.more')}
           </Text>
-          {isExpanded ? <ChevronupMd color='black' /> : <ChevrondownMd color='black' />}
+          {isExpanded ? <ChevronupMd  /> : <ChevrondownMd />}
         </Flex>
         </>
       )}
