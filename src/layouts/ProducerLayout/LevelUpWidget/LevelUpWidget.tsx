@@ -13,8 +13,8 @@ const LevelUpWidget = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [currentSubSection, setCurrentSubSection] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { t } = useLocaleResources('layout/ProducerLayout');
-  const levelUpSections = getLevelUpSections(t);
+  const { t , isRTL} = useLocaleResources('layout/ProducerLayout');
+  const levelUpSections = getLevelUpSections(t, isRTL);
   const { levelUpData, isLoading, fetchLevelUpData } = useLevelUpStore();
 
   // Fetch level up data if not already loaded
