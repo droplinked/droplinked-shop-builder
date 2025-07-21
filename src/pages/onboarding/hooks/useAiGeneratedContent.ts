@@ -26,7 +26,7 @@ export const useAiGeneratedContent = () => {
     const { showToast } = useAppToast()
     const { shopSetupUI, aiGeneratedContent, updateAiContent, updateAiLoadingState } = useOnboardingStore()
     const { businessCategory, businessDescription } = shopSetupUI
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('onboarding')
 
     const { mutate: generateLogosMutation } = useMutation(
         async () => {
@@ -72,9 +72,9 @@ export const useAiGeneratedContent = () => {
                                             setCompletedLogos(currentLogos => {
                                                 if (currentLogos.length > 0) {
                                                     updateAiContent('logos', currentLogos.slice(0, 3))
-                                                    showToast({ type: "success", message: t('onboarding.hooks.success.logosGenerated') })
+                                                    showToast({ type: "success", message: t('useAiGeneratedContent.success.logosGenerated') })
                                                 } else {
-                                                    showToast({ type: "error", message: t('onboarding.hooks.errors.allLogoGenerationFailed') })
+                                                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.allLogoGenerationFailed') })
                                                 }
                                                 updateAiLoadingState('logos', false)
 
@@ -107,9 +107,9 @@ export const useAiGeneratedContent = () => {
                                             setCompletedLogos(currentLogos => {
                                                 if (currentLogos.length > 0) {
                                                     updateAiContent('logos', currentLogos.slice(0, 3))
-                                                    showToast({ type: "success", message: t('onboarding.hooks.success.logosGenerated') })
+                                                    showToast({ type: "success", message: t('useAiGeneratedContent.success.logosGenerated') })
                                                 } else {
-                                                    showToast({ type: "error", message: t('onboarding.hooks.errors.allLogoGenerationFailed') })
+                                                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.allLogoGenerationFailed') })
                                                 }
                                                 updateAiLoadingState('logos', false)
 
@@ -138,12 +138,12 @@ export const useAiGeneratedContent = () => {
                         })
                     })
                 } else {
-                    showToast({ message: t('onboarding.hooks.errors.failedToGetLogoRequestIds'), type: "error" })
+                    showToast({ message: t('useAiGeneratedContent.errors.failedToGetLogoRequestIds'), type: "error" })
                     updateAiLoadingState('logos', false)
                 }
             },
             onError(err: any) {
-                showToast({ message: err.response?.data?.data?.message || t('onboarding.hooks.errors.failedToGenerateLogos'), type: "error" })
+                showToast({ message: err.response?.data?.data?.message || t('useAiGeneratedContent.errors.failedToGenerateLogos'), type: "error" })
                 updateAiLoadingState('logos', false)
             }
         }
@@ -193,9 +193,9 @@ export const useAiGeneratedContent = () => {
                                             setCompletedCovers(currentCovers => {
                                                 if (currentCovers.length > 0) {
                                                     updateAiContent('covers', currentCovers.slice(0, 3))
-                                                    showToast({ type: "success", message: t('onboarding.hooks.success.coversGenerated') })
+                                                    showToast({ type: "success", message: t('useAiGeneratedContent.success.coversGenerated') })
                                                 } else {
-                                                    showToast({ type: "error", message: t('onboarding.hooks.errors.allCoverGenerationFailed') })
+                                                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.allCoverGenerationFailed') })
                                                 }
                                                 updateAiLoadingState('covers', false)
 
@@ -228,9 +228,9 @@ export const useAiGeneratedContent = () => {
                                             setCompletedCovers(currentCovers => {
                                                 if (currentCovers.length > 0) {
                                                     updateAiContent('covers', currentCovers.slice(0, 3))
-                                                    showToast({ type: "success", message: t('onboarding.hooks.success.coversGenerated') })
+                                                    showToast({ type: "success", message: t('useAiGeneratedContent.success.coversGenerated') })
                                                 } else {
-                                                    showToast({ type: "error", message: t('onboarding.hooks.errors.allCoverGenerationFailed') })
+                                                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.allCoverGenerationFailed') })
                                                 }
                                                 updateAiLoadingState('covers', false)
 
@@ -259,12 +259,12 @@ export const useAiGeneratedContent = () => {
                         })
                     })
                 } else {
-                    showToast({ message: t('onboarding.hooks.errors.failedToGetCoverRequestIds'), type: "error" })
+                    showToast({ message: t('useAiGeneratedContent.errors.failedToGetCoverRequestIds'), type: "error" })
                     updateAiLoadingState('covers', false)
                 }
             },
             onError(err: any) {
-                showToast({ message: err.response?.data?.data?.message || t('onboarding.hooks.errors.failedToGenerateCovers'), type: "error" })
+                showToast({ message: err.response?.data?.data?.message || t('useAiGeneratedContent.errors.failedToGenerateCovers'), type: "error" })
                 updateAiLoadingState('covers', false)
             }
         }
@@ -281,7 +281,7 @@ export const useAiGeneratedContent = () => {
                 updateAiLoadingState('urls', false)
             },
             onError(err: any) {
-                showToast({ message: err.response?.data?.data?.message || t('onboarding.hooks.errors.failedToGenerateUrls'), type: "error" })
+                showToast({ message: err.response?.data?.data?.message || t('useAiGeneratedContent.errors.failedToGenerateUrls'), type: "error" })
                 updateAiLoadingState('urls', false)
             }
         }
@@ -298,7 +298,7 @@ export const useAiGeneratedContent = () => {
                 updateAiLoadingState('names', false)
             },
             onError(err: any) {
-                showToast({ message: err.response?.data?.data?.message || t('onboarding.hooks.errors.failedToGenerateNames'), type: "error" })
+                showToast({ message: err.response?.data?.data?.message || t('useAiGeneratedContent.errors.failedToGenerateNames'), type: "error" })
                 updateAiLoadingState('names', false)
             }
         }
@@ -306,7 +306,7 @@ export const useAiGeneratedContent = () => {
 
     const generateContent = (type: 'logos' | 'covers' | 'urls' | 'names') => {
         if (!businessCategory || !businessDescription) {
-            showToast({ message: t('onboarding.hooks.warnings.fillBusinessInfoFirst'), type: "warning" })
+            showToast({ message: t('useAiGeneratedContent.warnings.fillBusinessInfoFirst'), type: "warning" })
             return
         }
 
@@ -328,7 +328,7 @@ export const useAiGeneratedContent = () => {
 
     const generateAllContent = () => {
         if (!businessCategory || !businessDescription) {
-            showToast({ message: t('onboarding.hooks.warnings.fillBusinessInfoFirst'), type: "warning" })
+            showToast({ message: t('useAiGeneratedContent.warnings.fillBusinessInfoFirst'), type: "warning" })
             return
         }
 

@@ -25,8 +25,8 @@ function PaymentSetup() {
   return (
     <>
       <OnboardingStepHeader 
-        heading={t('paymentSetup.title')} 
-        description={t('paymentSetup.subtitle')} 
+        heading={t('PaymentSetup.title')} 
+        description={t('PaymentSetup.subtitle')} 
       />
       <FinancialServices />
       <CurrencySection onLoadingChange={handleCurrencyLoading} />

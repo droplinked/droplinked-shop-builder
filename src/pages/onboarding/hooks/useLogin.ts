@@ -18,11 +18,11 @@ export function useLogin() {
             const status = user.status
 
             if (status === "DELETED")
-                return showToast({ message: t('onboarding.hooks.errors.accountDeleted'), type: "error" })
+                return showToast({ message: t('onboarding.useLogin.errors.accountDeleted'), type: "error" })
 
             if (user.type !== "SHOPBUILDER")
                 return showToast({
-                    message: t('onboarding.hooks.errors.accountUnableToLogin'),
+                    message: t('onboarding.useLogin.errors.accountUnableToLogin'),
                     type: "error"
                 })
 
@@ -40,7 +40,7 @@ export function useLogin() {
             }
         }
         catch (error) {
-            showToast({ message: error?.message || t('onboarding.hooks.errors.anErrorOccurred'), type: "error" })
+            showToast({ message: error?.message || t('onboarding.useLogin.errors.anErrorOccurred'), type: "error" })
         }
     }, [showToast, updateOnboardingState, shopNavigate, t])
 
@@ -50,7 +50,7 @@ export function useLogin() {
             if (result) finalizeLogin(result)
         }
         catch (error) {
-            showToast({ message: error?.message || t('onboarding.hooks.errors.loginFailed'), type: "error" })
+            showToast({ message: error?.message || t('onboarding.useLogin.errors.loginFailed'), type: "error" })
         }
     }, [authenticateUser, finalizeLogin, showToast, t])
 

@@ -14,7 +14,7 @@ function ExistingShopUrlProcessor() {
     const { t } = useLocaleResources('onboarding')
 
     const validationSchema = Yup.object().shape({
-        url: Yup.string().url(t('shopSetup.inputs.import.validation.invalid')).required(t('shopSetup.inputs.import.validation.required'))
+        url: Yup.string().url(t('ExistingShopUrlProcessor.validation.invalid')).required(t('ExistingShopUrlProcessor.validation.required'))
     })
 
     const handleSubmit = async (values) => {
@@ -42,10 +42,10 @@ function ExistingShopUrlProcessor() {
                         }}
                     >
                         <AppInput
-                            label={t('shopSetup.inputs.import.label')}
-                            description={t('shopSetup.inputs.import.description')}
+                            label={t('ExistingShopUrlProcessor.label')}
+                            description={t('ExistingShopUrlProcessor.description')}
                             inputProps={{
-                                placeholder: t('shopSetup.inputs.import.placeholder'),
+                                placeholder: t('ExistingShopUrlProcessor.placeholder'),
                                 value: values.url,
                                 onChange: handleChange,
                                 name: 'url',
@@ -61,7 +61,7 @@ function ExistingShopUrlProcessor() {
                             isDisabled={isSubmitting || isLoading}
                             isLoading={isSubmitting || isLoading}
                         >
-                            {t('shopSetup.inputs.import.button')}
+                            {t('ExistingShopUrlProcessor.button')}
                         </AppButton>
                     </Form>
                 )}

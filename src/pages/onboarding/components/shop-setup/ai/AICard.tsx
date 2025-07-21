@@ -84,17 +84,17 @@ function AICard() {
           <Flex flexDir="column" gap="2px">
             <DotSeparatedList>
               <Text color="white" fontWeight="medium">
-                {t('aiAssistant.aiCard.title')}
+                {t('AICard.title')}
               </Text>
               <Flex alignItems="center" gap={1}>
                 <SuitcaseSm color="#2BCFA1" />
                 <Text color="main.primary" fontSize="sm">
-                  {t('aiAssistant.aiCard.proFeature')}
+                  {t('AICard.proFeature')}
                 </Text>
               </Flex>
             </DotSeparatedList>
             <Text color="text.subtext.placeholder.dark" fontSize="sm">
-              {t('aiAssistant.aiCard.subtitle')}
+              {t('AICard.subtitle')}
             </Text>
           </Flex>
         </Flex>
@@ -107,29 +107,29 @@ function AICard() {
       <Box maxHeight={isOpen ? '500px' : '0px'} opacity={isOpen ? 1 : 0} overflow="hidden" transition="all 0.3s ease-in-out">
         <Box p={4} display="flex" flexDir="column" gap={6}>
           <Textarea
-            label={t('aiAssistant.aiCard.businessDescribe.label')}
+            label={t('AICard.businessDescribe.label')}
             fontFamily="14px"
             isRequired
-            placeholder={t('aiAssistant.aiCard.businessDescribe.placeholder')}
+            placeholder={t('AICard.businessDescribe.placeholder')}
             value={shopSetupUI.businessDescription}
             onChange={(e) => handleChange('businessDescribe', e.target.value)}
           />
 
           <AppSelect
-            label={t('aiAssistant.aiCard.businessCategory.label')}
+            label={t('AICard.businessCategory.label')}
             isRequired
             items={categories}
             valueAccessor="id"
             labelAccessor="name"
             selectProps={{
-              placeholder: t('aiAssistant.aiCard.businessCategory.placeholder'),
+              placeholder: t('AICard.businessCategory.placeholder'),
               value: shopSetupUI.businessCategory,
               onChange: (e) => handleChange('businessCategory', e.target.value)
             }}
           />
 
           <AppButton size="lg" onClick={handleGenerateWithAI} isLoading={isGenerating} isDisabled={isGenerating}>
-            {t('aiAssistant.aiCard.generateButton')}
+            {t('AICard.generateButton')}
           </AppButton>
         </Box>
       </Box>

@@ -58,7 +58,7 @@ function SignUpForm() {
             updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
         }
         catch (error: any) {
-            const errorMessage = error?.response?.data?.data?.message || t('signUp.errorMessage')
+            const errorMessage = error?.response?.data?.data?.message || t('SignUpForm.errorMessage')
             showToast({ message: errorMessage, type: "error" })
         }
     }
@@ -67,7 +67,7 @@ function SignUpForm() {
         <>
             <OnboardingStepHeader
                 heading={t('common.welcomeTitle')}
-                description={t('signUp.subtitle')}
+                description={t('SignUpForm.subtitle')}
             />
 
             <Formik
@@ -105,12 +105,12 @@ function SignUpForm() {
                             </VStack>
 
                             <AppInput
-                                label={t('signUp.referralLabel')}
+                                label={t('SignUpForm.referralLabel')}
                                 inputProps={{
                                     name: "referralCode",
                                     value: values.referralCode,
                                     onChange: handleChange,
-                                    placeholder: t('signUp.referralPlaceholder')
+                                    placeholder: t('SignUpForm.referralPlaceholder')
                                 }}
                             />
 
@@ -121,8 +121,8 @@ function SignUpForm() {
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                    {t('signUp.termsPrefix')}
-                                    <InteractiveText to="/terms" display="contents">{t('signUp.termsLink')}</InteractiveText>
+                                    {t('SignUpForm.termsPrefix')}
+                                    <InteractiveText to="/terms" display="contents">{t('SignUpForm.termsLink')}</InteractiveText>
                                 </Text>
                             </Checkbox>
 
@@ -131,7 +131,7 @@ function SignUpForm() {
                                 isDisabled={!acceptTerms || isSubmitting || !isPasswordValid}
                                 onClick={submitForm}
                             >
-                                {t('signUp.submitButton')}
+                                {t('common:signUp')}
                             </AppButton>
 
                             <DividerText text={t('common.orContinueWith')} />
@@ -147,8 +147,8 @@ function SignUpForm() {
 
                             <AuthRedirectLink
                                 justifyContent="center"
-                                text={t('signUp.haveAccountText')}
-                                linkText={t('signUp.signInLink')}
+                                text={t('SignUpForm.haveAccountText')}
+                                linkText={t('SignUpForm.signInLink')}
                                 action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
                             />
                         </Form>

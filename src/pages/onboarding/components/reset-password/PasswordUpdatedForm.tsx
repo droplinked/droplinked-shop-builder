@@ -13,12 +13,12 @@ function PasswordUpdatedForm() {
   return (
     <>
       <OnboardingStepHeader
-        heading={t('resetPassword.passwordUpdated.title')}
-        description={t('resetPassword.passwordUpdated.description')}
+        heading={t('PasswordUpdatedForm.title')}
+        description={t('PasswordUpdatedForm.description')}
       />
 
       <AppButton onClick={handleSignIn}>
-        {t('resetPassword.passwordUpdated.signInButton')}
+        {t('PasswordUpdatedForm.signInButton')}
       </AppButton>
     </>
   )

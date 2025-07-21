@@ -18,8 +18,8 @@ function CompletionSection() {
         >
             <DroplinkedBrand />
             <OnboardingStepHeader
-                heading={t('completion.title')}
-                description={t('completion.subtitle')}
+                heading={t('CompletionSection.title')}
+                description={t('CompletionSection.subtitle')}
                 textAlign="center"
             />
 

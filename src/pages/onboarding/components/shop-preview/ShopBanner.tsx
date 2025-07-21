@@ -34,7 +34,7 @@ export default function ShopBanner() {
                         fontWeight={{ base: 500, xl: 700 }}
                         color="#b1b1b1"
                     >
-                        {t('shopPreview.banner.tagline')}
+                        {t('ShopPreview.banner.tagline')}
                     </Text>
                 </>
             }

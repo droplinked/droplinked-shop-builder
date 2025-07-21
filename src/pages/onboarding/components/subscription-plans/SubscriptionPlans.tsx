@@ -61,8 +61,8 @@ function SubscriptionPlans() {
     return (
         <>
             <OnboardingStepHeader
-                heading={tOnboarding('subscriptionPlans.title')}
-                description={tOnboarding('subscriptionPlans.subtitle')}
+                heading={tOnboarding('SubscriptionPlans.title')}
+                description={tOnboarding('SubscriptionPlans.subtitle')}
             />
 
             <InteractiveText
@@ -73,7 +73,7 @@ function SubscriptionPlans() {
                 onClick={() => window.open("/plans", "_blank")}
                 hasExternalIcon
             >
-                {tOnboarding('subscriptionPlans.viewAllPlans')}
+                {tOnboarding('SubscriptionPlans.viewAllPlans')}
             </InteractiveText>
 
             <PlanDurationRadioContainer />
@@ -86,7 +86,7 @@ function SubscriptionPlans() {
                         <SubscriptionPlanCard
                             key={plan._id}
                             plan={plan}
-                            features={getFeaturesWithInheritance(planType, tSubscription)}
+                            features={getFeaturesWithInheritance(planType, tSubscription, tOnboarding)}
                             isPopular={planType === "BUSINESS"}
                             isSelected={selectedPlan === plan.type}
                             onSelect={setSelectedPlan}

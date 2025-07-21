@@ -51,7 +51,7 @@ function SignInForm() {
         <>
             <OnboardingStepHeader
                 heading={t('common.welcomeTitle')}
-                description={t('signIn.subtitle')}
+                description={t('SignInForm.subtitle')}
             />
 
             <Formik
@@ -90,15 +90,15 @@ function SignInForm() {
                                 isChecked={rememberPassword}
                                 onChange={(e) => setRememberPassword(e.target.checked)}
                             >
-                                {t('signIn.rememberPassword')}
+                                {t('SignInForm.rememberPassword')}
                             </Checkbox>
                             <InteractiveText onClick={() => updateOnboardingState("currentStep", "RESET_PASSWORD")}>
-                                {t('signIn.resetPassword')}
+                                {t('SignInForm.resetPassword')}
                             </InteractiveText>
                         </Flex>
 
                         <AppButton type="submit" isLoading={isSubmitting}>
-                            {t('signIn.signInButton')}
+                            {t('SignInForm.signInButton')}
                         </AppButton>
 
                         <DividerText text={t('common.orContinueWith')} />
@@ -110,9 +110,9 @@ function SignInForm() {
                             justifyContent="center"
                             alignItems="center"
                             gap={{ base: 1, md: 2 }}
-                            text={t('signIn.noAccountText')}
+                            text={t('SignInForm.noAccountText')}
                             action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
-                            linkText={t('signIn.createAccountText')}
+                            linkText={t('SignInForm.createAccountText')}
                         />
                     </Form>
                 )}

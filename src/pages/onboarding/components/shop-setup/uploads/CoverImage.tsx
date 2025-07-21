@@ -27,7 +27,7 @@ export default function CoverImage() {
     }
 
     return (
-        <FieldWrapper title={t('shopSetup.uploads.coverImage.title')}>
+        <FieldWrapper title={t('CoverImage.title')}>
             <FileUpload
                 onFileChange={handleFileChange}
                 isLoading={isLoading}
@@ -38,7 +38,7 @@ export default function CoverImage() {
                 boxProps={{
                     paddingBlock: 6
                 }}
-                dropDescription={t('shopSetup.uploads.coverImage.dropDescription')}
+                dropDescription={t('CoverImage.dropDescription')}
                 value={shopData.hero_section}
             />
 

@@ -24,26 +24,26 @@ function ResetPasswordForm() {
 
   const formSchema = Yup.object().shape({
     email: Yup.string()
-      .email(t('resetPassword.validation.emailInvalid'))
-      .required(t('resetPassword.validation.emailRequired'))
+      .email(t('ResetPasswordForm.validation.emailInvalid'))
+      .required(t('ResetPasswordForm.validation.emailRequired'))
   })
 
   const handleSubmit = async ({ email }) => {
     try {
       await forgetPasswordService({ email })
       updateOnboardingState('credentials', { email, password: '' })
-      showToast({ type: "success", message: t('resetPassword.success.emailSent') })
+      showToast({ type: "success", message: t('ResetPasswordForm.success.emailSent') })
       updateOnboardingState('currentStep', 'RESET_PASSWORD_VERIFICATION')
     } catch (error) {
-      showToast({ type: "error", message: error?.response?.data?.message || t('resetPassword.errors.emailSendFailed') })
+      showToast({ type: "error", message: error?.response?.data?.message || t('ResetPasswordForm.errors.emailSendFailed') })
     }
   }
 
   return (
     <>
       <OnboardingStepHeader
-        heading={t('resetPassword.title')}
-        description={t('resetPassword.description')}
+        heading={t('ResetPasswordForm.title')}
+        description={t('ResetPasswordForm.description')}
       />
 
       <Formik
@@ -55,31 +55,31 @@ function ResetPasswordForm() {
         {({ values, errors, handleChange, isSubmitting }) => (
           <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <AppInput
-              label={t('resetPassword.form.emailLabel')}
+              label={t('ResetPasswordForm.form.emailLabel')}
               inputProps={{
                 name: 'email',
                 value: values.email,
                 onChange: handleChange,
-                placeholder: t('resetPassword.form.emailPlaceholder')
+                placeholder: t('ResetPasswordForm.form.emailPlaceholder')
               }}
               message={errors.email?.toString()}
             />
 
             <AppButton type="submit" marginTop={3} isLoading={isSubmitting}>
-              {t('resetPassword.form.continueButton')}
+              {t('common:continue')}
             </AppButton>
 
             <Flex direction="column" gap={2}>
               <AuthRedirectLink
-                text={t('resetPassword.links.rememberPassword')}
+                text={t('ResetPasswordForm.links.rememberPassword')}
                 action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
-                linkText={t('resetPassword.links.signIn')}
+                linkText={t('ResetPasswordForm.links.signIn')}
               />
 
               <AuthRedirectLink
-                text={t('resetPassword.links.noAccount')}
+                text={t('ResetPasswordForm.links.noAccount')}
                 action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
-                linkText={t('resetPassword.links.createAccount')}
+                linkText={t('ResetPasswordForm.links.createAccount')}
               />
             </Flex>
           </Form>

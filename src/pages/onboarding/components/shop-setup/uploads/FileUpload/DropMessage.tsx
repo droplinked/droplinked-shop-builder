@@ -17,7 +17,7 @@ const DropMessage = ({ isDragActive, title, dropDescription }: DropMessageProps)
                 fontSize={14}
                 color="#fff"
             >
-                {t('shopSetup.uploads.fileUpload.dropHere')}
+                {t('FileUpload.dropHere')}
             </Text>
         )
     }
@@ -37,7 +37,7 @@ const DropMessage = ({ isDragActive, title, dropDescription }: DropMessageProps)
                     >
                         Click
                     </Box>{" "}
-                    {t('shopSetup.uploads.fileUpload.clickOrDrag')}
+                    {t('FileUpload.clickOrDrag')}
                 </Text>
             )}
             <Text

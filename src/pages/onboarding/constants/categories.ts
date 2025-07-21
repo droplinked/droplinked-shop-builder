@@ -1,19 +1,19 @@
 import { TFunction } from "i18next";
 
 export const getCategories = (t: TFunction): string[] => [
-    t('categories.fashion'),
-    t('categories.technology'),
-    t('categories.beauty'),
-    t('categories.home'),
-    t('categories.health'),
-    t('categories.food'),
-    t('categories.art'),
-    t('categories.automotive'),
-    t('categories.toys'),
-    t('categories.books'),
-    t('categories.entertainment'),
-    t('categories.petSupplies'),
-    t('categories.sports'),
-    t('categories.kids'),
-    t('categories.luxury')
+    t('Categories.fashion'),
+    t('Categories.technology'),
+    t('Categories.beauty'),
+    t('Categories.home'),
+    t('Categories.health'),
+    t('Categories.food'),
+    t('Categories.art'),
+    t('Categories.automotive'),
+    t('Categories.toys'),
+    t('Categories.books'),
+    t('Categories.entertainment'),
+    t('Categories.petSupplies'),
+    t('Categories.sports'),
+    t('Categories.kids'),
+    t('Categories.luxury')
 ]

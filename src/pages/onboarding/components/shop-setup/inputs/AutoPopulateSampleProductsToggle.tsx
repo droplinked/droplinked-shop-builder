@@ -13,8 +13,8 @@ function AutoPopulateSampleProductsToggle() {
 
     return (
         <SwitchBox
-            title={t('shopSetup.inputs.autoPopulate.title')}
-            description={t('shopSetup.inputs.autoPopulate.description')}
+            title={t('AutoPopulateSampleProductsToggle.title')}
+            description={t('AutoPopulateSampleProductsToggle.description')}
             isChecked={shopSetupUI.autoAddSampleProductsEnabled}
             onToggle={handleToggle}
             showBetaBadge

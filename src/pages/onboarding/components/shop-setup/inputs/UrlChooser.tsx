@@ -24,12 +24,12 @@ export default function UrlChooser() {
                 setError('shop_url', undefined)
             } else {
                 updateShopData('shop_url', '')
-                setError('shop_url', t('shopSetup.inputs.url.validation.notAvailable'))
+                setError('shop_url', t('UrlChooser.validation.notAvailable'))
             }
         },
         onError: () => {
             updateShopData('shop_url', '')
-            setError('shop_url', t('shopSetup.inputs.url.validation.checkError'))
+            setError('shop_url', t('UrlChooser.validation.checkError'))
         }
     })
 
@@ -37,7 +37,7 @@ export default function UrlChooser() {
         const value = e.target.value
         if (!value) {
             updateShopData('shop_url', '')
-            setError('shop_url', t('shopSetup.inputs.url.validation.required'))
+            setError('shop_url', t('UrlChooser.validation.required'))
         }
         if (/^[a-zA-Z0-9-]*$/.test(value)) {
             setUrlTempValue(value.toLowerCase())
@@ -62,13 +62,13 @@ export default function UrlChooser() {
     return (
         <VStack spacing={4} align="stretch">
             <AppInput
-                label={t('shopSetup.inputs.url.label')}
+                label={t('UrlChooser.label')}
                 inputProps={{
                     paddingInline: 4,
                     paddingBlock: 3,
                     fontSize: { base: 14, md: 16 },
                     value: urlTempValue,
-                    placeholder: t('shopSetup.inputs.url.placeholder'),
+                    placeholder: t('UrlChooser.placeholder'),
                     onChange: handleInputChange,
                     isRequired: true
                 }}

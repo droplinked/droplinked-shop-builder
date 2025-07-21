@@ -37,7 +37,7 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
     }
     catch (error) {
       showToast({
-        message: t('paymentSetup.currency.updateError'),
+        message: t('PaymentSetup.currency.updateError'),
         type: 'error'
       })
     }
@@ -49,7 +49,7 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
 
   return (
     <Flex direction="column" gap={4}>
-      <Text color='text.white'>{t('paymentSetup.currency.title')}</Text>
+      <Text color='text.white'>{t('PaymentSetup.currency.title')}</Text>
       <CurrencySelect
         value={shop?.currency.abbreviation || 'USD'}
         onChange={(e) => handleCurrencyChange(e.target.value)}

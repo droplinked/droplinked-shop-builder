@@ -12,7 +12,7 @@ export function useShopSetupSubmit() {
     const { updateState, user, shop } = useAppStore()
     const { showToast } = useAppToast()
     const { shopData, shopSetupUI, setError, resetOnboarding, updateOnboardingState } = useOnboardingStore()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('onboarding')
 
     const { mutateAsync: submitShopSetup, isLoading } = useMutation({
         mutationFn: async () => {
@@ -37,7 +37,7 @@ export function useShopSetupSubmit() {
                 }
                 catch (error) {
                     console.error('Error uploading logo:', error)
-                    showToast({ type: "error", message: t('onboarding.hooks.errors.failedToUploadLogo') })
+                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.failedToUploadLogo') })
                 }
             }
 
@@ -48,7 +48,7 @@ export function useShopSetupSubmit() {
                     finalShopData.hero_section = data.cdnUrl
                 }
                 catch (error) {
-                    showToast({ type: "error", message: t('onboarding.hooks.errors.failedToUploadBanner') })
+                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.failedToUploadBanner') })
                 }
             }
 
@@ -67,7 +67,7 @@ export function useShopSetupSubmit() {
             const errorMessage = error?.response?.data?.data?.message
             showToast({
                 type: "error",
-                message: errorMessage || t('onboarding.hooks.errors.failedToCompleteShopSetup')
+                message: errorMessage || t('useShopSetupSubmit.errors.failedToCompleteShopSetup')
             })
         }
     })

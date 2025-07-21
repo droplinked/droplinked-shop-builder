@@ -39,7 +39,7 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
           bg={isSelected ? 'label.primary' : '#1b1b1b'}
           borderColor={isSelected ? '#2BCFA1' : 'neutral.gray.800'}
         />
-        {isSelected ? <AppLabel variant="muted" size={'36'} status={'success'} text={tOnboarding('subscriptionPlans.selected')} /> : null}
+        {isSelected ? <AppLabel variant="muted" size={'36'} status={'success'} text={tOnboarding('SubscriptionPlans.selected')} /> : null}
       </Flex>
       <Flex direction="column" gap={2}>
         <Flex direction="column" gap={1}>
@@ -48,7 +48,7 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
               <Text textColor="neutral.white" fontWeight="bold" fontSize="16px">
                 {title}
               </Text>
-              <Text color="text.primary">{tOnboarding('subscriptionPlans.mostPopular')}</Text>
+              <Text color="text.primary">{tOnboarding('SubscriptionPlans.mostPopular')}</Text>
             </DotSeparatedList>
           ) : (
             <Text textColor="neutral.white" fontWeight="bold" fontSize="16px">

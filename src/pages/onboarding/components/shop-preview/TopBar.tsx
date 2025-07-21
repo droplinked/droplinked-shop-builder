@@ -34,7 +34,7 @@ const ActionButtons = () => (
   <Flex display="flex" gap={4}>
     <DownloadcircleMd color="white" />
     <PlusMd color="white" />
-    <CopyMd color="white" />
+    <CopyMd />
   </Flex>
 )
 
@@ -48,7 +48,7 @@ export default function TopBar() {
       {/* Header */}
       <Box position="relative" padding={{ base: 4, md: "16px 24px" }} borderTopRadius={8} bg="#141414">
         <Text fontSize={{ base: 16, lg: 18 }} color="white">
-          {t('shopPreview.title')}
+          {t('ShopPreview.title')}
         </Text>
       </Box>
 

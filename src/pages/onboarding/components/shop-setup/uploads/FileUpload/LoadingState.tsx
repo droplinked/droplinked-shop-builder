@@ -18,7 +18,7 @@ const LoadingState = () => {
                 fontSize={14}
                 color="#fff"
             >
-                {t('shopSetup.uploads.fileUpload.uploading')}
+                {t('FileUpload.uploading')}
             </Text>
         </Flex>
     )

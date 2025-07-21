@@ -1,6 +1,6 @@
 import { useBreakpointValue } from '@chakra-ui/react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { PRODUCT_CARDS } from 'pages/onboarding/constants/productCards'
+import { getProductCards } from 'pages/onboarding/constants/productCards'
 import React from 'react'
 import RightSectionWrapper from '../common/RightSectionWrapper'
 import ProductCard from './product-card/ProductCard'
@@ -16,7 +16,7 @@ function ProductCards() {
         xl: DesktopCardsContainer,
         "3xl": XLargeCardsContainer
     })
-    const { isRTL } = useLocaleResources('onboarding')
+    const { isRTL, t } = useLocaleResources('onboarding')
 
     // Return null for screens smaller than 1024px
     if (!shouldRender) return null
@@ -31,7 +31,7 @@ function ProductCards() {
         >
             <ContainerComponent>
                 <ProductCardsWrapper>
-                    {PRODUCT_CARDS.map((card, index) => (
+                    {getProductCards(t).map((card, index) => (
                         <ProductCard key={card.frontTitle ?? index} card={card} />
                     ))}
                 </ProductCardsWrapper>

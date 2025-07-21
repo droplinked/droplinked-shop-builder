@@ -14,9 +14,9 @@ export default function NameField() {
         updateShopData('name', value)
 
         if (!value) {
-            setError('name', t('shopSetup.inputs.name.validation.required'))
+            setError('name', t('NameField.validation.required'))
         } else if (value.length < 3) {
-            setError('name', t('shopSetup.inputs.name.validation.minLength'))
+            setError('name', t('NameField.validation.minLength'))
         } else {
             setError('name', undefined)
         }
@@ -30,10 +30,10 @@ export default function NameField() {
     return (
         <VStack spacing={4} align="stretch">
             <AppInput
-                label={t('shopSetup.inputs.name.label')}
+                label={t('NameField.label')}
                 inputProps={{
                     fontSize: { base: 14, md: 16 },
-                    placeholder: t('shopSetup.inputs.name.placeholder'),
+                    placeholder: t('NameField.placeholder'),
                     value: shopData.name,
                     onChange: handleChange,
                     isRequired: true,

@@ -21,7 +21,7 @@ export const useEmailVerification = ({ mode }: Props) => {
     const { onLoginSubmit, loading: loginLoading } = useLogin()
     const { showToast } = useAppToast()
     const { email } = credentials
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('onboarding')
 
     // Service selection based on mode
     const verifyConfirmationCodeService = mode === 'signup'
@@ -44,7 +44,7 @@ export const useEmailVerification = ({ mode }: Props) => {
 
         updateOnboardingState('resetToken', response.data.data.resetToken)
         updateOnboardingState('currentStep', 'SET_NEW_PASSWORD')
-        showToast({ type: "success", message: t('onboarding.hooks.success.codeVerified') })
+        showToast({ type: "success", message: t('useEmailVerification.success.codeVerified') })
     }
 
     // Verification mutation
@@ -55,7 +55,7 @@ export const useEmailVerification = ({ mode }: Props) => {
             setInputState("error")
             showToast({
                 type: "error",
-                message: error?.response?.data?.message || t('onboarding.hooks.errors.invalidVerificationCode')
+                message: error?.response?.data?.message || t('useEmailVerification.errors.invalidVerificationCode')
             })
         }
     })
@@ -64,12 +64,12 @@ export const useEmailVerification = ({ mode }: Props) => {
     const { mutateAsync: resendCode, isLoading: resendLoading } = useMutation({
         mutationFn: resendConfirmationCodeService,
         onSuccess: () => {
-            showToast({ type: "success", message: t('onboarding.hooks.success.verificationCodeSent') })
+            showToast({ type: "success", message: t('useEmailVerification.success.verificationCodeSent') })
         },
         onError: (error: any) => {
             showToast({
                 type: "error",
-                message: error?.response?.data?.message || t('onboarding.hooks.errors.failedToSendCode')
+                message: error?.response?.data?.message || t('useEmailVerification.errors.failedToSendCode')
             })
         },
         onSettled: () => {

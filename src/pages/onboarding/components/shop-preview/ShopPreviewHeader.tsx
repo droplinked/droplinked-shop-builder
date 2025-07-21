@@ -17,7 +17,7 @@ export default function ShopPreviewHeader({ rightIcon, onClick }: ShopPreviewHea
             <Flex gap={4} alignItems="center">
                 <IconWrapper icon={<ShopLg color="#fff" />} />
                 <Text color="#fff" fontSize={16} fontWeight={500}>
-                    {t('shopPreview.title')}
+                    {t('ShopPreview.title')}
                 </Text>
             </Flex>
             {rightIcon}

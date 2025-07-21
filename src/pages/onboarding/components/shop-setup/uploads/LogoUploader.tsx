@@ -38,7 +38,7 @@ function LogoUploader() {
   const handleLogoSelect = (logo: string) => updateShopData('logo', logo)
 
   return (
-    <FieldWrapper title={t('shopSetup.uploads.logo.title')}>
+    <FieldWrapper title={t('common.shop.logo')}>
       <Flex
         justify="space-between"
         align="center"
@@ -74,7 +74,7 @@ function LogoUploader() {
             isLoading={isLoading}
             onClick={handleLogoUpload}
           >
-            {!hasCustomLogo ? t('shopSetup.uploads.logo.upload') : ''}
+            {!hasCustomLogo ? t('common:upload') : ''}
           </AppButton>
 
           {hasCustomLogo && (

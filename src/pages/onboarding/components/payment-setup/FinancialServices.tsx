@@ -11,7 +11,7 @@ function FinancialServices() {
   const providers = [
     {
       title: 'Stripe',
-      tooltip: t('paymentSetup.financialServices.stripe.tooltip'),
+      tooltip: t('PaymentSetup.financialServices.stripe.tooltip'),
       icon: <StripeLogo />
     },
     // {
@@ -23,7 +23,7 @@ function FinancialServices() {
 
   return (
     <Flex direction="column" gap={4}>
-      <Text color={'text.white'}>{t('paymentSetup.financialServices.title')}</Text>
+      <Text color={'text.white'}>{t('PaymentSetup.financialServices.title')}</Text>
       <RuledGrid columns={1} borderRadius="8px">
         {providers.map((provider, index) => (
           <PaymentProviderCard

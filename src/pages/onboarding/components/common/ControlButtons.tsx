@@ -1,10 +1,11 @@
 import { Flex } from '@chakra-ui/react'
+import { ArrowleftMd } from 'assets/icons/Navigation/ArrowLeft/ArrowleftMd'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import AppTypography from 'components/common/typography/AppTypography'
+import AppButton from 'components/redesign/button/AppButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/onboarding/ar.json'
 import enLocale from 'locales/onboarding/en.json'
-import AppButton from 'components/redesign/button/AppButton'
 import React, { useState } from 'react'
 
 interface ControlButtonsProps {
@@ -14,6 +15,7 @@ interface ControlButtonsProps {
     continueText?: string
     isLoading?: boolean
     showBackButton?: boolean
+    backText?: string
 }
 
 const ControlButtons: React.FC<ControlButtonsProps> = ({
@@ -26,7 +28,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     showBackButton = true,
 }) => {
     const [internalLoading, setInternalLoading] = useState(false)
-    const { t } = useLocaleResources('onboarding', {
+    const { t , isRTL } = useLocaleResources('onboarding', {
         en: enLocale,
         ar: arLocale
     })
@@ -58,22 +60,22 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                     {t('common.skipForNow')}
                 </AppTypography>
             )}
-            <Flex marginLeft="auto" gap={4}>
+            <Flex marginInlineStart="auto" gap={4}>
                 {showBackButton &&
                     <AppButton
                         variant='secondary'
                         onClick={onBack}
                         isDisabled={isButtonLoading}
                     >
-                        {backText || t('common.back')}
+                        {backText || t('common:back')}
                     </AppButton>
                 }
                 <AppButton
                     onClick={handleSubmit}
-                    rightIcon={<ArrowrightMd />}
+                    rightIcon={isRTL ? <ArrowleftMd /> : <ArrowrightMd />}
                     isLoading={isButtonLoading}
                 >
-                    {continueText || t('common.continue')}
+                    {continueText || t('common:continue')}
                 </AppButton>
             </Flex>
         </Flex>

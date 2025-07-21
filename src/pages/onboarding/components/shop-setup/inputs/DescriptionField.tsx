@@ -7,7 +7,7 @@ export default function DescriptionField() {
     const { shopData, updateShopData, storeSetupErrors } = useOnboardingStore()
     const { t } = useLocaleResources('onboarding')
 
-    const textAreaPlaceholder = t('shopSetup.inputs.description.placeholder')
+    const textAreaPlaceholder = t('DescriptionField.placeholder')
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.target.value
         updateShopData('description', value)
@@ -19,7 +19,7 @@ export default function DescriptionField() {
             fontSize={{ base: 14, md: 16 }}
             placeholder={textAreaPlaceholder}
             tooltipText={textAreaPlaceholder}
-            label={t('shopSetup.inputs.description.label')}
+            label={t('DescriptionField.label')}
             spellCheck="false"
             value={shopData.description}
             onChange={handleChange}

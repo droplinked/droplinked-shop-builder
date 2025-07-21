@@ -20,7 +20,7 @@ const ControlButtons = ({ onEdit, onRemove }: ControlButtonsProps) => {
             gap={2}
         >
             <IconButton
-                aria-label={t('shopSetup.uploads.fileUpload.editImage')}
+                aria-label={t('FileUpload.editImage')}
                 borderRadius={8}
                 background="#292929"
                 _hover={{ background: "#292929" }}
@@ -28,7 +28,7 @@ const ControlButtons = ({ onEdit, onRemove }: ControlButtonsProps) => {
                 onClick={onEdit}
             />
             <IconButton
-                aria-label={t('shopSetup.uploads.fileUpload.deleteImage')}
+                aria-label={t('FileUpload.deleteImage')}
                 borderRadius={8}
                 background="#292929"
                 _hover={{ background: "#292929" }}

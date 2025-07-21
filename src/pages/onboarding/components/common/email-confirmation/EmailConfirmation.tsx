@@ -24,8 +24,8 @@ function EmailConfirmation({ mode }: EmailConfirmationProps) {
     return (
         <>
             <OnboardingStepHeader
-                heading={t('emailConfirmation.title')}
-                description={t('emailConfirmation.subtitle')}
+                heading={t('EmailConfirmation.title')}
+                description={t('EmailConfirmation.subtitle')}
             />
 
             <Flex direction="column">
@@ -41,19 +41,19 @@ function EmailConfirmation({ mode }: EmailConfirmationProps) {
                     onClick={() => verifyEmail()}
                     isLoading={verifyLoading || loginLoading}
                 >
-                    {t('emailConfirmation.verifyButton')}
+                    {t('EmailConfirmation.verifyButton')}
                 </AppButton>
 
                 <Flex direction="column" gap={2} marginTop={6}>
                     <AuthRedirectLink
-                        text={t('emailConfirmation.noCodeText')}
-                        linkText={resendLoading ? <Spinner color='#fff' size="xs" /> : t('emailConfirmation.resendButton')}
+                        text={t('EmailConfirmation.noCodeText')}
+                        linkText={resendLoading ? <Spinner color='#fff' size="xs" /> : t('EmailConfirmation.resendButton')}
                         action={resendCode}
                     />
 
                     <AuthRedirectLink
-                        text={t('emailConfirmation.changeEmailText')}
-                        linkText={t('emailConfirmation.goBackButton')}
+                        text={t('EmailConfirmation.changeEmailText')}
+                        linkText={t('EmailConfirmation.goBackButton')}
                         action={() => updateOnboardingState('currentStep', mode === 'signup' ? 'SIGN_UP' : 'RESET_PASSWORD')}
                     />
                 </Flex>

@@ -36,7 +36,7 @@ function PaymentProviderCard({ icon, title, tooltip }: PaymentProviderCardProps)
         cursor="pointer"
         onClick={handleConnect}
       >
-        {t('paymentSetup.financialServices.connect')}
+        {t('PaymentSetup.financialServices.connect')}
       </Text>
     </HStack>
   )

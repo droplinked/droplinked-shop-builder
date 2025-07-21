@@ -33,7 +33,7 @@ export const validateStoreData = (
         setError('name', t('common.validation.nameRequired'))
         isValid = false
     } else if (storeSetup.name.length < 3) {
-        setError('name', t('shopSetup.validation.nameLength'))
+        setError('name', t('common.validation.nameLength'))
         isValid = false
     } else {
         setError('name', undefined)

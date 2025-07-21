@@ -47,9 +47,9 @@ function SubscriptionInfo() {
     const { t } = useLocaleResources('onboarding')
     return (
         <Box flex={1}>
-            <Text color="white">{t('completion.newsletter.title')}</Text>
+            <Text color="white">{t('CompletionSection.newsletter.title')}</Text>
             <Text fontSize={14} color="#B1B1B1">
-                {t('completion.newsletter.description')}
+                {t('CompletionSection.newsletter.description')}
             </Text>
         </Box>
     )

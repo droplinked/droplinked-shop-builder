@@ -1,11 +1,11 @@
 import { TFunction } from 'i18next'
 
 export const getPasswordRules = (t: TFunction) => [
-    { text: t('onboarding:common.passwordRules.lowercase'), regex: /[a-z]/ },
-    { text: t('onboarding:common.passwordRules.uppercase'), regex: /[A-Z]/ },
-    { text: t('onboarding:common.passwordRules.length'), regex: (password: string) => password.length >= 8 },
-    { text: t('onboarding:common.passwordRules.special'), regex: /[!@#$%^&*(),.?":{}|<>]/ },
-    { text: t('onboarding:common.passwordRules.digit'), regex: /\d/ }
+    { text: t('common.passwordRules.lowercase'), regex: /[a-z]/ },
+    { text: t('common.passwordRules.uppercase'), regex: /[A-Z]/ },
+    { text: t('common.passwordRules.length'), regex: (password: string) => password.length >= 8 },
+    { text: t('common.passwordRules.special'), regex: /[!@#$%^&*(),.?":{}|<>]/ },
+    { text: t('common.passwordRules.digit'), regex: /\d/ }
 ]
 
 export function arePasswordRulesMet(password: string): boolean {

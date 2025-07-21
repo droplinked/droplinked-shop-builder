@@ -76,10 +76,10 @@ const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSele
   const OptionsHeader = () => (
     <Flex justify="space-between" align="center" mb={4}>
       <Text display="flex" alignItems="center" gap={1} color="main.primary" fontSize="sm">
-        <AISm color="#2BCFA1" /> {t('aiAssistant.aiOptions.aiSuggestions')}
+        <AISm color="#2BCFA1" /> {t('AIOptions.aiSuggestions')}
       </Text>
       <AppButton variant="normal" color="main.primary" leftIcon={<Refresh1Sm />} onClick={handleRegenerate} isLoading={isContentLoading}>
-        {t('aiAssistant.aiOptions.generateAgain')}
+        {t('AIOptions.generateAgain')}
       </AppButton>
     </Flex>
   );

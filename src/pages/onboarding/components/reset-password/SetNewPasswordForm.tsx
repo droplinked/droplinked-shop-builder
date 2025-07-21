@@ -19,11 +19,11 @@ function SetNewPasswordForm() {
 
     const formSchema = Yup.object().shape({
         password: Yup.string()
-            .required(t('resetPassword.validation.passwordRequired'))
-            .min(8, t('resetPassword.validation.passwordMinLength')),
+            .required(t('ResetPasswordForm.validation.passwordRequired'))
+            .min(8, t('ResetPasswordForm.validation.passwordMinLength')),
         confirmPassword: Yup.string()
-            .required(t('resetPassword.validation.confirmPasswordRequired'))
-            .oneOf([Yup.ref("password"), null], t('resetPassword.validation.passwordsMustMatch'))
+            .required(t('ResetPasswordForm.validation.confirmPasswordRequired'))
+            .oneOf([Yup.ref("password"), null], t('ResetPasswordForm.validation.passwordsMustMatch'))
     })
 
     const handleSubmit = async (values: { password: string, confirmPassword: string }) => {
@@ -36,18 +36,18 @@ function SetNewPasswordForm() {
             })
             // Clear the reset token after successful password reset
             updateOnboardingState("resetToken", null)
-            showToast({ type: "success", message: t('resetPassword.success.passwordReset') })
+            showToast({ type: "success", message: t('ResetPasswordForm.success.passwordReset') })
             updateOnboardingState('currentStep', 'PASSWORD_UPDATED')
         } catch (error) {
-            showToast({ type: "error", message: error?.response?.data?.data?.message || t('resetPassword.errors.passwordResetFailed') })
+            showToast({ type: "error", message: error?.response?.data?.data?.message || t('ResetPasswordForm.errors.passwordResetFailed') })
         }
     }
 
     return (
         <>
             <OnboardingStepHeader
-                heading={t('resetPassword.setNewPassword.title')}
-                description={t('resetPassword.setNewPassword.description')}
+                heading={t('SetNewPasswordForm.title')}
+                description={t('SetNewPasswordForm.description')}
             />
 
             <Formik
@@ -64,7 +64,7 @@ function SetNewPasswordForm() {
                             <VStack align='stretch' spacing={4}>
                                 <PasswordInput
                                     name="password"
-                                    label={t('resetPassword.setNewPassword.newPasswordLabel')}
+                                    label={t('SetNewPasswordForm.newPasswordLabel')}
                                     value={values.password}
                                     onChange={handleChange}
                                     message={errors.password?.toString()}
@@ -75,15 +75,15 @@ function SetNewPasswordForm() {
 
                             <PasswordInput
                                 name="confirmPassword"
-                                label={t('resetPassword.setNewPassword.confirmPasswordLabel')}
+                                label={t('SetNewPasswordForm.confirmPasswordLabel')}
                                 value={values.confirmPassword}
                                 onChange={handleChange}
                                 message={errors.confirmPassword?.toString()}
-                                placeholder={t('resetPassword.setNewPassword.confirmPasswordPlaceholder')}
+                                placeholder={t('SetNewPasswordForm.confirmPasswordPlaceholder')}
                             />
 
                             <AppButton type="submit" isLoading={isSubmitting} isDisabled={isSubmitting ||!isPasswordValid} mt="3">
-                                {t('resetPassword.setNewPassword.resetButton')}
+                                {t('SetNewPasswordForm.resetButton')}
                             </AppButton>
                         </Form>
                     )

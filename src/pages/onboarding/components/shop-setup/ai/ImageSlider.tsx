@@ -98,7 +98,7 @@ export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: Imag
           isDisabled={isLoading}
           _hover={'none'}
         >
-          {t('aiAssistant.imageSlider.previous')}
+          {t('common:previous')}
         </AppButton>
 
         <HStack spacing={2}>
@@ -119,13 +119,13 @@ export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: Imag
 
         <AppButton
           variant="normal"
-          rightIcon={<ChevronrightMd color={iconColor} />}
+          rightIcon={isRTL ? <ChevronleftMd color={iconColor} /> : <ChevronrightMd color={iconColor} />}
           onClick={handleNext}
           color="white"
           isDisabled={isLoading}
           _hover={'none'}
         >
-          {t('aiAssistant.imageSlider.next')}
+          {t('common:next')}
         </AppButton>
       </Flex>
     </Flex>

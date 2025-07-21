@@ -32,7 +32,7 @@ function ActionControls({ currentSlideIndex, handlePreviousAction, handleNextAct
     return (
         <Flex position="relative" justifyContent="space-between" alignItems="center" gap={{ base: 4 }}>
             <AppButton variant="secondary" onClick={handlePreviousAction}>
-                {currentSlideIndex === 0 ? t('common.back') : t('common.buttons.previous')}
+                {currentSlideIndex === 0 ? t('common:back') : t('common:previous')}
             </AppButton>
 
             <AbsoluteCenter display={{ base: "none", md: "flex" }} gap="6px">
@@ -40,7 +40,7 @@ function ActionControls({ currentSlideIndex, handlePreviousAction, handleNextAct
             </AbsoluteCenter>
 
             <AppButton flex={{ base: 1, md: 'unset' }} onClick={handleNextAction}>
-                {currentSlideIndex === 0 ? t('completion.controls.next') : t('completion.controls.startExploring')}
+                {currentSlideIndex === 0 ? t('common:next') : t('CompletionSection.controls.startExploring')}
             </AppButton>
         </Flex>
     )

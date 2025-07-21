@@ -11,14 +11,12 @@ import YesNoRadioCard from './YesNoRadioCard'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import enLocale from 'locales/onboarding/en.json'
 import arLocale from 'locales/onboarding/ar.json'
+import { ArrowleftMd } from 'assets/icons/Navigation/ArrowLeft/ArrowleftMd'
 
 function ExistingWebsite() {
     const { updateOnboardingState, updateShopSetupUI, shopSetupUI } = useOnboardingStore()
     const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
-    const { t } = useLocaleResources('onboarding',{
-        en: enLocale,
-        ar: arLocale
-    })
+    const { t , isRTL } = useLocaleResources('onboarding',{ en: enLocale,ar: arLocale})
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-visibility-status',
@@ -32,15 +30,15 @@ function ExistingWebsite() {
     }, [openProTrialModal])
 
     const options = [
-        { value: 'yes', label: t('existingWebsite.options.yes.label'), description: t('existingWebsite.options.yes.description'), icon: <ShopLg /> },
-        { value: 'no', label: t('existingWebsite.options.no.label'), description: t('existingWebsite.options.no.description'), icon: <AILg /> }
+        { value: 'yes', label: t('ExistingWebsite.options.yes.label'), description: t('ExistingWebsite.options.yes.description'), icon: <ShopLg /> },
+        { value: 'no', label: t('ExistingWebsite.options.no.label'), description: t('ExistingWebsite.options.no.description'), icon: <AILg /> }
     ]
 
     return (
         <>
             <OnboardingStepHeader
-                heading={t('existingWebsite.title')}
-                description={t('existingWebsite.description')}
+                heading={t('ExistingWebsite.title')}
+                description={t('ExistingWebsite.description')}
             />
 
             <Flex
@@ -60,10 +58,10 @@ function ExistingWebsite() {
 
             <AppButton
                 alignSelf='flex-end'
-                rightIcon={<ArrowrightMd />}
+                rightIcon={isRTL ? <ArrowleftMd /> : <ArrowrightMd />}
                 onClick={() => updateOnboardingState('currentStep', 'STORE_DETAILS')}
             >
-                {t('existingWebsite.continueButton')}
+                {t('common:continue')}
             </AppButton>
 
             <ProTrialModal
