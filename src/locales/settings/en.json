@@ -289,6 +289,12 @@
             "expirationDate": "Expiration Date",
             "type": "Type"
         },
+        "CouponsTable": {
+            "title": "Title",
+            "quantity": "Quantity",
+            "amount": "Amount",
+            "expirationDate": "Expiration Date"
+        },
         "types": {
             "discount": "Discount",
             "coupon": "Coupon"

@@ -35,7 +35,7 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function ({ entry }
 
             <Box>
                 <Heading as="h3" marginBottom={3} fontSize={{ base: 18, xl: 20 }} color="text.white">
-                    {t('entryCard.update', { version: entry.version })}
+                    {t('ChangelogEntryCard.update', { version: entry.version })}
                 </Heading>
 
                 <ChangelogTags changelogItem={entry} />
@@ -52,7 +52,7 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function ({ entry }
                     iconRight={isRTL ? <ExternalarrowleftMd color="#179ef8" /> : <ExternalarrowMd color="#179ef8" />}
                     onClick={() => navigate(`/analytics/changelog/${entry._id}`)}
                 >
-                    {t('entryCard.readMore')}
+                    {t('ChangelogEntryCard.readMore')}
                 </InteractiveText>
             </Box>
         </Flex>

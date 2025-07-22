@@ -289,6 +289,12 @@
             "expirationDate": "تاريخ الانتهاء",
             "type": "النوع"
         },
+        "CouponsTable": {
+            "title": "العنوان",
+            "quantity": "الكمية",
+            "amount": "المبلغ",
+            "expirationDate": "تاريخ الانتهاء"
+        },
         "types": {
             "discount": "خصم",
             "coupon": "قسيمة"

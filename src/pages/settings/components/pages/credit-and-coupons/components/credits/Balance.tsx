@@ -30,7 +30,7 @@ export default function Balance() {
             await refetch()
         }
         catch {
-            showToast({ message: t('genericError'), type: "error" })
+            showToast({ message: t('common:genericError'), type: "error" })
         }
         finally {
             setLoading(false);

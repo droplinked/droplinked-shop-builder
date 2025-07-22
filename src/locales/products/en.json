@@ -53,7 +53,8 @@
     "dropHere": "Drop the file here ...",
     "click": "Click",
     "dragDropText": "to add a new file or drag and drop it here.",
-    "uploadFile": "Upload file"
+    "uploadFile": "Upload file",
+    "orDragDropHere": "or drag & drop here"
   },
   "UrlInput": {
     "title": "Import from URL",
@@ -567,10 +568,7 @@
     "colorName": "Color Name",
     "enterValue": "Enter Value"
   },
-  "FileUpload": {
-    "click": "Click",
-    "orDragDropHere": "or drag & drop here"
-  },
+
   "ProductDrop": {
     "title": "Drop",
     "description": "Enable onchain records for this digital product.",
