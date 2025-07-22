@@ -53,7 +53,8 @@
     "dropHere": "أفلت الملف هنا ...",
     "click": "انقر",
     "dragDropText": "لإضافة ملف جديد أو اسحب وأفلت هنا.",
-    "uploadFile": "رفع الملف"
+    "uploadFile": "رفع الملف",
+    "orDragDropHere": "أو اسحب وأفلت هنا"
   },
   "UrlInput": {
     "title": "الاستيراد من الرابط",
@@ -566,10 +567,6 @@
     "value": "القيمة",
     "colorName": "اسم اللون",
     "enterValue": "أدخل القيمة"
-  },
-  "FileUpload": {
-    "click": "انقر",
-    "orDragDropHere": "أو اسحب وأفلت هنا"
   },
   "ProductDrop": {
     "title": "دروب",

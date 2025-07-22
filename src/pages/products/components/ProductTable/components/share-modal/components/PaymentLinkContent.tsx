@@ -85,7 +85,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
             gap="8px"
             onClick={handleNavigateSettings}
           >
-            {t('shareModal.paymentLink.configure')}
+            {t('ShareModal.paymentLink.configure')}
           </Button>
           <Button
             sx={{ "svg path": { stroke: "#2BCFA1" } }}
@@ -101,7 +101,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
             gap="8px"
             onClick={handleDownloadClick}
           >
-            {t('shareModal.paymentLink.downloadQRCode')}
+            {t('ShareModal.paymentLink.downloadQRCode')}
           </Button>
         </Flex>
       </Box>

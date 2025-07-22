@@ -1,6 +1,6 @@
 import { Box, Divider, Flex, VStack } from "@chakra-ui/react";
 import React from "react";
-import { ProductDetails } from "./product-info/Details";
+import ProductDetails from "./product-info/Details";
 import { ProductFooter } from "./product-info/Footer";
 import { ProductHeader } from "./product-info/Header";
 

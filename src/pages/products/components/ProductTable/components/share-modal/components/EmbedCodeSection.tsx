@@ -18,7 +18,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
 
   const handleCopy = () => {
     navigator.clipboard.writeText(embedCode);
-    showToast({ message: t('shareModal.embedCode.copied'), type: 'success', options: { duration: 1500 } });
+     showToast({ message: t('ShareModal.embedCode.copied'), type: 'success', options: { duration: 1500 } });
   };
 
   const handleNavigate = (link: string) => navigate(link);
@@ -26,7 +26,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
   return (
     <Flex width="100%" padding="32px" flexDirection="column" alignItems="flex-start" gap="16px" borderRadius="12px" border="1px solid" borderColor="neutral.gray.800" background="#141414" position="relative" mt="0">
       <Text fontSize="14px" fontWeight="bold" color="white" position="absolute" px="8px" zIndex="1">
-        {t('shareModal.embedCode.title')}
+        {t('ShareModal.embedCode.title')}
       </Text>
 
       <Box
@@ -75,7 +75,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
           gap="8px"
           onClick={() => handleNavigate(configLink)} // استفاده از handleNavigate برای هدایت
         >
-          {t('shareModal.embedCode.configure')}
+                      {t('ShareModal.embedCode.configure')}
         </Button>
         <Link href={helpLink} target="_blank" rel="noopener noreferrer">
           <Button
@@ -90,7 +90,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
             alignItems="center"
             gap="8px"
           >
-            {t('shareModal.embedCode.needHelp')}
+            {t('ShareModal.embedCode.needHelp')}
           </Button>
         </Link>
       </Flex>

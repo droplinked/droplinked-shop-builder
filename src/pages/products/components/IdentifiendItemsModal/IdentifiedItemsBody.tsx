@@ -51,8 +51,8 @@ export default function IdentifiedItemsBody({ handleItemSelection, headerCheckSt
             <Flex direction="column" gap={6}>
                 {selectedProducts.length >= maxSelectableItems && (
                     <MessageBox
-                        title={t('identifiedItemsModal.maxSelectionLimit.title')}
-                        description={t('identifiedItemsModal.maxSelectionLimit.description', { selected: maxSelectableItems, total: crawledProduct.length })}
+                        title={t('IdentifiedItemsModal.maxSelectionLimit.title')}
+                        description={t('IdentifiedItemsModal.maxSelectionLimit.description', { selected: maxSelectableItems, total: crawledProduct.length })}
                         theme='warning'
                     />
                 )}
@@ -60,8 +60,8 @@ export default function IdentifiedItemsBody({ handleItemSelection, headerCheckSt
                 {appDevelopment && (
                     <RuledGrid columns={1} borderRadius={8} p="16px 24px">
                         <SwitchBox
-                            title={t('identifiedItemsModal.dropRecords.title')}
-                            description={t('identifiedItemsModal.dropRecords.description')}
+                            title={t('IdentifiedItemsModal.dropRecords.title')}
+                            description={t('IdentifiedItemsModal.dropRecords.description')}
                             isChecked={shouldRecord}
                             onToggle={() => setshouldRecord(!shouldRecord)}
                             showBetaBadge
