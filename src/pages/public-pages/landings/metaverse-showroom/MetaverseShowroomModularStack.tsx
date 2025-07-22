@@ -19,42 +19,42 @@ function MetaverseShowroomModularStack() {
             title: t('MetaverseShowroomModularStack.cards.virtualShowrooms.title'),
             description: t('MetaverseShowroomModularStack.cards.virtualShowrooms.description'),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
-            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.virtualShowrooms.title')} src='https://upload-file-droplinked.s3.amazonaws.com/c49374c13e78aa989cc54ff200a80b1daf36c9cf020b20b112a5e3050c378785.png' />
+            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.virtualShowrooms.title')} src='https://upload-file-droplinked.s3.amazonaws.com/7958245098e615c7d8aeb71f574f067c79a41f52a691759b45d17e4d6e09b34d.png' />
         },
         {
             icon: <RocketLg color="#fff" />,
             title: t('MetaverseShowroomModularStack.cards.boostEngagement.title'),
             description: t('MetaverseShowroomModularStack.cards.boostEngagement.description'),
             gridColumn: { base: 'span 1', md: 'span 2' },
-            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.boostEngagement.title')} src='https://upload-file-droplinked.s3.amazonaws.com/a9c270953cbc427ebedee57b7cfc9675defea332f8d8e0e33a69168444647e8c.png' />
+            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.boostEngagement.title')} src='https://upload-file-droplinked.s3.amazonaws.com/8002c81eb8d954dd875208070db832f191a0fa65b989f09952b0761d19fb5eb8.png' />
         },
         {
             icon: <Star2Lg color="#fff" />,
             title: t('MetaverseShowroomModularStack.cards.nextGenRetail.title'),
             description: t('MetaverseShowroomModularStack.cards.nextGenRetail.description'),
             gridColumn: { base: 'span 1', md: 'span 2' },
-            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.nextGenRetail.title')} src='https://upload-file-droplinked.s3.amazonaws.com/b4159100a4fcaf8718eecf33ebcb829d6159a12b7ef81b3101aec00d442c2545.png' />
+            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.nextGenRetail.title')} src='https://upload-file-droplinked.s3.amazonaws.com/c0fa01678b71e84a4e1826dee02957d928922d8c6dd847fba8ddb99b9bb911cc.png' />
         },
         {
             icon: <DesignLg color="#fff" />,
             title: t('MetaverseShowroomModularStack.cards.virtualShowroomCreation.title'),
             description: t('MetaverseShowroomModularStack.cards.virtualShowroomCreation.description'),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
-            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.virtualShowroomCreation.title')} src='https://upload-file-droplinked.s3.amazonaws.com/1f25b79d3eaa42dd7dd6f4c97b6f0765443058cdedda7dbfecf3c0c6b3034146.png' />
+            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.virtualShowroomCreation.title')} src='https://upload-file-droplinked.s3.amazonaws.com/e7791b150d9fc84fc3dcab8945c419017a62aa3b0bc84b5c217c5845e4293043.png' />
         },
         {
             icon: <MetaverseLg color="#fff" />,
             title: t('MetaverseShowroomModularStack.cards.immersiveExperiences.title'),
             description: t('MetaverseShowroomModularStack.cards.immersiveExperiences.description'),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
-            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.immersiveExperiences.title')} src='https://upload-file-droplinked.s3.amazonaws.com/4d65e70075ed8204c6536c26e4fd58266cb7c9ccb0950ead7ffceec7312fcc42.png' />
+            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.immersiveExperiences.title')} src='https://upload-file-droplinked.s3.amazonaws.com/bc2ac9a76c7c50e34feff959b73eaa1882184c45b0a3c57fa21c421186363865.png' />
         },
         {
             icon: <BrushLg color="#fff" />,
             title: t('MetaverseShowroomModularStack.cards.brandPersonalization.title'),
             description: t('MetaverseShowroomModularStack.cards.brandPersonalization.description'),
             gridColumn: { base: 'span 1', md: 'span 2' },
-            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.brandPersonalization.title')} src='https://upload-file-droplinked.s3.amazonaws.com/517709352c2dfca3a4bb1715b75efd7cdbe02a966fb88272b5081931c42cbfa9.png' />
+            children: <CardImage alt={t('MetaverseShowroomModularStack.cards.brandPersonalization.title')} src='https://upload-file-droplinked.s3.amazonaws.com/bcba31cb358e07703fde4aecce07c621962c30d464988915ba2af7e2779bca70.png' />
         }
     ]
 
