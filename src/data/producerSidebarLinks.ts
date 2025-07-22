@@ -98,13 +98,13 @@ const createSidebarLinks = (t: TFunction) => [
                 list: [],
                 external: true
             },
-            {
-                title: t('Sidebar.NavLinks.items.customerSupport'),
-                icon: React.createElement(ChatMd, { color: "#FFF" }),
-                linkTo: "#",
-                list: [],
-                onClick: () => window.Tawk_API?.toggle()
-            },
+            //{
+            //     title: t('Sidebar.NavLinks.items.customerSupport'),
+            //     icon: React.createElement(ChatMd, { color: "#FFF" }),
+            //     linkTo: "#",
+            //     list: [],
+            //     onClick: () => 
+            // },
             {
                 title: t('Sidebar.NavLinks.items.helpCenter'),
                 icon: React.createElement(HelpMd, { color: "#FFF" }),
