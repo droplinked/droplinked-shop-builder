@@ -60,7 +60,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
             refetch()
             onClose()
         } catch (error) {
-            showToast({ message: error?.message || t("genericError"), type: 'error' });
+            showToast({ message: error?.message || t("common:genericError"), type: 'error' });
         } finally {
             resetForm()
         }

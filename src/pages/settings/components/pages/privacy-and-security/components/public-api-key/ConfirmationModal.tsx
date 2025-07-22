@@ -53,10 +53,10 @@ export default function ConfirmationModal({ isOpen, onClose, refetch, selectedDo
             >
                 <Flex gap={6} justifyContent={"space-between"} mt={"38px"}>
                     <AppButton width={"45%"} disabled={isLoading} variant='secondary' onClick={onClose}>
-                        {t("cancel")}
+                        {t("common:cancel")}
                     </AppButton>
                     <AppButton width={"45%"} onClick={handleDeleteDomain} disabled={isLoading} isLoading={isLoading}>
-                        {t("delete")}
+                        {t("common:delete")}
                     </AppButton>
                 </Flex>
             </ModalHeaderData>

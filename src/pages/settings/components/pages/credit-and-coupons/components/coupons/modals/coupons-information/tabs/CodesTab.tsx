@@ -37,15 +37,15 @@ export default function CodesTab({ coupon, onClose }: Props) {
                     <AppSelect
                         items={[
                             {
-                                label: t("settings.coupons.information.filters.all"),
+                                label: t("Coupons.information.filters.all"),
                                 value: Filters.All
                             },
                             {
-                                label: t("settings.coupons.information.filters.used"),
+                                label: t("Coupons.information.filters.used"),
                                 value: Filters.Used
                             },
                             {
-                                label: t("settings.coupons.information.filters.available"),
+                                label: t("Coupons.information.filters.available"),
                                 value: Filters.Available
                             }
                         ]}
@@ -63,7 +63,7 @@ export default function CodesTab({ coupon, onClose }: Props) {
                     isLoading={isLoading}
                     leftIcon={<AppIcons.Download />}
                 >
-                    {t("settings.coupons.information.download")}
+                    {t("Coupons.information.download")}
                 </AppButton>
             </Flex >
             <CodesList codes={coupon.codes} currentFilter={currentFilter} />
