@@ -1,14 +1,14 @@
 import { Button, Flex, Td, Tr } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
-import useAppToast from 'hooks/toast/useToast'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import AppInput from 'components/redesign/input/AppInput'
+import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/invoice-management/ar.json'
 import enLocale from 'locales/invoice-management/en.json'
 import React, { forwardRef, useEffect, useState } from 'react'
 import ProductTitleCell from '../../../product-table/components/ProductTitleCell'
 import VariantsDropdown from './variants-dropdown/VariantsDropdown'
-import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     product: any
@@ -18,7 +18,6 @@ interface Props {
 
 const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) {
     const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
-    const { getFormattedPrice } = useCurrencyConverter()
     const { product, cart, setCart } = props
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
@@ -87,7 +86,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                 />
             </Td>
             <Td color={"#fff"}>
-                {firstSkuPrice ? `${getFormattedPrice({ amount: firstSkuPrice, toFixed: true })}` : "-"}
+                {firstSkuPrice ? <FormattedPrice price={firstSkuPrice} abbreviationProps={{ color: 'neutral.gray.400', fontSize: 16 }} /> : "-"}
             </Td>
             <Td>
                 <Button

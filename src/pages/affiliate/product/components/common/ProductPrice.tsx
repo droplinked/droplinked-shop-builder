@@ -1,6 +1,6 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
-import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 
 interface ProductPriceProps {
   price: number;
@@ -9,21 +9,14 @@ interface ProductPriceProps {
 }
 
 function ProductPrice({ price, fontSize = '36px', showAbbreviation = true }: ProductPriceProps) {
-  const { convertPrice, symbol, abbreviation } = useCurrencyConverter();
-  const displayPrice = convertPrice({ amount: price, toFixed: true }).toFixed(2);
-
   return (
-    <Text fontSize={fontSize}>
-      <Box as="span" fontWeight="bold" color="white">
-        {symbol}
-        {displayPrice}
-      </Box>
-      {showAbbreviation && (
-        <Box as="span" fontWeight="normal" color="#B1B1B1">
-          {' '} {abbreviation}
-        </Box>
-      )}
-    </Text>
+    <FormattedPrice
+      price={price}
+      fontSize={fontSize}
+      abbreviationProps={showAbbreviation ? { color: '#B1B1B1', fontWeight: 'normal' } : { display: 'none' }}
+      fontWeight="bold"
+      color="white"
+    />
   );
 }
 
