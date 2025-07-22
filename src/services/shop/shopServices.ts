@@ -96,8 +96,6 @@ export const getShopsCommunityService = (params: IGetShopsCommunityService) => {
 	return axiosInstance.get(`/shop/community/view?${queryString}`);
 };
 
-export const getNewShopsService = () => axiosInstance.get('/shop/community/new')
-
 
 export const getShopCommunityProfile = ({ shopId }: IGetShopCommunityProfile) => axiosInstance.get(`/shop/community/view/products/${shopId}`)
 
