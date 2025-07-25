@@ -2,7 +2,7 @@ import { useMediaQuery } from '@chakra-ui/react';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { PlanType } from 'pages/onboarding/types/onboarding';
 import React from 'react';
-import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans';
+import { getSubscriptionPlans } from 'data/subscriptionPlans';
 import BaseModal from './layout/BaseModal';
 import PaymentDrawer from './layout/PaymentDrawer';
 

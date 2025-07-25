@@ -1,7 +1,7 @@
 import { GridProps } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import React from "react"
-import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from "utils/constants/socialMediaLinks"
+import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from "data/socialMediaLinks"
 import JoinCommunityCard from "./JoinCommunityCard"
 import SocialMediaLink from "./SocialMediaLink"
 

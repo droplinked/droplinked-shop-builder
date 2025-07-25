@@ -9,7 +9,7 @@ import useAppStore, { useLegalUsage } from 'stores/app/appStore'
 import useGrowthHackStore from 'stores/level-up/levelUpStore'
 import { Product, ProductType } from 'pages/products/utils/types'
 import { useRef } from 'react'
-import { productTypeUsageLimits } from 'utils/constants'
+import { productTypeUsageLimits } from 'constants'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Params {

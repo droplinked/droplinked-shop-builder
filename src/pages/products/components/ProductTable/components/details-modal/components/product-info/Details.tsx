@@ -1,5 +1,5 @@
 import { Box, Divider, Flex, HStack, Text, VStack } from '@chakra-ui/react';
-import { typesProperties } from 'utils/constants/types';
+import { typesProperties } from 'data/types';
 import React from 'react';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';

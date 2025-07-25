@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next'
 import { PlanType } from 'pages/onboarding/types/onboarding'
-import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
+import { getSubscriptionPlans } from 'data/subscriptionPlans'
 
 /**
  * Maps each plan type to its parent plan that it inherits features from

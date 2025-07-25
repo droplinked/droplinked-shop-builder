@@ -3,7 +3,7 @@ import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDis
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import chainNameMap from 'utils/constants/blockchainMap'
+import chainNameMap from 'constants/blockchainMap'
 import React from 'react'
 import DetailRow from './DetailRow'
 

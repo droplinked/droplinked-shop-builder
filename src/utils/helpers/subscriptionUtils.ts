@@ -1,6 +1,6 @@
 // Subscription plan utility functions
 import { SubOptionId, SubscriptionPlan } from 'services/subscription/interfaces';
-import { getSubscriptionPlans } from '../constants/subscriptionPlans';
+import { getSubscriptionPlans } from '../../data/subscriptionPlans';
 import { TFunction } from 'i18next';
 
 /**

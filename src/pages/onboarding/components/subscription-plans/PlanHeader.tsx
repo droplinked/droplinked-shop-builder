@@ -11,7 +11,7 @@ import subscriptionArLocale from 'locales/subscription/ar.json'
 import subscriptionEnLocale from 'locales/subscription/en.json'
 import React from 'react'
 import { SubscriptionPlan } from 'services/subscription/interfaces'
-import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
+import { getSubscriptionPlans } from 'data/subscriptionPlans'
 
 interface PlanHeaderProps {
   plan: SubscriptionPlan

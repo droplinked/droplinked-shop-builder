@@ -1,5 +1,5 @@
 import React from "react"
-import { SubscriptionPlans } from 'utils/constants/subscriptionPlans'
+import { SubscriptionPlans } from 'data/subscriptionPlans'
 
 // Shop data that will be sent to backend
 export type ShopData = {

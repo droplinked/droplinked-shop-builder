@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import React from 'react'
-import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
+import { getSubscriptionPlans } from 'data/subscriptionPlans'
 import PlanCard from './PlanCard'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import EnLocale from 'locales/subscription/en.json'

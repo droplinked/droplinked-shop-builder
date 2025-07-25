@@ -6,7 +6,7 @@ import useProductForm from "pages/products/hooks/useProductForm"
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from "react"
 import { useQuery } from "react-query"
-import chainNameMap from "utils/constants/blockchainMap"
+import chainNameMap from "constants/blockchainMap"
 
 interface Props {
     isDropEnabled: boolean

@@ -2,7 +2,7 @@ import { Box, HStack } from "@chakra-ui/react";
 import AppSelectBox from "components/common/form/select/AppSelectBox";
 import AppTypography from "components/common/typography/AppTypography";
 import { PriceConversionParams } from "hooks/useCurrencyConverter/useCurrencyConverter";
-import { typesProperties } from "utils/constants/types";
+import { typesProperties } from "data/types";
 import { IproductOrderSkues } from "pages/order-sample-pod/context";
 import React from "react";
 

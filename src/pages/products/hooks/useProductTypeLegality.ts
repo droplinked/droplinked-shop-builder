@@ -1,5 +1,5 @@
 import { useLegalUsage } from "stores/app/appStore"
-import { productTypeUsageLimits } from "utils/constants"
+import { productTypeUsageLimits } from "constants/productType"
 import { ProductType } from "../utils/types"
 
 const useProductTypeLegality = (productType: ProductType | "drop") => {
