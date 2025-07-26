@@ -1,5 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { InfinitySm } from 'assets/icons/Sign/Infinity/InfinitySm'
+import { DashboardSm } from 'assets/icons/System/Dashboard/DashboardSm'
+import { MedalstarSm } from 'assets/icons/System/MedalStar/MedalstarSm'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
@@ -14,18 +16,19 @@ interface Props {
 export default function PlanFeatures({ onOpen, isFetching }: Props) {
     const { t } = useLocaleResources('settings');
     const navigate = useNavigate()
+    const iconColor = "#2BCFA1"
     const features = [
         {
             title: t("UpgradePlan.unlimitedAccess"),
-            icon: <AppIcons.GreenInfinity />
+            icon: <InfinitySm color={iconColor} />
         },
         {
              title: t("UpgradePlan.advancedTools"),
-            icon: <AppIcons.GreenSpeedometer />
+            icon: <DashboardSm color={iconColor} />
         },
         {
             title: t("UpgradePlan.prioritySupport"),
-            icon: <AppIcons.MedalStarOutline />
+            icon: <MedalstarSm color={iconColor} />,
         },
     ]
 
