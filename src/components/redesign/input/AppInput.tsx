@@ -177,7 +177,7 @@ function InputContainer(props: Props) {
                         }}
                         onKeyDown={handleKeyDown}
                         {...inputProps}
-                        onChange={inputProps?.onChange ? inputProps.isDisabled ? undefined : inputProps.onChange : handleChange}
+                        onChange={handleChange}
                     />
                 }
                 {showAnimatedLoading &&
