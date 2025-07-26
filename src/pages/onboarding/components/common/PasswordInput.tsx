@@ -1,11 +1,9 @@
 import { HideMd } from 'assets/icons/Action/Hide/HideMd'
 import { ShowMd } from 'assets/icons/Action/Show/ShowMd'
 import AppInput from 'components/redesign/input/AppInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import { InputChangeEvent } from 'types/eventTypes'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 
 interface PasswordInputProps {
     name: string
@@ -27,10 +25,7 @@ function PasswordInput({
     isRequired
 }: PasswordInputProps) {
     const [inputType, setInputType] = useState<"text" | "password">("password")
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
+    const { t } = useLocaleResources('onboarding')
 
     return (
         <AppInput

@@ -3,15 +3,12 @@ import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparate
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import AppLabel from 'components/redesign/label/AppLabel'
 import PlanPrice from 'components/redesign/plan-price/PlanPrice'
+import { getSubscriptionPlans } from 'data/subscriptionPlans'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { t } from 'i18next'
-import onboardingArLocale from 'locales/onboarding/ar.json'
-import onboardingEnLocale from 'locales/onboarding/en.json'
 import subscriptionArLocale from 'locales/subscription/ar.json'
 import subscriptionEnLocale from 'locales/subscription/en.json'
 import React from 'react'
 import { SubscriptionPlan } from 'services/subscription/interfaces'
-import { getSubscriptionPlans } from 'data/subscriptionPlans'
 
 interface PlanHeaderProps {
   plan: SubscriptionPlan
@@ -20,10 +17,7 @@ interface PlanHeaderProps {
 }
 
 function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
-  const { t: tOnboarding } = useLocaleResources('onboarding', {
-    en: onboardingEnLocale,
-    ar: onboardingArLocale
-  })
+  const { t: tOnboarding } = useLocaleResources('onboarding')
   const { t: tSubscription } = useLocaleResources('subscription', {
     en: subscriptionEnLocale,
     ar: subscriptionArLocale

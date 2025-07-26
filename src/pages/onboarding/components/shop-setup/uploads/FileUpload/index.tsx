@@ -2,11 +2,10 @@ import { Flex } from "@chakra-ui/react"
 import { ImageMd } from "assets/icons/System/Image/ImageMd"
 import React from "react"
 import { useDropzone } from "react-dropzone"
-import { FileUploadProps } from "./types"
-import LoadingState from "./LoadingState"
-import DropMessage from "./DropMessage"
 import ControlButtons from "./ControlButtons"
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import DropMessage from "./DropMessage"
+import LoadingState from "./LoadingState"
+import { FileUploadProps } from "./types"
 
 function FileUpload({
     onFileChange,
@@ -19,7 +18,6 @@ function FileUpload({
     title,
     value,
 }: FileUploadProps) {
-    const { t } = useLocaleResources('onboarding')
     const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
         onDrop: (acceptedFiles: File[]) => {
             const selectedFile = acceptedFiles[0]
