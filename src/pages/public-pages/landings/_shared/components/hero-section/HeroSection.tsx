@@ -92,8 +92,8 @@ export default function HeroSection({
                 position="relative"
                 overflow="hidden"
             >
-                <Box zIndex={1} gridArea="1 / 1 / 2 / 2">
-                    <Box>
+                <Flex flexDirection="column" justifyContent="space-between" zIndex={1} gridArea="1 / 1 / 2 / 2">
+                    <Box width="100%">
                         <Flex flexDirection="column" alignItems="center" gap={{ base: 2, md: 4 }}>
                             <Text
                                 color="neutral.white"
@@ -142,7 +142,7 @@ export default function HeroSection({
                             />
                         ) : null
                     )}
-                </Box>
+                </Flex>
             </Grid>
         </LazyLoad>
     )
