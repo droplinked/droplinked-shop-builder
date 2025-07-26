@@ -1,15 +1,18 @@
-import { Text, VStack } from '@chakra-ui/react'
+import { VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { signupService } from 'services/auth/services'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { signupService } from 'services/auth/services'
 import { InputChangeEvent } from 'types/eventTypes'
 import * as Yup from 'yup'
 import AuthRedirectLink from '../common/AuthRedirectLink'
@@ -17,9 +20,6 @@ import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 import PasswordValidationRules from '../common/PasswordValidationRules'
 
 const formSchema = Yup.object().shape({
@@ -115,15 +115,11 @@ function SignUpForm() {
                             />
 
                             <Checkbox
-                                display='flex'
                                 marginBlock={3}
-                                alignItems={{ base: "start", md: "center" }}
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
-                                <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                    {t('SignUpForm.termsPrefix')}
-                                    <InteractiveText to="/terms" display="contents">{t('SignUpForm.termsLink')}</InteractiveText>
-                                </Text>
+                                {t('SignUpForm.termsPrefix')}{" "}
+                                <InteractiveText to="/terms" display="contents">{t('SignUpForm.termsLink')}</InteractiveText>
                             </Checkbox>
 
                             <AppButton
