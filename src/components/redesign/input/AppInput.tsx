@@ -105,6 +105,8 @@ function InputContainer(props: Props) {
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (inputProps?.isDisabled) return
+
         const { value, validity } = event.target
 
         if (inputProps?.type === 'number') {
@@ -174,8 +176,8 @@ function InputContainer(props: Props) {
                             }
                         }}
                         onKeyDown={handleKeyDown}
-                        onChange={handleChange}
                         {...inputProps}
+                        onChange={inputProps?.onChange ? inputProps.isDisabled ? undefined : inputProps.onChange : handleChange}
                     />
                 }
                 {showAnimatedLoading &&
