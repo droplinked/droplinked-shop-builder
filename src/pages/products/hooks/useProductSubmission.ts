@@ -156,7 +156,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     }
 
     const checkProductTypeLegalUsage = (productType: ProductType) => {
-        const { errorMessage, key } = productTypeUsageLimits[productType]
+        const { errorMessage, key } = productTypeUsageLimits(t)[productType]
         const legalUsage = shopLegalUsage.find(obj => obj.key === key)
         if (!(legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0)) {
             throw new Error(errorMessage)

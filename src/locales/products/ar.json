@@ -596,5 +596,19 @@
       "title": "إشعار قفل المنتج",
       "description": "بمجرد إسقاط هذا المنتج، سيتم قفل جميع التفاصيل بشكل دائم ولا يمكن تغييرها."
     }
+  },
+  "permissionErrors": {
+    "permissionDenied": "تم رفض الإذن",
+    "maxActiveLoginMethods": "يمكنك تفعيل ما يصل إلى {{count}} طريقة تسجيل دخول{{plural}} فقط",
+    "maxActivePaymentMethods": "يمكنك تفعيل ما يصل إلى {{count}} طريقة دفع{{plural}} فقط",
+    "subscriptionDataUnavailable": "عذراً! لا يمكننا الوصول إلى بيانات الاشتراك حالياً. يرجى المحاولة لاحقاً.",
+    "productCreationLimitReached": "تم الوصول إلى حد إنشاء {{type}}. يرجى ترقية خطتك لإنشاء المزيد.",
+    "dropLimitReached": "تم الوصول إلى حد الدروب. يرجى ترقية خطتك لإضافة المزيد."
+  },
+  "productTypes": {
+    "digital": "المنتج الرقمي",
+    "printOnDemand": "الطباعة عند الطلب",
+    "physical": "المنتج المادي",
+    "event": "الفعالية"
   }
 }
