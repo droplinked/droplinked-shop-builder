@@ -24,18 +24,18 @@
       "trialMonths": 6
     },
     "unstoppableDomains": {
-      "name": "Unstoppable Domains",
-      "displayName": "Unstoppable Domains",
+      "name": "unstoppable domains",
+      "displayName": "unstoppable domains",
       "trialMonths": 3
     },
     "polygon": {
-      "name": ".Polygon",
-      "displayName": ".Polygon",
+      "name": "polygon",
+      "displayName": "polygon",
       "trialMonths": 3
     },
     "crossmint": {
-      "name": "Crossmint",
-      "displayName": "Crossmint",
+      "name": "crossmint",
+      "displayName": "crossmint",
       "trialMonths": 3
     }
   },

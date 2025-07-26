@@ -4,6 +4,7 @@ import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { NftLg } from 'assets/icons/System/NFT/NftLg'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import { toCamelCase } from 'utils/helpers'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../../_shared/components/card/Cards'
 import Perks from '../assets/Perks'
@@ -38,7 +39,7 @@ export default function PerkList() {
         <SectionContainer
             icon='story'
             sectionTitle={t('PerkList.sectionTitle')}
-            headingTitle={t('PerkList.headingTitle', { partnerName })}
+            headingTitle={t('PerkList.headingTitle', { partnerName: toCamelCase(partnerName) })}
             headingSubtitle={t('PerkList.headingSubtitle', { trialMonths })}
             typographySvg={<Perks />}
         >
