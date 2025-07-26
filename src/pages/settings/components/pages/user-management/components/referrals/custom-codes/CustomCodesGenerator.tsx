@@ -40,7 +40,7 @@ export default function CustomCodesGenerator() {
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value.replace(/\s/g, '');
+        const newValue = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
         setValue(newValue);
     }
 
