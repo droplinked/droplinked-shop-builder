@@ -3,15 +3,13 @@ import { getShopExtractedData, startWebsiteCrawling } from 'services/crawler/ser
 import { usePolling } from 'hooks/usePolling/usePolling'
 import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'    
 
 export const useShopUrlProcessor = () => {
     const { hasPaidSubscription } = useAppStore()
     const { updateShopData } = useOnboardingStore()
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources('onboarding', { en: enLocale, ar: arLocale })
+    const { t } = useLocaleResources('onboarding')
 
     const polling = usePolling({
         onError: (error) => {
@@ -59,7 +57,7 @@ export const useShopUrlProcessor = () => {
             // Start polling for the extracted data
             polling.startPolling(() => pollShopExtractedData(data.poolId))
 
-            showToast({ type: "info", message: t('useShopUrlProcesso.info.importStarted') })
+            showToast({ type: "info", message: t('useShopUrlProcessor.info.importStarted') })
         } catch (error) {
             showToast({ type: "error", message: t('useShopUrlProcessor.errors.failedToStartImport') })
             polling.stopProcessing()
