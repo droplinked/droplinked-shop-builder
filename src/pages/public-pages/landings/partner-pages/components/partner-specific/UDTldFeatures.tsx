@@ -27,15 +27,11 @@ export default function UDTldFeatures() {
             <Box position="relative" overflow="hidden" maxW="100%">
                 <DomainGrid domains={domains} />
                 <Box
-                    w="100%"
-                    h="100%"
                     position="absolute"
-                    left={0}
-                    top={0}
+                    inset={0}
                     bgGradient="linear(to-r, #0a0a0a, transparent, #0a0a0a)"
                     pointerEvents="none"
                     zIndex={1}
-                    maxW="100%"
                 />
             </Box>
         </SectionContainer>

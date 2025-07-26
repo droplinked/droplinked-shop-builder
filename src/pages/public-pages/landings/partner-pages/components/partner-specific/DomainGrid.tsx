@@ -1,4 +1,4 @@
-import { Box, BoxProps } from '@chakra-ui/react'
+import { Box, BoxProps, Center } from '@chakra-ui/react'
 import React from 'react'
 
 /**
@@ -19,12 +19,12 @@ interface DomainGridProps extends BoxProps {
   children?: React.ReactNode
 }
 
-export default function DomainGrid({ 
-  domains, 
-  containerProps, 
-  rowProps, 
-  children, 
-  ...props 
+export default function DomainGrid({
+  domains,
+  containerProps,
+  rowProps,
+  children,
+  ...props
 }: DomainGridProps) {
   const layout = [
     { domains: domains.slice(0, 6), alignItems: "flex-end" as const },
@@ -56,33 +56,19 @@ export default function DomainGrid({
           {...rowProps}
         >
           {row.domains.map((domain, domainIndex) => (
-            <Box
+            <Center
               key={`${rowIndex}-${domainIndex}`}
-              w="48"
-              px={6}
-              py={5}
-              borderRadius="2xl"
+              w={{ base: "144px", xl: "196px" }}
               border="1px solid"
               borderColor="neutral.gray.800"
-              display="inline-flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              gap={4}
+              borderRadius="2xl"
+              padding={{ base: "14px 16px", xl: "20px 24px" }}
+              fontSize={{ base: 14, xl: 18 }}
+              fontWeight={500}
+              color="text.white"
             >
-              <Box
-                alignSelf="stretch"
-                textAlign="center"
-                justifyContent="flex-start"
-                color="white"
-                fontSize="lg"
-                fontWeight="medium"
-                fontFamily="Inter"
-                lineHeight={7}
-              >
-                {domain}
-              </Box>
-            </Box>
+              {domain}
+            </Center>
           ))}
         </Box>
       ))}
