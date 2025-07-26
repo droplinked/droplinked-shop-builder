@@ -40,7 +40,6 @@ export function useLogin() {
             }
         }
         catch (error) {
-
             showToast({ message: t('common:genericError'), type: "error" })
         }
     }, [showToast, updateOnboardingState, shopNavigate, t])
