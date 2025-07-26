@@ -10,7 +10,7 @@ export function useLogin() {
     const { shopNavigate } = useCustomNavigate()
     const { showToast } = useAppToast()
     const { updateOnboardingState } = useOnboardingStore()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('onboarding')
 
     const finalizeLogin = useCallback(async (data: any) => {
         try {

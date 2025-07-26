@@ -1,4 +1,5 @@
 import { useMediaQuery } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { useShopSetupSubmit } from 'pages/onboarding/hooks/useShopSetupSubmit'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
@@ -13,7 +14,6 @@ import NameField from './inputs/NameField'
 import UrlChooser from './inputs/UrlChooser'
 import CoverImage from './uploads/CoverImage'
 import LogoUploader from './uploads/LogoUploader'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ShopSetupForm() {
   const [isSmallerThan1024] = useMediaQuery('(max-width: 1024px)')

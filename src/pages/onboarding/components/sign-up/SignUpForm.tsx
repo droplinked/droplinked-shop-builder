@@ -6,8 +6,6 @@ import InteractiveText from 'components/redesign/interactive-text/InteractiveTex
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
@@ -33,10 +31,7 @@ function SignUpForm() {
     const [acceptTerms, setAcceptTerms] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
+    const { t } = useLocaleResources('onboarding')
 
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")

@@ -1,12 +1,12 @@
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function PasswordUpdatedForm() {
   const { updateOnboardingState } = useOnboardingStore()
-  const { t } = useLocaleResources('onboarding');
+  const { t } = useLocaleResources('onboarding')
 
   const handleSignIn = () => updateOnboardingState('currentStep', 'SIGN_IN')
 
