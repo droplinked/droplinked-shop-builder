@@ -1,4 +1,3 @@
-import AppIcons from 'assets/icon/Appicons'
 import AppButton from 'components/redesign/button/AppButton'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import React, { useEffect } from 'react'
@@ -7,6 +6,7 @@ import { BASE_URL } from 'utils/app/variable'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/onboarding/ar.json'
 import enLocale from 'locales/onboarding/en.json'
+import { Google1 } from 'assets/logo/Companies/Google/Google1'
 
 interface GoogleAuthButtonProps {
     isSignUp: boolean
@@ -61,7 +61,7 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, sour
     return (
         <AppButton
             variant="secondary"
-            leftIcon={<AppIcons.Google />}
+            leftIcon={<Google1 />}
             useOriginalIconColor={true}
             isLoading={loading}
             isDisabled={isDisabled}
