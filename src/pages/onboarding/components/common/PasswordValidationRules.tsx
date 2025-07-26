@@ -1,8 +1,8 @@
 import { Flex, SimpleGrid, Text } from '@chakra-ui/react'
 import { CheckMd } from 'assets/icons/Sign/Check/CheckMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { getPasswordRules } from 'pages/onboarding/utils/passwordRules'
 import React from 'react'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface PasswordRuleProps {
     isValid: boolean
