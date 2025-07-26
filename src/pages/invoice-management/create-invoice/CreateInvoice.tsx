@@ -72,7 +72,7 @@ export default function CreateInvoice() {
         <>
             <Formik
                 initialValues={getInvoiceFormInitialValues(data)}
-                validationSchema={getInvoiceValidationSchema(isAddressSwitchToggled)}
+                validationSchema={getInvoiceValidationSchema(isAddressSwitchToggled, t)}
                 validateOnChange={false}
                 onSubmit={handleSubmit}
             >
