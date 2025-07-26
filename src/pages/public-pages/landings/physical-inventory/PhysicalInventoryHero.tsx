@@ -21,7 +21,7 @@ function PhysicalInventoryHero() {
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
-                        <AppButton variant='normal' color="neutral.white">
+                        <AppButton variant='normal' bg="label.primary" color="neutral.white">
                             {t('PhysicalInventoryHero.requestDemo')}
                         </AppButton>
                     </Link>

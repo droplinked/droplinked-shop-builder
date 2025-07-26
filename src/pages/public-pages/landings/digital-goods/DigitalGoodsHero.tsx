@@ -21,7 +21,7 @@ function DigitalGoodsHero() {
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
-                        <AppButton variant='normal' color="neutral.white">
+                        <AppButton variant='normal' bg="label.primary" color="neutral.white">
                             {t('DigitalGoodsHero.requestDemo')}
                         </AppButton>
                     </Link>
