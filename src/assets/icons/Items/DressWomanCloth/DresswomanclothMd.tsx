@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const DresswomanclothMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
+export const DresswomanclothMd = ({ color = "white", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <mask id="path-1-outside-1_11233_213" maskUnits="userSpaceOnUse" x="2.74219" y="-0.552002" width="14" height="21" fill={color}>
             <rect fill="white" x="2.74219" y="-0.552002" width="14" height="21" />

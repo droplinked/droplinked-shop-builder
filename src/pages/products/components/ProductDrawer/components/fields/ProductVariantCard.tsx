@@ -1,5 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export default function ProductVariantCard({ variant, onEdit }: Props) {
+    const { t } = useLocaleResources('products');
     const { values: { properties, sku, product_type }, setFieldValue } = useProductForm()
 
     const isNormalProduct = product_type === 'NORMAL'
@@ -47,7 +49,7 @@ export default function ProductVariantCard({ variant, onEdit }: Props) {
                     <VariantItem
                         key={index}
                         item={item}
-                        isColorVariant={variant.title === 'Color' && !variant.isCustom}
+                        isColorVariant={variant.title === t('ProductVariantCard.colorName') && !variant.isCustom}
                     />
                 ))}
             </Flex>

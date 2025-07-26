@@ -13,19 +13,21 @@ import NameField from './inputs/NameField'
 import UrlChooser from './inputs/UrlChooser'
 import CoverImage from './uploads/CoverImage'
 import LogoUploader from './uploads/LogoUploader'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ShopSetupForm() {
   const [isSmallerThan1024] = useMediaQuery('(max-width: 1024px)')
   const { handleSubmit, isLoading } = useShopSetupSubmit()
   const { shopSetupUI: { hasExistingShop }, updateOnboardingState } = useOnboardingStore()
+  const { t } = useLocaleResources('onboarding')
 
   const handleBack = () => updateOnboardingState("currentStep", "EXISTING_WEBSITE")
 
   return (
     <>
       <OnboardingStepHeader
-        heading="Account Details"
-        description="Complete the information below to optimize your storefront."
+        heading={t('common.shop.details')}
+        description={t('ShopSetupForm.subtitle')}
       />
       {hasExistingShop ? <ExistingShopUrlProcessor /> : <AICard />}
       <LogoUploader />

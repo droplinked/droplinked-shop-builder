@@ -1,10 +1,10 @@
 import AppDialog from 'components/common/dialog'
 import useAppToast from 'hooks/toast/useToast'
-import { IdeleteCollectionService } from 'lib/apis/collection/interfaces'
-import { deleteCollectionService } from 'lib/apis/collection/services'
-import AppErrors from 'utils/constants/errors'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useMutation } from 'react-query'
+import { IdeleteCollectionService } from 'services/collection/interfaces'
+import { deleteCollectionService } from 'services/collection/services'
 
 interface IProps {
     open: boolean
@@ -15,32 +15,33 @@ interface IProps {
 function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
     const { mutate, isLoading } = useMutation((params: IdeleteCollectionService) => deleteCollectionService(params))
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources("collections");
 
     return (
         <AppDialog
             open={open}
             close={() => { }}
-            title="Delete Collection"
-            text={"Are you sure you want to delete this collection? You will no longer have access to this collection."}
+            title={t("ConfirmDeleteCollection.title")}
+            text={t("ConfirmDeleteCollection.confirmationText")}
             buttons={[
                 {
-                    children: "Cancel",
+                    children: t("common:cancel"),
                     onClick: () => close(),
                     buttonProps: {
                         variant: "outline"
                     }
                 },
                 {
-                    children: "Delete",
+                    children: t("common:delete"),
                     buttonProps: { isLoading },
                     onClick: () => {
                         mutate({ collectionID }, {
                             onSuccess: () => {
-                                showToast({ message: AppErrors.collection.collectionDeleted, type: "success" })
+                                showToast({ message: t("ConfirmDeleteCollection.success"), type: "success" })
                                 fetch()
                                 close()
                             },
-                            onError: async () => showToast({ message: "Oops! Something went wrong", type: "error" })
+                            onError: async () => showToast({ message: t("common:genericError"), type: "error" })
                         })
                     }
                 }

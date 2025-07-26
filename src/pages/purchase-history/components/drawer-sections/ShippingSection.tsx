@@ -1,17 +1,20 @@
-import { Flex } from '@chakra-ui/react';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import React from 'react';
-import InfoWrapper from '../drawer-components/InfoWrapper';
-import TitledText from '../drawer-components/TitledText';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
+import { Flex } from '@chakra-ui/react'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import React from 'react'
+import InfoWrapper from '../drawer-components/InfoWrapper'
+import TitledText from '../drawer-components/TitledText'
+import { IOrderDetails } from 'services/order/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface ShippingProps {
-    shippings: IOrderDetails["shippings"];
+    shippings: IOrderDetails["shippings"]
 }
 
 export default function ShippingSection({ shippings }: ShippingProps) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     return (
-        <InfoWrapper title='Shipping'>
+        <InfoWrapper title={t("ShippingSection.shipping")}>
             <Flex direction="column" gap={4}>
                 {shippings.map((item, index) => (
                     <TitledText
@@ -23,5 +26,5 @@ export default function ShippingSection({ shippings }: ShippingProps) {
                 ))}
             </Flex>
         </InfoWrapper>
-    );
+    )
 }

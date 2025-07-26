@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export default function DefaultBadge({ isDefault, onClick }: Props) {
+    const { t } = useLocaleResources('settings');
+
     const handleClick = () => {
         if (!isDefault) {
             onClick()
@@ -29,7 +32,7 @@ export default function DefaultBadge({ isDefault, onClick }: Props) {
         >
             {isDefault ? <AppIcons.GoldenStar style={{ width: "16px", height: "16px" }} /> : <AppIcons.OutlinedStar style={{ width: "16px", height: "16px" }} />}
             <AppTypography fontSize={14} color={isDefault ? "#ffd951" : "#fff"}>
-                {isDefault ? "Default" : "Set As Default"}
+                {isDefault ? t("DefaultBadge.default") : t("DefaultBadge.setAsDefault")}
             </AppTypography>
         </Flex>
     );

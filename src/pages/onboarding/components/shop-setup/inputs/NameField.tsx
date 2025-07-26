@@ -3,18 +3,20 @@ import AppInput from 'components/redesign/input/AppInput'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import AiOptionsDisplay from '../ai/AiOptionsDisplay'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function NameField() {
     const { shopData, updateShopData, storeSetupErrors, setError } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         updateShopData('name', value)
 
         if (!value) {
-            setError('name', 'Name is required')
+            setError('name', t('NameField.validation.required'))
         } else if (value.length < 3) {
-            setError('name', 'Name must be at least 3 characters')
+            setError('name', t('NameField.validation.minLength'))
         } else {
             setError('name', undefined)
         }
@@ -28,10 +30,10 @@ export default function NameField() {
     return (
         <VStack spacing={4} align="stretch">
             <AppInput
-                label='Name'
+                label={t('NameField.label')}
                 inputProps={{
                     fontSize: { base: 14, md: 16 },
-                    placeholder: "Choose your store name",
+                    placeholder: t('NameField.placeholder'),
                     value: shopData.name,
                     onChange: handleChange,
                     isRequired: true,

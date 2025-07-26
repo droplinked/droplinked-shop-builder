@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { useFormikContext } from "formik";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React, { useEffect } from "react";
 import { IAddressInputs } from "../formConfigs";
 import AppInput from "components/redesign/input/AppInput";
@@ -14,10 +15,13 @@ interface Props {
 
 export default function AddressInputs({ onClose }: Props) {
     const { values, errors, setFieldValue, handleChange } = useFormikContext<IAddressInputs>();
+    const { t } = useLocaleResources('settings');
+
     useEffect(() => {
         setFieldValue("state", "")
         setFieldValue("city", "")
     }, [values.country, setFieldValue])
+
     useEffect(() => {
         setFieldValue('state', values.state);
         setFieldValue('city', values.city);
@@ -37,7 +41,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.firstName}
                     {...(errors.firstName && { state: "error" })}
                     inputProps={{
-                        placeholder: "First Name",
+                        placeholder: t("Address.fields.firstName"),
                         name: "firstName",
                         value: values.firstName,
                         onChange: handleChange,
@@ -47,7 +51,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.lastName}
                     {...(errors.lastName && { state: "error" })}
                     inputProps={{
-                        placeholder: "Last Name",
+                        placeholder: t("Address.fields.lastName"),
                         name: "lastName",
                         value: values.lastName,
                         onChange: handleChange,
@@ -59,7 +63,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.addressLine1}
                     {...(errors.addressLine1 && { state: "error" })}
                     inputProps={{
-                        placeholder: "Address Line 1",
+                        placeholder: t("Address.fields.addressLine1"),
                         name: "addressLine1",
                         value: values.addressLine1,
                         onChange: handleChange,
@@ -69,7 +73,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.addressLine2}
                     {...(errors.addressLine2 && { state: "error" })}
                     inputProps={{
-                        placeholder: "Address Line 2",
+                        placeholder: t("Address.fields.addressLine2"),
                         name: "addressLine2",
                         value: values.addressLine2,
                         onChange: handleChange,
@@ -84,7 +88,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.zip}
                     {...(errors.zip && { state: "error" })}
                     inputProps={{
-                        placeholder: "Zip Code",
+                        placeholder: t("Address.fields.zip"),
                         name: "zip",
                         value: values.zip,
                         onChange: handleChange,

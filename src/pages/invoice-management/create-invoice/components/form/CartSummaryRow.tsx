@@ -1,6 +1,6 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import React from 'react';
 
 interface Props {
@@ -10,13 +10,6 @@ interface Props {
 }
 
 function CartSummaryRow({ title, value, isValueBold = false }: Props) {
-    const { abbreviation, symbol, convertPrice } = useCurrencyConverter()
-
-    const formattedPrice = (price: number) => {
-        const validPrice = isNaN(price) ? 0 : price
-        return `${symbol}${convertPrice({ amount: validPrice, toFixed: true })} `
-    }
-
     return (
         <Flex justifyContent={"space-between"} alignItems={"center"}>
             <AppTypography fontSize={16} color={"white"}>{title}</AppTypography>
@@ -25,8 +18,7 @@ function CartSummaryRow({ title, value, isValueBold = false }: Props) {
                 fontWeight={isValueBold ? 700 : 400}
                 color={"white"}
             >
-                {formattedPrice(value)}
-                <Box as='span' fontSize={16} color={'neutral.gray.400'}>{abbreviation}</Box>
+                <FormattedPrice price={value} abbreviationProps={{ color: 'neutral.gray.400', fontSize: 16 }} />
             </AppTypography>
         </Flex>
     )

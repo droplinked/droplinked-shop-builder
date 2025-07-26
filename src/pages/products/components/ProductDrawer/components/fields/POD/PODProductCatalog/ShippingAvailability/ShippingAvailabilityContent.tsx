@@ -1,7 +1,7 @@
 import { Box, Circle, Flex, PopoverBody } from '@chakra-ui/react'
 import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getPODShippingAvailability } from 'lib/apis/product/productServices'
+import { getPODShippingAvailability } from 'services/product/productServices'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import { useQuery } from 'react-query'

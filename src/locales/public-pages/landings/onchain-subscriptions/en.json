@@ -1,0 +1,55 @@
+{
+  "OnchainSubscriptionsHero": {
+    "title": "Sell Confidently",
+    "subtitle": "Assign roles and identities to 3rd parties like manufacturers, distributors and\nco-sellers to seamlessly track commissions and settlements\nthat eliminate fraud and clickjacking",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "OnchainSubscriptionsFeatures": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Secure Affiliate Partnerships",
+    "headingSubtitle": "Leverage onchain attribution to protect partner relationships. Guarantee accurate\ncommissions while eliminating fraud typically associated with bad actors.",
+    "cards": {
+      "tamperProofSales": {
+        "title": "Tamper-Proof Sales",
+        "description": "Customers cannot bypass approved co-seller referrals when making purchases in order to protect commission integrity"
+      },
+      "automatedTracking": {
+        "title": "Automated Tracking",
+        "description": "Easily track affiliate sales and SaaS subscription referrals that ensure accurate, automated commission payouts between parties"
+      },
+      "seamlessIntegration": {
+        "title": "Seamless Integration",
+        "description": "Use the technology without additional coding or technical skills needed to further simplify partnership tracking between distributors and co-sellers"
+      }
+    }
+  },
+  "OnchainSubscriptionsModularStack": {
+    "cards": {
+      "protectedCommissions": {
+        "title": "Protected Commissions",
+        "description": "Partners and co-sellers earn their fair share with secure affiliate tracking that prevents any loss of commissions for their verified work"
+      },
+      "affiliateMadeEasy": {
+        "title": "Affiliate Made Easy",
+        "description": "Integrate inventory and a rewards system with various SaaS platforms and services to expand earning potential across networks"
+      },
+      "realTimeAnalytics": {
+        "title": "Real-Time Analytics",
+        "description": "Monitor subscription referrals and performance metrics in real time to maintain and keep complete control of the affiliate side of the business"
+      },
+      "secureAffiliateTracking": {
+        "title": "Secure Affiliate Tracking",
+        "description": "Ensure commissions are safely attributed onchain thanks to advanced tracking technology"
+      },
+      "automatedCommissionPayouts": {
+        "title": "Automated Commission Payouts and Distributions",
+        "description": "Receive automated, accurate payouts that make activating and running affiliate management effortless"
+      },
+      "expandRevenueStreams": {
+        "title": "Expand Revenue Streams",
+        "description": "Expand reach through multiple networks and partners to grow income on both physical inventory, digital goods and subscription services"
+      }
+    }
+  }
+} 

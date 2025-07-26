@@ -1,13 +1,13 @@
-import { Flex } from '@chakra-ui/react';
-import React from 'react';
-import { IOrders } from '../../interface';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
-import CartItem from '../drawer-components/CartItem';
-import AppSkeleton from 'components/common/skeleton/AppSkeleton';
+import { Flex } from '@chakra-ui/react'
+import React from 'react'
+import { IOrders } from '../../interface'
+import { IOrderDetails } from 'services/order/interfaces'
+import CartItem from '../drawer-components/CartItem'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 
 interface Props {
-    orderData: IOrderDetails;
-    isFetching: boolean;
+    orderData: IOrderDetails
+    isFetching: boolean
     rowData: IOrders,
 }
 

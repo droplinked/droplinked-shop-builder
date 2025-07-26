@@ -1,7 +1,9 @@
 import { Flex } from '@chakra-ui/react'
 import { DownloadMd } from 'assets/icons/Action/Download/DownloadMd'
 import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
+import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { HeaderContainer } from 'layouts/ProducerLayout/Header/HeaderContainer'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -14,6 +16,7 @@ interface PageHeaderProps {
 
 const PageHeader: React.FC<PageHeaderProps> = ({ onDownload, isDownloading, isFetching }) => {
     const navigate = useNavigate()
+    const { isRTL } = useLocaleResources('common')
 
     return (
         <HeaderContainer py={4}>
@@ -21,7 +24,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onDownload, isDownloading, isFe
                 <AppButton
                     variant="normal"
                     color="#fff"
-                    leftIcon={<ChevronleftMd />}
+                    leftIcon={isRTL ? <ChevronrightMd /> : <ChevronleftMd />}
                     onClick={() => navigate("/analytics")}
                 >
                     Back to Dashboard

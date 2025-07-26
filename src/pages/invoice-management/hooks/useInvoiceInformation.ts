@@ -1,6 +1,9 @@
-import { retrieveInvoiceByIdService } from "lib/apis/invoice/invoiceServices";
+import { retrieveInvoiceByIdService } from "services/invoice/invoiceServices";
 import { useQuery } from "react-query";
 import useInvoiceStore from "../create-invoice/store/invoiceStore";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import arLocale from 'locales/invoice-management/ar.json';
+import enLocale from 'locales/invoice-management/en.json';
 
 export type SummaryRow = {
     label: string;
@@ -11,6 +14,7 @@ export type SummaryRow = {
 type InvoiceInformationMap = Record<string, SummaryRow[]>
 
 export default function useInvoiceInformation(invoiceId?: string) {
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
     const { isFetching, isError, data } = useQuery({
         queryKey: ["invoice", invoiceId],
         queryFn: () => retrieveInvoiceByIdService(invoiceId),
@@ -41,23 +45,23 @@ export default function useInvoiceInformation(invoiceId?: string) {
     }
 
     const invoiceInformationMap: InvoiceInformationMap = {
-        "Information": [
-            { label: "ID Number", value: invoice?._id || "-" },
-            { label: "Status", value: invoice?.status || "-" },
-            { label: "Memo", value: invoice?.note || "-" }
+        [t('useInvoiceInformation.sections.information')]: [
+            { label: t('useInvoiceInformation.labels.idNumber'), value: invoice?._id || "-" },
+            { label: t('useInvoiceInformation.labels.status'), value: invoice?.status || "-" },
+            { label: t('useInvoiceInformation.labels.memo'), value: invoice?.note || "-" }
         ],
-        "Client detail": [
-            { label: "Full name", value: formatFullName() },
-            { label: "Email Address", value: invoice?.email || "-" },
-            { label: "Mobile Number", value: invoice?.address?.phoneNumber || "-" },
-            { label: "Address", value: formatAddress() },
-            { label: "Shipping Method", value: findSelectedShippingTitle() }
+        [t('useInvoiceInformation.sections.clientDetail')]: [
+            { label: t('useInvoiceInformation.labels.fullName'), value: formatFullName() },
+            { label: t('useInvoiceInformation.labels.emailAddress'), value: invoice?.email || "-" },
+            { label: t('useInvoiceInformation.labels.mobileNumber'), value: invoice?.address?.phoneNumber || "-" },
+            { label: t('useInvoiceInformation.labels.address'), value: formatAddress() },
+            { label: t('useInvoiceInformation.labels.shippingMethod'), value: findSelectedShippingTitle() }
         ],
-        "Payment Details": [
-            { label: "Total cart", value: invoice?.totalCart?.subtotal, isPrice: true },
-            { label: "Tax", value: invoice?.totalCart?.estimatedTaxes, isPrice: true },
-            { label: "Total Shipping", value: invoice?.totalCart?.shipping, isPrice: true },
-            { label: "Total Cost", value: invoice?.totalCart?.totalPayment, isPrice: true }
+        [t('useInvoiceInformation.sections.paymentDetails')]: [
+            { label: t('useInvoiceInformation.labels.totalCart'), value: invoice?.totalCart?.subtotal, isPrice: true },
+            { label: t('useInvoiceInformation.labels.tax'), value: invoice?.totalCart?.estimatedTaxes, isPrice: true },
+            { label: t('useInvoiceInformation.labels.totalShipping'), value: invoice?.totalCart?.shipping, isPrice: true },
+            { label: t('useInvoiceInformation.labels.totalCost'), value: invoice?.totalCart?.totalPayment, isPrice: true }
         ]
     }
 

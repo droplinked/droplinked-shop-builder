@@ -1,7 +1,8 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { ListMd } from 'assets/icons/Navigation/List/ListMd'
-import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useEffect, useState } from 'react'
+import { ChangelogEntry } from 'services/changelog/interfaces'
 import { extractHeadings, parseBlocknoteTexteditorContent } from 'utils/helpers/blocknoteUtils'
 import SectionHeader from './SectionHeader'
 
@@ -14,6 +15,7 @@ interface Props {
  */
 function ArticleTOC({ changelogItem }: Props) {
     const [selectedHeading, setSelectedHeading] = useState("")
+    const { t } = useLocaleResources('changelogPage')
 
     const initialContent = parseBlocknoteTexteditorContent(changelogItem?.description)
     const headings = extractHeadings(initialContent)
@@ -61,7 +63,7 @@ function ArticleTOC({ changelogItem }: Props) {
         <Flex direction="column" gap={4}>
             <SectionHeader
                 icon={<ListMd color='#fff' />}
-                title="In this article"
+                title={t('articleToc')}
             />
 
             <Flex
@@ -87,12 +89,12 @@ function ArticleTOC({ changelogItem }: Props) {
                     <Box
                         key={index}
                         as="li"
+                        className={selectedHeading === heading.id ? "active" : ""}
                         padding="8px 16px"
                         color="text.subtext.placeholder.dark"
                         transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
                         cursor="pointer"
                         onClick={() => scrollToHeading(heading.id)}
-                        className={selectedHeading === heading.id ? "active" : ""}
                     >
                         {heading.text}
                     </Box>

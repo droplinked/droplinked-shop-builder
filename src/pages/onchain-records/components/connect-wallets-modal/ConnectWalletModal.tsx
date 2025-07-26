@@ -1,22 +1,24 @@
-import { ModalBody } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
-import AppModal from "components/redesign/modal/AppModal";
-import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
-import ConnectWallets from "pages/onchain-records/components/connect-wallets-modal/ConnectWallets";
-import React from "react";
-import { useOnchainRecords } from "../../context/OnchainRecordsContext";
+import { ModalBody } from "@chakra-ui/react"
+import AppIcons from "assets/icon/Appicons"
+import AppModal from "components/redesign/modal/AppModal"
+import ModalHeaderData from "components/redesign/modal/ModalHeaderData"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
+import ConnectWallets from "pages/onchain-records/components/connect-wallets-modal/ConnectWallets"
+import React from "react"
+import { useOnchainRecords } from "../../context/OnchainRecordsContext"
 
 interface Props {
-    isOpen: boolean;
-    onClose: () => void;
+    isOpen: boolean
+    onClose: () => void
 }
 
 export default function ConnectWalletModal({ isOpen, onClose }: Props) {
-    const { refetch } = useOnchainRecords();
+    const { t } = useLocaleResources("onchainRecords")
+    const { refetch } = useOnchainRecords()
 
     const handleClose = () => {
-        onClose();
-        refetch();
+        onClose()
+        refetch()
     }
 
     return (
@@ -33,19 +35,14 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
                 paddingBlock: "0px"
             }}>
             <ModalHeaderData
-                modalHeaderProps={{
-                    bgColor: "#141414",
-                }}
-                descriptionProps={{
-                    color: "#B1B1B1 !important"
-                }}
-                title="Connect your wallets"
+                modalHeaderProps={{ bgColor: "#141414" }}
+                title={t("ConnectWalletModal.modalTitle")}
                 icon={<AppIcons.Wallet />}
-                description="Please select a wallet to connect."
+                description={t("ConnectWalletModal.modalDescription")}
             />
             <ModalBody paddingInline="0px !important" padding="0px" overflow="auto">
                 <ConnectWallets />
             </ModalBody>
         </AppModal>
-    );
+    )
 }

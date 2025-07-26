@@ -6,8 +6,8 @@ import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import React from 'react';
 
 interface Props {
-    amountType: string;
-    type: string;
+    amountType: string
+    type: string
 }
 
 export default function TypeColumn({ amountType, type }: Props) {

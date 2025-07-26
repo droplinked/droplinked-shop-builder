@@ -4,13 +4,13 @@ import { EditLg } from 'assets/icons/Action/Edit/EditLg'
 import AppImage from 'components/common/image/AppImage'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import Table from 'components/redesign/table/Table'
-import { Blog } from 'lib/apis/blog/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useBlogs from 'pages/blogs/hooks/useBlogs'
 import React, { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Blog } from 'services/blog/interfaces'
 import { formatDateToLongStyle } from 'utils/helpers'
 import BlogTableActionMenu from './BlogTableActionMenu'
-import BlogTableEmptyState from './BlogTableEmptyState'
 
 interface Props {
     searchTerm: string
@@ -19,12 +19,13 @@ interface Props {
 function BlogTable({ searchTerm }: Props) {
     const navigate = useNavigate()
     const { isFetching, data, hasNextPage, fetchNextPage, isFetchingNextPage } = useBlogs(searchTerm)
+    const { t } = useLocaleResources("blogs")
 
     const blogPosts = data?.pages.flatMap(page => page.data.data) || []
 
     const columns: ColumnDef<Blog>[] = [
         {
-            header: 'Post',
+            header: t("BlogTable.columns.post"),
             cell: info => {
                 const { image, title } = info.row.original
                 const truncatedTitle = title.length <= 25 ? title : `${title.slice(0, 25)}...`
@@ -39,7 +40,7 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'category',
-            header: 'Category',
+            header: t("BlogTable.columns.category"),
             cell: (info) => {
                 const category = info.getValue()
 
@@ -50,7 +51,7 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'createdAt',
-            header: 'Date',
+            header: t("common:date"),
             cell: info => {
                 const date = new Date(info.getValue() as string)
 
@@ -59,10 +60,10 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'isVisible',
-            header: 'Status',
+            header: t("common:status"),
             cell: info => {
                 const isVisible = info.getValue() as boolean
-                const text = isVisible ? "Published" : "Draft"
+                const text = isVisible ? t("BlogTable.status.published") : t("BlogTable.status.draft")
                 const status = isVisible ? "success" : "pending"
 
                 return <AppBadge text={text} status={status} />
@@ -80,8 +81,6 @@ function BlogTable({ searchTerm }: Props) {
             </Flex>
         )
     }
-
-    if (!isFetching && !blogPosts?.length) return <BlogTableEmptyState />
 
     return (
         <Table

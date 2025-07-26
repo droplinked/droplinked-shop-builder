@@ -1,4 +1,4 @@
-import { acceptRejectRequestService } from "lib/apis/affiliate/shopServices"
+import { acceptRejectRequestService } from "services/affiliate/shopServices"
 
 interface IapproveCasper {
     shop: any

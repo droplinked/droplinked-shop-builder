@@ -1,0 +1,9 @@
+{
+    "title": "We're Temporarily Unavailable",
+    "description": "Our system is currently undergoing maintenance to improve your experience. We're working hard to bring everything back online as quickly as possible.",
+    "button": {
+        "dashboard": "Dashboard",
+        "homepage": "Homepage",
+        "goTo": "Go to"
+    }
+}

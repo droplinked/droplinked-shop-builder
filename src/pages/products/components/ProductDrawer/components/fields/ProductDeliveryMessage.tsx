@@ -1,10 +1,12 @@
 import AppInput from 'components/redesign/input/AppInput'
 import Textarea from 'components/redesign/textarea/Textarea'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductDeliveryMessage() {
+    const { t } = useLocaleResources('products');
     const { values: { digitalDetail }, setFieldValue } = useProductForm()
     const { message, file_url } = digitalDetail ?? {}
     const [showDeliveryMessage, setShowDeliveryMessage] = useState(Boolean(message || file_url))
@@ -27,8 +29,8 @@ function ProductDeliveryMessage() {
 
     return (
         <SwitchBox
-            title="Delivery Message"
-            description="Provide customers with important delivery details at checkout, such as estimated shipping times or special instructions."
+            title={t('ProductDeliveryMessage.title')}
+            description={t('ProductDeliveryMessage.description')}
             switchProps={{
                 isChecked: showDeliveryMessage,
                 onChange: (e) => handleToggle(e.target.checked),
@@ -39,7 +41,7 @@ function ProductDeliveryMessage() {
                     <Textarea
                         value={message || ""}
                         onChange={(e) => updateField("message", e.target.value)}
-                        placeholder="e.g., Expected delivery within 5–7 business days, or include specific delivery instructions."
+                        placeholder={t('ProductDeliveryMessage.messagePlaceholder')}
                         rows={8}
                     />
                     <AppInput
@@ -47,7 +49,7 @@ function ProductDeliveryMessage() {
                         inputProps={{
                             value: file_url || "",
                             onChange: (e) => updateField("file_url", e.target.value),
-                            placeholder: "e.g., www.sample.com",
+                            placeholder: t('ProductDeliveryMessage.urlPlaceholder'),
                             fontSize: 16,
                         }}
                     />

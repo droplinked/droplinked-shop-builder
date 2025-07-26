@@ -1,4 +1,4 @@
-import { productService } from 'lib/apis/shop/shopServices'
+import { productService } from 'services/shop/shopServices'
 import { useQuery } from 'react-query'
 
 export default function useProduct(productId: string) {

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getShopGrowthHack } from "lib/apis/shop/shopServices";
+import { getShopGrowthHack } from "services/shop/shopServices";
 import { devtools, persist } from "zustand/middleware";
 import { appDevelopment } from "utils/app/variable";
 

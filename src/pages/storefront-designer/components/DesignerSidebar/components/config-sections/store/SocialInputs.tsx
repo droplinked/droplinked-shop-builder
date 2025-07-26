@@ -4,7 +4,9 @@ import { designerContext } from 'pages/storefront-designer/context/designerConte
 import createSocialItems from './socialItems.model';
 import { SocialDisplay } from './SocialDisplay';
 import { SocialForm } from './SocialForm';
-
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localCommonEn from 'locales/common/en.json';
+import localCommonAr from 'locales/common/ar.json';
 
 type SocialInputsProps = {
     activeSocialId: string;
@@ -15,12 +17,9 @@ type SocialInputsProps = {
  * Component for handling social inputs
  */
 export const SocialInputs: React.FC<SocialInputsProps> = ({ activeSocialId, onUpdateActiveSocial }) => {
-  const {
-    methods: { dispatch },
-    state: { shop }
-  } = useContext(designerContext);
-
-  const socialItems = createSocialItems(shop);
+  const { methods: { dispatch }, state: { shop } } = useContext(designerContext);
+  const { t } = useLocaleResources('common', { en: localCommonEn, ar: localCommonAr });
+  const socialItems = createSocialItems(shop, t);
 
   const handleSave = useCallback(
     (key: string, value: string) => {

@@ -4,7 +4,7 @@ import { styles } from '../styles'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppIcons from 'assets/icon/Appicons'
 
-export default function MobileModeButton({ mobileModeIcon, onOpen, placeholder }) {
+export default function MobileModeButton({ mobileModeIcon, onOpen, placeholder, fullWidth }) {
     return (
         <Flex
             {...styles.menuButton}
@@ -13,6 +13,7 @@ export default function MobileModeButton({ mobileModeIcon, onOpen, placeholder }
             alignItems="center"
             cursor="pointer"
             {...mobileModeIcon && { padding: "10px" }}
+            {...fullWidth && { width: "100%" }}
         >
             {
                 mobileModeIcon ?

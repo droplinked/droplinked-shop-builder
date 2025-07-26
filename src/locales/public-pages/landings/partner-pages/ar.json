@@ -1,0 +1,122 @@
+{
+  "PartnerHero": {
+  "d3": {
+    "title": "أعضاء شبكة D3",
+    "subtitle": "احصل على 6 أشهر من الخطة الاحترافية مجانًا تمامًا! \n استفد من هذا العرض الحصري اليوم بصفتك مالكًا للنطاق"
+   },
+    "unstoppableDomains": {
+      "title": "أعضاء \n Unstoppable Domains",
+      "subtitle": "احصل على 3 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم كحامل نطاق"
+    },
+    "polygon": {
+      "title": "حاملو نطاقات .Polygon",
+      "subtitle": "احصل على 3 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم كحامل نطاق .polygon"
+    },
+    "crossmint": {
+      "title": "تشغيل \n التجارة الذكية",
+      "subtitle": "أعضاء Crossmint يحصلون على 3 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم."
+    }
+  },
+  "PartnerConfig": {
+    "d3": {
+      "name": "D3",
+      "displayName": "D3",
+      "trialMonths": 6
+    },
+    "unstoppableDomains": {
+      "name": "Unstoppable Domains",
+      "displayName": "Unstoppable Domains",
+      "trialMonths": 3
+    },
+    "polygon": {
+      "name": ".Polygon",
+      "displayName": ".Polygon",
+      "trialMonths": 3
+    },
+    "crossmint": {
+      "name": "Crossmint",
+      "displayName": "Crossmint",
+      "trialMonths": 3
+    }
+  },
+  "PerkList": {
+    "sectionTitle": "مجموعة المزايا",
+    "headingTitle": "مزايا أعضاء {{partnerName}}",
+    "headingSubtitle": "يقدم droplinked {{trialMonths}} أشهر من الخطة الاحترافية مجاناً",
+    "cards": {
+      "storeSetup": {
+        "title": "إعداد المتجر مبسط",
+        "description": "استخدم أدوات droplinked لإطلاق متجرك"
+      },
+      "enterpriseTools": {
+        "title": "أدوات مستوى المؤسسات",
+        "description": "افتح الميزات المتقدمة لتوسيع نطاق عملك من البداية"
+      },
+      "nftIntegration": {
+        "title": "تكامل NFT سلس",
+        "description": "أنشئ وأدر وبيع NFTs على واجهة متجر قابلة للتخصيص"
+      }
+    }
+  },
+  "ModularStack": {
+    "cards": {
+      "accessProducts": {
+        "title": "الوصول إلى +10k منتج فوراً",
+        "description": "اختر من كتالوج واسع لتخصيص وبيع البضائع الفريدة عند الطلب."
+      },
+      "web3Technology": {
+        "title": "دعم تقنية Web3",
+        "description": "دمج NFTs بسلاسة مع ميزات البلوكتشين لإنشاء تجارب جديدة مع الأصول التي تملكها أو تريد تقديمها."
+      },
+      "proPlan": {
+        "title": "الخطة الاحترافية لمدة {{trialMonths}} أشهر",
+        "description": "استمتع بالميزات المتميزة لمدة {{trialMonths}} أشهر لكونك عميل {{partnerName}} مخلص."
+      }
+    }
+  },
+  "UDTldFeatures": {
+    "sectionTitle": "مجموعة الميزات",
+    "headingTitle": "نطاقات TLD المميزة",
+    "headingSubtitle": "افتح المزايا والفوائد الحصرية اليوم من خلال إثبات الملكية",
+    "featuresText": "الميزات"
+  },
+  "D3BentoGrids": {
+    "sectionTitle": "مجموعة الميزات",
+    "headingTitle": "انضم إلى مجتمعك",
+    "headingSubtitle": "افتح المزايا والفوائد الحصرية اليوم من خلال إثبات الملكية"
+  },
+  "ClaimNow": {
+    "sectionTitle": "احصل عليه الآن",
+    "headingTitle": "خطة برو مجانية لمدة {{trialMonths}} شهر",
+    "headingSubtitle": "افتح {{trialMonths}} شهور من خطة برو مجانًا!\nاستبدل العرض الحصري اليوم."
+  },
+  "ModalHeader": {
+    "connect": {
+      "title": "اتصل بالمحفظة للتحقق",
+      "description": "اتصل بمحفظتك لمعرفة ما إذا كنت مؤهلاً للحصول على خطة برو لمدة {{trialMonths}} شهر"
+    },
+    "loading": {
+      "title": "جارٍ التحقق من حالة المحفظة",
+      "description": "يرجى الانتظار بينما يتم التحقق من محفظتك لتحديد الأهلية."
+    },
+    "error": {
+      "title": "لم ينجح التحقق من المحفظة",
+      "description": "يبدو أن محفظتك لا تلبي المعايير. للأسف، لست مؤهلاً للحصول على العرض."
+    },
+    "done": {
+      "title": "تهانينا، تم التحقق من عرض المحفظة",
+      "description": "يمكنك الآن إنشاء حساب والاستمتاع بخطة برو لمدة {{trialMonths}} شهر."
+    }
+  },
+  "ModalButtons": {
+    "checkEligibilityLabel": "تحقق من أهلية المحفظة"
+  },
+  "FeatureList": {
+    "proPlanLabel": "خطة برو لمدة {{trialMonths}} شهر",
+    "instantVerificationLabel": "تحقق فوري"
+  },
+  "useWalletVerification": {
+    "metamaskNotInstalled": "محفظة Metamask غير مثبتة!",
+    "unstoppableNotInstalled": "محفظة Unstoppable غير مثبتة!"
+  }
+} 

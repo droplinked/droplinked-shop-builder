@@ -2,55 +2,61 @@ import { Flex, Grid, Image, Text } from '@chakra-ui/react'
 import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function NoOrdersPlaceholder() {
     const navigate = useNavigate()
+    const { t } = useLocaleResources("dashboardPage")
 
     const cardsData = [
         {
-            title: 'Importing Products',
-            description: 'Create product listings within the interface or import existing inventory.',
+            title: t('NoOrdersPlaceholder.cards.importingProducts.title'),
+            description: t('NoOrdersPlaceholder.cards.importingProducts.description'),
             image: 'https://upload-file-droplinked.s3.amazonaws.com/f15e8bdf6bbeab13294155b4259324976494cfa30c40dddc7673aba705858c8a.png',
             buttons: [
                 {
-                    label: 'First Product',
+                    label: t('NoOrdersPlaceholder.cards.importingProducts.buttons.firstProduct'),
                     variant: 'primary',
                     leftIcon: <PlusMd />,
                     onClick: () => navigate("/analytics/products")
                 },
                 {
-                    label: 'Help Center',
+                    label: t('NoOrdersPlaceholder.cards.importingProducts.buttons.helpCenter'),
                     variant: 'outlined',
-                    color:'text.white',
+                    color: 'text.white',
                     borderColor: 'neutral.gray.800',
                     rightIcon: <ExternalarrowMd color='white' />,
-                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
+                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank', "noopener noreferrer")
                 }
             ]
         },
         {
-            title: 'Selling on droplinked',
-            description: 'Follow the step-by-step guide to launch products and reach leads and customers quickly.',
+            title: t('NoOrdersPlaceholder.cards.sellingOnDroplinked.title'),
+            description: t('NoOrdersPlaceholder.cards.sellingOnDroplinked.description'),
             image: 'https://upload-file-droplinked.s3.amazonaws.com/53880683c003dd15969e20c32c0ab979c30ccef7e7bf13b3159b7732ae88cf9d.png',
             buttons: [
                 {
-                    label: 'Learn More',
+                    label: t('NoOrdersPlaceholder.cards.sellingOnDroplinked.buttons.learnMore'),
                     variant: 'outlined',
-                    color:'text.white',
+                    color: 'text.white',
                     borderColor: 'neutral.gray.800',
                     rightIcon: <ExternalarrowMd color='white' />,
-                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
+                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank', "noopener noreferrer")
                 }
             ]
         },
         {
-            title: 'Customizable Themes',
-            description: 'Customize a commerce experience based on an optimal experience and design for visitors.',
+            title: t('NoOrdersPlaceholder.cards.customizableThemes.title'),
+            description: t('NoOrdersPlaceholder.cards.customizableThemes.description'),
             image: 'https://upload-file-droplinked.s3.amazonaws.com/8e205b784bd27ca7be9755d9fe1ede886eb9b05d84bf16d5e6819abd9a509adf.png',
             buttons: [
-                { label: 'Get Started', variant: 'primary', onClick: () => navigate("/style-center/storefront-designer") }
+                {
+                    label: t('getStarted'),
+                    variant: 'primary',
+                    onClick: () => navigate("/style-center/storefront-designer")
+                }
             ]
         }
     ]

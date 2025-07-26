@@ -2,9 +2,11 @@ import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWr
 import AppSelect from 'components/redesign/select/AppSelect'
 import useCollections from 'hooks/useCollections/useCollections'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useEffect } from 'react'
 
 function ProductCollection() {
+    const { t } = useLocaleResources('products');
     const { data: collections } = useCollections()
     const { values: { productCollectionID }, errors, setFieldValue } = useProductForm()
 
@@ -17,8 +19,8 @@ function ProductCollection() {
 
     return (
         <FormFieldWrapper
-            label="Collections"
-            description="Select the collection that will feature this product."
+            label={t('ProductCollection.label')}
+            description={t('ProductCollection.description')}
             errorMessage={errors.productCollectionID}
         >
             <AppSelect
@@ -26,7 +28,7 @@ function ProductCollection() {
                 valueAccessor="_id"
                 labelAccessor="title"
                 selectProps={{
-                    placeholder: "Select a collection",
+                    placeholder: t('ProductCollection.placeholder'),
                     value: productCollectionID,
                     onChange: (e) => setFieldValue('productCollectionID', e.target.value),
                 }}

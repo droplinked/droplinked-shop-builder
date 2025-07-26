@@ -1,0 +1,55 @@
+{
+  "ProductsOnDemandHero": {
+    "title": "Transform IP and Artwork \n into Premium Merchandise",
+    "subtitle": "droplinked helps you create and sell customizable products on-demand with no inventory minimums, stock burdens or shipment hassles",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "ProductsOnDemandFeatures": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "No Minimum Requirements",
+    "headingSubtitle": "Design and offer an entire catalog of items that are produced as orders flow in",
+    "cards": {
+      "merchandiseDesignEngine": {
+        "title": "Merchandise Design Engine",
+        "description": "Utilize our template engine tools for easy customization of products offered on demand"
+      },
+      "customizationWithCssHtml": {
+        "title": "Customization with CSS & HTML ",
+        "description": "Ready to go further? Dive into customization with implementing CSS and HTML coding"
+      },
+      "monetizeWithoutOverhead": {
+        "title": "Monetize Without Overhead ",
+        "description": "Use IP such as logos, trademarks and any assets to offer premium merchandise instantly"
+      }
+    }
+  },
+  "ProductsOnDemandModularStack": {
+    "cards": {
+      "moreThan10kItems": {
+        "title": "More than +10K Items to Customize",
+        "description": "Explore high quality merchandise blanks customizable and ready to sell on-demand"
+      },
+      "automatedShipping": {
+        "title": "Automated Shipping and Fulfilment",
+        "description": "Hassle-free shipping and fulfillment, everything is handled on your behalf"
+      },
+      "mintToMerch": {
+        "title": "Mint to Merch",
+        "description": "Empower community members to design merchandise with exclusive designs or NFT artwork they own"
+      },
+      "offerPerks": {
+        "title": "Offer Perks, Discounts and Token-Gated Items",
+        "description": "Grant exclusive access and discounts to customers that are community members "
+      },
+      "embeddableProductTiles": {
+        "title": "Embeddable Product Tiles",
+        "description": "Expand reach by distributing inventory across third-party sites, marketplaces and platforms"
+      },
+      "decentralizedAffiliateNetwork": {
+        "title": "Decentralized Affiliate Network",
+        "description": "Deploying products onchain connects them to the decentralized network, unlocking royalty benefits and more"
+      }
+    }
+  }
+} 

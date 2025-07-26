@@ -1,28 +1,28 @@
 import { Flex } from "@chakra-ui/react"
 import useAppToast from "hooks/toast/useToast"
-import { getDashboardPageData } from "lib/apis/dashboard/dashboardServices"
-import React, { useEffect } from "react"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
+import arLocale from "locales/dashboard/ar.json"
+import enLocale from "locales/dashboard/en.json"
+import React from "react"
 import { useQuery } from "react-query"
+import { getDashboardPageData } from "services/dashboard/dashboardServices"
 import DashboardContent from "./components/DashboardContent"
 import GreetingBanner from "./components/GreetingBanner"
 import NoOrdersPlaceholder from "./components/NoOrdersPlaceholder"
 import useDashboardPageStore from "./stores/useDashboardStore"
 
-
 function Dashboard() {
+    const { t } = useLocaleResources("dashboardPage", { en: enLocale, ar: arLocale })
     const updateDashboardPageState = useDashboardPageStore(state => state.updateDashboardPageState)
     const { showToast } = useAppToast()
 
-    const { isFetching, isError, data } = useQuery({
+    const { isError, data } = useQuery({
         queryKey: ["dashboardData"],
         queryFn: getDashboardPageData,
         onSuccess: data => updateDashboardPageState("dashboardData", data),
-        onError: () => showToast({ type: "error", message: "Error fetching data" })
+        onError: () => showToast({ type: "error", message: t('common:error') }),
+        onSettled: () => updateDashboardPageState("isLoading", false)
     })
-
-    useEffect(() => {
-        updateDashboardPageState("isLoading", isFetching)
-    }, [updateDashboardPageState, isFetching])
 
     function renderContent() {
         const noOrders = isError || data?.shopStats?.orders === 0

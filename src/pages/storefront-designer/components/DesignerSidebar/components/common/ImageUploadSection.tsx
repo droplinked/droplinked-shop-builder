@@ -8,6 +8,9 @@ import useFileUpload from 'hooks/useFileUpload/useFileUpload';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import React, { useCallback, useContext, useState } from 'react';
 import { getFileSizeInMB } from 'utils/helpers';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localCommonEn from 'locales/common/en.json';
+import localCommonAr from 'locales/common/ar.json';
 
 /**
  * Props for ImageUploadSection component
@@ -25,6 +28,7 @@ interface ImageUploadSectionProps {
 function ImageUploadSection({ fieldName, fieldPath, altText, imageUrl: providedImageUrl }: ImageUploadSectionProps): React.ReactElement {
   const { methods: { dispatch }, state: { shop }} = useContext(designerContext);
   const { showToast } = useAppToast();
+  const { t } = useLocaleResources('common', { en: localCommonEn, ar: localCommonAr });
 
   // Get value from nested object path
   const getNestedValue = (obj: any, path: string) => {
@@ -62,11 +66,11 @@ function ImageUploadSection({ fieldName, fieldPath, altText, imageUrl: providedI
           setFileName(file.name);
           setFileSize(`${getFileSizeInMB(file)} MB`);
         } catch (error) {
-          showToast({message:'Failed to upload image' , type:'error'})
+          showToast({message: t('imageUpload.uploadError'), type:'error'})
         }
       }
     },
-    [mutateAsync, dispatch, fieldName, fieldPath]
+    [mutateAsync, dispatch, fieldName, fieldPath, t]
   );
 
   // Handle image removal
@@ -93,8 +97,8 @@ function ImageUploadSection({ fieldName, fieldPath, altText, imageUrl: providedI
           'image/png': ['.png']
         }}
         text={{
-          dragActiveText: 'Drop the image here...',
-          footerText: 'JPG, JPEG, PNG (up to 5MB)'
+          dragActiveText: t('imageUpload.dragActive'),
+          footerText: t('imageUpload.footer')
         }}
         flexProps={{
           width: '100%',
@@ -127,7 +131,7 @@ function ImageUploadSection({ fieldName, fieldPath, altText, imageUrl: providedI
           <IconButton
             width="auto"
             height="auto"
-            aria-label={`Remove ${altText || fieldName}`}
+            aria-label={t('imageUpload.remove', { name: altText || fieldName })}
             icon={<TrashMd color="#FF2244" />}
             variant="ghost"
             borderRadius="lg"

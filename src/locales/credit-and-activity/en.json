@@ -1,0 +1,56 @@
+{
+    "CreditsAndActivity": {
+        "title": "Credits and Account Activity",
+        "subtitle": "Manage account credits and review onchain activity."
+    },
+    "TabsContent": {
+        "tabTitle": "Credit Management"
+    },
+    "CreditManagement": {},
+    "AccountBalance": {},
+    "ActionButtons": {
+        "addCredit": "Add Credit"
+    },
+    "BalanceDisplay": {},
+    "OverallTransactionsDisplay": {},
+    "ProgressBar": {},
+    "StatusBadge": {
+        "completed": "Completed",
+        "failed": "Failed",
+        "pending": "Pending"
+    },
+    "TransactionsTable": {},
+    "ResponsiveTable": {
+        "columns": {
+            "amount": "Amount",
+            "transactionId": "Transaction ID"
+        }
+    },
+    "TransactionCard": {
+        "card": {
+            "amount": "Amount",
+            "transactionId": "Transaction ID"
+        }
+    },
+    "TypeColumn": {},
+    "TransactionsCards": {},
+    "MultiSelectMenu": {},
+    "creditManagement": {
+        "accountBalance": {
+            "title": "Account Balance"
+        },
+        "transactions": {
+            "inbound": "Inbound",
+            "outbound": "Outbound"
+        }
+    },
+    "transactionTable": {
+        "status": {
+            "success": "Success",
+            "pending": "Pending",
+            "failed": "Failed",
+            "cancelled": "Cancelled",
+            "completed": "Completed"
+        }
+    }
+}

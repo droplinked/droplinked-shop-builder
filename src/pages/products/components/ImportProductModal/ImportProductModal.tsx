@@ -1,9 +1,10 @@
 import AppIcons from 'assets/icon/Appicons'
 import fileTemplate from "assets/samples/import_product_template.xlsx"
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
 import React, { useState } from 'react'
 import ImportProductModalBody from './ImportProductModalBody'
@@ -16,6 +17,7 @@ interface Props {
 }
 
 function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
+    const { t } = useLocaleResources('products');
     const [uploadedFile, setUploadedFile] = useState(null)
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
 
@@ -31,24 +33,20 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
         >
             <ModalHeaderData
                 icon={<AppIcons.Download />}
-                title="Import Products"
-                description="Import inventory catalogs effortlessly by uploading a CSV or Excel file. Also, you can use our fetch tool to import one product or an entire catalog easily from Shopify or WooCommerce using a URL."
-                descriptionProps={{
-                    color: "#B1B1B1 !important",
-                }}
+                title={t('ImportProductModal.title')}
+                description={t('ImportProductModal.description')}
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
             >
-                <ExternalLink
-                    fontSize={14}
-                    fontWeight={600}
-                    href={fileTemplate}
-                    download="import_product_template.xlsx"
+                <InteractiveText
+                    to={fileTemplate}
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
-                    Download Template
-                </ExternalLink>
+                    {t('ImportProductModal.downloadTemplate')}
+                </InteractiveText>
             </ModalHeaderData>
             <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} importWithUrl={importWithUrl} />
             <ImportProductModalFooter file={uploadedFile} closeModal={onClose} importWithUrl={importWithUrl} />

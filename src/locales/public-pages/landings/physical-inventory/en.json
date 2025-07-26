@@ -1,0 +1,55 @@
+{
+  "PhysicalInventoryHero": {
+    "title": "Agentic Inventory \n Management",
+    "subtitle": "Gain deeper insights on customers while dynamically pricing and distributing items across multiple channels with droplinked AI to drive inventory sales",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "PhysicalInventoryFeatures": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Front-End Modularity",
+    "headingSubtitle": "Headless and fully customizable storefront setup",
+    "cards": {
+      "templateEngineTools": {
+        "title": "Template Engine Tools",
+        "description": "Utilize our template engine tools for easy customization"
+      },
+      "customizationWithCssHtml": {
+        "title": "Customization with CSS & HTML",
+        "description": "Ready to go further? Dive into customization with implementing CSS and HTML coding"
+      },
+      "createCustomTemplates": {
+        "title": "Create Custom Templates",
+        "description": "Seeking a unique template? Our designers are here to turn your vision into reality"
+      }
+    }
+  },
+  "PhysicalInventoryModularStack": {
+    "cards": {
+      "manageInventoryOnchain": {
+        "title": "Manage Inventory Onchain",
+        "description": "Digitize and manage catalogues with blockchain-integrated tools"
+      },
+      "automatedShipping": {
+        "title": "Automated Shipping and Fulfilment",
+        "description": "Simplify shipping and fulfillment processes with our third-party shipping services"
+      },
+      "warehouseManagement": {
+        "title": "Warehouse Management",
+        "description": "WMS streamlines shipping, boosts accuracy and cuts costs to ensure customer satisfaction"
+      },
+      "offerPerks": {
+        "title": "Offer Perks, Discounts and Token-Gated Items",
+        "description": "Grant exclusive access and discounts to customers that are community members"
+      },
+      "embeddableProductTiles": {
+        "title": "Embeddable Product Tiles",
+        "description": "Expand reach by distributing inventory across third-party sites, marketplaces and platforms"
+      },
+      "decentralizedAffiliateNetwork": {
+        "title": "Decentralized Affiliate Network",
+        "description": "Deploying products onchain connects them to the decentralized network, unlocking royalty benefits and more"
+      }
+    }
+  }
+} 

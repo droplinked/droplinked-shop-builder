@@ -1,0 +1,78 @@
+{
+  "SocialQuestsHero": {
+    "title": "It's Time to Level Up",
+    "subtitle": "Get started on droplinked quests to earn points. As you earn towards each level,\nyou unlock access to credits and tools that help you to earn more $"
+  },
+  "SocialQuestsModularStack": {
+    "cards": {
+      "sellingOnDroplinked": {
+        "title": "Selling on droplinked",
+        "description": "Selling on droplinked is easy, transparent and efficient. Follow our step-by-step guide to launch a product and start reaching customers quickly."
+      },
+      "customizableStorefront": {
+        "title": "Customizable Storefront",
+        "description": "Make Storefront your own by customizing the design and enhance the experience by reflecting your brand identity in the best way possible."
+      },
+      "proPlan": {
+        "title": "Pro Plan",
+        "description": "Enjoy premium features."
+      }
+    }
+  },
+  "ProPlanCard": {
+    "startNow": "Start Now"
+  },
+  "Quests": {
+    "rewardClaimed": "Reward claimed for {{title}}!",
+    "rewardClaimFailed": "Failed to claim reward for {{title}}. Please try again later.",
+    "claimReward": "Claim Reward",
+    "mobile": {
+      "greeting": "Hi There 👋",
+      "completeToUnlock": "Complete Everything Below to Unlock Level 1 Membership",
+      "registerToQualify": "Register to qualify",
+      "activateAccount": "Activate Account"
+    },
+    "mobileDrawer": {
+      "title": "Free Pro Plan Unlocked!",
+      "description": "You now have access to the Pro Plan for one month for free."
+    }
+  },
+  "SocialQuestsPromotions": {
+    "telegram": {
+      "description": "Free Pro Plan",
+      "duration": "1 month"
+    },
+    "twitter": {
+      "description": "Free Pro Plan",
+      "duration": "1 month"
+    },
+    "instagram": {
+      "description": "Free Pro Plan",
+      "duration": "1 month"
+    },
+    "discord": {
+      "description": "Free Pro Plan",
+      "duration": "1 month"
+    },
+    "youtube": {
+      "description": "Free Pro Plan",
+      "duration": "1 month"
+    },
+    "linkedin": {
+      "description": "Free Pro Plan",
+      "duration": "1 month"
+    }
+  },
+  "QuestsHeroBrowser": {
+    "pageHeader": {
+      "greeting": "Hi There 👋",
+      "completeToUnlock": "Complete Everything Below to Unlock Level 1 Membership",
+      "registerToQualify": "Register to qualify",
+      "activateAccount": "Activate Account"
+    },
+    "panelTitle": {
+      "quest": "Quest",
+      "aiAssistant": "AI Assistant"
+    }
+  }
+} 

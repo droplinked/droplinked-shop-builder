@@ -1,15 +1,17 @@
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
 import PODProductCatalog from '../fields/POD/PODProductCatalog/PODProductCatalog'
 import PODProductTemplate from '../fields/POD/PODProductTemplate/PODProductTemplate'
 
 function PODDesignAccordion() {
+    const { t } = useLocaleResources('products');
     const { values: { product_type } } = useProductForm()
 
     return (
         <ProductFormAccordion
-            label='POD Design'
+            label={t('ProductForm.accordions.podDesign.label')}
             defaultOpen={product_type === "PRINT_ON_DEMAND"}
         >
             <PODProductCatalog />

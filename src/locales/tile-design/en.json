@@ -1,0 +1,110 @@
+{
+  "TileDesignHeader": {
+    "productTitle": "Product Details",
+    "informationTitle": "Information",
+    "shippingTitle": "Shipping Information",
+    "paymentTitle": "Payment Details",
+    "postPurchaseTitle": "Order Information"
+  },
+  "TileDesignForm": {
+    "title": "Style",
+    "description": "Enter the details for your tile",
+    "validation": {
+      "required": "This field is required",
+      "invalid": "Invalid input"
+    },
+    "productType": "Type",
+    "backgroundColor": "Background Color",
+    "transparency": "Background Transparency",
+    "darkMode": "Dark Mode",
+    "buttonText": "Buy Button Text",
+    "buttonBackgroundColor": "Buy Button Background Color",
+    "buttonTextColor": "Buy Button Text Color",
+    "phoneForDigital": "Get phone number for digital product",
+    "image": "Image",
+    "imageSlider": "Image Slider",
+    "titleColor": "Title Color",
+    "priceColor": "Price Text Color",
+    "variantDisplay": "Variant Display Options"
+  },
+  "TileDesignPageInformation": {
+    "title": "Information",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email Address",
+    "address": "Address",
+    "addressPlaceholder": "your address",
+    "state": "State",
+    "city": "City",
+    "zipCode": "Zip Code",
+    "zipCodePlaceholder": "Zip code",
+    "notes": "Notes",
+    "tags": "Tags",
+    "customFields": "Custom Fields"
+  },
+  "TileDesignPageShipping": {
+    "title": "Shipping Information",
+    "method": "Shipping Method",
+    "cost": "Shipping Cost",
+    "address": "Shipping Address",
+    "country": "Country",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "fulfillmentDate": "Fulfillment Date",
+    "standard": "Standard rate with CO2 offsetting",
+    "express": "Express Shipping",
+    "international": "International Shipping",
+    "local": "Flat Rate"
+  },
+  "TileDesignPagePayment": {
+    "title": "Payment Details",
+    "method": "Payment Method",
+    "currency": "Currency",
+    "price": "Price",
+    "totalCart": "Total Cart",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "total": "Total",
+    "crypto": "Cryptocurrency",
+    "card": "Credit Card",
+    "wallet": "Digital Wallet",
+    "casperWallet": "Casper Wallet",
+    "unstoppableWallet": "Unstoppable Wallet",
+    "pay": "Pay {{amount}}"
+  },
+  "TileDesignPagePostPurchase": {
+    "title": "Order Information",
+    "orderId": "Order ID",
+    "transactionId": "Transaction ID",
+    "shippingMethod": "Shipping Method",
+    "shippingAddress": "Shipping Address",
+    "totalPayment": "Total Payment",
+    "completed": "Payment Completed!",
+    "confirmation": "Please allow 1-2 minutes for the transaction to be confirmed. We appreciate your patience while we finalize your order."
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "next": "Next",
+    "back": "Back",
+    "edit": "Edit",
+    "delete": "Delete",
+    "required": "Required",
+    "optional": "Optional",
+    "close": "Close",
+    "select": "Select"
+  },
+  "messages": {
+    "success": {
+      "save": "Successfully saved",
+      "update": "Successfully updated",
+      "delete": "Successfully deleted"
+    },
+    "error": {
+      "save": "Failed to save",
+      "update": "Failed to update",
+      "delete": "Failed to delete",
+      "general": "Something went wrong"
+    }
+  }
+} 

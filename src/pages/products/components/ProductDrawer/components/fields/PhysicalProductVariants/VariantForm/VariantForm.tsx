@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'
@@ -14,6 +15,7 @@ interface Props {
 }
 
 function VariantForm({ handleDiscard, editingVariant }: Props) {
+    const { t } = useLocaleResources('products')
     const { values: { properties, sku }, setFieldValue } = useProductForm()
     const [localProperty, setLocalProperty] = useState(editingVariant)
 
@@ -49,7 +51,7 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
             padding={4}
         >
             {/* Allows selecting the variant type */}
-            <FormControl label='Type'>
+            <FormControl label={t('common:type')}>
                 <VariantSelector
                     properties={properties}
                     localProperty={localProperty}
@@ -66,8 +68,8 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
                 gap={4}
                 sx={{ button: { padding: '8px 12px', fontSize: 12, fontWeight: 500 } }}
             >
-                <AppButton variant="secondary" onClick={handleDiscard}>Discard</AppButton>
-                <AppButton onClick={saveToContext}> {editingVariant ? 'Edit' : 'Save'}  </AppButton>
+                <AppButton variant="secondary" onClick={handleDiscard}>{t('common:discard')}</AppButton>
+                <AppButton onClick={saveToContext}> {editingVariant ? t('common:edit') : t('common:save')}  </AppButton>
             </Flex>
         </Flex>
     )

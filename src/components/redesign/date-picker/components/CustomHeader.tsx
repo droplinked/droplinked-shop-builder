@@ -1,6 +1,8 @@
 import { Box, Flex } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
+import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd';
+import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
 import { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
 
@@ -15,6 +17,7 @@ function CustomHeader({
 }: ReactDatePickerCustomHeaderProps) {
     const year = date.getFullYear();
     const month = date.toLocaleString('default', { month: 'long' });
+    const { isRTL } = useLocaleResources('common');
 
     return (
         <Flex bg={"#0d0d0d"} px={3} py={4} borderTopRadius={"16px"} borderBottom={"1px solid"} borderColor={"neutral.gray.800"} justifyContent={"space-between"} alignItems={"center"}>
@@ -24,10 +27,10 @@ function CustomHeader({
             </Flex>
             <Flex gap={"20px"}>
                 <Box onClick={() => !prevMonthButtonDisabled && decreaseMonth()} cursor={prevMonthButtonDisabled ? "not-allowed" : "pointer"} opacity={prevMonthButtonDisabled ? "0.5" : "1"}>
-                    <AppIcons.ChevronLeft color='white' />
+                {isRTL ? <ChevronrightMd /> : <ChevronleftMd />}
                 </Box>
                 <Box onClick={() => !nextMonthButtonDisabled && increaseMonth()} cursor={nextMonthButtonDisabled ? "not-allowed" : "pointer"} opacity={nextMonthButtonDisabled ? "0.5" : "1"}>
-                    <AppIcons.ChevronRight color='white' />
+                    {isRTL ? <ChevronleftMd /> : <ChevronrightMd />}
                 </Box>
             </Flex>
         </Flex>

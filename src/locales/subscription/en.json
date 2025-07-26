@@ -1,0 +1,297 @@
+{
+  "CurrentPlan": {
+    "title": "Plan",
+    "status": "Active",
+    "inactive": "Inactive",
+    "nextBilling": "Next Billing",
+    "upgrade": "Upgrade Plan",
+    "cancel": "Cancel Plan",
+    "activeMessage": "{{plan}} is active! Enjoy exclusive features.",
+    "activeMessageWithPrice": "You are subscribed to the {{plan}} for ${{price}} per {{period}}, active from {{startDate}} to {{endDate}}."
+  },
+  "StatisticModal": {
+    "manageSubscription": "Manage Subscription",
+    "title": "Subscription Management",
+    "description": "Track your usage, view plan details, and update your subscription preferences.",
+    "tabs": {
+      "statistics": "Statistics",
+      "details": "Details"
+    }
+  },
+  "statistics": {
+    "usage": {
+      "physicalProduct": "Physical Product",
+      "digitalProduct": "Digital Product",
+      "printOnDemand": "Print On Demand",
+      "event": "Event",
+      "web3_network_login": "Web3 Network Login",
+      "drop": "Drop",
+      "web3_payment": "Web3 Payment",
+      "ai_shop_builder": "Ai Shop Builder",
+      "shop_data_export_url": "Shop Data Export Url"
+    }
+  },
+  "UsageExceededAlert": {
+    "title": "Usage Exceeded",
+    "description": "All \"{{feature}}\" items have been used. Upgrade the plan to access more.",
+    "upgrade": "Upgrade"
+  },
+  "Plans": {
+    "title": "Available Plans",
+    "subtitle": "Choose from the different package options below.",
+    "viewAllPlans": "View all plans and compare",
+    "savePercent": "Save {{percent}}%",
+    "inheritance": "Everything in {{plan}} plan",
+    "continueWithPlan": "Continue with {{plan}} Plan",
+    "selected": "Selected",
+    "mostPopular": "Most Popular",
+    "features": {
+      "products": "Products",
+      "storage": "Storage",
+      "bandwidth": "Bandwidth",
+      "support": "Support",
+      "customDomain": "Custom Domain",
+      "analytics": "Analytics"
+    },
+    "cta": {
+      "select": "Select Plan",
+      "current": "Current Plan",
+      "upgrade": "Upgrade",
+      "contact": "Contact Sales"
+    },
+    "cycles": {
+      "monthly": "Monthly",
+      "annual": "Annual",
+      "fiveYear": "5-Year"
+    }
+  },
+  "PlanCard": {
+    "starter": {
+      "title": "Starter",
+      "description": "Start your journey with essential features",
+      "featuresTitle": "Starter Features",
+      "features": {
+        "analytics": "Basic Analytics",
+        "storeDesigner": "Store Designer",
+        "shipmentTracking": "Shipment Tracking",
+        "productCollections": "Product Collections",
+        "referralCodes": "Referral Codes",
+        "affiliateNetwork": "Affiliate Network",
+        "basicSupport": "Basic Support"
+      }
+    },
+    "pro": {
+      "title": "Pro",
+      "description": "Advanced features for growing businesses",
+      "featuresTitle": "Pro Features",
+      "features": {
+        "tokenGating": "Token Gating",
+        "mintToMerch": "Mint to Merch",
+        "unlimitedTokenization": "Unlimited Tokenization",
+        "unlimitedDigitalGoods": "Unlimited Digital Goods",
+        "unlimitedPhysicalProducts": "Unlimited Physical Products",
+        "customDomains": "Custom Domains",
+        "customFavicon": "Custom Favicon",
+        "customShipping": "Custom Shipping",
+        "digitalCoupons": "Digital Coupons",
+        "warehouseIntegration": "Warehouse Integration",
+        "premiumSupport": "Premium Support"
+      }
+    },
+    "premium": {
+      "title": "Premium",
+      "description": "Premium features for established businesses",
+      "featuresTitle": "Premium Features",
+      "features": {
+        "apiIntegration": "API Integration",
+        "royaltyTracking": "Royalty Tracking",
+        "advancedAnalytics": "Advanced Analytics",
+        "embeddableProducts": "Embeddable Products",
+        "unlimitedProduction": "Unlimited Production",
+        "marketingTools": "Marketing Tools",
+        "adminPanel": "Admin Panel",
+        "vipSupport": "VIP Support"
+      }
+    },
+    "enterprise": {
+      "title": "Enterprise",
+      "description": "Custom solutions for large organizations",
+      "featuresTitle": "Enterprise Features",
+      "features": {
+        "tokenPay": "Token Pay",
+        "customTemplates": "Custom Templates",
+        "unlimitedLogin": "Unlimited Login",
+        "unlimitedPayment": "Unlimited Payment",
+        "digitalPassport": "Digital Passport"
+      }
+    }
+  },
+  "PopularPlanBadge": {
+    "mostPopular": "Most Popular"
+  },
+  "ComparisonTable": {
+    "title": "Compare Plans",
+    "features": "Features",
+    "basic": "Basic",
+    "pro": "Pro",
+    "enterprise": "Enterprise",
+    "included": "Included",
+    "notIncluded": "Not Included",
+    "storeBuilder": "Store Builder",
+    "storefront": "Storefront",
+    "paymentOptions": "Payment Options",
+    "shipping": "Shipping",
+    "services": "Services"
+  },
+  "PlansTable": {
+    "storeDesigner": "Store Designer",
+    "analytics": "Analytics",
+    "collectionManagement": "Collection Management",
+    "orderInventoryManagement": "Order & Inventory Management",
+    "affiliateNetwork": "Affiliate Network",
+    "customReferralCodes": "Custom Referral Codes",
+    "couponsAndCredits": "Coupons and Credits",
+    "advancedAnalytics": "Advanced Analytics",
+    "adminManagement": "Admin Management",
+    "embeddableProductTile": "Embeddable Product Tile",
+    "apiIntegration": "API Integration",
+    "physicalProducts": "Physical Products",
+    "digitalGoods": "Digital Goods",
+    "productionOnDemand": "Production on Demand",
+    "productTokenization": "Product Tokenization",
+    "loginMethods": "Login Methods",
+    "postPurchaseDataGathering": "Post Purchase Data Gathering",
+    "customizableFavicon": "Customizable Favicon",
+    "mintToMerch": "Mint to Merch",
+    "tokenGating": "Token Gating",
+    "embeddableProductTiles": "Embeddable Product Tiles",
+    "customizableDomain": "Customizable Domain",
+    "royaltyTracking": "Royalty Tracking",
+    "customTemplates": "Custom Templates",
+    "cryptoPayments": "Crypto Payments",
+    "creditCardPayments": "Credit Card Payments",
+    "tokenPay": "Token Pay",
+    "automatedShipping": "Automated Shipping",
+    "selfManagedShipping": "Self Managed Shipping",
+    "shipmentTracking": "Shipment Tracking",
+    "customizableShipping": "Customizable Shipping",
+    "marketingTools": "Marketing Tools",
+    "accountManager": "Account Manager",
+    "digitalProductPassport": "Digital Product Passport",
+    "support": "Support",
+    "basicSupport": "Basic Customer Support",
+    "premiumSupport": "Premium Customer Support",
+    "vipSupport": "VIP Customer Support",
+    "unlimited": "Unlimited"
+  },
+  "TableHeading": {
+    "title": "Find the Perfect Plan for Your Needs",
+    "description": "Compare our plans in detail to see which one best suits your business goals and budget."
+  },
+  "PlansHeading": {
+    "title": "Plan Comparison & Features"
+  },
+  "SubscriptionPlanCheckoutModal": {
+    "title": "Confirm subscription",
+    "description": "Upgrade to the {{plan}} Plan for ${{price}} per year to access advanced features."
+  },
+  "PaymentMethodSelection": {
+    "title": "Payment methods",
+    "description": "How would you like to pay for your subscription?",
+    "error": "Oops! It looks like we can not access payment methods at the moment. Give it another try soon?",
+    "stripe": "Credit card information",
+    "stripeDescription": "Choose a credit card on file or add a new one.",
+    "methods": {
+      "stripe": "Stripe",
+      "crypto": "Cryptocurrency"
+    }
+  },
+  "PaymentStatus": {
+    "paymentSuccess": "You're all set!",
+    "paymentFailed": "Payment failed",
+    "subscriptionActive": "Your {{plan}} Plan subscription is now active.",
+    "paymentError": "There was an issue with the payment. Please double-check the details and try again. If the issue persists, please contact us."
+  },
+  "DetailsTab": {
+    "subscriptionDetails": "Subscription Details",
+    "subscriptionPlan": "Subscription Plan",
+    "planSuffix": "Plan",
+    "billingCycle": "Billing Cycle",
+    "subscriptionPeriod": "Subscription Period",
+    "nextBillingDate": "Next Billing Date",
+    "amount": "Amount",
+    "viewPaymentDetails": "View Full Payment Details",
+    "autoRenewal": {
+      "title": "Auto Renewal",
+      "description": "Auto-renewal keeps your subscription running without interruption. If turned off, it won't renew automatically and can only be re-enabled by purchasing a new plan."
+    },
+    "cancelSubscription": "Cancel Subscription"
+  },
+  "Charts": {
+    "used": "Used",
+    "unlimited": "Unlimited",
+    "cryptoPayment": "Crypto Payment",
+    "web3_network_login": "Web3 Network Login",
+    "web3_payment": "Web3 Payment",
+    "ai_shop_builder": "Ai Shop Builder",
+    "shop_data_export_url": "Shop Data Export Url",
+    "drop": "Drop"
+  },
+  "LinearProgressBar": {
+    "used": "Used"
+  },
+  "common": {
+    "select": "Select",
+    "noData": "---",
+    "network": "network",
+    "month": "month"
+  },
+  "messages": {
+    "upgradeSuccess": "Plan upgraded successfully",
+    "upgradeError": "Failed to upgrade plan",
+    "cancelSuccess": "Plan cancelled successfully",
+    "cancelError": "Failed to cancel plan"
+  },
+  "errors": {
+    "subscriptionDataUnavailable": "Subscription data is unavailable",
+    "paymentError": "Failed to create payment intent"
+  },
+  "actions": {
+    "returnToDashboard": "Return to Dashboard"
+  },
+  "PaymentDrawer": {
+    "saveButtonText": "Get {{planTitle}}",
+    "title": "Credit card information",
+    "description": "Choose a credit card on file or add a new one."
+  },
+  "PaymentContent": {
+    "title": "Credit card information",
+    "description": "Choose a credit card on file or add a new one."
+  },
+  "PaymentForm": {
+    "initializingPayment": "Initializing payment...",
+    "failedToInitialize": "Failed to initialize payment.",
+    "processingPayment": "Processing payment... Please wait.",
+    "failedToInitializePayment": "Failed to initialize payment. Please try again.",
+    "failedToFetchPlans": "Failed to fetch subscription plans. Please try again.",
+    "selectedPlanNotFound": "Selected plan not found. Please try again.",
+    "paymentSuccessful": "Payment successful! Your subscription has been activated.",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "paymentProcessingError": "An error occurred during payment processing."
+  },
+  "BillingInfo": {
+    "autoRenewalInfo": "Your account will be automatically charged for renewal once the free trial ends."
+  },
+  "BillingSummary": {
+    "billingCycle": "Billing Cycle",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "threeYear": "3-Year",
+    "subscriptionCost": "Subscription cost",
+    "threeMonthFree": "3 month free",
+    "firstMonthFree": "First month free",
+    "usd": "USD",
+    "total": "Total",
+    "free": "Free"
+  }
+} 

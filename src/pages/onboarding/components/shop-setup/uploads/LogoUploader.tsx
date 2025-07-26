@@ -8,11 +8,13 @@ import useOnboardingStore, { initialShopData } from 'pages/onboarding/stores/use
 import React, { useRef } from 'react'
 import AiOptionsDisplay from '../ai/AiOptionsDisplay'
 import FieldWrapper from '../inputs/FieldWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function LogoUploader() {
   const { mutateAsync, isLoading } = useFileUpload()
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { shopData, updateShopData } = useOnboardingStore()
+  const { t } = useLocaleResources('onboarding')
 
   const hasCustomLogo = shopData.logo !== initialShopData.logo
 
@@ -36,7 +38,7 @@ function LogoUploader() {
   const handleLogoSelect = (logo: string) => updateShopData('logo', logo)
 
   return (
-    <FieldWrapper title="Logo">
+    <FieldWrapper title={t('common.shop.logo')}>
       <Flex
         justify="space-between"
         align="center"
@@ -72,7 +74,7 @@ function LogoUploader() {
             isLoading={isLoading}
             onClick={handleLogoUpload}
           >
-            {!hasCustomLogo ? 'Upload' : ''}
+            {!hasCustomLogo ? t('common:upload') : ''}
           </AppButton>
 
           {hasCustomLogo && (

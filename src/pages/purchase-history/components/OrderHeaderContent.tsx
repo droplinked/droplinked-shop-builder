@@ -7,14 +7,14 @@ import { TabsList } from './drawer-components/TabList'
 import { formatDateToLongStyle, formattedTime } from 'utils/helpers'
 
 interface OrderHeaderContentProps {
-    isFetching: boolean;
-    updatedAt: Date;
-    orderStatus?: OrderStatus;
+    isFetching: boolean
+    updatedAt: Date
+    orderStatus?: OrderStatus
     tabs?: Array<{
-        title: string;
-        content: React.ReactNode;
-        isDisabled?: boolean;
-    }>;
+        title: string
+        content: React.ReactNode
+        isDisabled?: boolean
+    }>
 }
 
 export default function OrderHeaderContent({ isFetching, updatedAt, orderStatus, tabs }: OrderHeaderContentProps) {

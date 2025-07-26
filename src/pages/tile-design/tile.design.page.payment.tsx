@@ -1,28 +1,25 @@
 import { Box, RadioGroup, Button, VStack, HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React, { useContext, useState } from "react";
 import { TileDesignContext } from "./context/tile.design.context";
 import "./styles/tile.radio.css";
-import AppIcons from "assets/icon/Appicons";
+import { CasperLogo } from "assets/logo/NetworkAndTokens/Casper/CasperLogo";
+import { UnstoppableLogo } from "assets/logo/NetworkAndTokens/Unstoppable/UnstoppableLogo";
 
 const TileDesignPagePayment = () => {
-    const {
-        state: {
-            design: {
-                PRODUCT: { IMAGE, CONTAINER, BUTTON, VARIANTS, TITLE, PRICE },
-            },
-            current,
-        },
-    } = useContext(TileDesignContext);
     const [checked, setChecked] = useState(false);
-    const white_if_dark_mode = CONTAINER.darkMode ? "#FFFFFF" : "#000000";
-    const black_if_dark_mode = CONTAINER.darkMode ? "#141414" : "#FFFFFF";
-    const grey_if_dark_mode = CONTAINER.darkMode ? "#C2C2C2" : "#000000";
+    const { t } = useLocaleResources('tile-design');
+    const { state: { design: { PRODUCT: { CONTAINER } } } } = useContext(TileDesignContext);
+    
+    const textColor = CONTAINER.darkMode ? "#FFFFFF" : "#000000";
+    const backgroundColor = CONTAINER.darkMode ? "#141414" : "#FFFFFF";
+    const secondaryTextColor = CONTAINER.darkMode ? "#C2C2C2" : "#000000";
 
     return (
-        <Box bg={black_if_dark_mode} color={white_if_dark_mode} width={"full"} maxW={"80%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>
+        <Box bg={backgroundColor} color={textColor} width={"full"} maxW={"80%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>
             <AppTypography fontSize={"16px"} fontWeight={"700"}>
-                Payment
+                {t('payment.title')}
             </AppTypography>
             <RadioGroup>
                 <VStack spacing={6} width={"full"}>
@@ -38,8 +35,8 @@ const TileDesignPagePayment = () => {
                                 justifyContent={"space-between"}
                                 alignItems={"center"}
                             >
-                                <AppTypography>Casper Wallet</AppTypography>
-                                <AppIcons.CasperIcon width={"24px"} height={"24px"} />
+                                <AppTypography>{t('TileDesignPagePayment.casperWallet')}</AppTypography>
+                                <CasperLogo width={"24px"} height={"24px"} />
                             </HStack>
                         </label>
                         <label className="applabel">
@@ -53,37 +50,37 @@ const TileDesignPagePayment = () => {
                                 justifyContent={"space-between"}
                                 alignItems={"center"}
                             >
-                                <AppTypography>Unstoppable Wallet</AppTypography>
-                                <AppIcons.UnstoppableDomainsIcon width={"24px"} height={"24px"} />
+                                <AppTypography>{t('payment.methods.unstoppableWallet')}</AppTypography>
+                                <UnstoppableLogo width={"24px"} height={"24px"} />
                             </HStack>
                         </label>
                     </VStack>
                 </VStack>
             </RadioGroup>
-            <VStack spacing={"16px"} width={"full"} color={grey_if_dark_mode}>
+            <VStack spacing={"16px"} width={"full"} color={secondaryTextColor}>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>Total cart</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('TileDesignPagePayment.totalCart')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>Shipping</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('TileDesignPagePayment.shipping')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>Tax</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('TileDesignPagePayment.tax')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>Total</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('TileDesignPagePayment.total')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
             </VStack>
             <HStack width={"full"} justify={"space-between"}>
-                <Button variant="outline" fontWeight={"400"} padding={"12px"} fontSize={"14px"} border={`1px solid ${white_if_dark_mode}`} color={white_if_dark_mode} _hover={{}} _active={{}}>
-                    Back
+                <Button variant="outline" fontWeight={"400"} padding={"12px"} fontSize={"14px"} border={`1px solid ${textColor}`} color={textColor} _hover={{}} _active={{}}>
+                    {t('common:back')}
                 </Button>
-                <Button bg={white_if_dark_mode} width={"200px"} paddingX={"36px"} fontSize={"14px"} fontWeight={"400"} padding={"12px"} border={"none"} color={black_if_dark_mode} _hover={{}} _active={{}}>
-                    Pay $246.98 USD
+                <Button bg={textColor} width={"200px"} paddingX={"36px"} fontSize={"14px"} fontWeight={"400"} padding={"12px"} border={"none"} color={backgroundColor} _hover={{}} _active={{}}>
+                    {t('TileDesignPagePayment.pay').replace('{{amount}}', '$246.98 USD')}
                 </Button>
             </HStack>
         </Box>

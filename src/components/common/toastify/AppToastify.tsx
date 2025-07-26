@@ -1,10 +1,12 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react'
 import { Toaster } from 'sonner'
 
 function AppToastify() {
+    const { isRTL } = useLocaleResources('common')
     return (
         <Toaster
-            position="bottom-right"
+            position={isRTL ? 'bottom-left' : 'bottom-right'}
             richColors
             closeButton
             theme="dark"

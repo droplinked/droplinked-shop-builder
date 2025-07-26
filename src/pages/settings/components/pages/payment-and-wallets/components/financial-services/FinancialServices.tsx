@@ -3,14 +3,17 @@ import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import SectionContent from 'pages/settings/components/common/SectionContent';
 import React from 'react';
 import PaymentProviderList from './components/PaymentProviderList';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 const FinancialServices: React.FC = () => {
+  const { t } = useLocaleResources('settings');
+
   return (
     <>
-      <SectionContainer title=" Financial Services">
-        <SectionContent
-          title=" Payment Providers"
-          description="Manage payment gateways and partnered services."
+              <SectionContainer title={t('FinancialServices.title')}>
+            <SectionContent
+                title={t('FinancialServices.paymentProviders.title')}
+                description={t('FinancialServices.paymentProviders.description')}
           rightContent={<PaymentProviderList />}
         />
       </SectionContainer>

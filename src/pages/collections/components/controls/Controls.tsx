@@ -1,38 +1,48 @@
 import { Box, Divider, HStack, Spinner, useDisclosure } from '@chakra-ui/react';
-import useAppStore, { useCheckPermission } from 'stores/app/appStore';
+import TableMenu from 'components/redesign/table-menu/TableMenu';
+import useAppToast from 'hooks/toast/useToast';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useState } from 'react';
+import { useMutation } from 'react-query';
+import { Link } from 'react-router-dom';
+import { updateCollectionVisiblityService } from 'services/collection/services';
+import useAppStore, { useCheckPermission } from 'stores/app/appStore';
+import { appDevelopment } from 'utils/app/variable';
 import CollectionCreate from '../create/CollectionCreate';
 import ConfirmDeleteCollection from './components/delete/ConfirmDeleteCollection';
 import RuleModal from './components/rulesets/RuleModal';
-import TableMenu from 'components/redesign/table-menu/TableMenu';
-import AppIcons from 'assets/icon/Appicons';
-import { Link } from 'react-router-dom';
-import { appDevelopment } from 'utils/app/variable';
-import { updateCollectionVisiblityService } from 'lib/apis/collection/services';
-import useAppToast from 'hooks/toast/useToast';
-import { useMutation } from 'react-query';
+import { ShowLg } from 'assets/icons/Action/Show/ShowLg'
+import { HideLg } from 'assets/icons/Action/Hide/HideLg'
+import { ShareLg } from 'assets/icons/Action/Share/ShareLg'
+import { EditMd } from 'assets/icons/Action/Edit/EditMd'
+import { RulesetMd } from 'assets/icons/System/Ruleset/RulesetMd'
+import { CopyMd } from 'assets/icons/Action/Copy/CopyMd'
+import { TrashMd } from 'assets/icons/Action/Trash/TrashMd'
 
 function ControlsListCollection({ collection, fetch }) {
-    const { showToast } = useAppToast();
-    const checkPermissionAndShowToast = useCheckPermission();
+    const [isPublished, setIsPublished] = useState<boolean>(collection.published);
     const deleteModal = useDisclosure();
     const ruleModal = useDisclosure();
     const editModal = useDisclosure();
-    const [isPublished, setIsPublished] = useState<boolean>(collection.published);
+    const { showToast } = useAppToast();
+    const { shop: { name } } = useAppStore();
+    const checkPermissionAndShowToast = useCheckPermission();
+    const { t } = useLocaleResources("collections");
+    
     const { mutateAsync, isLoading } = useMutation(
         () => updateCollectionVisiblityService({
-            collectionID: collection?._id,
+                collectionID: collection?._id,
             published: !isPublished
-        }),
+            }),
         {
-            onSuccess: () => setIsPublished(!isPublished),
+            onSuccess: () => setIsPublished(prev => !prev),
             onError: () => showToast({
-                message: "You cannot change your collection status at this time. Please try again later",
+                message: t("visibility.error"),
                 type: "error"
             })
         }
     );
-    const { shop: { name } } = useAppStore();
+
     const redirectUrl = `https://${appDevelopment ? "dev." : ""}droplinked.io/${name}/collection/${collection._id}`;
 
     const handleOpenRulesetModal = () => {
@@ -42,11 +52,11 @@ function ControlsListCollection({ collection, fetch }) {
     };
 
     const renderVisibilityIcon = () => (
-        isPublished ? <AppIcons.Eye stroke='#2BCFA1' /> : <AppIcons.HidedIcon stroke='#FF2244' />
+        isPublished ? <ShowLg color='#2BCFA1' /> : <HideLg color='#FF2244' />
     );
     const handleCopy = () => {
         navigator.clipboard.writeText(collection._id)
-        showToast({ message: "Collection ID copied successfully", type: "success" })
+        showToast({ message: t("ControlsListCollection.collectionIdCopied"), type: "success" })
     }
 
     return (
@@ -57,30 +67,30 @@ function ControlsListCollection({ collection, fetch }) {
             <Box height={"40px"}>
                 <Divider orientation='vertical' borderColor={"neutral.gray.800"} />
             </Box>
-            <Link style={{ cursor: "pointer" }} target='_blank' to={redirectUrl}>
-                <AppIcons.Share />
+            <Link style={{ cursor: "pointer" }} target='_blank' rel="noopener noreferrer" to={redirectUrl}>
+                <ShareLg />
             </Link>
             <TableMenu key={collection._id} items={[
                 {
-                    title: "Edit",
+                    title: t("common:edit"),
                     onClick: editModal.onOpen,
-                    icon: <AppIcons.EditOutlined />
+                    icon: <EditMd />
                 },
                 {
-                    title: "Ruleset",
+                    title: t("ControlsListCollection.menu.ruleset"),
                     onClick: handleOpenRulesetModal,
-                    icon: <AppIcons.RulesetsIcon />
+                    icon: <RulesetMd />
                 },
                 {
-                    title: "Copy Collection ID",
+                    title: t("ControlsListCollection.menu.copyId"),
                     onClick: handleCopy,
-                    icon: <AppIcons.Copy />
+                    icon: <CopyMd />
                 },
                 {
-                    title: "Delete",
+                    title: t("common:delete"),
                     onClick: deleteModal.onOpen,
                     color: "#FF2244",
-                    icon: <AppIcons.RedTrash />
+                    icon: <TrashMd color='#FF2244' />
                 }
             ]} />
             <ConfirmDeleteCollection close={deleteModal.onClose} open={deleteModal.isOpen} collectionID={collection?._id} fetch={fetch} />

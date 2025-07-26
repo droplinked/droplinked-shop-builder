@@ -1,6 +1,7 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import { TooltipLg } from 'assets/icons/Sign/Tooltip/TooltipLg'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 
@@ -11,7 +12,7 @@ interface PaymentProviderCardProps {
 }
 
 function PaymentProviderCard({ icon, title, tooltip }: PaymentProviderCardProps) {
-
+  const { t } = useLocaleResources('onboarding')
   
   const handleConnect = async () => {
 
@@ -35,7 +36,7 @@ function PaymentProviderCard({ icon, title, tooltip }: PaymentProviderCardProps)
         cursor="pointer"
         onClick={handleConnect}
       >
-         Connect
+        {t('PaymentSetup.financialServices.connect')}
       </Text>
     </HStack>
   )

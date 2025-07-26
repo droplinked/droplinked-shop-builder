@@ -1,15 +1,19 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const VictionLogo = (props: SVGProps<SVGSVGElement>) => (
+interface Props extends SVGProps<SVGSVGElement> {
+  color?: string;
+}
+
+export const VictionLogo = ({ color = "#231F20", ...props }: Props) => (
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
       d="M28 -0.0078125V10.9707C23.7128 12.8259 18.9786 13.8549 14 13.8549C9.02139 13.8549 4.28499 12.8259 0 10.9707V-0.0078125C4.2872 1.84738 9.02139 2.87634 14 2.87634C18.9786 2.87634 23.7128 1.84738 28 -0.0078125Z"
-      fill="#231F20"
+      fill={color}
     />
     <path
       d="M28 27.9922V17.0136C23.7128 15.1585 18.9786 14.1295 14 14.1295C9.02139 14.1295 4.28499 15.1585 0 17.0136V27.9922C4.2872 26.137 9.02139 25.108 14 25.108C18.9786 25.108 23.7128 26.137 28 27.9922Z"
-      fill="#231F20"
+      fill={color}
     />
   </svg>
 );

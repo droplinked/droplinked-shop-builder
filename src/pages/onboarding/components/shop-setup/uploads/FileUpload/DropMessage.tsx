@@ -1,5 +1,6 @@
 import { Box, Text } from "@chakra-ui/react"
 import React, { ReactNode } from "react"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface DropMessageProps {
     isDragActive: boolean
@@ -8,13 +9,15 @@ interface DropMessageProps {
 }
 
 const DropMessage = ({ isDragActive, title, dropDescription }: DropMessageProps) => {
+    const { t } = useLocaleResources('onboarding')
+    
     if (isDragActive) {
         return (
             <Text
                 fontSize={14}
                 color="#fff"
             >
-                Drop the file here ...
+                {t('FileUpload.dropHere')}
             </Text>
         )
     }
@@ -34,7 +37,7 @@ const DropMessage = ({ isDragActive, title, dropDescription }: DropMessageProps)
                     >
                         Click
                     </Box>{" "}
-                    or drag & drop here
+                    {t('FileUpload.clickOrDrag')}
                 </Text>
             )}
             <Text

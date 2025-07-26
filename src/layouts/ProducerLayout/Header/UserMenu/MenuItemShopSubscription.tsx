@@ -7,10 +7,17 @@ import AppButton from 'components/redesign/button/AppButton'
 import useAppStore from 'stores/app/appStore'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import EnLocale from 'locales/subscription/en.json'
+import ArLocale from 'locales/subscription/ar.json'
 
 function MenuItemShopSubscription() {
     const navigate = useNavigate()
     const { shop } = useAppStore()
+    const { t } = useLocaleResources('subscription', {
+        en: EnLocale,
+        ar: ArLocale
+    })
 
     // Get subscription information
     const subscriptionType = shop?.subscription?.subscriptionId?.type || 'STARTER'
@@ -20,19 +27,19 @@ function MenuItemShopSubscription() {
     const planInfo = {
         'STARTER': {
             icon: <LeafMd color='#FFF' />,
-            title: 'Starter'
+            title: t('PlanCard.starter.title')
         },
         'BUSINESS': {
             icon: <SuitcaseMd color='#FFF' />,
-            title: 'Pro'
+            title: t('PlanCard.pro.title')
         },
         'BUSINESS_PRO': {
             icon: <Star2Md color='#FFF' />,
-            title: 'Premium'
+            title: t('PlanCard.premium.title')
         },
         'ENTERPRISE': {
             icon: <BuildingMd color='#FFF' />,
-            title: 'Enterprise'
+            title: t('PlanCard.enterprise.title')
         }
     }
 
@@ -43,7 +50,9 @@ function MenuItemShopSubscription() {
     const isExpired = daysLeft === 0
 
     // Determine button text based on days left
-    const buttonText = isExpired ? 'Upgrade' : (daysLeft === 1 ? '1 day left' : `${daysLeft} days left`)
+    const buttonText = isExpired 
+        ? t('Plans.cta.upgrade') 
+        : `${daysLeft} ${t('common.month')} ${t('Plans.cta.upgrade')}`
 
     return (
         <Flex

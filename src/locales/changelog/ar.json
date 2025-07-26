@@ -1,0 +1,37 @@
+{
+  "Changelog": {
+    "header": {
+      "title": "التحديثات والإصدارات",
+      "description": "تعرف على المزيد حول أحدث الميزات والتحسينات."
+    }
+  },
+  "ChangelogError": {
+    "title": "خطأ"
+  },
+  "ChangelogEntryCard": {
+    "update": "تحديث {{version}}",
+    "readMore": "اقرأ المزيد"
+  },
+  "ChangelogBadge": {
+    "integration": "التكامل",
+    "new_feature": "ميزة جديدة",
+    "deprecation": "الإيقاف",
+    "improvement": "تحسين",
+    "bugfix": "إصلاح الخلل"
+  },
+  "ChangelogDetail": {
+    "version": "الإصدار {{version}}"
+  },
+  "ArticleTOC": {
+    "label": "في هذه المقالة"
+  },
+  "ChangelogTags": {
+    "label": "الوسوم"
+  },
+  "useChangelogEntries": {
+    "entriesLoadFailed": "فشل في تحميل إدخالات سجل التغييرات"
+  },
+  "useChangelogEntry": {
+    "entryLoadFailed": "فشل في تحميل إدخال سجل التغييرات"
+  }
+}

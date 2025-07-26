@@ -1,26 +1,32 @@
 import { Flex } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
+import BlueButton from "components/redesign/button/BlueButton";
+import InteractiveText from "components/redesign/interactive-text/InteractiveText";
+import { useFormikContext } from "formik";
+import useAppToast from "hooks/toast/useToast";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import DefaultBadge from "pages/settings/components/common/DefaultBadge";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import React, { useEffect, useState } from "react";
-import { WalletRow } from "./WalletRow";
-import { useFormikContext } from "formik";
-import { ISettings } from "pages/settings/formConfigs";
 import useAppStore from "stores/app/appStore";
-import useAppToast from "hooks/toast/useToast";
-import { getDescription, getWalletsData } from "./helpers";
+import { getWalletsData } from "./helpers";
 import { WalletData } from "./types";
-import ExternalLink from "components/redesign/external-link/ExternalLink";
-import BlueButton from "components/redesign/button/BlueButton";
+import { WalletRow } from "./WalletRow";
 
 export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
+    const { t } = useLocaleResources('settings');
     const { values, setFieldValue } = useFormikContext<ISettings>();
     const { shop: { circleWallets } } = useAppStore();
     const { showToast } = useAppToast();
     const walletType = isSolana ? "SOL" : "EVM";
     const circleWalletAddress = circleWallets?.find(wallet => wallet?.chain === (isSolana ? "SOLANA" : "ETH"))?.address || "";
-    const description = getDescription(isSolana);
+
+    const description = isSolana
+                    ? t("PaymentsWallets.wallets.solanaWallet.description")
+            : t("PaymentsWallets.wallets.evmWallet.description");
+
     const walletsData = getWalletsData(values, walletType);
 
     // Temporarily store wallet data (we use it to prevent direct state mutation)
@@ -72,7 +78,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     // Set Circle wallet as default
     const handleSetDefault = () => {
         if (!circleWalletAddress) {
-            showToast({ type: "error", message: "Please activate your Merchant Wallet first" });
+            showToast({ type: "error", message: t("MerchantWallet.manage.errors.walletNotConnected") });
             return;
         }
         const updatedAddresses = [{ destinationAddress: circleWalletAddress, percent: 100 }];
@@ -95,35 +101,30 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                     onClick={handleAddWallet}
                 >
                     <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
-                    Target Wallet
+                    {t("PaymentsWallets.wallets.addTargetWallet")}
                 </BlueButton>
             }
-            title={`${isSolana ? "Solana" : "EVM"} Wallet`}
+                            title={isSolana ? t("PaymentsWallets.wallets.solanaWallet.title") : t("PaymentsWallets.wallets.evmWallet.title")}
         >
             <SectionContent
-                title="Address"
+                title={t("Address.title")}
                 description={description}
-                rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave)}>
-                <ExternalLink
-                    href={"#"}
-                    textDecor={"none"}
-                    display={"flex"}
-                    alignItems={"center"}
-                    fontSize={16}
-                    fontWeight={500}
-                    gap={"6px"}
-                    target='_blank'
+                rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave, t)}>
+                <InteractiveText
+                    to="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    hasExternalIcon
                 >
-                    Learn More
-                    <AppIcons.ExternalLink style={{ display: "inline-block" }} />
-                </ExternalLink>
+                    {t(isSolana ? "PaymentsWallets.wallets.solanaWallet.learnMore" : "PaymentsWallets.wallets.evmWallet.learnMore")}
+                </InteractiveText>
             </SectionContent>
         </SectionContainer>
     );
 }
 
 // Render wallet input rows list
-const renderWalletRows = (wallets: WalletData[], handleChange: Function, handleDelete: Function, handleSave: Function) => (
+const renderWalletRows = (wallets: WalletData[], handleChange: Function, handleDelete: Function, handleSave: Function, t: Function) => (
     <Flex direction="column" gap={4}>
         {wallets.map((wallet, index) => (
             <WalletRow

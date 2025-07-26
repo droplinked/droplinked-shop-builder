@@ -6,29 +6,31 @@ import PrivacyAndSecurity from "../pages/privacy-and-security/PrivacyAndSecurity
 import PaymentAndWallets from "../pages/payment-and-wallets/PaymentAndWallets";
 import CreditAndCoupons from "../pages/credit-and-coupons/CreditAndCoupons";
 import UserManagement from "../pages/user-management/UserManagement";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 function TabsContent() {
     const { isSubmitting, dirty } = useFormikContext();
+    const { t } = useLocaleResources('settings');
 
     const tabs = [
         {
-            title: "General",
+            title: t("TabsContent.tabs.general"),
             content: <General />
         },
         {
-            title: "Privacy and Security",
+            title: t("TabsContent.tabs.privacySecurity"),
             content: <PrivacyAndSecurity />
         },
         {
-            title: "Payments and Wallets",
+            title: t("TabsContent.tabs.paymentsWallets"),
             content: <PaymentAndWallets />
         },
         {
-            title: "Credits and Coupons",
+            title: t("TabsContent.tabs.creditsCoupons"),
             content: <CreditAndCoupons />
         },
         {
-            title: "User Management",
+            title: t("TabsContent.tabs.userManagement"),
             content: <UserManagement />
         },
     ];

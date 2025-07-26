@@ -4,7 +4,8 @@ import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import BlueButton from "components/redesign/button/BlueButton";
 import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
-import { addressByIdService, createAddressService, updateAddressService } from "lib/apis/address/addressServices";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { addressByIdService, createAddressService, updateAddressService } from "services/address/addressServices";
 import useAppStore from "stores/app/appStore";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import React from "react";
@@ -12,13 +13,14 @@ import { useMutation, useQuery } from "react-query";
 import { formValidation, IAddressInputs, initialValues } from "./formConfigs";
 import AddressInputs from "./components/AddressInputs";
 import AddressHolder from "./components/AddressHolder";
-import { IcreateAddressService, IupdateAddressService } from "lib/apis/address/interfaces";
+import { IcreateAddressService, IupdateAddressService } from "services/address/interfaces";
 
 export default function Address() {
     const { shop, updateShop, loading } = useAppStore();
     const { addressBookID } = shop;
     const { showToast } = useAppToast();
     const { onOpen, onClose, isOpen } = useDisclosure();
+    const { t } = useLocaleResources('settings');
     const { mutateAsync: createAddress } = useMutation((params: IcreateAddressService) => createAddressService(params))
     const { mutateAsync: updateAddress } = useMutation((params: IupdateAddressService) => updateAddressService(params))
     const { isFetching, data, refetch } = useQuery({
@@ -27,7 +29,7 @@ export default function Address() {
         queryFn: () => addressByIdService({ addressID: addressBookID }),
         onError: () => {
             showToast({
-                message: "Unable to get address Information",
+                message: t("Address.errors.fetchFailed"),
                 type: "error",
             });
         },
@@ -43,12 +45,15 @@ export default function Address() {
                     updateShop({ ...shop, addressBookID: id })
                 })
             }
-            showToast({ message: addressBookID ? "Store address has been updated!" : "Store address has been added successfully!", type: "success" });
+            showToast({
+                message: addressBookID ? t("Address.success.updated") : t("Address.success.created"),
+                type: "success"
+            });
             onClose();
         }
         catch (error) {
             const message = error?.response?.data?.data.message;
-            showToast({ message: message || "Unable to save address Information", type: "error" });
+            showToast({ message: message || t("Address.errors.saveFailed"), type: "error" });
         }
         finally {
             setSubmitting(false);
@@ -57,8 +62,8 @@ export default function Address() {
 
     return (
         <SectionContent
-            title="Address"
-            description="Provide the store or warehouse address for delivery and tax calculations."
+            title={t("Address.title")}
+            description={t("Address.description")}
             rightContent={
                 (isFetching || loading) ? (
                     <AppSkeleton
@@ -83,7 +88,7 @@ export default function Address() {
                                 <AppIcons.BluePlus
                                     style={{ width: "24px", height: "24px", marginRight: "8px" }}
                                 />
-                                Address
+                                {t("Address.addButton")}
                             </BlueButton>
                         )}
                         {isOpen && (
@@ -91,7 +96,7 @@ export default function Address() {
                                 initialValues={initialValues({ data: data?.data?.data })}
                                 onSubmit={handleSubmit}
                                 validateOnChange={false}
-                                validationSchema={formValidation()}
+                                validationSchema={formValidation(t)}
                             >
                                 <AddressInputs onClose={onClose} />
                             </Formik>

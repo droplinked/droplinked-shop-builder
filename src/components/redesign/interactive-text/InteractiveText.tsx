@@ -1,4 +1,7 @@
 import { Text, TextProps } from '@chakra-ui/react'
+import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
+import { ExternalArrowLeftAlignedMd } from 'assets/icons/Navigation/ExternalArrowLeftAligned/ExternalArrowLeftAlignedMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { ReactNode } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -40,10 +43,14 @@ interface LinkProps extends Omit<TextProps, 'as'> {
 type Props = (ButtonProps | LinkProps) & {
     iconLeft?: ReactNode
     iconRight?: ReactNode
+    hasExternalIcon?: boolean
 }
 
-function InteractiveText({ to, onClick, iconLeft, iconRight, children, ...textProps }: Props) {
+function InteractiveText({ to, onClick, iconLeft, iconRight, hasExternalIcon, children, ...textProps }: Props) {
+    const { isRTL } = useLocaleResources('common');
+
     const Component: React.ElementType = to ? RouterLink : 'button'
+    const externalArrowIcon = isRTL ? <ExternalArrowLeftAlignedMd color="#179ef8" /> : <ExternalarrowMd color="#179ef8" />
 
     return (
         <Text
@@ -51,11 +58,12 @@ function InteractiveText({ to, onClick, iconLeft, iconRight, children, ...textPr
             to={to}
             onClick={onClick}
             {...interactiveTextStyles}
+            fontSize={hasExternalIcon ? 16 : 14}
             {...textProps}
         >
             {iconLeft}
             {children}
-            {iconRight}
+            {hasExternalIcon ? externalArrowIcon : iconRight}
         </Text>
     )
 }

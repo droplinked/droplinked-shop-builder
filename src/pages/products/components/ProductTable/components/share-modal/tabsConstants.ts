@@ -1,9 +1,9 @@
 // tabsConstants.ts
 const TABS = {
-    DIRECT_LINK: "Direct Link",
-    PAYMENT_LINK: "Payment Link",
-    PRODUCT_TILE: "Product Tile",
-    SOCIAL_TILE: "Social Tile",
+    DIRECT_LINK: "DIRECT_LINK",
+    PAYMENT_LINK: "PAYMENT_LINK",
+    PRODUCT_TILE: "PRODUCT_TILE",
+    SOCIAL_TILE: "SOCIAL_TILE",
   };
   
   export default TABS;

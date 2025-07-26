@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 export const attributeToIdMap = {
     Color: "62a989ab1f2c2bbc5b1e7153",
     Size: "62a989e21f2c2bbc5b1e7154"
@@ -135,4 +137,11 @@ export interface CrawledProductsType {
     url: string
     image: string
     title: string
+}
+
+export interface ProductTypeOption {
+    icon: ReactNode
+    title: string
+    description: string,
+    productType: ProductType
 }

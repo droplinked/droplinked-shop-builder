@@ -1,9 +1,9 @@
 import { Box, ModalBody } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import WalletStatus from "components/common/walletStatus/WalletStatus";
+import WalletStatus from "./WalletStatus";
 import AppButton from "components/redesign/button/AppButton";
 import AppModal from "components/redesign/modal/AppModal";
-import { postCreateCircleWallet } from "lib/apis/shop/shopServices";
+import { postCreateCircleWallet } from "services/shop/shopServices";
 import useAppStore from "stores/app/appStore";
 import React from "react";
 import { useQuery } from "react-query";
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: boolean }) {
     const navigate = useNavigate();
     const { updateState, shop } = useAppStore();
-    const { isLoading: isCreatingWallet,isError,  data: createWalletData, } = useQuery({
+    const { isLoading: isCreatingWallet, isError, data: createWalletData, } = useQuery({
         queryFn: postCreateCircleWallet,
         queryKey: ["create-wallet"],
         enabled: !hasCreatedCircleWallet,
@@ -26,6 +26,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
             modalRootProps={{ isOpen: true, onClose: () => { }, size: "3xl", isCentered: true }}
             modalContentProps={{ width: "auto !important", padding: "0px !important" }}
         >
+            <WalletStatus isLoading={isCreatingWallet && !isError} variant={isError ? "red" : "green"} icon={createWalletData?.data?.data || hasCreatedCircleWallet ? "tick" : "wallet"} />
             <ModalBody
                 display="flex"
                 width={{ base: "360px", md: "625px" }}

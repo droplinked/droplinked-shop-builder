@@ -1,9 +1,10 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import useDebounce from 'hooks/debounce/useDebounce'
-import { InvoiceQueryParams, InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
+import useDebounce from 'hooks/useDebounce/useDebounce'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { InvoiceQueryParams, InvoiceStatus } from 'services/invoice/interfaces'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 interface Props {
@@ -11,12 +12,13 @@ interface Props {
 }
 
 function InvoiceFilters({ updateInvoiceFilters }: Props) {
+    const { t } = useLocaleResources('invoice-management');
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
     const statusOptions = [
-        { title: "Active", value: "ACTIVE" },
-        { title: "Pending", value: "PENDING" },
-        { title: "Checked Out", value: "CHECKED_OUT" }
+        { title: t('common:active'), value: "ACTIVE" },
+        { title: t('common:pending'), value: "PENDING" },
+        { title: t('InvoiceFilters.statusOptions.checkedOut'), value: "CHECKED_OUT" }
     ]
 
     useEffect(() => {
@@ -29,7 +31,7 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
                 inputGroupProps={{ width: "300px", height: 12, bgColor: "neutral.gray.1000" }}
                 inputProps={{
                     value: searchTerm,
-                    placeholder: "Search",
+                    placeholder: t('common:search'),
                     onChange: (e) => setSearchTerm(e.target.value)
                 }}
                 leftElement={<AppIcons.Search />}
@@ -41,7 +43,7 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
                 selectProps={{
                     width: "200px",
                     bgColor: "neutral.gray.1000",
-                    placeholder: "Status",
+                    placeholder: t('common:status'),
                     onChange: (e) => updateInvoiceFilters(prev => ({ ...prev, page: 1, status: e.target.value as InvoiceStatus })),
                 }}
             />

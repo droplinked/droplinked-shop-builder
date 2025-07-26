@@ -1,5 +1,5 @@
 import { Box, BoxProps, Flex, FlexProps } from "@chakra-ui/react"
-import AppIcons from "assets/icon/Appicons"
+import { ChevrondownMd } from "assets/icons/Navigation/ChevronDown/ChevrondownMd"
 import { AnimatePresence, motion } from "framer-motion"
 import React, { createContext, useContext, useEffect, useState } from "react"
 
@@ -133,10 +133,7 @@ export const AppAccordionChevron = ({ ...props }: any) => {
     const { isOpen } = useAppAccordionItemContext()
 
     return (
-        <AppIcons.SidebarChevrondown
-            width="20px"
-            height="20px"
-            color="white"
+        <ChevrondownMd
             style={{ transition: ".5s", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
             {...props}
         />

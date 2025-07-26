@@ -1,8 +1,9 @@
-import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text, Flex, Box } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
-import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
+import { Select as ChakraSelect, Flex, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text } from '@chakra-ui/react'
+import { ChevrondownMd } from 'assets/icons/Navigation/ChevronDown/ChevrondownMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useMemo } from 'react'
 import ErrorMessage from '../error-message/ErrorMessage'
+import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 
 /**
  * Customizable select component with support for complex data structures
@@ -43,6 +44,7 @@ interface Props {
 function AppSelect(props: Props) {
     const { label, description, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, itemColor, itemBackgroundColor, selectProps, isRequired } = props
     const { value, onChange } = selectProps
+    const { isRTL } = useLocaleResources("common")
 
     const options = useMemo(() => {
         return items.map((item, index) => {
@@ -85,11 +87,19 @@ function AppSelect(props: Props) {
             borderWidth="1.5px"
             borderRadius={8}
             color="#FFF"
-            icon={isLoading ? <Spinner size="sm" color='text.subtext.placeholder.dark' /> : <AppIcons.SelectChevronDown />}
+            icon={isLoading ? <Spinner size="sm" color='text.subtext.placeholder.dark' /> : <ChevrondownMd color='#7b7b7b' />}
             _placeholder={{ color: "text.subtext.placeholder.dark" }}
             _hover={{}}
             _focus={{}}
             _focusVisible={{}}
+            rootProps={{
+                sx: {
+                    ".chakra-select__icon-wrapper": {
+                        left: isRTL ? 2 : "unset",
+                        right: isRTL ? "unset" : 2
+                    }
+                }
+            }}
             onChange={handleChange}
             {...selectProps}
         >

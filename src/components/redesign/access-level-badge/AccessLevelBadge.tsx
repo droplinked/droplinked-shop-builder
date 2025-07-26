@@ -1,6 +1,7 @@
 import AppIcons from 'assets/icon/Appicons'
 import React from 'react'
 import AppLabel from '../label/AppLabel'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 /**
  * AccessLevelBadge Component - Displays subscription plan access level
@@ -18,6 +19,8 @@ export interface AccessLevelBadgeProps {
 }
 
 function AccessLevelBadge({ level, justLevel }: AccessLevelBadgeProps) {
+    const { t } = useLocaleResources('common');
+    
     // TODO: Replace Pro and Enterprise with respective icons
     const iconMap: Record<string, React.FunctionComponent<React.SVGProps<SVGSVGElement>>> = {
         "Pro": AppIcons.PremiumPlanGreenStarIcon,
@@ -27,7 +30,7 @@ function AccessLevelBadge({ level, justLevel }: AccessLevelBadgeProps) {
 
     return (
         <AppLabel
-            text={`${level} ${!justLevel ? "Feature" : ""}`}
+            text={`${t(`AccessLevelBadge.${level}`)} ${!justLevel ? t("AccessLevelBadge.feature") : ""}`}
             variant="muted"
             status="success"
             size="28"

@@ -1,6 +1,6 @@
 import { Avatar, Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import { IInvitation } from 'lib/apis/user/interfaces'
+import { IInvitation } from 'services/user/interfaces'
 import React from 'react'
 
 interface Props {

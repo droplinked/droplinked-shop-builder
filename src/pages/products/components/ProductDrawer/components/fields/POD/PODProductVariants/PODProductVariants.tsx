@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import { convertPropertiesToPODSKUs } from 'pages/products/utils/skuUtils'
@@ -10,6 +11,7 @@ import ProductVariantCard from '../../ProductVariantCard'
 import PODSKUTable from './PODSKUTable'
 
 export default function PODProductVariants() {
+    const { t } = useLocaleResources('products');
     const { values, setFieldValue, errors } = useProductForm()
     const { _id, sku, properties } = values
 
@@ -22,8 +24,8 @@ export default function PODProductVariants() {
 
     return (
         <FormFieldWrapper
-            label="Variants"
-            description="Product variants, like colors and sizes, are automatically added by the POD provider."
+            label={t('ProductForm.pod.productVariants.label')}
+            description={t('ProductForm.pod.productVariants.description')}
             isRequired
             errorMessage={getFieldErrorMessage(errors.sku)}
         >

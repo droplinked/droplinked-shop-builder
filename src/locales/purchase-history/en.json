@@ -1,0 +1,69 @@
+{
+  "PurchaseHistory": {
+    "title": "Purchase History",
+    "description": "Easily view, manage and track all orders here.",
+    "failedToExport": "Failed to export orders report"
+  },
+  "EmptyView": {
+    "title": "You don't have any order yet",
+    "emptyFormAlt": "Empty Form"
+  },
+  "FilterInputs": {
+    "searchProducts": "Search Products..."
+  },
+  "DesktopTable": {
+    "orderId": "Order ID"
+  },
+  "DateCell": {
+    "notAvailable": "Not Available"
+  },
+  "ControlsPopover": {
+    "orderDetails": "Order Details"
+  },
+  "OrderDetails": {
+    "orderInformation": "Order Information",
+    "cart": "Cart"
+  },
+  "CustomerInfoSection": {
+    "customerInformation": "Customer Information",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "mobileNumber": "Mobile Number",
+    "shippingAddress": "Shipping Address",
+    "additionalDetails": "Additional Details"
+  },
+  "ShippingSection": {
+    "shipping": "Shipping"
+  },
+  "CommissionSection": {
+    "commission": "Commission",
+    "droplinked": "Droplinked",
+    "stripe": "Stripe"
+  },
+  "AffiliateSection": {
+    "publisher": "Publisher",
+    "publisherProfit": "Publisher Profit",
+    "total": "Total"
+  },
+  "PaymentDetailsSection": {
+    "paymentDetails": "Payment Details",
+    "discount": "Discount",
+    "discountRuleset": "Discount Ruleset",
+    "totalProducts": "Total Products",
+    "totalCost": "Total Cost",
+    "totalCart": "Total Cart",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "totalNetProfit": "Total Net Profit",
+    "paymentMethod": "Payment Method",
+    "orderId": "Order ID"
+  },
+  "CartItem": {
+    "quantity": "Quantity",
+    "unitPrice": "Unit Price",
+    "total": "Total"
+  },
+  "TitledText": {
+    "noData": "---"
+  }
+}

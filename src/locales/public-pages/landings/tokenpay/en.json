@@ -1,0 +1,34 @@
+{
+  "TokenpayHero": {
+    "title": "Token Powered Commerce \n Driven by Communities",
+    "subtitle": "Leverage tokenpay with any ERC20, BRC20 and SPL tokens to unlock real utility",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "TokenpayFeatures": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Front-End Modularity",
+    "headingSubtitle": "Headless and fully customizable storefront setup",
+    "cards": {
+      "personalizedMarketplaces": {
+        "title": "Personalized Marketplaces",
+        "description": "Create an experience that mirrors the unique essence of the community, offering a mix of merchandise and services"
+      },
+      "unlockTokenPotential": {
+        "title": "Unlock Token Potential",
+        "description": "Elevate community engagement by enabling token-based transactions. droplinked bridges the gap between digital assets and real-world utility"
+      },
+      "trustInEveryTransaction": {
+        "title": "Trust in Every Transaction",
+        "description": "Every purchase is backed by blockchain's inherent security and transparency. Experience peace of mind in a marketplace where integrity is paramount on every token transaction"
+      }
+    }
+  },
+  "TokenpayModularStack": {
+    "cards": {
+      "readyToGetStarted": {
+        "description": "Now's the chance to join the next wave of commerce and make an impact"
+      }
+    }
+  }
+} 

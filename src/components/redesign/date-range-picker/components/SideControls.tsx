@@ -3,6 +3,7 @@ import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 import { getDateRange } from "../helpers/getDateRange";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 type ValuePiece = Date | null;
 type Value = [ValuePiece, ValuePiece] | ValuePiece;
@@ -12,6 +13,8 @@ interface Props {
 }
 
 export default function SideControls({ setTempValue }: Props) {
+  const { isRTL } = useLocaleResources('common');
+
   const handleDateRangeSelect = (type: string) => {
     setTempValue(getDateRange(type));
   };
@@ -55,7 +58,7 @@ export default function SideControls({ setTempValue }: Props) {
   ];
 
   return (
-    <Flex p={4} flexDir="column" gap={{ base: 3, md: 2 }} borderLeftRadius="16px" bg="#141414">
+    <Flex p={4} flexDir="column" gap={{ base: 3, md: 2 }} {...(isRTL ? { borderRightRadius: "16px" } : { borderLeftRadius: "16px" })} bg="#141414">
       {Items.map((item) => {
         return (
           <Flex px={{ base: "14px", md: 3 }} py={{ base: "10px", md: 2 }} gap={{ base: "6px", md: 1 }} border={{ base: "1px solid", md: "none" }} borderColor={"neutral.gray.800"} borderRadius={{ base: "8px", md: "none" }} alignItems="center" cursor={"pointer"} onClick={item.onClick}>

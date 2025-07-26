@@ -1,0 +1,450 @@
+{
+    "SettingsPage": {
+        "title": "Settings",
+        "description": "Customize the platform to your Preferences",
+        "updateSuccess": "Settings updated successfully"
+    },
+    "TabsContent": {
+        "tabs": {
+            "general": "General",
+            "privacySecurity": "Privacy and Security",
+            "paymentsWallets": "Payments and Wallets",
+            "creditsCoupons": "Credits and Coupons",
+            "userManagement": "User Management"
+        }
+    },
+    "SaveChangesDrawer": {
+        "title": "Settings have changed!",
+        "description": "There are unsaved changes in the settings. Would you like to apply the new changes?",
+        "save": "Save Changes"
+    },
+    "SectionContainer": {},
+    "SectionContent": {},
+    "DefaultBadge": {
+        "default": "Default",
+        "setAsDefault": "Set As Default"
+    },
+    "StoreDetails": {
+        "title": "Store Details"
+    },
+    "StoreName": {
+        "title": "Store Name",
+        "description": "Enter the store's name that will appear on the landing page.",
+        "placeholder": "Store Name"
+    },
+    "StoreURL": {
+        "title": "Store URL"
+    },
+    "EmailAddress": {
+        "title": "Email Address",
+        "description": "Provide an email address to manage the account and receive updates.",
+        "placeholder": "Email Address"
+    },
+    "CustomURL": {
+        "title": "Custom URL",
+        "description": "Enter domain without \"www.\" and then add the provided DNS details in domain settings.",
+        "placeholder": "Domain.com",
+        "add": "Add",
+        "dnsInfo": "DNS Info",
+        "errors": {
+            "fetchDNS": "Unable to fetch DNS Information"
+        },
+        "success": {
+            "urlSet": "The entered URL has been set as your shop's custom URL"
+        },
+        "confirmModal": {
+            "title": "Add custom URL",
+            "description": "You are about to set \"{{url}}\" for your shop's custom URL. \n Be aware that you will have to contact support to make changes. \n Do you want to proceed?",
+            "no": "No",
+            "yes": "Yes, The entered URL is correct"
+        },
+        "dnsModal": {
+            "title": "DNS Information",
+            "dnsLabel": "DNS {{index}}",
+            "checkStatus": "Check DNS Status"
+        }
+    },
+    "Address": {
+        "title": "Address",
+        "description": "Provide the store or warehouse address for delivery and tax calculations.",
+        "addButton": "Address",
+        "success": {
+            "created": "Store address has been added successfully!",
+            "updated": "Store address has been updated!"
+        },
+        "errors": {
+            "fetchFailed": "Unable to get address Information",
+            "saveFailed": "Unable to save address Information",
+            "statesError": "Unable to get states Information",
+            "countriesError": "Unable to get countries Information",
+            "citiesError": "Unable to get cities Information"
+        },
+        "fields": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "addressLine1": "Address Line 1",
+            "addressLine2": "Address Line 2",
+            "country": "Country",
+            "state": "State",
+            "city": "City",
+            "zip": "Zip Code"
+        },
+        "validation": {
+            "firstNameRequired": "First name is required",
+            "lastNameRequired": "Last name is required",
+            "stateRequired": "State is required",
+            "countryRequired": "Country is required",
+            "cityRequired": "City is required",
+            "zipRequired": "Zip is required",
+            "addressLine1Required": "Address line 1 is required"
+        },
+        "buttons": {
+            "discard": "Discard"
+        }
+    },
+    "Preferences": {
+        "title": "Preferences",
+        "defaultLanguage": {
+            "title": "Default Store Language",
+            "description": "Choose a preferred language across the platform. Users can change the language upon entering the store."
+        }
+    },
+    "CustomerExperience": {
+        "title": "Customer Experience",
+        "loginMethods": {
+            "title": "Login Methods",
+            "description": "Allow customers to log in and connect from the following options to interact with the storefront."
+        },
+        "ageGate": {
+            "title": "Age Gate",
+            "description": "Filter visitors based on setting a minimum age criteria to grant access to a storefront or particular products.",
+            "restrictUsersUnder18": "Restrict Users Under 18"
+        },
+        "postPurchaseInfo": {
+            "title": "Post-Purchase Information",
+            "description": "Create custom fields for collecting additional information after a customer makes a purchase.",
+            "placeholder": "Add a note for your purchase"
+        }
+    },
+    "PrivacyAndSecurity": {},
+    "PrivateKey": {
+        "title": "Private Key",
+        "confidentialKey": {
+            "title": "Confidential Key",
+            "description": "Save the Private Key for secure access to store settings. Keep it safe, as it's crucial for the account's security.",
+            "learnMore": "Learn More"
+        }
+    },
+    "PublicApiKey": {
+        "title": "Public API Key",
+        "domain": {
+            "title": "Domain",
+            "description": "Add a domain to generate a unique API key for secure store access.",
+            "placeholder": "Domain.com",
+            "buttonText": "Generate API Key",
+            "addSuccess": "{{value}} added successfully.",
+            "errorValidDomain": "Please enter a valid domain.",
+            "errorDomainExists": "Domain already exists."
+        },
+        "deleteConfirmation": {
+            "title": "Delete Domain",
+            "description": "Are you sure you want to delete this Domain?",
+            "success": "Domain deleted successfully"
+        },
+        "apiDocumentation": "API Documentation"
+    },
+    "FinancialServices": {
+        "title": "Financial Services",
+        "paymentProviders": {
+            "title": "Payment Providers",
+            "description": "Manage payment gateways and partnered services."
+        },
+        "providers": {
+            "stripe": {
+                "title": "Stripe",
+                "buttonTextConnected": "View Account",
+                "buttonTextNotConnected": "Connect",
+                "tooltip": "Connect a Stripe account to receive deposits directly into an existing account."
+            },
+            "coinbase": {
+                "title": "Coinbase Commerce",
+                "buttonText": "Learn More",
+                "tooltip": "The easy way to accept payments from around the world. Instant settlement, low fees, and broad support for over +200 digital assets."
+            },
+            "paymob": {
+                "title": "Paymob",
+                "buttonText": "Connect",
+                "tooltip": "Connect a Paymob account to receive deposits directly into an existing account."
+            }
+        }
+    },
+    "PaymentsWallets": {
+        "tokenPay": {
+            "title": "Tokenpay",
+            "paymentTokens": {
+                "title": "Payment Tokens",
+                "description": "Enable checkout payments for any native ERC20, BRC20 and SPL (Solana) based tokens.",
+                "addButton": "Payment Token",
+                "learnMore": "Learn More"
+            },
+            "walletRequirement": {
+                "title": "Wallet Requirement",
+                "description": "In order to receive native token payments with Tokenpay, you must connect an EVM or Solana based wallet. Otherwise, all received money will be converted to USD/USDC and applied to credits."
+            }
+        },
+        "storeDisplay": {
+            "title": "Store Display",
+            "defaultCurrency": {
+                "title": "Default Currency",
+                "description": "Choose a default currency to display to customers for products. During the checkout process, visitors will be able to see the total price in their local currency."
+            },
+            "fiat": "Fiat",
+            "crypto": "Crypto",
+            "primary": "Primary",
+            "soon": "Soon!"
+        },
+        "tokens": {
+            "title": "Tokens",
+            "description": "Select token options you want to use for payments.",
+            "allNetworks": "All Networks",
+            "evm": "EVM",
+            "solana": "Solana",
+            "networks": "Networks",
+            "solanaTooltip": "In order to receive direct token payments, you must connect a Solana wallet. If not, all received money will be converted to USD/USDC and applied to credits."
+        },
+        "wallets": {
+            "evmWallet": {
+                "title": "EVM Wallet",
+                "description": "Connect one or multiple EVM-based wallets to accept Ethereum based digital assets. You can define percentage payouts across multiple wallet addresses.",
+                "learnMore": "Learn More"
+            },
+            "solanaWallet": {
+                "title": "Solana Wallet",
+                "description": "Connect a Solana-based wallet in order to accept Solana based digital assets. You can define percentage payouts across multiple wallet addresses.",
+                "learnMore": "Learn More"
+            },
+            "addTargetWallet": "Target Wallet",
+            "walletAddress": {
+                "placeholder": "Enter your wallet address"
+            },
+            "actions": {
+                "setAsDefault": "Set As Default"
+            }
+        }
+    },
+    "MerchantWallet": {
+        "title": "Merchant Wallet",
+        "address": {
+            "title": "Address",
+            "description": "The merchant wallet enables USDC acceptance for all businesses. It offers a secure and seamless way to manage revenue while minimizing merchant processing fees."
+        },
+        "activateButton": "Activate Merchant Wallet",
+        "features": {
+            "secure": "Secure",
+            "instant": "Instant",
+            "automaticConversion": "Automatic Conversion"
+        },
+        "buttons": {
+            "manage": "Manage",
+            "recharge": "Recharge"
+        },
+        "manage": {
+            "title": "Manage Wallet",
+            "description": "Manage USDC powered wallet by Circle",
+            "circleWallet": "Manage Circle Wallet",
+            "noWallets": "No wallets available",
+            "withdrawing": "Withdrawing",
+            "withdraw": "Withdraw",
+            "errors": {
+                "usdcVerification": "For USDC withdrawals, your account needs to be verified.",
+                "walletNotConnected": "Wallet not connected",
+                "contactSupport": "Please contact Droplinked support at support@droplinked.com for verification.",
+                "connectWalletFirst": "Please connect a supported wallet first, then proceed with the withdrawal."
+            },
+            "connectWallet": "Connect Wallet",
+            "connectYourWallets": "Connect your wallets"
+        },
+        "connect": {
+            "connectButton": "Connect",
+            "errors": {
+                "walletNotFound": "{{walletName}} extension not found. Please ensure the extension is installed and try again",
+                "failedLogin": "Failed login"
+            }
+        }
+    },
+    "Credits": {
+        "title": "Credits",
+        "remainingBalance": "Remaining Balance",
+        "description": "Use credits to create discounts and coupons.",
+        "charge": "Charge"
+    },
+    "Coupons": {
+        "title": "Coupons",
+        "description": "Manage your discounts and coupons you want to give to users.",
+        "create": "Create",
+        "tableHeaders": {
+            "title": "Title",
+            "quantity": "Quantity",
+            "amount": "Amount",
+            "expirationDate": "Expiration Date",
+            "type": "Type"
+        },
+        "CouponsTable": {
+            "title": "Title",
+            "quantity": "Quantity",
+            "amount": "Amount",
+            "expirationDate": "Expiration Date"
+        },
+        "types": {
+            "discount": "Discount",
+            "coupon": "Coupon"
+        },
+        "tableMenu": {
+            "details": "Details",
+            "edit": "Edit",
+            "exportCodes": "Export Codes"
+        },
+        "drawer": {
+            "editTitle": "Edit Discount",
+            "createTitle": "Create Discount",
+            "discard": "Discard",
+            "create": "Create",
+            "update": "Update"
+        },
+        "form": {
+            "titleLabel": "Title",
+            "titleDescription": "Enter a unique name for the discount.",
+            "titlePlaceholder": "e.g., Summer Sale",
+            "amountLabel": "Amount",
+            "amountDescription": "Select the discount type between shop's currency or percentage.",
+            "amountPlaceholder": "0.00",
+            "percentage": "Percentage",
+            "quantityLabel": "Quantity",
+            "quantityDescription": "Number of times this discount can be used.",
+            "quantityPlaceholder": "9999",
+            "expirationDateLabel": "Expiration Date",
+            "expirationDateDescription": "Select a specific expiration date for discount.",
+            "validation": {
+                "titleRequired": "Title is Required",
+                "quantityRequired": "Quantity is Required",
+                "amountRequired": "Amount is Required",
+                "typeRequired": "Type is Required",
+                "expiryDateRequired": "Expiry Date is Required",
+                "mustBeNumber": "Must be Number",
+                "validNumber": "Must be a valid number",
+                "minDiscount": "Min is 1",
+                "maxDiscount": "Max 100",
+                "futureDateRequired": "Expiry date must be in the future"
+            }
+        },
+        "success": {
+            "created": "{{type}} has been created.",
+            "updated": "{{type}} has been updated."
+        },
+        "information": {
+            "creationDate": "Creation Date",
+            "expired": "Expired",
+            "active": "Active",
+            "tabs": {
+                "information": "Information",
+                "codes": "Codes"
+            },
+            "close": "Close",
+            "saveChanges": "Save Changes",
+            "details": "Details",
+            "amount": "Amount",
+            "expirationDate": "Expiration Date",
+            "usageLimit": "Usage Limit",
+            "filters": {
+                "all": "All",
+                "used": "Used",
+                "available": "Available"
+            },
+            "download": "Download"
+        }
+    },
+    "UserManagement": {
+        "title": "User Management",
+        "description": "Add or remove team members by entering their email addresses. An invite with the required instructions to join the account will be sent.",
+        "newUser": "New User",
+        "emptyView": "No users found",
+        "table": {
+            "name": "Name",
+            "dateAdded": "Date Added",
+            "status": "Status"
+        },
+        "status": {
+            "pending": "Invitation Sent",
+            "administrator": "Administrator"
+        },
+        "inviteModal": {
+            "title": "Invite New Member",
+            "description": "Add a new member by entering their email address below.",
+            "emailLabel": "Email Address",
+            "emailPlaceholder": "Enter email address",
+            "accessWarning": "Access Warning",
+            "accessWarningDesc": "The following user will have access to all sections of the account. Invite with caution!",
+            "sendInvitation": "Send Invitation",
+            "invalidEmail": "Please enter a valid email address",
+            "invitationSent": "An invitation has been sent to this email."
+        }
+    },
+    "Referrals": {
+        "title": "Referrals",
+        "link": {
+            "title": "Link",
+            "description": "Share this referral link to earn rewards when others sign up. Invited users get 1 month of our Pro plan. \nAlternatively, users can enter the code {{code}} or any of the below custom codes during registration."
+        },
+        "customCodes": {
+            "title": "Custom Codes",
+            "description": "Create a custom referral code to share with others.",
+            "placeholder": "Type a custom code or text without any spaces (minimum 8 characters)",
+            "createButton": "Create",
+            "success": "Custom code updated successfully"
+        },
+        "referredPartners": {
+            "title": "Referred Partners",
+            "description": "Explore the list of stores who've joined our community using your referral code.",
+            "yourEarning": "Your Earning",
+            "visit": "Visit"
+        }
+    },
+    "UpgradePlan": {
+        "premium": "Premium",
+        "premiumDescription": "Designed for large businesses needing comprehensive solutions.",
+        "enterprise": "Enterprise",
+        "enterpriseDescription": "Contact us to explore integration.",
+        "proPlan": "Pro Plan",
+        "proDescription": "For small businesses and teams ready to grow.",
+        "unlockFeatures": "Unlock Features",
+        "upgradeTitle": "Upgrade to Unlock Premium Features!",
+        "upgradeDescription": "You're almost there! This feature is available to premium account users.\nExperience all the following features by upgrading today.",
+        "unlimitedAccess": "Unlimited Access",
+        "advancedTools": "Advanced tools",
+        "prioritySupport": "Priority Support",
+        "visitPricingPlans": "Visit Pricing Plans",
+        "upgrade": "Upgrade"
+    },
+    "validationHandlers": {
+        "validation": {
+            "nameRequired": "Please provide a name for shop",
+            "emailRequired": "Please provide a valid email.",
+            "emailValid": "Please provide a valid email.",
+            "currencyRequired": "Please select a currency",
+            "walletPercentageExceeds": "Please double-check your {{walletType}} wallets section, the total percentage must not exceed 100.",
+            "walletPercentageZero": "Please ensure all {{walletType}} wallet percentages are greater than 0.",
+            "paymentMethodRequired": "Please select at least one payment method.",
+            "loginMethodRequired": "Please select at least one login method.",
+            "titleRequired": "Title is Required",
+            "quantityRequired": "Quantity is Required",
+            "amountRequired": "Amount is Required",
+            "typeRequired": "Type is Required",
+            "expiryDateRequired": "Expiry Date is Required",
+            "mustBeNumber": "Must be Number",
+            "validNumber": "Must be a valid number",
+            "minDiscount": "Min is 1",
+            "maxDiscount": "Max 100",
+            "futureDateRequired": "Expiry date must be in the future"
+        }
+    }
+}

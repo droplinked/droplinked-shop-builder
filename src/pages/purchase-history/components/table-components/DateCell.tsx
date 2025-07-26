@@ -1,18 +1,21 @@
 import { Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
-import { formatDateToLongStyle, formattedTime } from 'utils/helpers';
+import { formatDateToLongStyle, formattedTime } from 'utils/helpers'
 
 interface DateCellProps {
-    date: Date | string | null;
+    date: Date | string | null
 }
 
 /**
  * Displays a date in a standardized format with date and time
  */
 export default function DateCell({ date }: DateCellProps) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     if (!date) {
-        return <Text fontSize={14} color="#7B7B7B">Not available</Text>;
+        return <Text fontSize={14} color="#7B7B7B">{t("DateCell.notAvailable")}</Text>
     }
 
     return (

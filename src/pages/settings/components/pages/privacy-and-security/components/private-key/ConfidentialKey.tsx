@@ -1,32 +1,29 @@
-import { appDevelopment } from 'utils/app/variable'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
+import { appDevelopment } from 'utils/app/variable'
 import KeyContainer from './KeyContainer'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
-import AppIcons from 'assets/icon/Appicons'
 
 export default function ConfidentialKey() {
+    const { t } = useLocaleResources('settings');
+
     return (
         <SectionContent
-            title="Confidential Key"
-            description="Save the Private Key for secure access to store settings. Keep it safe, as it’s crucial for the account’s security."
+            title={t("PrivateKey.confidentialKey.title")}
+            description={t("PrivateKey.confidentialKey.description")}
             rightContent={
                 <KeyContainer />
             }
         >
-            <ExternalLink
-                href={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/api/privateapis#/`}
-                textDecor={"none"}
-                display={"flex"}
-                alignItems={"center"}
-                fontSize={16}
-                fontWeight={500}
-                gap={"6px"}
-                target='_blank'
+            <InteractiveText
+                to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/api/privateapis#/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                hasExternalIcon
             >
-                Learn More
-                <AppIcons.ExternalLink style={{ display: "inline-block" }} />
-            </ExternalLink>
+                {t("PrivateKey.confidentialKey.learnMore")}
+            </InteractiveText>
         </SectionContent>
     )
 }

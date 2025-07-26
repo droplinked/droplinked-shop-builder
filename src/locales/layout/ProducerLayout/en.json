@@ -1,0 +1,105 @@
+{
+  "LevelUpWidget": {
+    "widget": {
+      "title": "Level Up",
+      "description": "Take meaningful actions to drive your business forward and unlock new opportunities."
+    },
+    "common": {
+      "next": "Next",
+      "back": "Back",
+      "learnMore": "Learn More",
+      "learnMoreHelpCenter": "Learn more about it in our Help Center",
+      "createProduct": "Create Product",
+      "storefrontCustomization": "Storefront Customization",
+      "affiliateMarket": "Affiliate Market"
+    },
+    "sections": {
+      "createFirstProduct": {
+        "title": "Create first product",
+        "physical": {
+          "title": "Physical Products",
+          "description": "Add physical products by entering details like name, description, and price. Customers can browse and buy directly from your store."
+        },
+        "digital": {
+          "title": "Digital Goods",
+          "description": "Sell digital products like eBooks, software, or music. Upload files, set prices, and allow instant downloads after purchase."
+        },
+        "onDemand": {
+          "title": "Production-on-Demand Items",
+          "description": "Offer customizable products like t-shirts or mugs that are produced only when ordered, handled by your print-on-demand partner."
+        }
+      },
+      "customizeShop": {
+        "title": "Customize shopfront",
+        "storefront": {
+          "title": "Customize Your Storefront Template",
+          "description": "Stand out by customizing your store's design. Select a template, adjust colors, fonts, and layout to match your brand."
+        }
+      },
+      "joinAffiliateMarket": {
+        "title": "Join affiliate market",
+        "main": {
+          "title": "Join the Affiliate Market",
+          "description": "Expand your reach by joining the affiliate market. Promote other stores' products for a commission or list your own for affiliates to sell."
+        }
+      },
+      "sellFirstProduct": {
+        "title": "Sell first product",
+        "firstOrder": {
+          "title": "Receive Your First Order",
+          "description": "Manage your store's activity and orders. From payment to delivery, we guide you through every step to help grow your business."
+        },
+        "productLink": {
+          "title": "Product Link",
+          "description": "Generate a payment link for any product, simplifying the checkout process and bypassing the storefront."
+        },
+        "productTile": {
+          "title": "Product Tile",
+          "description": "Create a customizable product tile for your website. Configure details and upload images to match your brand."
+        },
+        "socialTile": {
+          "title": "Social Tile",
+          "description": "Share products on Twitter with an embeddable tile that allows customers to view details and purchase directly."
+        }
+      }
+    }
+  },
+  "Sidebar": {
+    "NavLinks": {
+      "groups": {
+        "performance": "Performance",
+        "storefront": "Storefront",
+        "more": "More"
+      },
+      "items": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "analytics": "Analytics",
+        "products": "Products",
+        "orderManagement": "Order Management",
+        "styleCenter": "Style Center",
+        "affiliateNetwork": "Affiliate Network",
+        "accountSettings": "Account Settings",
+        "rewardsCenter": "Rewards Center",
+        "quests": "Quests",
+        "customerSupport": "Customer Support",
+        "helpCenter": "Help Center"
+      },
+      "lists": {
+        "inventoryManagement": "Inventory Management",
+        "productCollections": "Product Collections",
+        "onchainInventory": "On-chain Inventory",
+        "purchaseHistory": "Purchase History",
+        "invoices": "Invoices",
+        "storefrontDesigner": "Storefront Designer",
+        "productTiles": "Product Tiles",
+        "productLinks": "Product Links",
+        "blogEditor": "Blog Editor",
+        "products": "Products",
+        "settings": "Settings",
+        "creditsAndActivity": "Credits & Activity",
+        "changelog": "Changelog"
+      }
+    }
+  }
+} 

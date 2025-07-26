@@ -1,4 +1,4 @@
-import { Blog } from 'lib/apis/blog/interfaces'
+import { Blog } from 'services/blog/interfaces'
 import * as Yup from 'yup'
 
 const DEFAULT_BLOG_VALUES: Blog = {
@@ -14,13 +14,13 @@ const DEFAULT_BLOG_VALUES: Blog = {
 
 export const getInitialValues = (blog?: Blog): Blog => blog ?? DEFAULT_BLOG_VALUES
 
-export const validationSchema = Yup.object({
-    image: Yup.string().required('Featured picture is required'),
-    title: Yup.string().required('Title is required'),
-    content: Yup.string().required('Body is required'),
+export const createValidationSchema = (t: (key: string) => string) => Yup.object({
+    image: Yup.string().required(t('FeaturedPictureUpload.validation.required')),
+    title: Yup.string().required(t('TitleInput.validation.required')),
+    content: Yup.string().required(t('BodyEditor.validation.required')),
     searchEngineSummary: Yup.string().default(''),
-    category: Yup.string().required('Category is required'),
+    category: Yup.string().required(t('CategorySelect.validation.required')),
     tags: Yup.array().of(Yup.string()),
     isVisible: Yup.boolean(),
     isFeatured: Yup.boolean()
-}) 
+})

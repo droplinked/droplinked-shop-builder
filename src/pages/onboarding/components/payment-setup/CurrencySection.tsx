@@ -1,8 +1,9 @@
 import { Flex, Text } from '@chakra-ui/react'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
 import useAppToast from 'hooks/toast/useToast'
-import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import { shopInfoService, shopUpdateService } from 'services/shop/shopServices'
 import useAppStore from 'stores/app/appStore'
 
 interface CurrencySectionProps {
@@ -12,6 +13,7 @@ interface CurrencySectionProps {
 function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
   const { shop, updateState } = useAppStore()
   const { showToast } = useAppToast()
+  const { t } = useLocaleResources('onboarding')
   const [isLoading, setIsLoading] = React.useState(false)
 
   const handleCurrencyChange = async (currency: string) => {
@@ -30,13 +32,12 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
 
       // Update the shop with all data preserved
       const response = await shopUpdateService(updatedShopData)
-
       // Update the local state with the complete shop data from the response
       updateState({ key: 'shop', params: response.data.data })
     }
     catch (error) {
       showToast({
-        message: 'Failed to update currency',
+        message: t('PaymentSetup.currency.updateError'),
         type: 'error'
       })
     }
@@ -48,7 +49,7 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
 
   return (
     <Flex direction="column" gap={4}>
-      <Text color='text.white'>Default Currency</Text>
+      <Text color='text.white'>{t('PaymentSetup.currency.title')}</Text>
       <CurrencySelect
         value={shop?.currency.abbreviation || 'USD'}
         onChange={(e) => handleCurrencyChange(e.target.value)}

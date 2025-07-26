@@ -1,0 +1,55 @@
+{
+  "PhysicalInventoryHero": {
+    "title": "إدارة المخزون الذكية",
+    "subtitle": "احصل على رؤى أعمق حول العملاء مع تسعير وتوزيع ديناميكي للبضائع عبر قنوات متعددة باستخدام الذكاء الاصطناعي من droplinked لزيادة مبيعات المخزون",
+    "startNow": "ابدأ الآن",
+    "requestDemo": "اطلب عرض توضيحي"
+  },
+  "PhysicalInventoryFeatures": {
+    "sectionTitle": "مجموعة الميزات",
+    "headingTitle": "مرونة الواجهة الأمامية",
+    "headingSubtitle": "إعداد واجهة متجر قابلة للتخصيص بالكامل وبدون رأس",
+    "cards": {
+      "templateEngineTools": {
+        "title": "أدوات محرك القوالب",
+        "description": "استخدم أدوات محرك القوالب لدينا لتخصيص سهل"
+      },
+      "customizationWithCssHtml": {
+        "title": "تخصيص باستخدام CSS و HTML",
+        "description": "هل ترغب في المزيد؟ خصص القوالب عبر أكواد CSS و HTML"
+      },
+      "createCustomTemplates": {
+        "title": "إنشاء قوالب مخصصة",
+        "description": "تبحث عن قالب فريد؟ مصممونا جاهزون لتحويل رؤيتك إلى واقع"
+      }
+    }
+  },
+  "PhysicalInventoryModularStack": {
+    "cards": {
+      "manageInventoryOnchain": {
+        "title": "إدارة المخزون على البلوكشين",
+        "description": "رقمنة وإدارة الكتالوجات بأدوات متكاملة مع البلوكشين"
+      },
+      "automatedShipping": {
+        "title": "الشحن والتنفيذ الآلي",
+        "description": "بسّط عمليات الشحن والتنفيذ مع خدمات الشحن الخارجية لدينا"
+      },
+      "warehouseManagement": {
+        "title": "إدارة المستودعات",
+        "description": "نظام إدارة المستودعات يسرّع الشحن ويزيد الدقة ويقلل التكاليف لضمان رضا العملاء"
+      },
+      "offerPerks": {
+        "title": "تقديم مزايا وخصومات وعناصر حصرية",
+        "description": "امنح العملاء الأعضاء مزايا وخصومات حصرية"
+      },
+      "embeddableProductTiles": {
+        "title": "مربعات المنتجات القابلة للتضمين",
+        "description": "وسّع نطاقك بتوزيع المخزون عبر مواقع ومنصات وأسواق خارجية"
+      },
+      "decentralizedAffiliateNetwork": {
+        "title": "شبكة التسويق اللامركزية",
+        "description": "نشر المنتجات على البلوكشين يربطها بالشبكة اللامركزية ويفتح مزايا العوائد وغيرها"
+      }
+    }
+  }
+} 

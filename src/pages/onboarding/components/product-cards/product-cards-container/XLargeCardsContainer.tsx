@@ -1,4 +1,5 @@
 import { Box, Flex, FlexProps } from "@chakra-ui/react"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React, { PropsWithChildren } from "react"
 import DroplinkedBrand from "../../common/DroplinkedBrand"
 
@@ -8,14 +9,18 @@ interface SidebarSectionProps extends FlexProps {
 }
 
 export default function XLargeCardsContainer({ children }: PropsWithChildren) {
+    const { isRTL } = useLocaleResources('onboarding')
+
     return (
         <Flex
             as="section"
             height="100%"
             borderTop="8px solid #141414"
-            borderLeft="8px solid #141414"
-            borderTopLeftRadius={24}
-            bgColor="#1C1C1C"
+            borderLeft={isRTL ? "unset" : "8px solid #141414"}
+            borderRight={isRTL ? "8px solid #141414" : "unset"}
+            borderTopLeftRadius={isRTL ? "unset" : 24}
+            borderTopRightRadius={isRTL ? 24 : "unset"}
+            bgColor="neutral.gray.1000"
         >
             <Sidebar />
             <MainContent>

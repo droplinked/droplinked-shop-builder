@@ -6,6 +6,8 @@ import { InstagramMd } from 'assets/icons/SocialMedia/Colorless/Instagram/Instag
 import { LinkedinMd } from 'assets/icons/SocialMedia/Colorless/LinkedIn/LinkedinMd'
 import { TelegramMd } from 'assets/icons/SocialMedia/Colorless/Telegram/TelegramMd'
 import { XMd } from 'assets/icons/SocialMedia/Colorless/X/XMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import LanguageSelect from 'pages/settings/components/pages/general/components/preferences/default-store-language/LanguageSelect'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -28,6 +30,8 @@ const ICON_WRAPPER_STYLES = {
 } as const
 
 function BrandIdentity() {
+    const { t } = useLocaleResources('layout/PublicLayout')
+
     return (
         <Box>
             <Flex
@@ -44,7 +48,7 @@ function BrandIdentity() {
             </Flex>
 
             <Text fontSize={{ base: 14, md: 16 }} fontWeight={500} color="text.white">
-                Commerce tools to sell and settle transparently
+                {t('Footer.BrandIdentity.commerceTagline')}
             </Text>
 
             <Flex marginBlock={{ base: 4, xl: 6 }} gap={2}>
@@ -53,6 +57,7 @@ function BrandIdentity() {
                         key={url}
                         href={url}
                         target="_blank"
+                        rel="noopener noreferrer"
                         transition="0.3s ease-in-out"
                         _hover={{ bgColor: "neutral.gray.1000" }}
                         {...ICON_WRAPPER_STYLES}
@@ -61,6 +66,10 @@ function BrandIdentity() {
                     </ChakraLink>
                 ))}
             </Flex>
+
+            <Box width="144px">
+                <LanguageSelect />
+            </Box>
         </Box>
     )
 }

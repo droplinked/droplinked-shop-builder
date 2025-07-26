@@ -1,7 +1,11 @@
 import { Flex } from '@chakra-ui/react'
+import { ArrowleftMd } from 'assets/icons/Navigation/ArrowLeft/ArrowleftMd'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 import React, { useState } from 'react'
 
 interface ControlButtonsProps {
@@ -11,17 +15,23 @@ interface ControlButtonsProps {
     continueText?: string
     isLoading?: boolean
     showBackButton?: boolean
+    backText?: string
 }
 
 const ControlButtons: React.FC<ControlButtonsProps> = ({
     onBack,
     onSubmit,
     onSkip = null,
-    continueText = "Continue",
+    continueText,
+    backText,
     isLoading: externalLoading = false,
     showBackButton = true,
 }) => {
     const [internalLoading, setInternalLoading] = useState(false)
+    const { t , isRTL } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const handleSubmit = async (e: React.MouseEvent) => {
         e.preventDefault()
@@ -47,25 +57,25 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                     fontWeight='400'
                     fontSize='14px'
                 >
-                    Skip for Now
+                    {t('common.skipForNow')}
                 </AppTypography>
             )}
-            <Flex marginLeft="auto" gap={4}>
+            <Flex marginInlineStart="auto" gap={4}>
                 {showBackButton &&
                     <AppButton
                         variant='secondary'
                         onClick={onBack}
                         isDisabled={isButtonLoading}
                     >
-                        Back
+                        {backText || t('common:back')}
                     </AppButton>
                 }
                 <AppButton
                     onClick={handleSubmit}
-                    rightIcon={<ArrowrightMd />}
+                    rightIcon={isRTL ? <ArrowleftMd /> : <ArrowrightMd />}
                     isLoading={isButtonLoading}
                 >
-                    {continueText}
+                    {continueText || t('common:continue')}
                 </AppButton>
             </Flex>
         </Flex>

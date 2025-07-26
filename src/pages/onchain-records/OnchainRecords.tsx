@@ -1,6 +1,9 @@
 import { useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { WalletMd } from 'assets/icons/Finance/Wallet/WalletMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from "locales/onchain-records/ar.json"
+import enLocale from "locales/onchain-records/en.json"
 import React from 'react'
 import ConnectWalletModal from './components/connect-wallets-modal/ConnectWalletModal'
 import { OnchainRecordsProvider } from './context/OnchainRecordsContext'
@@ -8,23 +11,19 @@ import Records from './records/Records'
 
 export default function OnchainRecords() {
     const { onClose, isOpen, onOpen } = useDisclosure()
+    const { t } = useLocaleResources("onchainRecords", { en: enLocale, ar: arLocale })
 
     return (
         <OnchainRecordsProvider>
             <PageGrid.Root>
                 <PageGrid.Header
-                    title="Onchain Records"
-                    description="View inventory records and onchain activity."
+                    title={t("OnchainRecords.pageTitle")}
+                    description={t("OnchainRecords.pageDescription")}
                     actionButtons={[
                         {
-                            title: "Connect Wallet",
+                            title: t("ConnectWallets.connect"),
+                            leftIcon: <WalletMd />,
                             onClick: onOpen,
-                            fontSize: 14,
-                            fontWeight: 500,
-                            iconSpacing: "6px",
-                            paddingInline: "14px",
-                            leftIcon: <AppIcons.Wallet width="20px" height="20px" />,
-                            sx: { path: { stroke: "#000" } },
                         }
                     ]}
                 />

@@ -1,12 +1,12 @@
-import React, { useRef } from "react";
-import { useQuery } from "react-query";
 import { HStack, VStack, useMediaQuery } from "@chakra-ui/react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import Blog from "./blogs.blog";
-import { IBlog } from "./blogs.interface";
-import { getSuperAdminBlogs } from "lib/apis/blog/services";
-import LatestBlog from "./blogs.latest";
+import React, { useRef } from "react";
+import { useQuery } from "react-query";
+import { getPublicBlogsService } from "services/blog/services";
 import { sortByDate } from "utils/helpers";
+import Blog from "./blogs.blog";
+import { IBlogListItem } from "./blogs.interface";
+import LatestBlog from "./blogs.latest";
 import LoadingBlogs from "./blogs.loading";
 
 const useScrollAnimation = (ref, length: number) => {
@@ -18,9 +18,9 @@ const useScrollAnimation = (ref, length: number) => {
 };
 
 const PublicBlogs = () => {
-  const { data, isLoading, error } = useQuery({
-    queryFn: getSuperAdminBlogs,
-    queryKey: "super_admin_blogs_post",
+  const { data, isLoading } = useQuery({
+    queryFn: getPublicBlogsService,
+    queryKey: ["public-blogs"],
   });
 
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
@@ -31,7 +31,7 @@ const PublicBlogs = () => {
 
   if (isLoading) return <LoadingBlogs />;
   
-  const blogs: IBlog[] = !isLoading && data?.data?.data?.data ? data.data.data.data : [];
+  const blogs: IBlogListItem[] = !isLoading && data?.data?.data?.data ? data.data.data.data : [];
   let columns;
   if (isLargerThan1024) {
     columns = [

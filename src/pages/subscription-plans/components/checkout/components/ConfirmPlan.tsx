@@ -6,8 +6,11 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import React from 'react'
 import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
-import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
+import { getSubscriptionPlans } from 'data/subscriptionPlans'
 import { ModalStep } from '../types/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/subscription/en.json'
+import localAr from 'locales/subscription/ar.json'
 
 interface Props {
     setPlanPurchaseModalStep: (step: ModalStep) => void;
@@ -17,20 +20,21 @@ interface Props {
 function ConfirmPlan({ setPlanPurchaseModalStep, close }: Props) {
     const selectedPlan = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
     const selectedPlanPrice = useSubscriptionPlanPurchaseStore((state) => state.selectedPlanPrice)
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr })
 
     if (!selectedPlan) {
         return null
     }
 
-    const { title, icon: SubscriptionIcon, description } = subscriptionPlans[selectedPlan.type]
+    const { title, icon: SubscriptionIcon, description } = getSubscriptionPlans(t)[selectedPlan.type]
     const priceDisplay = typeof selectedPlanPrice === 'string' ? selectedPlanPrice : `$${selectedPlanPrice}`
 
     return (
         <>
             <ModalHeaderData
                 icon={<Box sx={{ "path": { stroke: "#FFFFFF" } }}><AppIcons.Like /></Box>}
-                title='Confirm subscription'
-                description={`Upgrade to the ${title} Plan for ${priceDisplay} per year to access advanced features.`}
+                title={t('SubscriptionPlanCheckoutModal.title')}
+                description={t('SubscriptionPlanCheckoutModal.description', { plan: t(title), price: priceDisplay })}
             />
             <ModalBody>
                 <Flex
@@ -46,14 +50,14 @@ function ConfirmPlan({ setPlanPurchaseModalStep, close }: Props) {
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
                         <SubscriptionIcon color="#fff" />
                     </Center>
-                    <AppTypography mt={4} fontSize={20} fontWeight={500} color="white">{title}</AppTypography>
-                    <AppTypography fontSize={16} color="#B1B1B1">{description}</AppTypography>
+                    <AppTypography mt={4} fontSize={20} fontWeight={500} color="white">{t(title)}</AppTypography>
+                    <AppTypography fontSize={16} color="#B1B1B1">{t(description)}</AppTypography>
                     <PlanPrice plan={selectedPlan} marginTop={9} height={"fit-content"} />
                 </Flex>
             </ModalBody>
             <ModalFooter display="flex" alignItems="center" gap={{ xl: 6, base: 3 }}>
-                <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>Discard</BasicButton>
-                <BasicButton minWidth="unset" width="50%" onClick={() => setPlanPurchaseModalStep("PaymentMethodSelection")}>Next</BasicButton>
+                <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>{t('common:discard')}</BasicButton>
+                <BasicButton minWidth="unset" width="50%" onClick={() => setPlanPurchaseModalStep("PaymentMethodSelection")}>{t('common:next')}</BasicButton>
             </ModalFooter>
         </>
     )

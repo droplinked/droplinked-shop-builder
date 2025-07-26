@@ -3,6 +3,7 @@ import AffiliateProductCard from './AffiliateProductCard/AffiliateProductCard';
 import AffiliateProductCardPlaceholder from './AffiliateProductCardPlaceholder';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 /**
  * Renders a list of products in a grid with infinite scrolling.
@@ -17,6 +18,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
  */
 
 const ProductsGridRenderer = ({ isPublic ,data, fetchNextPage, hasNextPage, isLoading, isError }) => {
+  const { t } = useLocaleResources('common');
+  
   if (isLoading) {
     return (
       <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing="16px" width="full">
@@ -30,7 +33,7 @@ const ProductsGridRenderer = ({ isPublic ,data, fetchNextPage, hasNextPage, isLo
   }
 
   if (isError) {
-    return <Text>Error loading products</Text>;
+    return <Text>{t('hooks.errors.loadingProductsFailed')}</Text>;
   }
 
   const products = data?.pages?.flatMap((page) => page?.data) ?? data.products ?? [];

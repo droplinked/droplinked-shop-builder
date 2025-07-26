@@ -1,11 +1,18 @@
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import useAppToast from 'hooks/toast/useToast'
-import { updateProductLinkOptionsService } from 'lib/apis/product/productServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { updateProductLinkOptionsService } from 'services/product/productServices'
 import useAppStore from 'stores/app/appStore'
 import React, { useContext, useState } from 'react'
 import { PaymentLinkContext } from '../context/PaymentLinkContext'
+import enLocale from 'locales/payment-link/en.json'
+import arLocale from 'locales/payment-link/ar.json'
 
 function PaymentLinkSubmit() {
+    const { t } = useLocaleResources('payment-link' , {
+        en: enLocale,
+        ar: arLocale
+      });
     const { paymentLinkData } = useContext(PaymentLinkContext)
     const [isLoading, setLoading] = useState(false)
     const { showToast } = useAppToast()
@@ -16,10 +23,10 @@ function PaymentLinkSubmit() {
             setLoading(true)
             await updateProductLinkOptionsService(paymentLinkData)
             updateState({ key: 'shop', params: { ...shop, productLinkOptions: paymentLinkData } })
-            showToast({ message: "Payment link options saved successfully", type: 'success' })
+            showToast({ message: t('PaymentLinkSubmit.successMessage'), type: 'success' })
         }
         catch (error) {
-            showToast({ message: "Failed to save payment link options", type: 'error' })
+            showToast({ message: t('PaymentLinkSubmit.errorMessage'), type: 'error' })
         }
         finally {
             setLoading(false)
@@ -27,7 +34,7 @@ function PaymentLinkSubmit() {
     }
 
     return (
-        <BasicButton alignSelf={"flex-end"} isLoading={isLoading} isDisabled={isLoading} onClick={handleSubmit}>Save</BasicButton>
+        <BasicButton alignSelf={"flex-end"} isLoading={isLoading} isDisabled={isLoading} onClick={handleSubmit}>{t('common:save')}</BasicButton>
     )
 }
 

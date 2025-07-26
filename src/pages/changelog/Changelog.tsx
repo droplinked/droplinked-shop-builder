@@ -1,5 +1,8 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/changelog/ar.json'
+import enLocale from 'locales/changelog/en.json'
 import React from 'react'
 import ChangelogEntryCard from './components/ChangelogEntryCard'
 import { ChangelogEntryLoading } from './components/ChangelogEntryLoading'
@@ -8,6 +11,7 @@ import { ChangelogGrid } from './components/ChangelogGrid'
 import useChangelogEntries from './hooks/useChangelogEntries'
 
 function Changelog() {
+    const { t } = useLocaleResources('changelogPage', { en: enLocale, ar: arLocale })
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage, isError, error } = useChangelogEntries()
     const entries = data?.pages?.flatMap(page => page.data.data) ?? []
 
@@ -20,8 +24,8 @@ function Changelog() {
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title='Updates and Releases'
-                description='Learn more about the latest features and improvements.'
+                title={t('Changelog.header.title')}
+                description={t('Changelog.header.description')}
             />
             {entries.length === 0 && isFetching
                 ? <ChangelogEntryLoading count={3} />

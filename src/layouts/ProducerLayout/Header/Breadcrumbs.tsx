@@ -1,8 +1,11 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
+import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
+import { ChevronleftSm } from 'assets/icons/Navigation/ChevronLeft/ChevronleftSm'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
-import { producerSidebarLinks } from 'data/producerSidebarLinks'
+import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { SidebarGroupType } from '../Sidebar/SidebarGroup'
@@ -13,18 +16,21 @@ interface CustomBreadcrumbItem {
 }
 
 export const Breadcrumbs = () => {
-    const { breakpoint } = useProducerLayout()
     const { pathname } = useLocation()
+    const { breakpoint } = useProducerLayout()
+    const { t, isRTL } = useLocaleResources('layout/ProducerLayout')
+
+    const sidebarLinks = getProducerSidebarLinks(t)
 
     const separator = breakpoint === 'desktop'
-        ? <ChevronrightMd color='#b1b1b1' />
-        : <ChevronrightSm color='#b1b1b1' />
+        ? isRTL ? <ChevronleftMd color='#b1b1b1' /> : <ChevronrightMd color='#b1b1b1' />
+        : isRTL ? <ChevronleftSm color='#b1b1b1' /> : <ChevronrightSm color='#b1b1b1' />
 
     // Function to generate breadcrumbs based on the current path
-    const getBreadcrumbs = (path: string): CustomBreadcrumbItem[] => {
-        const breadcrumbs: CustomBreadcrumbItem[] = [{ title: 'Home', linkTo: '/analytics' }]
+    function getBreadcrumbs(path: string): CustomBreadcrumbItem[] {
+        const breadcrumbs: CustomBreadcrumbItem[] = [{ title: t('Sidebar.NavLinks.items.home'), linkTo: '/analytics' }]
 
-        producerSidebarLinks.forEach((group: SidebarGroupType) => {
+        sidebarLinks.forEach((group: SidebarGroupType) => {
             group.items.forEach((item) => {
                 // Check top-level item
                 if (item.linkTo === path) {

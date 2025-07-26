@@ -1,4 +1,4 @@
-import { Box, HStack, Text, TextProps } from '@chakra-ui/react'
+import { Box, HStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography, { IAppTypography } from 'components/common/typography/AppTypography'
 import React from 'react'

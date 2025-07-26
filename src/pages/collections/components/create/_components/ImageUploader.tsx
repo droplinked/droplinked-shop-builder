@@ -3,6 +3,7 @@ import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import ErrorLabel from '../../controls/components/rulesets/components/labels/errorLabel/errorLabel';
 import AppUploadImage from 'components/redesign/image/AppUploadImage';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
 import { IFileData } from '../interface/interfaces';
 import { FormikErrors, FormikValues } from 'formik';
@@ -15,11 +16,12 @@ interface ImageUploaderProps {
 
 function ImageUploader({ errors, values, setFieldValue }: ImageUploaderProps) {
     const [fileData, setFileData] = React.useState<IFileData>();
+    const { t } = useLocaleResources("collections");
 
     return (
         <VStack width="100%">
             <Flex width={"100%"} direction="column" gap={"16px"}>
-                <AppTypography fontSize={"16px"} fontWeight={500}>Collection Cover</AppTypography>
+                <AppTypography fontSize={"16px"} fontWeight={500}>{t("ImageUploader.cover")}</AppTypography>
                 <AppUploadImage setFileData={(data: IFileData) => setFileData(data)} onChange={(image: string) => setFieldValue('image', image)} values={values.image} size='original' accept={{ "image/png": [".png", ".jpeg", ".jpg"] }} />
                 {errors.image && <ErrorLabel message={errors.image} />}
             </Flex>

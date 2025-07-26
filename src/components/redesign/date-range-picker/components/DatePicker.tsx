@@ -1,6 +1,8 @@
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import "@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css";
-import AppIcons from "assets/icon/Appicons";
+import { ChevronleftMd } from "assets/icons/Navigation/ChevronLeft/ChevronleftMd";
+import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
 import "react-calendar/dist/Calendar.css";
 import classes from "../styles.module.scss";
@@ -29,6 +31,7 @@ export default function DatePicker({
     showFooter = false,
     showControls = false
 }: Props) {
+    const { isRTL } = useLocaleResources('common');
 
     return (
         <>
@@ -37,8 +40,8 @@ export default function DatePicker({
                 calendarProps={{
                     view: "month",
                     minDetail: "month",
-                    nextLabel: <AppIcons.ChevronRight color="white" />,
-                    prevLabel: <AppIcons.ChevronLeft color="white" />,
+                    nextLabel: isRTL ? <ChevronleftMd /> : <ChevronrightMd /> ,
+                    prevLabel: isRTL ? <ChevronrightMd /> : <ChevronleftMd /> ,
                     formatShortWeekday: (locale, date) => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()],
                     locale: "en-US",
                 }}

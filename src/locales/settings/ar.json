@@ -1,0 +1,450 @@
+{
+    "SettingsPage": {
+        "title": "الإعدادات",
+        "description": "خصص المنصة حسب تفضيلاتك",
+        "updateSuccess": "تم تحديث الإعدادات بنجاح"
+    },
+    "TabsContent": {
+        "tabs": {
+            "general": "عام",
+            "privacySecurity": "الخصوصية والأمان",
+            "paymentsWallets": "المدفوعات والمحافظ",
+            "creditsCoupons": "الأرصدة والقسائم",
+            "userManagement": "إدارة المستخدمين"
+        }
+    },
+    "SaveChangesDrawer": {
+        "title": "تم تغيير الإعدادات!",
+        "description": "هناك تغييرات غير محفوظة في الإعدادات. هل ترغب في تطبيق التغييرات الجديدة؟",
+        "save": "حفظ التغييرات"
+    },
+    "SectionContainer": {},
+    "SectionContent": {},
+    "DefaultBadge": {
+        "default": "افتراضي",
+        "setAsDefault": "تعيين كافتراضي"
+    },
+    "StoreDetails": {
+        "title": "تفاصيل المتجر"
+    },
+    "StoreName": {
+        "title": "اسم المتجر",
+        "description": "أدخل اسم المتجر الذي سيظهر في الصفحة الرئيسية.",
+        "placeholder": "اسم المتجر"
+    },
+    "StoreURL": {
+        "title": "رابط المتجر"
+    },
+    "EmailAddress": {
+        "title": "البريد الإلكتروني",
+        "description": "أدخل بريدًا إلكترونيًا لإدارة الحساب واستلام التحديثات.",
+        "placeholder": "البريد الإلكتروني"
+    },
+    "CustomURL": {
+        "title": "رابط مخصص",
+        "description": "أدخل النطاق بدون \"www.\" ثم أضف تفاصيل DNS المقدمة في إعدادات النطاق.",
+        "placeholder": "Domain.com",
+        "add": "إضافة",
+        "dnsInfo": "معلومات DNS",
+        "errors": {
+            "fetchDNS": "تعذر جلب معلومات DNS"
+        },
+        "success": {
+            "urlSet": "تم تعيين الرابط المدخل كرابط مخصص لمتجرك"
+        },
+        "confirmModal": {
+            "title": "إضافة رابط مخصص",
+            "description": "أنت على وشك تعيين \"{{url}}\" كرابط مخصص لمتجرك. \n يرجى العلم أنه يجب التواصل مع الدعم لإجراء أي تغييرات. \n هل ترغب في المتابعة؟",
+            "no": "لا",
+            "yes": "نعم، الرابط المدخل صحيح"
+        },
+        "dnsModal": {
+            "title": "معلومات DNS",
+            "dnsLabel": "DNS {{index}}",
+            "checkStatus": "تحقق من حالة DNS"
+        }
+    },
+    "Address": {
+        "title": "العنوان",
+        "description": "أدخل عنوان المتجر أو المستودع للتوصيل وحساب الضرائب.",
+        "addButton": "العنوان",
+        "success": {
+            "created": "تمت إضافة عنوان المتجر بنجاح!",
+            "updated": "تم تحديث عنوان المتجر!"
+        },
+        "errors": {
+            "fetchFailed": "تعذر الحصول على معلومات العنوان",
+            "saveFailed": "تعذر حفظ معلومات العنوان",
+            "statesError": "تعذر الحصول على معلومات الولايات",
+            "countriesError": "تعذر الحصول على معلومات الدول",
+            "citiesError": "تعذر الحصول على معلومات المدن"
+        },
+        "fields": {
+            "firstName": "الاسم الأول",
+            "lastName": "اسم العائلة",
+            "addressLine1": "العنوان 1",
+            "addressLine2": "العنوان 2",
+            "country": "الدولة",
+            "state": "الولاية",
+            "city": "المدينة",
+            "zip": "الرمز البريدي"
+        },
+        "validation": {
+            "firstNameRequired": "الاسم الأول مطلوب",
+            "lastNameRequired": "اسم العائلة مطلوب",
+            "stateRequired": "الولاية مطلوبة",
+            "countryRequired": "الدولة مطلوبة",
+            "cityRequired": "المدينة مطلوبة",
+            "zipRequired": "الرمز البريدي مطلوب",
+            "addressLine1Required": "العنوان 1 مطلوب"
+        },
+        "buttons": {
+            "discard": "إلغاء"
+        }
+    },
+    "Preferences": {
+        "title": "التفضيلات",
+        "defaultLanguage": {
+            "title": "لغة المتجر الافتراضية",
+            "description": "اختر لغة مفضلة عبر المنصة. يمكن للمستخدمين تغيير اللغة عند دخول المتجر."
+        }
+    },
+    "CustomerExperience": {
+        "title": "تجربة العميل",
+        "loginMethods": {
+            "title": "طرق تسجيل الدخول",
+            "description": "اسمح للعملاء بتسجيل الدخول والتواصل من الخيارات التالية للتفاعل مع واجهة المتجر."
+        },
+        "ageGate": {
+            "title": "بوابة العمر",
+            "description": "تصفية الزوار بناءً على تحديد معيار الحد الأدنى للعمر لمنح الوصول إلى متجر أو منتجات معينة.",
+            "restrictUsersUnder18": "تقييد المستخدمين تحت 18"
+        },
+        "postPurchaseInfo": {
+            "title": "معلومات ما بعد الشراء",
+            "description": "إنشاء حقول مخصصة لجمع معلومات إضافية بعد قيام العميل بعملية شراء.",
+            "placeholder": "أضف ملاحظة لشرائك"
+        }
+    },
+    "PrivateKey": {
+        "title": "المفتاح الخاص",
+        "confidentialKey": {
+            "title": "مفتاح سري",
+            "description": "احفظ المفتاح الخاص للوصول الآمن إلى إعدادات المتجر. احتفظ به بأمان، فهو ضروري لأمان الحساب.",
+            "learnMore": "اعرف المزيد"
+        }
+    },
+    "PublicApiKey": {
+        "title": "مفتاح API العام",
+        "domain": {
+            "title": "النطاق",
+            "description": "أضف نطاقًا لإنشاء مفتاح API فريد للوصول الآمن إلى المتجر.",
+            "placeholder": "Domain.com",
+            "buttonText": "إنشاء مفتاح API",
+            "addSuccess": "تمت إضافة {{value}} بنجاح.",
+            "errorValidDomain": "يرجى إدخال نطاق صحيح.",
+            "errorDomainExists": "النطاق موجود بالفعل."
+        },
+        "deleteConfirmation": {
+            "title": "حذف النطاق",
+            "description": "هل أنت متأكد من أنك تريد حذف هذا النطاق؟",
+            "success": "تم حذف النطاق بنجاح"
+        },
+        "apiDocumentation": "توثيق API"
+    },
+    "FinancialServices": {
+        "title": "الخدمات المالية",
+        "paymentProviders": {
+            "title": "مقدمي الدفع",
+            "description": "إدارة بوابات الدفع والخدمات الشريكة."
+        },
+        "providers": {
+            "stripe": {
+                "title": "Stripe",
+                "buttonTextConnected": "عرض الحساب",
+                "buttonTextNotConnected": "توصيل",
+                "tooltip": "قم بتوصيل حساب Stripe لاستلام الودائع مباشرة في حساب موجود."
+            },
+            "coinbase": {
+                "title": "Coinbase Commerce",
+                "buttonText": "اعرف المزيد",
+                "tooltip": "الطريقة السهلة لقبول المدفوعات من جميع أنحاء العالم. تسوية فورية، رسوم منخفضة، ودعم واسع لأكثر من +200 أصل رقمي."
+            },
+            "paymob": {
+                "title": "Paymob",
+                "buttonText": "توصيل",
+                "tooltip": "قم بتوصيل حساب Paymob لاستلام الودائع مباشرة في حساب موجود."
+            }
+        }
+    },
+    "PaymentsWallets": {
+        "tokenPay": {
+            "title": "Tokenpay",
+            "paymentTokens": {
+                "title": "رموز الدفع",
+                "description": "تمكين مدفوعات الخروج لأي رموز ERC20 و BRC20 و SPL (Solana) أصلية.",
+                "addButton": "رمز الدفع",
+                "learnMore": "اعرف المزيد"
+            },
+            "walletRequirement": {
+                "title": "متطلبات المحفظة",
+                "description": "من أجل استلام مدفوعات الرموز الأصلية مع Tokenpay، يجب عليك توصيل محفظة EVM أو Solana. وإلا، سيتم تحويل جميع الأموال المستلمة إلى USD/USDC وتطبيقها على الرصيد."
+            }
+        },
+        "storeDisplay": {
+            "title": "عرض المتجر",
+            "defaultCurrency": {
+                "title": "العملة الافتراضية",
+                "description": "اختر عملة افتراضية لعرضها للعملاء للمنتجات. أثناء عملية الخروج، سيتمكن الزوار من رؤية السعر الإجمالي بعملتهم المحلية."
+            },
+            "fiat": "عملة ورقية",
+            "crypto": "عملة رقمية",
+            "primary": "أولية",
+            "soon": "قريباً!"
+        },
+        "tokens": {
+            "title": "الرموز",
+            "description": "اختر خيارات الرموز التي تريد استخدامها للمدفوعات.",
+            "allNetworks": "جميع الشبكات",
+            "evm": "EVM",
+            "solana": "Solana",
+            "networks": "الشبكات",
+            "solanaTooltip": "من أجل استلام مدفوعات الرموز المباشرة، يجب عليك توصيل محفظة Solana. إذا لم تفعل ذلك، سيتم تحويل جميع الأموال المستلمة إلى USD/USDC وتطبيقها على الرصيد."
+        },
+        "wallets": {
+            "evmWallet": {
+                "title": "محفظة EVM",
+                "description": "قم بتوصيل محفظة واحدة أو متعددة قائمة على EVM لقبول الأصول الرقمية القائمة على Ethereum. يمكنك تحديد مدفوعات النسبة المئوية عبر عناوين محافظ متعددة.",
+                "learnMore": "اعرف المزيد"
+            },
+            "solanaWallet": {
+                "title": "محفظة Solana",
+                "description": "قم بتوصيل محفظة قائمة على Solana من أجل قبول الأصول الرقمية القائمة على Solana. يمكنك تحديد مدفوعات النسبة المئوية عبر عناوين محافظ متعددة.",
+                "learnMore": "اعرف المزيد"
+            },
+            "addTargetWallet": "المحفظة المستهدفة",
+            "walletAddress": {
+                "placeholder": "أدخل عنوان محفظتك"
+            },
+            "actions": {
+                "setAsDefault": "تعيين كافتراضي"
+            }
+        }
+    },
+    "MerchantWallet": {
+        "title": "محفظة التاجر",
+        "address": {
+            "title": "العنوان",
+            "description": "تمكن محفظة التاجر من قبول USDC لجميع الأعمال. توفر طريقة آمنة وسلسة لإدارة الإيرادات مع تقليل رسوم معالجة التاجر."
+        },
+        "activateButton": "تفعيل محفظة التاجر",
+        "features": {
+            "secure": "آمن",
+            "instant": "فوري",
+            "automaticConversion": "تحويل تلقائي"
+        },
+        "buttons": {
+            "manage": "إدارة",
+            "recharge": "إعادة شحن"
+        },
+        "manage": {
+            "title": "إدارة المحفظة",
+            "description": "إدارة المحفظة المدعومة بـ USDC من Circle",
+            "circleWallet": "إدارة محفظة Circle",
+            "noWallets": "لا توجد محافظ متاحة",
+            "withdrawing": "جاري السحب",
+            "withdraw": "سحب",
+            "errors": {
+                "usdcVerification": "لسحب USDC، يجب التحقق من حسابك.",
+                "walletNotConnected": "المحفظة غير متصلة",
+                "contactSupport": "يرجى التواصل مع دعم Droplinked عبر support@droplinked.com للتحقق.",
+                "connectWalletFirst": "يرجى توصيل محفظة مدعومة أولاً ثم متابعة السحب."
+            },
+            "connectWallet": "توصيل المحفظة",
+            "connectYourWallets": "قم بتوصيل محافظك"
+        },
+        "connect": {
+            "connectButton": "توصيل",
+            "errors": {
+                "walletNotFound": "لم يتم العثور على إضافة {{walletName}}. يرجى التأكد من تثبيت الإضافة والمحاولة مرة أخرى",
+                "failedLogin": "فشل تسجيل الدخول"
+            }
+        }
+    },
+    "CreditAndCoupons": {},
+    "Credits": {
+        "title": "الأرصدة",
+        "remainingBalance": "الرصيد المتبقي",
+        "description": "استخدم الأرصدة لإنشاء الخصومات والقسائم.",
+        "charge": "شحن"
+    },
+    "Coupons": {
+        "title": "القسائم",
+        "description": "إدارة الخصومات والقسائم التي ترغب في تقديمها للمستخدمين.",
+        "create": "إنشاء",
+        "tableHeaders": {
+            "title": "العنوان",
+            "quantity": "الكمية",
+            "amount": "المبلغ",
+            "expirationDate": "تاريخ الانتهاء",
+            "type": "النوع"
+        },
+        "CouponsTable": {
+            "title": "العنوان",
+            "quantity": "الكمية",
+            "amount": "المبلغ",
+            "expirationDate": "تاريخ الانتهاء"
+        },
+        "types": {
+            "discount": "خصم",
+            "coupon": "قسيمة"
+        },
+        "tableMenu": {
+            "details": "تفاصيل",
+            "edit": "تعديل",
+            "exportCodes": "تصدير الأكواد"
+        },
+        "drawer": {
+            "editTitle": "تعديل الخصم",
+            "createTitle": "إنشاء خصم",
+            "discard": "إلغاء",
+            "create": "إنشاء",
+            "update": "تحديث"
+        },
+        "form": {
+            "titleLabel": "العنوان",
+            "titleDescription": "أدخل اسمًا فريدًا للخصم.",
+            "titlePlaceholder": "مثال: تخفيض الصيف",
+            "amountLabel": "المبلغ",
+            "amountDescription": "اختر نوع الخصم بين عملة المتجر أو النسبة المئوية.",
+            "amountPlaceholder": "0.00",
+            "percentage": "النسبة المئوية",
+            "quantityLabel": "الكمية",
+            "quantityDescription": "عدد مرات استخدام هذا الخصم.",
+            "quantityPlaceholder": "9999",
+            "expirationDateLabel": "تاريخ الانتهاء",
+            "expirationDateDescription": "اختر تاريخ انتهاء محدد للخصم.",
+            "validation": {
+                "titleRequired": "العنوان مطلوب",
+                "quantityRequired": "الكمية مطلوبة",
+                "amountRequired": "المبلغ مطلوب",
+                "typeRequired": "النوع مطلوب",
+                "expiryDateRequired": "تاريخ الانتهاء مطلوب",
+                "mustBeNumber": "يجب أن يكون رقماً",
+                "validNumber": "يجب أن يكون رقماً صحيحاً",
+                "minDiscount": "الحد الأدنى 1",
+                "maxDiscount": "الحد الأقصى 100",
+                "futureDateRequired": "تاريخ الانتهاء يجب أن يكون في المستقبل"
+            }
+        },
+        "success": {
+            "created": "تم إنشاء {{type}}.",
+            "updated": "تم تحديث {{type}}."
+        },
+        "information": {
+            "creationDate": "تاريخ الإنشاء",
+            "expired": "منتهي الصلاحية",
+            "active": "نشط",
+            "tabs": {
+                "information": "المعلومات",
+                "codes": "الأكواد"
+            },
+            "close": "إغلاق",
+            "saveChanges": "حفظ التغييرات",
+            "details": "التفاصيل",
+            "amount": "المبلغ",
+            "expirationDate": "تاريخ الانتهاء",
+            "usageLimit": "حد الاستخدام",
+            "filters": {
+                "all": "الكل",
+                "used": "مستخدم",
+                "available": "متاح"
+            },
+            "download": "تحميل"
+        }
+    },
+    "UserManagement": {
+        "title": "إدارة المستخدمين",
+        "description": "أضف أو أزل أعضاء الفريق عن طريق إدخال عناوين بريدهم الإلكتروني. سيتم إرسال دعوة مع التعليمات المطلوبة للانضمام إلى الحساب.",
+        "newUser": "مستخدم جديد",
+        "emptyView": "لم يتم العثور على مستخدمين",
+        "table": {
+            "name": "الاسم",
+            "dateAdded": "تاريخ الإضافة",
+            "status": "الحالة"
+        },
+        "status": {
+            "pending": "تم إرسال الدعوة",
+            "administrator": "مدير"
+        },
+        "inviteModal": {
+            "title": "دعوة عضو جديد",
+            "description": "أضف عضوًا جديدًا عن طريق إدخال عنوان بريده الإلكتروني أدناه.",
+            "emailLabel": "عنوان البريد الإلكتروني",
+            "emailPlaceholder": "أدخل عنوان البريد الإلكتروني",
+            "accessWarning": "تحذير الوصول",
+            "accessWarningDesc": "سيحصل المستخدم التالي على الوصول إلى جميع أقسام الحساب. ادعُ بحذر!",
+            "sendInvitation": "إرسال الدعوة",
+            "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+            "invitationSent": "تم إرسال دعوة إلى هذا البريد الإلكتروني."
+        }
+    },
+    "Referrals": {
+        "title": "الإحالات",
+        "link": {
+            "title": "الرابط",
+            "description": "شارك رابط الإحالة هذا لربح المكافآت عندما يسجل الآخرون. يحصل المستخدمون المدعوون على شهر واحد من خطة Pro. \nبدلاً من ذلك، يمكن للمستخدمين إدخال الكود {{code}} أو أي من الأكواد المخصصة أدناه أثناء التسجيل."
+        },
+        "customCodes": {
+            "title": "الأكواد المخصصة",
+            "description": "أنشئ كود إحالة مخصص لمشاركته مع الآخرين.",
+            "placeholder": "اكتب كود مخصص أو نص بدون أي مسافات (الحد الأدنى 8 أحرف)",
+            "createButton": "إنشاء",
+            "success": "تم تحديث الكود المخصص بنجاح"
+        },
+        "referredPartners": {
+            "title": "الشركاء المحالون",
+            "description": "استكشف قائمة المتاجر التي انضمت إلى مجتمعنا باستخدام كود الإحالة الخاص بك.",
+            "yourEarning": "ربحك",
+            "visit": "زيارة"
+        }
+    },
+    "UpgradePlan": {
+        "premium": "بريميوم",
+        "premiumDescription": "مصمم للشركات الكبيرة التي تحتاج إلى حلول شاملة.",
+        "enterprise": "مؤسسة",
+        "enterpriseDescription": "تواصل معنا لاستكشاف التكامل.",
+        "proPlan": "خطة برو",
+        "proDescription": "للشركات الصغيرة والفرق المستعدة للنمو.",
+        "unlockFeatures": "فتح الميزات",
+        "upgradeTitle": "قم بالترقية لفتح الميزات المميزة!",
+        "upgradeDescription": "أنت على وشك الوصول! هذه الميزة متاحة لمستخدمي الحساب المميز.\nجرب جميع الميزات التالية بالترقية اليوم.",
+        "unlimitedAccess": "وصول غير محدود",
+        "advancedTools": "أدوات متقدمة",
+        "prioritySupport": "دعم أولوية",
+        "visitPricingPlans": "زيارة خطط الأسعار",
+        "upgrade": "ترقية"
+    },
+    "validationHandlers": {
+        "validation": {
+            "nameRequired": "يرجى إدخال اسم للمتجر",
+            "emailRequired": "يرجى إدخال بريد إلكتروني صالح.",
+            "emailValid": "يرجى إدخال بريد إلكتروني صالح.",
+            "currencyRequired": "يرجى اختيار عملة",
+            "walletPercentageExceeds": "يرجى التحقق من قسم محافظ {{walletType}}، يجب ألا يتجاوز المجموع 100٪.",
+            "walletPercentageZero": "يرجى التأكد من أن جميع نسب محافظ {{walletType}} أكبر من 0.",
+            "paymentMethodRequired": "يرجى اختيار طريقة دفع واحدة على الأقل.",
+            "loginMethodRequired": "يرجى اختيار طريقة تسجيل دخول واحدة على الأقل.",
+            "titleRequired": "العنوان مطلوب",
+            "quantityRequired": "الكمية مطلوبة",
+            "amountRequired": "المبلغ مطلوب",
+            "typeRequired": "النوع مطلوب",
+            "expiryDateRequired": "تاريخ الانتهاء مطلوب",
+            "mustBeNumber": "يجب أن يكون رقماً",
+            "validNumber": "يجب أن يكون رقماً صحيحاً",
+            "minDiscount": "الحد الأدنى 1",
+            "maxDiscount": "الحد الأقصى 100",
+            "futureDateRequired": "تاريخ الانتهاء يجب أن يكون في المستقبل"
+        }
+    }
+}

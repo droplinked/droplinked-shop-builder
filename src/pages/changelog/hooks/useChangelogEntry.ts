@@ -1,11 +1,13 @@
 import useAppToast from "hooks/toast/useToast"
-import { getChangelogEntry } from "lib/apis/changelog/services"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import { useQuery } from "react-query"
 import { useNavigate, useParams } from "react-router-dom"
+import { getChangelogEntry } from "services/changelog/services"
 
 const useChangelogEntry = () => {
     const { id } = useParams()
     const navigate = useNavigate()
+    const { t } = useLocaleResources('changelogPage')
     const { showToast } = useAppToast()
 
     return useQuery({
@@ -15,7 +17,7 @@ const useChangelogEntry = () => {
         onError: () => {
             showToast({
                 type: 'error',
-                message: 'Failed to fetch changelog entry'
+                message: t('useChangelogEntry.entryLoadFailed')
             })
             navigate('/analytics/changelog')
         }

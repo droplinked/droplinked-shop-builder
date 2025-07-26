@@ -1,0 +1,23 @@
+{
+  "ShopManagement": {
+    "pageTitle": "إدارة المتاجر",
+    "pageDescription": "قم بإدارة جميع متاجرك في مكان واحد. أنشئ وحرر وتبدّل بين متاجرك بسهولة."
+  },
+  "ShopList": {
+    "createStoreButton": "إنشاء متجر",
+    "loadError": "فشل في تحميل المتاجر."
+  },
+  "EmptyBox": {
+    "noShopsMessage": "عذرًا! يبدو أنك ليس لديك أي متاجر بعد. أنشئ متجرك الأول للبدء."
+  },
+  "ShopRow": {
+    "switchError": "فشل في تبديل المتجر. حاول مرة أخرى.",
+    "switchButton": "تبديل"
+  },
+  "CreateShopModal": {
+    "urlInputPlaceholder": "اكتب اسم المتجر",
+    "modalHeading": "اختر الرابط",
+    "modalDescription": "ابدأ رحلتك الإبداعية بصياغة اسم مستخدم فريد يميزك عن الآخرين.",
+    "continueButton": "متابعة"
+  }
+}

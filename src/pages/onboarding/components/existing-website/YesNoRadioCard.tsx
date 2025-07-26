@@ -1,6 +1,8 @@
 import { Center, Flex, FormLabel, Text, useRadio, UseRadioProps } from '@chakra-ui/react'
+import { ChevronleftLg } from 'assets/icons/Navigation/ChevronLeft/ChevronleftLg'
 import { ChevronrightLg } from 'assets/icons/Navigation/ChevronRight/ChevronrightLg'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 interface Props extends UseRadioProps {
@@ -10,6 +12,7 @@ interface Props extends UseRadioProps {
 }
 
 function YesNoRadioCard(props: Props) {
+    const { isRTL } = useLocaleResources('common')
     const { label, description, icon, ...radioProps } = props
     const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
@@ -57,7 +60,7 @@ function YesNoRadioCard(props: Props) {
                     padding={{ base: "10px", md: 3 }}
                     opacity={isChecked ? 1 : 0}
                 >
-                    <ChevronrightLg color='#2BCFA1' />
+                    {isRTL ? <ChevronleftLg color='#2BCFA1' /> : <ChevronrightLg color='#2BCFA1' />}
                 </Center>
             </Flex>
 
@@ -79,7 +82,7 @@ function YesNoRadioCard(props: Props) {
                 opacity={isChecked ? 1 : 0}
                 order={{ base: 1, md: 2 }}
             >
-                <ChevronrightLg color='#2BCFA1' />
+                {isRTL ? <ChevronleftLg color='#2BCFA1' /> : <ChevronrightLg color='#2BCFA1' />}
             </Center>
         </FormLabel>
     )

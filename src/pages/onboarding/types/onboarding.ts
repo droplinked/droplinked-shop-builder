@@ -1,5 +1,5 @@
 import React from "react"
-import { subscriptionPlans } from "utils/constants/subscriptionPlans"
+import { SubscriptionPlans } from 'data/subscriptionPlans'
 
 // Shop data that will be sent to backend
 export type ShopData = {
@@ -77,7 +77,7 @@ export interface ProductCardData {
     isMockElement?: boolean
 }
 
-export type PlanType = keyof typeof subscriptionPlans
+export type PlanType = keyof typeof SubscriptionPlans //TODO : check if this is correct
 
 export interface LayoutProps {
     leftContent: React.ReactNode

@@ -1,0 +1,42 @@
+{
+  "ProductOrder": {
+    "title": "طلب عينة منتج",
+    "desc": "اختر منتجاتك للحصول على عينة."
+  },
+  "ProductOrderCard": {},
+  "ProductOrderSkues": {
+    "title": "المنتج",
+    "productCost": "تكلفة المنتج",
+    "variant": "المتغير",
+    "quantity": "الكمية"
+  },
+  "productOrderSkuesModel": {},
+  "ProductOrderAddress": {
+    "title": "عنوان الشحن",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "addressLine1": "العنوان",
+    "addressLine2": "العنوان الإضافي",
+    "country": "الدولة",
+    "state": "المنطقة",
+    "city": "المدينة",
+    "zip": "الرمز البريدي"
+  },
+  "AddressModalModel": {},
+  "ProductOrderShipments": {
+    "title": "طرق الشحن",
+    "fulfillmentDate": "تاريخ التسليم",
+    "tax": "الضريبة",
+    "payWithStripe": "الدفع عبر Stripe"
+  },
+  "PaymentModal": {
+    "title": "الدفع",
+    "successTitle": "تم تقديم الطلب بنجاح!",
+    "successDesc": "تم تأكيد طلب العينة! اختيارك في الطريق.",
+    "ok": "حسناً"
+  },
+  "errors": {
+    "selectSku": "الرجاء اختيار المنتج",
+    "selectRate": "الرجاء اختيار طريقة الشحن"
+  }
+}

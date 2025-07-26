@@ -3,12 +3,14 @@ import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate"
 import { useCallback } from "react"
 import useAppStore from "stores/app/appStore"
 import useOnboardingStore from "../stores/useOnboardingStore"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export function useLogin() {
     const { login: authenticateUser, loading } = useAppStore()
     const { shopNavigate } = useCustomNavigate()
     const { showToast } = useAppToast()
     const { updateOnboardingState } = useOnboardingStore()
+    const { t } = useLocaleResources('common')
 
     const finalizeLogin = useCallback(async (data: any) => {
         try {
@@ -16,11 +18,11 @@ export function useLogin() {
             const status = user.status
 
             if (status === "DELETED")
-                return showToast({ message: "This account has been deleted", type: "error" })
+                return showToast({ message: t('onboarding.useLogin.errors.accountDeleted'), type: "error" })
 
             if (user.type !== "SHOPBUILDER")
                 return showToast({
-                    message: "This account is unable to log in. Please check your credentials.",
+                    message: t('onboarding.useLogin.errors.accountUnableToLogin'),
                     type: "error"
                 })
 
@@ -38,9 +40,9 @@ export function useLogin() {
             }
         }
         catch (error) {
-            showToast({ message: error?.message || "An error occurred", type: "error" })
+            showToast({ message: error?.message || t('onboarding.useLogin.errors.anErrorOccurred'), type: "error" })
         }
-    }, [showToast, updateOnboardingState, shopNavigate])
+    }, [showToast, updateOnboardingState, shopNavigate, t])
 
     const onLoginSubmit = useCallback(async (data: any) => {
         try {
@@ -48,9 +50,9 @@ export function useLogin() {
             if (result) finalizeLogin(result)
         }
         catch (error) {
-            showToast({ message: error?.message || "Login failed", type: "error" })
+            showToast({ message: error?.message || t('onboarding.useLogin.errors.loginFailed'), type: "error" })
         }
-    }, [authenticateUser, finalizeLogin, showToast])
+    }, [authenticateUser, finalizeLogin, showToast, t])
 
     return { authenticateUser, finalizeLogin, onLoginSubmit, loading }
 }

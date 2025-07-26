@@ -2,21 +2,23 @@ import { Box, ModalBody, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } 
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import AppButton from "components/redesign/button/AppButton";
+import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import { motion } from "framer-motion";
-import { IPostWithdrawCircleWallet } from "lib/apis/shop/interfaces";
-import { getCircleWallet, postWithdrawCircle } from "lib/apis/shop/shopServices";
-import useAppStore from "stores/app/appStore";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
+import { IPostWithdrawCircleWallet } from "services/shop/interfaces";
+import { getCircleWallet, postWithdrawCircle } from "services/shop/shopServices";
+import useAppStore from "stores/app/appStore";
 import { IModalProps } from "types/interface/modal.interface";
-import ConnectWallets from "./connect/ConnectWallets";
-import { ChainIcons } from "utils/constants/chainIcons";
-import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
 import { appDevelopment } from "utils/app/variable";
+import { ChainIcons } from "constants/chainIcons";
+import ConnectWallets from "./connect/ConnectWallets";
 
-const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
+const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
+    const { t } = useLocaleResources('settings');
     const { data, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
     const { user } = useAppStore(),
         connectWalletModal = useDisclosure();
@@ -63,7 +65,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
     const EmptyWalletList = () => (
         <Box display="flex" justifyContent="center" alignItems="center" padding="24px" width="100%">
             <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
-                No wallets available
+                {t("settings.merchantWallet.manage.noWallets")}
             </AppTypography>
         </Box>
     );
@@ -96,16 +98,13 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                         bgColor: "#141414",
                         paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                     }}
-                    descriptionProps={{
-                        color: "#B1B1B1 !important"
-                    }}
-                    title={"Manage Wallet"}
-                    description="Manage USDC powered wallet by Circle"
+                    title={t("MerchantWallet.manage.title")}
+                    description={t("MerchantWallet.manage.description")}
                 />
                 <ModalBody mt={"48px"} display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" gap="24px">
                     <Box display="flex" flexDirection="column" alignItems="flex-start" gap="8px" alignSelf="stretch">
                         <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
-                            Manage Circle Wallet
+                            {t("MerchantWallet.manage.circleWallet")}
                         </AppTypography>
                     </Box>
                     <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
@@ -115,12 +114,12 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                             <EmptyWalletList />
                         ) : (
                             data?.data?.data?.map((chain) => {
-                                const Icon = ChainIcons[chain?.tokenSymbol];   
+                                const Icon = ChainIcons[chain?.tokenSymbol];
                                 const isWithdrawingThisChain = withdrawingChain === chain?.chain;
                                 return (
                                     <Box key={chain?.chain} display="flex" padding="16px 24px" alignItems="center" gap="24px" alignSelf="stretch" flex="3">
                                         <Box display="flex" alignItems="center" gap="16px" flex="1">
-                                            {Icon &&<IconWrapper icon={<Icon />}></IconWrapper>}
+                                            {Icon && <IconWrapper icon={<Icon />}></IconWrapper>}
                                             <AppTypography color="#FFF" flex="1 0 0" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
                                                 {chain?.tokenName}
                                             </AppTypography>
@@ -209,7 +208,9 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                             variants={buttonVariants}
                                             animate={isWithdrawingThisChain ? "withdrawing" : "idle"}
                                         >
-                                            {isWithdrawingThisChain ? "Withdrawing" : "Withdraw"}
+                                            {isWithdrawingThisChain ?
+                                                t("MerchantWallet.manage.withdrawing") :
+                                                t("MerchantWallet.manage.withdraw")}
                                             <motion.div
                                                 style={{
                                                     transform: "translateX(-80%)",
@@ -242,39 +243,38 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                 </svg>
                                 <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" flex="1 0 0">
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="700" lineHeight="20px">
-                                    {Error === "USDC"? 'For USDC withdrawals, your account needs to be verified.' : 'Wallet not connected' }
-                                        
+                                        {Error === "USDC"
+                                            ? t("MerchantWallet.manage.errors.usdcVerification")
+                                            : t("MerchantWallet.manage.errors.walletNotConnected")}
                                     </AppTypography>
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px">
-                                        {Error === "USDC" 
-                                            ? "Please contact Droplinked support at support@droplinked.com for verification."
-                                            : `Please connect a ${Error} supported wallet first, then proceed with the withdrawal.`}
+                                        {Error === "USDC"
+                                            ? t("MerchantWallet.manage.errors.contactSupport")
+                                            : t("MerchantWallet.manage.errors.connectWalletFirst")}
                                     </AppTypography>
                                 </Box>
                             </Box>
-                            {Error === "USDC" ? null : 
-
-                             <AppButton
-                                display="flex"
-                                border="none"
-                                color="#FFF"
-                                textAlign="center"
-                                fontFamily="Inter"
-                                fontSize="14px"
-                                fontStyle="normal"
-                                fontWeight="500"
-                                lineHeight="16px"
-                                padding="12px 16px"
-                                justifyContent="center"
-                                alignItems="center"
-                                gap="6px"
-                                borderRadius="8px"
-                                background="neutral.gray.850"
-                                onClick={connectWalletModal.onOpen}
-                            >
-                                Connect Wallet
-                            </AppButton> }
-                           
+                            {Error === "USDC" ? null :
+                                <AppButton
+                                    display="flex"
+                                    border="none"
+                                    color="#FFF"
+                                    textAlign="center"
+                                    fontFamily="Inter"
+                                    fontSize="14px"
+                                    fontStyle="normal"
+                                    fontWeight="500"
+                                    lineHeight="16px"
+                                    padding="12px 16px"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    gap="6px"
+                                    borderRadius="8px"
+                                    background="neutral.gray.850"
+                                    onClick={connectWalletModal.onOpen}
+                                >
+                                    {t("MerchantWallet.manage.connectWallet")}
+                                </AppButton>}
                         </Box>
                     )}
                 </ModalBody>
@@ -282,7 +282,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
             <AppModal modalRootProps={{ isOpen: connectWalletModal.isOpen, onClose: connectWalletModal.onClose, isCentered: false, size: "3xl" }}>
                 <ModalHeader display="flex" justifyContent="center" alignItems="center" alignSelf="stretch">
                     <AppTypography color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="700" lineHeight="36px">
-                        Connect your wallets
+                        {t("settings.merchantWallet.manage.connectYourWallets")}
                     </AppTypography>
                 </ModalHeader>
                 <ModalBody paddingInline="0px !important" padding="0px" overflow="auto">

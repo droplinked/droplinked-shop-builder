@@ -1,11 +1,13 @@
 import Textarea from 'components/redesign/textarea/Textarea'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function DescriptionField() {
     const { shopData, updateShopData, storeSetupErrors } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
 
-    const textAreaPlaceholder = "Write a 150 to 160 characters description for your shop. This will be visible in the footer and will be used for SEO purposes."
+    const textAreaPlaceholder = t('DescriptionField.placeholder')
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.target.value
         updateShopData('description', value)
@@ -17,7 +19,7 @@ export default function DescriptionField() {
             fontSize={{ base: 14, md: 16 }}
             placeholder={textAreaPlaceholder}
             tooltipText={textAreaPlaceholder}
-            label='Description'
+            label={t('DescriptionField.label')}
             spellCheck="false"
             value={shopData.description}
             onChange={handleChange}

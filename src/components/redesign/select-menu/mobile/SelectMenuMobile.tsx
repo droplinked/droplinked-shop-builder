@@ -13,6 +13,7 @@ export default function SelectMenuMobile({
     onChange,
     placeholder = "Select",
     mobileModeIcon,
+    fullWidth
 }: SelectMenuProps) {
     const { isOpen, onClose, onOpen } = useDisclosure()
 
@@ -37,6 +38,7 @@ export default function SelectMenuMobile({
                 mobileModeIcon={mobileModeIcon}
                 onOpen={onOpen}
                 placeholder={placeholder}
+                fullWidth={fullWidth}
             />
 
             <Drawer

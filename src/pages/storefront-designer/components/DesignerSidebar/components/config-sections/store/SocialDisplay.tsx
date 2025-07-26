@@ -29,13 +29,12 @@ export const SocialDisplay: React.FC<SocialDisplayProps> = ({ socialId, socialIt
       <Box width="20px" height="20px" position="relative">
         {socialItem.icon}
       </Box>
-      <Flex flex="1">
-        <Text color="text.subtext.placeholder.dark" fontSize="16px" fontWeight="normal" lineHeight="normal">
-          {socialItem.url}
-        </Text>
+      <Flex flex="1" alignItems="center" gap={2}>
         <Text color="white" fontSize="16px" fontWeight="medium" lineHeight="normal">
-          {socialItem.value?.substring(0, 6)}
-          {socialItem.value && socialItem.value.length > 7 && '...'}
+          {socialItem.label}:
+        </Text>
+        <Text color="text.subtext.placeholder.dark" fontSize="16px" fontWeight="normal" lineHeight="normal">
+          {socialItem.value || socialItem.url}
         </Text>
       </Flex>
     </Flex>

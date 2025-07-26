@@ -1,0 +1,410 @@
+{
+  "common": {
+    "skipForNow": "تخطي الآن",
+    "googleAccount": "حساب جوجل",
+    "welcomeTitle": "مرحبًا بك في دروبلينكد",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل البريد الإلكتروني",
+    "emailError": "يرجى إدخال بريد إلكتروني صالح.",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "passwordError": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+    "passwordRules": {
+      "lowercase": "حرف صغير واحد",
+      "uppercase": "حرف كبير واحد",
+      "length": "8 أحرف أو أكثر",
+      "special": "رمز خاص واحد",
+      "digit": "رقم واحد"
+    },
+    "orContinueWith": "أو المتابعة باستخدام",
+    "buttons": {
+      "skip": "تخطي",
+      "apply": "تطبيق",
+      "generate": "إنشاء",
+      "regenerate": "إنشاء مرة أخرى",
+      "exit": "خروج",
+      "verify": "تحقق",
+      "resend": "إعادة الإرسال"
+    },
+    "validation": {
+      "required": "حقل {field} مطلوب",
+      "minLength": "يجب أن يكون حقل {field} على الأقل {length} أحرف",
+      "urlRequired": "الرابط مطلوب",
+      "urlFormat": "يمكن للرابط أن يحتوي فقط على حروف وأرقام وواصلات",
+      "nameRequired": "اسم المتجر مطلوب",
+      "nameLength": "يجب أن يكون اسم المتجر 3 أحرف على الأقل"
+    },
+    "errors": {
+      "generic": "حدث خطأ ما",
+      "urlCheckError": "حدث خطأ أثناء التحقق من توفر الرابط",
+      "urlNotAvailable": "هذا الرابط غير متوفر",
+      "paymentError": "فشل إنشاء طلب الدفع"
+    },
+    "shop": {
+      "preview": "معاينة المتجر",
+      "details": "تفاصيل المتجر",
+      "name": "الاسم",
+      "url": "رابط المتجر",
+      "logo": "الشعار",
+      "coverImage": "صورة الغلاف"
+    },
+    "ai": {
+      "title": "استخدم الذكاء الاصطناعي من دروبلينكد لإنشاء متجرك",
+      "description": "استخدم أدوات الذكاء الاصطناعي لتسهيل إنشاء محتوى المتجر"
+    }
+  },
+  "SignInForm": {
+    "subtitle": "سجّل الدخول باستخدام بيانات الاعتماد أدناه.",
+    "rememberPassword": "تذكر كلمة المرور الخاصة بي",
+    "signInButton": "تسجيل الدخول",
+    "noAccountText": "ليس لديك حساب؟",
+    "createAccountText": "انضم إلينا وأنشئ حسابًا!",
+    "resetPassword": "إعادة تعيين كلمة المرور"
+  },
+  "SignUpForm": {
+    "subtitle": "أكمل التفاصيل أدناه أو استخدم حساب جوجل الخاص بك.",
+    "referralLabel": "رمز الإحالة",
+    "referralPlaceholder": "أدخل رمز الإحالة",
+    "termsPrefix": "بالتسجيل، أوافق على",
+    "termsLink": "الشروط والأحكام.",
+    "haveAccountText": "هل لديك حساب بالفعل؟",
+    "signInLink": "سجّل الدخول",
+    "successMessage": "تم إنشاء الحساب بنجاح",
+    "errorMessage": "فشل في إنشاء الحساب"
+  },
+  "EmailConfirmation": {
+    "title": "تأكيد البريد الإلكتروني",
+    "subtitle": "تحقق من الرمز الذي استلمته في بريدك الإلكتروني أدناه، وتأكد من فحص مجلد الرسائل غير المرغوب فيها إذا لم يظهر في البريد الوارد الرئيسي.",
+    "verifyButton": "تحقق",
+    "noCodeText": "لم تستلم الرمز؟",
+    "resendButton": "إعادة الإرسال",
+    "changeEmailText": "هل ترغب في تغيير بريدك الإلكتروني؟",
+    "goBackButton": "عودة"
+  },
+  "ShopSetupForm": {
+    "subtitle": "أكمل المعلومات أدناه لتحسين واجهة متجرك."
+  },
+  "NameField": {
+    "label": "الاسم",
+    "placeholder": "اختر اسم متجرك",
+    "validation": {
+      "required": "الاسم مطلوب",
+      "minLength": "يجب أن يكون الاسم 3 أحرف على الأقل"
+    }
+  },
+  "UrlChooser": {
+    "label": "رابط المتجر",
+    "placeholder": "اكتب الرابط الخاص بك",
+    "validation": {
+      "required": "الرابط مطلوب",
+      "notAvailable": "هذا الرابط غير متوفر",
+      "checkError": "حدث خطأ أثناء التحقق من توفر الرابط"
+    }
+  },
+  "DescriptionField": {
+    "label": "الوصف",
+    "placeholder": "اكتب وصفًا يتكون من 150 إلى 160 حرفًا لمتجرك. سيكون مرئيًا في التذييل وسيُستخدم لأغراض تحسين محركات البحث.",
+    "tooltip": "اكتب وصفًا يتكون من 150 إلى 160 حرفًا لمتجرك. سيكون مرئيًا في التذييل وسيُستخدم لأغراض تحسين محركات البحث."
+  },
+  "ExistingShopUrlProcessor": {
+    "label": "استيراد",
+    "description": "أضف رابط موقع وسنقوم باستيراد المحتوى إلى الحساب.",
+    "placeholder": "الصق الرابط هنا",
+    "button": "بدء الاستيراد",
+    "validation": {
+      "required": "الرابط مطلوب",
+      "invalid": "يرجى إدخال رابط صحيح"
+    }
+  },
+  "AutoPopulateSampleProductsToggle": {
+    "title": "إنشاء مخزون إلهامي",
+    "description": "امنح محرك الذكاء الاصطناعي الإبداعي لدينا لإضافة 3 منتجات حسب الطلب بناءً على الأصول التي رفعتها للبدء بسهولة."
+  },
+  "LogoUploader": {
+    "change": "تغيير"
+  },
+  "CoverImage": {
+    "title": "صورة الغلاف",
+    "dropDescription": "JPG و JPEG و PNG"
+  },
+  "FileUpload": {
+    "dropHere": "أفلت الملف هنا ...",
+    "clickOrDrag": "انقر أو اسحب وأفلت هنا",
+    "uploading": "جاري الرفع... يرجى الانتظار.",
+    "editImage": "تعديل الصورة",
+    "deleteImage": "حذف الصورة"
+  },
+  "RemoveConfirmation": {
+    "title": "إزالة {{type}} الحالي",
+    "description": "أنت على وشك إزالة {{type}} الحالي لاستبداله. هل أنت متأكد من أنك تريد المتابعة؟",
+    "keepButton": "لا، احتفظ به",
+    "replaceButton": "نعم، استبدل {{type}}"
+  },
+  "PaymentSetup": {
+    "title": "تفاصيل الدفع الأساسية",
+    "subtitle": "اختر تفعيل أي من الخيارات أدناه.",
+    "currency": {
+      "title": "العملة الافتراضية",
+      "updateError": "فشل في تحديث العملة"
+    },
+    "financialServices": {
+      "title": "الخدمات المالية",
+      "connect": "اتصال",
+      "stripe": {
+        "tooltip": "ربط حساب Stripe لاستقبال الإيداعات مباشرةً في حساب موجود."
+      },
+      "paymob": {
+        "tooltip": "ربط حساب Paymob لاستقبال الإيداعات مباشرةً في حساب موجود."
+      }
+    }
+  },
+  "SubscriptionPlans": {
+    "title": "الخطط",
+    "subtitle": "اختر من خيارات الحزم المختلفة أدناه.",
+    "viewAllPlans": "عرض جميع الخطط والمقارنة",
+    "paymentError": "فشل إنشاء طلب الدفع",
+    "proPlan": {
+      "title": "الخطة الاحترافية",
+      "description": "للشركات الصغيرة والفرق الجاهزة للنمو."
+    },
+    "inheritance": "كل شيء في خطة {{plan}}",
+    "continueWithPlan": "المتابعة مع خطة {{plan}}",
+    "selected": "محدد",
+    "mostPopular": "الأكثر شعبية"
+  },
+  "CompletionSection": {
+    "title": "تم كل شيء!",
+    "subtitle": "حسابك الآن فعال وجاهز للاستخدام.",
+    "message": "تهانينا! لقد أعددت متجرك في دروبلينكد بنجاح.",
+    "controls": {
+      "startExploring": "ابدأ استكشاف لوحة التحكم"
+    },
+    "newsletter": {
+      "title": "الاشتراك في النشرة الإخبارية",
+      "description": "ابقَ على اطلاع بأحدث الميزات والعروض"
+    }
+  },
+  "AICard": {
+    "title": "إنشاء بالذكاء الاصطناعي",
+    "subtitle": "خصص الحساب باستخدام مساعد دروبلينكد",
+    "proFeature": "ميزة احترافية",
+    "businessDescribe": {
+      "label": "وصف عملك",
+      "placeholder": "أضف معلومات وصفية حول الفئة وقاعدة العملاء لتحسين النتائج."
+    },
+    "businessCategory": {
+      "label": "فئة العمل",
+      "placeholder": "اختر الفئة"
+    },
+    "generateButton": "إنشاء تفاصيل الحساب"
+  },
+  "AIMainButton": {
+    "title": "إنشاء بالذكاء الاصطناعي",
+    "subtitle": "خصص متجرك باستخدام الذكاء الاصطناعي من دروبلينكد",
+    "tryButton": "جرّب مساعد الذكاء الاصطناعي"
+  },
+  "AIBusinessModal": {
+    "businessDescribe": {
+      "label": "وصف عملك",
+      "placeholder": "يرجى وصف متجرك لمساعدة الذكاء الاصطناعي في إنشاء تمثيل أدق وأكثر كفاءة لعملك."
+    },
+    "businessCategory": {
+      "label": "فئة العمل",
+      "placeholder": "اختر فئة عملك"
+    },
+    "generateButton": "إنشاء تفاصيل المتجر بالذكاء الاصطناعي"
+  },
+  "AIGenerationModal": {
+    "generatedContent": {
+      "title": "المحتوى المُنشأ",
+      "description": "هذا ما أنشأه الذكاء الاصطناعي لمتجرك"
+    },
+    "names": {
+      "title": "أسماء المتاجر",
+      "description": "اختر من أسماء المتاجر التي أنشأها الذكاء الاصطناعي"
+    },
+    "urls": {
+      "title": "روابط المتاجر",
+      "description": "اختر رابطًا لمتجرك"
+    },
+    "logos": {
+      "title": "شعارات المتاجر",
+      "description": "اختر تصميم شعار لمتجرك"
+    },
+    "covers": {
+      "title": "أغلفة المتاجر",
+      "description": "اختر صورة غلاف لمتجرك"
+    }
+  },
+  "AIPlansModal": {
+    "description": "لا تتردد في استخدام أدوات الذكاء الاصطناعي لتخصيص متجرك. اشترك أدناه للبدء.",
+    "buttons": {
+      "claimTrial": "اطلب النسخة التجريبية الآن",
+      "subscribe": "اشترك"
+    }
+  },
+  "AIOptions": {
+    "aiSuggestions": "اقتراحات الذكاء الاصطناعي",
+    "generateAgain": "إنشاء مرة أخرى"
+  },
+  "ShopPreview": {
+    "title": "معاينة المتجر",
+    "banner": {
+      "tagline": "الجيل القادم من التجارة"
+    }
+  },
+  "Categories": {
+    "fashion": "الأزياء",
+    "technology": "التكنولوجيا",
+    "beauty": "الجمال",
+    "home": "المنزل والمعيشة",
+    "health": "الصحة والعافية",
+    "food": "الطعام والمشروبات",
+    "art": "الفن والتصميم",
+    "automotive": "السيارات",
+    "toys": "الألعاب والتسلية",
+    "books": "الكتب والوسائط",
+    "entertainment": "الترفيه",
+    "petSupplies": "مستلزمات الحيوانات الأليفة",
+    "sports": "الرياضة واللياقة البدنية",
+    "kids": "الأطفال والرضع",
+    "luxury": "الفخامة والإكسسوارات"
+  },
+  "ExistingWebsite": {
+    "title": "دعنا نبدأ",
+    "description": "هل لديك موقع ويب موجود بالفعل؟",
+    "options": {
+      "yes": {
+        "label": "نعم",
+        "description": "استيراد المخزون والبيانات بنقرة واحدة فقط."
+      },
+      "no": {
+        "label": "لا",
+        "description": "إنشاء واجهة متجر باستخدام مساعد الذكاء الاصطناعي."
+      }
+    }
+  },
+  "ResetPasswordForm": {
+    "title": "إعادة تعيين كلمة المرور",
+    "description": "أدخل البريد الإلكتروني المرتبط بحسابك. سنرسل لك رمز تحقق لإعادة تعيين كلمة المرور.",
+    "form": {
+      "emailLabel": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "أدخل عنوان البريد الإلكتروني"
+    },
+    "validation": {
+      "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
+      "emailRequired": "عنوان البريد الإلكتروني مطلوب.",
+      "passwordRequired": "كلمة المرور مطلوبة.",
+      "passwordMinLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+      "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب.",
+      "passwordsMustMatch": "يجب أن تتطابق كلمات المرور."
+    },
+    "success": {
+      "emailSent": "تم إرسال بريد إعادة تعيين كلمة المرور بنجاح",
+      "passwordReset": "تم إعادة تعيين كلمة المرور بنجاح"
+    },
+    "errors": {
+      "emailSendFailed": "فشل في إرسال بريد إعادة تعيين كلمة المرور",
+      "passwordResetFailed": "فشل في إعادة تعيين كلمة المرور"
+    },
+    "links": {
+      "rememberPassword": "تذكر كلمة المرور؟",
+      "signIn": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "createAccount": "انضم إلينا وأنشئ حسابًا!"
+    }
+  },
+  "SetNewPasswordForm": {
+    "title": "تعيين كلمة مرور جديدة",
+    "description": "أنشئ كلمة مرور قوية وجديدة لحسابك.",
+    "newPasswordLabel": "كلمة المرور الجديدة",
+    "confirmPasswordLabel": "تأكيد كلمة المرور الجديدة",
+    "confirmPasswordPlaceholder": "تأكيد كلمة المرور الجديدة",
+    "resetButton": "إعادة تعيين كلمة المرور"
+  },
+  "PasswordUpdatedForm": {
+    "title": "تم تحديث كلمة المرور!",
+    "description": "تم إعادة تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول.",
+    "signInButton": "تسجيل الدخول"
+  },
+  "useLogin": {
+    "errors": {
+      "accountDeleted": "تم حذف هذا الحساب",
+      "accountUnableToLogin": "هذا الحساب غير قادر على تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك.",
+      "anErrorOccurred": "حدث خطأ",
+      "loginFailed": "فشل تسجيل الدخول"
+    }
+  },
+  "useEmailVerification": {
+    "errors": {
+      "invalidVerificationCode": "رمز التحقق غير صحيح",
+      "failedToSendCode": "فشل في إرسال الرمز"
+    },
+    "success": {
+      "codeVerified": "تم التحقق من الرمز بنجاح",
+      "verificationCodeSent": "تم إرسال رمز التحقق إلى بريدك الإلكتروني"
+    }
+  },
+  "useShopSetupSubmit": {
+    "errors": {
+      "failedToCompleteShopSetup": "فشل في إكمال إعداد المتجر"
+    }
+  },
+  "useShopUrlProcessor": {
+    "errors": {
+      "failedToImportShopData": "فشل في استيراد بيانات المتجر",
+      "importTimedOut": "انتهت مهلة الاستيراد. يرجى المحاولة مرة أخرى.",
+      "failedToStartImport": "فشل في بدء الاستيراد. يرجى المحاولة مرة أخرى."
+    },
+    "success": {
+      "shopDataImported": "تم استيراد بيانات المتجر بنجاح!"
+    },
+    "info": {
+      "importStarted": "تم بدء الاستيراد. يرجى الانتظار بينما نقوم بمعالجة موقعك..."
+    }
+  },
+  "useAiGeneratedContent": {
+    "errors": {
+      "failedToUploadLogo": "فشل في تحميل الشعار",
+      "failedToUploadBanner": "فشل في تحميل البانر",
+      "allLogoGenerationFailed": "فشلت جميع طلبات إنشاء الشعارات",
+      "failedToGetLogoRequestIds": "فشل في الحصول على معرفات الطلبات لإنشاء الشعارات",
+      "failedToGenerateLogos": "فشل في إنشاء الشعارات",
+      "allCoverGenerationFailed": "فشلت جميع طلبات إنشاء الأغلفة",
+      "failedToGetCoverRequestIds": "فشل في الحصول على معرفات الطلبات لإنشاء الأغلفة",
+      "failedToGenerateCovers": "فشل في إنشاء الأغلفة",
+      "failedToGenerateUrls": "فشل في إنشاء الروابط",
+      "failedToGenerateNames": "فشل في إنشاء الأسماء"
+    },
+    "success": {
+      "logosGenerated": "تم إنشاء الشعارات بنجاح!",
+      "coversGenerated": "تم إنشاء الأغلفة بنجاح!"
+    },
+    "warnings": {
+      "fillBusinessInfoFirst": "يرجى ملء فئة الأعمال والوصف أولاً"
+    }
+  },
+  "useUsernameAvailability": {
+    "errors": {
+      "errorCheckingUsername": "خطأ في التحقق من اسم المستخدم"
+    }
+  },
+  "ProductCards": {
+    "physical": {
+      "title": "المنتجات المادية",
+      "description": "أضف المنتجات المادية عن طريق إدخال التفاصيل مثل الاسم والوصف والسعر. يمكن للعملاء التصفح والشراء مباشرة من متجرك."
+    },
+    "digital": {
+      "title": "السلع الرقمية",
+      "description": "بيع المنتجات الرقمية مثل الكتب الإلكترونية والبرامج أو الموسيقى. ارفع الملفات وحدد الأسعار واسمح بالتنزيل الفوري بعد الشراء."
+    },
+    "print": {
+      "title": "الطباعة عند الطلب",
+      "description": "خصص المنتجات مثل القمصان التي يتم إنتاجها فقط عند الطلب، وتتعامل معها شريك الطباعة عند الطلب الخاص بك."
+    },
+    "nft": {
+      "title": "NFT",
+      "description": "أنشئ رابط دفع لأي منتج، مما يبسط عملية الدفع عن طريق تجاوز الواجهة الأمامية للمتجر."
+    }
+  }
+}

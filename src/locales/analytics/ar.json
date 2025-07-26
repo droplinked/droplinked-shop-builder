@@ -1,0 +1,29 @@
+{
+  "EarningsSummary": {
+    "earnings": "الأرباح",
+    "incomePeriod": "الدخل من {{startDate}} إلى {{endDate}}."
+  },
+  "VisitorStats": {
+    "visitors": "الزوار"
+  },
+  "InventorySummary": {
+    "totalInventoryValue": "إجمالي قيمة المخزون",
+    "numberOfProducts": "عدد المنتجات",
+    "items": "عناصر"
+  },
+  "ProductTypeBarChart": {
+    "normalProducts": "منتجات عادية",
+    "printOnDemand": "الطباعة عند الطلب",
+    "digitalGoods": "منتجات رقمية",
+    "eventProducts": "منتجات الفعاليات"
+  },
+  "ProductEngagementDashboard": {
+    "bestSellingProducts": "أفضل المنتجات مبيعًا",
+    "mostImportedProducts": "أكثر المنتجات استيرادًا"
+  },
+  "StackedBarChart": {
+    "totalEarning": "الإيرادات الكلية"
+  },
+  "direct": "مباشر",
+  "growWithDroplinkedDesc": "انقر على المهام، أكملها لتنمية متجرك وزيادة مبيعاتك."
+}

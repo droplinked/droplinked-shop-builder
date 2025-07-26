@@ -4,6 +4,7 @@ import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import HorizontalBarChart from "components/redesign/horizontal-bar-chart/HorizontalBarChart"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import StylizedTitle from "components/redesign/stylized-title/StylizedTitle"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React, { ReactNode } from "react"
 import DataPointCard from "./DataPointCard"
 
@@ -17,14 +18,16 @@ interface MetricCardProps {
 }
 
 function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLoading }: MetricCardProps) {
+    const { t } = useLocaleResources("analyticsPage")
+
     // Calculate percentages relative to totalValue (avoid division by zero)
     const directPercentage = totalValue ? (directValue / totalValue) * 100 : 0
     const affiliatePercentage = totalValue ? (affiliateValue / totalValue) * 100 : 0
 
     // Create breakdown details for Direct and Affiliate metrics
     const metricBreakdown = [
-        { label: "Direct", percentage: directPercentage, color: "main.primary" },
-        { label: "Affiliate", percentage: affiliatePercentage, color: "#C5A3FF" }
+        { label: t('direct'), percentage: directPercentage, color: 'main.primary' },
+        { label: t('common:affiliate'), percentage: affiliatePercentage, color: '#C5A3FF' }
     ]
 
     // Only include metrics with a percentage greater than 0
@@ -36,7 +39,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
     // Helper function to render the value display based on title.
     // If title is "Net Profit", use FormattedPrice; otherwise, use Text.
     const renderValueDisplay = (fontSize: number | Record<string, number>) => {
-        return title === "Net Profit" ?
+        return title === t('netProfit') ?
             <FormattedPrice
                 price={totalValue}
                 fontSize={fontSize}

@@ -12,7 +12,7 @@ function SalesAndAffiliates() {
 
     return (
         <DoubleColumnContainer>
-            <OrderSummaryCard isLoading={isLoading} recentOrders={recentOrders} />
+            <OrderSummaryCard recentOrders={recentOrders} />
             <AffiliateProgramCard isLoading={isLoading} />
         </DoubleColumnContainer>
     )

@@ -1,4 +1,4 @@
-import { IcreateAddressService } from 'lib/apis/address/interfaces';
+import { IcreateAddressService } from 'services/address/interfaces';
 import * as Yup from 'yup';
 
 interface IinitialValues {
@@ -8,27 +8,27 @@ interface IinitialValues {
 const AddressModalModel = ({
     initialValues: ({ address }: IinitialValues): IcreateAddressService => {
         return {
-            firstName: '' || address?.firstName,
-            lastName: '' || address?.lastName,
-            addressLine1: '' || address?.addressLine1,
-            addressLine2: address?.addressLine2 ? address?.addressLine2 : '',
-            country: '' || address?.country,
-            city: '' || address?.city,
-            state: '' || address?.state,
-            zip: '' || address?.zip,
+            firstName: address?.firstName ?? '',
+            lastName: address?.lastName ?? '',
+            addressLine1: address?.addressLine1 ?? '',
+            addressLine2: address?.addressLine2 ?? '',
+            country: address?.country ?? '',
+            city: address?.city ?? '',
+            state: address?.state ?? '',
+            zip: address?.zip ?? '',
             addressType: 'SHOP'
         }
     },
 
-    formSchema: () => {
+    formSchema: (t: (key: string) => string) => {
         return Yup.object().shape({
-            firstName: Yup.string().required('Required'),
-            lastName: Yup.string().required('Required'),
-            addressLine1: Yup.string().required('Required'),
-            state: Yup.string().required('Required'),
-            country: Yup.string().required('Required'),
-            city: Yup.string().required('Required'),
-            zip: Yup.string().required('Required'),
+            firstName: Yup.string().required(t('common:required')),
+            lastName: Yup.string().required(t('common:required')),
+            addressLine1: Yup.string().required(t('common:required')),
+            state: Yup.string().required(t('common:required')),
+            country: Yup.string().required(t('common:required')),
+            city: Yup.string().required(t('common:required')),
+            zip: Yup.string().required(t('common:required')),
         });
     }
 })

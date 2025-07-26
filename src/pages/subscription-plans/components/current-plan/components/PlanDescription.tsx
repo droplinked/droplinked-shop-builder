@@ -1,28 +1,44 @@
 import AppTypography from 'components/common/typography/AppTypography';
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import * as React from 'react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/subscription/en.json';
+import localAr from 'locales/subscription/ar.json';
 
 interface props {
     currentSubData: {
-        icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
         title: string
     };
     data: ShopSubscriptionData
 }
 
 function PlanDescription({ currentSubData, data }: props) {
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr });
+
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString(undefined, { year: "numeric", "month": "long", day: "numeric" });
     };
+
     if (data.subscriptionId.type === "STARTER") { return null }
+
     return (
-        currentSubData.title === "Enterprise" ?
+        currentSubData.title === "PlanCard.enterprise.title" ?
             <AppTypography color={"#B1B1B1"} fontWeight={400} fontSize={"16px"}>
-                {`You are subscribed to the ${currentSubData.title}, active from ${formatDate(data.startsAt)}, to ${formatDate(data.expiresAt)}.`}
+                {t('CurrentPlan.activeMessage', {
+                    plan: t(currentSubData.title),
+                    startDate: formatDate(data.startsAt),
+                    endDate: formatDate(data.expiresAt)
+                })}
             </AppTypography>
             :
             <AppTypography color={"#B1B1B1"} fontWeight={400} fontSize={"16px"}>
-                {`You are subscribed to the ${currentSubData.title} for $${data.paidAmount?.toFixed(2)} per ${data.monthLength === 1 ? "month" : data.monthLength === 12 ? "year" : "5-Year"}, active from ${formatDate(data.startsAt)}, to ${formatDate(data.expiresAt)}.`}
+                {t('CurrentPlan.activeMessageWithPrice', {
+                    plan: t(currentSubData.title),
+                    price: data.paidAmount?.toFixed(2),
+                    period: data.monthLength === 1 ? t('Plans.cycles.monthly') : data.monthLength === 12 ? t('Plans.cycles.annual') : t('Plans.cycles.fiveYear'),
+                    startDate: formatDate(data.startsAt),
+                    endDate: formatDate(data.expiresAt)
+                })}
             </AppTypography>
     );
 }

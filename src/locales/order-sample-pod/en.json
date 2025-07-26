@@ -1,0 +1,42 @@
+{
+  "ProductOrder": {
+    "title": "Order Sample Product",
+    "desc": "Select your products to receive a sample."
+  },
+  "ProductOrderCard": {},
+  "ProductOrderSkues": {
+    "title": "Product",
+    "productCost": "Product Cost",
+    "variant": "Variant",
+    "quantity": "Quantity"
+  },
+  "productOrderSkuesModel": {},
+  "ProductOrderAddress": {
+    "title": "Shipping Address",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "addressLine1": "Address Line 1",
+    "addressLine2": "Address Line 2",
+    "country": "Country",
+    "state": "State",
+    "city": "City",
+    "zip": "Zip Code"
+  },
+  "AddressModalModel": {},
+  "ProductOrderShipments": {
+    "title": "Shipping Methods",
+    "fulfillmentDate": "Fulfillment Date",
+    "tax": "Tax",
+    "payWithStripe": "Pay with Stripe"
+  },
+  "PaymentModal": {
+    "title": "Payment",
+    "successTitle": "Order Submitted!",
+    "successDesc": "Sample order confirmed! Your selection is on its way.",
+    "ok": "Ok"
+  },
+  "errors": {
+    "selectSku": "Please select a sku",
+    "selectRate": "Please select a rate method"
+  }
+}

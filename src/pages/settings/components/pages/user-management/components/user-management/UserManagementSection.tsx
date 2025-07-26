@@ -1,15 +1,16 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
-import BlueButton from 'components/redesign/button/BlueButton'
-import { getInvitationsService } from 'lib/apis/user/services'
 import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import React from 'react'
-import { useQuery } from 'react-query'
-import useAppStore from 'stores/app/appStore'
-import UpgradePlan from '../../../../common/upgrade-plan/UpgradePlan'
-import InviteUserModal from './InviteUserModal'
 import UserManagementTable from './UserManagementTable'
+import UpgradePlan from '../../../../common/upgrade-plan/UpgradePlan'
+import useAppStore from 'stores/app/appStore'
+import InviteUserModal from './InviteUserModal'
+import { useQuery } from 'react-query'
+import { getInvitationsService } from 'services/user/services'
+import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
+import BlueButton from 'components/redesign/button/BlueButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function UserManagementSection() {
     const { isFetching, data, refetch } = useQuery({ queryKey: ["userManagementTable"], queryFn: () => getInvitationsService() })
@@ -18,12 +19,15 @@ export default function UserManagementSection() {
     const { subscriptionId } = subscription ?? {}
     const isPremiumOrHigher = (subscriptionId?.type && subscriptionId?.type !== "STARTER" && subscriptionId?.type !== "BUSINESS")
     const { isOpen, onClose, onOpen } = useDisclosure()
+    const { t } = useLocaleResources('settings');
 
     return (
         <SectionContainer
-            title="User Management"
-            description='Add or remove team members by entering their email addresses. An invite with the required instructions to join the account will be sent.'
-            badge={<AccessLevelBadge justLevel level="Premium" />}
+            title={t('UserManagement.title')}
+            description={t('UserManagement.description')}
+            badge={
+                <AccessLevelBadge justLevel level="Premium" />
+            }
             rightContent={
                 <>
                     <BlueButton
@@ -34,7 +38,7 @@ export default function UserManagementSection() {
                         isDisabled={!isPremiumOrHigher}
                     >
                         <AppIcons.BluePlus style={{ display: "inline-block", width: "16px", height: "16px" }} />
-                        New User
+                        {t('UserManagement.newUser')}
                     </BlueButton>
                 </>
             }

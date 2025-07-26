@@ -1,0 +1,20 @@
+{
+  "UserMenu": {
+    "MenuItemActions": {
+      "actions": {
+        "logout": "Logout",
+        "switch": "Switch",
+        "viewStore": "View Store"
+      },
+      "labels": {
+        "credit": "Credit",
+        "version": "Version"
+      }
+    },
+    "MenuItemAppVersion": {
+      "labels": {
+        "version": "Version"
+      }
+    }
+  }
+}

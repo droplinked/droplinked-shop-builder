@@ -1,6 +1,6 @@
 import { SimpleGrid } from '@chakra-ui/react'
 import { useFormikContext } from 'formik'
-import { allCountriesService, citiesService, statesService } from 'lib/apis/address/addressServices'
+import { allCountriesService, citiesService, statesService } from 'services/address/addressServices'
 import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
 import React, { useCallback, useEffect, useMemo } from 'react'

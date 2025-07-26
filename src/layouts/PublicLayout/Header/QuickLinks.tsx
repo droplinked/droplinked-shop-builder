@@ -4,19 +4,21 @@ import { ChatMd } from 'assets/icons/System/Chat/ChatMd'
 import { PlayMd } from 'assets/icons/System/Play/PlayMd'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 function QuickLinks(props: FlexProps) {
     const navigate = useNavigate()
     const layout = useBreakpointValue({ base: 'mobile', md: 'tablet', xl: 'desktop' })
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     const LINK_ITEMS = [
-        { icon: <PlayMd color='#b1b1b1' />, label: 'Video Tutorials', href: 'https://www.youtube.com/@droplinked-fj6nt', isExternal: true },
-        { icon: <ChatMd color='#b1b1b1' />, label: 'Contact Support', href: '/contact-us', isExternal: false },
-        { icon: <DocumentMd color='#b1b1b1' />, label: 'Documentation', href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
+        { icon: <PlayMd color='#b1b1b1' />, label: t('Header.QuickLinks.videoTutorials'), href: 'https://www.youtube.com/@droplinked-fj6nt', isExternal: true },
+        { icon: <ChatMd color='#b1b1b1' />, label: t('Header.QuickLinks.contactSupport'), href: '/contact-us', isExternal: false },
+        { icon: <DocumentMd color='#b1b1b1' />, label: t('Header.QuickLinks.documentation'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
     ].filter(item => {
-        if (layout === 'tablet') return ['Video Tutorials', 'Contact Support'].includes(item.label)
+        if (layout === 'tablet') return [t('Header.QuickLinks.videoTutorials'), t('Header.QuickLinks.contactSupport')].includes(item.label)
         if (layout === 'desktop') return true
         return false
     })
@@ -37,8 +39,8 @@ function QuickLinks(props: FlexProps) {
             {...props}
         >
             <Flex alignItems="center" gap={2}>
-                <Text fontSize={14} fontWeight={500} color="text.subtext.placeholder.light">Ready to get started?</Text>
-                <Text as="button" fontSize={14} fontWeight={500} color="text.white" onClick={handleSignUpClick}>Sign up for free</Text>
+                <Text fontSize={14} fontWeight={500} color="text.subtext.placeholder.light">{t('readyToGetStarted')}</Text>
+                <Text as="button" fontSize={14} fontWeight={500} color="text.white" onClick={handleSignUpClick}>{t('signUpForFree')}</Text>
             </Flex>
 
             <DotSeparatedList

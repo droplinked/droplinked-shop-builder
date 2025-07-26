@@ -1,5 +1,5 @@
 import { Flex, FlexProps } from '@chakra-ui/react'
-import { SubscriptionPlan, IPrice } from 'lib/apis/subscription/interfaces'
+import { SubscriptionPlan, IPrice } from 'services/subscription/interfaces'
 import React, { useMemo } from 'react'
 import useSubscriptionPlanPurchaseStore from '../../../stores/subscription-plan.ts/subscriptionPlanStore'
 import PriceContent from './PriceContent'
@@ -29,9 +29,9 @@ function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, showFree = 
         preferredPlanDuration: state.preferredPlanDuration,
     }))
 
-    const targetPrice = useMemo(() => 
-        typeof plan.price[0] === 'string' ? null : 
-        (plan.price as IPrice[]).find(price => price.month === preferredPlanDuration.month),
+    const targetPrice = useMemo(() =>
+        typeof plan.price[0] === 'string' ? null :
+            (plan.price as IPrice[]).find(price => price.month === preferredPlanDuration.month),
         [plan.price, preferredPlanDuration.month]
     )
 
@@ -42,7 +42,7 @@ function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, showFree = 
         columnGap: 3,
 
         sx: { p: { fontSize: mainFontSize, fontWeight: 700, color: 'white' } }
-    }), [ mainFontSize])
+    }), [mainFontSize])
 
     return (
         <Flex {...flexProps} {...props}>

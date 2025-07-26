@@ -1,0 +1,137 @@
+{
+    "CollectionGrid": {
+        "title": "Collections",
+        "description": "Create and view inventory collections here.",
+        "newCollection": "New Collection",
+        "visibilityAndReorder": "Visibility and reorder",
+        "emptyState": "No collections available. Create a new collection to get started.",
+        "columnHeaders": {
+            "collection": "Collection",
+            "rulesets": "Rulesets",
+            "products": "Products"
+        }
+    },
+    "CollectionCreate": {
+        "success": {
+            "created": "Collection created successfully",
+            "updated": "Collection updated successfully"
+        }
+    },
+    "ModalWrapper": {
+        "title": "Create Collection",
+        "editTitle": "Edit Collection",
+        "description": "Create a new collection by providing the necessary details.",
+        "editDescription": "Edit the details of your collection."
+    },
+    "ModalButtons": {},
+    "ImageUploader": {
+        "cover": "Collection Cover"
+    },
+    "ControlsListCollection": {
+        "collectionIdCopied": "Collection ID copied successfully",
+        "menu": {
+            "ruleset": "Ruleset",
+            "copyId": "Copy Collection ID"
+        }
+    },
+    "CollectionReorderModal": {
+        "title": "Visibility and Reorder Collections",
+        "description": "Rearrange collections by dragging and dropping them to set their display order in your store. Top three collections are visible on your PLP page."
+    },
+    "SortableCollection": {},
+    "VisibilitySwitch": {},
+    "CollectionTitle": {},
+    "CollectionTitleColumn": {},
+    "CollectionRulesetColumn": {
+        "gating": "Gating",
+        "discount": "Discount"
+    },
+    "ConfirmDeleteCollection": {
+        "title": "Delete Collection",
+        "confirmationText": "Are you sure you want to delete this collection? You will no longer have access to this collection.",
+        "success": "Collection deleted successfully"
+    },
+    "RuleModal": {
+        "createSuccess": "Ruleset created successfully",
+        "updateSuccess": "Ruleset updated successfully",
+        "blockchainNetwork": "Blockchain Network",
+        "blockchainNetworkDescription": "Choose a blockchain to verify possession or ownership of a required digital asset/NFT.",
+        "selectChain": "Select chain",
+        "gatingMessage": "Gating Message",
+        "gatingMessageDescription": "Provide the text to display to visitors that will appear inside the access modal.",
+        "gatingMessagePlaceholder": "e.g., StreamWave",
+        "minimumAssets": "Minimum Assets Required",
+        "minimumAssetsDescription": "Set the minimum number of digital assets/NFTs a user must hold to meet this ruleset minimumNftRequired.",
+        "minimumAssetsPlaceholder": "e.g., 5",
+        "nftUrl": "NFT URL",
+        "nftUrlDescription": "Choose this option to display the marketplace listing page to visitors where the collection is officially being traded.",
+        "nftUrlPlaceholder": "Paste link to your NFT page or marketplace here",
+        "discount": "Discount",
+        "discountDescription": "Enable this function to offer an exclusive discount to holders that meet the requirements.",
+        "discountPlaceholder": "20%",
+        "createTitle": "Create Ruleset",
+        "createDescription": "Create a new ruleset by providing the necessary details.",
+        "editTitle": "Edit Ruleset",
+        "editDescription": "Edit the details of your ruleset.",
+        "address": {
+            "optionPlaceholder": "Option {index}",
+            "label": "Contract Address",
+            "description": "Enter the contract addresses to be used for validation of possession or ownership."
+        },
+        "validation": {
+            "addressRequired": "Address is required",
+            "addressMinimum": "At least one address is required",
+            "addressEmpty": "Address cannot be an empty string",
+            "enterNumber": "Please Enter a number",
+            "correctValue": "Please correct value",
+            "min": "Min {{value}}",
+            "max": "Max {{value}}"
+        }
+    },
+    "ModalWrapperRulesets": {
+        "editTitle": "Edit Ruleset",
+        "editDescription": "Edit the details of your ruleset.",
+        "createTitle": "Create Ruleset",
+        "createDescription": "Create a new ruleset by providing the necessary details."
+    },
+    "BlockchainNetworkSelect": {
+        "blockchainNetwork": "Blockchain Network",
+        "blockchainNetworkDescription": "Choose a blockchain to verify possession or ownership of a required digital asset/NFT.",
+        "selectChain": "Select chain"
+    },
+    "GatingMessageInput": {
+        "gatingMessage": "Gating Message",
+        "gatingMessageDescription": "Provide the text to display to visitors that will appear inside the access modal.",
+        "gatingMessagePlaceholder": "e.g., StreamWave"
+    },
+    "MinimumAssetsRequiredInput": {
+        "minimumAssets": "Minimum Assets Required",
+        "minimumAssetsDescription": "Set the minimum number of digital assets/NFTs a user must hold to meet this ruleset minimumNftRequired.",
+        "minimumAssetsPlaceholder": "e.g., 5"
+    },
+    "NftUrlInput": {
+        "nftUrl": "NFT URL",
+        "nftUrlDescription": "Choose this option to display the marketplace listing page to visitors where the collection is officially being traded.",
+        "nftUrlPlaceholder": "Paste link to your NFT page or marketplace here"
+    },
+    "visibility": {
+        "error": "You cannot change your collection status at this time. Please try again later"
+    },
+    "create": {
+        "fields": {
+            "name": {
+                "label": "Collection Name",
+                "description": "Provide a title to the collection that will be displayed to site visitors.",
+                "placeholder": "e.g., StreamWave"
+            },
+            "description": {
+                "description": "Provide the message to display to visitors.",
+                "placeholder": "e.g., StreamWave"
+            }
+        },
+        "validation": {
+            "nameRequired": "Please provide a name for the collection",
+            "imageRequired": "Please provide an image for the collection"
+        }
+    }
+}

@@ -1,14 +1,15 @@
 import { Box, ModalBody } from "@chakra-ui/react";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useState } from "react";
 import TabButtons from "../common/TabButtons";
 import OrdersContent from "./components/order/OrdersContent";
 import ProductInfoContent from "./components/ProductInfoContent";
 
 const TABS = {
-  PRODUCT_INFO: "Product Info",
-  ORDERS: "Orders",
+  PRODUCT_INFO: "PRODUCT_INFO",
+  ORDERS: "ORDERS",
 };
 
 interface IProps {
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 function DetailsModal({ product, isOpen, onClose }: IProps) {
+  const { t } = useLocaleResources('products')
   const [activeTab, setActiveTab] = useState(TABS.PRODUCT_INFO);
 
   const handleTabChange = (tabName: string) => setActiveTab(tabName);
@@ -47,11 +49,18 @@ function DetailsModal({ product, isOpen, onClose }: IProps) {
       <ModalBody padding="0px !important">
         <Box pt="48px" pb="0px">
           <ModalHeaderData
-            title="Product Details"
-            description={`Track product inventory, sales data, and applied discounts for seamless order management.`}
+            title={t('DetailsModal.title')}
+            description={t('DetailsModal.description')}
           />
           <Box mb="24px" />
-          <TabButtons activeTab={activeTab} onTabChange={handleTabChange} tabs={Object.keys(TABS).map(key => ({ name: TABS[key] }))} />
+          <TabButtons 
+            activeTab={activeTab} 
+            onTabChange={handleTabChange} 
+            tabs={[
+              { name: TABS.PRODUCT_INFO, label: t('DetailsModal.productInfo') },
+              { name: TABS.ORDERS, label: t('DetailsModal.orders') }
+            ]} 
+          />
         </Box>
         {renderTabContent()}
       </ModalBody>

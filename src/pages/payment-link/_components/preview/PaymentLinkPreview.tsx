@@ -1,20 +1,18 @@
 import { Box, Flex, Image, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useContext } from 'react'
-import { PaymentLinkContext } from '../../context/PaymentLinkContext'
+import React from 'react'
 import PaymentLinkCard from '../PaymentLinkCard'
 import usePreviewImages from './hooks/usePreviewImages'
 import PreviewModal from './preview-modal/PreviewModal'
 
 export default function PaymentLinkPreview() {
-    const { paymentLinkData } = useContext(PaymentLinkContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const currentPreviewImages = usePreviewImages(paymentLinkData)
+    const currentPreviewImages = usePreviewImages()
 
     return (
         <>
-            <PaymentLinkCard title='Preview' height={"fit-content"} flexShrink={0}>
+            <PaymentLinkCard title='Preview' height="fit-content" flexShrink={0}>
                 <Box position="relative" width="fit-content" height="auto" borderRadius={4} overflow="hidden" sx={{ "*": { userSelect: "none" } }}>
                     <Image width="300px" src={currentPreviewImages.desktop} objectFit="cover" />
                     <Overlay onOpen={onOpen} />
@@ -25,7 +23,7 @@ export default function PaymentLinkPreview() {
     )
 }
 
-const Overlay = ({ onOpen }: { onOpen: () => void }) => (
+const Overlay = ({ onOpen }) => (
     <Flex
         position="absolute"
         inset={0}

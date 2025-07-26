@@ -1,8 +1,11 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 function BackButton({ onBackClick }: { onBackClick: () => void }) {
+    const { t } = useLocaleResources('products');
+    
     return (
         <Flex
             as="button"
@@ -15,7 +18,7 @@ function BackButton({ onBackClick }: { onBackClick: () => void }) {
             onClick={onBackClick}
         >
             <AppIcons.BackArrow />
-            Back
+            {t('ProductForm.fields.pod.backButton')}
         </Flex>
     )
 }

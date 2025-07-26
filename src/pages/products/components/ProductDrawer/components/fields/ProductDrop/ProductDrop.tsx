@@ -1,3 +1,4 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useAppToast from 'hooks/toast/useToast'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductTypeLegality from 'pages/products/hooks/useProductTypeLegality'
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggleDrop }: Props) {
+    const { t } = useLocaleResources('products')
     const { values, setFieldValue } = useProductForm()
     const { showToast } = useAppToast()
     const { isLegal, errorMessage } = useProductTypeLegality("drop")
@@ -21,7 +23,7 @@ export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggle
         const { _id, product_type, publish_status, digitalDetail, sku } = values
 
         if (_id && product_type === "DIGITAL" && publish_status === "PUBLISHED") {
-            showToast({ type: "error", message: "This product has already been published." })
+            showToast({ type: "error", message: t('ProductDrop.alreadyPublishedError') })
             return
         }
 
@@ -40,8 +42,8 @@ export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggle
 
     return (
         <SwitchBox
-            title="Drop"
-            description="Enable onchain records for this digital product."
+            title={t('ProductDrop.title')}
+            description={t('ProductDrop.description')}
             switchProps={{
                 isChecked: isDropEnabled,
                 onChange: e => handleDropToggle(e.target.checked)

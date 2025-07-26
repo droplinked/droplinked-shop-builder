@@ -2,7 +2,7 @@ import { Box, Flex, Link, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppImage from 'components/common/image/AppImage';
 import AppTypography from 'components/common/typography/AppTypography';
-import { getShopCommunityProfile } from 'lib/apis/shop/shopServices';
+import { getShopCommunityProfile } from 'services/shop/shopServices';
 import ProductsGridRenderer from 'pages/affiliate/components/ProductsGridRenderer';
 
 import React from 'react';
@@ -32,6 +32,7 @@ const AffiliateStoresProfile = () => {
                 href={`https://tiktok.com/@${storeProfile?.tiktokURL}`}
                 style={{ width: '40px', height: '40px', borderRadius: '8px', backgroundColor: '#292929', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <AppIcons.AffiliateStoreTiktok />
               </Link>
@@ -41,6 +42,7 @@ const AffiliateStoresProfile = () => {
                 href={`https://instagram.com/${storeProfile?.instagramURL}`}
                 style={{ width: '40px', height: '40px', borderRadius: '8px', backgroundColor: '#292929', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <AppIcons.AffiliateStoreInstagram />
               </Link>
@@ -50,7 +52,8 @@ const AffiliateStoresProfile = () => {
                 href={`https://x.com/${storeProfile?.twitterURL}`}
                 style={{ width: '40px', height: '40px', borderRadius: '8px', backgroundColor: '#292929', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 target="_blank"
-              >
+                rel="noopener noreferrer"
+                >
                 <AppIcons.AffiliateStoreTwitter />
               </Link>
             )}
@@ -59,6 +62,7 @@ const AffiliateStoresProfile = () => {
                 href={`https://youtube.com/@${storeProfile?.youtubeURL}`}
                 style={{ width: '40px', height: '40px', borderRadius: '8px', backgroundColor: '#292929', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <AppIcons.AffiliateStoreYoutube />
               </Link>
@@ -66,7 +70,7 @@ const AffiliateStoresProfile = () => {
           </Flex>
         </Box>
       </Box>
-      <ProductsGridRenderer data={storeProfile} fetchNextPage={undefined} hasNextPage={undefined} isLoading={isLoadingStore} isError={undefined}></ProductsGridRenderer>
+      <ProductsGridRenderer data={storeProfile} fetchNextPage={undefined} hasNextPage={undefined} isLoading={isLoadingStore} isError={undefined} isPublic={undefined}></ProductsGridRenderer>
     </Box>
   );
 };
