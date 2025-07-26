@@ -18,9 +18,9 @@ import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 
-const formSchema = Yup.object().shape({
-    email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
-    password: Yup.string().min(8, "Password must be at least 8 characters.").required("Password is required.")
+const formSchema = (t) => Yup.object().shape({
+    email: Yup.string().email(t('common.emailError')).required(t('SignInForm.emailRequired', 'Email address is required.')),
+    password: Yup.string().min(8, t('SignInForm.passwordMinLength', 'Password must be at least 8 characters.')).required(t('SignInForm.passwordRequired', 'Password is required.'))
 })
 
 const savedEmail = Cookies.get('remembered_email')
@@ -60,7 +60,7 @@ function SignInForm() {
                     password: savedPassword || ""
                 }}
                 validateOnChange={false}
-                validationSchema={formSchema}
+                validationSchema={formSchema(t)}
                 onSubmit={handleSubmit}
             >
                 {({ values, errors, handleChange, isSubmitting }) => (

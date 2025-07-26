@@ -59,7 +59,10 @@
     "signInButton": "تسجيل الدخول",
     "noAccountText": "ليس لديك حساب؟",
     "createAccountText": "انضم إلينا وأنشئ حسابًا!",
-    "resetPassword": "إعادة تعيين كلمة المرور"
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "emailRequired": "البريد الإلكتروني مطلوب.",
+    "passwordRequired": "كلمة المرور مطلوبة.",
+    "passwordMinLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل."
   },
   "SignUpForm": {
     "subtitle": "أكمل التفاصيل أدناه أو استخدم حساب جوجل الخاص بك.",
@@ -70,7 +73,9 @@
     "haveAccountText": "هل لديك حساب بالفعل؟",
     "signInLink": "سجّل الدخول",
     "successMessage": "تم إنشاء الحساب بنجاح",
-    "errorMessage": "فشل في إنشاء الحساب"
+    "errorMessage": "فشل في إنشاء الحساب",
+    "emailRequired": "البريد الإلكتروني مطلوب.",
+    "passwordRequired": "كلمة المرور مطلوبة."
   },
   "EmailConfirmation": {
     "title": "تأكيد البريد الإلكتروني",

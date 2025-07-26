@@ -22,9 +22,9 @@ import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from '../common/PasswordValidationRules'
 
-const formSchema = Yup.object().shape({
-    email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
-    password: Yup.string().required("Password is required."),
+const formSchema = (t) => Yup.object().shape({
+    email: Yup.string().email(t('common.emailError')).required(t('SignUpForm.emailRequired', 'Email address is required.')),
+    password: Yup.string().required(t('SignUpForm.passwordRequired', 'Password is required.')),
     referralCode: Yup.string()
 })
 
@@ -73,7 +73,7 @@ function SignUpForm() {
             <Formik
                 initialValues={{ email: "", password: "", referralCode: referralCode ?? "" }}
                 validateOnChange={false}
-                validationSchema={formSchema}
+                validationSchema={formSchema(t)}
                 onSubmit={handleSignUp}
             >
                 {({ values, errors, handleChange, submitForm, isSubmitting }) => {
