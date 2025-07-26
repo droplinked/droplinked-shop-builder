@@ -33,6 +33,7 @@ export default function TransferModalHeader({ tabs }: Props) {
                 to={SampleFile}
                 width="max-content"
                 target='_blank'
+                rel="noopener noreferrer"
                 mt={2}
                 pb={4}
             >

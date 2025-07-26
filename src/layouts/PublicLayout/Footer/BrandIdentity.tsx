@@ -57,6 +57,7 @@ function BrandIdentity() {
                         key={url}
                         href={url}
                         target="_blank"
+                        rel="noopener noreferrer"
                         transition="0.3s ease-in-out"
                         _hover={{ bgColor: "neutral.gray.1000" }}
                         {...ICON_WRAPPER_STYLES}

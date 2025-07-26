@@ -43,6 +43,7 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
                 <InteractiveText
                     to={fileTemplate}
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     {t('ImportProductModal.downloadTemplate')}
                 </InteractiveText>

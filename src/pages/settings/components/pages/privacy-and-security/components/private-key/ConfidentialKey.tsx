@@ -19,6 +19,7 @@ export default function ConfidentialKey() {
             <InteractiveText
                 to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/api/privateapis#/`}
                 target="_blank"
+                rel="noopener noreferrer"
                 hasExternalIcon
             >
                 {t("PrivateKey.confidentialKey.learnMore")}

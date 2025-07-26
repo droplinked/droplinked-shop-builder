@@ -49,6 +49,7 @@ const PaymentProviderCard: React.FC<PaymentProviderProps> = ({ item, onToggle })
             <InteractiveText
               to={!isLinkDisabled ? link : undefined}
               target="_blank"
+              rel="noopener noreferrer"
               hasExternalIcon={isExternal}
               sx={{
                 textDecor: "none",

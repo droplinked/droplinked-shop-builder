@@ -29,7 +29,7 @@ function DropSummary() {
             }}
         >
             {transactionUrl ?
-                <InteractiveText to={transactionUrl} target="_blank">
+                <InteractiveText to={transactionUrl} target="_blank" rel="noopener noreferrer">
                     {truncatedTransactionUrl}
                 </InteractiveText>
                 :

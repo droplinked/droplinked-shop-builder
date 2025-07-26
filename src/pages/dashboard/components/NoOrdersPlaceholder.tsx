@@ -28,7 +28,7 @@ export default function NoOrdersPlaceholder() {
                     color: 'text.white',
                     borderColor: 'neutral.gray.800',
                     rightIcon: <ExternalarrowMd color='white' />,
-                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
+                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank', "noopener noreferrer")
                 }
             ]
         },
@@ -43,7 +43,7 @@ export default function NoOrdersPlaceholder() {
                     color: 'text.white',
                     borderColor: 'neutral.gray.800',
                     rightIcon: <ExternalarrowMd color='white' />,
-                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
+                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank', "noopener noreferrer")
                 }
             ]
         },

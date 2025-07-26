@@ -18,6 +18,7 @@ function SocialMediaLink({ linkData }: Props) {
     <Link
       href={url}
       target="_blank"
+      rel="noopener noreferrer"
       position="relative"
       height="100%"
       display="flex"

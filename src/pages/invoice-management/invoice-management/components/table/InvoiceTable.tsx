@@ -70,7 +70,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
 
         return (
             <Flex alignItems="center" gap={6} sx={{ "svg": { width: 5, height: 5 } }}>
-                <button onClick={() => window.open(paymentLink, "_blank")}><AppIcons.Share /></button>
+                <button onClick={() => window.open(paymentLink, "_blank", "noopener noreferrer")}><AppIcons.Share /></button>
                 <button onClick={() => openDetailsModal(row)}><AppIcons.Eye stroke='#fff' /></button>
                 <InvoiceTableMenu invoice={row} />
             </Flex>

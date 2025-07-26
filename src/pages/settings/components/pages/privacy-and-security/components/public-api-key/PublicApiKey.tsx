@@ -30,6 +30,7 @@ export default function PublicApiKey() {
                 <InteractiveText
                     to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/v1/public-apis/document`}
                     target="_blank"
+                    rel="noopener noreferrer"
                     hasExternalIcon
                 >
                     {t("PublicApiKey.apiDocumentation")}

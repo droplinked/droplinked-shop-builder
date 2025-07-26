@@ -65,7 +65,7 @@ export default function TransactionsTable() {
             <Link
                 to={`/invoice/${tx.id}`}
                 target='_blank'
-                rel="noreferrer"
+                rel="noopener noreferrer"
             >
                 {downloadIcon}
             </Link>

@@ -28,6 +28,7 @@ function ModalContent({ product }) {
           <InteractiveText
             to={transactionUrl}
             target="_blank"
+            rel="noopener noreferrer"
           >
             {truncatedDeployHash}
           </InteractiveText>
