@@ -73,9 +73,9 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
           display="flex"
           alignItems="center"
           gap="8px"
-          onClick={() => handleNavigate(configLink)} // استفاده از handleNavigate برای هدایت
+          onClick={() => handleNavigate(configLink)} 
         >
-                      {t('ShareModal.embedCode.configure')}
+          {t('ShareModal.embedCode.configure')}
         </Button>
         <Link href={helpLink} target="_blank" rel="noopener noreferrer">
           <Button

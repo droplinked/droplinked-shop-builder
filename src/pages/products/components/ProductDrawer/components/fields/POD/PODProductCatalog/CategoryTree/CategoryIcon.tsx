@@ -1,18 +1,23 @@
 import { Center } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { DresswomanclothMd } from 'assets/icons/Items/DressWomanCloth/DresswomanclothMd'
+import { HatcapMd } from 'assets/icons/Items/HatCap/HatcapMd'
+import { KidclothMd } from 'assets/icons/Items/KidCloth/KidclothMd'
+import { SofafurnitureMd } from 'assets/icons/Items/SofaFurniture/SofafurnitureMd'
+import { WaistcoatmenclothMd } from 'assets/icons/Items/WaistcoatMenCloth/WaistcoatmenclothMd'
+import { WatchMd } from 'assets/icons/Items/Watch/WatchMd'
 import React from 'react'
 
 interface Props {
     category: string
 }
 
-const iconMap: Record<string, JSX.Element> = {
-    "Men's clothing": <AppIcons.MenClothing />,
-    "Women's clothing": <AppIcons.WomenClothing />,
-    "Kids' & youth clothing": <AppIcons.KidClothing />,
-    "Hats": <AppIcons.Hat />,
-    "Accessories": <AppIcons.Watch />,
-    "Home & living": <AppIcons.Furniture />,
+const iconMap: Record<string, React.ReactNode> = {
+    "Men's clothing": <WaistcoatmenclothMd />,
+    "Women's clothing": <DresswomanclothMd />,
+    "Kids' & youth clothing": <KidclothMd />,
+    "Hats": <HatcapMd />,
+    "Accessories": <WatchMd />,
+    "Home & living": <SofafurnitureMd />,
 }
 
 function CategoryIcon({ category }: Props) {

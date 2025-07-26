@@ -1,14 +1,14 @@
 import { Flex, Text, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm'
 import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { IGenerateTitleDescription } from 'services/ai/interfaces'
-import { generateTitleDescription } from 'services/ai/services'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { useMutation } from 'react-query'
+import { IGenerateTitleDescription } from 'services/ai/interfaces'
+import { generateTitleDescription } from 'services/ai/services'
 import useAppStore from 'stores/app/appStore'
 import AnimatedBox from './AnimatedBox'
 
@@ -20,7 +20,6 @@ function GenerateWithAI() {
     const { showToast } = useAppToast()
     const { hasPaidSubscription } = useAppStore()
    
-    
     const { mutateAsync } = useMutation((params: IGenerateTitleDescription) => generateTitleDescription(params),
         {
             onMutate() {
@@ -69,8 +68,8 @@ function GenerateWithAI() {
                     userSelect={"none"}
                     cursor={"pointer"}
                 >
-                    <Flex gap={2} {...isDisabled && { sx: { path: { stroke: "#4F4F4F" } } }}>
-                        <AppIcons.MagicWind />
+                    <Flex gap={2}>
+                        <MagicwandSm {...isDisabled ? { color: "#4F4F4F" } : {color: "#2bcfa1"}} />
                         <Flex flexDirection={"column"} gap={1}>
                             <Flex alignItems="center" gap="6px">
                                 <Text background={isDisabled ? "neutral.gray.650" : "#2bcfa1"} backgroundClip="text" fontSize={14} fontWeight={500}>

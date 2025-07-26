@@ -1,16 +1,16 @@
+import { productTypeUsageLimits } from 'constants/productType'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
 import useStack from 'hooks/stack/useStack'
 import useAppToast from 'hooks/toast/useToast'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useAppWeb3 from 'hooks/web3/useWeb3'
+import { Product, ProductType } from 'pages/products/utils/types'
+import { useRef } from 'react'
 import { createProductService, updateProductService } from 'services/product/productServices'
 import { getShopSubscriptionDataService } from 'services/subscription/subscriptionServices'
 import useAppStore, { useLegalUsage } from 'stores/app/appStore'
 import useGrowthHackStore from 'stores/level-up/levelUpStore'
-import { Product, ProductType } from 'pages/products/utils/types'
-import { useRef } from 'react'
-import { productTypeUsageLimits } from 'constants'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Params {
     closeProductFormDrawer: () => void
