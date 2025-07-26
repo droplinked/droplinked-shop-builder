@@ -11,7 +11,7 @@ function OrderSummaryEmptyState() {
             title={t('OrderSummaryEmptyState.title')}
             description={t('OrderSummaryEmptyState.description')}
             actionText={t('OrderSummaryEmptyState.actionText')}
-            onActionClick={() => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/how-to-guides/manage-orders', '_blank')}
+            onActionClick={() => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/how-to-guides/manage-orders', '_blank', "noopener noreferrer")}
         />
     )
 }

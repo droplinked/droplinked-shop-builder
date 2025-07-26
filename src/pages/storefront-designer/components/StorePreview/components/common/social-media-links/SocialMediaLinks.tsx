@@ -1,8 +1,17 @@
 import { Box, Flex, Icon } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
-import AppSocialMediaIcons from 'assets/icon/social/appSocialMediaIcons';
-import React, { useContext, useMemo, useEffect } from 'react';
+import { GlobeSm } from 'assets/icons/Sign/Globe/GlobeSm';
+import { DiscordSm } from 'assets/icons/SocialMedia/Colored/Discord/DiscordSm';
+import { FacebookSm } from 'assets/icons/SocialMedia/Colored/Facebook/FacebookSm';
+import { InstagramSm } from 'assets/icons/SocialMedia/Colored/Instagram/InstagramSm';
+import { LinkedinSm } from 'assets/icons/SocialMedia/Colored/LinkedIn/LinkedinSm';
+import { Telegram1Sm } from 'assets/icons/SocialMedia/Colored/Telegram1/Telegram1Sm';
+import { TiktoklightSm } from 'assets/icons/SocialMedia/Colored/TikTokLight/TiktoklightSm';
+import { YoutubeSm } from 'assets/icons/SocialMedia/Colored/YouTube/YoutubeSm';
+import { MessengerSm } from 'assets/icons/SocialMedia/Colored/Messenger/MessengerSm';
+import { XSm } from 'assets/icons/SocialMedia/Colorless/X/XSm';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
+import React, { useContext, useMemo } from 'react';
 
 interface SocialMediaLinksProps {
   shopURLs: any;
@@ -20,17 +29,17 @@ const SocialMediaLinks = ({ shopURLs, foreground, textColorParagraphs, isDesktop
   // Wrap socialMediaLinks in its own useMemo hook
   const socialMediaLinks = useMemo(
     () => [
-      { link: 'https://discord.gg/', key: 'discordURL', icon: AppSocialMediaIcons.Discord },
-      { link: 'https://instagram.com/', key: 'instagramURL', icon: AppSocialMediaIcons.Instagram },
-      { link: 'https://facebook.com/', key: 'facebookURL', icon: AppSocialMediaIcons.Facebook },
+      { link: 'https://discord.gg/', key: 'discordURL', icon: DiscordSm },
+      { link: 'https://instagram.com/', key: 'instagramURL', icon: InstagramSm },
+      { link: 'https://facebook.com/', key: 'facebookURL', icon: FacebookSm },
       { link: 'mailto:', key: 'infoEmail', icon: AppIcons.Letter },
-      { link: 'https://linkedin.com/', key: 'linkedinURL', icon: AppSocialMediaIcons.LinkedIn },
-      { link: 'https://tiktok.com/@', key: 'tiktokURL', icon: AppSocialMediaIcons.Tiktok },
-      { link: 'https://twitter.com/', key: 'twitterURL', icon: AppSocialMediaIcons.X },
-      { link: 'http://', key: 'webURL', icon: AppSocialMediaIcons.Globe },
-      { link: 'https://youtube.com/@', key: 'youtubeURL', icon: AppSocialMediaIcons.Youtube },
-      { link: 'https://t.me/', key: 'telegramURL', icon: AppSocialMediaIcons.Telegram },
-      { link: 'https://m.me/', key: 'messengerURL', icon: AppSocialMediaIcons.Messenger }
+      { link: 'https://linkedin.com/', key: 'linkedinURL', icon: LinkedinSm },
+      { link: 'https://tiktok.com/@', key: 'tiktokURL', icon: TiktoklightSm },
+      { link: 'https://twitter.com/', key: 'twitterURL', icon: XSm },
+      { link: 'http://', key: 'webURL', icon: GlobeSm },
+      { link: 'https://youtube.com/@', key: 'youtubeURL', icon: YoutubeSm },
+      { link: 'https://t.me/', key: 'telegramURL', icon: Telegram1Sm },
+      { link: 'https://m.me/', key: 'messengerURL', icon: MessengerSm }
     ],
     []
   );

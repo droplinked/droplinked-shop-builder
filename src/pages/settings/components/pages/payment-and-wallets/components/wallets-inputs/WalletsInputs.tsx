@@ -113,6 +113,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                 <InteractiveText
                     to="#"
                     target="_blank"
+                    rel="noopener noreferrer"
                     hasExternalIcon
                 >
                     {t(isSolana ? "PaymentsWallets.wallets.solanaWallet.learnMore" : "PaymentsWallets.wallets.evmWallet.learnMore")}

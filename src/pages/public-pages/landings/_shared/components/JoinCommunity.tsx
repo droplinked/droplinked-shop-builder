@@ -4,7 +4,7 @@ import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import localEn from 'locales/public-pages/landings/homePage/en.json'
 import localAr from 'locales/public-pages/landings/homePage/ar.json'
-import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from 'utils/constants/socialMediaLinks'
+import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from 'data/socialMediaLinks'
 import Community from '../svgs/Community'
 import SectionContainer from './SectionContainer/SectionContainer'
 

@@ -68,6 +68,7 @@ function CustomShippingFileUpload({ onFileParsed }: Props) {
                     fontSize={12}
                     to="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/622e15c810c2e7fb08c93b7ffa185228feb223ea821a3a596dfdd64c63854597_or.xlsx"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     {t('CustomShippingFileUpload.sampleFile.downloadTemplate')}
                 </InteractiveText>

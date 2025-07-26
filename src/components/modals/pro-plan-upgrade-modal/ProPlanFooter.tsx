@@ -25,7 +25,7 @@ const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ isCrossmint, canActivateT
       {canActivateTrial ? null : (
         <Text display="flex" fontSize="sm" justifyContent="center" alignItems="center" gap={1} mt={6} color="white">
           {' '}
-          {t('proPlan.footer.unsure')} <InteractiveText to="/plans" target="_blank">
+          {t('proPlan.footer.unsure')} <InteractiveText to="/plans" target="_blank" rel="noopener noreferrer">
             {t('proPlan.footer.comparePlans')}
           </InteractiveText>
         </Text>

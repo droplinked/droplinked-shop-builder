@@ -26,7 +26,7 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect 
 
       // For ENTERPRISE, also open email page
       if (planType === 'ENTERPRISE') {
-        window.open('mailto:Support@droplinked.com', '_blank');
+        window.open('mailto:Support@droplinked.com', '_blank', "noopener noreferrer");
       }
     }
   };

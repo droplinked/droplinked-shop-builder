@@ -67,7 +67,7 @@ function ControlsListCollection({ collection, fetch }) {
             <Box height={"40px"}>
                 <Divider orientation='vertical' borderColor={"neutral.gray.800"} />
             </Box>
-            <Link style={{ cursor: "pointer" }} target='_blank' to={redirectUrl}>
+            <Link style={{ cursor: "pointer" }} target='_blank' rel="noopener noreferrer" to={redirectUrl}>
                 <ShareLg />
             </Link>
             <TableMenu key={collection._id} items={[

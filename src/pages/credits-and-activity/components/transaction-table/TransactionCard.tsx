@@ -36,7 +36,7 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                             as="a"
                             href={`/invoice/${id}`}
                             target="_blank"
-                            rel="noreferrer"
+                            rel="noopener noreferrer"
                             w={10}
                             h={10}
                         >

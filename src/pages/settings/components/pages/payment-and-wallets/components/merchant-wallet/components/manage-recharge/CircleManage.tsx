@@ -14,7 +14,7 @@ import { getCircleWallet, postWithdrawCircle } from "services/shop/shopServices"
 import useAppStore from "stores/app/appStore";
 import { IModalProps } from "types/interface/modal.interface";
 import { appDevelopment } from "utils/app/variable";
-import { ChainIcons } from "utils/constants/chainIcons";
+import { ChainIcons } from "constants/chainIcons";
 import ConnectWallets from "./connect/ConnectWallets";
 
 const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {

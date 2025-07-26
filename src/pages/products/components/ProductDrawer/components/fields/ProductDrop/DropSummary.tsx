@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
-import chainNameMap from 'utils/constants/blockchainMap'
+import chainNameMap from 'constants/blockchainMap'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
@@ -29,7 +29,7 @@ function DropSummary() {
             }}
         >
             {transactionUrl ?
-                <InteractiveText to={transactionUrl} target="_blank">
+                <InteractiveText to={transactionUrl} target="_blank" rel="noopener noreferrer">
                     {truncatedTransactionUrl}
                 </InteractiveText>
                 :

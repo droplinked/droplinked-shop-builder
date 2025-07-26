@@ -132,6 +132,7 @@ function PaymentMethodAndTracking({ details, trackingInfo, orderId }) {
                             key={index}
                             to={tracking.url}
                             target="_blank"
+                            rel="noopener noreferrer"
                             hasExternalIcon
                         >
                             {tracking.name}

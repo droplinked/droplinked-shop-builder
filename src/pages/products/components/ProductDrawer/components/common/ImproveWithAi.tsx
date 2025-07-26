@@ -1,10 +1,17 @@
-import { Box, ChakraProps, Flex, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
+import { ChakraProps, Flex, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from "@chakra-ui/react";
+import { RocketSm } from "assets/icons/Action/Rocket/RocketSm";
+import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm';
+import { RobotSm } from "assets/icons/AI/Robot/RobotSm";
+import { HappyfaceSm } from "assets/icons/Sign/HappyFace/HappyfaceSm";
+import { Light2Sm } from "assets/icons/System/Light2/Light2Sm";
+import { MedalstarSm } from "assets/icons/System/MedalStar/MedalstarSm";
+import { SuitcaseSm } from "assets/icons/System/SuitCase/SuitcaseSm";
 import AppTypography from "components/common/typography/AppTypography";
 import AppButton from "components/redesign/button/AppButton";
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from "react";
-import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm';
+import { Refresh2Sm } from "assets/icons/Action/Refresh2/Refresh2Sm";
+import { Refresh1Sm } from "assets/icons/Action/Refresh1/Refresh1Sm";
 
 interface Props {
     handleSelectItem: (item: string) => void;
@@ -30,27 +37,27 @@ export default function ImproveWithAi({
 
     const items = [
         {
-            icon: <AppIcons.Light />,
+            icon: <Light2Sm />,
             title: t('ImproveWithAi.styles.casual'),
         },
         {
-            icon: <AppIcons.Smile />,
+            icon: <HappyfaceSm />,
             title: t('ImproveWithAi.styles.friendly')
         },
         {
-            icon: <AppIcons.Case />,
+            icon: <SuitcaseSm />,
             title: t('ImproveWithAi.styles.professional')
         },
         {
-            icon: <AppIcons.Rocket />,
+            icon: <RocketSm />,
             title: t('ImproveWithAi.styles.inspirational')
         },
         {
-            icon: <Box sx={{ path: { stroke: "#fff" } }}><AppIcons.MedalStarOutline /></Box>,
+            icon: <MedalstarSm />,
             title: t('ImproveWithAi.styles.luxury')
         },
         {
-            icon: <AppIcons.Robot />,
+            icon: <RobotSm />,
             title: t('ImproveWithAi.styles.techSavvy')
         },
     ]
@@ -58,13 +65,13 @@ export default function ImproveWithAi({
     const buttons = [
         {
             title: t('ImproveWithAi.actions.revert'),
-            icon: <AppIcons.Refresh2 />,
+            icon: <Refresh2Sm />,
             color: "#fff",
             onClick: handleRevert
         },
         {
             title: t('ImproveWithAi.actions.tryAgain'),
-            icon: <AppIcons.Refresh />,
+            icon: <Refresh1Sm color="#2BCFA1"/>,
             color: "#2BCFA1",
             onClick: handleTryAgain
         }

@@ -5,7 +5,7 @@ import localEn from 'locales/subscription/en.json'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { SubscriptionPlan } from 'services/subscription/interfaces'
 import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
-import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
+import { getSubscriptionPlans } from 'data/subscriptionPlans'
 
 function PlanDescription({ plan }: { plan: SubscriptionPlan }) {
     const descriptionRef = useRef<HTMLDivElement>(null)

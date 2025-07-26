@@ -48,7 +48,7 @@ export default function RecentTasks({ recentTasks, isLoading, getProducts, getPr
                                     {task.status}
                                 </Text>
                             </DotSeparatedList>
-                            <InteractiveText to={task.websiteUrl} target="_blank" textDecoration="underline" fontSize={16}>
+                            <InteractiveText to={task.websiteUrl} target="_blank" rel="noopener noreferrer" textDecoration="underline" fontSize={16}>
                                 {task.websiteUrl}
                             </InteractiveText>
                         </Flex>

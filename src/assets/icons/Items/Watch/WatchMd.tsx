@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const WatchMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
+export const WatchMd = ({ color = "white", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M10 15.625C13.1066 15.625 15.625 13.1066 15.625 10C15.625 6.8934 13.1066 4.375 10 4.375C6.8934 4.375 4.375 6.8934 4.375 10C4.375 13.1066 6.8934 15.625 10 15.625Z" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M6.875 5.32266L7.40703 2.38828C7.43319 2.24427 7.50907 2.11401 7.62143 2.02021C7.73379 1.92641 7.87551 1.87502 8.02188 1.875H11.9781C12.1245 1.87502 12.2662 1.92641 12.3786 2.02021C12.4909 2.11401 12.5668 2.24427 12.593 2.38828L13.125 5.32266" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -84,6 +84,7 @@ const styles = {
       fontSize: '12px',
       lineHeight: '16px',
       gap: '4px',
+      iconSize: 16,
     },
     md: {
       height: '40px',
@@ -91,6 +92,7 @@ const styles = {
       fontSize: '14px',
       lineHeight: '20px',
       gap: '6px',
+      iconSize: 20,
     },
     lg: {
       height: '48px',
@@ -98,6 +100,7 @@ const styles = {
       fontSize: '16px',
       lineHeight: '24px',
       gap: '8px',
+      iconSize: 24,
     },
   },
 } as const;
@@ -149,6 +152,14 @@ const helpers = {
         }
       }
     };
+  },
+
+  /**
+   * Gets icon size for a given button size
+   */
+  getIconSize(size: string) {
+    const validSize = size in styles.size ? size : 'md';
+    return styles.size[validSize as keyof typeof styles.size].iconSize;
   }
 };
 

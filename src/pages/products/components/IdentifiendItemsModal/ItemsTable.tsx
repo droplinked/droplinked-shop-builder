@@ -81,6 +81,7 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
                         fontWeight={400}
                         color="#fff"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         {truncatedUrl}
                     </InteractiveText>

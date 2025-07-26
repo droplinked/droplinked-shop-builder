@@ -5,8 +5,6 @@ import buttonStylesModule from './AppButtonStyles'
 export interface AppButtonProps extends ButtonProps {
     variant?: 'normal' | 'filled' | 'outlined' | 'secondary'
     size?: 'sm' | 'md' | 'lg'
-    iconLeft?: ReactElement | null
-    iconRight?: ReactElement | null
     useOriginalIconColor?: boolean 
 }
 
@@ -19,17 +17,27 @@ export interface AppButtonProps extends ButtonProps {
  * @param {object} props - Component props
  * @param {('normal'|'filled'|'outlined'|'secondary')} [props.variant='filled'] - Button style variant
  * @param {('sm'|'md'|'lg')} [props.size='md'] - Button size
- * @param {ReactElement|null} [props.iconLeft] - Icon to display on the left side
- * @param {ReactElement|null} [props.iconRight] - Icon to display on the right side
+ * @param {ReactElement|null} [props.leftIcon] - Icon to display on the left side
+ * @param {ReactElement|null} [props.rightIcon] - Icon to display on the right side
  * @param {React.ReactNode} props.children - Button content
  * @param {boolean} [props.isDisabled] - Whether the button is disabled
  */
+function sizeIcon(icon: React.ReactElement | undefined, size: number) {
+  if (!icon) return undefined;
+  // If the icon is a string (e.g., 'svg') or a function (component), inject width/height
+  if (typeof icon.type === 'string' || typeof icon.type === 'function') {
+    return React.cloneElement(icon as React.ReactElement<any>, { width: size, height: size });
+  }
+  // Otherwise, return as-is
+  return icon;
+}
+
 const AppButton = ({
     variant = 'filled',
     size = 'md',
     children,
-    iconLeft,
-    iconRight,
+    leftIcon,
+    rightIcon,
     useOriginalIconColor = false,
     ...props
 }: AppButtonProps) => {
@@ -42,8 +50,15 @@ const AppButton = ({
         isDisabled
     )
 
+    // Get icon size from style helper
+    const iconSize = buttonStylesModule.helpers.getIconSize(size);
+
     // Only apply icon styling if preserveIconColor is false
     const iconStyling = useOriginalIconColor ? {} : buttonStylesModule.helpers.getIconStyling()
+
+    // Clone icons with enforced size only if SVG
+    const sizedLeftIcon = sizeIcon(leftIcon, iconSize);
+    const sizedRightIcon = sizeIcon(rightIcon, iconSize);
 
     // Override any custom props when disabled to ensure consistent styling
     const finalProps = { ...props }
@@ -71,8 +86,8 @@ const AppButton = ({
             fontSize={sizeStyle.fontSize}
             fontWeight={500}
             iconSpacing={sizeStyle.gap}
-            leftIcon={iconLeft}
-            rightIcon={iconRight}
+            leftIcon={sizedLeftIcon}
+            rightIcon={sizedRightIcon}
             _hover={hover}
             _active={active}
             _disabled={{ 

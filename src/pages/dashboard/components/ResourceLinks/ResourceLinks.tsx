@@ -8,7 +8,7 @@ function ResourceLinks() {
     const { blogs, helpCenterLinks } = useLocalizedDashboardLinks()
     const { t } = useLocaleResources("dashboardPage")
 
-    const openLink = (url: string) => window.open(url, '_blank')
+    const openLink = (url: string) => window.open(url, '_blank', "noopener noreferrer")
 
     return (
         <DoubleColumnContainer>

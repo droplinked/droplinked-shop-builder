@@ -12,6 +12,7 @@ export default function TokenPayInformation() {
             <InteractiveText
                 to="#"
                 target="_blank"
+                rel="noopener noreferrer"
                 hasExternalIcon
             >
                 {t('PaymentsWallets.tokenPay.paymentTokens.learnMore')}

@@ -4,7 +4,7 @@ import { ExternalarrowleftLg } from "assets/icons/Navigation/ExternalArrowLeft/E
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper"
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
-import { SocialMediaItem } from "utils/constants/socialMediaLinks"
+import { SocialMediaItem } from "data/socialMediaLinks"
 
 interface Props {
   linkData: SocialMediaItem
@@ -18,6 +18,7 @@ function SocialMediaLink({ linkData }: Props) {
     <Link
       href={url}
       target="_blank"
+      rel="noopener noreferrer"
       position="relative"
       height="100%"
       display="flex"

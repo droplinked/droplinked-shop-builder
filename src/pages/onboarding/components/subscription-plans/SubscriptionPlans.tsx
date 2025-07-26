@@ -70,7 +70,7 @@ function SubscriptionPlans() {
                 mt="-46px"
                 justifyContent="flex-start"
                 padding={0}
-                onClick={() => window.open("/plans", "_blank")}
+                onClick={() => window.open("/plans", "_blank", "noopener noreferrer")}
                 hasExternalIcon
             >
                 {tOnboarding('SubscriptionPlans.viewAllPlans')}
