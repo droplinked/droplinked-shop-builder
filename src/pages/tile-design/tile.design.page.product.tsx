@@ -5,7 +5,7 @@ import AppModal from "components/common/modal/AppModal";
 import AppTypography from "components/common/typography/AppTypography";
 import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
-import { percentageToHex } from "constants";
+import { percentageToHex } from "constants/percentageToHexColors";
 import { TileDesignContext } from "./context/tile.design.context";
 import { PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
 
@@ -49,12 +49,9 @@ const TileDesignPageProduct = () => {
     const [[imageCount, direction], setImageCount] = useState<[number, number]>([0, 0]);
     const {
         state: {
-            design: {
-                PRODUCT: { IMAGE, CONTAINER, BUTTON, VARIANTS, TITLE, PRICE },
-            },
-            current,
+            design: { PRODUCT: { IMAGE, CONTAINER, BUTTON, VARIANTS, TITLE, PRICE } }
         },
-        methods: { updateFormFields, updateState },
+        methods: { updateState },
     } = useContext(TileDesignContext);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const activeImageIndex = wrap(0, imagesToShow?.length, imageCount);
