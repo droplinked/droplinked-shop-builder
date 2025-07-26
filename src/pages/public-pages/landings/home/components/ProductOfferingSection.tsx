@@ -25,7 +25,7 @@ export default function ProductOfferingSection() {
             innerOverlay: "https://upload-file-droplinked.s3.amazonaws.com/7b228ed2a617cefa1a86123a032c7955b548d2b64d858532a2f7245d4f3c9ff2.png"
         },
         {
-            icon: <BoxLg color='#fff' />,
+            icon: <ImageLg color='#fff' />,
             title: t("productOfferings.cards.digitalProducts.title"),
             description: t("productOfferings.cards.digitalProducts.description"),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 2' },
@@ -33,7 +33,7 @@ export default function ProductOfferingSection() {
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/0adc77b2411ddedae289d4a13d1c264c2670995eb95e5bdf15c115ba77b077b7.png'
         },
         {
-            icon: <ImageLg color='#fff' />,
+            icon: <BoxLg color='#fff' />,
             title: t("productOfferings.cards.physicalProducts.title"),
             description: t("productOfferings.cards.physicalProducts.description"),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 2' },
