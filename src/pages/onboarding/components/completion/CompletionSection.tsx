@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import DroplinkedBrand from '../common/DroplinkedBrand'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import CompletionSlider from './CompletionSlider'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function CompletionSection() {
     const { t } = useLocaleResources('onboarding')

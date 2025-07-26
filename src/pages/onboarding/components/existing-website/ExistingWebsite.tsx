@@ -1,22 +1,20 @@
 import { Flex, useDisclosure, useRadioGroup } from '@chakra-ui/react'
 import { AILg } from 'assets/icons/AI'
+import { ArrowleftMd } from 'assets/icons/Navigation/ArrowLeft/ArrowleftMd'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
 import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect } from 'react'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import YesNoRadioCard from './YesNoRadioCard'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import enLocale from 'locales/onboarding/en.json'
-import arLocale from 'locales/onboarding/ar.json'
-import { ArrowleftMd } from 'assets/icons/Navigation/ArrowLeft/ArrowleftMd'
 
 function ExistingWebsite() {
     const { updateOnboardingState, updateShopSetupUI, shopSetupUI } = useOnboardingStore()
     const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
-    const { t , isRTL } = useLocaleResources('onboarding',{ en: enLocale,ar: arLocale})
+    const { t, isRTL } = useLocaleResources('onboarding')
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-visibility-status',

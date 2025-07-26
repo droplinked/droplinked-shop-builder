@@ -6,8 +6,6 @@ import InteractiveText from 'components/redesign/interactive-text/InteractiveTex
 import { Form, Formik } from 'formik'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import Cookies from 'js-cookie'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
@@ -30,10 +28,7 @@ function SignInForm() {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
+    const { t } = useLocaleResources('onboarding')
 
     const handleSubmit = async (values: { email: string, password: string }) => {
         if (rememberPassword) {

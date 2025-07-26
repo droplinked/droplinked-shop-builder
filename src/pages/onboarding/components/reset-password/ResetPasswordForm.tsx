@@ -3,24 +3,18 @@ import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { forgetPasswordService } from 'services/auth/services'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
+import { forgetPasswordService } from 'services/auth/services'
 import * as Yup from 'yup'
 import AuthRedirectLink from '../common/AuthRedirectLink'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
-
 
 function ResetPasswordForm() {
   const { updateOnboardingState } = useOnboardingStore()
   const { showToast } = useAppToast()
-  const { t } = useLocaleResources('onboarding', {
-    en: enLocale,
-    ar: arLocale
-} );
+  const { t } = useLocaleResources('onboarding')
 
   const formSchema = Yup.object().shape({
     email: Yup.string()

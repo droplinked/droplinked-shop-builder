@@ -1,12 +1,12 @@
 import { Flex, Spinner } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect } from 'react'
 import AuthRedirectLink from '../AuthRedirectLink'
 import OnboardingStepHeader from '../OnboardingStepHeader'
 import OtpField from './OtpField'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface EmailConfirmationProps {
     mode: 'signup' | 'reset'

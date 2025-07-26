@@ -1,11 +1,11 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
+import useAppStore from 'stores/app/appStore'
 import ControlButtons from '../common/ControlButtons'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import CurrencySection from './CurrencySection'
 import FinancialServices from './FinancialServices'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import useAppStore from 'stores/app/appStore'
 
 function PaymentSetup() {
   const [isLoading, setIsLoading] = useState(false)
@@ -24,9 +24,9 @@ function PaymentSetup() {
 
   return (
     <>
-      <OnboardingStepHeader 
-        heading={t('PaymentSetup.title')} 
-        description={t('PaymentSetup.subtitle')} 
+      <OnboardingStepHeader
+        heading={t('PaymentSetup.title')}
+        description={t('PaymentSetup.subtitle')}
       />
       <FinancialServices />
       <CurrencySection onLoadingChange={handleCurrencyLoading} />
