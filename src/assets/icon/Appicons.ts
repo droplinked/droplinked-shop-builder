@@ -31,12 +31,10 @@ import { ReactComponent as BlueBase } from './blue-base.svg';
 import { ReactComponent as BlueBrush } from './blue-brush.svg';
 import { ReactComponent as BlueLinea } from './blue-linea.svg';
 import { ReactComponent as BluePlus } from './blue-plus.svg';
-import { ReactComponent as BlueSkyLg } from './blue-sky-lg.svg';
 import { ReactComponent as BnbChain } from './bnb-chain.svg';
 import { ReactComponent as Brain } from './brain.svg';
 import { ReactComponent as CanadianDollar } from './cad.svg';
 import { ReactComponent as Calendar } from './calendar.svg';
-import { ReactComponent as Case } from './case.svg';
 import { ReactComponent as CasperIcon } from './casper.svg';
 import { ReactComponent as CheckCircle } from './check-circle.svg';
 import { ReactComponent as ChevronLeft } from './chevron-left.svg';
@@ -86,23 +84,18 @@ import { ReactComponent as EventTicket } from './event-ticket.svg';
 import { ReactComponent as Export } from './export.svg';
 import { ReactComponent as Eye } from './eye.svg';
 import { ReactComponent as FileUpload } from './file-upload.svg';
-import { ReactComponent as Furniture } from './furniture.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
 import { ReactComponent as Globe } from './globe.svg';
 import { ReactComponent as GoldenStar } from './golden-star.svg';
 import { ReactComponent as Google } from './google.svg';
 import { ReactComponent as GrayDollar } from './gray-dollar.svg';
-import { ReactComponent as GrayInfinity } from './gray-infinity.svg';
 import { ReactComponent as GrayPercent } from './gray-percent.svg';
 import { ReactComponent as GrayOutlineStar } from './gray-star.svg';
 import { ReactComponent as GrayDiscountIcon } from './grayDiscountIcon.svg';
 import { ReactComponent as GrayGatedIcon } from './grayGatedIcon.svg';
 import { ReactComponent as GreenAlert } from './green-alert.svg';
-import { ReactComponent as GreenInfinity } from './green-infinity.svg';
-import { ReactComponent as GreenSpeedometer } from './green-speedometer.svg';
 import { ReactComponent as GreenPlus } from './greenPlus.svg';
 import { ReactComponent as Hand } from './hand.svg';
-import { ReactComponent as Hat } from './hat.svg';
 import { ReactComponent as HeaderAffiliateSass } from './header-affiliate-sass.svg';
 import { ReactComponent as HeaderAffiliate } from './header-affiliate.svg';
 import { ReactComponent as HeaderBag } from './header-bag.svg';
@@ -123,23 +116,18 @@ import { ReactComponent as InvisibleIcon } from './invisible-icon.svg';
 import { ReactComponent as InvoiceCreated } from './invoice-created.svg';
 import { ReactComponent as InvoiceDiscount } from './invoice-discount.svg';
 import { ReactComponent as InvoiceManagement } from './invoice-management.svg';
-import { ReactComponent as JapaneseYen } from './jpy.svg';
-import { ReactComponent as KidClothing } from './kid-clothing.svg';
+import { ReactComponent as JapaneseYen } from './jpy.svg';  
 import { ReactComponent as LandingPageCode } from './landing-page-code.svg';
 import { ReactComponent as LandingPageCreditCard } from './landing-page-credit-card.svg';
 import { ReactComponent as LandingPageDesignNib } from './landing-page-design-nib.svg';
 import { ReactComponent as LandingPageLink } from './landing-page-link.svg';
 import { ReactComponent as LandingPageTemplate } from './landing-page-template.svg';
-import { ReactComponent as Letter } from "./letter.svg";
-import { ReactComponent as Light } from './light.svg';
+import { ReactComponent as Letter } from "./letter.svg"; 
 import { ReactComponent as Like } from './like.svg';
 import { ReactComponent as Linea } from './linea.svg';
 import { ReactComponent as Location } from './location.svg';
-import { ReactComponent as MagicWind } from './magic-wind.svg';
 import { ReactComponent as Maximize } from './maximize.svg';
-import { ReactComponent as MedalStarOutline } from './medal-star-outlined.svg';
 import { ReactComponent as MedalStar } from './medalStar.svg';
-import { ReactComponent as MenClothing } from './men-clothing.svg';
 import { ReactComponent as MetaverseStore } from './metaverse-store.svg';
 import { ReactComponent as Mobile } from './mobile-icon.svg';
 import { ReactComponent as Monthcalendar } from './month-calendar.svg';
@@ -175,12 +163,9 @@ import { ReactComponent as RedCircleCross } from './red-circle-cross.svg';
 import { ReactComponent as RedTrash } from './red-trash.svg';
 import { ReactComponent as Redbelly } from './redbelly.svg';
 import { ReactComponent as Refresh } from './refresh.svg';
-import { ReactComponent as Refresh2 } from './refresh2.svg';
 import { ReactComponent as ReorderDesigned } from './reorderDesigned.svg';
 import { ReactComponent as Required } from './required.svg';
 import { ReactComponent as Ripple } from './ripple.svg';
-import { ReactComponent as Robot } from './robot.svg';
-import { ReactComponent as Rocket } from './rocket.svg';
 import { ReactComponent as RulesetModalIcon } from './ruleSetModalIcon.svg';
 import { ReactComponent as RulesetsIcon } from './ruleset.svg';
 import { ReactComponent as SearchOutlined } from './search-redesign.svg';
@@ -195,21 +180,16 @@ import { ReactComponent as SidebarAnalytics } from './sidebar-analytics.svg';
 import { ReactComponent as SidebarBrush } from './sidebar-brush.svg';
 import { ReactComponent as SidebarChat } from './sidebar-chat.svg';
 import { ReactComponent as SidebarCircle } from './sidebar-circle.svg';
-import { ReactComponent as SideBarCollapse } from './sidebar-collapse.svg';
-import { ReactComponent as SidebarDashboard } from './sidebar-dashboard.svg';
 import { ReactComponent as SidebarDroplinked } from './sidebar-droplinked.svg';
-import { ReactComponent as SideBarExpand } from './sidebar-expand.svg';
 import { ReactComponent as SidebarGo } from './sidebar-go.svg';
 import { ReactComponent as SidebarNext } from './sidebar-next.svg';
 import { ReactComponent as SidebarNote } from './sidebar-note.svg';
 import { ReactComponent as SidebarProducts } from './sidebar-products.svg';
-import { ReactComponent as SideBarQuests } from './sidebar-quests.svg';
 import { ReactComponent as SidebarRewards } from './sidebar-rewards.svg';
 import { ReactComponent as SidebarSetting } from './sidebar-setting.svg';
 import { ReactComponent as SidebarTickedCircle } from './sidebar-ticked-circle.svg';
 import { ReactComponent as SidebarUser } from './sidebar-user.svg';
 import { ReactComponent as Skale } from './skale.svg';
-import { ReactComponent as Smile } from './smile.svg';
 import { ReactComponent as Solana } from './solana.svg';
 import { ReactComponent as Soon } from './soon.svg';
 import { ReactComponent as SearchInput } from './square-with-slash.svg';
@@ -239,12 +219,10 @@ import { ReactComponent as User } from './user.svg';
 import { ReactComponent as VerticalMove } from './vertical-move.svg';
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
 import { ReactComponent as Wallet } from './wallet.svg';
-import { ReactComponent as Watch } from './watch.svg';
 import { ReactComponent as WeekCalendar } from './week-calendar.svg';
 import { ReactComponent as WhiteSave } from './white-save.svg';
 import { ReactComponent as WhiteTrash } from './white-trash.svg';
 import { ReactComponent as WhiteWarning } from './white-warning.svg';
-import { ReactComponent as WomenClothing } from './women-clothing.svg';
 import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
 import { ReactComponent as Xverse } from './xverse.svg';
@@ -259,12 +237,6 @@ const AppIcons = {
   ArrowDownOutlined,
   RecieveMoney,
   Wallet,
-  Refresh2,
-  Light,
-  Case,
-  Smile,
-  Rocket,
-  Robot,
   DayCalendar,
   WeekCalendar,
   Monthcalendar,
@@ -281,8 +253,6 @@ const AppIcons = {
   DollarSign,
   Location,
   Asterisk,
-  GreenSpeedometer,
-  MedalStarOutline,
   AddUser,
   EmailSign,
   SystemWarning,
@@ -460,7 +430,6 @@ const AppIcons = {
   HidedIcon,
   Required,
   EventTicket,
-  MagicWind,
   GoldenStar,
   OutlinedStar,
   GrayOutlineStar,
@@ -469,8 +438,6 @@ const AppIcons = {
   FileUpload,
   GreenPlus,
   Shirt,
-  GrayInfinity,
-  GreenInfinity,
   TooltipIcon,
   ChevronRight,
   ChevronLeft,
@@ -479,33 +446,22 @@ const AppIcons = {
   Convert,
   Invoice,
   DropProduct,
-  Hat,
-  MenClothing,
-  WomenClothing,
-  Furniture,
-  KidClothing,
-  Watch,
   PremiumPlanGreenStarIcon,
   Bitlayer,
   DROP_LINKED_LOGO,
   Soon,
-  SideBarQuests,
   Letter,
   ArrowRight,
   DroplinkedLogo,
   Collection,
   Discount,
   User,
-  SidebarDashboard,
   Transfer,
-  SideBarExpand,
-  SideBarCollapse,
   Globe,
   AffiliateAddProduct,
   SearchInput,
   FilterAction,
   Like,
-  BlueSkyLg
 }
 
 export default AppIcons
