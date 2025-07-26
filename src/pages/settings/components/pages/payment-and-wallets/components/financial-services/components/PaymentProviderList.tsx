@@ -44,13 +44,13 @@ const PaymentProviderList: React.FC = () => {
     {
       title: t('FinancialServices.providers.stripe.title'),
       type: "stripe",
-      buttonText: onboardedExpressStripeAccount
-                    ? t('FinancialServices.providers.stripe.buttonTextConnected')
-            : t('FinancialServices.providers.stripe.buttonTextNotConnected'),
+      buttonText: (onboardedExpressStripeAccount || !stripeOnboardingUrl)
+        ? t('FinancialServices.providers.stripe.buttonTextConnected')
+        : t('FinancialServices.providers.stripe.buttonTextNotConnected'),
       link: stripeOnboardingUrl || "https://dashboard.stripe.com/login",
       isExternal: true,
       isFetching: isFetching,
-              tooltip: t('FinancialServices.providers.stripe.tooltip'),
+      tooltip: t('FinancialServices.providers.stripe.tooltip'),
       icon: <StripeLogo />,
     },
     {
