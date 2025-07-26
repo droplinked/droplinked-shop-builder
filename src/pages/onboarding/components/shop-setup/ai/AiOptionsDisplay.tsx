@@ -2,12 +2,14 @@ import { Box, Flex, Image, Spinner, Text } from '@chakra-ui/react';
 import { AISm } from 'assets/icons/AI';
 import { Refresh1Sm } from 'assets/icons/Action/Refresh1/Refresh1Sm';
 import AppButton from 'components/redesign/button/AppButton';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import arLocale from 'locales/onboarding/ar.json';
+import enLocale from 'locales/onboarding/en.json';
 import React, { useState } from 'react';
 import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
 import useOnboardingStore, { initialShopData } from '../../../stores/useOnboardingStore';
 import RemoveConfirmationModal from '../uploads/RemoveConfirmationModal';
 import { ImageSlider } from './ImageSlider';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface AiOptionsDisplayProps {
   type: 'logos' | 'covers' | 'urls' | 'names';
@@ -19,7 +21,10 @@ interface AiOptionsDisplayProps {
 const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSelect, selectedValue }) => {
   const { isLoading, generateContent } = useAiGeneratedContent();
   const { aiGeneratedContent, shopData, shopSetupUI } = useOnboardingStore();
-  const { t } = useLocaleResources('onboarding');
+  const { t } = useLocaleResources('onboarding', {
+    en: enLocale,
+    ar: arLocale
+  })
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pendingSelection, setPendingSelection] = useState<string | null>(null); //TODO : Replace with useRef
 
