@@ -134,7 +134,10 @@
     "anErrorOccurred": "An error occurred",
     "unexpectedError": "An unexpected error occurred.",
     "pdfGenerationFailed": "Failed to generate PDF. Please try again.",
-    "invoiceNotFound": "Invoice not found with this ID"
+    "invoiceNotFound": "Invoice not found with this ID",
+    "permissionDenied": "Permission Denied",
+    "imageSizeLimit": "Image must be less than {{size}}. Please choose a smaller file size and try again.",
+    "imageTypeNotSupported": "Please upload an image in JPG, PNG, or GIF format."
   },
 
   "AddBalanceModal": {
