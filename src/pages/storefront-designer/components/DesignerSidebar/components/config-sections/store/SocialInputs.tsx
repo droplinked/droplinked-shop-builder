@@ -17,11 +17,7 @@ type SocialInputsProps = {
  * Component for handling social inputs
  */
 export const SocialInputs: React.FC<SocialInputsProps> = ({ activeSocialId, onUpdateActiveSocial }) => {
-  const {
-    methods: { dispatch },
-    state: { shop }
-  } = useContext(designerContext);
-
+  const { methods: { dispatch }, state: { shop } } = useContext(designerContext);
   const { t } = useLocaleResources('common', { en: localCommonEn, ar: localCommonAr });
   const socialItems = createSocialItems(shop, t);
 
