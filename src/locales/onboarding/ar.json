@@ -336,7 +336,6 @@
     "errors": {
       "accountDeleted": "تم حذف هذا الحساب",
       "accountUnableToLogin": "هذا الحساب غير قادر على تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك.",
-      "anErrorOccurred": "حدث خطأ",
       "loginFailed": "فشل تسجيل الدخول"
     }
   },

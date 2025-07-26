@@ -1,9 +1,9 @@
 import useAppToast from "hooks/toast/useToast"
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { useCallback } from "react"
 import useAppStore from "stores/app/appStore"
 import useOnboardingStore from "../stores/useOnboardingStore"
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export function useLogin() {
     const { login: authenticateUser, loading } = useAppStore()
@@ -15,7 +15,7 @@ export function useLogin() {
     const finalizeLogin = useCallback(async (data: any) => {
         try {
             const { user } = data
-            const status = user.status 
+            const status = user.status
 
             if (status === "DELETED")
                 return showToast({ message: t('useLogin.errors.accountDeleted'), type: "error" })
@@ -40,7 +40,8 @@ export function useLogin() {
             }
         }
         catch (error) {
-            showToast({ message: error?.message || t('onboarding.useLogin.errors.anErrorOccurred'), type: "error" })
+
+            showToast({ message: t('common:genericError'), type: "error" })
         }
     }, [showToast, updateOnboardingState, shopNavigate, t])
 
@@ -50,7 +51,7 @@ export function useLogin() {
             if (result) finalizeLogin(result)
         }
         catch (error) {
-            showToast({ message: error?.message || t('onboarding.useLogin.errors.loginFailed'), type: "error" })
+            showToast({ message: error?.message || t('useLogin.errors.loginFailed'), type: "error" })
         }
     }, [authenticateUser, finalizeLogin, showToast, t])
 
