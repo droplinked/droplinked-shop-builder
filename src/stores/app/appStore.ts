@@ -8,7 +8,6 @@ import { getUserService, userUpdateService } from 'services/user/services'
 import { toast } from 'sonner'
 import { setTokens } from 'utils/app/authutils'
 import { appDevelopment } from 'utils/app/variable'
-import AppErrors from 'constants/errors'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import useGrowthHackStore from '../level-up/levelUpStore'
@@ -159,7 +158,10 @@ const states = (set, get): IAppStore => ({
     checkPermissionAndShowToast: (permission, message) => {
         const { hasPermission } = get()
         if (!hasPermission(permission)) {
-            toast.error(message || AppErrors.permission.permissionDenied)
+            // Note: For now using a fallback message since this is a store
+            // In components, use: const { t } = useLocaleResources('common'); 
+            const fallbackMessage = message || "Permission Denied";
+            toast.error(fallbackMessage)
             return false
         }
         return true
