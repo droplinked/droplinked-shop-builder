@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
-    const [value, setValue] = useState(null)
+    const [value, setValue] = useState("")
     const { mutateAsync, isLoading } = useMutation((params: IchargeCreditService) => chargeCreditService(params))
     const { showToast } = useAppToast()
     const { t } = useLocaleResources("common")
@@ -41,8 +41,18 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
                         isRequired: true,
                         placeholder: t("BalanceModalBody.placeholder"),
                         value: value,
-                        type: "number",
-                        onChange: (e) => setValue(e.target.value)
+                        type: "text",
+                        onChange: (e) => {
+                            const val = e.target.value;
+                            if (val === "" || /^(0|[1-9]\d*)$/.test(val)) {
+                                setValue(val);
+                            }
+                        },
+                        onKeyDown: (e) => {
+                            if ([".", "e", "E", "-", "+"].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }
                     }}
                     leftElement={<CurrencyIcon />}
                 />
