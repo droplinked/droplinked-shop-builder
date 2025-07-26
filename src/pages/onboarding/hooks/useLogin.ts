@@ -15,14 +15,14 @@ export function useLogin() {
     const finalizeLogin = useCallback(async (data: any) => {
         try {
             const { user } = data
-            const status = user.status
+            const status = user.status 
 
             if (status === "DELETED")
-                return showToast({ message: t('onboarding.useLogin.errors.accountDeleted'), type: "error" })
+                return showToast({ message: t('useLogin.errors.accountDeleted'), type: "error" })
 
             if (user.type !== "SHOPBUILDER")
                 return showToast({
-                    message: t('onboarding.useLogin.errors.accountUnableToLogin'),
+                    message: t('useLogin.errors.accountUnableToLogin'),
                     type: "error"
                 })
 
