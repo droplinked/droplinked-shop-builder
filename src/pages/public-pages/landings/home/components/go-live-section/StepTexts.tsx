@@ -15,7 +15,7 @@ interface StepTextsProps {
 
 export default function StepTexts({ currentStep }: StepTextsProps) {
     const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
-    
+
     const stepData: StepData[] = t('steps', { returnObjects: true }) as StepData[]
 
     return (
@@ -29,15 +29,16 @@ export default function StepTexts({ currentStep }: StepTextsProps) {
             px={{ base: 4, md: 0 }}
         >
             {stepData.map((step, index) => {
-                const stepNumber = index + 1
-                const isActive = stepNumber === currentStep
+                const stepNumber = `0${index + 1}`
+                const isActive = (index + 1) === currentStep
 
                 return (
                     <Flex
                         key={stepNumber}
                         flex="1"
+                        flexDirection={{ base: "column", "xl": "row" }}
                         alignItems="flex-start"
-                        gap={3}
+                        gap={{ base: 2, lg: 3 }}
                         transition="opacity 0.3s ease"
                     >
                         <Text

@@ -20,11 +20,12 @@ export default function ProgressBar({ percentage }: { percentage: number }) {
                 height={{ base: `${percentage}%`, md: "100%" }}
                 width={{ base: "100%", md: `${percentage}%` }}
                 borderRadius="6px"
-                background={
-                    isRTL
+                background={{
+                    base: "linear-gradient(0deg, #2BCFA1 0%, rgba(43, 207, 161, 0.00) 100%)",
+                    md: isRTL
                         ? "linear-gradient(90deg, #2BCFA1 0%, rgba(43, 207, 161, 0.00) 100%)"
                         : "linear-gradient(270deg, #2BCFA1 0%, rgba(43, 207, 161, 0.00) 100%)"
-                }
+                }}
                 transition="all 1s ease-out"
             />
             <Box
