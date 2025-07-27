@@ -16,7 +16,7 @@ function Section({ title, link, children }: Props) {
                 justifyContent="space-between"
                 alignItems="center"
                 gap={6}
-                mb="4"
+                marginBottom={4}
             >
                 <Heading as="h2" fontSize={{ base: 18, xl: 20 }} color="text.white">
                     {title}
