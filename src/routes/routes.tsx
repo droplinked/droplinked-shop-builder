@@ -40,7 +40,6 @@ import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 
 // Lazy-loaded components for other routes
-const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"))
 const Blogs = lazy(() => import("pages/blogs/Blogs"))
 const Collections = lazy(() => import("pages/collections/Collections"))
@@ -64,6 +63,7 @@ const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplat
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
+const TemplateDesigner = lazy(() => import("pages/template-designer/TemplateDesigner"))
 
 const router = createBrowserRouter([
     {
@@ -129,6 +129,7 @@ const router = createBrowserRouter([
             {
                 path: "style-center",
                 children: [
+                    { path: "storefront-designer", element: <TemplateDesigner /> },
                     { path: "product-tiles", element: <TileDesign /> },
                     { path: "product-links", element: <PaymentLink /> }
                 ]
@@ -199,14 +200,6 @@ const router = createBrowserRouter([
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> }
-        ]
-    },
-    {
-        path: 'style-center/storefront-designer',
-        element: <ProducerLayout hideSidebar={true} />,
-        errorElement: <MaintenancePage />,
-        children: [
-            { index: true, element: <StorefrontDesigner /> }
         ]
     },
     { path: "onboarding", element: <Onboarding /> },

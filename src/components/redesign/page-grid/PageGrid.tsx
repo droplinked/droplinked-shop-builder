@@ -29,6 +29,7 @@
 
 import { Flex, Text, useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { createContext, useContext } from 'react'
 import AppInput from '../input/AppInput'
 import DesktopActionButtons from './components/DesktopActionButtons'
@@ -36,7 +37,6 @@ import MobileFloatingMenu from './components/MobileFloatingMenu'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 /**
  * Context to share loading state across PageGrid components
@@ -51,10 +51,15 @@ const usePageGridContext = () => useContext(PageGridContext)
  * @param props.children - Child components to render inside the PageGrid
  * @param props.loading - Optional loading state that will be passed to the Content component
  */
-function PageGridRoot({ children, loading }: PageGridRootProps) {
+function PageGridRoot({ children, loading, ...props }: PageGridRootProps) {
     return (
         <PageGridContext.Provider value={{ loading }}>
-            <Flex width="100%" flexDirection="column" alignItems="start">
+            <Flex
+                width="100%"
+                flexDirection="column"
+                alignItems="start"
+                {...props}
+            >
                 {children}
             </Flex>
         </PageGridContext.Provider>
@@ -100,6 +105,7 @@ function PageGridHeader({ title, description, actionButtons }: PageGridHeaderPro
  */
 function PageGridActions({ search, filters }: PageGridActionsProps) {
     const { t } = useLocaleResources('common')
+
     return (
         <Flex width="100%" mb="24px" justifyContent="space-between">
             {search && (
@@ -129,21 +135,18 @@ function PageGridActions({ search, filters }: PageGridActionsProps) {
  * @param props.children - Content to render
  * @param props.loading - Optional loading state that overrides the context loading state
  */
-function PageGridContent({ children, loading }: PageGridContentProps) {
+function PageGridContent({ children, loading, ...props }: PageGridContentProps) {
     const { loading: contextLoading } = usePageGridContext()
+
     const isLoading = loading ?? contextLoading
 
     return (
-        <Flex w="full" flexDirection="column">
+        <Flex w="full" flexDirection="column" {...props}>
             {isLoading ? <DataGridSkeleton /> : children}
         </Flex>
     )
 }
 
-/**
- * PageGrid compound component
- * A versatile layout component for creating structured pages with consistent styling
- */
 const PageGrid = {
     Root: PageGridRoot,
     Header: PageGridHeader,

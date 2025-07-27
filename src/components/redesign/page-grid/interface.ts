@@ -1,3 +1,4 @@
+import { FlexProps } from "@chakra-ui/react"
 import { AppButtonProps } from "../button/AppButton"
 import { IFiltersDataGridItems } from "./components/filters/interface"
 
@@ -8,8 +9,7 @@ export interface SearchInput {
     disabled?: boolean
 }
 
-export interface PageGridRootProps {
-    children: React.ReactNode;
+export interface PageGridRootProps extends FlexProps {
     loading?: boolean;
 }
 
@@ -28,7 +28,6 @@ export interface PageGridActionsProps {
     filters?: Array<IFiltersDataGridItems>;
 }
 
-export interface PageGridContentProps {
-    children: React.ReactNode;
+export interface PageGridContentProps extends FlexProps {
     loading?: boolean;
 }
