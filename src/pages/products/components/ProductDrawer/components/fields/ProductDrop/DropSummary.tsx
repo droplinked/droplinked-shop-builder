@@ -1,18 +1,20 @@
 import { Flex, Text } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
-import chainNameMap from 'utils/constants/blockchainMap'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
+import chainNameMap from 'constants/blockchainMap'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 function DropSummary() {
+    const { t } = useLocaleResources('products')
     const { values: { nftData } } = useProductForm()
     const { transactionUrl = "", networkName = "" } = nftData
 
     const truncatedTransactionUrl = transactionUrl
         ? `${transactionUrl.slice(0, 50)}...`
-        : "No transaction link available"
-    const formattedNetworkName = chainNameMap[networkName] || "Unknown Network"
+        : t('DropSummary.noTransactionLinkAvailable')
+    const formattedNetworkName = chainNameMap[networkName] || t('DropSummary.unknownNetwork')
 
     return (
         <Flex
@@ -27,11 +29,11 @@ function DropSummary() {
             }}
         >
             {transactionUrl ?
-                <ExternalLink href={transactionUrl} target="_blank">
+                <InteractiveText to={transactionUrl} target="_blank" rel="noopener noreferrer">
                     {truncatedTransactionUrl}
-                </ExternalLink>
+                </InteractiveText>
                 :
-                <Text>No transaction URL provided</Text>
+                <Text>{t('DropSummary.noTransactionUrlProvided')}</Text>
             }
 
             <Flex alignItems="center" gap={2}>

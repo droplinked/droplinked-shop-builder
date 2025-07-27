@@ -1,15 +1,17 @@
 import useAppToast from 'hooks/toast/useToast'
-import { downloadCreditChangeInvoice } from 'lib/apis/credit/services'
+import { downloadCreditChangeInvoice } from 'services/credit/services'
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Margin, usePDF } from 'react-to-pdf'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export const useInvoiceData = () => {
     const navigate = useNavigate()
     const [isDownloading, setIsDownloading] = useState(false)
     const params = useParams()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('invoice-management')
 
     const { data, isFetching } = useQuery({
         queryFn: () => downloadCreditChangeInvoice(params.txId),
@@ -21,7 +23,7 @@ export const useInvoiceData = () => {
         },
         onError() {
             showToast({
-                message: "Invoice not found with this ID",
+                message: t('hooks.errors.invoiceNotFound'),
                 type: "error"
             })
             navigate("/")
@@ -51,7 +53,7 @@ export const useInvoiceData = () => {
             // Generate PDF
             await toPDF()
         } catch (error) {
-            showToast({ message: "Failed to generate PDF. Please try again.", type: "error" })
+            showToast({ message: t('hooks.errors.pdfGenerationFailed'), type: "error" })
         } finally {
             setIsDownloading(false)
         }

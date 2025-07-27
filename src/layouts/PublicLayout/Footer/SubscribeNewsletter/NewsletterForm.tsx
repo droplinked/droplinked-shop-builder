@@ -2,17 +2,19 @@ import { useBreakpointValue } from '@chakra-ui/react'
 import AppInput from 'components/redesign/input/AppInput'
 import { Form, Formik } from 'formik'
 import useNewsletterSubmission from 'hooks/useNewsletterSubmission/useNewsletterSubmission'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import * as Yup from 'yup'
 import SubscribeButton from './SubscribeButton'
 
-const newsletterFormSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email address").required("Email is required")
-})
-
 function NewsletterForm() {
     const isMobileBreakpoint = useBreakpointValue({ base: true, md: false })
     const { handleSubmit } = useNewsletterSubmission()
+    const { t } = useLocaleResources('layout/PublicLayout')
+
+    const newsletterFormSchema = Yup.object().shape({
+        email: Yup.string().email(t('Footer.SubscribeNewsletter.NewsletterForm.invalidEmail')).required(t('Footer.SubscribeNewsletter.NewsletterForm.emailRequired'))
+    })
 
     return (
         <Formik
@@ -34,7 +36,7 @@ function NewsletterForm() {
                             }}
                             inputProps={{
                                 name: 'email',
-                                placeholder: 'Enter your email',
+                                placeholder: t('Footer.SubscribeNewsletter.NewsletterForm.enterYourEmail'),
                                 value: values.email,
                                 onChange: handleChange
                             }}

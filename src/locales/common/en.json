@@ -1,0 +1,197 @@
+{
+  "home": "Home",
+  "back": "Back",
+  "prev": "Prev",
+  "next": "Next",
+  "previous": "Previous",
+  "close": "Close",
+  "view": "View",
+  "edit": "Edit",
+  "create": "Create",
+  "update": "Update",
+  "delete": "Delete",
+  "duplicate": "Duplicate",
+  "remove": "Remove",
+  "add": "Add",
+  "claimNow": "Claim Now",
+  "return": "Return",
+  "continue": "Continue",
+
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "save": "Save",
+  "discard": "Discard",
+  "confirm": "Confirm",
+  "required": "Required",
+  "optional": "Optional",
+  "select": "Select",
+  "loading": "Loading...",
+  "success": "Success",
+  "error": "An error occurred",
+  "genericError": "Something went wrong. Please try again later.",
+
+  "import": "Import",
+  "export": "Export",
+  "download": "Download",
+  "upload": "Upload",
+  "refresh": "Refresh",
+  "filter": "Filter",
+  "sort": "Sort",
+  "search": "Search",
+
+  "status": "Status",
+  "active": "Active",
+  "pending": "Pending",
+  "paid": "Paid",
+  "draft": "Draft",
+  "public": "Public",
+  "private": "Private",
+
+  "product": "Product",
+  "order": "Order",
+  "orders": "Orders",
+  "customer": "Customer",
+  "customers": "Customers",
+  "client": "Client",
+  "affiliate": "Affiliate",
+
+  "price": "Price",
+  "total": "Total",
+  "date": "Date",
+  "type": "Type",
+  "description": "Description",
+  "details": "Details",
+  "actions": "Actions",
+
+  "share": "Share",
+  "getStarted": "Get Started",
+  "readyToGetStarted": "Ready to get started?",
+  "signUp": "Sign up",
+  "signUpForFree": "Sign up for free",
+
+  "contactUs": "Contact Us",
+  "helpCenter": "Help Center",
+  "support": "Support",
+  "company": "Company",
+  "brandAssets": "Brand Assets",
+  "developerKit": "Developer Kit",
+
+  "growWithDroplinked": "Grow with droplinked!",
+  "netProfit": "Net Profit",
+
+  "platformFunctionalities": {
+    "sectionTitle": "MODULAR STACK",
+    "headingTitle": "Platform Functionalities",
+    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business"
+  },
+
+  "marqueeSection": {
+    "sectionTitle": "ECOSYSTEM PARTNERS"
+  },
+
+  "socialMedia": {
+    "telegram": "Telegram",
+    "discord": "Discord",
+    "x": "X (Twitter)",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "youtube": "YouTube",
+    "tiktok": "TikTok",
+    "bluesky": "Blue Sky",
+    "facebook": "Facebook",
+    "messenger": "Messenger",
+    "web": "Website"
+  },
+
+  "fileUpload": {
+    "click": "Click",
+    "dragAndDrop": "or drag & drop here",
+    "dragActive": "Drop the file here ...",
+    "defaultFooter": "JPG, JPEG, PNG, MP4 and MOV (up to 10MB each)",
+    "ariaLabel": "Upload file"
+  },
+
+  "imageUpload": {
+    "dragActive": "Drop the image here...",
+    "footer": "JPG, JPEG, PNG (up to 5MB)",
+    "remove": "Remove {{name}}",
+    "uploadError": "Failed to upload image"
+  },
+
+  "hooks": {
+    "errors": {
+      "uploadFailed": "Upload failed!",
+      "downloadFailed": "Failed to download file"
+    }
+  },
+  "errors": {
+    "oopsSomethingWentWrong": "Oops! Something went wrong. Please try again.",
+    "oopsSomethingWentWrongShort": "Oops! Something went wrong.",
+    "somethingWentWrong": "Something went wrong. Please try again.",
+    "failedToCreate": "Failed to create. Please try again.",
+    "anErrorOccurred": "An error occurred",
+    "unexpectedError": "An unexpected error occurred.",
+    "pdfGenerationFailed": "Failed to generate PDF. Please try again.",
+    "invoiceNotFound": "Invoice not found with this ID",
+    "permissionDenied": "Permission Denied",
+    "imageSizeLimit": "Image must be less than {{size}}. Please choose a smaller file size and try again.",
+    "imageTypeNotSupported": "Please upload an image in JPG, PNG, or GIF format."
+  },
+
+  "AddBalanceModal": {
+    "title": "Add Credit",
+    "description": "Top up the account balance to pay for digital coupons, offers and monthly plan services.",
+    "paymentConfirmed": "Payment confirmed! Your credit has been updated successfully",
+    "paymentFailed": "Payment failed. Please try again."
+  },
+  "BalanceModalBody": {
+    "amount": "Amount",
+    "placeholder": "100",
+    "pay": "Pay",
+    "genericError": "Oops! Something went wrong"
+  },
+  "AccessLevelBadge": {
+    "Pro": "Pro",
+    "Premium": "Premium",
+    "Enterprise": "Enterprise",
+    "feature": "Feature"
+  },
+  "proPlan": {
+    "crossmint": {
+      "title": "Free Pro Plan Unlocked!",
+      "description": "You now have access to the Pro Plan for 3 months for free."
+    },
+    "trial": {
+      "title": "Use droplinked AI to Create A Shop",
+      "description": "Feel free to use the AI tools to customize shops and inventory. Add your details below to get started."
+    },
+    "upgrade": {
+      "title": "Access Exclusive Features",
+      "description": "Upgrade today to take advantage of the benefits associated with a Premium Plan."
+    },
+    "payment": {
+      "successMessage": "Trial activated successfully! Your Pro features are now available."
+    },
+    "footer": {
+      "claimTrial": "Claim Trial Now",
+      "upgrade": "Upgrade",
+      "unsure": "Still unsure?",
+      "comparePlans": "Compare plans and pricing options",
+      "keepCurrentPlan": "Keep Current Plan",
+      "close": "Close"
+    },
+    "features": {
+      "less": "Less",
+      "more": "More"
+    },
+    "card": {
+      "crossmintTitle": "3 months free after adding card on file",
+      "proTitle": "Pro",
+      "description": "For small businesses and teams ready to grow.",
+      "proAccess": "Pro Access",
+      "cancelAnytime": "Cancel anytime",
+      "seamlessActivation": "Seamless Activation"
+    }
+  }
+}

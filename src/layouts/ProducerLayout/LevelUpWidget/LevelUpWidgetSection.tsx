@@ -1,6 +1,9 @@
 import { Box } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
+import { ChevronleftSm } from 'assets/icons/Navigation/ChevronLeft/ChevronleftSm';
+import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 
 interface LevelUpWidgetSectionProps {
@@ -16,6 +19,8 @@ interface LevelUpWidgetSectionProps {
 }
 
 const LevelUpWidgetSection = ({ index, section, isCompleted, setCurrentSection, setCurrentSubSection, onOpen }: LevelUpWidgetSectionProps) => {
+  const {isRTL} = useLocaleResources('common')
+
   return (
     <Box
       display="flex"
@@ -48,12 +53,13 @@ const LevelUpWidgetSection = ({ index, section, isCompleted, setCurrentSection, 
         fontWeight="500"
         lineHeight="16px"
         textDecoration={isCompleted ? 'line-through' : 'none'}
+        textAlign={isRTL ? 'right' : 'left'}
       >
         {section?.title}
       </AppTypography>
 
       {/* Arrow Icon */}
-      <AppIcons.SidebarChevronright width={16} height={16} />
+     {isRTL ? <ChevronleftSm /> : <ChevronrightSm />}
     </Box>
   );
 };

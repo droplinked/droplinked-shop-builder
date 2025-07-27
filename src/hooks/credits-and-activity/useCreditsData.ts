@@ -1,6 +1,6 @@
-import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
 import useCreditStore from 'pages/credits-and-activity/stores/CreditStore'
 import { useInfiniteQuery, useQuery } from 'react-query'
+import { getCreditAnalytics, getCreditDetailedAnalytics } from 'services/credit/services'
 
 export default function useCreditsData() {
     const { date, selectedFilter, updateCreditState } = useCreditStore()

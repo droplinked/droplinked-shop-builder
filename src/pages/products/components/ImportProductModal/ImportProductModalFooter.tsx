@@ -1,7 +1,8 @@
 import { ModalFooter } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import useAppToast from 'hooks/toast/useToast'
-import { uploadProductCSV } from 'lib/apis/product/productServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { uploadProductCSV } from 'services/product/productServices'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
@@ -14,6 +15,7 @@ interface Props {
 }
 
 function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
+    const { t } = useLocaleResources('products');
     const formData = new FormData()
     const { targetShopUrl } = useProductPageStore()
     const { showToast } = useAppToast()
@@ -30,7 +32,7 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
             showToast({ message: response.data.message, type: 'success' })
             closeModal()
         } catch (error: any) {
-            const errorMessage = error?.response?.data?.data?.message || 'An error occurred'
+            const errorMessage = error?.response?.data?.data?.message || t('common:error')
             showToast({ message: errorMessage, type: 'error' })
         }
     }
@@ -51,10 +53,10 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
             paddingBlock="36px !important"
         >
             <AppButton variant="secondary" disabled={isLoading} onClick={closeModal}>
-                Discard
+                {t('ImportProductModalFooter.cancel')}
             </AppButton>
             <AppButton onClick={handleSubmit} isLoading={crawlingLoading || isLoading} isDisabled={!file && !targetShopUrl}>
-                {isLoading ? 'Uploading' : 'Validate'}
+                {isLoading ? t('common:uploading') : t('ImportProductModalFooter.import')}
             </AppButton>
         </ModalFooter>
     )

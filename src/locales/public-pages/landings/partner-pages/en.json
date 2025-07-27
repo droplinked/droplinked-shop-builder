@@ -1,0 +1,122 @@
+{
+  "PartnerHero": {
+    "d3": {
+      "title": "D3 Network Members",
+      "subtitle": "Unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today as a domain holder"
+    },
+    "unstoppableDomains": {
+      "title": "Unstoppable Domains \n Members",
+      "subtitle": "Unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today as a domain holder"
+    },
+    "polygon": {
+      "title": ".Polygon Domain Holders",
+      "subtitle": "Unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today as a .polygon domain holder"
+    },
+    "crossmint": {
+      "title": "Powering \n Agentic Commerce",
+      "subtitle": "Crossmint members unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today."
+    }
+  },
+  "PartnerConfig": {
+    "d3": {
+      "name": "D3",
+      "displayName": "D3",
+      "trialMonths": 6
+    },
+    "unstoppableDomains": {
+      "name": "unstoppable domains",
+      "displayName": "unstoppable domains",
+      "trialMonths": 3
+    },
+    "polygon": {
+      "name": "polygon",
+      "displayName": "polygon",
+      "trialMonths": 3
+    },
+    "crossmint": {
+      "name": "crossmint",
+      "displayName": "crossmint",
+      "trialMonths": 3
+    }
+  },
+  "PerkList": {
+    "sectionTitle": "SET OF PERKS",
+    "headingTitle": "Perks for {{partnerName}} Members",
+    "headingSubtitle": "droplinked is offering {{trialMonths}} months of a pro plan for free",
+    "cards": {
+      "storeSetup": {
+        "title": "Store Setup Simplified",
+        "description": "Use droplinked tools to launch your shop"
+      },
+      "enterpriseTools": {
+        "title": "Enterprise-Level Tools",
+        "description": "Unlock advanced features to scale your business from the start"
+      },
+      "nftIntegration": {
+        "title": "Seamless NFT Integration",
+        "description": "Create, manage, and sell NFTs on a customizable storefront"
+      }
+    }
+  },
+  "ModularStack": {
+    "cards": {
+      "accessProducts": {
+        "title": "Access +10k Products Instantly",
+        "description": "Choose from a vast catalog to customize and sell unique merchandise on demand"
+      },
+      "web3Technology": {
+        "title": "Web3 Technology Support",
+        "description": "Seamlessly integrate NFTs alongside blockchain features to create novel experiences with assets you own or want to offer"
+      },
+      "proPlan": {
+        "title": "{{trialMonths}} Month Pro Plan",
+        "description": "Enjoy premium features for {{trialMonths}} months for being a loyal {{partnerName}} customer"
+      }
+    }
+  },
+  "UDTldFeatures": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Featured TLD's",
+    "headingSubtitle": "Unlock exclusive perks and benefits today by proving ownership",
+    "featuresText": "Features"
+  },
+  "D3BentoGrids": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Join Your Community",
+    "headingSubtitle": "Unlock exclusive perks and benefits today by proving ownership"
+  },
+  "ClaimNow": {
+    "sectionTitle": "CLAIM NOW",
+    "headingTitle": "Free {{trialMonths}} Month Pro Plan",
+    "headingSubtitle": "Unlock {{trialMonths}} months of the Pro Plan absolutely free!\nRedeem the exclusive offer today"
+  },
+  "ModalHeader": {
+    "connect": {
+      "title": "Connect Wallet for Verification",
+      "description": "Connect your wallet to check if you're eligible for the {{trialMonths}} month Pro Plan"
+    },
+    "loading": {
+      "title": "Verifying Wallet Status",
+      "description": "Please wait while your wallet is verified for eligibility"
+    },
+    "error": {
+      "title": "Wallet Verification Unsuccessful",
+      "description": "It looks like your wallet doesn't meet the criteria. Unfortunately, you're not eligible to claim the offer"
+    },
+    "done": {
+      "title": "Congrats, Wallet Offer Verified",
+      "description": "You can now create an account and enjoy {{trialMonths}} months of a Pro Plan"
+    }
+  },
+  "ModalButtons": {
+    "checkEligibilityLabel": "Check Wallet Eligibility"
+  },
+  "FeatureList": {
+    "proPlanLabel": "{{trialMonths}} Month Pro Plan",
+    "instantVerificationLabel": "Instant Verification"
+  },
+  "useWalletVerification": {
+    "metamaskNotInstalled": "Metamask wallet is not installed!",
+    "unstoppableNotInstalled": "Unstoppable Wallet is not installed!"
+  }
+} 

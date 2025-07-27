@@ -1,5 +1,6 @@
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
 import ProductAffiliate from '../fields/ProductAffiliate'
@@ -10,17 +11,18 @@ import ProductTitle from '../fields/ProductTitle'
 import GenerateWithAI from '../common/GenerateWithAI'
 
 function GeneralInformationAccordion() {
+    const { t } = useLocaleResources('products');
     const { values: { product_type } } = useProductForm()
 
     return (
         <ProductFormAccordion
-            label='General Information'
+            label={t('ProductForm.accordions.generalInformation.label')}
             defaultOpen={product_type !== "PRINT_ON_DEMAND"}
         >
             {product_type === "EVENT" && (
                 <MessageBox
-                    title='Event Sync Notice'
-                    description='The event name and description are synced with your connected event account. To make updates, please edit directly in your event account. Changes will automatically appear here.'
+                    title={t('ProductForm.accordions.generalInformation.eventSync.title')}
+                    description={t('ProductForm.accordions.generalInformation.eventSync.description')}
                     theme='warning'
                 />
             )}

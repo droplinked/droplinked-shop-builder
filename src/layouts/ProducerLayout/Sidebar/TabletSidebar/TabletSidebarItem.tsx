@@ -3,10 +3,13 @@ import AppTooltip from "components/common/tooltip/AppTooltip"
 import React from "react"
 import { NavLink as RouterLink, useLocation } from "react-router-dom"
 import { SidebarItemType } from "../SidebarGroup"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 export default function TabletSidebarItem({ item }: { item: SidebarItemType }) {
     const disclosure = useDisclosure()
     const location = useLocation()
+    const { isRTL } = useLocaleResources('common')
+
 
     const activeStyles = { bg: "neutral.gray.800" }
     const baseButtonStyles = {
@@ -60,16 +63,20 @@ export default function TabletSidebarItem({ item }: { item: SidebarItemType }) {
                 <PopoverContent
                     position="relative"
                     top={-2}
-                    left={6}
+                    left={isRTL ? null : 6}
+                    right={isRTL ? 4 : null}
                     width="288px"
                     border="none"
                     bgColor="transparent"
                     boxShadow="none"
                     zIndex="popover"
                 >
-                    <Box position="absolute" top="28px" transform="translateY(-50%)" left="-11px">
-                        <LeftArrowSVG />
-                    </Box>
+                    
+                    {isRTL ? null :
+                        <Box position="absolute" top="28px" transform="translateY(-50%)" left="-11px" >
+                            <LeftArrowSVG />
+                        </Box>
+                    }
 
                     <Flex
                         position="relative"
@@ -107,9 +114,11 @@ export default function TabletSidebarItem({ item }: { item: SidebarItemType }) {
                         </Flex>
                     </Flex>
 
-                    <Box position="absolute" top="28px" transform="translateY(-50%)" left="-10px">
-                        <BackgroundArrowSVG />
-                    </Box>
+                    {isRTL ? null :
+                        <Box position="absolute" top="28px" transform="translateY(-50%)" left="-10px">
+                            <BackgroundArrowSVG />
+                        </Box>
+                    }
                 </PopoverContent>
             </Portal>
         </Popover>

@@ -1,4 +1,4 @@
-import { Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text, Box } from '@chakra-ui/react'
+import { Box, Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import { TooltipMd } from 'assets/icons/Sign/Tooltip/TooltipMd'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
@@ -105,14 +105,15 @@ function InputContainer(props: Props) {
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (inputProps?.isDisabled) return
+
         const { value, validity } = event.target
 
-        if (inputProps?.type === 'number') {
-            const numericValue = inputProps.numberType === 'float' ? parseFloat(value) : parseInt(value, 10)
-            if (!isNaN(numericValue) && validity.valid) inputProps?.onChange?.(event)
-        }
-        else inputProps?.onChange?.(event)
+        if (inputProps?.type !== 'number') return inputProps?.onChange?.(event)
 
+        const numericValue = inputProps.numberType === 'float' ? parseFloat(value) : parseInt(value, 10)
+
+        if (!isNaN(numericValue) && validity.valid) inputProps?.onChange?.(event)
     }
 
     return (
@@ -174,8 +175,8 @@ function InputContainer(props: Props) {
                             }
                         }}
                         onKeyDown={handleKeyDown}
-                        onChange={handleChange}
                         {...inputProps}
+                        onChange={handleChange}
                     />
                 }
                 {showAnimatedLoading &&

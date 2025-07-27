@@ -1,0 +1,115 @@
+{
+  "hero": {
+    "title": "Commerce to \n Earn the Most",
+    "subtitle": "Enabling businesses and entrepreneurs to maximize sales and finance growth",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "goLive": {
+    "sectionTitle": "GO LIVE IN MINUTES",
+    "headingTitle": "Effortlessly Designed \n Storefronts and Marketplaces",
+    "headingSubtitle": "droplinked makes it simple to sell physical and digital inventory while allowing you \n to earn in cash or crypto"
+  },
+  "productOfferings": {
+    "sectionTitle": "PRODUCT OFFERINGS",
+    "headingTitle": "Sell Across Any Vertical",
+    "headingSubtitle": "droplinked supports a wide variety of inventory, from digital goods, physical items, merchandise and digital IP. Whether an artist, creator, or enterprise retailer, the technology helps easily manage physical and digital inventory and increase margins",
+    "cards": {
+      "services": {
+        "title": "Services",
+        "description": "Offer skills like consulting, design work, and more with onchain automation"
+      },
+      "digitalProducts": {
+        "title": "Digital Products",
+        "description": "Offer eBooks, online courses, software, and more with easy distribution"
+      },
+      "physicalProducts": {
+        "title": "Physical Products",
+        "description": "Manage inventory and sales with secure blockchain-backed transactions"
+      },
+      "podAndNfts": {
+        "title": "POD and NFT's - Mint to MerchTM",
+        "description": "Create and sell unique items using digital art, collectibles, and other blockchain-based items"
+      }
+    }
+  },
+  "keyFeatures": {
+    "sectionTitle": "DROPLINKED KEY FEATURES",
+    "headingTitle": "Onchain Commerce",
+    "headingSubtitle": "droplinked offers easy to use digital tools, providing powerful features for any seller or business to accelerate global commerce at scale",
+    "cards": {
+      "onchainRegistration": {
+        "title": "Onchain Product Registration",
+        "description": "Register inventory on the blockchain for full accountability and security"
+      },
+      "instantPayments": {
+        "title": "Instant Blockchain Payments",
+        "description": "Accept Stablecoins, Bitcoin, Ethereum, and other cryptocurrencies with zero middlemen"
+      },
+      "transparentFees": {
+        "title": "Transparent Fees, No Limits",
+        "description": "Sell freely with no hidden fees or restrictions – own the data and profits while knowing exactly how earnings are distributed with partners"
+      },
+      "communityDriven": {
+        "title": "Community-Driven",
+        "description": "Engage with a vibrant, global community of buyers and sellers"
+      },
+      "numbersThatMatter": {
+        "title": "Numbers That Matter",
+        "description": "Join our Growing Network of Leading Merchants"
+      }
+    }
+  },
+  "testimonials": {
+    "sectionTitle": "CUSTOMER TESTIMONIALS",
+    "headingTitle": "Join Thousands\nof Successful Sellers",
+    "headingSubtitle": "Hear from those who've made the shift to onchain commerce with droplinked",
+    "feedbacks": [
+      {
+        "feedback": "I launched my NFT collection in minutes. droplinked made it super easy and the sales transparency has been incredible.",
+        "name": "John D., Digital Artist",
+        "image": "https://upload-file-droplinked.s3.amazonaws.com/ac31212706927ab0670276812230a9b428f553d3e86e1e29a364e34068ad5520.png",
+        "time": "August 2024"
+      },
+      {
+        "feedback": "With droplinked, I scaled my product sales faster than I could have imagined. The integrations across blockchains were game changers!",
+        "name": "Emily R., Entrepreneur",
+        "image": "https://upload-file-droplinked.s3.amazonaws.com/6657fbefd65755465c5efb806032e7f0385d422740e9cf1d6f1b23c1dad7a1c9.png",
+        "time": "April 2025"
+      },
+      {
+        "feedback": "The seamless crypto payment options and decentralized nature of the platform are exactly what I needed. My store is growing quickly with my community.",
+        "name": "Michael T., Retailer",
+        "image": "https://upload-file-droplinked.s3.amazonaws.com/9e5b3744f2e1e055d2cb2a7ed2a2e497d721ea7cbe8b8a434833d5118ea4557a.png",
+        "time": "December 2024"
+      }
+    ]
+  },
+  "joinNow": {
+    "sectionTitle": "JOIN NOW",
+    "headingTitle": "Ready to Get Started?",
+    "headingSubtitle": "Now's the chance to join the next wave of commerce and make an impact"
+  },
+  "joinCommunity": {
+    "sectionTitle": "GROW TOGETHER",
+    "headingTitle": "Join the Community",
+    "headingSubtitle": "Follow us across our channels to get the latest news, updates and exclusive offers"
+  },
+  "error": {
+    "loginFailed": "Login failed. Please try again."
+  },
+  "steps": [
+    {
+      "title": "Join and Launch with AI",
+      "description": "Pick your niche. AI builds your branded store theme, logo, colors and domain to get you ready to sell in minutes"
+    },
+    {
+      "title": "Automated Setup",
+      "description": "Import or create physical or digital products in a snap. AI optimizes titles, descriptions, and SEO to boost sales"
+    },
+    {
+      "title": "Accept Payments",
+      "description": "Connect global payment gateways. Accept cash and crypto. Automations handle orders so you scale faster"
+    }
+  ]
+} 

@@ -1,16 +1,20 @@
 import { FormLabel, InputGroup, Textarea } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useFormikContext } from 'formik'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import React from 'react'
 import { InvoiceFormSchema } from '../../helpers/helpers'
 
 function InvoiceMemo() {
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
     const { values, setFieldValue } = useFormikContext<InvoiceFormSchema>()
     const maxCharacters = 100
 
     return (
         <InputGroup display="flex" flexDirection="column">
-            <FormLabel margin={0} fontSize={16} color="white">Memo</FormLabel>
+            <FormLabel margin={0} fontSize={16} color="white">{t('InvoiceMemo.label')}</FormLabel>
             <Textarea
                 value={values.note}
                 onChange={(e) => setFieldValue("note", e.target.value)}
@@ -21,7 +25,7 @@ function InvoiceMemo() {
                 borderColor="neutral.gray.800"
                 paddingBlock={3}
                 paddingInline={4}
-                placeholder="What’s up?"
+                placeholder={t('InvoiceMemo.placeholder')}
                 color="text.subtext.placeholder.dark"
                 resize="none"
                 _placeholder={{ color: "text.subtext.placeholder.dark" }}

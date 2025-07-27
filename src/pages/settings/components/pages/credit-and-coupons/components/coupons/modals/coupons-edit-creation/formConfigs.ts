@@ -30,34 +30,37 @@ export const getInitialValues = ({ coupon, convertPrice }: InitialValues) => {
     }
 }
 
-export const getValidationSchema = ({ isEdit }: { isEdit: boolean }) => {
+export const getValidationSchema = ({ isEdit, t }: { isEdit: boolean, t: (key: string) => string }) => {
     if (isEdit) {
         return (
             Yup.object().shape({
-                name: Yup.string().required("Title is Required"),
-                quantity: Yup.number().typeError("Must be Number").required("Quantity is Required"),
-                type: Yup.string().required("Type is Required"),
-                balance: Yup.number().typeError("Must be Number").required("Amount is Required"),
+                name: Yup.string().required(t("validationHandlers.validation.titleRequired")),
+                quantity: Yup.number().typeError(t("validationHandlers.validation.mustBeNumber")).required(t("validationHandlers.validation.quantityRequired")),
+                type: Yup.string().required(t("validationHandlers.validation.typeRequired")),
+                balance: Yup.number().typeError(t("validationHandlers.validation.mustBeNumber")).required(t("validationHandlers.validation.amountRequired")),
                 expiryDate: Yup.date()
-                    .required("Expiry Date is Required")
+                    .required(t("validationHandlers.validation.expiryDateRequired"))
                     .nullable(),
             })
         )
     } else {
         return (
             Yup.object().shape({
-                name: Yup.string().required("Title is Required"),
-                quantity: Yup.number().required("Quantity is Required"),
-                type: Yup.string().required("Type is Required"),
+                name: Yup.string().required(t("validationHandlers.validation.titleRequired")),
+                quantity: Yup.number().required(t("validationHandlers.validation.quantityRequired")),
+                type: Yup.string().required(t("validationHandlers.validation.typeRequired")),
                 balance: Yup.number()
                     .when("type", {
                         is: (value: string) => value === "DISCOUNT",
-                        then: (schema) => schema.integer("Must be a valid number").min(1, "Min is 1").max(100, "Max 100").required(""),
-                        otherwise: (schema) => schema.required("Amount is Required"),
+                        then: (schema) => schema.integer(t("validationHandlers.validation.validNumber"))
+                            .min(1, t("validationHandlers.validation.minDiscount"))
+                            .max(100, t("validationHandlers.validation.maxDiscount"))
+                            .required(""),
+                        otherwise: (schema) => schema.required(t("validationHandlers.validation.amountRequired")),
                     }),
                 expiryDate: Yup.date()
-                    .required("Expiry Date is Required")
-                    .min(new Date(), "Expiry date must be in the future")
+                    .required(t("validationHandlers.validation.expiryDateRequired"))
+                    .min(new Date(), t("validationHandlers.validation.futureDateRequired"))
                     .nullable(),
             })
         )

@@ -5,10 +5,11 @@ import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
-import { ICustomReferralCode } from 'lib/apis/shop/interfaces'
-import { updateCustomReferralCodeService } from 'lib/apis/shop/shopServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
+import { ICustomReferralCode } from 'services/shop/interfaces'
+import { updateCustomReferralCodeService } from 'services/shop/shopServices'
 import useAppStore from 'stores/app/appStore'
 import { BUILDER_URL } from 'utils/app/variable'
 
@@ -19,6 +20,7 @@ export default function CustomCodesGenerator() {
     const [shopInitialCustomCode, setShopInitialCustomCode] = useState(customCode)
     const [value, setValue] = useState("")
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('settings');
 
     const isValidLength = value?.length >= 8
 
@@ -31,14 +33,14 @@ export default function CustomCodesGenerator() {
             });
             setShopInitialCustomCode(value)
             setValue("")
-            showToast({ type: "success", message: "Custom code updated successfully" });
+            showToast({ type: "success", message: t('Referrals.customCodes.success') });
         } catch (error) {
             showToast({ type: "error", message: "Failed to create custom code" });
         }
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value.replace(/\s/g, '');
+        const newValue = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
         setValue(newValue);
     }
 
@@ -46,7 +48,7 @@ export default function CustomCodesGenerator() {
         <Flex flexDirection={"column"} gap={6}>
             <AppInput
                 inputProps={{
-                    placeholder: "Type a custom code or text without any spaces (minimum 8 characters)",
+                    placeholder: t('Referrals.customCodes.placeholder'),
                     value,
                     onChange: handleInputChange,
                     isDisabled: shopInitialCustomCode
@@ -65,7 +67,7 @@ export default function CustomCodesGenerator() {
                             onClick={handleCreateCustomCode}
                             isDisabled={!isValidLength || shopInitialCustomCode}
                         >
-                            Create
+                            {t('Referrals.customCodes.createButton')}
                         </AppButton>
                     </>
                 }

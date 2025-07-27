@@ -3,6 +3,13 @@
 export const capitalizeFirst = (value: string = ""): string =>
     value.charAt(0).toUpperCase() + value.slice(1);
 
+export function toCamelCase(str) {
+    return str
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
 
 export const convertCartOptionsToVariantsArray = (options: any) => {
     if (!options) return

@@ -1,7 +1,7 @@
 import { GridProps } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import React from "react"
-import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from "utils/constants/socialMediaLinks"
+import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from "data/socialMediaLinks"
 import JoinCommunityCard from "./JoinCommunityCard"
 import SocialMediaLink from "./SocialMediaLink"
 
@@ -43,7 +43,7 @@ export default function CommunityEngagement({ columns, includeBlueSky, ...props 
                 <JoinCommunityCard />
                 <RuledGrid columns={columns} nested {...commonGridProps}>
                     {socialMediaLinks.map((socialMediaLink) => (
-                        <SocialMediaLink key={socialMediaLink.label} linkData={socialMediaLink} />
+                        <SocialMediaLink key={socialMediaLink.labelKey} linkData={socialMediaLink} />
                     ))}
                 </RuledGrid>
             </RuledGrid>
@@ -54,7 +54,7 @@ export default function CommunityEngagement({ columns, includeBlueSky, ...props 
         <RuledGrid columns={columns} {...commonGridProps}>
             <JoinCommunityCard />
             {socialMediaLinks.map((socialMediaLink) => (
-                <SocialMediaLink key={socialMediaLink.label} linkData={socialMediaLink} />
+                <SocialMediaLink key={socialMediaLink.labelKey} linkData={socialMediaLink} />
             ))}
         </RuledGrid>
     )

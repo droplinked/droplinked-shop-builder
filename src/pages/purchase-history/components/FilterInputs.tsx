@@ -1,26 +1,28 @@
-import { Flex } from '@chakra-ui/react';
-import { FilterMd } from 'assets/icons/Action/Filter/FilterMd';
-import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import SelectMenu from 'components/redesign/select-menu/SelectMenu';
-import { ordersStatuesServices } from 'lib/apis/orders/orderServices';
-import React from 'react';
-import { useQuery } from 'react-query';
+import { Flex } from '@chakra-ui/react'
+import { FilterMd } from 'assets/icons/Action/Filter/FilterMd'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import SelectMenu from 'components/redesign/select-menu/SelectMenu'
+import { ordersStatuesServices } from 'services/orders/orderServices'
+import React from 'react'
+import { useQuery } from 'react-query'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
-    onSearchChange?: (value: string) => void;
-    onStatusChange: (value: string) => void;
-    selectValue?: string;
-    searchValue?: string;
+    onSearchChange?: (value: string) => void
+    onStatusChange: (value: string) => void
+    selectValue?: string
+    searchValue?: string
 }
 
 export default function FilterInputs({ onSearchChange, onStatusChange, selectValue, searchValue }: Props) {
+    const { t } = useLocaleResources("purchaseHistory")
     const { isFetching, data } = useQuery({
         queryKey: ["orders-statues"],
         queryFn: () => ordersStatuesServices(),
         select(data) {
             return data.data.data
         },
-    });
+    })
 
     return (
         <Flex alignItems="center" justifyContent="space-between" gap={{ base: 4, md: 0 }}>
@@ -34,7 +36,7 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
                     padding: { base: "10px 16px", md: "12px 16px" },
                 }}
                 inputProps={{
-                    placeholder: "Search Products...",
+                    placeholder: t("FilterInputs.searchProducts"),
                     onChange: (e) => onSearchChange(e.target.value),
                     value: searchValue,
                 }}
@@ -46,7 +48,7 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
                         [] :
                         data?.map((item) => ({ label: item.caption, value: item.value }))
                     }
-                    placeholder='Status'
+                    placeholder={t("common:status")}
                     onChange={(value: string) => onStatusChange(value)}
                     mobileModeIcon={<FilterMd color='#fff' />}
                     value={selectValue}

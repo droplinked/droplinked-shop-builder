@@ -7,6 +7,7 @@ import { PlusMd } from "assets/icons/Sign/Plus/PlusMd"
 import { SidebarMd } from "assets/icons/StyleDesigner/Sidebar/SidebarMd"
 import { DownloadcircleMd } from "assets/icons/System/DownloadCircle/DownloadcircleMd"
 import { LockSm } from "assets/icons/System/Lock/LockSm"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import React from "react"
 import { appDevelopment } from "utils/app/variable"
@@ -33,13 +34,13 @@ const ActionButtons = () => (
   <Flex display="flex" gap={4}>
     <DownloadcircleMd color="white" />
     <PlusMd color="white" />
-    <CopyMd color="white" />
+    <CopyMd />
   </Flex>
 )
 
 export default function TopBar() {
   const { shopData } = useOnboardingStore()
-
+  const { t } = useLocaleResources('onboarding')
   const shopAddress = `${appDevelopment ? "dev." : ""}droplinked.io/${shopData?.shop_url}`
 
   return (
@@ -47,7 +48,7 @@ export default function TopBar() {
       {/* Header */}
       <Box position="relative" padding={{ base: 4, md: "16px 24px" }} borderTopRadius={8} bg="#141414">
         <Text fontSize={{ base: 16, lg: 18 }} color="white">
-          Store Preview
+          {t('ShopPreview.title')}
         </Text>
       </Box>
 

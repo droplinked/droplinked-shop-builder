@@ -1,6 +1,7 @@
 import { Center, Flex, Text } from '@chakra-ui/react'
 import { ChevrondownMd } from 'assets/icons/Navigation/ChevronDown/ChevrondownMd'
 import { UserMd } from 'assets/icons/System/User/UserMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
@@ -9,6 +10,7 @@ import { UserMenu as ProducerUserMenu } from '../../ProducerLayout/Header/UserMe
 function UserMenu() {
     const navigate = useNavigate()
     const { shop } = useAppStore()
+    const { isRTL } = useLocaleResources('layout/PublicLayout')
 
     return (
         <Flex
@@ -21,7 +23,8 @@ function UserMenu() {
                 as="button"
                 alignItems='center'
                 gap='6px'
-                borderRight='inherit'
+                borderRight={isRTL ? 'none' : 'inherit'}
+                borderLeft={isRTL ? 'inherit' : 'none'}
                 borderColor='inherit'
                 padding='10px 14px'
                 onClick={() => navigate("/analytics/dashboard")}
@@ -33,7 +36,7 @@ function UserMenu() {
             <ProducerUserMenu
                 trigger={
                     <Center as='button' padding='10px'>
-                        <ChevrondownMd color='#fff' />
+                        <ChevrondownMd />
                     </Center>
                 }
             />

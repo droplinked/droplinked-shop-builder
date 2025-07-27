@@ -5,7 +5,7 @@ import React from "react";
 interface TabButtonsProps {
   onTabChange: (tabName: string) => void;
   activeTab: string;
-  tabs: { name: string }[];
+  tabs: { name: string; label?: string }[];
 }
 
 const TabButtons: React.FC<TabButtonsProps> = ({ onTabChange, activeTab, tabs }) => {
@@ -24,7 +24,7 @@ const TabButtons: React.FC<TabButtonsProps> = ({ onTabChange, activeTab, tabs })
               lineHeight="24px"
               color={activeTab === tab.name ? "neutral.white" : "text.subtext.placeholder.dark"}
             >
-              {tab.name}
+              {tab.label || tab.name}
             </Text>
             {activeTab === tab.name && (
               <Box

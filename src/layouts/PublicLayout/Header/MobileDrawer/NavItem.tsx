@@ -1,5 +1,7 @@
 import { Box, Link as ChakraLink, Flex, Text } from '@chakra-ui/react'
+import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -31,6 +33,8 @@ export interface NavItemProps {
 }
 
 export const NavItem = ({ icon, label, onClick, to }: NavItemProps) => {
+    const { isRTL } = useLocaleResources("layout/PublicLayout")
+
     const content = (
         <>
             <Flex flex={1} alignItems="center" gap={2}>
@@ -38,7 +42,7 @@ export const NavItem = ({ icon, label, onClick, to }: NavItemProps) => {
                 {label}
             </Flex>
             <Box className='icon-wrapper' opacity={0} transition="opacity 0.3s ease-in-out">
-                <ChevronrightMd color='#fff' />
+                {isRTL ? <ChevronleftMd /> : <ChevronrightMd />}
             </Box>
         </>
     )

@@ -1,0 +1,37 @@
+{
+  "Changelog": {
+    "header": {
+      "title": "Updates and Releases",
+      "description": "Learn more about the latest features and improvements."
+    }
+  },
+  "ChangelogError": {
+    "title": "Error"
+  },
+  "ChangelogEntryCard": {
+    "update": "Update {{version}}",
+    "readMore": "Read More"
+  },
+  "ChangelogBadge": {
+    "integration": "Integration",
+    "new_feature": "New Feature",
+    "deprecation": "Deprecation",
+    "improvement": "Improvement",
+    "bugfix": "Bugfix"
+  },
+  "ChangelogDetail": {
+    "version": "Version {{version}}"
+  },
+  "ArticleTOC": {
+    "label": "In this article"
+  },
+  "ChangelogTags": {
+    "label": "Tags"
+  },
+  "useChangelogEntries": {
+    "entriesLoadFailed": "Failed to load changelog entries"
+  },
+  "useChangelogEntry": {
+    "entryLoadFailed": "Failed to load changelog entry"
+  }
+}

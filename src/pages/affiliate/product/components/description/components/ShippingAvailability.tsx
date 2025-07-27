@@ -1,9 +1,9 @@
-import { Box, Flex, Text} from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
 import SectionHeader from './SectionHeader';
 
 import React from 'react';
-import { getPODShippingAvailability } from 'lib/apis/product/productServices';
+import { getPODShippingAvailability } from 'services/product/productServices';
 
 const ShippingAvailability = ({ productId }: { productId: string }) => {
   // Fetch shipping availability using React Query

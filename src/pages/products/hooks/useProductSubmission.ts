@@ -1,15 +1,16 @@
+import { productTypeUsageLimits } from 'constants/productType'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
 import useStack from 'hooks/stack/useStack'
 import useAppToast from 'hooks/toast/useToast'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useAppWeb3 from 'hooks/web3/useWeb3'
-import { createProductService, updateProductService } from 'lib/apis/product/productServices'
-import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
-import useAppStore, { useLegalUsage } from 'stores/app/appStore'
-import useGrowthHackStore from 'stores/level-up/levelUpStore'
 import { Product, ProductType } from 'pages/products/utils/types'
 import { useRef } from 'react'
-import { productTypeUsageLimits } from 'utils/constants'
+import { createProductService, updateProductService } from 'services/product/productServices'
+import { getShopSubscriptionDataService } from 'services/subscription/subscriptionServices'
+import useAppStore, { useLegalUsage } from 'stores/app/appStore'
+import useGrowthHackStore from 'stores/level-up/levelUpStore'
 
 interface Params {
     closeProductFormDrawer: () => void
@@ -27,6 +28,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     const { user: { wallets }, shop } = useAppStore()
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
     const { convertPrice } = useCurrencyConverter()
+    const { t } = useLocaleResources('products')
 
     // Refs for global state inside the hook
     const shouldOpenCircleModal = useRef(false)
@@ -127,7 +129,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
         ) {
             await fetchLevelUpData()
         }
-        showToast({ message: "The product has been saved successfully!", type: "success" })
+        showToast({ message: t('useProductSubmission.success.productSaved'), type: "success" })
         closeProductFormDrawer()
         invalidateProductsQuery()
     }
@@ -154,7 +156,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     }
 
     const checkProductTypeLegalUsage = (productType: ProductType) => {
-        const { errorMessage, key } = productTypeUsageLimits[productType]
+        const { errorMessage, key } = productTypeUsageLimits(t)[productType]
         const legalUsage = shopLegalUsage.find(obj => obj.key === key)
         if (!(legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0)) {
             throw new Error(errorMessage)
@@ -162,7 +164,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     }
 
     const handleError = (error: any) => {
-        const errorMessage = error?.response?.data?.data?.message || error?.message || "An unexpected error occurred."
+        const errorMessage = error?.response?.data?.data?.message || error?.message || t('useProductSubmission.errors.unexpectedError')
         showToast({ message: errorMessage, type: "error" })
     }
 

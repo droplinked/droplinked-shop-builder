@@ -1,5 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { ExternalarrowLg } from "assets/icons/Navigation/ExternalArrow/ExternalarrowLg";
+import { ExternalarrowleftLg } from "assets/icons/Navigation/ExternalArrowLeft/ExternalArrowLeftLg";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React, { PropsWithChildren } from "react";
 
 export interface SectionContainerProps extends PropsWithChildren {
@@ -8,6 +10,8 @@ export interface SectionContainerProps extends PropsWithChildren {
 }
 
 function SectionContainer({ title, onNavigate, children }: SectionContainerProps) {
+    const { isRTL } = useLocaleResources("dashboardPage")
+
     return (
         <Box
             flex={1}
@@ -31,7 +35,7 @@ function SectionContainer({ title, onNavigate, children }: SectionContainerProps
                 </Text>
                 {onNavigate && (
                     <button onClick={onNavigate}>
-                        <ExternalarrowLg color="white" />
+                        {isRTL ? <ExternalarrowleftLg color="white" /> : <ExternalarrowLg color="white" />}
                     </button>
                 )}
             </Flex>

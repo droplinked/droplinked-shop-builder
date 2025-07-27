@@ -1,6 +1,7 @@
 import { Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, useBreakpointValue } from '@chakra-ui/react'
+import getPublicMegaMenuItems from 'data/publicMegaMenuItems'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
-import publicMegaMenuItems from '../../../../data/publicMegaMenuItems'
 import QuickLinks from '../QuickLinks'
 import TabList from './TabList'
 import TabPanel from './TabPanel'
@@ -9,6 +10,8 @@ export default function MegaMenu() {
     const [activeTab, setActiveTab] = useState(0)
     const [isOpen, setIsOpen] = useState(false)
     const isLgOrAbove = useBreakpointValue({ base: false, lg: true })
+    const { t } = useLocaleResources('layout/PublicLayout')
+    const publicMegaMenuItems = getPublicMegaMenuItems(t)
 
     // Return null if below lg breakpoint
     if (!isLgOrAbove) return null
@@ -33,7 +36,7 @@ export default function MegaMenu() {
                     _hover={{ color: 'text.white', textDecoration: 'none' }}
                     cursor="pointer"
                 >
-                    Platform
+                    {t('Header.MegaMenu.platform')}
                 </Text>
             </PopoverTrigger>
             <PopoverContent

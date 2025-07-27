@@ -4,6 +4,7 @@ import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import Cookies from 'js-cookie'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
@@ -15,9 +16,9 @@ import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 
-const formSchema = Yup.object().shape({
-    email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
-    password: Yup.string().min(8, "Password must be at least 8 characters.").required("Password is required.")
+const formSchema = (t) => Yup.object().shape({
+    email: Yup.string().email(t('common.emailError')).required(t('SignInForm.emailRequired', 'Email address is required.')),
+    password: Yup.string().min(8, t('SignInForm.passwordMinLength', 'Password must be at least 8 characters.')).required(t('SignInForm.passwordRequired', 'Password is required.'))
 })
 
 const savedEmail = Cookies.get('remembered_email')
@@ -27,6 +28,7 @@ function SignInForm() {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
 
     const handleSubmit = async (values: { email: string, password: string }) => {
         if (rememberPassword) {
@@ -43,8 +45,8 @@ function SignInForm() {
     return (
         <>
             <OnboardingStepHeader
-                heading='Welcome to droplinked'
-                description='Sign in with your credentials below.'
+                heading={t('common.welcomeTitle')}
+                description={t('SignInForm.subtitle')}
             />
 
             <Formik
@@ -53,27 +55,29 @@ function SignInForm() {
                     password: savedPassword || ""
                 }}
                 validateOnChange={false}
-                validationSchema={formSchema}
+                validationSchema={formSchema(t)}
                 onSubmit={handleSubmit}
             >
                 {({ values, errors, handleChange, isSubmitting }) => (
                     <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                         <AppInput
-                            label="Email Address"
+                            label={t('common.emailLabel')}
                             inputProps={{
                                 name: "email",
                                 value: values.email,
                                 onChange: handleChange,
-                                placeholder: "Enter email address",
+                                placeholder: t('common.emailPlaceholder'),
                             }}
-                            message={errors.email?.toString()}
+                            message={errors.email ? t('common.emailError') : undefined}
                         />
 
                         <PasswordInput
                             name="password"
                             value={values.password}
                             onChange={handleChange}
-                            message={errors.password?.toString()}
+                            label={t('common.passwordLabel')}
+                            placeholder={t('common.passwordPlaceholder')}
+                            message={errors.password ? t('common.passwordError') : undefined}
                         />
 
                         <Flex alignItems="center" justifyContent="space-between" marginBlock={3}>
@@ -81,18 +85,18 @@ function SignInForm() {
                                 isChecked={rememberPassword}
                                 onChange={(e) => setRememberPassword(e.target.checked)}
                             >
-                                Remember my password
+                                {t('SignInForm.rememberPassword')}
                             </Checkbox>
                             <InteractiveText onClick={() => updateOnboardingState("currentStep", "RESET_PASSWORD")}>
-                                Reset Password
+                                {t('SignInForm.resetPassword')}
                             </InteractiveText>
                         </Flex>
 
                         <AppButton type="submit" isLoading={isSubmitting}>
-                            Sign In
+                            {t('SignInForm.signInButton')}
                         </AppButton>
 
-                        <DividerText text="or continue with" />
+                        <DividerText text={t('common.orContinueWith')} />
 
                         <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
@@ -101,9 +105,9 @@ function SignInForm() {
                             justifyContent="center"
                             alignItems="center"
                             gap={{ base: 1, md: 2 }}
-                            text="Don't have an account?"
+                            text={t('SignInForm.noAccountText')}
                             action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
-                            linkText="Join us and create one!"
+                            linkText={t('SignInForm.createAccountText')}
                         />
                     </Form>
                 )}

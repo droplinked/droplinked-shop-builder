@@ -5,20 +5,26 @@ import { useFormikContext } from 'formik';
 import React from 'react'
 import { CouponFormValues } from './formConfigs';
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
+    const { t } = useLocaleResources('settings');
     const { values, handleChange, errors } = useFormikContext<CouponFormValues>();
     const { abbreviation } = useCurrencyConverter()
 
     return (
         <Flex flexDirection={"column"}>
-            <AppInputHeader label="Amount" description="Select the discount type between shop’s currency or percentage." inputProps={{ isRequired: true }} />
+            <AppInputHeader
+                label={t("Coupons.form.amountLabel")}
+                description={t("Coupons.form.amountDescription")}
+                inputProps={{ isRequired: true }}
+            />
             <Flex gap={4} width={"100%"}>
                 <AppInput
                     inputProps={{
                         onChange: handleChange,
                         name: "balance",
-                        placeholder: "0.00",
+                        placeholder: t("Coupons.form.amountPlaceholder"),
                         value: values.balance,
                         isDisabled: isEdit,
                         type: "number",
@@ -27,7 +33,7 @@ export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
                 />
                 <AppSelect
                     items={[
-                        { label: "Percentage", value: "DISCOUNT" },
+                        { label: t("Coupons.form.percentage"), value: "DISCOUNT" },
                         { label: abbreviation, value: "CREDIT" }
                     ]}
                     labelAccessor="label"

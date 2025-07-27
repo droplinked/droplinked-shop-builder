@@ -1,8 +1,9 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { AvailableoutlinedSm } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedSm'
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { PlanType } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
+import { SubscriptionPlan } from 'services/subscription/interfaces'
 import ExpandButton from './ExpandButton'
 import PlanHeader from './PlanHeader'
 
@@ -16,15 +17,16 @@ interface SubscriptionPlanCardProps {
 
 function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect }: SubscriptionPlanCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
-  
+  const { t } = useLocaleResources('subscription')
+
   const handleSelect = () => {
     if (onSelect) {
       const planType = plan.type as PlanType;
       onSelect(planType);
-      
+
       // For ENTERPRISE, also open email page
       if (planType === 'ENTERPRISE') {
-        window.open('mailto:Support@droplinked.com', '_blank');
+        window.open('mailto:Support@droplinked.com', '_blank', "noopener noreferrer");
       }
     }
   };
@@ -50,7 +52,7 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect 
               <Flex key={feature} gap={2} mb={4} alignItems="center">
                 <AvailableoutlinedSm color="white" />
                 <Text textColor="neutral.white" flex={1} fontSize="sm">
-                  {feature}
+                  {t(feature)}
                 </Text>
               </Flex>
             ))}

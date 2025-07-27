@@ -1,27 +1,29 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { StripeLogo } from 'assets/logo/NetworkAndTokens/Stripe/StripeLogo'
-import { PaymobLogo } from 'assets/logo/NetworkAndTokens/Paymob/PaymobLogo'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import PaymentProviderCard from './PaymentProviderCard'
 
-const providers = [
-  {
-    title: 'Stripe',
-    tooltip: 'Connect a Stripe account to receive deposits directly into an existing account.',
-    icon: <StripeLogo />
-  },
-  // {
-  //   title: 'Paymob',
-  //   tooltip: 'Connect a Paymob account to receive deposits directly into an existing account.',
-  //   icon: <PaymobLogo />
-  // }
-]
-
 function FinancialServices() {
+  const { t } = useLocaleResources('onboarding')
+
+  const providers = [
+    {
+      title: 'Stripe',
+      tooltip: t('PaymentSetup.financialServices.stripe.tooltip'),
+      icon: <StripeLogo />
+    },
+    // {
+    //   title: 'Paymob',
+    //   tooltip: t('paymentSetup.financialServices.paymob.tooltip'),
+    //   icon: <PaymobLogo />
+    // }
+  ]
+
   return (
     <Flex direction="column" gap={4}>
-      <Text color={'text.white'}>Financial Services</Text>
+      <Text color={'text.white'}>{t('PaymentSetup.financialServices.title')}</Text>
       <RuledGrid columns={1} borderRadius="8px">
         {providers.map((provider, index) => (
           <PaymentProviderCard

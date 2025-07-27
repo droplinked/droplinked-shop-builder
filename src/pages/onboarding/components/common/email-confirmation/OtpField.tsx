@@ -68,6 +68,7 @@ export default function OtpField({ value, onChange, isLoading, state = "default"
             gap={4}
             marginTop={{ base: "0px", md: "38px" }}
             marginBottom={{ base: "48px", md: "80px" }}
+            style={{ direction: "ltr" }}
         >
             <PinInput
                 otp

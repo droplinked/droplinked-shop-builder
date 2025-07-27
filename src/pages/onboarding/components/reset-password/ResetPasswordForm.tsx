@@ -3,39 +3,41 @@ import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { forgetPasswordService } from 'lib/apis/auth/services'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
+import { forgetPasswordService } from 'services/auth/services'
 import * as Yup from 'yup'
 import AuthRedirectLink from '../common/AuthRedirectLink'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 
-const formSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Please enter a valid email address.")
-    .required("Email address is required.")
-})
-
 function ResetPasswordForm() {
   const { updateOnboardingState } = useOnboardingStore()
   const { showToast } = useAppToast()
+  const { t } = useLocaleResources('onboarding')
+
+  const formSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t('ResetPasswordForm.validation.emailInvalid'))
+      .required(t('ResetPasswordForm.validation.emailRequired'))
+  })
 
   const handleSubmit = async ({ email }) => {
     try {
       await forgetPasswordService({ email })
       updateOnboardingState('credentials', { email, password: '' })
-      showToast({ type: "success", message: "Reset password email sent successfully" })
+      showToast({ type: "success", message: t('ResetPasswordForm.success.emailSent') })
       updateOnboardingState('currentStep', 'RESET_PASSWORD_VERIFICATION')
     } catch (error) {
-      showToast({ type: "error", message: error?.response?.data?.message || "Failed to send reset password email" })
+      showToast({ type: "error", message: error?.response?.data?.message || t('ResetPasswordForm.errors.emailSendFailed') })
     }
   }
 
   return (
     <>
       <OnboardingStepHeader
-        heading="Reset Password"
-        description="Enter the email linked to your account. We'll send you a verification code to reset your password."
+        heading={t('ResetPasswordForm.title')}
+        description={t('ResetPasswordForm.description')}
       />
 
       <Formik
@@ -47,31 +49,31 @@ function ResetPasswordForm() {
         {({ values, errors, handleChange, isSubmitting }) => (
           <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <AppInput
-              label="Email Address"
+              label={t('ResetPasswordForm.form.emailLabel')}
               inputProps={{
                 name: 'email',
                 value: values.email,
                 onChange: handleChange,
-                placeholder: 'Enter email address'
+                placeholder: t('ResetPasswordForm.form.emailPlaceholder')
               }}
               message={errors.email?.toString()}
             />
 
             <AppButton type="submit" marginTop={3} isLoading={isSubmitting}>
-              Continue
+              {t('common:continue')}
             </AppButton>
 
             <Flex direction="column" gap={2}>
               <AuthRedirectLink
-                text="Remember your password?"
+                text={t('ResetPasswordForm.links.rememberPassword')}
                 action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
-                linkText="Sign In"
+                linkText={t('ResetPasswordForm.links.signIn')}
               />
 
               <AuthRedirectLink
-                text="Don't have an account?"
+                text={t('ResetPasswordForm.links.noAccount')}
                 action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
-                linkText="Join us and create one!"
+                linkText={t('ResetPasswordForm.links.createAccount')}
               />
             </Flex>
           </Form>

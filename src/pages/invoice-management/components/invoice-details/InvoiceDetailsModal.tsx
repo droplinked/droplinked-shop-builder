@@ -3,6 +3,9 @@ import AppIcons from 'assets/icon/Appicons'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import AppShareableLink from 'components/redesign/shareable-link/AppShareableLink'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import { SHOP_URL } from 'utils/app/variable'
 import InvoiceProductTable from 'pages/invoice-management/create-invoice/components/form/product-table/InvoiceProductTable'
 import useInvoiceInformation from 'pages/invoice-management/hooks/useInvoiceInformation'
@@ -17,6 +20,7 @@ interface Props {
 }
 
 function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
     const { invoiceInformationMap, data } = useInvoiceInformation(invoiceId)
     const invoiceLink = `${SHOP_URL}/paylink/invoice/${invoiceId ?? data._id}`
 
@@ -37,8 +41,8 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
                         <AppIcons.InvoiceCreated />
                     </ModalHeaderIconWrapper>
                 }
-                title="Invoice Details"
-                description="A link of your invoice is sent to the customer. You can also use the following link to view the invoice."
+                title={t('InvoiceDetailsModal.title')}
+                description={t('InvoiceDetailsModal.description')}
             />
 
             <ModalBody

@@ -3,6 +3,7 @@ import "@blocknote/react/style.css"
 import { Box, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from 'react'
 import { formatDateToLongStyle } from "utils/helpers"
 import useChangelogEntry from "../hooks/useChangelogEntry"
@@ -12,6 +13,8 @@ import ChangelogTags from './ChangelogTags'
 
 function ChangelogDetail() {
     const { isFetching, data } = useChangelogEntry()
+    const { t } = useLocaleResources('changelogPage')
+
     const changelog = data?.data
 
     if (isFetching) return <FullScreenLoading />
@@ -39,7 +42,9 @@ function ChangelogDetail() {
                 </Heading>
 
                 <DotSeparatedList marginBottom={9}>
-                    <Text color='text.subtext.placeholder.light'>Version {changelog?.version}</Text>
+                    <Text color='text.subtext.placeholder.light'>
+                        {t('ChangelogEntryCard.update', { version: changelog?.version })}
+                    </Text>
                     <Text color='text.subtext.placeholder.light'>
                         {formatDateToLongStyle(new Date(changelog?.date))}
                     </Text>

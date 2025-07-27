@@ -1,10 +1,13 @@
+import { Text } from '@chakra-ui/react';
 import { ColumnDef } from '@tanstack/react-table';
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
-import AppTypography from "components/common/typography/AppTypography";
 import PageGrid from "components/redesign/page-grid/PageGrid";
 import Table from "components/redesign/table/Table";
-import { Collection } from "lib/apis/collection/interfaces";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import arLocale from 'locales/collections/ar.json';
+import enLocale from 'locales/collections/en.json';
 import React from "react";
+import { Collection } from "services/collection/interfaces";
 import ControlsListCollection from "./components/controls/Controls";
 import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
 import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
@@ -19,29 +22,23 @@ interface CollectionGridProps {
     refetch: () => void;
 }
 
-function CollectionGrid({
-    isFetching,
-    rows,
-    searchTerm,
-    onSearchChange,
-    onCreateCollection,
-    onReorderClick,
-    refetch,
-}: CollectionGridProps) {
+function CollectionGrid({ isFetching, rows, searchTerm, onSearchChange, onCreateCollection, onReorderClick, refetch }: CollectionGridProps) {
+    const { t } = useLocaleResources("collections", {en: enLocale, ar: arLocale})
+    
     const columns: ColumnDef<Collection>[] = [
         {
             accessorKey: 'title',
-            header: 'Collection',
+            header: t('CollectionGrid.columnHeaders.collection'),
             cell: info => <CollectionTitleColumn collection={info.row.original} />
         },
         {
             accessorKey: 'ruleSetID',
-            header: 'Rulesets',
+            header: t('CollectionGrid.columnHeaders.rulesets'),
             cell: info => info.getValue() ? <CollectionRulesetColumn ruleset={info.getValue()} /> : "-"
         },
         {
             accessorKey: 'productsCount',
-            header: 'Products',
+            header: t('CollectionGrid.columnHeaders.products'),
             cell: info => info.getValue() || "-"
         },
         {
@@ -54,16 +51,16 @@ function CollectionGrid({
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title="Collections"
-                description="Create and view inventory collections here."
+                title={t('CollectionGrid.title')}
+                description={t('CollectionGrid.description')}
                 actionButtons={[
                     {
-                        title: "New Collection",
-                        onClick: onCreateCollection,
+                        title: t('CollectionGrid.newCollection'),
                         leftIcon: <PlusSm color="#000" />,
+                        onClick: onCreateCollection,
                     },
                     {
-                        title: "Visibility and reorder",
+                        title: t('CollectionGrid.visibilityAndReorder'),
                         variant: "secondary",
                         onClick: onReorderClick,
                     }
@@ -81,9 +78,9 @@ function CollectionGrid({
                     data={rows}
                     isLoading={isFetching}
                     emptyView={
-                        <AppTypography fontSize={16} fontWeight={500} color={"white"}>
-                            No collections available. Create a new collection to get started.
-                        </AppTypography>
+                        <Text fontWeight={500} color="text.white">
+                            {t('CollectionGrid.emptyState')}
+                        </Text>
                     }
                 />
             </PageGrid.Content>

@@ -1,0 +1,49 @@
+{
+  "DIMSTHero": {
+    "title": "حاسبة سجلات المنتجات",
+    "subtitle": "توقع عائد الاستثمار عند استخدام إدارة المخزون المؤسسية وتتبع المبيعات من دروبلينكد",
+    "startNow": "ابدأ الآن",
+    "requestDemo": "اطلب عرض توضيحي"
+  },
+  "PanelTitle": {
+    "browserPageTitle": "حاسبة سجلات المنتجات",
+    "aiAssistant": "مساعد الذكاء الاصطناعي"
+  },
+  "Protocols": {
+    "title": "البروتوكولات"
+  },
+  "CalculationSections": {
+    "returnOnInvestment": "عائد الاستثمار"
+  },
+  "CalculationResult": {
+    "grossInvestment": "إجمالي الاستثمار",
+    "grossMerchandiseValue": "إجمالي قيمة البضائع (GMV)",
+    "grossCapturedValue": "إجمالي القيمة المحققة",
+    "returnOnInvestment": "عائد الاستثمار (ROI)",
+    "calculate": "احسب"
+  },
+  "Plans": {
+    "title": "الخطط",
+    "days": "أيام",
+    "skus": "وحدات حفظ المخزون",
+    "productRecords": "سجلات المنتجات",
+    "baseCommitment": "الالتزام الأساسي"
+  },
+  "ProductDetails": {
+    "title": "تفاصيل المنتج",
+    "serviceFee": "رسوم الخدمة",
+    "serviceFeeTooltip": "التكلفة الأساسية المرتبطة بالخطة المختارة",
+    "totalSkus": "إجمالي وحدات حفظ المخزون",
+    "productRecordCount": "عدد سجلات المنتجات",
+    "transactionCount": "عدد المعاملات"
+  },
+  "Metrics": {
+    "title": "تفاصيل المنتج",
+    "averageOrderValue": "متوسط قيمة الطلب",
+    "averageOrderValueTooltip": "السعر المتوقع للبيع بالتجزئة للعنصر المباع",
+    "royaltyPercentage": "نسبة الإتاوة من إعادة البيع",
+    "royaltyPercentageTooltip": "نسبة الدفع من سعر التجزئة للعنصر المباع التي تعود للمنشئ للمبيعات المستمرة",
+    "capturedSecondarySalesPercentage": "نسبة المبيعات الثانوية المحققة",
+    "capturedSecondarySalesPercentageTooltip": "نسبة المبيعات الثانوية المتوقعة المحققة"
+  }
+}

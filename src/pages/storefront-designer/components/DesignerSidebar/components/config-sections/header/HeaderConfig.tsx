@@ -6,12 +6,16 @@ import IconColorSection from './IconColorSection';
 import AppSwitch from 'components/common/swich';
 import AppTypography from 'components/common/typography/AppTypography';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront-designer/en.json';
+import localAr from 'locales/storefront-designer/ar.json';
 
 /**
  * Header configuration with logo, favicon, and icon color settings
  */
 function HeaderConfig(): React.ReactElement {
   const { methods: { dispatch }, state: {shop: { shopDesign: { isLogoAsFavicon } } }} = useContext(designerContext);
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   /**
    * Handle favicon toggle switch changes
@@ -23,7 +27,7 @@ function HeaderConfig(): React.ReactElement {
 
   return (
     <VStack width="100%" height="auto" display="flex" align="stretch" spacing={3}>
-      <SectionItem title="Logo">
+      <SectionItem title={t('DesignerSidebar.headerConfig.logo.title')}>
         <Flex width="100%" height="auto" display="flex" flexDirection="column" gap="16px" alignItems="space-between" alignSelf="stretch">
           <ImageUploadSection fieldName="headerIcon" altText="headerIcon" />
           <Flex
@@ -40,18 +44,18 @@ function HeaderConfig(): React.ReactElement {
             bg="neutral.gray.900"
           >
             <AppTypography fontSize="14px" fontWeight={400} color="white">
-              Use as favicon on browser
+              {t('DesignerSidebar.headerConfig.logo.useFavicon')}
             </AppTypography>
             <AppSwitch isChecked={isLogoAsFavicon} onChange={handleSwitchChange} />
           </Flex>
         </Flex>
       </SectionItem>
 
-      <SectionItem title="Favicon">
+      <SectionItem title={t('DesignerSidebar.headerConfig.favicon.title')}>
         <ImageUploadSection fieldName="faviconURL" fieldPath="shopDesign.faviconURL" altText="Favicon" />
       </SectionItem>
 
-      <SectionItem title="Icon Color on Navigation Bar">
+      <SectionItem title={t('DesignerSidebar.headerConfig.iconColor.title')}>
         <IconColorSection />
       </SectionItem>
     </VStack>

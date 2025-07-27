@@ -1,12 +1,14 @@
 import AppBadge from 'components/redesign/badge/AppBadge';
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
+import { IDetailedTransaction } from 'services/credit/interfaces';
 import React from 'react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 export default function StatusBadge({ status }: { status: IDetailedTransaction["status"] }) {
+    const { t } = useLocaleResources("creditsAndActivity");
     const statusMapping = {
-        "SUCCESS": { badgeStatus: "success" as const, text: "Completed" },
-        "FAILED": { badgeStatus: "error" as const, text: "Failed" },
-        "PENDING": { badgeStatus: "pending" as const, text: "Pending" }
+        "SUCCESS": { badgeStatus: "success" as const, text: t("StatusBadge.completed") },
+        "FAILED": { badgeStatus: "error" as const, text: t("StatusBadge.failed") },
+        "PENDING": { badgeStatus: "pending" as const, text: t("StatusBadge.pending") }
     }
 
     // Use the mapped status if available, otherwise default to neutral with the status as text

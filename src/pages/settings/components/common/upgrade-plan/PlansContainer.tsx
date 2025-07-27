@@ -2,6 +2,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import AppButton from 'components/redesign/button/AppButton';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 import PlanCard from './PlanCard';
 
@@ -11,19 +12,21 @@ interface Props {
 }
 
 export default function PlansContainer({ onOpen, isFetching }: Props) {
+    const { t , isRTL } = useLocaleResources('settings');
     const border = "1px solid #2BCFA1";
 
     return (
         <Flex userSelect="none" gap="28px" flex={1} flexDirection="column">
             <PlanCard
                 icon={<AppIcons.EnterprisePlan />}
-                title="Enterprise"
-                description="Contact us to explore integration."
+                title={t("UpgradePlan.enterprise")}
+                description={t("UpgradePlan.enterpriseDescription")}
                 styles={{
                     filter: "blur(2px)",
                     position: "relative",
                     bottom: "1rem",
-                    left: "15rem",
+                    left: isRTL ? "0px" : "15rem",
+                    right: isRTL ? "15rem" : "0px",
                     width: "100%",
                     gap: 4,
                     border: "1px solid #333",
@@ -37,9 +40,11 @@ export default function PlansContainer({ onOpen, isFetching }: Props) {
                 width="100%"
                 gap={4}
                 borderTop={border}
-                borderLeft={border}
+                borderLeft={isRTL ? "0px" : border}
+                borderRight={isRTL ? border : "0px"}
                 borderBottom={border}
-                borderLeftRadius="16px"
+                borderLeftRadius={isRTL ? "0px" : "16px"}
+                borderRightRadius={isRTL ? "16px" : "0px"}
                 background="#2BCEA11A"
                 alignItems="center"
                 justifyContent="space-between"
@@ -51,26 +56,27 @@ export default function PlansContainer({ onOpen, isFetching }: Props) {
                     </Box>
                     <Flex flexDir="column">
                         <AppTypography color="#fff" fontSize="18px" fontWeight={700}>
-                            Premium
+                            {t("UpgradePlan.premium")}
                         </AppTypography>
                         <AppTypography color="#B1B1B1" fontSize="14px" fontWeight={400}>
-                            Designed for large businesses needing comprehensive solutions.
+                            {t("UpgradePlan.premiumDescription")}
                         </AppTypography>
                     </Flex>
                 </Flex>
                 <AppButton onClick={onOpen} isLoading={isFetching}>
-                    Unlock Features
+                    {t("UpgradePlan.unlockFeatures")}
                 </AppButton>
-            </Flex>
+            </Flex> 
             <PlanCard
                 icon={<AppIcons.StarOutline style={{ width: "27px", height: "27px" }} />}
-                title="Pro Plan"
-                description="For small businesses and teams ready to grow."
+                title={t("UpgradePlan.proPlan")}
+                description={t("UpgradePlan.proDescription")}
                 styles={{
                     filter: "blur(2px)",
                     position: "relative",
                     top: "1rem",
-                    left: "15rem",
+                    right: isRTL ? "15rem" : "0px",
+                    left: isRTL ? "0px" : "15rem",
                     width: "100%",
                     gap: 4,
                     border: "1px solid #333",

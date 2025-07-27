@@ -1,12 +1,12 @@
-import { Box, Center, Flex } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
-import AppTypography from "components/common/typography/AppTypography";
-import { getFileSizeInMB } from "utils/helpers";
-import React from 'react';
+import { Box, Center, Flex } from "@chakra-ui/react"
+import AppIcons from "assets/icon/Appicons"
+import AppTypography from "components/common/typography/AppTypography"
+import { getFileSizeInMB } from "utils/helpers"
+import React from 'react'
 
 interface Props {
-    file: File;
-    onFileChange: (file: File | null) => void;
+    file: File
+    onFileChange: (file: File | null) => void
 }
 
 export function FilePreview({ file, onFileChange }: Props) {

@@ -1,0 +1,92 @@
+{
+  "GreetingBanner": {
+    "goodMorning": "صباح الخير",
+    "goodAfternoon": "مساء الخير",
+    "goodNight": "تصبح على خير",
+    "welcomeMessage": "سواء كنت تطلق منتجًا لأول مرة أو تنشئ تجربة واجهة متجر للعملاء، لدينا كل الأدوات التي تحتاجها."
+  },
+  "NoOrdersPlaceholder": {
+    "cards": {
+      "importingProducts": {
+        "title": "استيراد المنتجات",
+        "description": "إنشاء قوائم المنتجات داخل الواجهة أو استيراد المخزون الموجود.",
+        "buttons": {
+          "firstProduct": "أول منتج",
+          "helpCenter": "مركز المساعدة"
+        }
+      },
+      "sellingOnDroplinked": {
+        "title": "البيع على دروبلينكد",
+        "description": "اتبع الدليل خطوة بخطوة لإطلاق المنتجات والوصول إلى العملاء بسرعة.",
+        "buttons": {
+          "learnMore": "تعلم المزيد"
+        }
+      },
+      "customizableThemes": {
+        "title": "قوالب قابلة للتخصيص",
+        "description": "خصص تجربة التجارة بناءً على تجربة وتصميم مثاليين للزوار.",
+        "buttons": {
+          
+        }
+      }
+    }
+  },
+  "RevenueStatsGrid": {
+    "totalRevenue": "إجمالي الإيرادات"
+  },
+  "QuickActionsGrid": {
+    "createProduct": "إنشاء منتج",
+    "createCollection": "إنشاء مجموعة",
+    "createInvoice": "إنشاء فاتورة",
+    "createDiscount": "إنشاء خصم"
+  },
+  "OrderSummaryCard": {
+    "title": "ملخص الطلبات"
+  },
+  "AffiliateProgramEmptyState": {
+    "description": "ادعُ العملاء وفعّل الشركاء لتسريع المبيعات",
+    "actionText": "سوق الشركاء"
+  },
+  "OrderSummaryEmptyState": {
+    "title": "لا توجد طلبات بعد",
+    "description": "تعلم كيفية الترويج والنمو عبر الشبكة",
+    "actionText": "تعلم المزيد"
+  },
+  "ResourceLinks": {
+    "blog": "مدونة",
+    "helpCenter": "مركز المساعدة"
+  },
+  "useLocalizedDashboardLinks": {
+    "blogs": {
+      "transformNFT": "كيفية تحويل وبيع أعمال NFT والفكرية إلى بضائع مميزة",
+      "gatingProduct": "كيفية بيع NFTs الخاصة بك من خلال تقييد المنتج",
+      "secondarySales": "كيفية الربح من المبيعات الثانوية بوضع منتجك على السلسلة",
+      "monetizeInventory": "كيفية تحقيق الدخل من مخزونك المادي مع واجهة متجر مخصصة"
+    },
+    "helpCenter": {
+      "gettingStarted": {
+        "title": "الاستعداد للبدء في البيع",
+        "summary": "إعداد واجهة المتجر"
+      },
+      "managingProducts": {
+        "title": "إدارة المنتجات",
+        "summary": "كيفية تخصيص صفحات المنتجات"
+      },
+      "managingCollections": {
+        "title": "إدارة المجموعات",
+        "summary": "كيفية العمل مع المجموعات المرتبطة بواجهات المتاجر"
+      },
+      "affiliateNetwork": {
+        "title": "شبكة التسويق بالعمولة اللامركزية",
+        "summary": "كيفية استخدام نظام التسويق بالعمولة اللامركزي للتعاون مع المجتمعات"
+      }
+    }
+  },
+  "OrderItem": {
+    "orderLabel": "طلبية رقم "
+  },
+  "JoinCommunityCard": {
+    "title": "انضم إلى المجتمع!",
+    "description": "تابعنا عبر قنواتنا للحصول على أحدث الأخبار والعروض الحصرية."
+  }
+}

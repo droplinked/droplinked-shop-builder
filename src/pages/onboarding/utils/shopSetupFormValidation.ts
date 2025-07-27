@@ -1,4 +1,5 @@
 import { OnboardingStates } from "../types/onboarding"
+import { TFunction } from "i18next"
 
 interface IValidateStoreData {
     logo: string
@@ -9,15 +10,19 @@ interface IValidateStoreData {
     setError?: (field: keyof OnboardingStates['storeSetupErrors'], message: string | undefined) => void
 }
 
-export const validateStoreData = (storeSetup: IValidateStoreData, setError: IValidateStoreData["setError"]) => {
+export const validateStoreData = (
+    storeSetup: IValidateStoreData, 
+    setError: IValidateStoreData["setError"],
+    t: TFunction
+) => {
     let isValid = true
 
     // URL validation
     if (!storeSetup?.shop_url?.trim()) {
-        setError('shop_url', 'URL is required')
+        setError('shop_url', t('common.validation.urlRequired'))
         isValid = false
     } else if (!/^[a-zA-Z0-9-]+$/.test(storeSetup.shop_url)) {
-        setError('shop_url', 'URL can only contain letters, numbers, and hyphens')
+        setError('shop_url', t('common.validation.urlFormat'))
         isValid = false
     } else {
         setError('shop_url', undefined)
@@ -25,10 +30,10 @@ export const validateStoreData = (storeSetup: IValidateStoreData, setError: IVal
 
     // Name validation
     if (!storeSetup?.name?.trim()) {
-        setError('name', 'Store name is required')
+        setError('name', t('common.validation.nameRequired'))
         isValid = false
     } else if (storeSetup.name.length < 3) {
-        setError('name', 'Store name must be at least 3 characters')
+        setError('name', t('common.validation.nameLength'))
         isValid = false
     } else {
         setError('name', undefined)

@@ -3,9 +3,9 @@ import AppScrollBar from 'components/common/scrollbar';
 import useAppToast from 'hooks/toast/useToast';
 import React, { useCallback, useRef } from 'react';
 import { useMutation } from 'react-query';
+import FileUpload from '../file-upload/FileUpload';
 import appUploadImageContext, { IUploadImageDefault, ImodeUploadImage } from './context';
 import UploadImageModel from './model';
-import FileUpload from '../file-upload/FileUpload';
 
 type sizes = "small" | "original" | "standard"
 
@@ -80,17 +80,19 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
     }, [values, onChange, onDelete])
 
     return (
-        <appUploadImageContext.Provider value={{
-            values,
-            openFile: () => fileRef.current.click(),
-            deleted,
-            isLoading,
-            product,
-            mode,
-            defaults
-        }}>
+        <appUploadImageContext.Provider
+            value={{
+                values,
+                openFile: () => fileRef.current.click(),
+                deleted,
+                isLoading,
+                product,
+                mode,
+                defaults
+            }}
+        >
             <AppScrollBar maxHeight="425px" overflow="auto">
-                <FileUpload boxProps={{ height: "128px" }} isLoading={isLoading} accept={accept} dropDescription='JPG, JPEG or PNG (Up to 5MB)' multiple={false} onFileChange={create} />
+                <FileUpload isLoading={isLoading} accept={accept} multiple={false} onFileChange={create} />
             </AppScrollBar>
         </appUploadImageContext.Provider>
     )

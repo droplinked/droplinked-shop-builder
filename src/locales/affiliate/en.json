@@ -1,0 +1,67 @@
+{
+  "AffiliateStores": {
+    "hero": {
+      "title": "Showcase and sell your products in the most awesome affiliate marketplace",
+      "cta": "Become an Affiliate Partner"
+    }
+  },
+  "AffiliateStoresTable": {
+    "columns": {
+      "merchant": "Merchant",
+      "products": "Products",
+      "unitsSold": "Units Sold",
+      "avgCommission": "Avg. Commission",
+      "topProducts": "Top Products"
+    },
+    "noData": "N/A"
+  },
+  "AffiliateProductsPage": {
+    "filters": {
+      "priceRange": {
+        "min": "Price",
+        "max": "Max Price"
+      },
+      "commissionRange": {
+        "min": "Commission",
+        "max": "Max Commission"
+      },
+      "categories": "Categories",
+      "sortBy": "Sort by",
+      "sortOptions": {
+        "newest": "Newest",
+        "oldest": "Oldest",
+        "priceLowToHigh": "Price: Low to High",
+        "priceHighToLow": "Price: High to Low",
+        "commissionHighToLow": "Commission: High to Low",
+        "commissionLowToHigh": "Commission: Low to High"
+      }
+    },
+    "actionBar": {
+      "filters": "Filters",
+      "clearFilters": "Clear Filters",
+      "resultsCount": "{{count}} products found"
+    }
+  },
+  "AffiliateProductCard": {
+    "commission": "{{commission}}%",
+    "noPrice": "Price not available"
+  },
+  "ProductDetails": {
+    "commission": "Commission rate",
+    "features": "Features",
+    "specifications": "Specifications",
+    "relatedProducts": "Related Products",
+    "shareProduct": "Share Product",
+    "copyLink": "Copy Link",
+    "linkCopied": "Link copied to clipboard!",
+    "viewStore": "View Store",
+    "contactStore": "Contact Store",
+    "availableItems": "Available items",
+    "profitPerSale": "Profit per sale",
+    "producer": "Producer",
+    "importProduct": "Import Product",
+    "productImported": "Product Imported",
+    "failedToImport": "Failed to import product",
+    "shippingAvailability": "Shipping Availability"
+  }
+}

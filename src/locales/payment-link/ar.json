@@ -1,0 +1,30 @@
+{
+  "PaymentLink": {},
+  "PaymentLinkSubmit": {
+    "successMessage": "تم حفظ خيارات رابط الدفع بنجاح",
+    "errorMessage": "فشل في حفظ خيارات رابط الدفع"
+  },
+  "PaymentLinkCard": {},
+  "PaymentLinkSwitch": {},
+  "PaymentLinkSettings": {
+    "title": "الإعدادات",
+    "additionalNote": {
+      "title": "ملاحظة إضافية",
+      "description": "قم بتمكين هذا الخيار إذا كنت تريد السماح للمستخدمين بكتابة ملاحظة للطلب أو تقديم معلومات إضافية."
+    }
+  },
+  "VariantsStyle": {
+    "title": "نمط الخيارات",
+    "description": "اختر كيف ترغب في عرض خيارات المنتج",
+    "options": {
+      "dropdown": {
+        "title": "قائمة منسدلة",
+        "description": "يتم عرض الخيارات ضمن قائمة منسدلة."
+      },
+      "selector": {
+        "title": "محدد",
+        "description": "تظهر جميع الخيارات في وقت واحد."
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "ProductTilesHero": {
+    "title": "Sell Anywhere, Anytime \n with Product Tiles",
+    "subtitle": "Easily create product tiles to share across any platform or site for direct selling, no complex integrations or coding required",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "ProductTilesFeatures": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Dynamic Product Tiles",
+    "headingSubtitle": "Generate and embed customizable product tiles across any site, \n enabling seamless purchases anywhere online",
+    "cards": {
+      "easyDeployment": {
+        "title": "Easy Deployment",
+        "description": "Copy and paste the component into your website's source code to create a seamless experience for your customers"
+      },
+      "seamlessCheckout": {
+        "title": "Seamless Checkout",
+        "description": "Customers stay on the same page during the checkout experience to keep things cohesive and consistent"
+      },
+      "customizableDesigns": {
+        "title": "Customizable Designs",
+        "description": "Tailor the product tile design to match your brand's aesthetic, look and feel"
+      }
+    }
+  },
+  "ProductTilesModularStack": {
+    "cards": {
+      "instantlySellEverywhere": {
+        "title": "Instantly Sell Everywhere",
+        "description": "Embed product tiles onto blogs, websites or any online platform that turns any space into a storefront"
+      },
+      "flexibleFunctionality": {
+        "title": "Flexible Functionality",
+        "description": "Use product tiles as a simple purchase button and simplified payment gateway with support for crypto and fiat payments"
+      },
+      "smoothIntegration": {
+        "title": "Smooth Integration",
+        "description": "Integrate droplinkeds' tools into any project or platform effortlessly to drive sales without disrupting any existing customer journey"
+      },
+      "componentCreation": {
+        "title": "Component Creation & Embeddables",
+        "description": "Easily generate and embed product tiles into various platforms to make selling directly from any environment incredibly simple"
+      },
+      "seamlessPurchaseFlows": {
+        "title": "Seamless Purchase Flows",
+        "description": "Keep customers on the same page while they browse and checkout"
+      },
+      "customizableFlexibleComponents": {
+        "title": "Customizable, Flexible Components",
+        "description": "Customize product tiles and payment methods to support both crypto and fiat payments"
+      }
+    }
+  }
+} 

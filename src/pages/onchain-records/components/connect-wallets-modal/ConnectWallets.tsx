@@ -1,62 +1,64 @@
-import { Box, Flex, HStack, VStack } from '@chakra-ui/react';
-import BasicButton from 'components/common/BasicButton/BasicButton';
-import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
-import AppCard from 'components/common/card/AppCard';
-import ClipboardText from 'components/common/clipboardText/ClipboardText';
-import AppTypography from 'components/common/typography/AppTypography';
-import useStack from 'hooks/stack/useStack';
-import useAppToast from 'hooks/toast/useToast';
-import useAppWeb3 from 'hooks/web3/useWeb3';
-import { supportedChainsService } from 'lib/apis/sku/services';
-import useAppStore from 'stores/app/appStore';
-import { isWalletInstalled } from 'droplinked-web3';
-import React, { useCallback } from 'react';
-import { useQuery } from 'react-query';
-import { ConnectWalletsLoading } from './connect.wallets.loading';
+import { Box, Flex, HStack, VStack } from '@chakra-ui/react'
+import BasicButton from 'components/common/BasicButton/BasicButton'
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
+import AppCard from 'components/common/card/AppCard'
+import ClipboardText from 'components/common/clipboardText/ClipboardText'
+import AppTypography from 'components/common/typography/AppTypography'
+import useStack from 'hooks/stack/useStack'
+import useAppToast from 'hooks/toast/useToast'
+import useAppWeb3 from 'hooks/web3/useWeb3'
+import { supportedChainsService } from 'services/sku/services'
+import useAppStore from 'stores/app/appStore'
+import { isWalletInstalled } from 'droplinked-web3'
+import React, { useCallback } from 'react'
+import { useQuery } from 'react-query'
+import { ConnectWalletsLoading } from './connect.wallets.loading'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ConnectWallets() {
+	const { t } = useLocaleResources("onchainRecords")
 	const { data, isLoading } = useQuery({
 		queryFn: supportedChainsService,
 		queryKey: 'supported_chains',
 		cacheTime: 60 * 60 * 1000,
-	});
-	const { getChain, login } = useAppWeb3();
-	const { showToast } = useAppToast();
+	})
+	const { getChain, login } = useAppWeb3()
+	const { showToast } = useAppToast()
 	const {
 		user: { wallets },
-	} = useAppStore();
-	const stack = useStack();
+	} = useAppStore()
+	const stack = useStack()
 
 	const loginChain = useCallback(
 		async (chain: string) => {
 			try {
 				const { installed, walletName } =
-					isWalletInstalled(chain);
+					isWalletInstalled(chain)
 				if (!installed) {
 					showToast({
 						type: 'error',
-						message: `${walletName} extension not found. Please ensure the extension is installed and try again`,
-					});
+						message: `${walletName} ${t('ConnectWallets.extensionNotFoundError')}`,
+					})
 					if (chain === 'STACKS')
 						window.open(
 							'https://www.xverse.app',
 							'_blank'
-						);
-					return;
+						)
+					return
 				}
 
-				await login({ chain, wallets, stack });
+				await login({ chain, wallets, stack })
 			} catch (error) {
 				showToast({
-					message: error || 'Failed login',
+					message: error || t("ConnectWallets.loginFailed"),
 					type: 'warning',
-				});
+				})
 			}
 		},
 		[wallets, stack.stxAddress]
-	);
+	)
 
-	if (isLoading) return <ConnectWalletsLoading />;
+	if (isLoading) return <ConnectWalletsLoading />
 
 	return (
 		<AppCard>
@@ -68,7 +70,7 @@ function ConnectWallets() {
 							const isExist = getChain({
 								chain: el,
 								wallets,
-							});
+							})
 							return (
 								<Flex
 									backgroundColor="#141414"
@@ -133,17 +135,17 @@ function ConnectWallets() {
 													)
 												}
 											>
-												Connect
+												{t("ConnectWallets.connect")}
 											</BasicButton>
 										)}
 									</Box>
 								</Flex>
-							);
+							)
 						})}
 				</VStack>
 			</VStack>
 		</AppCard>
-	);
+	)
 }
 
-export default ConnectWallets;
+export default ConnectWallets

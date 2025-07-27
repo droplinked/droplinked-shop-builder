@@ -1,4 +1,4 @@
-import { getShopSubscriptionDataService } from "lib/apis/subscription/subscriptionServices"
+import { getShopSubscriptionDataService } from "services/subscription/subscriptionServices"
 import { useUpdateShopPermissions } from "stores/app/appStore"
 import { useQuery } from "react-query"
 

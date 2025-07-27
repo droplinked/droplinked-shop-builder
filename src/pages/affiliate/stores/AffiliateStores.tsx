@@ -1,8 +1,9 @@
 import { Box, Flex, HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { useProfile } from "hooks/useProfile/useProfile";
-import { InvoiceQueryParams } from "lib/apis/invoice/interfaces";
-import { getShopsCommunityService } from "lib/apis/shop/shopServices";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { InvoiceQueryParams } from "services/invoice/interfaces";
+import { getShopsCommunityService } from "services/shop/shopServices";
 import React, { useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import AffiliateStoreFilters from "./AffiliateStoreFilters";
@@ -11,6 +12,7 @@ import AffiliateStoresTable from "./AffiliateStoresTable";
 export const INVOICES_QUERY_KEY = "invoiceList";
 
 function AffiliateStores() {
+    const { t } = useLocaleResources('affiliate');
     const [storesFilters, setstoresFilters] = useState<InvoiceQueryParams>({ page: 1, limit: 15 });
     const { shop } = useProfile();
     const fetchStores = async ({ pageParam = 1 }) => {
@@ -42,11 +44,11 @@ function AffiliateStores() {
             >
                 <Box width={"full"} display="flex" flexDirection="column" alignItems="flex-start" gap="36px" alignSelf="stretch">
                     <AppTypography color="#FFF" fontFamily="Poppins" fontSize="24px" maxW={{ base: "70%", md: "50%" }} fontStyle="normal" fontWeight="400" lineHeight="36px">
-                        Showcase and sell your products in the most awesome affiliate marketplace
+                        {t('AffiliateStores.hero.title')}
                     </AppTypography>
                     <HStack spacing={"8px"} alignItems={"center"} justifyContent={"center"}>
                         <AppTypography color="#2BCFA1" fontFamily="Inter" fontSize="20px" fontStyle="normal" fontWeight="700" lineHeight="32px">
-                            Become an Affiliate Partner
+                            {t('AffiliateStores.hero.cta')}
                         </AppTypography>
                         {/* <AppIcons.AffiliateProductsArrow width={"24px"} height={"24px"} /> */}
                     </HStack>

@@ -1,4 +1,5 @@
 import AppButton from "components/redesign/button/AppButton"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from "react"
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
 }
 
 function SubscribeButton({ isSubmitting, isFullWidth = false }: Props) {
+    const { t } = useLocaleResources('layout/PublicLayout')
+
     return (
         <AppButton
             type="submit"
@@ -17,7 +20,7 @@ function SubscribeButton({ isSubmitting, isFullWidth = false }: Props) {
             isLoading={isSubmitting}
             isDisabled={isSubmitting}
         >
-            Subscribe
+            {t('Footer.SubscribeNewsletter.SubscribeButton.subscribe')}
         </AppButton>
     )
 }

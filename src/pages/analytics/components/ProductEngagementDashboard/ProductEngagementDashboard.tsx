@@ -1,16 +1,18 @@
-import { getAnalyticsTopSellers } from 'lib/apis/dashboard/dashboardServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useFormattedDateRange from 'pages/analytics/hooks/useFormattedDateRange'
 import DoubleColumnContainer from 'pages/dashboard/components/DoubleColumnContainer'
 import SectionContainer from 'pages/dashboard/components/SectionContainer'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { getAnalyticsTopSellers } from 'services/dashboard/dashboardServices'
 import BestSellingProductsList from './BestSellingProductsList'
 import MostImportedProductsList from './MostImportedProductsList'
 import ProductsListLoading from './ProductsListLoading'
 
 function ProductEngagementDashboard() {
     const navigate = useNavigate()
+    const { t } = useLocaleResources("analyticsPage")
     const { startDate, endDate } = useFormattedDateRange()
     const { data: topSellers, isFetching } = useQuery({
         queryKey: ['analyticsTopSellers', startDate, endDate],
@@ -20,7 +22,7 @@ function ProductEngagementDashboard() {
     return (
         <DoubleColumnContainer alignItems="start">
             <SectionContainer
-                title="Best Selling Products"
+                title={t('ProductEngagementDashboard.bestSellingProducts')}
                 onNavigate={() => navigate('/analytics/products')}
             >
                 {isFetching
@@ -29,7 +31,7 @@ function ProductEngagementDashboard() {
                 }
             </SectionContainer>
 
-            <SectionContainer title="Most Imported Products">
+            <SectionContainer title={t('ProductEngagementDashboard.mostImportedProducts')}>
                 {isFetching
                     ? <ProductsListLoading />
                     : <MostImportedProductsList />

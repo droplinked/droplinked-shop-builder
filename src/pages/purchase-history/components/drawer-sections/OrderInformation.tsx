@@ -1,15 +1,15 @@
-import { Flex, Spinner } from '@chakra-ui/react';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
-import React from 'react';
-import CustomerInfoSection from './CustomerInfoSection';
-import ShippingSection from './ShippingSection';
-import CommissionSection from './CommissionSection';
-import PaymentDetailsSection from './PaymentDetailsSection';
-import AffiliateSection from './AffiliateSection';
+import { Flex, Spinner } from '@chakra-ui/react'
+import { IOrderDetails } from 'services/order/interfaces'
+import React from 'react'
+import CustomerInfoSection from './CustomerInfoSection'
+import ShippingSection from './ShippingSection'
+import CommissionSection from './CommissionSection'
+import PaymentDetailsSection from './PaymentDetailsSection'
+import AffiliateSection from './AffiliateSection'
 
 interface Props {
-    orderData: IOrderDetails;
-    isFetching: boolean;
+    orderData: IOrderDetails
+    isFetching: boolean
 }
 
 export default function OrderInformation({ orderData, isFetching }: Props) {
@@ -21,7 +21,7 @@ export default function OrderInformation({ orderData, isFetching }: Props) {
         )
     }
 
-    const { customer, shippings, commision, details, trackingInfo, giftCard, affiliates, orderInformation } = orderData;
+    const { customer, shippings, commision, details, trackingInfo, giftCard, affiliates, orderInformation } = orderData
     const isPhysical = !!customer.address
 
     return (
@@ -46,5 +46,5 @@ export default function OrderInformation({ orderData, isFetching }: Props) {
                 orderId={orderInformation.orderId}
             />
         </Flex >
-    );
+    )
 }

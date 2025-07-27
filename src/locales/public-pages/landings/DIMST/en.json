@@ -1,0 +1,49 @@
+{
+  "DIMSTHero": {
+    "title": "Product Record Calculator",
+    "subtitle": "Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "PanelTitle": {
+    "browserPageTitle": "Product Record Calculator",
+    "aiAssistant": "AI Assistant"
+  },
+  "Protocols": {
+    "title": "Protocols"
+  },
+  "CalculationSections": {
+    "returnOnInvestment": "Return on Investment"
+  },
+  "CalculationResult": {
+    "grossInvestment": "Gross Investment",
+    "grossMerchandiseValue": "Gross Merchandise Value (GMV)",
+    "grossCapturedValue": "Gross Captured Value",
+    "returnOnInvestment": "Return on Investment (ROI)",
+    "calculate": "Calculate"
+  },
+  "Plans": {
+    "title": "Plans",
+    "days": "Days",
+    "skus": "SKUs",
+    "productRecords": "Product Records",
+    "baseCommitment": "Base Commitment"
+  },
+  "ProductDetails": {
+    "title": "Product Details",
+    "serviceFee": "Service Fee",
+    "serviceFeeTooltip": "Baseline cost associated with plan selected",
+    "totalSkus": "Total SKUs",
+    "productRecordCount": "Product Record Count",
+    "transactionCount": "Transaction Count"
+  },
+  "Metrics": {
+    "title": "Product Details",
+    "averageOrderValue": "Average Order Value",
+    "averageOrderValueTooltip": "Anticipated retail price of the item sold",
+    "royaltyPercentage": "Royalty Percentage from Resales",
+    "royaltyPercentageTooltip": "The payout % of the retail price of an item sold that goes back to originator for ongoing sales",
+    "capturedSecondarySalesPercentage": "Captured Secondary Sales Percentage",
+    "capturedSecondarySalesPercentageTooltip": "The % of anticipated secondary sales captured"
+  }
+}

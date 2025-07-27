@@ -42,6 +42,7 @@ export default function SelectMenu({
     onChange,
     placeholder = "Select",
     mobileModeIcon,
+    fullWidth = false
 }: SelectMenuProps) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
 
@@ -54,6 +55,7 @@ export default function SelectMenu({
             onChange={onChange}
             placeholder={placeholder}
             mobileModeIcon={mobileModeIcon}
+            fullWidth={fullWidth}
         />
     }
 
@@ -65,6 +67,7 @@ export default function SelectMenu({
             value={value}
             onChange={onChange}
             placeholder={placeholder}
+            fullWidth={fullWidth}
         />
     )
 }

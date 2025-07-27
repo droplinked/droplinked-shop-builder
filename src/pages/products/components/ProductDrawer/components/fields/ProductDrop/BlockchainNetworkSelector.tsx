@@ -1,17 +1,19 @@
 import { Skeleton } from "@chakra-ui/react"
 import FormFieldWrapper from "components/redesign/form-field-wrapper/FormFieldWrapper"
 import AppSelect from "components/redesign/select/AppSelect"
-import { supportedChainsService } from "lib/apis/sku/services"
+import { supportedChainsService } from "services/sku/services"
 import useProductForm from "pages/products/hooks/useProductForm"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from "react"
 import { useQuery } from "react-query"
-import chainNameMap from "utils/constants/blockchainMap"
+import chainNameMap from "constants/blockchainMap"
 
 interface Props {
     isDropEnabled: boolean
 }
 
 export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
+    const { t } = useLocaleResources('products')
     const { values: { digitalDetail, nftData }, setFieldValue } = useProductForm()
     const { data, isFetching } = useQuery({
         queryFn: supportedChainsService,
@@ -25,8 +27,8 @@ export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
 
     return (
         <FormFieldWrapper
-            label="Blockchain Network"
-            description="Choose the blockchain network where product details will be recorded as an NFT."
+            label={t('BlockchainNetworkSelector.label')}
+            description={t('BlockchainNetworkSelector.description')}
             rightContent={
                 <Skeleton isLoaded={!isFetching}>
                     <AppSelect
@@ -35,7 +37,7 @@ export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
                         valueAccessor="value"
                         selectProps={{
                             width: '174px',
-                            placeholder: 'Select network',
+                            placeholder: t('BlockchainNetworkSelector.placeholder'),
                             value: digitalDetail?.chain || nftData?.networkName,
                             onChange: (e) => handleNetworkChange(e.target.value)
                         }}

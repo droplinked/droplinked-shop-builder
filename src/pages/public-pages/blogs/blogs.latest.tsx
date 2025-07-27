@@ -1,11 +1,20 @@
 import { Box, Flex, HStack, Image } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import arLocale from "locales/public-pages/blogs/ar.json";
+import enLocale from "locales/public-pages/blogs/en.json";
 import React from "react";
-import { IBlogListItem } from "./blogs.interface";
 import { getTimeAgo } from "utils/helpers";
+import { IBlogDetail } from "./blogs.interface";
 
-const LatestBlog = ({ blog }: { blog: IBlogListItem }) => {
+
+const LatestBlog = ({ blog }: { blog: IBlogDetail }) => {
+    const { t } = useLocaleResources("blogs", {
+        ar: arLocale,
+        en: enLocale,
+    });
+
     return (
         <Box width={"full"} pos={"relative"} height={"512px"}>
             <Image width={"full"} height={"512px"} objectFit={"cover"} rounded={"32px"} src={blog?.image} />
@@ -29,13 +38,13 @@ const LatestBlog = ({ blog }: { blog: IBlogListItem }) => {
                 <HStack>
                     <AppIcons.Clock fill="#C2C2C2" width={"16px"} height={"16px"} />
                     <AppTypography color="white" fontWeight={"500"} fontSize={"18px"}>
-                        Last Update: {getTimeAgo(blog?.createdAt)}
+                        {t("latestBlog.lastUpdate", { time: getTimeAgo(blog?.createdAt) })}
                     </AppTypography>
                 </HStack>
                 <HStack>
                     <AppIcons.Pen width={"16px"} height={"16px"} color="#C2C2C2" />
                     <AppTypography color="white" fontWeight={"500"} fontSize={"18px"}>
-                        By {blog?.writer}
+                        {t("latestBlog.by", { writer: blog?.writer })}
                     </AppTypography>
                 </HStack>
                 <HStack spacing={"12px"} align={"stretch"}>

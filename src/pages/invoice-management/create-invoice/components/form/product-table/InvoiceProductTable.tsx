@@ -1,6 +1,9 @@
 import { useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assets/icon/Appicons'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import useInvoiceStore, { CartItem } from 'pages/invoice-management/create-invoice/store/invoiceStore'
 import React from 'react'
@@ -20,17 +23,18 @@ interface Props {
 }
 
 export default function InvoiceProductTable({ invoice, hasActionColumn = true, hasFooter = true }: Props) {
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
     let cartItems = useInvoiceStore(state => state.cart.items)
     if (invoice) cartItems = invoice.items
     const { isOpen, onOpen, onClose } = useDisclosure()
     const groupedCartItems = groupCartItemsByProduct(cartItems)
 
     const columns: ColumnDef<CartItem>[] = [
-        { accessorKey: 'product', header: 'Product' },
-        { accessorKey: 'color', header: 'Color' },
-        { accessorKey: 'size', header: 'Size' },
-        { accessorKey: 'quantity', header: 'Quantity' },
-        { accessorKey: 'unitPrice', header: 'Unit Price' }
+        { accessorKey: 'product', header: t('InvoiceProductTable.columns.product') },
+        { accessorKey: 'color', header: t('InvoiceProductTable.columns.color') },
+        { accessorKey: 'size', header: t('InvoiceProductTable.columns.size') },
+        { accessorKey: 'quantity', header: t('InvoiceProductTable.columns.quantity') },
+        { accessorKey: 'unitPrice', header: t('InvoiceProductTable.columns.unitPrice') }
     ]
 
     return (
@@ -55,7 +59,7 @@ export default function InvoiceProductTable({ invoice, hasActionColumn = true, h
                             leftIcon={<AppIcons.BlackPlus />}
                             onClick={onOpen}
                         >
-                            Add product
+                            {t('InvoiceProductTable.addProductButton')}
                         </BlueButton>
                     </Table.Footer>
                 )}

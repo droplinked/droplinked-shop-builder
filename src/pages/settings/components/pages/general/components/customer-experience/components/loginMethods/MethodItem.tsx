@@ -3,7 +3,7 @@ import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDis
 import AppTypography from "components/common/typography/AppTypography";
 import SwitchBox from "components/redesign/switch-box/SwitchBox";
 import { useFormikContext } from "formik";
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import React, { ChangeEvent } from "react";
 
 interface Props {

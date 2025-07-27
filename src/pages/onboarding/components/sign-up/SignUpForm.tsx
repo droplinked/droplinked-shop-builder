@@ -1,15 +1,16 @@
-import { Text, VStack } from '@chakra-ui/react'
+import { VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { signupService } from 'lib/apis/auth/services'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { signupService } from 'services/auth/services'
 import { InputChangeEvent } from 'types/eventTypes'
 import * as Yup from 'yup'
 import AuthRedirectLink from '../common/AuthRedirectLink'
@@ -19,9 +20,9 @@ import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from '../common/PasswordValidationRules'
 
-const formSchema = Yup.object().shape({
-    email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
-    password: Yup.string().required("Password is required."),
+const formSchema = (t) => Yup.object().shape({
+    email: Yup.string().email(t('common.emailError')).required(t('SignUpForm.emailRequired', 'Email address is required.')),
+    password: Yup.string().required(t('SignUpForm.passwordRequired', 'Password is required.')),
     referralCode: Yup.string()
 })
 
@@ -30,6 +31,7 @@ function SignUpForm() {
     const [acceptTerms, setAcceptTerms] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('onboarding')
 
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")
@@ -51,7 +53,7 @@ function SignUpForm() {
             updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
         }
         catch (error: any) {
-            const errorMessage = error?.response?.data?.data?.message || "Signup failed"
+            const errorMessage = error?.response?.data?.data?.message || t('SignUpForm.errorMessage')
             showToast({ message: errorMessage, type: "error" })
         }
     }
@@ -59,14 +61,14 @@ function SignUpForm() {
     return (
         <>
             <OnboardingStepHeader
-                heading='Welcome to droplinked'
-                description='Complete the details below or use your Google account.'
+                heading={t('common.welcomeTitle')}
+                description={t('SignUpForm.subtitle')}
             />
 
             <Formik
                 initialValues={{ email: "", password: "", referralCode: referralCode ?? "" }}
                 validateOnChange={false}
-                validationSchema={formSchema}
+                validationSchema={formSchema(t)}
                 onSubmit={handleSignUp}
             >
                 {({ values, errors, handleChange, submitForm, isSubmitting }) => {
@@ -75,12 +77,12 @@ function SignUpForm() {
                     return (
                         <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                             <AppInput
-                                label="Email Address"
+                                label={t('common.emailLabel')}
                                 inputProps={{
                                     name: "email",
                                     value: values.email,
                                     onChange: handleChange,
-                                    placeholder: "Enter email address",
+                                    placeholder: t('common.emailPlaceholder'),
                                     isRequired: true
                                 }}
                                 message={errors.email?.toString()}
@@ -98,25 +100,21 @@ function SignUpForm() {
                             </VStack>
 
                             <AppInput
-                                label="Referral Code"
+                                label={t('SignUpForm.referralLabel')}
                                 inputProps={{
                                     name: "referralCode",
                                     value: values.referralCode,
                                     onChange: handleChange,
-                                    placeholder: "Enter referral code"
+                                    placeholder: t('SignUpForm.referralPlaceholder')
                                 }}
                             />
 
                             <Checkbox
-                                display='flex'
                                 marginBlock={3}
-                                alignItems={{ base: "start", md: "center" }}
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
-                                <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                    By signing up, I agree to your {" "}
-                                    <InteractiveText to="/terms" display="contents">Terms and Conditions.</InteractiveText>
-                                </Text>
+                                {t('SignUpForm.termsPrefix')}{" "}
+                                <InteractiveText to="/terms" display="contents">{t('SignUpForm.termsLink')}</InteractiveText>
                             </Checkbox>
 
                             <AppButton
@@ -124,10 +122,10 @@ function SignUpForm() {
                                 isDisabled={!acceptTerms || isSubmitting || !isPasswordValid}
                                 onClick={submitForm}
                             >
-                                Sign Up
+                                {t('common:signUp')}
                             </AppButton>
 
-                            <DividerText text="or sign up with" />
+                            <DividerText text={t('common.orContinueWith')} />
 
                             <GoogleAuthButton
                                 isSignUp={true}
@@ -140,8 +138,8 @@ function SignUpForm() {
 
                             <AuthRedirectLink
                                 justifyContent="center"
-                                text='Already have an account?'
-                                linkText='Sign in'
+                                text={t('SignUpForm.haveAccountText')}
+                                linkText={t('SignUpForm.signInLink')}
                                 action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
                             />
                         </Form>

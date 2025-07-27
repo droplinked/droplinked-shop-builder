@@ -48,21 +48,34 @@ This platform enables merchants to create their online presence with a focus on 
 ### 3.1. Folder Structure
 ```
 src/
-├── assets/            # 📁 Static files (fonts, images, styles)
-├── __tests__/         # 🧪 Testing Files
-├── components/        # 🧩 Reusable components
+├── assets/            # 📁 Static files (fonts, images, icons, styles, logos, samples)
+├── components/        # 🧩 Reusable React components
 │   ├── common/        # ⚙️ Base components
-│   ├── layouts/       # 🖼️ App layouts
+│   ├── form/          # 📝 Form components
+│   ├── layouts/       # 🖼️ Layout components
 │   ├── modals/        # 📤 Modal components
-│   └── redesign/      # 🔄 Redesigned components
-├── hooks/             # 🎣 Custom hooks
-├── lib/              
-│   ├── apis/          # 🌐 API services
-│   └── stores/        # 🗃️ State stores
-├── pages/             # 📄 App pages
-├── routes/            # 🛤️ Routing config
-├── types/             # 📝 Type definitions
-└── utils/             # 🔧 Helper functions
+│   ├── redesign/      # 🔄 Redesigned/new components
+│   ├── ui/            # 🪄 UI primitives/widgets
+├── constants/         # 🔢 Primitive values, enums, mappings (not UI data)
+├── context/           # 🌐 React context providers
+├── data/              # 📊 Structured UI data (menus, plans, links, etc.)
+├── hooks/             # 🎣 Custom React hooks
+├── hoc/               # 🏗️ Higher-order components (HOCs)
+├── layouts/           # 🖼️ Page/layout wrappers
+├── lib/               # 📚 Library code (API, i18n, axios config, etc.)
+├── locales/           # 🌍 i18n translation files (JSON, organized by feature)
+├── pages/             # 📄 Page components, organized by feature or route
+├── routes/            # 🛤️ Routing configuration (e.g., routes.tsx)
+├── services/          # 🔌 API service modules (feature-based subfolders)
+├── stores/            # 🗃️ State management stores (e.g., Zustand)
+├── types/             # 📝 TypeScript type definitions and interfaces
+├── utils/             # 🔧 Utility/helper functions and related tests
+├── index.js           # 🚪 App entry point
+├── App.tsx            # 🏠 Main App component
+├── theme.js           # 🎨 Theme configuration
+├── setupTests.ts      # 🧪 Test setup
+├── service-worker.js  # 🛰️ Service worker
+├── serviceWorkerRegistration.js # 🛰️ Service worker registration
 ```
 
 ### 3.2. App Architecture

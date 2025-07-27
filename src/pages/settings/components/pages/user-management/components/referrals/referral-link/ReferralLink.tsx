@@ -2,13 +2,16 @@ import useAppStore from 'stores/app/appStore'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import LinkContainer from './LinkContainer'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function ReferralLink() {
     const { shop: { referralDetails } } = useAppStore()
     const { code } = referralDetails ?? {}
-    const description = `Share this referral link to earn rewards when others sign up. Invited users get 1 month of our Pro plan. \nAlternatively, users can enter the code ${code} or any of the below custom codes during registration.`
+    const { t } = useLocaleResources('settings');
+
+    const description = t('Referrals.link.description', { code: code });
 
     return (
-        <SectionContent title='Link' description={description} rightContent={<LinkContainer />} />
+        <SectionContent title={t('Referrals.link.title')} description={description} rightContent={<LinkContainer />} />
     )
 }

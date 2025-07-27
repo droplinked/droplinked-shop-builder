@@ -5,10 +5,12 @@ import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
-import { ShopDNSInformation } from 'lib/apis/shop/interfaces'
-import { getShopDNSStatusService } from 'lib/apis/shop/shopServices'
+import { ShopDNSInformation } from 'services/shop/interfaces'
+import { getShopDNSStatusService } from 'services/shop/shopServices'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+
 interface Props {
     isOpen: boolean
     onClose: () => void
@@ -24,6 +26,8 @@ interface Props {
 export default function DnsModal({ isOpen, onClose, data }: Props) {
     const { showToast } = useAppToast()
     const [visibleButton, setButtonVisibility] = useState(true)
+    const { t } = useLocaleResources('settings');
+
     const { isLoading, mutate } = useMutation((params: ShopDNSInformation) => getShopDNSStatusService(params), {
         onSuccess: (response) => {
             const { message, status } = response.data.data;
@@ -42,7 +46,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                     paddingBlock: "0px",
                     backgroundColor: '#141414',
                 }}
-                title='DNS Information'
+                title={t("CustomURL.dnsModal.title")}
                 description=''
             >
                 <Flex marginTop={"2rem"} flexDirection={"column"} gap={4}>
@@ -50,7 +54,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                         NS_records?.map((record, index) => {
                             return (
                                 <Flex key={record} justifyContent={"space-between"} alignItems={"center"}>
-                                    <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>DNS {index}</AppTypography>
+                                    <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>{t("CustomURL.dnsModal.dnsLabel", { index: index + 1 })}</AppTypography>
                                     <Flex gap={4}>
                                         <AppTypography fontSize={"14px"} color={"#fff"}>{record}</AppTypography>
                                         <ClipboardText text={record} />
@@ -65,7 +69,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                             marginTop={"1rem"}
                             onClick={() => mutate({ domain_name: domain_name })}
                         >
-                            Check DNS Status
+                            {t("CustomURL.dnsModal.checkStatus")}
                         </AppButton>}
                 </Flex>
             </ModalHeaderData>

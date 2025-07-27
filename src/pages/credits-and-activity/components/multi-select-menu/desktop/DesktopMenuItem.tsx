@@ -10,7 +10,7 @@ export function DesktopMenuItem({ label, value }) {
     const updateCreditState = useCreditStore(state => state.updateCreditState)
 
     const handleSelectItem = (e: React.MouseEvent) => {
-        e.preventDefault();
+        e.preventDefault()
         updateCreditState('selectedFilter', isSelected ? null : value)
     }
 

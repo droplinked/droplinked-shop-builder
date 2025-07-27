@@ -1,4 +1,7 @@
 import AppBadge from 'components/redesign/badge/AppBadge'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/products/ar.json'
+import enLocale from 'locales/products/en.json'
 import React from 'react'
 
 interface Props {
@@ -7,8 +10,25 @@ interface Props {
 }
 
 export default function ProductStatusBadge({ status, purchaseAvailable }: Props) {
+    const { t } = useLocaleResources('products', { en: enLocale, ar: arLocale })
     const normalizedStatus = String(status).toUpperCase()
     const badgeKey = purchaseAvailable ? normalizedStatus : 'PRIVATE'
+    
+    const statusMap: Record<string, { label: string, status: "success" | "neutral" | "error" }> = {
+        "PUBLISHED": {
+            status: "success",
+            label: t('common:public')
+        },
+        "DRAFTED": {
+            status: "neutral",
+            label: t('common:draft')
+        },
+        "PRIVATE": {
+            status: "error",
+            label: t('common:private')
+        }
+    }
+    
     const badgeProps = statusMap[badgeKey] || statusMap['PRIVATE']
 
     if (!badgeProps) {
@@ -28,19 +48,4 @@ export default function ProductStatusBadge({ status, purchaseAvailable }: Props)
             size="24"
         />
     )
-}
-
-const statusMap: Record<string, { label: string, status: "success" | "neutral" | "error" }> = {
-    "PUBLISHED": {
-        status: "success",
-        label: 'Public'
-    },
-    "DRAFTED": {
-        status: "neutral",
-        label: 'Draft'
-    },
-    "PRIVATE": {
-        status: "error",
-        label: 'Private'
-    }
 }

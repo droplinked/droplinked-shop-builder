@@ -1,0 +1,82 @@
+{
+  "OnchainRecords": {
+    "pageTitle": "سجلات السلسلة",
+    "pageDescription": "عرض سجلات المخزون وسجل السلسلة"
+  },
+  "ConnectWalletModal": {
+    "modalTitle": "ربط محفظتك",
+    "modalDescription": "يرجى اختيار محفظة للربط."
+  },
+  "ConnectWallets": {
+    "connect": "ربط",
+    "extensionNotFoundError": "الامتداد غير موجود. يرجى التأكد من تثبيت الامتداد والمحاولة مرة أخرى",
+    "loginFailed": "فشل تسجيل الدخول"
+  },
+  "EmptyView": {
+    "description": "ابدأ بإضافة أول منتج لك"
+  },
+  "Filters": {
+    "allRecords": "كل السجلات",
+    "droplinkedRecords": "سجلات Droplinked",
+    "allWallets": "كل المحافظ",
+    "wallets": "محافظ",
+    "records": "سجلات"
+  },
+  "RecordDetails": {
+    "recordDetails": "تفاصيل السجل",
+    "information": "معلومات",
+    "activity": "سجل الأنشطة"
+  },
+  "TransferCard": {
+    "transfer": "تحويل"
+  },
+  "TransferModal": {
+    "transferRecords": "تحويل السجلات",
+    "transferRecordsDescription": "أرسل سجلات السلسلة إلى طرف أو عدة أطراف أدناه.",
+    "downloadSample": "تحميل نموذج القالب",
+    "manual": "يدوي",
+    "bulkUpload": "رفع جماعي"
+  },
+  "TransferModalFooter": {
+    "upload": "رفع",
+    "validate": "تحقق"
+  },
+  "ManualTransfer": {
+    "enterWalletAddress": "أدخل عنوان محفظتك"
+  },
+  "BulkUpload": {
+    "dragActiveText": "أسقط الملف هنا",
+    "uploaderFooterText": "CSV (حتى 1 ميغابايت)"
+  },
+  "InformationTab": {
+    "name": "الاسم",
+    "description": "الوصف",
+    "quantity": "الكمية",
+    "tokenAddress": "عنوان التوكن",
+    "tokenId": "معرف التوكن",
+    "price": "السعر",
+    "network": "الشبكة",
+    "ownerAddress": "عنوان المالك",
+    "address": "العنوان",
+    "productDetails": "تفاصيل المنتج"
+  },
+  "ActivityTab": {
+    "chain": "سلسلة",
+    "id": "رقم التعريف",
+    "network": "الشبكة",
+    "status": "الحالة",
+    "transfer": "تحويل"
+  },
+  "TransactionLink": {
+    "transactionLink": "رابط المعاملة"
+  },
+  "useTransfer": {
+    "noItemsToValidateError": "يرجى إدخال تحويل واحد صالح على الأقل",
+    "invalidAddressError": "يرجى إدخال عناوين صحيحة لجميع التحويلات",
+    "zeroAmountError": "يرجى إدخال كمية غير صفرية لجميع التحويلات",
+    "totalTransferAmountError": "إجمالي كمية التحويل تتجاوز الكمية المتاحة",
+    "totalTransferAmount": "إجمالي كمية التحويل",
+    "availableQuantity": "الكمية المتاحة",
+    "airdropSuccess": "تمت معالجة التوزيع بنجاح"
+  }
+}

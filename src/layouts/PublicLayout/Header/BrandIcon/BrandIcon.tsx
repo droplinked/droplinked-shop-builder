@@ -25,32 +25,39 @@ const BrandIcon = () => {
     })
 
     const flexContainerStyles = { display: 'flex', alignItems: 'center', gap: 3 }
-
-    const content = (
-        <>
-            <IconWrapper
-                as={showHamburgerMenu ? "button" : "div"}
-                width={10}
-                height={10}
-                bg="transparent"
-                icon={
-                    showHamburgerMenu
-                        ? <HamburgerMenuButton isOpen={isOpen} onToggle={onToggle} />
-                        : <Drop3 width="24px" height="24px" color='#fff' />
-                }
-            />
-            <DroplinkedTypography width={typography.width} height={typography.height} color='#fff' />
-        </>
+    const typographyComponent = <DroplinkedTypography {...typography} color='#fff' />
+    const iconComponent = (
+        <IconWrapper
+            as={showHamburgerMenu ? "button" : "div"}
+            width={10}
+            height={10}
+            bg="transparent"
+            icon={
+                showHamburgerMenu
+                    ? <HamburgerMenuButton isOpen={isOpen} onToggle={onToggle} />
+                    : <Drop3 width="24px" height="24px" color='#fff' />
+            }
+        />
     )
 
     if (showHamburgerMenu) return (
         <>
-            <Box {...flexContainerStyles}>{content}</Box>
+            <Box {...flexContainerStyles}>
+                {iconComponent}
+                <Link to='/'>
+                    {typographyComponent}
+                </Link>
+            </Box>
             <MobileDrawer isOpen={isOpen} onClose={onClose} />
         </>
     )
 
-    return <ChakraLink as={Link} to="/" {...flexContainerStyles}>{content}</ChakraLink>
+    return (
+        <ChakraLink as={Link} to="/" width="200px" {...flexContainerStyles}>
+            {iconComponent}
+            {typographyComponent}
+        </ChakraLink>
+    )
 }
 
 export default BrandIcon

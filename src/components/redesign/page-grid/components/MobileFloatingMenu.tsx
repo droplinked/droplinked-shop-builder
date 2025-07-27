@@ -5,12 +5,10 @@ import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 import { ActionButtonProps } from '../interface'
 
-export default function MobileFloatingMenu({ actionButtons }: { actionButtons: ActionButtonProps[] }) {
+function MobileFloatingMenu({ actionButtons }: { actionButtons: ActionButtonProps[] }) {
     const { isOpen, onClose, onOpen } = useDisclosure()
 
-    if (!actionButtons?.length) {
-        return null
-    }
+    if (!actionButtons?.length) return null
 
     return (
         <Box position="fixed" bottom="6rem" right="16px" zIndex={999}>
@@ -53,21 +51,23 @@ export default function MobileFloatingMenu({ actionButtons }: { actionButtons: A
                                 const ButtonComponent = (
                                     <AppButton
                                         key={index}
-                                        {...button}
-                                        onClick={(e) => {
-                                            button.onClick?.(e);
-                                        }}
                                         width="100%"
+                                        paddingBlock="10px"
+                                        paddingInline="14px"
+                                        fontSize={14}
+                                        fontWeight={500}
+                                        iconSpacing="6px"
+                                        {...button}
                                     >
                                         {button.title}
                                     </AppButton>
-                                );
+                                )
 
                                 if (button.wrapper) {
-                                    return React.cloneElement(button.wrapper, { key: index }, ButtonComponent);
+                                    return React.cloneElement(button.wrapper, { key: index }, ButtonComponent)
                                 }
 
-                                return ButtonComponent;
+                                return ButtonComponent
                             })}
                         </Flex>
                     </PopoverBody>
@@ -76,3 +76,5 @@ export default function MobileFloatingMenu({ actionButtons }: { actionButtons: A
         </Box>
     )
 }
+
+export default MobileFloatingMenu

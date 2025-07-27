@@ -1,0 +1,67 @@
+{
+  "AffiliateStores": {
+    "hero": {
+      "title": "اعرض وبيع منتجاتك في أفضل سوق للتسويق بالعمولة",
+      "cta": "كن شريكًا في التسويق بالعمولة"
+    }
+  },
+  "AffiliateStoresTable": {
+    "columns": {
+      "merchant": "التاجر",
+      "products": "المنتجات",
+      "unitsSold": "الوحدات المباعة",
+      "avgCommission": "متوسط العمولة",
+      "topProducts": "أفضل المنتجات"
+    },
+    "noData": "غير متوفر"
+  },
+  "AffiliateProductsPage": {
+    "filters": {
+      "priceRange": {
+        "min": "السعر",
+        "max": "أعلى سعر"
+      },
+      "commissionRange": {
+        "min": "العمولة",
+        "max": "أعلى عمولة"
+      },
+      "categories": "الفئات",
+      "sortBy": "ترتيب حسب",
+      "sortOptions": {
+        "newest": "الأحدث",
+        "oldest": "الأقدم",
+        "priceLowToHigh": "السعر: من الأقل إلى الأعلى",
+        "priceHighToLow": "السعر: من الأعلى إلى الأقل",
+        "commissionHighToLow": "العمولة: من الأعلى إلى الأقل",
+        "commissionLowToHigh": "العمولة: من الأقل إلى الأعلى"
+      }
+    },
+    "actionBar": {
+      "filters": "الفلاتر",
+      "clearFilters": "مسح الفلاتر",
+      "resultsCount": "تم العثور على {{count}} منتج"
+    }
+  },
+  "AffiliateProductCard": {
+    "commission": "{{commission}}٪",
+    "noPrice": "السعر غير متوفر"
+  },
+  "ProductDetails": {
+    "commission": "نسبة العمولة",
+    "features": "الميزات",
+    "specifications": "المواصفات",
+    "relatedProducts": "منتجات ذات صلة",
+    "shareProduct": "مشاركة المنتج",
+    "copyLink": "نسخ الرابط",
+    "linkCopied": "تم نسخ الرابط إلى الحافظة!",
+    "viewStore": "عرض المتجر",
+    "contactStore": "اتصل بالمتجر",
+    "availableItems": "العناصر المتوفرة",
+    "profitPerSale": "الربح لكل عملية بيع",
+    "producer": "المنتج",
+    "importProduct": "استيراد المنتج",
+    "productImported": "تم استيراد المنتج",
+    "failedToImport": "فشل في استيراد المنتج",
+    "shippingAvailability": "توفر الشحن"
+  }
+}

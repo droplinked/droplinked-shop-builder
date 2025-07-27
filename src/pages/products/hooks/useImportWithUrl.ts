@@ -1,10 +1,11 @@
 import { UseDisclosureProps } from "@chakra-ui/react"
 import { AxiosResponse } from "axios"
 import useAppToast from "hooks/toast/useToast"
-import { RecentCrawlerTasksResponse } from "lib/apis/crawler/interface"
-import { CrawlSelectedProducts, getProductsWithPoolId, getRecentCrawlerTasks, startWebsiteCrawling } from "lib/apis/crawler/services"
+import { RecentCrawlerTasksResponse } from "services/crawler/interface"
+import { CrawlSelectedProducts, getProductsWithPoolId, getRecentCrawlerTasks, startWebsiteCrawling } from "services/crawler/services"
 import { UseMutateAsyncFunction, useMutation, useQuery, useQueryClient } from "react-query"
 import useProductPageStore from "../stores/ProductPageStore"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Params {
     importProductModalController: UseDisclosureProps
@@ -27,6 +28,7 @@ export const useImportWithUrl = (props: Params) => {
     const { updateProductPageState, targetShopUrl, selectedPoolId } = useProductPageStore()
     const { showToast } = useAppToast()
     const queryClient = useQueryClient()
+    const { t } = useLocaleResources('products')
 
     const { importProductModalController, identifiedItemsModalController } = props
 
@@ -39,8 +41,8 @@ export const useImportWithUrl = (props: Params) => {
             updateProductPageState("targetShopUrl", "")
             getRecentTasks()
             showToast({
-                message: "Crawl Task Started",
-                description: "We are crawling products from the provided URL. Once the task status is set to Previews_ready, you can select the products you want to import.",
+                message: t('useImportWithUrl.success.crawlTaskStarted'),
+                description: t('useImportWithUrl.success.crawlTaskDescription'),
                 type: "success",
                 options: {
                     duration: 5000,
@@ -48,7 +50,7 @@ export const useImportWithUrl = (props: Params) => {
             })
         },
         onError: (error: any) => {
-            updateProductPageState("crawlerError", error.response.data.data.message || "An error occurred")
+            updateProductPageState("crawlerError", error.response.data.data.message || t('useImportWithUrl.errors.anErrorOccurred'))
         }
     })
 
@@ -61,7 +63,7 @@ export const useImportWithUrl = (props: Params) => {
             return data.data
         },
         onError: (error: any) => {
-            showToast({ message: error.response.data.data.message || "An error occurred", type: "error" })
+            showToast({ message: error.response.data.data.message || t('useImportWithUrl.errors.anErrorOccurred'), type: "error" })
         }
     })
 
@@ -74,7 +76,7 @@ export const useImportWithUrl = (props: Params) => {
             identifiedItemsModalController.onOpen()
         },
         onError: (error: any) => {
-            showToast({ message: error.response.data.data.message || "An error occurred", type: "error" })
+                showToast({ message: error.response.data.data.message || t('useImportWithUrl.errors.anErrorOccurred'), type: "error" })
         }
     })
 
@@ -83,8 +85,8 @@ export const useImportWithUrl = (props: Params) => {
             CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: selectedPoolId, shouldRecord }),
         onSuccess: () => {
             showToast({
-                message: "Import task started",
-                description: "We are importing selected products to your inventory. You can view ongoing tasks in the Import Products modal.",
+                message: t('useImportWithUrl.success.importTaskStarted'),
+                description: t('useImportWithUrl.success.importTaskDescription'),
                 type: "success",
                 options: {
                     duration: 5000,
@@ -98,7 +100,7 @@ export const useImportWithUrl = (props: Params) => {
         onError: (error: any) => {
             identifiedItemsModalController.onClose()
             importProductModalController.onOpen()
-            showToast({ message: error.response.data.data.message || "An error occurred", type: "error" })
+            showToast({ message: error.response.data.data.message || t('useImportWithUrl.errors.anErrorOccurred'), type: "error" })
         }
     })
 

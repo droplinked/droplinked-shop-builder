@@ -1,0 +1,419 @@
+{
+  "common": {
+    "skipForNow": "Skip for Now",
+    "googleAccount": "Google Account",
+    "welcomeTitle": "Welcome to droplinked",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter email address",
+    "emailError": "Please enter a valid email address.",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter password",
+    "passwordError": "Password must be at least 8 characters.",
+    "passwordRules": {
+      "lowercase": "One lowercase letter",
+      "uppercase": "One uppercase letter",
+      "length": "8 characters or more",
+      "special": "One special character",
+      "digit": "One digit"
+    },
+    "orContinueWith": "or continue with",
+    "buttons": {
+      "skip": "Skip",
+      "apply": "Apply",
+      "generate": "Generate",
+      "regenerate": "Generate Again",
+      "exit": "Exit",
+      "verify": "Verify",
+      "resend": "Resend"
+    },
+    "validation": {
+      "required": "{field} is required",
+      "minLength": "{field} must be at least {length} characters",
+      "urlRequired": "URL is required",
+      "urlFormat": "URL can only contain letters, numbers, and hyphens",
+      "nameRequired": "Store name is required",
+      "nameLength": "Store name must be at least 3 characters"
+    },
+    "errors": {
+      "generic": "Something went wrong",
+      "urlCheckError": "Error checking URL availability",
+      "urlNotAvailable": "This URL is not available",
+      "paymentError": "Failed to create payment intent"
+    },
+    "shop": {
+      "preview": "Store Preview",
+      "details": "Store Details",
+      "name": "Name",
+      "url": "Shop URL",
+      "logo": "Logo",
+      "coverImage": "Cover Image"
+    },
+    "ai": {
+      "title": "Use droplinked AI to create your shop",
+      "description": "Use the AI tools to streamline the creation of store assets"
+    }
+  },
+  "SignInForm": {
+    "subtitle": "Sign in with your credentials below.",
+    "rememberPassword": "Remember my password",
+    "signInButton": "Sign In",
+    "noAccountText": "Don't have an account?",
+    "createAccountText": "Join us and create one!",
+    "resetPassword": "Reset Password",
+    "emailRequired": "Email address is required.",
+    "passwordRequired": "Password is required.",
+    "passwordMinLength": "Password must be at least 8 characters."
+  },
+  "SignUpForm": {
+    "subtitle": "Complete the details below or use your Google account.",
+    "referralLabel": "Referral Code",
+    "referralPlaceholder": "Enter referral code",
+    "termsPrefix": "By signing up, I agree to your",
+    "termsLink": "Terms and Conditions.",
+    "haveAccountText": "Already have an account?",
+    "signInLink": "Sign in",
+    "successMessage": "Account successfully created",
+    "errorMessage": "Signup failed",
+    "emailRequired": "Email address is required.",
+    "passwordRequired": "Password is required."
+  },
+  "EmailConfirmation": {
+    "title": "Confirm Email",
+    "subtitle": "Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox.",
+    "verifyButton": "Verify",
+    "noCodeText": "Didn't receive the code?",
+    "resendButton": "Resend",
+    "changeEmailText": "Want to change your email address?",
+    "goBackButton": "Go back"
+  },
+  "ShopSetupForm": {
+    "subtitle": "Complete the information below to optimize your storefront."
+  },
+  "NameField": {
+    "label": "Name",
+    "placeholder": "Choose your store name",
+    "validation": {
+      "required": "Name is required",
+      "minLength": "Name must be at least 3 characters"
+    }
+  },
+  "UrlChooser": {
+    "label": "Shop URL",
+    "placeholder": "Type your URL",
+    "validation": {
+      "required": "URL is required",
+      "notAvailable": "This URL is not available",
+      "checkError": "Error checking URL availability"
+    }
+  },
+  "DescriptionField": {
+    "label": "Description",
+    "placeholder": "Write a 150 to 160 characters description for your shop. This will be visible in the footer and will be used for SEO purposes.",
+    "tooltip": "Write a 150 to 160 characters description for your shop. This will be visible in the footer and will be used for SEO purposes."
+  },
+  "ExistingShopUrlProcessor": {
+    "label": "Import",
+    "description": "Add a website link and we'll import the content into the account.",
+    "placeholder": "Paste URL here",
+    "button": "Start Import",
+    "validation": {
+      "required": "URL is required",
+      "invalid": "Please enter a valid URL"
+    }
+  },
+  "AutoPopulateSampleProductsToggle": {
+    "title": "Create Inspirational Inventory",
+    "description": "Grant our AI creative engine to add 3 merch on demand products based on the assets you've uploaded to easily get started."
+  },
+  "LogoUploader": {
+    "change": "Change"
+  },
+  "CoverImage": {
+    "title": "Cover Image",
+    "dropDescription": "JPG, JPEG, and PNG"
+  },
+  "FileUpload": {
+    "dropHere": "Drop the file here ...",
+    "clickOrDrag": "Click or drag & drop here",
+    "uploading": "Uploading..., Please Wait.",
+    "editImage": "Edit image",
+    "deleteImage": "Delete image"
+  },
+  "RemoveConfirmation": {
+    "title": "Remove Current {{type}}",
+    "description": "You are about to remove the current {{type}} in order to replace it. Are you sure you want to continue?",
+    "keepButton": "No, Keep It",
+    "replaceButton": "Yes, Replace {{type}}"
+  },
+  "PaymentSetup": {
+    "title": "Basic Payment Details",
+    "subtitle": "Choose to activate any of the options below.",
+    "currency": {
+      "title": "Default Currency",
+      "updateError": "Failed to update currency"
+    },
+    "financialServices": {
+      "title": "Financial Services",
+      "connect": "Connect",
+      "coinbase": {
+        "tooltip": "The easy way to accept payments from around the world. Instant settlement, low fees, and broad support for over +200 digital assets.",
+        "buttonText": "Learn More"
+      },
+      "stripe": {
+        "tooltip": "Connect a Stripe account to receive deposits directly into an existing account.",
+        "buttonText": "Connect"
+      },
+      "paymob": {
+        "tooltip": "Connect a Paymob account to receive deposits directly into an existing account."
+      }
+    }
+  },
+  "SubscriptionPlans": {
+    "title": "Plans",
+    "subtitle": "Choose from the different package options below.",
+    "viewAllPlans": "View all plans and compare",
+    "paymentError": "Failed to create payment intent",
+    "proPlan": {
+      "title": "Pro Plan",
+      "description": "For small businesses and teams ready to grow."
+    },
+    "inheritance": "Everything in {{plan}} plan",
+    "continueWithPlan": "Continue with {{plan}} Plan",
+    "selected": "Selected",
+    "mostPopular": "Most Popular"
+  },
+  "CompletionSection": {
+    "title": "You're All Set!",
+    "subtitle": "Your account is now live and ready to use.",
+    "message": "Congratulations! You've successfully set up your Droplinked store.",
+    "controls": {
+      "startExploring": "Start Exploring Dashboard"
+    },
+    "newsletter": {
+      "title": "Newsletter Subscription",
+      "description": "Stay up to date on the latest features and offers"
+    }
+  },
+  "AICard": {
+    "title": "Generate with AI",
+    "subtitle": "Customize the account with the droplinked assistant",
+    "proFeature": "Pro Feature",
+    "businessDescribe": {
+      "label": "Describe Your Business",
+      "placeholder": "Add descriptive information about the category and customer base to improve results."
+    },
+    "businessCategory": {
+      "label": "Business Category",
+      "placeholder": "Select Category"
+    },
+    "generateButton": "Generate Account Details"
+  },
+  "AIMainButton": {
+    "title": "Generate with AI",
+    "subtitle": "Customize your shop with droplinked AI",
+    "tryButton": "Try AI Assistant"
+  },
+  "AIBusinessModal": {
+    "businessDescribe": {
+      "label": "Describe Your Business",
+      "placeholder": "Please describe your shop to help our AI create a more accurate and efficient representation of your business."
+    },
+    "businessCategory": {
+      "label": "Business Category",
+      "placeholder": "Select your business category"
+    },
+    "generateButton": "Generate Shop Details with AI"
+  },
+  "AIGenerationModal": {
+    "generatedContent": {
+      "title": "Generated Content",
+      "description": "Here's what our AI has generated for your shop"
+    },
+    "names": {
+      "title": "Shop Names",
+      "description": "Choose from AI-generated shop names"
+    },
+    "urls": {
+      "title": "Shop URLs",
+      "description": "Select a URL for your shop"
+    },
+    "logos": {
+      "title": "Shop Logos",
+      "description": "Pick a logo design for your shop"
+    },
+    "covers": {
+      "title": "Shop Covers",
+      "description": "Select a cover image for your shop"
+    }
+  },
+  "AIPlansModal": {
+    "description": "Feel free to use our AI tools to customize your shop. Subscribe below to get started.",
+    "buttons": {
+      "claimTrial": "Claim Trial Now",
+      "subscribe": "Subscribe"
+    }
+  },
+  "AIOptions": {
+    "aiSuggestions": "AI Suggestions",
+    "generateAgain": "Generate Again"
+  },
+  "ShopPreview": {
+    "title": "Store Preview",
+    "banner": {
+      "tagline": "The Next Generation of Commerce"
+    }
+  },
+  "Categories": {
+    "fashion": "Fashion",
+    "technology": "Technology",
+    "beauty": "Beauty",
+    "home": "Home & Living",
+    "health": "Health & Wellness",
+    "food": "Food & Beverage",
+    "art": "Art & Design",
+    "automotive": "Automotive",
+    "toys": "Toys & Games",
+    "books": "Books & Media",
+    "entertainment": "Entertainment",
+    "petSupplies": "Pet Supplies",
+    "sports": "Sports & Fitness",
+    "kids": "Kids & Baby",
+    "luxury": "Luxury & Accessories"
+  },
+  "ExistingWebsite": {
+    "title": "Let's Get Started",
+    "description": "Did you already have an existing website?",
+    "options": {
+      "yes": {
+        "label": "Yes",
+        "description": "Import inventory and data over in just a few clicks."
+      },
+      "no": {
+        "label": "No",
+        "description": "Create a storefront with the AI assistant."
+      }
+    }
+  },
+  "ResetPasswordForm": {
+    "title": "Reset Password",
+    "description": "Enter the email linked to your account. We'll send you a verification code to reset your password.",
+    "form": {
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Enter email address"
+    },
+    "validation": {
+      "emailInvalid": "Please enter a valid email address.",
+      "emailRequired": "Email address is required.",
+      "passwordRequired": "Password is required.",
+      "passwordMinLength": "Password must be at least 8 characters long.",
+      "confirmPasswordRequired": "Confirm password is required.",
+      "passwordsMustMatch": "Passwords must match."
+    },
+    "success": {
+      "emailSent": "Reset password email sent successfully",
+      "passwordReset": "Password reset successfully"
+    },
+    "errors": {
+      "emailSendFailed": "Failed to send reset password email",
+      "passwordResetFailed": "Failed to reset password"
+    },
+    "links": {
+      "rememberPassword": "Remember your password?",
+      "signIn": "Sign In",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Join us and create one!"
+    }
+  },
+  "SetNewPasswordForm": {
+    "title": "Set a New Password",
+    "description": "Create a strong, new password for your account.",
+    "newPasswordLabel": "New Password",
+    "confirmPasswordLabel": "Confirm New Password",
+    "confirmPasswordPlaceholder": "Confirm New Password",
+    "resetButton": "Reset password"
+  },
+  "PasswordUpdatedForm": {
+    "title": "Password Updated!",
+    "description": "Your password has been reset successfully. You can now log in.",
+    "signInButton": "Sign In"
+  },
+  "useLogin": {
+    "errors": {
+      "accountDeleted": "This account has been deleted",
+      "accountUnableToLogin": "This account is unable to log in. Please check your credentials.",
+      "loginFailed": "Login failed"
+    }
+  },
+  "useEmailVerification": {
+    "errors": {
+      "invalidVerificationCode": "Invalid verification code",
+      "failedToSendCode": "Failed to send code"
+    },
+    "success": {
+      "codeVerified": "Code verified successfully",
+      "verificationCodeSent": "Verification code sent to your email"
+    }
+  },
+  "useShopSetupSubmit": {
+    "errors": {
+      "failedToCompleteShopSetup": "Failed to complete shop setup"
+    }
+  },
+  "useShopUrlProcessor": {
+    "errors": {
+      "failedToImportShopData": "Failed to import shop data",
+      "importTimedOut": "Import timed out. Please try again.",
+      "failedToStartImport": "Failed to start import. Please try again."
+    },
+    "success": {
+      "shopDataImported": "Shop data imported successfully!"
+    },
+    "info": {
+      "importStarted": "Import started. Please wait while we process your website..."
+    }
+  },
+  "useAiGeneratedContent": {
+    "errors": {
+      "failedToUploadLogo": "Failed to upload logo",
+      "failedToUploadBanner": "Failed to upload banner",
+      "allLogoGenerationFailed": "All logo generation requests failed",
+      "failedToGetLogoRequestIds": "Failed to get request IDs for logo generation",
+      "failedToGenerateLogos": "Failed to generate logos",
+      "allCoverGenerationFailed": "All cover generation requests failed",
+      "failedToGetCoverRequestIds": "Failed to get request IDs for cover generation",
+      "failedToGenerateCovers": "Failed to generate covers",
+      "failedToGenerateUrls": "Failed to generate URLs",
+      "failedToGenerateNames": "Failed to generate names"
+    },
+    "success": {
+      "logosGenerated": "Logos generated successfully!",
+      "coversGenerated": "Covers generated successfully!"
+    },
+    "warnings": {
+      "fillBusinessInfoFirst": "Please fill in business category and description first"
+    }
+  },
+  "useUsernameAvailability": {
+    "errors": {
+      "errorCheckingUsername": "Error checking username"
+    }
+  },
+  "ProductCards": {
+    "physical": {
+      "title": "Physical Products",
+      "description": "Add physical products by entering details like name, description, and price. Customers can browse and buy directly from your store."
+    },
+    "digital": {
+      "title": "Digital Goods",
+      "description": "Sell digital products like eBooks, software, or music. Upload files, set prices, and allow instant downloads after purchase."
+    },
+    "print": {
+      "title": "Print on Demand",
+      "description": "Customize products like t-shirts that are produced only when ordered, handled by your print-on-demand partner."
+    },
+    "nft": {
+      "title": "NFT",
+      "description": "Generate a payment link for any product, simplifying the checkout process by bypassing the storefront."
+    }
+  }
+} 

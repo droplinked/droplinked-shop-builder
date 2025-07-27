@@ -5,9 +5,11 @@ import useShopUrl from 'hooks/useShopUrl/useShopUrl'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function StoreURL() {
     const shopUrl = useShopUrl()
+    const { t } = useLocaleResources('settings');
 
     const shopLink = () => (
         <Flex alignItems={"center"} gap={"6px"} sx={{ path: { stroke: "#179ef8" } }}>
@@ -21,6 +23,6 @@ export default function StoreURL() {
     )
 
     return (
-        <SectionContent title="Store URL" rightContent={shopLink()} />
+        <SectionContent title={t("StoreURL.title")} rightContent={shopLink()} />
     )
 }

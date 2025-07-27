@@ -10,13 +10,15 @@ import TileDesignPagePostPurchase from "./tile.design.page.post.purchase";
 import TileDesignPageInformation from "./tile.design.page.information";
 import TileDesignPageShipping from "./tile.design.page.shipping";
 import TileDesignPagePayment from "./tile.design.page.payment";
-import { shopUpdateService } from "lib/apis/shop/shopServices";
+import { shopUpdateService } from "services/shop/shopServices";
 import { useMutation } from "react-query";
-import { IshopUpdateService } from "lib/apis/shop/interfaces";
+import { IshopUpdateService } from "services/shop/interfaces";
 import useAppStore from "stores/app/appStore";
 import { useProfile } from "hooks/useProfile/useProfile";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 const TileDesign = () => {
+    const { t } = useLocaleResources('tile-design');
     const { shop } = useAppStore();
     const { updateShopData } = useProfile();
     const [States, setState] = useState<ITileDesignState>(shop?.productTileStyle ? { design: { ...initialTileDesignState.design, ...shop?.productTileStyle, }, current: initialTileDesignState?.current } : initialTileDesignState);
@@ -40,7 +42,7 @@ const TileDesign = () => {
     const updateState = (key: "current" | "design", value: Pick<ITileDesignState, "current"> | Pick<ITileDesignState, "design">) => setState((prev) => ({ ...prev, [key]: value }));
     const submit = async () => {
         if (isLoading) return null;
-        await mutateAsync({ productTileStyle: States?.design })
+        await mutateAsync({ productTileStyle: States?.design, currencyAbbreviation: shop?.currencyAbbreviation })
             .then(async (res) => await updateShopData())
             .catch((e) => { });
     };
@@ -55,9 +57,9 @@ const TileDesign = () => {
                             <TileDesignForm />
                         </HStack>
                         <Flex justifyContent="flex-end" width={"full"} gap={"8px"}>
-                            <BasicButton variant="outline">Cancel</BasicButton>
+                            <BasicButton variant="outline">{t('common:cancel')}</BasicButton>
                             <BasicButton isLoading={isLoading} onClick={submit} isDisabled={JSON.stringify(initialTileDesignState) === JSON.stringify(States) || isLoading}>
-                                Save
+                                {t('common:save')}
                             </BasicButton>
                         </Flex>
                     </>

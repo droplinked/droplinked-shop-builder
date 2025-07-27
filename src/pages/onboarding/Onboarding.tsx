@@ -1,4 +1,7 @@
 import { useBreakpointValue } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 import React, { useEffect } from 'react'
 import EmailConfirmation from './components/common/email-confirmation/EmailConfirmation'
 import CompletionSection from './components/completion/CompletionSection'
@@ -24,6 +27,7 @@ import useOnboardingStore from './stores/useOnboardingStore'
 function Onboarding() {
   const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
   const { currentStep, updateOnboardingState, shopSetupUI } = useOnboardingStore()
+  useLocaleResources('onboarding', { en: enLocale, ar: arLocale })
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search)

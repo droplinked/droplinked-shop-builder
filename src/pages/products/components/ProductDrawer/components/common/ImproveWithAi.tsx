@@ -1,9 +1,17 @@
-import { Box, ChakraProps, Flex, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
+import { ChakraProps, Flex, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from "@chakra-ui/react";
+import { RocketSm } from "assets/icons/Action/Rocket/RocketSm";
+import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm';
+import { RobotSm } from "assets/icons/AI/Robot/RobotSm";
+import { HappyfaceSm } from "assets/icons/Sign/HappyFace/HappyfaceSm";
+import { Light2Sm } from "assets/icons/System/Light2/Light2Sm";
+import { MedalstarSm } from "assets/icons/System/MedalStar/MedalstarSm";
+import { SuitcaseSm } from "assets/icons/System/SuitCase/SuitcaseSm";
 import AppTypography from "components/common/typography/AppTypography";
 import AppButton from "components/redesign/button/AppButton";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from "react";
-import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm';
+import { Refresh2Sm } from "assets/icons/Action/Refresh2/Refresh2Sm";
+import { Refresh1Sm } from "assets/icons/Action/Refresh1/Refresh1Sm";
 
 interface Props {
     handleSelectItem: (item: string) => void;
@@ -24,45 +32,46 @@ export default function ImproveWithAi({
     isLoaded,
     BoxStyles
 }: Props) {
+    const { t } = useLocaleResources('products');
     const { onOpen, isOpen, onClose } = useDisclosure();
 
     const items = [
         {
-            icon: <AppIcons.Light />,
-            title: "Casual",
+            icon: <Light2Sm />,
+            title: t('ImproveWithAi.styles.casual'),
         },
         {
-            icon: <AppIcons.Smile />,
-            title: "Friendly"
+            icon: <HappyfaceSm />,
+            title: t('ImproveWithAi.styles.friendly')
         },
         {
-            icon: <AppIcons.Case />,
-            title: "Professional"
+            icon: <SuitcaseSm />,
+            title: t('ImproveWithAi.styles.professional')
         },
         {
-            icon: <AppIcons.Rocket />,
-            title: "Inspirational"
+            icon: <RocketSm />,
+            title: t('ImproveWithAi.styles.inspirational')
         },
         {
-            icon: <Box sx={{ path: { stroke: "#fff" } }}><AppIcons.MedalStarOutline /></Box>,
-            title: "Luxury"
+            icon: <MedalstarSm />,
+            title: t('ImproveWithAi.styles.luxury')
         },
         {
-            icon: <AppIcons.Robot />,
-            title: "Tech_Savvy"
+            icon: <RobotSm />,
+            title: t('ImproveWithAi.styles.techSavvy')
         },
     ]
 
     const buttons = [
         {
-            title: "Revert",
-            icon: <AppIcons.Refresh2 />,
+            title: t('ImproveWithAi.actions.revert'),
+            icon: <Refresh2Sm />,
             color: "#fff",
             onClick: handleRevert
         },
         {
-            title: "Try Again",
-            icon: <AppIcons.Refresh />,
+            title: t('ImproveWithAi.actions.tryAgain'),
+            icon: <Refresh1Sm color="#2BCFA1"/>,
             color: "#2BCFA1",
             onClick: handleTryAgain
         }
@@ -102,7 +111,7 @@ export default function ImproveWithAi({
                             isDisabled={isImproveLoading || isDisabled}
                             leftIcon={<MagicwandSm/>}
                         >
-                            {!isImproveLoading && "Improve With AI"}
+                            {!isImproveLoading && t('ImproveWithAi.button')}
                         </AppButton>
                     </MenuButton>
                     <MenuList zIndex={9999} borderRadius={8} background={"neutral.gray.1000"} border={"none"} p={3} minWidth={"150px"}>

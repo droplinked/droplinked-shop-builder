@@ -1,12 +1,13 @@
 import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
-import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
-import { updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
+import { ShopOAuth2Client } from 'services/shop/interfaces'
+import { updateShopAPIKeyService } from 'services/shop/shopServices'
 import { useHasPermission } from 'stores/app/appStore'
 import { domainRegex } from 'utils/helpers'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     refetch: () => void;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function DomainField({ refetch, domains }: Props) {
+    const { t } = useLocaleResources('settings');
     const [value, setValue] = useState("")
     const hasPermission = useHasPermission()
     const hasShopApiPermission = hasPermission("shopfront_apis")
@@ -22,15 +24,15 @@ export default function DomainField({ refetch, domains }: Props) {
 
     const handleUpdateShopAPIKey = async () => {
         try {
-            if (!domainRegex.test(value)) throw Error("Please enter a valid domain.");
+            if (!domainRegex.test(value)) throw Error(t("PublicApiKey.domain.errorValidDomain"));
             if (domains?.length) {
-                if (domains?.includes(value)) throw Error("Domain already exists.");
+                if (domains?.includes(value)) throw Error(t("PublicApiKey.domain.errorDomainExists"));
                 await mutateAsync({ domains: [...domains, value] });
             } else {
                 await mutateAsync({ domains: [value] });
             }
             refetch();
-            showToast({ message: `${value} added successfully.`, type: "success" });
+            showToast({ message: t("PublicApiKey.domain.addSuccess", { value: value }), type: "success" });
         } catch (error) {
             showToast({ message: (error as Error).message, type: "error" });
         }
@@ -38,7 +40,12 @@ export default function DomainField({ refetch, domains }: Props) {
 
     return (
         <AppInput
-            inputProps={{ isDisabled: !hasShopApiPermission, placeholder: "Domain.com", value, onChange: (e) => setValue(e.target.value) }}
+            inputProps={{
+                isDisabled: !hasShopApiPermission,
+                                    placeholder: t("PublicApiKey.domain.placeholder"),
+                value,
+                onChange: (e) => setValue(e.target.value)
+            }}
             inputContainerProps={{ padding: 2, paddingLeft: 4 }}
             rightElement={
                 <AppButton
@@ -51,7 +58,7 @@ export default function DomainField({ refetch, domains }: Props) {
                     padding={1}
                     onClick={handleUpdateShopAPIKey}
                 >
-                    Generate API Key
+                    {t("PublicApiKey.domain.buttonText")}
                 </AppButton>
             }
         />

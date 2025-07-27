@@ -1,16 +1,15 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
-interface ChangelogErrorProps {
-    error: unknown
-}
+export function ChangelogError() {
+    const { t } = useLocaleResources('changelogPage')
 
-export function ChangelogError({ error }: ChangelogErrorProps) {
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title='Error'
-                description={error instanceof Error ? error.message : 'Something went wrong. Please try again later.'}
+                title={t('ChangelogError.title')}
+                description={t('common:genericError')}
             />
         </PageGrid.Root>
     )

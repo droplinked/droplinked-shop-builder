@@ -1,9 +1,12 @@
 import { ButtonProps } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 function AddVariantsButton(props: ButtonProps) {
+    const { t } = useLocaleResources('products')
+
     return (
         <BlueButton
             w="full"
@@ -17,7 +20,7 @@ function AddVariantsButton(props: ButtonProps) {
             {...props}
         >
             <AppIcons.BlackPlus />
-            Add Varaints
+            {t('PhysicalProductVariants.addVariantsButton')}
         </BlueButton>
     )
 }

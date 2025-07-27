@@ -1,0 +1,55 @@
+{
+  "CustomTokensHero": {
+    "title": "True Utility for Tokens",
+    "subtitle": "Custom token payment options that drive usage and value across ecosystems",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "CustomTokensFeatures": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Day 0 Utility",
+    "headingSubtitle": "Enable communities to adopt custom tokens to purchase products and services, \n boosting utility and different use cases",
+    "cards": {
+      "tokenPoweredTransactions": {
+        "title": "Token-Powered Transactions",
+        "description": "Integrate any BRC/ERC/SPL token as a payment method that turns purchases into token-driven transactions"
+      },
+      "boostingTokenUtility": {
+        "title": "Boosting Token Utility",
+        "description": "Increase a token's usage by making it a viable payment option across any website or app to encourage more adoption"
+      },
+      "seamlessIntegration": {
+        "title": "Seamless Integration",
+        "description": "Easily activate any custom token across properties with droplinkeds' integration tools. no technical complexity involved when implementing into a website, game or mobile app"
+      }
+    }
+  },
+  "CustomTokensModularStack": {
+    "cards": {
+      "gameDevelopers": {
+        "title": "Game Developers and Startups",
+        "description": "Whether you're a game studio or tech company, enhance any token's utility by enabling it as a payment option for fans and customers"
+      },
+      "realUseRealValue": {
+        "title": "Real Use, Real Value",
+        "description": "The more utility that it begins to provide, the more the token is used. Give customers a reason to hold and spend the token while the community grows"
+      },
+      "frictionlessPayments": {
+        "title": "Frictionless Payments",
+        "description": "Provide the community with a seamless way to use the token with smooth and simple custom payment gateway that accepts transactions across any platform"
+      },
+      "customTokenPayments": {
+        "title": "Custom Token Payments",
+        "description": "Allow customers to use any token to purchase goods and services that boost utility across an ecosystem"
+      },
+      "betterTokenCirculation": {
+        "title": "Better Token Circulation",
+        "description": "Increased token usage drives demand and liquidity to further increase utility over time"
+      },
+      "simpleSetupIntegration": {
+        "title": "Simple Setup & Integration",
+        "description": "Activate custom token payments on any site or property with just a few clicks all within the merchant dashboard, with no need for complex configurations"
+      }
+    }
+  }
+} 

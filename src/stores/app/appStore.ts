@@ -1,14 +1,13 @@
-import { ICompleteGoogleSignupService, IauthLoginService } from 'lib/apis/auth/interfaces'
-import { authLoginService, completeGoogleSignupService } from 'lib/apis/auth/services'
-import { IshopInfoService, IshopUpdateService } from 'lib/apis/shop/interfaces'
-import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
-import { IGetUserService } from 'lib/apis/user/interfaces'
-import { getUserService, userUpdateService } from 'lib/apis/user/services'
+import { ICompleteGoogleSignupService, IauthLoginService } from 'services/auth/interfaces'
+import { authLoginService, completeGoogleSignupService } from 'services/auth/services'
+import { IshopInfoService, IshopUpdateService } from 'services/shop/interfaces'
+import { shopInfoService, shopUpdateService } from 'services/shop/shopServices'
+import { ShopSubscriptionData } from 'services/subscription/interfaces'
+import { IGetUserService } from 'services/user/interfaces'
+import { getUserService, userUpdateService } from 'services/user/services'
 import { toast } from 'sonner'
 import { setTokens } from 'utils/app/authutils'
 import { appDevelopment } from 'utils/app/variable'
-import AppErrors from 'utils/constants/errors'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import useGrowthHackStore from '../level-up/levelUpStore'
@@ -159,7 +158,10 @@ const states = (set, get): IAppStore => ({
     checkPermissionAndShowToast: (permission, message) => {
         const { hasPermission } = get()
         if (!hasPermission(permission)) {
-            toast.error(message || AppErrors.permission.permissionDenied)
+            // Note: For now using a fallback message since this is a store
+            // In components, use: const { t } = useLocaleResources('common'); 
+            const fallbackMessage = message || "Permission Denied";
+            toast.error(fallbackMessage)
             return false
         }
         return true

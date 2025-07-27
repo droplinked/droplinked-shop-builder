@@ -1,18 +1,20 @@
 import AppIcons from "assets/icon/Appicons"
 import AppInput from "components/redesign/input/AppInput"
 import useAppToast from "hooks/toast/useToast"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from "pages/products/hooks/useProductForm"
 import React, { ChangeEvent, useState } from "react"
 import SwitchBox from "../common/SwitchBox"
 
 export default function ProductRoyalty() {
+    const { t } = useLocaleResources('products');
     const { values: { sku } } = useProductForm()
     const [showInput, setShowInput] = useState(false)
     const { showToast } = useAppToast()
 
     const handleRoyaltyToggle = (checked: boolean) => {
         if (!sku.length) {
-            showToast({ type: "error", message: "Please add at least one SKU before activating royalties." })
+            showToast({ type: "error", message: t('ProductRoyalty.addSkuFirst') })
             return
         }
         setShowInput(checked)
@@ -20,8 +22,8 @@ export default function ProductRoyalty() {
 
     return (
         <SwitchBox
-            title="Royalty"
-            description="Activate royalties on this product to receive a percentage on each resale."
+            title={t('ProductRoyalty.title')}
+            description={t('ProductRoyalty.description')}
             switchProps={{
                 isChecked: showInput,
                 onChange: (e) => handleRoyaltyToggle(e.target.checked)
@@ -32,6 +34,7 @@ export default function ProductRoyalty() {
 }
 
 function RoyaltyInput() {
+    const { t } = useLocaleResources('products');
     const { values: { sku }, setFieldValue } = useProductForm()
     const [royalty, setRoyalty] = useState(sku?.[0]?.royalty ?? null)
 
@@ -55,7 +58,7 @@ function RoyaltyInput() {
                 min: 0,
                 max: 99.99,
                 step: 0.01,
-                placeholder: "15",
+                placeholder: t('ProductRoyalty.placeholder'),
                 value: royalty !== null ? royalty : "",
                 onChange: handleInputChange
             }}

@@ -4,12 +4,15 @@ import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreen
 import AppInput from 'components/redesign/input/AppInput';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import useDebounce from 'hooks/debounce/useDebounce';
 import useAppToast from 'hooks/toast/useToast';
-import { addProductToInvoiceService, createInvoiceService } from 'lib/apis/invoice/invoiceServices';
-import { areArraysEqual } from 'utils/helpers';
+import useDebounce from 'hooks/useDebounce/useDebounce';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import arLocale from 'locales/invoice-management/ar.json';
+import enLocale from 'locales/invoice-management/en.json';
+import { addProductToInvoiceService, createInvoiceService } from 'services/invoice/invoiceServices';
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
 import React, { useEffect, useMemo, useState } from 'react';
+import { areArraysEqual } from 'utils/helpers';
 import ProductTable from './product-table/ProductTable';
 import { SearchMd } from 'assets/icons/System/Search/SearchMd'
 
@@ -19,6 +22,7 @@ interface Props {
 }
 
 function InvoiceProductModal({ isOpen, onClose }: Props) {
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm, 500)
     const [cart, setCart] = useState([])
@@ -61,8 +65,8 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
         <AppModal modalRootProps={{ isOpen, onClose: closeModal, size: "5xl" }}>
             <ModalHeaderData
                 icon={<AppIcons.HeaderProductBox />}
-                title="Products"
-                description="Select one of the products to add into your invoice."
+                title={t('InvoiceProductModal.title')}
+                description={t('InvoiceProductModal.description')}
             />
 
             <ModalBody display="flex" flexDirection="column" gap={6}>
@@ -74,7 +78,7 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
                         alignItems: "flex-start"
                     }}
                     inputProps={{
-                        placeholder: "Product name",
+                        placeholder: t('InvoiceProductModal.search.placeholder'),
                         value: searchTerm,
                         onChange: (e) => setSearchTerm(e.target.value)
                     }}

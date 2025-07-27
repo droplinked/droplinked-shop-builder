@@ -1,9 +1,11 @@
 import { Flex, useDisclosure, useRadioGroup } from '@chakra-ui/react'
 import { AILg } from 'assets/icons/AI'
+import { ArrowleftMd } from 'assets/icons/Navigation/ArrowLeft/ArrowleftMd'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
 import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect } from 'react'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
@@ -12,6 +14,7 @@ import YesNoRadioCard from './YesNoRadioCard'
 function ExistingWebsite() {
     const { updateOnboardingState, updateShopSetupUI, shopSetupUI } = useOnboardingStore()
     const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
+    const { t, isRTL } = useLocaleResources('onboarding')
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-visibility-status',
@@ -25,15 +28,15 @@ function ExistingWebsite() {
     }, [openProTrialModal])
 
     const options = [
-        { value: 'yes', label: 'Yes', description: 'Import inventory and data over in just a few clicks.', icon: <ShopLg /> },
-        { value: 'no', label: 'No', description: 'Create a storefront with the AI assistant.', icon: <AILg /> }
+        { value: 'yes', label: t('ExistingWebsite.options.yes.label'), description: t('ExistingWebsite.options.yes.description'), icon: <ShopLg /> },
+        { value: 'no', label: t('ExistingWebsite.options.no.label'), description: t('ExistingWebsite.options.no.description'), icon: <AILg /> }
     ]
 
     return (
         <>
             <OnboardingStepHeader
-                heading="Let's Get Started"
-                description='Did you already have an existing website?'
+                heading={t('ExistingWebsite.title')}
+                description={t('ExistingWebsite.description')}
             />
 
             <Flex
@@ -53,10 +56,10 @@ function ExistingWebsite() {
 
             <AppButton
                 alignSelf='flex-end'
-                rightIcon={<ArrowrightMd />}
+                rightIcon={isRTL ? <ArrowleftMd /> : <ArrowrightMd />}
                 onClick={() => updateOnboardingState('currentStep', 'STORE_DETAILS')}
             >
-                Continue
+                {t('common:continue')}
             </AppButton>
 
             <ProTrialModal

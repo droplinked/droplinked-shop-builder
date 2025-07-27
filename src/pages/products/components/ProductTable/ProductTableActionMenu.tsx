@@ -1,6 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
 import React, { useState } from 'react'
@@ -13,6 +14,7 @@ import ProductShareModal from './components/share-modal/ShareModal'
 export type action = "DELETE" | "DUPLICATE" | "PUBLISH" | "DRAFT"
 
 function ProductTableActionMenu({ product }: { product: any }) {
+    const { t } = useLocaleResources('products');
     const navigate = useNavigate()
     const [action, setAction] = useState<action>("DELETE")
     const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
@@ -33,18 +35,18 @@ function ProductTableActionMenu({ product }: { product: any }) {
     const actions = [
         {
             icon: <AppIcons.Invoice />,
-            title: "Details",
+            title: t('common:details'),
             onClick: onDetailsModalOpen
         },
         {
             icon: <AppIcons.EditOutlined />,
-            title: "Edit",
+            title: t('common:edit'),
             onClick: () => updateProductPageState("editingProductId", product._id)
         },
         {
             ...product.nftData && {
                 icon: <AppIcons.DropProduct />,
-                title: "DROP Information",
+                title: t('ProductTableActionMenu.actions.dropInfo'),
                 onClick: onDropInfoModalOpen
             }
         },
@@ -52,31 +54,31 @@ function ProductTableActionMenu({ product }: { product: any }) {
             ...product.product_type === "PRINT_ON_DEMAND" &&
             {
                 icon: <AppIcons.Shirt />,
-                title: "Order POD Sample",
+                title: t('ProductTableActionMenu.actions.orderPodSample'),
                 onClick: () => navigate("/analytics/products/order/" + product._id)
             },
         },
         {
             icon: <AppIcons.Share />,
-            title: "Share",
+            title: t('common:share'),
             onClick: onShareModalOpen
         },
         {
             icon: <AppIcons.Copy />,
-            title: "Duplicate",
+            title: t('common:duplicate'),
             onClick: () => handleActionClick("DUPLICATE")
         },
         {
             ...!isProductRecorded &&
             {
                 icon: <AppIcons.Transfer />,
-                title: `Make ${isProductPublished ? "Draft" : "Public"}`,
+                title: t('ProductTableActionMenu.actions.makeStatus', { status: isProductPublished ? t('common:draft') : t('common:public') }),
                 onClick: () => handleActionClick(isProductPublished ? "DRAFT" : "PUBLISH"),
             }
         },
         {
             icon: <AppIcons.RedTrash />,
-            title: "Remove",
+            title: t('common:delete'),
             color: "#F24",
             onClick: () => handleActionClick("DELETE")
         }

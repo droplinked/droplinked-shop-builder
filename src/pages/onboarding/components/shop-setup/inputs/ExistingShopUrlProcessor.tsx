@@ -6,14 +6,16 @@ import { Form, Formik } from 'formik'
 import { useShopUrlProcessor } from 'pages/onboarding/hooks/useShopUrlProcessor'
 import React from 'react'
 import * as Yup from 'yup'
-
-const validationSchema = Yup.object().shape({
-    url: Yup.string().url('Please enter a valid URL').required('URL is required')
-})
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ExistingShopUrlProcessor() {
     const { hasPaidSubscription, processShopUrl, isLoading } = useShopUrlProcessor()
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { t } = useLocaleResources('onboarding')
+
+    const validationSchema = Yup.object().shape({
+        url: Yup.string().url(t('ExistingShopUrlProcessor.validation.invalid')).required(t('ExistingShopUrlProcessor.validation.required'))
+    })
 
     const handleSubmit = async (values) => {
         if (hasPaidSubscription()) await processShopUrl(values.url)
@@ -40,10 +42,10 @@ function ExistingShopUrlProcessor() {
                         }}
                     >
                         <AppInput
-                            label="Import"
-                            description="Add a website link and we'll import the content into the account."
+                            label={t('ExistingShopUrlProcessor.label')}
+                            description={t('ExistingShopUrlProcessor.description')}
                             inputProps={{
-                                placeholder: 'Paste URL here',
+                                placeholder: t('ExistingShopUrlProcessor.placeholder'),
                                 value: values.url,
                                 onChange: handleChange,
                                 name: 'url',
@@ -59,7 +61,7 @@ function ExistingShopUrlProcessor() {
                             isDisabled={isSubmitting || isLoading}
                             isLoading={isSubmitting || isLoading}
                         >
-                            Start Import
+                            {t('ExistingShopUrlProcessor.button')}
                         </AppButton>
                     </Form>
                 )}

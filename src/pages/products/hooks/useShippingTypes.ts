@@ -1,7 +1,8 @@
-import { createCustomShippingService, getCustomShippingsService } from "lib/apis/custom-shipping/CustomShippingServices"
+import { createCustomShippingService, getCustomShippingsService } from "services/custom-shipping/CustomShippingServices"
 import { useHasPermission } from "stores/app/appStore"
 import { useState } from "react"
 import { useMutation, useQuery, useQueryClient, UseQueryResult } from "react-query"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export interface ShippingType {
     _id?: string // Optional identifier for custom shipping methods
@@ -15,12 +16,13 @@ const CUSTOM_SHIPPINGS_QUERY_KEY = ["custom-shippings"]
 export function useShippingTypes() {
     const hasPermission = useHasPermission()
     const hasCustomShippingPermission = hasPermission("custom_shipping")
+    const { t } = useLocaleResources('products')
 
     const [shippingTypes, setShippingTypes] = useState<ShippingType[]>([
         {
             shippingType: "EASY_POST",
-            title: "EasyPost",
-            description: "Calculates the real-time cost of the shipment based on the delivery address to provide a shipping label."
+            title: t('useShippingTypes.easyPost.title'),
+            description: t('useShippingTypes.easyPost.description')
         }
     ])
 

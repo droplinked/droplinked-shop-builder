@@ -1,4 +1,5 @@
 import { Box, Grid, GridProps } from "@chakra-ui/react"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
 
 /**
@@ -19,6 +20,8 @@ export interface RuledGridProps extends GridProps {
 }
 
 function RuledGrid({ columns, nested = false, children, ...rest }: RuledGridProps) {
+    const { isRTL } = useLocaleResources("common")
+
     // Convert children to an array
     const childrenArray = React.Children.toArray(children)
 
@@ -32,7 +35,11 @@ function RuledGrid({ columns, nested = false, children, ...rest }: RuledGridProp
         >
             {childrenArray.map((child, index) => (
                 <Box
-                    borderRight={index % columns !== columns - 1 ? "1px solid" : "none"}
+                    key={index}
+                    // Draw internal vertical borders depending on layout direction.
+                    borderRight={(!isRTL && index % columns !== columns - 1) || (isRTL && index % columns !== 0) ? "1px solid" : "none"}
+                    // Reset borderLeft to none to avoid double borders in RTL.
+                    borderLeft="none"
                     borderBottom={index < childrenArray.length - columns ? "1px solid" : "none"}
                     borderColor={rest.borderColor ?? "neutral.gray.800"}
                 >

@@ -1,21 +1,27 @@
 import { Divider, Flex, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import { Participation } from 'lib/apis/gamification/interfaces'
+import { Participation } from 'services/gamification/interfaces'
 import React from 'react'
 import GamificationCard from '../GamificationCard'
 import HowGamificationWorksModal from './_components/HowGamificationWorksModal'
 import Mission from './_components/Mission'
 import MissionLoading from './_components/MissionLoading'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
-function MissionList({ isLoading, missions }: { isLoading: boolean, missions: Participation[] }) {
+interface Props {
+    isLoading: boolean;
+    missions: Participation[];
+    t: (key: string) => string;
+}
+
+function MissionList({ isLoading, missions, t }: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-
     return (
         <>
             <GamificationCard direction={"column"} gap={5} padding={5}>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
-                    <AppTypography fontSize={24} fontWeight={700} color={"#fff"}>Missions</AppTypography>
-                    <AppTypography as={"button"} fontSize={14} fontWeight={700} color={"#2BCFA1"} onClick={onOpen}>How do missions work?</AppTypography>
+                    <AppTypography fontSize={24} fontWeight={700} color={"#fff"}>{t("MissionList.title")}</AppTypography>
+                    <AppTypography as={"button"} fontSize={14} fontWeight={700} color={"#2BCFA1"} onClick={onOpen}>{t("MissionList.howDoMissionsWork")}</AppTypography>
                 </Flex>
 
                 <Divider height={"2px"} borderColor={"neutral.gray.800"} />

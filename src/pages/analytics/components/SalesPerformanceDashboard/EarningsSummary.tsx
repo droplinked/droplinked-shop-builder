@@ -1,6 +1,7 @@
-import { Box, Flex, Skeleton, Text } from '@chakra-ui/react'
+import { Flex, Skeleton, Text } from '@chakra-ui/react'
 import AppDateRangePicker from 'components/redesign/date-range-picker/AppDateRangePicker'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useFormattedDateRange from 'pages/analytics/hooks/useFormattedDateRange'
 import useAnalyticsStore from 'pages/analytics/stores/useAnalyticsStore'
 import React from 'react'
@@ -12,7 +13,8 @@ interface Props {
 
 function EarningsSummary({ earnings, isLoading }: Props) {
     const { selectedDateRange, startDate, endDate } = useFormattedDateRange()
-    const updateAnalyticsPageState = useAnalyticsStore(state => state.updateAnalyticsPageState)
+    const setSelectedDateRange = useAnalyticsStore(state => state.setSelectedDateRange)
+    const { t } = useLocaleResources("analyticsPage")
 
     return (
         <Flex
@@ -24,7 +26,7 @@ function EarningsSummary({ earnings, isLoading }: Props) {
         >
             {/* Left section: Earnings and Income period */}
             <Flex direction="column" gap={{ base: 1, md: 2 }}>
-                <Text fontSize={{ base: 14, xl: 16 }} color="text.white">Earnings</Text>
+                <Text fontSize={{ base: 14, xl: 16 }} color="text.white">{t('EarningsSummary.earnings')}</Text>
 
                 <Skeleton isLoaded={!isLoading}>
                     <FormattedPrice
@@ -41,14 +43,14 @@ function EarningsSummary({ earnings, isLoading }: Props) {
                     color="text.subtext.placeholder.dark"
                     sx={{ span: { fontWeight: 500, color: 'text.subtext.placeholder.light' } }}
                 >
-                    Income from <Box as="span">{startDate}</Box> to <Box as="span">{endDate}</Box>.
+                    {t('EarningsSummary.incomePeriod', { startDate, endDate })}
                 </Text>
             </Flex>
 
             {/* Right section: Date Picker */}
             <AppDateRangePicker
                 value={selectedDateRange}
-                onChange={(value) => updateAnalyticsPageState('selectedDateRange', value)}
+                onChange={(value) => setSelectedDateRange(value)}
             />
         </Flex>
     )

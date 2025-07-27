@@ -1,16 +1,16 @@
 import { Box, Skeleton, VStack } from '@chakra-ui/react';
 import * as React from 'react';
-import TableHeading from './TableHeading';
 import { useQuery } from 'react-query';
-import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
+import { getSubscriptionPlansService } from 'services/subscription/subscriptionServices';
 import PlansTableContainer from './PlansTableContainer';
+import TableHeading from './TableHeading';
 
 const ComparisonTable: React.FC = () => {
     const { isFetching, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService()
     })
-    
+
     if (isFetching) {
         return <Skeleton />
     }

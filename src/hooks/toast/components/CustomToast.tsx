@@ -1,13 +1,14 @@
-import React, { JSX } from "react";
-import { toast } from "sonner";
 import {
     Box,
+    CloseButton,
     Flex,
     Text,
-    CloseButton,
     useMediaQuery
 } from "@chakra-ui/react";
 import { InformationMd } from "assets/icons/Sign/Information/InformationMd";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import React, { JSX } from "react";
+import { toast } from "sonner";
 
 type ToastType = "success" | "error" | "info" | "warning";
 
@@ -20,6 +21,8 @@ interface CustomToastProps {
 
 export const CustomToast = (props: CustomToastProps) => {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
+    const { isRTL } = useLocaleResources("common")
+
     const { id, title, description, type } = props;
 
     const bgColor = {
@@ -51,7 +54,7 @@ export const CustomToast = (props: CustomToastProps) => {
             p={4}
         >
             <Flex alignItems={description ? "flex-start" : "center"}>
-                <Box color={borderColor} mt={1} mr={3}>
+                <Box color={borderColor} mt={1} {...isRTL ? { ml: 3 } : { mr: 3 }}>
                     <Icon color="#fff" />
                 </Box>
                 <Box flex="1">

@@ -1,5 +1,5 @@
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
-import { DashboardPageLink } from "pages/dashboard/stores/useDashboardStore"
+import { DashboardPageLink } from "pages/dashboard/hooks/useLocalizedDashboardLinks"
 import React from "react"
 import SectionContainer, { SectionContainerProps } from "../SectionContainer"
 import ResourceItem from "./ResourceItem"

@@ -1,0 +1,123 @@
+{
+  "Blogs": {
+    "title": "مشاركات المدونة",
+    "description": "يمكنك هنا إنشاء وتعديل وإدارة المشاركات المتعلقة بمدونتك.",
+    "newPost": "مشاركة جديدة"
+  },
+  "BlogTable": {
+    "columns": {
+      "post": "المشاركة",
+      "category": "الفئة",
+      "date": "التاريخ",
+      "status": "الحالة"
+    },
+    "status": {
+      "published": "منشورة"
+    },
+    "emptyState": {
+      "message": "انشر مشاركة جديدة في المدونة لتعزيز تحسين محركات البحث وجذب الجمهور."
+    }
+  },
+  "BlogTableActionMenu": {
+    "actions": {
+      "publish": "نشر"
+    },
+    "notifications": {
+      "linkCopied": "تم نسخ الرابط إلى الحافظة"
+    }
+  },
+  "ChangeBlogStatusModal": {
+    "publishTitle": "نشر المشاركة",
+    "draftTitle": "تحويل المشاركة إلى مسودة",
+    "publishDescription": "هل أنت متأكد أنك تريد نشر هذه المشاركة؟",
+    "draftDescription": "هل أنت متأكد أنك تريد تحويل هذه المشاركة إلى مسودة؟",
+    "confirm": "نشر",
+    "draftConfirm": "تحويل إلى مسودة",
+    "notifications": {
+      "statusUpdated": "تم تحديث حالة المشاركة بنجاح"
+    }
+  },
+  "DeleteBlogModal": {
+    "title": "حذف المدونة",
+    "description": "هل أنت متأكد أنك تريد حذف هذه المدونة؟ لا يمكن التراجع عن هذا الإجراء",
+    "notifications": {
+      "deleted": "تم حذف المدونة بنجاح"
+    }
+  },
+  "BlogCreatePage": {
+    "notifications": {
+      "created": "تم إنشاء المدونة بنجاح"
+    }
+  },
+  "BlogEditPage": {
+    "notifications": {
+      "updated": "تم تحديث المدونة بنجاح"
+    }
+  },
+  "TitleInput": {
+    "label": "العنوان",
+    "description": "اختر عنوانًا واضحًا وجذابًا للمشاركة.",
+    "placeholder": "مثال: كوب سيراميك يدوي الصنع",
+    "validation": {
+      "required": "العنوان مطلوب"
+    }
+  },
+  "BodyEditor": {
+    "label": "المحتوى",
+    "description": "اكتب محتوى مفصلًا وجذابًا لإبلاغ القراء وإثارة اهتمامهم.",
+    "validation": {
+      "required": "المحتوى مطلوب"
+    }
+  },
+  "SearchEngineSummary": {
+    "label": "ملخص لمحركات البحث",
+    "description": "أضف 150–200 كلمة حول المشاركة ليتم عرضها في محركات البحث كملخص للمحتوى.",
+    "placeholder": "ملخص لمحركات البحث"
+  },
+  "CategorySelect": {
+    "label": "الفئة",
+    "description": "اختر فئة مناسبة لتنظيم المحتوى وتحسين قابلية الاكتشاف.",
+    "placeholder": "اختر فئة",
+    "newCategory": "فئة جديدة",
+    "validation": {
+      "required": "الفئة مطلوبة"
+    }
+  },
+  "Keywords": {
+    "label": "الكلمات المفتاحية",
+    "description": "أضف علامات ذات صلة لمساعدة المستخدمين في العثور على المحتوى المنشور عبر محركات البحث.",
+    "placeholder": "اكتب كلمات مفتاحية لزيادة الزيارات إلى هذه المشاركة..."
+  },
+  "FeaturedPictureUpload": {
+    "label": "الصورة المميزة",
+    "description": "قم بتحميل صورة جذابة لتعزيز الجاذبية البصرية.",
+    "dragActiveText": "أسقط الملف هنا...",
+    "footerText": "JPG، JPEG أو PNG",
+    "validation": {
+      "required": "الصورة المميزة مطلوبة"
+    }
+  },
+  "VisibilityStatusRadio": {
+    "label": "حالة الظهور",
+    "description": "احفظ المشاركة كمسودة أو انشرها عند الانتهاء.",
+    "options": {
+      "draft": "مسودة",
+      "visible": "مرئية"
+    }
+  },
+  "BlogToggles": {
+    "featured": {
+      "title": "مميزة",
+      "description": "تثبيت المشاركة في الأعلى."
+    }
+  },
+  "BlogFormActions": {
+    "publish": "نشر",
+    "saveDraft": "حفظ كمسودة"
+  },
+  "useBlog": {
+    "error": {
+      "fetchBlog": "فشل في جلب بيانات المدونة"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Coupon } from './interface';
 import { useInfiniteQuery } from 'react-query';
-import { giftcardsService } from 'lib/apis/coupons/addressServices';
+import { giftcardsService } from 'services/coupons/addressServices';
 import { ColumnDef } from '@tanstack/react-table';
 import AmountColumn from './columns/AmountColumn';
 import TypeColumn from './columns/TypeColumn';
@@ -9,6 +9,7 @@ import Table from 'components/redesign/table/Table';
 import EmptyView from 'pages/settings/components/common/EmptyView';
 import DropDownColumn from './columns/DropDownColumn';
 import CouponsEditCreationDrawer from './modals/coupons-edit-creation/CouponsEditCreationDrawer';
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 interface Props {
     isOpen: boolean
@@ -16,6 +17,8 @@ interface Props {
 }
 
 export default function CouponsTable({ isOpen, onClose }: Props) {
+    const { t } = useLocaleResources('settings');
+
     const { data, isFetching, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
         queryKey: ["giftCard"],
         queryFn: ({ pageParam = 1 }) => giftcardsService({
@@ -32,16 +35,16 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
     const columns: ColumnDef<Coupon>[] = [
         {
             accessorKey: "name",
-            header: "Title",
+                            header: t("Coupons.CouponsTable.title"),
         },
         {
             accessorKey: "codes",
-            header: "Quantity",
+                            header: t("Coupons.CouponsTable.quantity"),
             cell: (info) => info.row.original.codes.length,
         },
         {
             accessorKey: "balance",
-            header: "Amount",
+                            header: t("Coupons.CouponsTable.amount"),
             cell: (info) => (
                 <AmountColumn
                     type={info.row.original.type}
@@ -51,7 +54,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         },
         {
             accessorKey: "expiryDate",
-            header: "Expiration Date",
+                            header: t("Coupons.CouponsTable.expirationDate"),
             cell: (info) => {
                 const expiryDate = info.row.original.expiryDate;
                 const date = new Date(expiryDate);
@@ -65,7 +68,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         },
         {
             accessorKey: "type",
-            header: "Type",
+            header: t("common:type"),
             cell: (info) => (
                 <TypeColumn
                     type={info.row.original.type}

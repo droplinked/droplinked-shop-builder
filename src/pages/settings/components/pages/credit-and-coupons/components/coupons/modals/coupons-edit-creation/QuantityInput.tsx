@@ -3,21 +3,27 @@ import React from 'react'
 import { CouponFormValues } from './formConfigs';
 import { Box, Flex } from '@chakra-ui/react';
 import AppInput, { AppInputHeader } from 'components/redesign/input/AppInput';
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 export default function QuantityInput({ isEdit }: { isEdit?: boolean }) {
+    const { t } = useLocaleResources('settings');
     const { values, handleChange, errors } = useFormikContext<CouponFormValues>();
 
     return (
         <Flex justifyContent={"space-between"} alignItems={"center"}>
             <Flex width={"100%"} flexDirection={"column"}>
-                <AppInputHeader label="Quantity" description="Number of times this discount can be used." inputProps={{ isRequired: true }} />
+                <AppInputHeader
+                                label={t("Coupons.form.quantityLabel")}
+            description={t("Coupons.form.quantityDescription")}
+                    inputProps={{ isRequired: true }}
+                />
             </Flex>
             <Box width={"5rem"}>
                 <AppInput
                     inputProps={{
                         onChange: handleChange,
                         name: "quantity",
-                        placeholder: "9999",
+                        placeholder: t("Coupons.form.quantityPlaceholder"),
                         type: "number",
                         value: values.quantity,
                         isDisabled: isEdit

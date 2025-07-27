@@ -1,14 +1,16 @@
 import Textarea from 'components/redesign/textarea/Textarea'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductTermsAndConditions() {
+    const { t } = useLocaleResources('products');
     const [showMore, setShowMore] = useState(false)
 
     return (
         <SwitchBox
-            title='Custom Term of Service'
-            description='Display custom terms specific to this product, such as return policies or disclaimers, during checkout.'
+            title={t('ProductTermsAndConditions.title')}
+            description={t('ProductTermsAndConditions.description')}
             switchProps={{
                 isChecked: showMore,
                 onChange: (e) => setShowMore(e.target.checked)
@@ -16,7 +18,7 @@ function ProductTermsAndConditions() {
         >
             {showMore && (
                 <Textarea
-                    placeholder='e.g., This product is non-refundable after purchase or legal terms applicable to this product.'
+                    placeholder={t('ProductTermsAndConditions.placeholder')}
                     rows={8}
                 />
             )}

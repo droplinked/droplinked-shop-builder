@@ -1,17 +1,19 @@
-import { useMediaQuery } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
-import ExternalLink from 'components/redesign/external-link/ExternalLink';
-import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import React, { ReactNode } from 'react';
-import TabsList from '../tabs-components/TabsList';
+import { useMediaQuery } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React, { ReactNode } from 'react'
+import TabsList from '../tabs-components/TabsList'
 import SampleFile from './sample/Template.csv'
 
 interface Props {
-    tabs: { title: string, content: ReactNode }[];
+    tabs: { title: string, content: ReactNode }[]
 }
 
 export default function TransferModalHeader({ tabs }: Props) {
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
+    const { t } = useLocaleResources("onchainRecords")
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
 
     return (
         <ModalHeaderData
@@ -19,26 +21,24 @@ export default function TransferModalHeader({ tabs }: Props) {
                 bgColor: "#141414",
                 paddingBlock: { md: "unset", base: "16px 0px !important" },
                 borderBottom: "1px solid",
-                borderColor:"neutral.gray.800",
+                borderColor: "neutral.gray.800",
                 pt: { md: "48px !important", base: "16px !important" },
                 pb: "0px !important",
             }}
-            descriptionProps={{
-                color: "#B1B1B1 !important"
-            }}
-            title="Transfer Records"
+            title={t("TransferModal.transferRecords")}
             {...(!isSmallerThan768 && { icon: <AppIcons.Transfer /> })}
-            description="Send onchain records to one or multiple parties below."
+            description={t("TransferModal.transferRecordsDescription")}
         >
-            <ExternalLink href={SampleFile}
-                width={"max-content"}
-                fontSize={14}
-                fontWeight={500}
+            <InteractiveText
+                to={SampleFile}
+                width="max-content"
+                target='_blank'
+                rel="noopener noreferrer"
                 mt={2}
                 pb={4}
             >
-                Download Sample Template
-            </ExternalLink>
+                {t("TransferModal.downloadSample")}
+            </InteractiveText>
             <TabsList tabs={tabs} />
         </ModalHeaderData>
     )

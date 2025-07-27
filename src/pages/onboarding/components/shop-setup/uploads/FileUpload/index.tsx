@@ -2,10 +2,10 @@ import { Flex } from "@chakra-ui/react"
 import { ImageMd } from "assets/icons/System/Image/ImageMd"
 import React from "react"
 import { useDropzone } from "react-dropzone"
-import { FileUploadProps } from "./types"
-import LoadingState from "./LoadingState"
-import DropMessage from "./DropMessage"
 import ControlButtons from "./ControlButtons"
+import DropMessage from "./DropMessage"
+import LoadingState from "./LoadingState"
+import { FileUploadProps } from "./types"
 
 function FileUpload({
     onFileChange,

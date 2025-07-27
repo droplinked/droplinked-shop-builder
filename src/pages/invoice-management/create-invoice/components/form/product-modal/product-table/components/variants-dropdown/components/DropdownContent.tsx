@@ -2,6 +2,9 @@ import { Flex, PopoverBody, PopoverContent } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppInput from 'components/redesign/input/AppInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import React, { useState } from 'react'
 import SKUOptions from './SKUOptions'
 
@@ -13,6 +16,7 @@ interface Props {
 }
 
 function DropdownContent({ selectedSKUId, onSelectSKU, product, onClose }: Props) {
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
     const [searchTerm, setSearchTerm] = useState("")
 
     const filteredSkus = product.skuIDs.filter((sku) => {
@@ -41,7 +45,7 @@ function DropdownContent({ selectedSKUId, onSelectSKU, product, onClose }: Props
                 <AppInput
                     leftElement={<AppIcons.Search />}
                     inputGroupProps={{ height: 12, margin: 5, sx: { "svg path": { stroke: "white" } } }}
-                    inputProps={{ placeholder: "Search variants", onChange: (e) => setSearchTerm(e.target.value) }}
+                    inputProps={{ placeholder: t('DropdownContent.search.placeholder'), onChange: (e) => setSearchTerm(e.target.value) }}
                 />
 
                 <Flex
@@ -71,7 +75,7 @@ function DropdownContent({ selectedSKUId, onSelectSKU, product, onClose }: Props
                         </Flex>
                     ))}
 
-                    {filteredSkus.length === 0 && <AppTypography textAlign="center" fontSize={16} fontWeight={500} color="white">No variants found</AppTypography>}
+                    {filteredSkus.length === 0 && <AppTypography textAlign="center" fontSize={16} fontWeight={500} color="white">{t('DropdownContent.noVariantsFound')}</AppTypography>}
                 </Flex>
             </PopoverBody>
         </PopoverContent>

@@ -1,6 +1,6 @@
 import { TabPanel, TabPanels, Tabs, useMediaQuery } from '@chakra-ui/react'
 import Drawer from 'components/common/Drawer/Drawer'
-import { getOrderService } from 'lib/apis/order/services'
+import { getOrderService } from 'services/order/services'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { truncateText } from '../helpers'
@@ -8,11 +8,12 @@ import { IOrders } from '../interface'
 import OrderCart from './drawer-sections/OrderCart'
 import OrderHeaderContent from './OrderHeaderContent'
 import OrderInformation from './drawer-sections/OrderInformation'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface OrderDetailsProps {
-    rowData: IOrders;
-    isOpen: boolean;
-    onClose: () => void;
+    rowData: IOrders
+    isOpen: boolean
+    onClose: () => void
 }
 
 /**
@@ -20,9 +21,10 @@ interface OrderDetailsProps {
  * Shows information in a drawer with tabs for order information and cart
  */
 export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsProps) {
+    const { t, isRTL } = useLocaleResources("purchaseHistory")
     // Handle the case where useMediaQuery might not return an array in tests
-    const mediaQueryResult = useMediaQuery("(max-width: 768px)");
-    const isSmallerThan768 = Array.isArray(mediaQueryResult) ? mediaQueryResult[0] : false;
+    const mediaQueryResult = useMediaQuery("(max-width: 768px)")
+    const isSmallerThan768 = Array.isArray(mediaQueryResult) ? mediaQueryResult[0] : false
 
     // Fetch order details when the drawer is open
     // Handle the case where useQuery might return undefined in tests
@@ -30,19 +32,19 @@ export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsP
         queryKey: ["order", rowData._id],
         queryFn: () => getOrderService({ orderID: rowData._id }),
         enabled: isOpen,
-    }) || { isFetching: false, data: undefined };
+    }) || { isFetching: false, data: undefined }
 
-    const { isFetching, data } = queryResult;
+    const { isFetching, data } = queryResult
     const orderData = data?.data?.data
     const { orderInformation } = orderData ?? {}
 
     const tabs = [
         {
-            title: "Order Information",
+            title: t("OrderDetails.orderInformation"),
             content: <OrderInformation orderData={orderData} isFetching={isFetching} />
         },
         {
-            title: "Cart",
+            title: t("OrderDetails.cart"),
             content: <OrderCart orderData={orderData} rowData={rowData} isFetching={isFetching} />
         }
     ]
@@ -52,8 +54,8 @@ export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsP
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
-                title={`Order ${truncateText(rowData._id, 10)}`}
-                placement={isSmallerThan768 ? "bottom" : "right"}
+                title={`${t("common:order")} ${truncateText(rowData._id, 10)}`}
+                placement={isSmallerThan768 ? "bottom" : isRTL ? "left" : "right"}
                 headerContent={
                     <OrderHeaderContent
                         isFetching={isFetching}

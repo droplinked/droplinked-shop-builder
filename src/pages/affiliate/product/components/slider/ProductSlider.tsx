@@ -1,12 +1,11 @@
-import React, { useMemo, useState } from 'react';
-import { Box, Flex, Image, SimpleGrid, useDisclosure, VStack } from '@chakra-ui/react';
-import { useMediaQuery } from '@chakra-ui/react';
+import { Box, Flex, Image, SimpleGrid, VStack, useDisclosure, useMediaQuery } from '@chakra-ui/react';
+import AppMagnifier from 'components/common/magnifier/AppMagnifier';
 import AppTypography from 'components/common/typography/AppTypography';
+import React, { useMemo, useState } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
-import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
-import AppMagnifier from 'components/common/magnifier/AppMagnifier';
+import 'yet-another-react-lightbox/styles.css';
 
 interface ProductImage {
   url: string;
@@ -31,7 +30,7 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ product }) => {
   const [selectedImage, setSelectedImage] = useState(mainImageUrl);
 
   // Determine the number of visible thumbnails based on screen size
-  const thumbnailCount = useMemo(() => (isLargeScreen ? 4 : isMediumScreen ? 3 : 4), [isLargeScreen, isMediumScreen]);
+  const thumbnailCount = useMemo(() => (isLargeScreen ? 4 : isMediumScreen ? 3 : 2), [isLargeScreen, isMediumScreen]);
   const hiddenImagesCount = (product?.media?.length || 0) - thumbnailCount;
 
   return (

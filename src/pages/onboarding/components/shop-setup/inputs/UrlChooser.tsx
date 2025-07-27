@@ -2,15 +2,17 @@ import { Box, Spinner, Text, VStack } from '@chakra-ui/react'
 import { AvailableoutlinedMd } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedMd'
 import { NotavailableoutlinedMd } from 'assets/icons/Sign/NotAvailableOutlined/NotavailableoutlinedMd'
 import AppInput from 'components/redesign/input/AppInput'
-import useDebounce from 'hooks/debounce/useDebounce'
+import useDebounce from 'hooks/useDebounce/useDebounce'
 import { useUsernameAvailability } from 'pages/onboarding/hooks/useUsernameAvailability'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect, useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
 import AiOptionsDisplay from '../ai/AiOptionsDisplay'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function UrlChooser() {
     const { updateShopData, shopData, storeSetupErrors, setError } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
     const [urlTempValue, setUrlTempValue] = useState(shopData.shop_url ?? '')
     const debouncedUrl = useDebounce(urlTempValue, 1500)
 
@@ -22,12 +24,12 @@ export default function UrlChooser() {
                 setError('shop_url', undefined)
             } else {
                 updateShopData('shop_url', '')
-                setError('shop_url', 'This URL is not available')
+                setError('shop_url', t('UrlChooser.validation.notAvailable'))
             }
         },
         onError: () => {
             updateShopData('shop_url', '')
-            setError('shop_url', 'Error checking URL availability')
+            setError('shop_url', t('UrlChooser.validation.checkError'))
         }
     })
 
@@ -35,7 +37,7 @@ export default function UrlChooser() {
         const value = e.target.value
         if (!value) {
             updateShopData('shop_url', '')
-            setError('shop_url', 'URL is required')
+            setError('shop_url', t('UrlChooser.validation.required'))
         }
         if (/^[a-zA-Z0-9-]*$/.test(value)) {
             setUrlTempValue(value.toLowerCase())
@@ -60,13 +62,13 @@ export default function UrlChooser() {
     return (
         <VStack spacing={4} align="stretch">
             <AppInput
-                label='Shop URL'
+                label={t('UrlChooser.label')}
                 inputProps={{
                     paddingInline: 4,
                     paddingBlock: 3,
                     fontSize: { base: 14, md: 16 },
                     value: urlTempValue,
-                    placeholder: "Type your URL",
+                    placeholder: t('UrlChooser.placeholder'),
                     onChange: handleInputChange,
                     isRequired: true
                 }}

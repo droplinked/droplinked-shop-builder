@@ -1,12 +1,18 @@
-import { VStack } from '@chakra-ui/react';
-import AppTypography from 'components/common/typography/AppTypography';
+import { Text, VStack } from '@chakra-ui/react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
 
 function TableHeading() {
+    const { t } = useLocaleResources('subscription');
+
     return (
         <VStack>
-            <AppTypography color={"white"} fontSize={"28px"} fontWeight={700}>Find the Perfect Plan for Your Needs</AppTypography>
-            <AppTypography color={"#B1B1B1"} width={"702px"} textAlign={"center"} fontSize={"20px"} fontWeight={400}>Compare our plans in detail to see which one best suits your business goals and budget.</AppTypography>
+            <Text color={"white"} fontSize={"28px"} fontWeight={700}>
+                {t('TableHeading.title')}
+            </Text>
+            <Text color={"#B1B1B1"} width={"702px"} textAlign={"center"} fontSize={"20px"} fontWeight={400}>
+                {t('TableHeading.description')}
+            </Text>
         </VStack>
     );
 }

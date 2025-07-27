@@ -1,24 +1,25 @@
 import { Flex, Text, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm'
 import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import useAppToast from 'hooks/toast/useToast'
-import { IGenerateTitleDescription } from 'lib/apis/ai/interfaces'
-import { generateTitleDescription } from 'lib/apis/ai/services'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { useMutation } from 'react-query'
+import { IGenerateTitleDescription } from 'services/ai/interfaces'
+import { generateTitleDescription } from 'services/ai/services'
 import useAppStore from 'stores/app/appStore'
 import AnimatedBox from './AnimatedBox'
 
 function GenerateWithAI() {
+    const { t } = useLocaleResources('products');
     const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
     const { values: { media }, setFieldValue } = useProductForm()
     const { updateProductPageState, isAiGenerateLoading, isGenerateDisabled } = useProductPageStore()
     const { showToast } = useAppToast()
     const { hasPaidSubscription } = useAppStore()
    
-    
     const { mutateAsync } = useMutation((params: IGenerateTitleDescription) => generateTitleDescription(params),
         {
             onMutate() {
@@ -32,7 +33,7 @@ function GenerateWithAI() {
             },
             onError: () => {
                 updateProductPageState('isAiGenerateLoading', false)
-                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" })
+                showToast({ message: t('common:errors.oopsSomethingWentWrong'), type: "error" })
             }
         }
     )
@@ -67,16 +68,16 @@ function GenerateWithAI() {
                     userSelect={"none"}
                     cursor={"pointer"}
                 >
-                    <Flex gap={2} {...isDisabled && { sx: { path: { stroke: "#4F4F4F" } } }}>
-                        <AppIcons.MagicWind />
+                    <Flex gap={2}>
+                        <MagicwandSm {...isDisabled ? { color: "#4F4F4F" } : {color: "#2bcfa1"}} />
                         <Flex flexDirection={"column"} gap={1}>
                             <Flex alignItems="center" gap="6px">
                                 <Text background={isDisabled ? "neutral.gray.650" : "#2bcfa1"} backgroundClip="text" fontSize={14} fontWeight={500}>
-                                    Generate with AI
+                                    {t('GenerateWithAI.title')}
                                 </Text>
                             </Flex>
                             <Text fontSize={12} fontWeight={400} color={isDisabled ? "neutral.gray.650" : "#FFFFFF"}>
-                                Populate a product name and description based on the chosen default image.
+                                {t('GenerateWithAI.description')}
                             </Text>
                         </Flex>
                     </Flex>

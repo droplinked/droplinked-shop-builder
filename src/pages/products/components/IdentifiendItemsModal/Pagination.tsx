@@ -1,6 +1,7 @@
 import { Button, Flex, HStack } from '@chakra-ui/react'
 import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { generatePageNumbers } from '../../utils/paginationUtils'
 
@@ -11,6 +12,8 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+    const { t , isRTL } = useLocaleResources('products');
+    
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             onPageChange(page)
@@ -18,6 +21,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
     }
 
     const pageNumbers = generatePageNumbers(currentPage, totalPages)
+    const iconColor = currentPage === 1 ? "#646464" : "#fff"
 
     return (
         <Flex justifyContent="center" alignItems="center" width="100%" mt={4} mb={2}>
@@ -31,9 +35,9 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     w="40px"
                     h="40px"
                     border="1px solid #292929"
-                    aria-label="Previous page"
+                    aria-label={t('Pagination.previousPage')}
                 >
-                    <ChevronleftMd color={currentPage === 1 ? "#646464" : "#fff"} />
+                    {isRTL ? <ChevronrightMd color={iconColor} /> : <ChevronleftMd color={iconColor} />}
                 </Button>
 
                 {pageNumbers.map((pageNumber, index) => (
@@ -72,7 +76,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     w="40px"
                     h="40px"
                     border="1px solid #292929"
-                    aria-label="Next page"
+                    aria-label={t('Pagination.nextPage')}
                 >
                     <ChevronrightMd color={currentPage === totalPages ? "#646464" : "#fff"} />
                 </Button>

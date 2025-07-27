@@ -1,17 +1,19 @@
 import { Center, Flex, Text } from '@chakra-ui/react'
 import { DocumentdownloadMd } from 'assets/icons/Action/DocumentDownload/DocumentdownloadMd'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
 import React from 'react'
+import { IDetailedTransaction } from 'services/credit/interfaces'
 import { formatDateToLongStyle } from 'utils/helpers'
 import StatusBadge from '../StatusBadge'
 import TypeColumn from './TypeColumn'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface TransactionCardProps {
     transaction?: IDetailedTransaction
 }
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
+    const { t } = useLocaleResources("creditsAndActivity")
     const { amount, createdAt, id, type, amountType, status } = transaction ?? {}
 
     return (
@@ -28,13 +30,13 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                 <TypeColumn type={type} amountType={amountType} />
 
                 <Flex align="center" gap={4}>
-                    <StatusBadge status={status} />
+                    <StatusBadge status={status as "SUCCESS" | "FAILED"} />
                     {(id && status === "SUCCESS") && (
                         <Center
                             as="a"
                             href={`/invoice/${id}`}
                             target="_blank"
-                            rel="noreferrer"
+                            rel="noopener noreferrer"
                             w={10}
                             h={10}
                         >
@@ -51,17 +53,17 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                 p={4}
                 bg="neutral.gray.1000"
             >
-                <InfoRow label="Amount">
+                <InfoRow label={t("TransactionCard.card.amount")}>
                     <FormattedPrice price={amount} />
                 </InfoRow>
 
-                <InfoRow label="Date">
+                <InfoRow label={t("common:date")}>
                     <Text color="text.white" fontSize={14}>
                         {createdAt ? formatDateToLongStyle(new Date(createdAt)) : '—'}
                     </Text>
                 </InfoRow>
 
-                <InfoRow label="Transaction ID">
+                <InfoRow label={t("TransactionCard.card.transactionId")}>
                     <Text color="text.white" fontSize={14}>
                         {id || '—'}
                     </Text>

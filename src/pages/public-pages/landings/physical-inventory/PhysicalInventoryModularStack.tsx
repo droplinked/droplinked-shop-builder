@@ -1,0 +1,76 @@
+import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
+import { Discount2Lg } from 'assets/icons/Finance/Discount2/Discount2Lg'
+import { GridLg } from 'assets/icons/Navigation/Grid/GridLg'
+import { AffiliateLg } from 'assets/icons/System/Affiliate/AffiliateLg'
+import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
+import { DeliverytruckLg } from 'assets/icons/System/DeliveryTruck/DeliverytruckLg'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
+import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
+import { CardImage } from '../_shared/components/card'
+import { CardData } from '../_shared/components/card/Cards'
+
+function PhysicalInventoryModularStack() {
+    const { t } = useLocaleResources('public-pages/landings/physical-inventory')
+
+    const cardsData: CardData[] = [
+        {
+            icon: <BoxLg color="#fff" />,
+            title: t('PhysicalInventoryModularStack.cards.manageInventoryOnchain.title'),
+            description: t('PhysicalInventoryModularStack.cards.manageInventoryOnchain.description'),
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
+            children: <CardImage alt={t('PhysicalInventoryModularStack.cards.manageInventoryOnchain.title')} src='https://upload-file-droplinked.s3.amazonaws.com/e2d199ea0e8487fd77faedf45b8f6d9ad22a014b692d2dce14a8a4efbcc863a0.png' />
+        },
+        {
+            icon: <DeliverytruckLg color="#fff" />,
+            title: t('PhysicalInventoryModularStack.cards.automatedShipping.title'),
+            description: t('PhysicalInventoryModularStack.cards.automatedShipping.description'),
+            gridColumn: { base: 'span 1', md: 'span 2' },
+            children: <CardImage alt={t('PhysicalInventoryModularStack.cards.automatedShipping.title')} src='https://upload-file-droplinked.s3.amazonaws.com/c3c4171fdd51f514d68269e05010f233b488d93959be27308aa53968933f7046.png' />
+        },
+        {
+            icon: <ConfigureLg color="#fff" />,
+            title: t('PhysicalInventoryModularStack.cards.warehouseManagement.title'),
+            description: t('PhysicalInventoryModularStack.cards.warehouseManagement.description'),
+            gridColumn: { base: 'span 1', md: 'span 2' },
+            children: <CardImage alt={t('PhysicalInventoryModularStack.cards.warehouseManagement.title')} src='https://upload-file-droplinked.s3.amazonaws.com/fdf0945ecca1cc5e3aaa6ca968efa13bfe912e7a844c1b9a46a8cf4d2056ec4b.png' />
+        },
+        {
+            icon: <Discount2Lg color="#fff" />,
+            title: t('PhysicalInventoryModularStack.cards.offerPerks.title'),
+            description: t('PhysicalInventoryModularStack.cards.offerPerks.description'),
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
+            children: <CardImage alt={t('PhysicalInventoryModularStack.cards.offerPerks.title')} src='https://upload-file-droplinked.s3.amazonaws.com/f2511d193573eab6db67d1e08574c601dcce953181a3ac38097aee0361b7c0f7.png' />
+        },
+        {
+            icon: <GridLg color="#fff" />,
+            title: t('PhysicalInventoryModularStack.cards.embeddableProductTiles.title'),
+            description: t('PhysicalInventoryModularStack.cards.embeddableProductTiles.description'),
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
+            children: <CardImage alt={t('PhysicalInventoryModularStack.cards.embeddableProductTiles.title')} src='https://upload-file-droplinked.s3.amazonaws.com/add4930cd84e9ffdfe6e1149a5eabbbd885c871a4647f2fab5040f361ed81ab0.png' />
+        },
+        {
+            icon: <AffiliateLg color="#fff" />,
+            title: t('PhysicalInventoryModularStack.cards.decentralizedAffiliateNetwork.title'),
+            description: t('PhysicalInventoryModularStack.cards.decentralizedAffiliateNetwork.description'),
+            gridColumn: { base: 'span 1', md: 'span 2' },
+            children: <CardImage alt={t('PhysicalInventoryModularStack.cards.decentralizedAffiliateNetwork.title')} src='https://upload-file-droplinked.s3.amazonaws.com/519161d65a791400d307ff0747c5108f23c4a152d1e2497c48752df8a5533e0e.png' />
+        }
+    ]
+
+    const templateColumns = {
+        base: '1fr',
+        md: 'repeat(4, 1fr)',
+        lg: 'repeat(5, 1fr)'
+    }
+
+    return (
+        <PlatformFunctionalities
+            cardsData={cardsData}
+            templateColumns={templateColumns}
+            hasGradiantOverlay={true}
+        />
+    )
+}
+
+export default PhysicalInventoryModularStack

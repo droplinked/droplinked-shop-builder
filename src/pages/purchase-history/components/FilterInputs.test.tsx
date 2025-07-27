@@ -8,7 +8,7 @@ jest.mock('react-query', () => ({
     useQuery: jest.fn()
 }));
 
-jest.mock('lib/apis/orders/orderServices', () => ({
+jest.mock('services/orders/orderServices', () => ({
     ordersStatuesServices: jest.fn()
 }));
 

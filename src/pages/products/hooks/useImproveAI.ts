@@ -1,11 +1,12 @@
 import useAppToast from 'hooks/toast/useToast';
-import { improveDescription, improveTitle } from 'lib/apis/ai/services';
+import { improveDescription, improveTitle } from 'services/ai/services';
 import { useState } from 'react';
 import { useMutation } from 'react-query';
 import useProductPageStore from '../stores/ProductPageStore';
 import useProductForm from './useProductForm';
 import useAppStore from 'stores/app/appStore';
 import { useDisclosure } from '@chakra-ui/react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const [selectedItem, setSelectedItem] = useState("");
@@ -15,6 +16,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const { values: { description, title }, setFieldValue } = useProductForm();
     const { showToast } = useAppToast();
     const { hasPaidSubscription } = useAppStore();
+    const { t } = useLocaleResources('products');
 
     const { mutateAsync, isLoading, isSuccess } = useMutation(
         (tone: string) => {
@@ -34,7 +36,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
             },
             onError: () => {
                 updateProductPageState("isGenerateDisabled", false);
-                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" });
+                showToast({ message: t('common:errors.oopsSomethingWentWrong'), type: "error" });
             }
         }
     );

@@ -7,54 +7,57 @@ import { TileDesignContext } from "./context/tile.design.context";
 import AppSwitch from "components/common/swich";
 import AppColorPicker from "components/common/colorPicker/AppColorPicker";
 import { capitalizeFirst } from "utils/helpers";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import localAr from 'locales/tile-design/ar.json';
+import localEn from 'locales/tile-design/en.json';
 
-const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "design">) => ({
+const tile_design_form_fields_object = ({ design, t }: Pick<ITileDesignState, "design"> & { t: any }) => ({
     [TILE_DESIGN_PAGES_ENUM.PRODUCT]: {
         [PRODUCT_SECTIONS_ENUM.CONTAINER]: {
             inputs: [
                 {
-                    label: "Type",
+                    label: t('TileDesignForm.productType'),
                     type: TILE_INPUT_TYPES.DROPDOWN,
                     options: ["card", "button"],
                     key: "type",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
-                    label: "Background Color",
+                    label: t('TileDesignForm.backgroundColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "backgroundColor",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
-                    label: "Background Transparency",
+                    label: t('TileDesignForm.transparency'),
                     type: TILE_INPUT_TYPES.SLIDER,
                     key: "opacity",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
-                    label: "Product description",
+                    label: t('TileDesignForm.description'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "description",
                 },
                 {
-                    label: "Dark Mode",
+                    label: t('TileDesignForm.darkMode'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "darkMode",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
-                    label: "Buy Button Text",
+                    label: t('TileDesignForm.buttonText'),
                     type: TILE_INPUT_TYPES.TEXT,
                     key: "text",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
-                    label: "Buy Button Background Color",
+                    label: t('TileDesignForm.buttonBackgroundColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "buttonBackgroundColor",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
-                    label: "Buy Button Text Color",
+                    label: t('TileDesignForm.buttonTextColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
                 {
-                    label: "Get phone number for digital product",
+                    label: t('TileDesignForm.phoneForDigital'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "phone",
                 },
@@ -64,12 +67,12 @@ const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "desi
         [PRODUCT_SECTIONS_ENUM.IMAGE]: {
             inputs: [
                 {
-                    label: "Image",
+                    label: t('TileDesignForm.image'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "display",
                 },
                 {
-                    label: "Image Slider",
+                    label: t('TileDesignForm.imageSlider'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "slider",
                 },
@@ -79,7 +82,7 @@ const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "desi
         [PRODUCT_SECTIONS_ENUM.TITLE]: {
             inputs: [
                 {
-                    label: "Title Color",
+                    label: t('TileDesignForm.titleColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
@@ -89,7 +92,7 @@ const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "desi
         [PRODUCT_SECTIONS_ENUM.PRICE]: {
             inputs: [
                 {
-                    label: "Price Text Color",
+                    label: t('TileDesignForm.priceColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
@@ -99,7 +102,7 @@ const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "desi
         [PRODUCT_SECTIONS_ENUM.VARIANTS]: {
             inputs: [
                 {
-                    label: "Variant Display Options",
+                    label: t('TileDesignForm.variantDisplay'),
                     type: TILE_INPUT_TYPES.DROPDOWN,
                     options: ["dropdown", "checkbox"],
                     key: "displayType",
@@ -110,17 +113,17 @@ const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "desi
         [PRODUCT_SECTIONS_ENUM.BUTTON]: {
             inputs: [
                 {
-                    label: "Buy Button Text",
+                    label: t('TileDesignForm.buttonText'),
                     type: TILE_INPUT_TYPES.TEXT,
                     key: "text",
                 },
                 {
-                    label: "Buy Button Background Color",
+                    label: t('TileDesignForm.buttonBackgroundColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "backgroundColor",
                 },
                 {
-                    label: "Buy Button Text Color",
+                    label: t('TileDesignForm.buttonTextColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
@@ -134,7 +137,10 @@ const TileDesignForm = () => {
         state: { design, current },
         methods: { updateFormFields, updateState },
     } = useContext(TileDesignContext);
+    const { t } = useLocaleResources('tile-design', { en: localEn, ar: localAr });
+
     if (current.section === "none") return null;
+
     const change_theme = (toDarkMode: boolean) => {
         const {
             PRODUCT: { CONTAINER, TITLE, PRICE, BUTTON },
@@ -188,12 +194,12 @@ const TileDesignForm = () => {
             <HStack borderBottom={"4px solid #2BCFA1"}>
                 <AppIcons.Paint />
                 <AppTypography fontSize={"16px"} fontWeight={"500"}>
-                    Style
+                    {t('TileDesignForm.title')}
                 </AppTypography>
             </HStack>
             <form>
                 <VStack align={"stretch"} spacing={"16px"} paddingY={"16px"}>
-                    {tile_design_form_fields_object({ design })
+                    {tile_design_form_fields_object({ design, t })
                         ?.[current?.page]?.[current?.section]?.inputs?.filter(Boolean)
                         ?.map((input: any) => {
                             const currentValue = design?.[current?.page][current?.section][input?.key];

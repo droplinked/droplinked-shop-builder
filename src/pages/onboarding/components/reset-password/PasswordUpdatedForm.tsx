@@ -1,22 +1,24 @@
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 
 function PasswordUpdatedForm() {
   const { updateOnboardingState } = useOnboardingStore()
+  const { t } = useLocaleResources('onboarding')
 
   const handleSignIn = () => updateOnboardingState('currentStep', 'SIGN_IN')
 
   return (
     <>
       <OnboardingStepHeader
-        heading="Password Updated!"
-        description="Your password has been reset successfully. You can now log in."
+        heading={t('PasswordUpdatedForm.title')}
+        description={t('PasswordUpdatedForm.description')}
       />
 
       <AppButton onClick={handleSignIn}>
-        Sign In
+        {t('PasswordUpdatedForm.signInButton')}
       </AppButton>
     </>
   )

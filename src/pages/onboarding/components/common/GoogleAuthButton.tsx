@@ -1,5 +1,6 @@
-import AppIcons from 'assets/icon/Appicons'
+import { Google1 } from 'assets/logo/Companies/Google/Google1'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import React, { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
@@ -17,6 +18,7 @@ interface GoogleAuthButtonProps {
 function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, source }: GoogleAuthButtonProps) {
     const [searchParams] = useSearchParams()
     const { authenticateUser, finalizeLogin, loading } = useLogin()
+    const { t } = useLocaleResources('onboarding')
 
     function handleClick() {
         const googleAuthUrl = new URL(`${BASE_URL}/auth/login/google`)
@@ -54,14 +56,13 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, sour
     return (
         <AppButton
             variant="secondary"
-            leftIcon={<AppIcons.Google />}
+            leftIcon={<Google1 />}
             useOriginalIconColor={true}
             isLoading={loading}
             isDisabled={isDisabled}
             onClick={handleClick}
-
         >
-            Google Account
+            {t('common.googleAccount')}
         </AppButton>
     )
 }

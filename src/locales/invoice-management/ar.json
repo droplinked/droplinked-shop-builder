@@ -1,0 +1,175 @@
+{
+  "InvoiceManagementHeader": {
+    "title": "إدارة الفواتير",
+    "description": "إنشاء وعرض وتتبع جميع الفواتير في مكان واحد.",
+    "newInvoice": "فاتورة جديدة"
+  },
+  "InvoicesEmptyState": {
+    "title": "يبدو أن المساحة فارغة",
+    "description": "أنشئ فاتورة للبدء!",
+    "newInvoice": "فاتورة جديدة",
+    "alt": "رائد فضاء عائم"
+  },
+  "InvoiceFilters": {
+    "statusOptions": {
+      "checkedOut": "تم الدفع"
+    }
+  },
+  "CreateInvoice": {
+    "title": "إنشاء فاتورة",
+    "updateTitle": "تحديث الفاتورة",
+    "error": {
+      "cannotEditInactive": "لا يمكنك تعديل فاتورة غير نشطة"
+    }
+  },
+  "InvoiceTable": {
+    "columns": {
+      "invoice": "الفاتورة",
+      "amount": "المبلغ"
+    },
+    "empty": {
+      "title": "لم يتم العثور على فواتير",
+      "description": "لا توجد فواتير متاحة. أنشئ فاتورة جديدة للبدء."
+    },
+    "deleteConfirm": {
+      "message": "هل أنت متأكد من أنك تريد حذف هذه الفاتورة؟"
+    }
+  },
+  "InvoiceTableMenu": {
+    "actions": {
+      "edit": "تعديل",
+      "delete": "حذف"
+    }
+  },
+  "StatusBadge": {
+    "status": {
+      "checkedOut": "تم الدفع"
+    }
+  },
+  "InvoiceDetailsModal": {
+    "title": "تفاصيل الفاتورة",
+    "description": "تم إرسال رابط الفاتورة إلى العميل. يمكنك أيضًا استخدام الرابط التالي لعرض الفاتورة."
+  },
+  "useInvoiceInformation": {
+    "sections": {
+      "information": "المعلومات",
+      "clientDetail": "تفاصيل العميل",
+      "paymentDetails": "تفاصيل الدفع"
+    },
+    "labels": {
+      "idNumber": "رقم المعرف",
+      "status": "الحالة",
+      "memo": "مذكرة",
+      "fullName": "الاسم الكامل",
+      "emailAddress": "عنوان البريد الإلكتروني",
+      "mobileNumber": "رقم الهاتف المحمول",
+      "address": "العنوان",
+      "shippingMethod": "طريقة الشحن",
+      "totalCart": "إجمالي السلة",
+      "tax": "الضريبة",
+      "totalShipping": "إجمالي الشحن",
+      "totalCost": "التكلفة الإجمالية"
+    }
+  },
+  "useCreateInvoice": {
+    "errors": {
+      "addProductsFirst": "يجب عليك إضافة منتجات إلى السلة أولاً",
+      "provideValidAddress": "يرجى تقديم عنوان صحيح للمتابعة",
+      "validPhoneNumber": "يرجى إدخال رقم هاتف صحيح"
+    }
+  },
+  "InvoiceContactInformation": {
+    "title": "معلومات الاتصال",
+    "fields": {
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phoneNumber": "رقم الهاتف"
+    },
+    "placeholders": {
+      "firstName": "جون",
+      "lastName": "دو",
+      "email": "JohnDoe@gmail.com",
+      "phoneNumber": "+1 123 456 789"
+    }
+  },
+  "InvoiceMemo": {
+    "label": "مذكرة",
+    "placeholder": "ما الجديد؟"
+  },
+  "SectionedContent": {
+    "clientDetails": "تفاصيل العميل",
+    "summary": "الملخص"
+  },
+  "InvoiceSummary": {
+    "title": "الملخص",
+    "giftCard": {
+      "placeholder": "أدخل بطاقة هدايا أو خصم",
+      "apply": "تطبيق",
+      "addProductFirst": "تحتاج إلى إضافة منتج إلى السلة أولاً",
+      "addedSuccessfully": "تم إضافة بطاقة الهدايا بنجاح"
+    },
+    "rows": {
+      "totalCart": "إجمالي السلة",
+      "tax": "الضريبة",
+      "totalShipping": "إجمالي الشحن",
+      "totalOrder": "إجمالي الطلب"
+    }
+  },
+  "InvoiceProductModal": {
+    "title": "المنتجات",
+    "description": "اختر أحد المنتجات لإضافته إلى فاتورتك.",
+    "search": {
+      "placeholder": "اسم المنتج"
+    }
+  },
+  "ProductTable": {
+    "columns": {
+      "product": "المنتج",
+      "variants": "المتغيرات",
+      "quantity": "الكمية",
+      "unitPrice": "سعر الوحدة"
+    }
+  },
+  "ProductRow": {
+    "quantity": {
+      "placeholder": "1"
+    },
+    "addButton": "إضافة",
+    "messages": {
+      "addedToCart": "تم إضافة المنتج إلى السلة",
+      "quantityRequired": "الكمية مطلوبة. يرجى إدخال قيمة قبل الإضافة",
+      "selectSkuAndQuantity": "يرجى اختيار كل من SKU والكمية قبل الإضافة"
+    }
+  },
+  "DropdownTrigger": {
+    "placeholder": "الحجم / اللون"
+  },
+  "DropdownContent": {
+    "search": {
+      "placeholder": "البحث في المتغيرات"
+    },
+    "noVariantsFound": "لم يتم العثور على متغيرات"
+  },
+  "InvoiceProductTable": {
+    "columns": {
+      "product": "المنتج",
+      "color": "اللون",
+      "size": "الحجم",
+      "quantity": "الكمية",
+      "unitPrice": "سعر الوحدة"
+    },
+    "addProductButton": "إضافة منتج"
+  },
+  "validation": {
+    "invalidEmail": "البريد الإلكتروني غير صالح",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "firstNameRequired": "الاسم الأول مطلوب",
+    "lastNameRequired": "اسم العائلة مطلوب",
+    "addressLine1Required": "العنوان الأول مطلوب",
+    "countryRequired": "الدولة مطلوبة",
+    "cityRequired": "المدينة مطلوبة",
+    "stateRequired": "الولاية مطلوبة",
+    "zipRequired": "الرمز البريدي مطلوب"
+  }
+}

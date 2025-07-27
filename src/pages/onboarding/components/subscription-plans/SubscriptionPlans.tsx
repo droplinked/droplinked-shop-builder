@@ -1,25 +1,33 @@
 import { Grid, useDisclosure } from "@chakra-ui/react"
 import PaymentModal from "components/modals/payment-modal/PaymentModal"
-import ExternalLink from "components/redesign/external-link/ExternalLink"
+import InteractiveText from "components/redesign/interactive-text/InteractiveText"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
-import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
-import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import subscriptionArLocale from 'locales/subscription/ar.json'
+import subscriptionEnLocale from 'locales/subscription/en.json'
 import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import { PlanType } from "pages/onboarding/types/onboarding"
 import Loading from "pages/subscription-plans/components/plan-cards/loading/Loading"
 import React, { useState } from "react"
 import { useQuery } from "react-query"
+import { SubscriptionPlan } from "services/subscription/interfaces"
+import { getSubscriptionPlansService } from "services/subscription/subscriptionServices"
 import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
+import { getContinueText, getFeaturesWithInheritance } from "../../utils/subscriptionPlan"
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
-import { getContinueText, getFeaturesWithInheritance } from "../../utils/subscriptionPlan"
 
 function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
     const { isOpen: isPaymentModalOpen, onOpen: openPaymentModal, onClose: closePaymentModal } = useDisclosure()
     const { updateOnboardingState } = useOnboardingStore()
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
+    const { t: tOnboarding } = useLocaleResources('onboarding')
+    const { t: tSubscription } = useLocaleResources('subscription', {
+        en: subscriptionEnLocale,
+        ar: subscriptionArLocale
+    })
 
     const { isFetching, data } = useQuery({
         queryKey: ["subscription-plans"],
@@ -47,18 +55,21 @@ function SubscriptionPlans() {
 
     return (
         <>
-            <OnboardingStepHeader heading="Plans" description="Choose from the different package options below." />
+            <OnboardingStepHeader
+                heading={tOnboarding('SubscriptionPlans.title')}
+                description={tOnboarding('SubscriptionPlans.subtitle')}
+            />
 
-            <ExternalLink
+            <InteractiveText
                 fontSize="16px"
                 mt="-46px"
                 justifyContent="flex-start"
                 padding={0}
-                hasArrow={true}
-                onClick={() => window.open("/plans", "_blank")}
+                onClick={() => window.open("/plans", "_blank", "noopener noreferrer")}
+                hasExternalIcon
             >
-                View all plans and compare 
-            </ExternalLink>
+                {tOnboarding('SubscriptionPlans.viewAllPlans')}
+            </InteractiveText>
 
             <PlanDurationRadioContainer />
 
@@ -70,7 +81,7 @@ function SubscriptionPlans() {
                         <SubscriptionPlanCard
                             key={plan._id}
                             plan={plan}
-                            features={getFeaturesWithInheritance(planType)}
+                            features={getFeaturesWithInheritance(planType, tSubscription, tOnboarding)}
                             isPopular={planType === "BUSINESS"}
                             isSelected={selectedPlan === plan.type}
                             onSelect={setSelectedPlan}
@@ -80,7 +91,7 @@ function SubscriptionPlans() {
             </Grid>
 
             <ControlButtons
-                continueText={getContinueText(selectedPlan)}
+                continueText={getContinueText(selectedPlan, tSubscription)}
                 onSubmit={handleNext}
                 onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')}
             />

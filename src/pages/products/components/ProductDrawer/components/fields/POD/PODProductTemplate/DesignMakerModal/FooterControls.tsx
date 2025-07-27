@@ -1,8 +1,10 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 function FooterControls({ onClose, isLoading, isIframeLoaded, handleSave }) {
+    const { t } = useLocaleResources('products')
     return (
         <Flex
             justifyContent="space-between"
@@ -10,7 +12,7 @@ function FooterControls({ onClose, isLoading, isIframeLoaded, handleSave }) {
             gap={4}
         >
             <AppButton variant="secondary" isDisabled={isLoading} onClick={onClose}>
-                Discard
+                {t('common:discard')}
             </AppButton>
 
             <AppButton
@@ -18,7 +20,7 @@ function FooterControls({ onClose, isLoading, isIframeLoaded, handleSave }) {
                 isLoading={isLoading}
                 onClick={handleSave}
             >
-                Save
+                {t('common:save')}
             </AppButton>
         </Flex>
     )

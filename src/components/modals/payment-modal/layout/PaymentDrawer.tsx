@@ -1,6 +1,7 @@
 import React from 'react';
 import Drawer from 'components/common/Drawer/Drawer';
 import PaymentContent from './PaymentContent';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface PaymentDrawerProps {
   isOpen: boolean;
@@ -12,6 +13,8 @@ interface PaymentDrawerProps {
 }
 
 const PaymentDrawer = ({ isOpen, onClose, planDetail, TrialMonths, onSuccess, successMessage }: PaymentDrawerProps) => {
+  const { t } = useLocaleResources('subscription');
+  
   return (
     <Drawer
       isOpen={isOpen}
@@ -20,12 +23,12 @@ const PaymentDrawer = ({ isOpen, onClose, planDetail, TrialMonths, onSuccess, su
       drawerHeaderStyle={{ padding: { base: 4, md: '48px' } }}
       placement="bottom"
       showSubmitButtons={true}
-      saveButtonText={`Get ${planDetail.title}`}
-      discardButtonText="Cancel"
+      saveButtonText={t('PaymentDrawer.saveButtonText', { planTitle: planDetail.title })}
+      discardButtonText={t('common.cancel')}
       saveButtonProps={{ variant: 'filled' }}
       discardButtonProps={{ variant: 'secondary' }}
-      title="Credit card information"
-      description="Choose a credit card on file or add a new one."
+      title={t('PaymentDrawer.title')}
+      description={t('PaymentDrawer.description')}
     >
       <PaymentContent 
         isDrawer 

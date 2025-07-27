@@ -1,0 +1,196 @@
+{
+  "home": "الرئيسية",
+  "back": "عودة",
+  "prev": "السابق",
+  "next": "التالي",
+  "previous": "السابق",
+  "close": "إغلاق",
+  "view": "عرض",
+  "edit": "تعديل",
+  "create": "إنشاء",
+  "update": "تحديث",
+  "delete": "حذف",
+  "duplicate": "تكرار",
+  "remove": "إزالة",
+  "add": "إضافة",
+  "claimNow": "احصل عليه الآن",
+  "return": "رجوع",
+  "continue": "متابعة",
+
+  "submit": "إرسال",
+  "cancel": "إلغاء",
+  "save": "حفظ",
+  "discard": "تجاهل",
+  "confirm": "تأكيد",
+  "required": "مطلوب",
+  "optional": "اختياري",
+  "select": "اختر",
+  "loading": "جاري التحميل...",
+  "success": "تم بنجاح",
+  "error": "حدث خطأ",
+  "genericError": "حدث خطأ ما. يرجى المحاولة لاحقًا.",
+
+  "import": "استيراد",
+  "export": "تصدير",
+  "download": "تنزيل",
+  "upload": "رفع",
+  "refresh": "تحديث",
+  "filter": "تصفية",
+  "sort": "فرز",
+  "search": "بحث",
+
+  "status": "الحالة",
+  "active": "نشط",
+  "pending": "قيد الانتظار",
+  "paid": "مدفوع",
+  "draft": "مسودة",
+  "public": "عام",
+  "private": "خاص",
+
+  "product": "المنتج",
+  "order": "طلب",
+  "orders": "الطلبات",
+  "customer": "عميل",
+  "customers": "العملاء",
+  "client": "العميل",
+  "affiliate": "شريك",
+
+  "price": "السعر",
+  "total": "الإجمالي",
+  "date": "التاريخ",
+  "type": "النوع",
+  "description": "الوصف",
+  "details": "التفاصيل",
+  "actions": "إجراءات",
+
+  "share": "مشاركة",
+  "getStarted": "ابدأ الآن",
+  "readyToGetStarted": "هل أنت مستعد للبدء؟",
+  "signUp": "إنشاء حساب",
+  "signUpForFree": "اشترك مجانًا",
+
+  "contactUs": "اتصل بنا",
+  "helpCenter": "مركز المساعدة",
+  "support": "الدعم",
+  "company": "الشركة",
+  "brandAssets": "أصول العلامة التجارية",
+  "developerKit": "مجموعة المطورين",
+
+  "growWithDroplinked": "نمُ مع Droplinked!",
+  "netProfit": "صافي الربح",
+
+  "platformFunctionalities": {
+    "sectionTitle": "حزمة مرنة",
+    "headingTitle": "وظائف المنصة",
+    "headingSubtitle": "توفر Droplinked أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري"
+  },
+
+  "marqueeSection": {
+    "sectionTitle": "شركاء النظام البيئي"
+  },
+
+  "socialMedia": {
+    "telegram": "تيليجرام",
+    "discord": "ديسكورد",
+    "x": "X (تويتر)",
+    "twitter": "تويتر",
+    "instagram": "إنستغرام",
+    "linkedin": "لينكدإن",
+    "youtube": "يوتيوب",
+    "tiktok": "تيك توك",
+    "bluesky": "بلو سكاي",
+    "facebook": "فيسبوك",
+    "messenger": "ماسنجر",
+    "web": "موقع إلكتروني"
+  },
+
+  "fileUpload": {
+    "click": "انقر",
+    "dragAndDrop": "أو اسحب وأفلت هنا",
+    "dragActive": "أسقط الملف هنا...",
+    "defaultFooter": "JPG، JPEG، PNG، MP4 وMOV (حتى 10 ميغابايت لكل ملف)",
+    "ariaLabel": "رفع ملف"
+  },
+
+  "imageUpload": {
+    "dragActive": "أسقط الصورة هنا...",
+    "footer": "JPG، JPEG، PNG (حتى 5 ميغابايت)",
+    "remove": "إزالة {{name}}",
+    "uploadError": "فشل في رفع الصورة"
+  },
+  "hooks": {
+    "errors": {
+      "uploadFailed": "فشل في التحميل!",
+      "downloadFailed": "فشل في تحميل الملف"
+    }
+  },
+  "errors": {
+    "oopsSomethingWentWrong": "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "oopsSomethingWentWrongShort": "عذراً! حدث خطأ ما.",
+    "somethingWentWrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "failedToCreate": "فشل في الإنشاء. يرجى المحاولة مرة أخرى.",
+    "anErrorOccurred": "حدث خطأ",
+    "unexpectedError": "حدث خطأ غير متوقع.",
+    "pdfGenerationFailed": "فشل في إنشاء ملف PDF. يرجى المحاولة مرة أخرى.",
+    "invoiceNotFound": "لم يتم العثور على الفاتورة بهذا المعرف",
+    "permissionDenied": "تم رفض الإذن",
+    "imageSizeLimit": "يجب أن تكون الصورة أقل من {{size}}. يرجى اختيار ملف أصغر والمحاولة مرة أخرى.",
+    "imageTypeNotSupported": "يرجى رفع صورة بصيغة JPG أو PNG أو GIF."
+  },
+
+  "AddBalanceModal": {
+    "title": "إضافة رصيد",
+    "description": "أضف رصيداً للحساب لدفع الكوبونات الرقمية والعروض وخدمات الخطة الشهرية.",
+    "paymentConfirmed": "تم تأكيد الدفع! تم تحديث رصيدك بنجاح",
+    "paymentFailed": "فشل الدفع. يرجى المحاولة مرة أخرى."
+  },
+  "BalanceModalBody": {
+    "amount": "المبلغ",
+    "placeholder": "100",
+    "pay": "دفع",
+    "genericError": "عذراً! حدث خطأ ما"
+  },
+  "AccessLevelBadge": {
+    "Pro": "احترافي",
+    "Premium": "مميز",
+    "Enterprise": "مؤسسة",
+    "feature": "ميزة"
+  },
+  "proPlan": {
+    "crossmint": {
+      "title": "تم تفعيل الخطة الاحترافية مجانًا!",
+      "description": "لديك الآن إمكانية الوصول إلى الخطة الاحترافية لمدة 3 أشهر مجانًا."
+    },
+    "trial": {
+      "title": "استخدم Droplinked AI لإنشاء متجر",
+      "description": "استخدم أدوات الذكاء الاصطناعي لتخصيص المتاجر والمخزون. أضف بياناتك أدناه للبدء."
+    },
+    "upgrade": {
+      "title": "الوصول إلى الميزات الحصرية",
+      "description": "قم بالترقية اليوم للاستفادة من مزايا الخطة المميزة."
+    },
+    "payment": {
+      "successMessage": "تم تفعيل النسخة التجريبية بنجاح! ميزات الخطة الاحترافية أصبحت متاحة الآن."
+    },
+    "footer": {
+      "claimTrial": "احصل على النسخة التجريبية الآن",
+      "upgrade": "ترقية",
+      "unsure": "ما زلت غير متأكد؟",
+      "comparePlans": "قارن الخطط وخيارات التسعير",
+      "keepCurrentPlan": "الاحتفاظ بالخطة الحالية",
+      "close": "إغلاق"
+    },
+    "features": {
+      "less": "أقل",
+      "more": "أكثر"
+    },
+    "card": {
+      "crossmintTitle": "3 أشهر مجانًا بعد إضافة بطاقة الدفع",
+      "proTitle": "الخطة الاحترافية",
+      "description": "للشركات الصغيرة والفرق المستعدة للنمو.",
+      "proAccess": "الوصول للاحترافية",
+      "cancelAnytime": "إلغاء في أي وقت",
+      "seamlessActivation": "تفعيل سلس"
+    }
+  }
+}

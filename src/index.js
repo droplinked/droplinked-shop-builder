@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query"
 import App from "./App"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import { theme } from "./theme"
+import 'lib/i18n'
 
 const queryClient = new QueryClient({
   defaultOptions: {

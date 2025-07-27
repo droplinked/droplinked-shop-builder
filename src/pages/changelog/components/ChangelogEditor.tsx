@@ -1,7 +1,7 @@
 import { BlockNoteView } from '@blocknote/mantine'
 import { useCreateBlockNote } from '@blocknote/react'
 import { Box } from '@chakra-ui/react'
-import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import { ChangelogEntry } from 'services/changelog/interfaces'
 import React from 'react'
 import { parseBlocknoteTexteditorContent } from 'utils/helpers/blocknoteUtils'
 

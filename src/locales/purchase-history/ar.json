@@ -1,0 +1,69 @@
+{
+  "PurchaseHistory": {
+    "title": "سجل المشتريات",
+    "description": "يمكنك بسهولة عرض وإدارة وتتبع جميع الطلبات هنا.",
+    "failedToExport": "فشل في تصدير تقرير الطلبات"
+  },
+  "EmptyView": {
+    "title": "ليس لديك أي طلبات بعد",
+    "emptyFormAlt": "نموذج فارغ"
+  },
+  "FilterInputs": {
+    "searchProducts": "البحث عن المنتجات..."
+  },
+  "DesktopTable": {
+    "orderId": "معرف الطلب"
+  },
+  "DateCell": {
+    "notAvailable": "غير متوفر"
+  },
+  "ControlsPopover": {
+    "orderDetails": "تفاصيل الطلب"
+  },
+  "OrderDetails": {
+    "orderInformation": "معلومات الطلب",
+    "cart": "السلة"
+  },
+  "CustomerInfoSection": {
+    "customerInformation": "معلومات العميل",
+    "fullName": "الاسم الكامل",
+    "emailAddress": "عنوان البريد الإلكتروني",
+    "mobileNumber": "رقم الهاتف المحمول",
+    "shippingAddress": "عنوان الشحن",
+    "additionalDetails": "تفاصيل إضافية"
+  },
+  "ShippingSection": {
+    "shipping": "الشحن"
+  },
+  "CommissionSection": {
+    "commission": "العمولة",
+    "droplinked": "Droplinked",
+    "stripe": "Stripe"
+  },
+  "AffiliateSection": {
+    "publisher": "الناشر",
+    "publisherProfit": "ربح الناشر",
+    "total": "الإجمالي"
+  },
+  "PaymentDetailsSection": {
+    "paymentDetails": "تفاصيل الدفع",
+    "discount": "الخصم",
+    "discountRuleset": "قواعد الخصم",
+    "totalProducts": "إجمالي المنتجات",
+    "totalCost": "التكلفة الإجمالية",
+    "totalCart": "إجمالي السلة",
+    "tax": "الضريبة",
+    "shipping": "الشحن",
+    "totalNetProfit": "إجمالي الربح الصافي",
+    "paymentMethod": "طريقة الدفع",
+    "orderId": "معرف الطلب"
+  },
+  "CartItem": {
+    "quantity": "الكمية",
+    "unitPrice": "سعر الوحدة",
+    "total": "الإجمالي"
+  },
+  "TitledText": {
+    "noData": "---"
+  }
+}

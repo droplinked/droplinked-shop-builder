@@ -1,17 +1,20 @@
 import { Box, useDisclosure } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
+import { ChartSm } from 'assets/icons/Finance/Chart/ChartSm';
 import AppTypography from 'components/common/typography/AppTypography';
-
+import { getLevelUpSections } from 'data/levelUpSections';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useEffect, useState } from 'react';
-import { levelUpSections } from 'data/levelUpSections';
+import useLevelUpStore from 'stores/level-up/levelUpStore';
 import LevelUpWidgetModal from './LevelUpWidgetModal';
 import LevelUpWidgetSection from './LevelUpWidgetSection';
-import useLevelUpStore from 'stores/level-up/levelUpStore';
+
 
 const LevelUpWidget = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [currentSubSection, setCurrentSubSection] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { t , isRTL} = useLocaleResources('layout/ProducerLayout');
+  const levelUpSections = getLevelUpSections(t, isRTL);
   const { levelUpData, isLoading, fetchLevelUpData } = useLevelUpStore();
 
   // Fetch level up data if not already loaded
@@ -47,17 +50,17 @@ const LevelUpWidget = () => {
       mt={8}
     >
       {/* Level Up Icon */}
-      <Box display="flex" width="32px" height="32px" padding="8px" justifyContent="center" alignItems="center">
-        <AppIcons.SidebarAnalytics width="16px" height="16px" />
+      <Box display="flex" width="32px" height="32px" justifyContent="center" alignItems="center" border="1px solid" borderRadius="8px" borderColor="neutral.white">
+        <ChartSm />
       </Box>
 
       {/* Title & Description */}
       <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" alignSelf="stretch">
         <AppTypography color="#FFF" fontSize="14px" fontWeight="500">
-          Level Up
+          {t('LevelUpWidget.widget.title')}
         </AppTypography>
         <AppTypography color="#FFF" fontSize="12px" fontWeight="400">
-          Take meaningful actions to drive your business forward and unlock new opportunities.
+          {t('LevelUpWidget.widget.description')}
         </AppTypography>
       </Box>
 

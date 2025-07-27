@@ -1,10 +1,12 @@
 import { Box, Flex, Hide, Show, Switch, Text } from '@chakra-ui/react'
 import { LetterLg } from 'assets/icons/System/Letter/LetterLg'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 
 export default function NewsletterSubscription() {
     const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
+    const { t } = useLocaleResources('onboarding')
 
     const handleToggle = () => setIsSubscribed((prev) => !prev)
 
@@ -42,11 +44,12 @@ export default function NewsletterSubscription() {
 }
 
 function SubscriptionInfo() {
+    const { t } = useLocaleResources('onboarding')
     return (
         <Box flex={1}>
-            <Text color="white">Newsletter Subscription</Text>
+            <Text color="white">{t('CompletionSection.newsletter.title')}</Text>
             <Text fontSize={14} color="#B1B1B1">
-                Stay up to date on the latest features and offers
+                {t('CompletionSection.newsletter.description')}
             </Text>
         </Box>
     )

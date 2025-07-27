@@ -9,7 +9,7 @@ import AppIcons from 'assets/icon/Appicons';
 // Components
 import VisibilitySwitch from './VisibilitySwitch';
 import CollectionTitle from './CollectionTitle';
-import { Collection } from 'lib/apis/collection/interfaces';
+import { Collection } from 'services/collection/interfaces';
 
 function SortableCollection({ collection, index }: { collection: Collection, index: number }) {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({

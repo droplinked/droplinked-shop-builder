@@ -2,8 +2,9 @@ import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import useDownloadFile from 'hooks/useDownloadFile/useDownloadFile'
-import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import { exportCouponsReport } from 'services/coupons/addressServices'
 import { Coupon } from '../interface'
 import CouponsEditCreationDrawer from '../modals/coupons-edit-creation/CouponsEditCreationDrawer'
 import CouponsInformationDrawer from '../modals/coupons-information/CouponsInformationDrawer'
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export default function DropDownColumn({ couponId, rowData, refetch }: Props) {
+    const { t } = useLocaleResources('settings')
     const { isOpen: isInfoOpen, onOpen: openInfo, onClose: closeInfo } = useDisclosure()
     const { isOpen: isEditOpen, onOpen: openEdit, onClose: closeEdit } = useDisclosure()
 
@@ -30,17 +32,17 @@ export default function DropDownColumn({ couponId, rowData, refetch }: Props) {
                     {
                         icon: <AppIcons.Eye stroke='#fff' style={{ width: '20px', height: '20px' }} />,
                         onClick: openInfo,
-                        title: 'Details'
+                        title: t("common:details")
                     },
                     {
                         icon: <AppIcons.Edit />,
                         onClick: openEdit,
-                        title: 'Edit'
+                        title: t("common:edit")
                     },
                     {
                         icon: <AppIcons.Export />,
                         onClick: () => exportCodes({ giftCardId: couponId }),
-                        title: 'Export Codes'
+                        title: t("Coupons.tableMenu.exportCodes"),
                     }
                 ]}
             />

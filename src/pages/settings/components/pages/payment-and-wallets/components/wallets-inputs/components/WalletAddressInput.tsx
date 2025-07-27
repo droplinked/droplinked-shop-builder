@@ -1,6 +1,7 @@
 import React from 'react';
 import AppInput from 'components/redesign/input/AppInput';
 import AppButton from 'components/redesign/button/AppButton';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface WalletAddressInputProps {
     value: string;
@@ -10,12 +11,13 @@ interface WalletAddressInputProps {
 }
 
 export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: WalletAddressInputProps) => {
+    const { t } = useLocaleResources("settings")
     const isButtonDisabled = isEditing && value.trim().length > 0
 
     return (
         <AppInput
             inputProps={{
-                placeholder: "Enter your wallet address",
+                placeholder: t("PaymentsWallets.wallets.walletAddress.placeholder"),
                 value,
                 onChange: (e) => onChange(e.target.value),
                 // Disable input when not in editing mode
@@ -29,7 +31,7 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
                     onClick={onSave}
                     visibility={isButtonDisabled ? "visible" : "hidden"}
                 >
-                    Save
+                    {t("common:save")}
                 </AppButton>
             }
         />

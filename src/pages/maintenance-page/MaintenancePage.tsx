@@ -3,16 +3,23 @@ import AppIcons from "assets/icon/Appicons";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import AppButton from "components/redesign/button/AppButton";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import arLocale from "locales/maintenance-page/ar.json";
+import enLocale from "locales/maintenance-page/en.json";
 
 function MaintenancePage() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
+    const { t } = useLocaleResources("maintenancePage", {
+        ar: arLocale,
+        en: enLocale,
+    })
 
     // Checks if the user is in a dashboard route
     const isDashboardRoute = pathname.startsWith("/analytics") || pathname.startsWith("/shop-management");
-    const buttonText = isDashboardRoute ? "Dashboard" : "Home";
+    const buttonText = isDashboardRoute ? t("button.dashboard") : t("button.homepage");
 
     // Handles navigation to the appropriate page
     const handleNavigate = () => navigate(isDashboardRoute ? "/analytics/dashboard" : "/");
@@ -35,10 +42,10 @@ function MaintenancePage() {
 
             <Flex maxWidth="600px" direction="column" gap={4} textAlign="center">
                 <AppTypography fontSize={20} fontWeight={700} color="#fff">
-                    We’re Temporarily Unavailable
+                    {t("title")}
                 </AppTypography>
                 <AppTypography fontSize={16} fontWeight={400} color="#B1B1B1">
-                    Our system is currently undergoing maintenance to improve your experience. We’re working hard to bring everything back online as quickly as possible.
+                    {t("description")}
                 </AppTypography>
             </Flex>
 
@@ -47,7 +54,7 @@ function MaintenancePage() {
                 rightIcon={<AppIcons.BackArrow style={{ rotate: "180deg" }} />}
                 onClick={handleNavigate}
             >
-                Go to {buttonText}
+                {t("button.goTo")} {buttonText}
             </AppButton>
         </Flex>
     );

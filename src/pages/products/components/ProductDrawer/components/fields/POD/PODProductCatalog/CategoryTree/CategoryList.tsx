@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid, Text } from '@chakra-ui/react'
-import { PODCategory } from 'lib/apis/pod/interfaces'
+import { PODCategory } from 'services/pod/interfaces'
 import React from 'react'
 import CategoryIcon from './CategoryIcon'
 

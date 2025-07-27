@@ -3,10 +3,11 @@ import { CoinbaseLogo } from "assets/logo/NetworkAndTokens/Coinbase/Coinbase/Coi
 import { PaymobLogo } from "assets/logo/NetworkAndTokens/Paymob/PaymobLogo";
 import { StripeLogo } from "assets/logo/NetworkAndTokens/Stripe/StripeLogo";
 import { useFormikContext } from "formik";
-import { getStripeOnboardingUrl } from "lib/apis/stripe/services";
-import { ISettings } from "pages/settings/formConfigs";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import React, { ReactElement } from "react";
 import { useQuery } from "react-query";
+import { getStripeOnboardingUrl } from "services/stripe/services";
 import useAppStore from "stores/app/appStore";
 import PaymentProviderCard from "./PaymentProviderCard";
 
@@ -25,9 +26,8 @@ export interface Provider {
 
 const PaymentProviderList: React.FC = () => {
   const { values, setFieldValue } = useFormikContext<ISettings>();
-  const { shop } = useAppStore();
-
-  const { onboardedExpressStripeAccount } = shop ?? {};
+  const { shop: { onboardedExpressStripeAccount } } = useAppStore();
+  const { t } = useLocaleResources('settings');
 
   const { isFetching, data: stripeOnboardingUrl } = useQuery({
     queryKey: ['stripeOnboardingUrl'],
@@ -42,31 +42,33 @@ const PaymentProviderList: React.FC = () => {
   // Define payment providers with their details
   const providers: Provider[] = [
     {
-      title: "Stripe",
+      title: t('FinancialServices.providers.stripe.title'),
       type: "stripe",
-      buttonText: onboardedExpressStripeAccount ? "View Account" : "Connect",
+      buttonText: (onboardedExpressStripeAccount || !stripeOnboardingUrl)
+        ? t('FinancialServices.providers.stripe.buttonTextConnected')
+        : t('FinancialServices.providers.stripe.buttonTextNotConnected'),
       link: stripeOnboardingUrl || "https://dashboard.stripe.com/login",
       isExternal: true,
       isFetching: isFetching,
-      tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
+      tooltip: t('FinancialServices.providers.stripe.tooltip'),
       icon: <StripeLogo />,
     },
     {
-      title: "Coinbase Commerce",
+      title: t('FinancialServices.providers.coinbase.title'),
       type: "coinbase",
-      buttonText: "Learn More",
+      buttonText: t('FinancialServices.providers.coinbase.buttonText'),
       link: "#",
       isExternal: true,
-      tooltip: "The easy way to accept payments from around the world. Instant settlement, low fees, and broad support for over +200 digital assets.",
+      tooltip: t('FinancialServices.providers.coinbase.tooltip'),
       icon: <CoinbaseLogo />,
     },
     {
-      title: "Paymob",
+      title: t('FinancialServices.providers.paymob.title'),
       type: "paymob",
-      buttonText: "Connect",
+      buttonText: t('FinancialServices.providers.paymob.buttonText'),
       isExternal: false,
       isDisabled: true,
-      tooltip: "Connect a Paymob account to receive deposits directly into an existing account.",
+      tooltip: t('FinancialServices.providers.paymob.tooltip'),
       icon: <PaymobLogo />,
     },
   ];

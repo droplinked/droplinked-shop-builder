@@ -1,5 +1,6 @@
 import { LinkMd } from 'assets/icons/Action/Link/LinkMd'
 import AppInput from 'components/redesign/input/AppInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import DividerText from 'pages/onboarding/components/common/DividerText'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React, { useEffect, useState } from 'react'
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function UrlInput({ isDisabled, crawlerError }: Props) {
+    const { t } = useLocaleResources('products');
     const [tempValue, setTempValue] = useState("")
     const { updateProductPageState } = useProductPageStore()
 
@@ -34,13 +36,13 @@ export default function UrlInput({ isDisabled, crawlerError }: Props) {
 
     return (
         <>
-            <DividerText text='or' />
+            <DividerText text={t('common.or')} />
 
             <AppInput
-                label='URL Import - Product Listing'
-                tooltipText='Fetch any product details to automatically import and list them into the inventory catalog.'
+                label={t('UrlInput.title')}
+                tooltipText={t('UrlInput.description')}
                 inputProps={{
-                    placeholder: "Paste URL here (limited to Shopify or WooCommerce)",
+                    placeholder: t('UrlInput.placeholder'),
                     onChange: (e) => handleChange(e.target.value),
                     value: tempValue,
                     type: 'url',

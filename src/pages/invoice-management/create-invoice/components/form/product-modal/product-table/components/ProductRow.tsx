@@ -1,11 +1,14 @@
 import { Button, Flex, Td, Tr } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
-import useAppToast from 'hooks/toast/useToast'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import AppInput from 'components/redesign/input/AppInput'
+import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import React, { forwardRef, useEffect, useState } from 'react'
 import ProductTitleCell from '../../../product-table/components/ProductTitleCell'
 import VariantsDropdown from './variants-dropdown/VariantsDropdown'
-import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     product: any
@@ -14,7 +17,7 @@ interface Props {
 }
 
 const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) {
-    const { getFormattedPrice } = useCurrencyConverter()
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
     const { product, cart, setCart } = props
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
@@ -33,12 +36,12 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
             else setCart(prevCart => ([...prevCart, { skuId, quantity: Number(quantity) }]))
             setQuantity(0)
             setSkuId("")
-            showToast({ type: "success", message: "Product added to cart" })
+            showToast({ type: "success", message: t('ProductRow.messages.addedToCart') })
         }
         else {
             const message = isDigitalProduct ?
-                "Quantity required. Please enter a value before adding" :
-                "Please select both SKU and quantity before adding"
+                t('ProductRow.messages.quantityRequired') :
+                t('ProductRow.messages.selectSkuAndQuantity')
             showToast({ type: "info", message })
         }
     }
@@ -72,7 +75,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                         min: 1,
                         fontSize: 14,
                         color: "#fff",
-                        placeholder: "1",
+                        placeholder: t('ProductRow.quantity.placeholder'),
                         _focus: { borderColor: "neutral.gray.400" },
                         onChange: (e) => setQuantity(parseInt(e.target.value)),
                         onKeyDown: (e) => {
@@ -83,7 +86,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                 />
             </Td>
             <Td color={"#fff"}>
-                {firstSkuPrice ? `${getFormattedPrice({ amount: firstSkuPrice, toFixed: true })}` : "-"}
+                {firstSkuPrice ? <FormattedPrice price={firstSkuPrice} abbreviationProps={{ color: 'neutral.gray.400', fontSize: 16 }} /> : "-"}
             </Td>
             <Td>
                 <Button
@@ -100,7 +103,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                     _active={{}}
                     onClick={() => handleAddToCart(skuId, quantity)}
                 >
-                    Add
+                    {t('ProductRow.addButton')}
                 </Button>
             </Td>
         </Tr>

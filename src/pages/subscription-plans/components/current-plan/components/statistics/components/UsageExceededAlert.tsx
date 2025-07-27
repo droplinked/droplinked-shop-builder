@@ -1,13 +1,36 @@
 import { Box, Alert, AlertTitle, AlertDescription } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import localEn from 'locales/subscription/en.json';
+import localAr from 'locales/subscription/ar.json';
+
 interface IProps {
     title: string;
 }
+
 function UsageExceededAlert({ title }: IProps) {
-    const fixedTitle = title.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr });
+    
+    const getTitle = (key: string) => {
+        // Map usage keys to translation keys
+        const keyMap: { [key: string]: string } = {
+            'physical_product': 'statistics.usage.physicalProduct',
+            'digital_product': 'statistics.usage.digitalProduct',
+            'print_on_demand': 'statistics.usage.printOnDemand',
+            'event': 'statistics.usage.event',
+            'web3_network_login': 'Charts.web3_network_login',
+            'web3_payment': 'Charts.web3_payment',
+            'ai_shop_builder': 'Charts.ai_shop_builder',
+            'shop_data_export_url': 'Charts.shop_data_export_url',
+            'drop': 'Charts.drop'
+        };
+        
+        return t(keyMap[key] || key);
+    };
+
     return (
         <Alert
             status="error"
@@ -22,24 +45,23 @@ function UsageExceededAlert({ title }: IProps) {
             <Box flex="1">
                 <AlertTitle color="white" fontSize="14px" fontWeight="700">
                     <AppTypography fontWeight={700} fontSize={"14px"}>
-                        Usage Exceeded
+                        {t('UsageExceededAlert.title')}
                     </AppTypography>
                 </AlertTitle>
                 <AlertDescription>
                     <AppTypography fontWeight="400" width={"320px"} fontSize={"14px"} color="neutral.white">
-                        All "{fixedTitle}" items have been used. Upgrade the plan to access more.
+                        {t('UsageExceededAlert.description', { feature: getTitle(title) })}
                     </AppTypography>
                 </AlertDescription>
-                <Link
-                    to="/"
-                >
+                <Link to="/">
                     <AppTypography
                         color="#FF2244"
                         fontWeight="400"
                         marginTop="5px"
                         textDecoration={"underline"}
-                        display="block">
-                        Upgrade
+                        display="block"
+                    >
+                        {t('UsageExceededAlert.upgrade')}
                     </AppTypography>
                 </Link>
             </Box>

@@ -1,13 +1,19 @@
 import AppIcons from 'assets/icon/Appicons';
 import AppButton from 'components/redesign/button/AppButton';
 import useAppToast from 'hooks/toast/useToast';
-import { importAffiliateProductService } from 'lib/apis/product/productServices';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { importAffiliateProductService } from 'services/product/productServices';
 import useAppStore from 'stores/app/appStore';
 import React from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
-function ImportProductButton({ productId }) {
+interface ImportProductButtonProps {
+  productId: string;
+}
+
+function ImportProductButton({ productId }: ImportProductButtonProps) {
+  const { t } = useLocaleResources('affiliate');
   const navigate = useNavigate()
   const { mutateAsync, isLoading } = useMutation(importAffiliateProductService);
   const { isLoggedIn } = useAppStore();
@@ -18,9 +24,9 @@ function ImportProductButton({ productId }) {
 
     try {
       await mutateAsync({ productId });
-      showToast({ type: 'success', message: 'Product Imported' });
+      showToast({ type: 'success', message: t('ProductDetails.productImported') });
     } catch (e) {
-      showToast({ type: 'error', message: e?.response?.data?.data?.message || 'Failed to import product' });
+      showToast({ type: 'error', message: e?.response?.data?.data?.message || t('ProductDetails.failedToImport') });
     }
   };
 
@@ -31,8 +37,8 @@ function ImportProductButton({ productId }) {
       isDisabled={isLoading}
       width="full"
       onClick={importProduct}
-      >
-        Import Product
+    >
+      {t('ProductDetails.importProduct')}
     </AppButton>
   );
 }

@@ -1,4 +1,4 @@
-import { RecentCrawlerTasksResponse } from "lib/apis/crawler/interface";
+import { RecentCrawlerTasksResponse } from "services/crawler/interface";
 
 /**
  * Returns the appropriate text color class based on the status of a crawler task.
@@ -19,10 +19,8 @@ export const getStatusColor = (status: RecentCrawlerTasksResponse["status"]) => 
             return "text.primary";
         case "recorded":
             return "text.primary";
-
         case "error":
             return "text.error";
-
         default:
             return "text.link";
     }

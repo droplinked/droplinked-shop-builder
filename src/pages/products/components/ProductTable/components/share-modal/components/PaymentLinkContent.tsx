@@ -1,6 +1,7 @@
 import { Box, Button, Divider, Flex } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { SHOP_URL } from "utils/app/variable";
 import React, { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +19,7 @@ interface PaymentLinkContentProps {
 }
 
 const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
+  const { t } = useLocaleResources('products');
   const qrCodeContainerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [selectedColor, setSelectedColor] = useState<CircleColor>(WHITE_COLOR); 
@@ -83,7 +85,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
             gap="8px"
             onClick={handleNavigateSettings}
           >
-            Configure
+            {t('ShareModal.paymentLink.configure')}
           </Button>
           <Button
             sx={{ "svg path": { stroke: "#2BCFA1" } }}
@@ -99,7 +101,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
             gap="8px"
             onClick={handleDownloadClick}
           >
-            Download QR Code
+            {t('ShareModal.paymentLink.downloadQRCode')}
           </Button>
         </Flex>
       </Box>
