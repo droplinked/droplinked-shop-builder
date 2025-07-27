@@ -160,5 +160,16 @@
       "unitPrice": "Unit Price"
     },
     "addProductButton": "Add product"
+  },
+  "validation": {
+    "invalidEmail": "Invalid email address",
+    "emailRequired": "Email is required",
+    "firstNameRequired": "First Name is required",
+    "lastNameRequired": "Last Name is required",
+    "addressLine1Required": "Address Line 1 is required",
+    "countryRequired": "Country is required",
+    "cityRequired": "City is required",
+    "stateRequired": "State is required",
+    "zipRequired": "Zip Code is required"
   }
 } 

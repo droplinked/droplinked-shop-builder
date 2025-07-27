@@ -3,20 +3,20 @@ import { getShopExtractedData, startWebsiteCrawling } from 'services/crawler/ser
 import { usePolling } from 'hooks/usePolling/usePolling'
 import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'    
 
 export const useShopUrlProcessor = () => {
     const { hasPaidSubscription } = useAppStore()
     const { updateShopData } = useOnboardingStore()
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('onboarding')
 
     const polling = usePolling({
         onError: (error) => {
-            showToast({ type: "error", message: t('onboarding.hooks.errors.failedToImportShopData') })
+            showToast({ type: "error", message: t('useShopUrlProcessor.errors.failedToImportShopData') })
         },
         onTimeout: () => {
-            showToast({ type: "error", message: t('onboarding.hooks.errors.importTimedOut') })
+            showToast({ type: "error", message: t('useShopUrlProcessor.errors.importTimedOut') })
         }
     })
 
@@ -38,13 +38,13 @@ export const useShopUrlProcessor = () => {
                 updateShopData('hero_section', shopExtractedData.data?.banner)
                 updateShopData('description', shopExtractedData.data?.description)
 
-                showToast({ type: "success", message: t('onboarding.hooks.success.shopDataImported') })
+                showToast({ type: "success", message: t('useShopUrlProcessor.success.shopDataImported') })
                 return true
             }
 
             return false
         } catch (error) {
-            showToast({ type: "error", message: t('onboarding.hooks.errors.failedToImportShopData') })
+            showToast({ type: "error", message: t('useShopUrlProcessor.errors.failedToImportShopData') })
             return false
         }
     }
@@ -57,9 +57,9 @@ export const useShopUrlProcessor = () => {
             // Start polling for the extracted data
             polling.startPolling(() => pollShopExtractedData(data.poolId))
 
-            showToast({ type: "info", message: t('onboarding.hooks.info.importStarted') })
+            showToast({ type: "info", message: t('useShopUrlProcessor.info.importStarted') })
         } catch (error) {
-            showToast({ type: "error", message: t('onboarding.hooks.errors.failedToStartImport') })
+            showToast({ type: "error", message: t('useShopUrlProcessor.errors.failedToStartImport') })
             polling.stopProcessing()
         }
     }

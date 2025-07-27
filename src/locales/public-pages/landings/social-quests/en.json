@@ -7,15 +7,15 @@
     "cards": {
       "sellingOnDroplinked": {
         "title": "Selling on droplinked",
-        "description": "Selling on droplinked is easy, transparent and efficient. Follow our step-by-step guide to launch a product and start reaching customers quickly."
+        "description": "Selling on droplinked is easy, transparent and efficient. Follow our step-by-step guide to launch a product and start reaching customers quickly"
       },
       "customizableStorefront": {
         "title": "Customizable Storefront",
-        "description": "Make Storefront your own by customizing the design and enhance the experience by reflecting your brand identity in the best way possible."
+        "description": "Make Storefront your own by customizing the design and enhance the experience by reflecting your brand identity in the best way possible"
       },
       "proPlan": {
         "title": "Pro Plan",
-        "description": "Enjoy premium features."
+        "description": "Enjoy premium features"
       }
     }
   },
@@ -24,7 +24,7 @@
   },
   "Quests": {
     "rewardClaimed": "Reward claimed for {{title}}!",
-    "rewardClaimFailed": "Failed to claim reward for {{title}}. Please try again later.",
+    "rewardClaimFailed": "Failed to claim reward for {{title}}. Please try again later",
     "claimReward": "Claim Reward",
     "mobile": {
       "greeting": "Hi There 👋",
@@ -34,7 +34,7 @@
     },
     "mobileDrawer": {
       "title": "Free Pro Plan Unlocked!",
-      "description": "You now have access to the Pro Plan for one month for free."
+      "description": "You now have access to the Pro Plan for one month for free"
     }
   },
   "SocialQuestsPromotions": {

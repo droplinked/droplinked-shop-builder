@@ -59,7 +59,10 @@
     "signInButton": "Sign In",
     "noAccountText": "Don't have an account?",
     "createAccountText": "Join us and create one!",
-    "resetPassword": "Reset Password"
+    "resetPassword": "Reset Password",
+    "emailRequired": "Email address is required.",
+    "passwordRequired": "Password is required.",
+    "passwordMinLength": "Password must be at least 8 characters."
   },
   "SignUpForm": {
     "subtitle": "Complete the details below or use your Google account.",
@@ -70,7 +73,9 @@
     "haveAccountText": "Already have an account?",
     "signInLink": "Sign in",
     "successMessage": "Account successfully created",
-    "errorMessage": "Signup failed"
+    "errorMessage": "Signup failed",
+    "emailRequired": "Email address is required.",
+    "passwordRequired": "Password is required."
   },
   "EmailConfirmation": {
     "title": "Confirm Email",
@@ -336,7 +341,6 @@
     "errors": {
       "accountDeleted": "This account has been deleted",
       "accountUnableToLogin": "This account is unable to log in. Please check your credentials.",
-      "anErrorOccurred": "An error occurred",
       "loginFailed": "Login failed"
     }
   },

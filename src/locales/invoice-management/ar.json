@@ -160,5 +160,16 @@
       "unitPrice": "سعر الوحدة"
     },
     "addProductButton": "إضافة منتج"
+  },
+  "validation": {
+    "invalidEmail": "البريد الإلكتروني غير صالح",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "firstNameRequired": "الاسم الأول مطلوب",
+    "lastNameRequired": "اسم العائلة مطلوب",
+    "addressLine1Required": "العنوان الأول مطلوب",
+    "countryRequired": "الدولة مطلوبة",
+    "cityRequired": "المدينة مطلوبة",
+    "stateRequired": "الولاية مطلوبة",
+    "zipRequired": "الرمز البريدي مطلوب"
   }
 }

@@ -6,15 +6,13 @@ import { appDevelopment } from 'utils/app/variable'
 import KeyContainer from './KeyContainer'
 
 export default function ConfidentialKey() {
-    const { t } = useLocaleResources('settings');
+    const { t } = useLocaleResources('settings')
 
     return (
         <SectionContent
             title={t("PrivateKey.confidentialKey.title")}
             description={t("PrivateKey.confidentialKey.description")}
-            rightContent={
-                <KeyContainer />
-            }
+            rightContent={<KeyContainer />}
         >
             <InteractiveText
                 to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/api/privateapis#/`}

@@ -34,7 +34,7 @@ export default function HeroAnimation({ videoDesktop, videoTablet, videoMobile, 
     return (
         <InlineVideoPlayer
             src={videoUrl}
-            style={{ paddingInline, margin: "48px auto auto", ...style }}
+            style={{ paddingInline, margin: "48px auto auto", marginBottom: 0, ...style }}
             {...playerProps}
         />
     )

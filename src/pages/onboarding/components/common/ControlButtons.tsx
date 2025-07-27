@@ -4,8 +4,6 @@ import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 import React, { useState } from 'react'
 
 interface ControlButtonsProps {
@@ -28,10 +26,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     showBackButton = true,
 }) => {
     const [internalLoading, setInternalLoading] = useState(false)
-    const { t , isRTL } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
+    const { t, isRTL } = useLocaleResources('onboarding')
 
     const handleSubmit = async (e: React.MouseEvent) => {
         e.preventDefault()

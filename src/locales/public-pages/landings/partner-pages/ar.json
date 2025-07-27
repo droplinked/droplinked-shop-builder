@@ -24,18 +24,18 @@
       "trialMonths": 6
     },
     "unstoppableDomains": {
-      "name": "Unstoppable Domains",
-      "displayName": "Unstoppable Domains",
+      "name": "unstoppable domains",
+      "displayName": "unstoppable domains",
       "trialMonths": 3
     },
     "polygon": {
-      "name": ".Polygon",
-      "displayName": ".Polygon",
+      "name": "polygon",
+      "displayName": "polygon",
       "trialMonths": 3
     },
     "crossmint": {
-      "name": "Crossmint",
-      "displayName": "Crossmint",
+      "name": "crossmint",
+      "displayName": "crossmint",
       "trialMonths": 3
     }
   },
@@ -62,15 +62,15 @@
     "cards": {
       "accessProducts": {
         "title": "الوصول إلى +10k منتج فوراً",
-        "description": "اختر من كتالوج واسع لتخصيص وبيع البضائع الفريدة عند الطلب."
+        "description": "اختر من كتالوج واسع لتخصيص وبيع البضائع الفريدة عند الطلب"
       },
       "web3Technology": {
         "title": "دعم تقنية Web3",
-        "description": "دمج NFTs بسلاسة مع ميزات البلوكتشين لإنشاء تجارب جديدة مع الأصول التي تملكها أو تريد تقديمها."
+        "description": "دمج NFTs بسلاسة مع ميزات البلوكتشين لإنشاء تجارب جديدة مع الأصول التي تملكها أو تريد تقديمها"
       },
       "proPlan": {
         "title": "الخطة الاحترافية لمدة {{trialMonths}} أشهر",
-        "description": "استمتع بالميزات المتميزة لمدة {{trialMonths}} أشهر لكونك عميل {{partnerName}} مخلص."
+        "description": "استمتع بالميزات المتميزة لمدة {{trialMonths}} أشهر لكونك عميل {{partnerName}} مخلص"
       }
     }
   },
@@ -88,7 +88,7 @@
   "ClaimNow": {
     "sectionTitle": "احصل عليه الآن",
     "headingTitle": "خطة برو مجانية لمدة {{trialMonths}} شهر",
-    "headingSubtitle": "افتح {{trialMonths}} شهور من خطة برو مجانًا!\nاستبدل العرض الحصري اليوم."
+    "headingSubtitle": "افتح {{trialMonths}} شهور من خطة برو مجانًا!\nاستبدل العرض الحصري اليوم"
   },
   "ModalHeader": {
     "connect": {
@@ -97,15 +97,15 @@
     },
     "loading": {
       "title": "جارٍ التحقق من حالة المحفظة",
-      "description": "يرجى الانتظار بينما يتم التحقق من محفظتك لتحديد الأهلية."
+      "description": "يرجى الانتظار بينما يتم التحقق من محفظتك لتحديد الأهلية"
     },
     "error": {
       "title": "لم ينجح التحقق من المحفظة",
-      "description": "يبدو أن محفظتك لا تلبي المعايير. للأسف، لست مؤهلاً للحصول على العرض."
+      "description": "يبدو أن محفظتك لا تلبي المعايير. للأسف، لست مؤهلاً للحصول على العرض"
     },
     "done": {
       "title": "تهانينا، تم التحقق من عرض المحفظة",
-      "description": "يمكنك الآن إنشاء حساب والاستمتاع بخطة برو لمدة {{trialMonths}} شهر."
+      "description": "يمكنك الآن إنشاء حساب والاستمتاع بخطة برو لمدة {{trialMonths}} شهر"
     }
   },
   "ModalButtons": {

@@ -27,7 +27,7 @@ function AuthButtons() {
     if (isMobile) return <GetStartedButton />
 
     return (
-        <Flex gap={4}>
+        <Flex width="200px" justifyContent="flex-end" gap={4}>
             <AppButton
                 padding="10px 14px"
                 variant="secondary"

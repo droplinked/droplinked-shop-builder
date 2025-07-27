@@ -1,13 +1,16 @@
 import React from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
+import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
 
 interface LazyLoadProps {
     children: React.ReactNode
 }
 
 export const LazyLoad: React.FC<LazyLoadProps> = ({ children }) => {
-    const ref = React.useRef(null)
-    const isInView = useInView(ref, { once: true, amount: 0.3 })
+    const [isInView, setIsInView] = React.useState(false)
+    const ref = useIntersectionObserver<HTMLDivElement>(() => {
+        setIsInView(true)
+    }, [])
 
     return (
         <motion.div

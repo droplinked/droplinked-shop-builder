@@ -2,20 +2,20 @@ import { VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { resetPasswordService } from 'services/auth/services'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React from 'react'
+import { resetPasswordService } from 'services/auth/services'
 import * as Yup from 'yup'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from '../common/PasswordValidationRules'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function SetNewPasswordForm() {
     const { updateOnboardingState, credentials, resetToken } = useOnboardingStore()
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources('onboarding');
+    const { t } = useLocaleResources('onboarding')
 
     const formSchema = Yup.object().shape({
         password: Yup.string()
@@ -82,7 +82,7 @@ function SetNewPasswordForm() {
                                 placeholder={t('SetNewPasswordForm.confirmPasswordPlaceholder')}
                             />
 
-                            <AppButton type="submit" isLoading={isSubmitting} isDisabled={isSubmitting ||!isPasswordValid} mt="3">
+                            <AppButton type="submit" isLoading={isSubmitting} isDisabled={isSubmitting || !isPasswordValid} mt="3">
                                 {t('SetNewPasswordForm.resetButton')}
                             </AppButton>
                         </Form>

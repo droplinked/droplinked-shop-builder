@@ -11,7 +11,7 @@ interface UseUsernameAvailabilityProps {
 
 export const useUsernameAvailability = ({ username, onSuccess, onError }: UseUsernameAvailabilityProps) => {
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('onboarding')
 
     return useQuery(
         ['check-username', username],
@@ -26,7 +26,7 @@ export const useUsernameAvailability = ({ username, onSuccess, onError }: UseUse
             onError: (error: any) => {
                 showToast({
                     type: 'error',
-                    message: error?.response?.data?.data?.message || t('onboarding.hooks.errors.errorCheckingUsername')
+                    message: error?.response?.data?.data?.message || t('useUsernameAvailability.errors.errorCheckingUsername')
                 })
                 onError?.()
             }

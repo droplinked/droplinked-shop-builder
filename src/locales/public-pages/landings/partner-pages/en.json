@@ -24,18 +24,18 @@
       "trialMonths": 6
     },
     "unstoppableDomains": {
-      "name": "Unstoppable Domains",
-      "displayName": "Unstoppable Domains",
+      "name": "unstoppable domains",
+      "displayName": "unstoppable domains",
       "trialMonths": 3
     },
     "polygon": {
-      "name": ".Polygon",
-      "displayName": ".Polygon",
+      "name": "polygon",
+      "displayName": "polygon",
       "trialMonths": 3
     },
     "crossmint": {
-      "name": "Crossmint",
-      "displayName": "Crossmint",
+      "name": "crossmint",
+      "displayName": "crossmint",
       "trialMonths": 3
     }
   },
@@ -62,15 +62,15 @@
     "cards": {
       "accessProducts": {
         "title": "Access +10k Products Instantly",
-        "description": "Choose from a vast catalog to customize and sell unique merchandise on demand."
+        "description": "Choose from a vast catalog to customize and sell unique merchandise on demand"
       },
       "web3Technology": {
         "title": "Web3 Technology Support",
-        "description": "Seamlessly integrate NFTs alongside blockchain features to create novel experiences with assets you own or want to offer."
+        "description": "Seamlessly integrate NFTs alongside blockchain features to create novel experiences with assets you own or want to offer"
       },
       "proPlan": {
         "title": "{{trialMonths}} Month Pro Plan",
-        "description": "Enjoy premium features for {{trialMonths}} months for being a loyal {{partnerName}} customer."
+        "description": "Enjoy premium features for {{trialMonths}} months for being a loyal {{partnerName}} customer"
       }
     }
   },
@@ -88,7 +88,7 @@
   "ClaimNow": {
     "sectionTitle": "CLAIM NOW",
     "headingTitle": "Free {{trialMonths}} Month Pro Plan",
-    "headingSubtitle": "Unlock {{trialMonths}} months of the Pro Plan absolutely free!\nRedeem the exclusive offer today."
+    "headingSubtitle": "Unlock {{trialMonths}} months of the Pro Plan absolutely free!\nRedeem the exclusive offer today"
   },
   "ModalHeader": {
     "connect": {
@@ -97,15 +97,15 @@
     },
     "loading": {
       "title": "Verifying Wallet Status",
-      "description": "Please wait while your wallet is verified for eligibility."
+      "description": "Please wait while your wallet is verified for eligibility"
     },
     "error": {
       "title": "Wallet Verification Unsuccessful",
-      "description": "It looks like your wallet doesn't meet the criteria. Unfortunately, you're not eligible to claim the offer."
+      "description": "It looks like your wallet doesn't meet the criteria. Unfortunately, you're not eligible to claim the offer"
     },
     "done": {
       "title": "Congrats, Wallet Offer Verified",
-      "description": "You can now create an account and enjoy {{trialMonths}} months of a Pro Plan."
+      "description": "You can now create an account and enjoy {{trialMonths}} months of a Pro Plan"
     }
   },
   "ModalButtons": {

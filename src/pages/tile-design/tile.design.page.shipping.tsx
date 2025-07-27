@@ -32,7 +32,7 @@ const TileDesignPageShipping = () => {
                                 alignItems={"flex-start"}
                             >
                                 <HStack>
-                                    <AppTypography>{t('shipping.methods.standard')}</AppTypography>
+                                    <AppTypography>{t('TileDesignPageShipping.standard')}</AppTypography>
                                     <AppTypography>$23.98 USD</AppTypography>
                                 </HStack>
                                 <HStack>

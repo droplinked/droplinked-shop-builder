@@ -6,8 +6,6 @@ import InteractiveText from 'components/redesign/interactive-text/InteractiveTex
 import { Form, Formik } from 'formik'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import Cookies from 'js-cookie'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
@@ -18,9 +16,9 @@ import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 
-const formSchema = Yup.object().shape({
-    email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
-    password: Yup.string().min(8, "Password must be at least 8 characters.").required("Password is required.")
+const formSchema = (t) => Yup.object().shape({
+    email: Yup.string().email(t('common.emailError')).required(t('SignInForm.emailRequired', 'Email address is required.')),
+    password: Yup.string().min(8, t('SignInForm.passwordMinLength', 'Password must be at least 8 characters.')).required(t('SignInForm.passwordRequired', 'Password is required.'))
 })
 
 const savedEmail = Cookies.get('remembered_email')
@@ -30,10 +28,7 @@ function SignInForm() {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
+    const { t } = useLocaleResources('onboarding')
 
     const handleSubmit = async (values: { email: string, password: string }) => {
         if (rememberPassword) {
@@ -60,7 +55,7 @@ function SignInForm() {
                     password: savedPassword || ""
                 }}
                 validateOnChange={false}
-                validationSchema={formSchema}
+                validationSchema={formSchema(t)}
                 onSubmit={handleSubmit}
             >
                 {({ values, errors, handleChange, isSubmitting }) => (

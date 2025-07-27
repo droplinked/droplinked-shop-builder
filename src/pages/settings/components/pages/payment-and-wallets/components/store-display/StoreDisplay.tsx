@@ -30,10 +30,10 @@ const StoreDisplay: React.FC = () => {
 
   return (
     <>
-              <SectionContainer title={t('PaymentsWallets.storeDisplay.title')}>
-            <SectionContent
-                title={t('PaymentsWallets.storeDisplay.defaultCurrency.title')}
-                description={t('PaymentsWallets.storeDisplay.defaultCurrency.description')}
+      <SectionContainer title={t('PaymentsWallets.storeDisplay.title')}>
+        <SectionContent
+          title={t('PaymentsWallets.storeDisplay.defaultCurrency.title')}
+          description={t('PaymentsWallets.storeDisplay.defaultCurrency.description')}
           rightContent={
             <Flex flexDir={{ base: "column", xl: "row" }} gap="4">
               <CurrencyCard
@@ -47,8 +47,7 @@ const StoreDisplay: React.FC = () => {
                 currencyName={t('PaymentsWallets.storeDisplay.crypto')}
                 isPrimary={switchState.crypto}
                 currencyList={["USD Coin"]}
-                isSoon={false}
-                onToggle={() => handleToggle('crypto')}
+                isSoon={true}
               />
             </Flex>
           }

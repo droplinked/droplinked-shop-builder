@@ -23,38 +23,38 @@ function PaymentLinksModularStack() {
         },
         {
             icon: <CursorLg color="#fff" />,
-            title: t('modularStack.cards.noCodingRequired.title'),
-            description: t('modularStack.cards.noCodingRequired.description'),
+            title: t('PaymentLinksModularStack.cards.noCodingRequired.title'),
+            description: t('PaymentLinksModularStack.cards.noCodingRequired.description'),
             gridColumn: { base: 'span 1', md: 'span 2' },
-            children: <CardImage alt={t('modularStack.cards.noCodingRequired.title')} src='https://upload-file-droplinked.s3.amazonaws.com/4b886aabec7e48e608e3087c07194d4d508f7a24bb12f3909a0d3aa0feee214a.png' />
+            children: <CardImage alt={t('PaymentLinksModularStack.cards.noCodingRequired.title')} src='https://upload-file-droplinked.s3.amazonaws.com/4b886aabec7e48e608e3087c07194d4d508f7a24bb12f3909a0d3aa0feee214a.png' />
         },
         {
             icon: <CartLg color="#fff" />,
-            title: t('modularStack.cards.streamlinedCheckout.title'),
-            description: t('modularStack.cards.streamlinedCheckout.description'),
+            title: t('PaymentLinksModularStack.cards.streamlinedCheckout.title'),
+            description: t('PaymentLinksModularStack.cards.streamlinedCheckout.description'),
             gridColumn: { base: 'span 1', md: 'span 2' },
-            children: <CardImage alt={t('modularStack.cards.streamlinedCheckout.title')} src='https://upload-file-droplinked.s3.amazonaws.com/72cbacca6fcdd9207824821316dbbb9a39dee4df66bd79d664ed32a5134bd3ee.png' />
+            children: <CardImage alt={t('PaymentLinksModularStack.cards.streamlinedCheckout.title')} src='https://upload-file-droplinked.s3.amazonaws.com/72cbacca6fcdd9207824821316dbbb9a39dee4df66bd79d664ed32a5134bd3ee.png' />
         },
         {
             icon: <LinkLg color="#fff" />,
-            title: t('modularStack.cards.directPaymentLinks.title'),
-            description: t('modularStack.cards.directPaymentLinks.description'),
+            title: t('PaymentLinksModularStack.cards.directPaymentLinks.title'),
+            description: t('PaymentLinksModularStack.cards.directPaymentLinks.description'),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
-            children: <CardImage alt={t('modularStack.cards.directPaymentLinks.title')} src='https://upload-file-droplinked.s3.amazonaws.com/fa662a3a080a6815561bfe1ed76aaa7363fe503a1a1413e02f6b3c50b68041c5.png' />
+            children: <CardImage alt={t('PaymentLinksModularStack.cards.directPaymentLinks.title')} src='https://upload-file-droplinked.s3.amazonaws.com/fa662a3a080a6815561bfe1ed76aaa7363fe503a1a1413e02f6b3c50b68041c5.png' />
         },
         {
             icon: <SettinggearLg color="#fff" />,
-            title: t('modularStack.cards.customizableExperience.title'),
-            description: t('modularStack.cards.customizableExperience.description'),
+            title: t('PaymentLinksModularStack.cards.customizableExperience.title'),
+            description: t('PaymentLinksModularStack.cards.customizableExperience.description'),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
-            children: <CardImage alt={t('modularStack.cards.customizableExperience.title')} src='https://upload-file-droplinked.s3.amazonaws.com/1cc3738198c9fd436a93ffc4305546d0fb73485e0332364f14e585db76236dbc.png' />
+            children: <CardImage alt={t('PaymentLinksModularStack.cards.customizableExperience.title')} src='https://upload-file-droplinked.s3.amazonaws.com/1cc3738198c9fd436a93ffc4305546d0fb73485e0332364f14e585db76236dbc.png' />
         },
         {
             icon: <WalletLg color="#fff" />,
-            title: t('modularStack.cards.alternativePaymentMethods.title'),
-            description: t('modularStack.cards.alternativePaymentMethods.description'),
+            title: t('PaymentLinksModularStack.cards.alternativePaymentMethods.title'),
+            description: t('PaymentLinksModularStack.cards.alternativePaymentMethods.description'),
             gridColumn: { base: 'span 1', md: 'span 2' },
-            children: <CardImage alt={t('modularStack.cards.alternativePaymentMethods.title')} src='https://upload-file-droplinked.s3.amazonaws.com/913d46bd27a9572d19fc91d0a6f3fa1b241a40cec5f8b93dea3774270644a965.png' />
+            children: <CardImage alt={t('PaymentLinksModularStack.cards.alternativePaymentMethods.title')} src='https://upload-file-droplinked.s3.amazonaws.com/913d46bd27a9572d19fc91d0a6f3fa1b241a40cec5f8b93dea3774270644a965.png' />
         }
     ]
 

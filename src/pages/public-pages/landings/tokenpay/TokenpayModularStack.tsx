@@ -12,13 +12,13 @@ function TokenpayModularStack() {
 
     const cardsData: CardData[] = [
         {
+
             gridColumn: { base: '1', md: '1', lg: '1 / 2' },
-            children: <CardImage alt='Token integration' src='https://upload-file-droplinked.s3.amazonaws.com/e26817bf87250c1bd947e7137eddf2277edf357201bbd2a44614c3b91d6d94c2.png' />
+            children: <CardImage alt='Token Expansion' src='https://upload-file-droplinked.s3.amazonaws.com/739d4df18d8460a773a6f3940ff01b9ba4a1ff188226a1f6308b7c342742f53c.png' />
         },
         {
-
             gridColumn: { base: '1', md: '1', lg: '2 / 2' },
-            children: <CardImage alt='Token Expansion' src='https://upload-file-droplinked.s3.amazonaws.com/739d4df18d8460a773a6f3940ff01b9ba4a1ff188226a1f6308b7c342742f53c.png' />
+            children: <CardImage alt='Token integration' src='https://upload-file-droplinked.s3.amazonaws.com/e26817bf87250c1bd947e7137eddf2277edf357201bbd2a44614c3b91d6d94c2.png' />
         },
         {
             icon: <BoxLg color="#fff" />,

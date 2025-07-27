@@ -11,7 +11,6 @@ export default function TestmonialCard({ feedback, name, image, time, ...flexPro
         <Flex
             height="100%"
             flexDirection="column"
-            gap="48px"
             border="1px solid"
             borderColor="neutral.gray.900"
             borderRadius={16}
@@ -24,7 +23,9 @@ export default function TestmonialCard({ feedback, name, image, time, ...flexPro
                 height={{ base: "max-content", md: "112px", lg: "156px" }}
                 color="text.white"
                 fontSize={{ base: "14px", xl: "16px" }}
+                lineHeight={{ base: "24px", xl: "28px" }}
                 fontWeight={500}
+                mb="48px"
             >
                 {feedback}
             </Text>

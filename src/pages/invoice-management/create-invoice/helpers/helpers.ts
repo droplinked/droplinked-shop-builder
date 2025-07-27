@@ -21,37 +21,37 @@ export interface InvoiceFormSchema {
     address: Address;
 }
 
-export function getInvoiceValidationSchema(isAddressSwitchToggled: boolean) {
+export function getInvoiceValidationSchema(isAddressSwitchToggled: boolean, t: (key: string, options?: any) => string) {
     return Yup.object({
-        email: Yup.string().email('Invalid email address').required('Email is required'),
+        email: Yup.string().email(t('validation.invalidEmail')).required(t('validation.emailRequired')),
         note: Yup.string(),
         address: Yup.object().shape({
-            firstName: Yup.string().required("First Name is required"),
-            lastName: Yup.string().required("Last Name is required"),
+            firstName: Yup.string().required(t('validation.firstNameRequired')),
+            lastName: Yup.string().required(t('validation.lastNameRequired')),
             addressLine1: Yup.string().when([], {
                 is: () => isAddressSwitchToggled,
-                then: schema => schema.required("Address Line 1 is required"),
+                then: schema => schema.required(t('validation.addressLine1Required')),
                 otherwise: schema => schema
             }),
             addressLine2: Yup.string(),
             country: Yup.string().when([], {
                 is: () => isAddressSwitchToggled,
-                then: schema => schema.required("Country is required"),
+                then: schema => schema.required(t('validation.countryRequired')),
                 otherwise: schema => schema
             }),
             city: Yup.string().when([], {
                 is: () => isAddressSwitchToggled,
-                then: schema => schema.required("City is required"),
+                then: schema => schema.required(t('validation.cityRequired')),
                 otherwise: schema => schema
             }),
             state: Yup.string().when([], {
                 is: () => isAddressSwitchToggled,
-                then: schema => schema.required("State is required"),
+                then: schema => schema.required(t('validation.stateRequired')),
                 otherwise: schema => schema
             }),
             zip: Yup.string().when([], {
                 is: () => isAddressSwitchToggled,
-                then: schema => schema.required("Zip Code is required"),
+                then: schema => schema.required(t('validation.zipRequired')),
                 otherwise: schema => schema
             }),
             addressType: Yup.string(),

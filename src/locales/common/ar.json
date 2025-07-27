@@ -132,7 +132,10 @@
     "anErrorOccurred": "حدث خطأ",
     "unexpectedError": "حدث خطأ غير متوقع.",
     "pdfGenerationFailed": "فشل في إنشاء ملف PDF. يرجى المحاولة مرة أخرى.",
-    "invoiceNotFound": "لم يتم العثور على الفاتورة بهذا المعرف"
+    "invoiceNotFound": "لم يتم العثور على الفاتورة بهذا المعرف",
+    "permissionDenied": "تم رفض الإذن",
+    "imageSizeLimit": "يجب أن تكون الصورة أقل من {{size}}. يرجى اختيار ملف أصغر والمحاولة مرة أخرى.",
+    "imageTypeNotSupported": "يرجى رفع صورة بصيغة JPG أو PNG أو GIF."
   },
 
   "AddBalanceModal": {

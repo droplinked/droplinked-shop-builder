@@ -6,8 +6,6 @@ import InteractiveText from 'components/redesign/interactive-text/InteractiveTex
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
@@ -22,9 +20,9 @@ import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from '../common/PasswordValidationRules'
 
-const formSchema = Yup.object().shape({
-    email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
-    password: Yup.string().required("Password is required."),
+const formSchema = (t) => Yup.object().shape({
+    email: Yup.string().email(t('common.emailError')).required(t('SignUpForm.emailRequired', 'Email address is required.')),
+    password: Yup.string().required(t('SignUpForm.passwordRequired', 'Password is required.')),
     referralCode: Yup.string()
 })
 
@@ -33,10 +31,7 @@ function SignUpForm() {
     const [acceptTerms, setAcceptTerms] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
+    const { t } = useLocaleResources('onboarding')
 
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")
@@ -73,7 +68,7 @@ function SignUpForm() {
             <Formik
                 initialValues={{ email: "", password: "", referralCode: referralCode ?? "" }}
                 validateOnChange={false}
-                validationSchema={formSchema}
+                validationSchema={formSchema(t)}
                 onSubmit={handleSignUp}
             >
                 {({ values, errors, handleChange, submitForm, isSubmitting }) => {

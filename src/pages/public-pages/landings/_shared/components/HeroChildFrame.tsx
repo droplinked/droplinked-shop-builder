@@ -8,7 +8,7 @@ export default function HeroChildFrame({ children }: { children?: React.ReactNod
     const boxBackground = isMobile ? "neutral.websiteBackground" : "radial-gradient(50% 100% at 50% 0%, rgba(43, 207, 161, 0.24) 0%, rgba(43, 207, 161, 0.00) 100%), linear-gradient(180deg, rgba(43, 207, 161, 0.08) 0%, rgba(43, 207, 161, 0.00) 100%)"
 
     return (
-        <Box paddingInline={paddingInline} margin={{ base: "-28rem 8px 8px", md: "48px auto auto" }}>
+        <Box paddingInline={paddingInline} margin={{ base: "-28rem 8px 8px", md: "48px auto auto" }} width={{ base: "auto", "2xl": "100%" }}>
             <Box
                 padding={{ base: "0px", md: "8px 8px 0px 8px" }}
                 border="1px solid rgba(43, 207, 161, 0.32)"

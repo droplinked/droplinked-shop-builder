@@ -597,5 +597,19 @@
       "title": "Product Lock Notice",
       "description": "Once this product is dropped, all details will be permanently locked and cannot be changed."
     }
+  },
+  "permissionErrors": {
+    "permissionDenied": "Permission Denied",
+    "maxActiveLoginMethods": "You can only activate up to {{count}} login method{{plural}}",
+    "maxActivePaymentMethods": "You can only activate up to {{count}} payment method{{plural}}",
+    "subscriptionDataUnavailable": "Oops! It looks like we cannot access subscription data at the moment. Give it another try soon?",
+    "productCreationLimitReached": "{{type}} creation limit reached. Consider upgrading your plan to create more.",
+    "dropLimitReached": "Drop limit reached. Consider upgrading your plan to drop more."
+  },
+  "productTypes": {
+    "digital": "Digital Product",
+    "printOnDemand": "Print on Demand",
+    "physical": "Physical Product",
+    "event": "Event"
   }
 } 

@@ -53,7 +53,7 @@ const BrandIcon = () => {
     )
 
     return (
-        <ChakraLink as={Link} to="/" {...flexContainerStyles}>
+        <ChakraLink as={Link} to="/" width="200px" {...flexContainerStyles}>
             {iconComponent}
             {typographyComponent}
         </ChakraLink>
