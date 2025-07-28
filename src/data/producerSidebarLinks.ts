@@ -56,7 +56,7 @@ const createSidebarLinks = (t: TFunction) => [
                 icon: React.createElement(BrushMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: t('Sidebar.NavLinks.lists.storefrontDesigner'), linkTo: '/analytics/style-center/storefront-designer' },
+                    { listTitle: t('Sidebar.NavLinks.lists.templateBuilder'), linkTo: '/analytics/style-center/template-builder' },
                     { listTitle: t('Sidebar.NavLinks.lists.productTiles'), linkTo: '/analytics/style-center/product-tiles' },
                     { listTitle: t('Sidebar.NavLinks.lists.productLinks'), linkTo: '/analytics/style-center/product-links' },
                     { listTitle: t('Sidebar.NavLinks.lists.blogEditor'), linkTo: '/analytics/blogs' }

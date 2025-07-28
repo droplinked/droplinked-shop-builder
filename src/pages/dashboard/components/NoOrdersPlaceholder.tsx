@@ -55,7 +55,7 @@ export default function NoOrdersPlaceholder() {
                 {
                     label: t('getStarted'),
                     variant: 'primary',
-                    onClick: () => navigate("/style-center/storefront-designer")
+                    onClick: () => navigate("/analytics/style-center/template-builder")
                 }
             ]
         }

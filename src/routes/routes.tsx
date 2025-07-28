@@ -132,7 +132,7 @@ const router = createBrowserRouter([
                 path: "style-center",
                 children: [
                     {
-                        path: "storefront-designer",
+                        path: "template-builder",
                         children: [
                             { index: true, element: <TemplateDesigner /> },
                             { path: "create", element: <TemplateCreatePage /> },
