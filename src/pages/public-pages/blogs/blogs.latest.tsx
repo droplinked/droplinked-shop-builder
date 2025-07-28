@@ -13,8 +13,8 @@ const LatestBlog = ({ blog }: { blog: IBlogDetail }) => {
     const { t } = useLocaleResources("blogs", {
         ar: arLocale,
         en: enLocale,
-      });
-      
+    });
+
     return (
         <Box width={"full"} pos={"relative"} height={"512px"}>
             <Image width={"full"} height={"512px"} objectFit={"cover"} rounded={"32px"} src={blog?.image} />
