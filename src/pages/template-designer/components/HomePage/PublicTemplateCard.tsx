@@ -1,7 +1,7 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
+import { PublicTemplateCardProps } from 'pages/template-designer/types/types'
 import React from 'react'
-import { PublicTemplateCardProps } from '../types/types'
 import TemplateCardLayout from './TemplateCardLayout'
 
 function PublicTemplateCard(props: PublicTemplateCardProps) {

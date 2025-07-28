@@ -7,9 +7,7 @@ import TemplateCardLayout from './TemplateCardLayout'
 function CreateNewTemplateCard() {
     const navigate = useNavigate()
 
-    const handleCreate = () => {
-        navigate('/template-designer/create')
-    }
+    const handleCreate = () => navigate('create')
 
     return (
         <TemplateCardLayout>

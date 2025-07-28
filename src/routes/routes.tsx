@@ -38,6 +38,8 @@ import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import TemplateCreatePage from "pages/template-designer/components/TemplateCreatePage"
+import TemplateEditPage from "pages/template-designer/components/TemplateEditPage"
 
 // Lazy-loaded components for other routes
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"))
@@ -129,7 +131,14 @@ const router = createBrowserRouter([
             {
                 path: "style-center",
                 children: [
-                    { path: "storefront-designer", element: <TemplateDesigner /> },
+                    {
+                        path: "storefront-designer",
+                        children: [
+                            { index: true, element: <TemplateDesigner /> },
+                            { path: "create", element: <TemplateCreatePage /> },
+                            { path: "edit/:templateId", element: <TemplateEditPage /> },
+                        ]
+                    },
                     { path: "product-tiles", element: <TileDesign /> },
                     { path: "product-links", element: <PaymentLink /> }
                 ]

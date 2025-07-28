@@ -1,10 +1,11 @@
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import React from 'react'
-import CreateNewTemplateCard from './components/CreateNewTemplateCard'
-import PublicTemplateCard from './components/PublicTemplateCard'
-import Section from './components/Section'
-import UserTemplateCard from './components/UserTemplateCard'
+import { useNavigate } from 'react-router-dom'
+import CreateNewTemplateCard from './components/HomePage/CreateNewTemplateCard'
+import PublicTemplateCard from './components/HomePage/PublicTemplateCard'
+import Section from './components/HomePage/Section'
+import UserTemplateCard from './components/HomePage/UserTemplateCard'
 import { PublicTemplateCardProps, UserTemplateCardProps } from './types/types'
 
 const mockTemplates: Omit<UserTemplateCardProps, 'isUserTemplate'>[] = [
@@ -42,6 +43,8 @@ const popularTemplates: PublicTemplateCardProps[] = [
 ]
 
 function TemplateDesigner() {
+    const navigate = useNavigate()
+
     return (
         <PageGrid.Root>
             <PageGrid.Header
@@ -51,8 +54,8 @@ function TemplateDesigner() {
                     {
                         title: 'New Template',
                         leftIcon: <PlusMd />,
-                        onClick: () => { },
-                    },
+                        onClick: () => navigate('create'),
+                    }
                 ]}
             />
 

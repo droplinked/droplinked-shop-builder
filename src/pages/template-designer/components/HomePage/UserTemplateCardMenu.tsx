@@ -3,8 +3,8 @@ import { EditMd } from 'assets/icons/Action/Edit/EditMd'
 import { TrashMd } from 'assets/icons/Action/Trash/TrashMd'
 import { Star1Md } from 'assets/icons/System/Star1/Star1Md'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
+import { UserTemplateCardProps } from 'pages/template-designer/types/types'
 import React from 'react'
-import { UserTemplateCardProps } from '../types/types'
 
 interface Props {
     template: UserTemplateCardProps
