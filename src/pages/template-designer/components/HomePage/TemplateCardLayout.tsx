@@ -25,6 +25,18 @@ function TemplateCardLayout({ children }: PropsWithChildren) {
                     flexDirection: 'column',
                     gap: 1,
                     flex: 1
+                },
+                '.template-image': {
+                    width: '100%',
+                    height: {
+                        base: '180px',
+                        md: '190px',
+                        lg: '260px',
+                        xl: '164px',
+                        '2xl': '190px',
+                        '3xl': '206px'
+                    },
+                    objectFit: 'cover'
                 }
             }}
         >

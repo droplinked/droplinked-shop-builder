@@ -10,7 +10,7 @@ function UserTemplateCard(props: UserTemplateCardProps) {
 
     return (
         <TemplateCardLayout>
-            <Image src={imageUrl} alt={name} />
+            <Image src={imageUrl} alt={name} className="template-image" />
 
             <Flex justifyContent="space-between" gap={2} padding={3}>
                 <Flex className="content">

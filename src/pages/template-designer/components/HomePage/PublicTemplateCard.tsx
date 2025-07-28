@@ -9,7 +9,8 @@ function PublicTemplateCard(props: PublicTemplateCardProps) {
 
     return (
         <TemplateCardLayout>
-            <Image src={imageUrl} alt={name} />
+            <Image src={imageUrl} alt={name} className="template-image" />
+
             <Flex className="content" padding={3}>
                 <Text className="title" isTruncated>
                     {name}
