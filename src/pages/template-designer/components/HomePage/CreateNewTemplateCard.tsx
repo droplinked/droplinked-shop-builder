@@ -27,16 +27,15 @@ function CreateNewTemplateCard() {
                     color: 'text.primary'
                 }}
             >
-                {/* Concentric circles */}
-                {[48, 88, 136, 200, 280, 376].map((diameter) => (
+                {[48, 88, 136, 200, 280, 376].map((circleSize) => (
                     <Box
-                        key={diameter}
+                        key={circleSize}
                         position="absolute"
                         top="50%"
                         left="50%"
                         transform="translate(-50%,-50%)"
-                        width={`${diameter}px`}
-                        height={`${diameter}px`}
+                        width={`${circleSize}px`}
+                        height={`${circleSize}px`}
                         border="1px solid"
                         borderColor="neutral.gray.900"
                         borderRadius="full"

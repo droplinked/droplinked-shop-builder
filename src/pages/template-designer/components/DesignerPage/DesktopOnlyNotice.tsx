@@ -10,17 +10,17 @@ function DesktopOnlyNotice() {
 
     return (
         <Flex
+            direction="column"
             height="100%"
-            direction='column'
-            justifyContent='center'
-            alignItems='center'
+            alignItems="center"
+            justifyContent="center"
         >
             <Lottie animationData={DesktopOnlyNoticePayload} loop={false} />
 
             <Heading
-                as='h2'
+                as="h2"
+                textAlign="center"
                 marginTop={9}
-                textAlign='center'
                 fontSize={18}
                 color="text.white"
             >
@@ -28,8 +28,8 @@ function DesktopOnlyNotice() {
             </Heading>
 
             <Text
+                textAlign="center"
                 marginTop={2}
-                textAlign='center'
                 fontSize={14}
                 color="text.subtext.placeholder.light"
             >
@@ -38,7 +38,7 @@ function DesktopOnlyNotice() {
 
             <AppButton
                 marginTop={4}
-                variant='normal'
+                variant="normal"
                 onClick={() => navigate(-1)}
             >
                 Return

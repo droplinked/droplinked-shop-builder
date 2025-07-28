@@ -13,8 +13,8 @@ function Section({ title, link, children }: Props) {
     return (
         <Box>
             <Flex
-                justifyContent="space-between"
                 alignItems="center"
+                justifyContent="space-between"
                 gap={6}
                 marginBottom={4}
             >
@@ -27,10 +27,7 @@ function Section({ title, link, children }: Props) {
                     </InteractiveText>
                 )}
             </Flex>
-            <Grid
-                templateColumns={`repeat(${columns}, 1fr)`}
-                gap={{ base: 4, "2xl": 6 }}
-            >
+            <Grid templateColumns={`repeat(${columns}, 1fr)`} gap={{ base: 4, "2xl": 6 }}>
                 {children}
             </Grid>
         </Box>
