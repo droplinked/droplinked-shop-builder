@@ -53,10 +53,10 @@ export default function BookDemoFeedbackSlider() {
                 sx={{ button: { padding: "10px" } }}
             >
                 <button onClick={handlePrev}>
-                    <ChevronleftMd color='#fff' />
+                    {isRTL ? <ChevronrightMd color='#fff' /> : <ChevronleftMd color='#fff' />}
                 </button>
                 <button onClick={handleNext}>
-                    <ChevronrightMd color='#fff' />
+                    {isRTL ? <ChevronleftMd color='#fff' /> : <ChevronrightMd color='#fff' />}
                 </button>
             </RuledGrid>
         </Box>
