@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import FinalCta from './FinalCta'
 
 export default function SignUpCta() {
-    const { t } = useLocaleResources('homePage')
+    const { t } = useLocaleResources('common')
 
     return (
         <FinalCta

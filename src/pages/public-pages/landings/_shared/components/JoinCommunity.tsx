@@ -7,7 +7,7 @@ import Community from '../svgs/Community'
 import SectionContainer from './SectionContainer/SectionContainer'
 
 export default function JoinTheCommuity() {
-    const { t } = useLocaleResources('homePage')
+    const { t } = useLocaleResources('common')
 
     return (
         <SectionContainer
