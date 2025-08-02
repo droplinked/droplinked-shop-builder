@@ -1,15 +1,13 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/homePage/en.json'
-import localAr from 'locales/public-pages/landings/homePage/ar.json'
 import HeroSection from '../../_shared/components/hero-section/HeroSection'
 
 export default function HomePageHero() {
-    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('homePage')
 
     return (
         <HeroSection

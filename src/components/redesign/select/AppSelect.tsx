@@ -1,9 +1,9 @@
 import { Select as ChakraSelect, Flex, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text } from '@chakra-ui/react'
 import { ChevrondownMd } from 'assets/icons/Navigation/ChevronDown/ChevrondownMd'
+import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useMemo } from 'react'
 import ErrorMessage from '../error-message/ErrorMessage'
-import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 
 /**
  * Customizable select component with support for complex data structures
@@ -84,7 +84,6 @@ function AppSelect(props: Props) {
             height={12}
             border="1px solid "
             borderColor={`${error ? "text.error" : "neutral.gray.800"}`}
-            borderWidth="1.5px"
             borderRadius={8}
             color="#FFF"
             icon={isLoading ? <Spinner size="sm" color='text.subtext.placeholder.dark' /> : <ChevrondownMd color='#7b7b7b' />}

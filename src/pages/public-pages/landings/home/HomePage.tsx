@@ -1,3 +1,6 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from "locales/public-pages/landings/homePage/ar.json"
+import enLocale from "locales/public-pages/landings/homePage/en.json"
 import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
@@ -11,6 +14,7 @@ import Testmonials from './components/testmonials/Testmonials'
 import useHomePageLogic from './hooks/useHomePageLogic'
 
 export default function HomePage() {
+  useLocaleResources('homePage', { en: enLocale, ar: arLocale })
   useHomePageLogic()
 
   return (

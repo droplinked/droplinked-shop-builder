@@ -19,6 +19,7 @@ import PublicBlog from "pages/public-pages/blogs/blog/Blog"
 import PublicBlogs from "pages/public-pages/blogs/Blogs"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
+import BookDemoPage from "pages/public-pages/landings/book-demo/BookDemoPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-tokens/CustomTokensPage"
 import DigitalGoodsPage from "pages/public-pages/landings/digital-goods/DigitalGoodsPage"
 import DIMST from "pages/public-pages/landings/DIMST/DIMST"
@@ -87,6 +88,7 @@ const router = createBrowserRouter([
             { path: "onchain-subscriptions", element: <OnchainSubscriptionsPage /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
+            { path: "book-demo", element: <BookDemoPage /> },
             // Partner routes using dynamic component 
             { path: "d3", element: <PartnerPage partnerId="d3" /> },
             { path: "unstoppable-domains", element: <PartnerPage partnerId="unstoppableDomains" /> },
