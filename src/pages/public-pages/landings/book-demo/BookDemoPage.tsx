@@ -6,9 +6,11 @@ import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import SignUpCta from '../_shared/components/SignUpCta'
 import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
 import BookDemoHero from './BookDemoHero'
+import enLocale from 'locales/public-pages/landings/book-demo/en.json'
+import arLocale from 'locales/public-pages/landings/book-demo/ar.json'
 
 function BookDemoPage() {
-    useLocaleResources('public-pages/landings/physical-inventory')
+    useLocaleResources('book-demo', { en: enLocale, ar: arLocale })
 
     const sections = [
         { id: 'partner-list', component: <MarqueeSection /> },

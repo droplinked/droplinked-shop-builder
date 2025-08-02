@@ -1,8 +1,11 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import BookDemoForm from './BookDemoForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function BookDemoFormSection() {
+    const { t } = useLocaleResources('book-demo')
+
     return (
         <Flex
             height="100%"
@@ -15,14 +18,14 @@ export default function BookDemoFormSection() {
                 fontWeight={500}
                 color="text.white"
             >
-                Request Meeting
+                {t('BookDemoFormSection.title')}
             </Heading>
             <Text
                 marginBottom={6}
                 fontSize={14}
                 color="text.subtext.placeholder.light"
             >
-                Complete the form below to have a team member coordinate time with you.
+                {t('BookDemoFormSection.subtitle')}
             </Text>
             <BookDemoForm />
         </Flex>

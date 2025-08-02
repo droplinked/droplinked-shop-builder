@@ -1,0 +1,28 @@
+{
+    "BookDemoHero": {
+        "title": "Book Demo",
+        "subtitle": "Discover how droplinked fit your business needs",
+        "startNow": "Start Now",
+        "requestDemo": "Request a Demo"
+    },
+    "BookDemoFormSection": {
+        "title": "Request Meeting",
+        "subtitle": "Complete the form below to have a team member coordinate time with you."
+    },
+    "BookDemoForm": {
+        "name": "Name",
+        "email": "Email",
+        "invalidEmail": "Invalid email",
+        "phoneNumber": "Phone Number",
+        "organizationSize": "Organization Size",
+        "organizationSizePlaceholder": "Organization Size",
+        "additionalDetails": "Additional Details",
+        "additionalDetailsPlaceholder": "Please enter any additional information",
+        "organizationSizeOptions": {
+            "_1_10": "1-10",
+            "_11_50": "11-50",
+            "_51_200": "51-200",
+            "_200_plus": "200+"
+        }
+    }
+}

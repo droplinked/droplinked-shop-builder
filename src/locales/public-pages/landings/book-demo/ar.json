@@ -1,0 +1,28 @@
+{
+    "BookDemoHero": {
+        "title": "احجز عرضًا توضيحيًا",
+        "subtitle": "اكتشف كيف يمكن لـdroplinked تلبية احتياجات عملك",
+        "startNow": "ابدأ الآن",
+        "requestDemo": "اطلب عرض توضيحي"
+    },
+    "BookDemoFormSection": {
+        "title": "طلب اجتماع",
+        "subtitle": "أكمل النموذج أدناه ليقوم أحد أعضاء فريقنا بتنسيق موعد معك."
+    },
+    "BookDemoForm": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "invalidEmail": "البريد الإلكتروني غير صالح",
+        "phoneNumber": "رقم الهاتف",
+        "organizationSize": "حجم المنظمة",
+        "organizationSizePlaceholder": "حجم المنظمة",
+        "additionalDetails": "تفاصيل إضافية",
+        "additionalDetailsPlaceholder": "يرجى إدخال أي معلومات إضافية",
+        "organizationSizeOptions": {
+            "_1_10": "1-10 موظفين",
+            "_11_50": "11-50 موظف",
+            "_51_200": "51-200 موظف",
+            "_200_plus": "أكثر من 200 موظف"
+        }
+    }
+}

@@ -5,15 +5,17 @@ import HeroChildFrame from '../_shared/components/HeroChildFrame'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
 import BookDemoFeedbackSlider from './BookDemoFeedbackSlider'
 import BookDemoFormSection from './BookDemoFormSection'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function BookDemoHero() {
     const isMobileOrTablet = useBreakpointValue({ base: true, xl: false })
+    const { t } = useLocaleResources('book-demo')
 
     return (
         <>
             <HeroSection
-                title="Book Demo"
-                subtitle="Discover how droplinked fit your business needs"
+                title={t('BookDemoHero.title')}
+                subtitle={t('BookDemoHero.subtitle')}
             >
                 {!isMobileOrTablet &&
                     <HeroChildFrame>
