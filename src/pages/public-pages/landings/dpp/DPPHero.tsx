@@ -20,7 +20,7 @@ function DPPHero() {
                             {t('DPPHero.startNow')}
                         </AppButton>
                     </Link>
-                    <Link to='mailto:support@droplinked.com'>
+                    <Link to='/book-demo'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
                             {t('DPPHero.requestDemo')}
                         </AppButton>

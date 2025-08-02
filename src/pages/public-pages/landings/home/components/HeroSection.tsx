@@ -20,7 +20,7 @@ export default function HomePageHero() {
                             {t("hero.startNow")}
                         </AppButton>
                     </Link>
-                    <Link to='mailto:support@droplinked.com'>
+                    <Link to='/book-demo'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
                             {t("hero.requestDemo")}
                         </AppButton>
