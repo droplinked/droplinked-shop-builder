@@ -39,6 +39,7 @@ import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import ExplorePage from "pages/explore/ExplorePage"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -113,7 +114,8 @@ const router = createBrowserRouter([
                     { index: true, element: <AffiliateProductsPage isPublic={true} /> },
                     { path: ":slug", element: <AffiliateProductsSinglePage isPublic={true} /> },
                 ]
-            }
+            },
+            { path: "explore", element: <ExplorePage /> }
         ]
     },
     {
