@@ -11,6 +11,8 @@
     },
     "BookDemoForm": {
         "name": "الاسم",
+        "nameMinLength": "يجب أن يكون الاسم أطول من 2 أحرف",
+        "nameMaxLength": "يجب أن يكون الاسم أقصر من 100 حرف",
         "email": "البريد الإلكتروني",
         "invalidEmail": "البريد الإلكتروني غير صالح",
         "phoneNumber": "رقم الهاتف",

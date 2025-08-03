@@ -1,4 +1,5 @@
 import axiosInstance from "lib/axiosConfig";
+import { removeFalsyValues } from "utils/helpers";
 import {
     IAcceptInvitation,
     IDemoRequest,
@@ -61,5 +62,5 @@ export const subscribeFeature = (subscribeData: ISubscribeFeature) => {
 }
 
 export const postDemoRequestService = (payload: IDemoRequest) => {
-    return axiosInstance.post("/user-features/demo-request", payload);
+    return axiosInstance.post("/user-features/demo-request", removeFalsyValues(payload));
 };

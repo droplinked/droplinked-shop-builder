@@ -11,6 +11,8 @@
     },
     "BookDemoForm": {
         "name": "Name",
+        "nameMinLength": "Name must be at least 2 characters",
+        "nameMaxLength": "Name must be less than 100 characters",
         "email": "Email",
         "invalidEmail": "Invalid email",
         "phoneNumber": "Phone Number",
@@ -20,10 +22,10 @@
         "additionalDetails": "Additional Details",
         "additionalDetailsPlaceholder": "Please enter any additional information",
         "organizationSizeOptions": {
-            "_1_10": "1-10",
-            "_11_50": "11-50",
-            "_51_200": "51-200",
-            "_200_plus": "200+"
+            "_1_10": "1-10 Employees",
+            "_11_50": "11-50 Employees",
+            "_51_200": "51-200 Employees",
+            "_200_plus": "200+ Employees"
         },
         "success": "Demo request submitted successfully"
     }

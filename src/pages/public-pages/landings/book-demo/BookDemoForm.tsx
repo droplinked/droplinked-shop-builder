@@ -16,14 +16,14 @@ export default function BookDemoForm() {
     const { showToast } = useAppToast()
 
     const organizationSizeOptions = [
-        { value: '1-10 Employees', caption: t('BookDemoForm.organizationSizeOptions._1_10') },
-        { value: '11-50 Employees', caption: t('BookDemoForm.organizationSizeOptions._11_50') },
-        { value: '51-200 Employees', caption: t('BookDemoForm.organizationSizeOptions._51_200') },
-        { value: '200+ Employees', caption: t('BookDemoForm.organizationSizeOptions._200_plus') }
+        { value: '1-10 employees', caption: t('BookDemoForm.organizationSizeOptions._1_10') },
+        { value: '11-50 employees', caption: t('BookDemoForm.organizationSizeOptions._11_50') },
+        { value: '50-200 employees', caption: t('BookDemoForm.organizationSizeOptions._51_200') },
+        { value: '200+ employees', caption: t('BookDemoForm.organizationSizeOptions._200_plus') }
     ]
 
     const formSchema = Yup.object().shape({
-        name: Yup.string().required(t('common:required')),
+        name: Yup.string().required(t('common:required')).min(2, t('BookDemoForm.nameMinLength')).max(100, t('BookDemoForm.nameMaxLength')),
         email: Yup.string().email(t('BookDemoForm.invalidEmail')).required(t('common:required')),
         phone: Yup.string().matches(/^\+.*/, t('BookDemoForm.invalidPhoneNumber')),
         organizationSize: Yup.string(),
