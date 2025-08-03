@@ -1,12 +1,12 @@
 import axiosInstance from "lib/axiosConfig";
 import {
     IAcceptInvitation,
+    IDemoRequest,
     IGetUserService,
     IInvitation,
     IPostUserVerifyPartner,
     ISubscribeFeature,
     IchangePasswordService,
-    IemailVerifyService,
     IresendEmailService,
     IuserUpdateService,
     VerifyEmailPayload,
@@ -48,8 +48,18 @@ export const getInvitationDetails = (invitationId: string) => {
     return axiosInstance.post(`rbac/invitations/${invitationId}/info`);
 };
 
-export const postUserVerifyD3 = (props: IPostUserVerifyPartner) => axiosInstance.post(`user/d3/verify`, props);
+export const postUserVerifyD3 = (props: IPostUserVerifyPartner) => {
+    return axiosInstance.post(`user/d3/verify`, props);
+}
 
-export const postUserVerifyUD = (props: IPostUserVerifyPartner) => axiosInstance.post(`user/ud/verify`, props);
+export const postUserVerifyUD = (props: IPostUserVerifyPartner) => {
+    return axiosInstance.post(`user/ud/verify`, props);
+}
 
-export const subscribeFeature = (subscribeData: ISubscribeFeature) => axiosInstance.post("/user/add/email/landing", subscribeData);
+export const subscribeFeature = (subscribeData: ISubscribeFeature) => {
+    return axiosInstance.post("/user/add/email/landing", subscribeData);
+}
+
+export const postDemoRequestService = (payload: IDemoRequest) => {
+    return axiosInstance.post("/user-features/demo-request", payload);
+};

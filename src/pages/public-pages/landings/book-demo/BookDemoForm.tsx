@@ -3,21 +3,17 @@ import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
 import Textarea from 'components/redesign/textarea/Textarea'
-import { Form, Formik } from 'formik'
+import { Form, Formik, FormikHelpers } from 'formik'
+import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import { IDemoRequest } from 'services/user/interfaces'
+import { postDemoRequestService } from 'services/user/services'
 import * as Yup from 'yup'
-
-interface FormValues {
-    name: string
-    email: string
-    phoneNumber: string
-    organizationSize: string
-    additionalDetails: string
-}
 
 export default function BookDemoForm() {
     const { t } = useLocaleResources('book-demo')
+    const { showToast } = useAppToast()
 
     const organizationSizeOptions = [
         { value: '1-10 Employees', caption: t('BookDemoForm.organizationSizeOptions._1_10') },
@@ -29,13 +25,19 @@ export default function BookDemoForm() {
     const formSchema = Yup.object().shape({
         name: Yup.string().required(t('common:required')),
         email: Yup.string().email(t('BookDemoForm.invalidEmail')).required(t('common:required')),
-        phoneNumber: Yup.string(),
+        phone: Yup.string().matches(/^\+.*/, t('BookDemoForm.invalidPhoneNumber')),
         organizationSize: Yup.string(),
-        additionalDetails: Yup.string()
+        message: Yup.string()
     })
 
-    const handleSubmit = (data: FormValues, actions) => {
-        actions.resetForm()
+    const handleSubmit = async (values: IDemoRequest, actions: FormikHelpers<IDemoRequest>) => {
+        try {
+            await postDemoRequestService(values)
+            actions.resetForm()
+            showToast({ type: 'success', message: t('BookDemoForm.success') })
+        } catch (error) {
+            showToast({ type: 'error', message: t('common:genericError') })
+        }
     }
 
     return (
@@ -43,9 +45,9 @@ export default function BookDemoForm() {
             initialValues={{
                 name: '',
                 email: '',
-                phoneNumber: '',
+                phone: '',
                 organizationSize: '',
-                additionalDetails: ''
+                message: ''
             }}
             validationSchema={formSchema}
             validateOnChange={false}
@@ -92,11 +94,12 @@ export default function BookDemoForm() {
                             <AppInput
                                 label={t('BookDemoForm.phoneNumber')}
                                 inputProps={{
-                                    id: "phoneNumber",
-                                    name: "phoneNumber",
-                                    value: values.phoneNumber,
+                                    id: "phone",
+                                    name: "phone",
+                                    value: values.phone,
                                     onChange: handleChange
                                 }}
+                                message={errors.phone}
                             />
                             <AppSelect
                                 label={t('BookDemoForm.organizationSize')}
@@ -117,11 +120,11 @@ export default function BookDemoForm() {
                         </Flex>
 
                         <Textarea
-                            id="additionalDetails"
-                            name="additionalDetails"
+                            id="message"
+                            name="message"
                             label={t('BookDemoForm.additionalDetails')}
                             placeholder={t('BookDemoForm.additionalDetailsPlaceholder')}
-                            value={values.additionalDetails}
+                            value={values.message}
                             onChange={handleChange}
                         />
                     </Flex>

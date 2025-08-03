@@ -58,7 +58,16 @@ export interface IPostUserVerifyPartner {
     walletAddress: string;
     walletType: string;
 }
+
 export interface ISubscribeFeature {
     feature: string;
     email: string;
+}
+
+export interface IDemoRequest {
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+    organizationSize: string;
 }

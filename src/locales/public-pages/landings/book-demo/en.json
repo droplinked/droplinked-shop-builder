@@ -14,6 +14,7 @@
         "email": "Email",
         "invalidEmail": "Invalid email",
         "phoneNumber": "Phone Number",
+        "invalidPhoneNumber": "Phone number must start with +",
         "organizationSize": "Organization Size",
         "organizationSizePlaceholder": "Organization Size",
         "additionalDetails": "Additional Details",
@@ -23,6 +24,7 @@
             "_11_50": "11-50",
             "_51_200": "51-200",
             "_200_plus": "200+"
-        }
+        },
+        "success": "Demo request submitted successfully"
     }
 }
