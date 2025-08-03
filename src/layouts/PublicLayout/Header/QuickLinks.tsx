@@ -3,6 +3,7 @@ import { DocumentMd } from 'assets/icons/Action/Document/DocumentMd'
 import { ChatMd } from 'assets/icons/System/Chat/ChatMd'
 import { PlayMd } from 'assets/icons/System/Play/PlayMd'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
+import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
@@ -48,34 +49,64 @@ function QuickLinks(props: FlexProps) {
                 sx={{ '.dot-separator': { bgColor: 'label.primary' } }}
             >
                 {LINK_ITEMS.map(({ icon, label, href, isExternal }) => {
-                    const linkProps = isExternal
-                        ? { href, target: '_blank', rel: 'noopener noreferrer' }
-                        : { as: Link, to: href }
+                    // For external links, always use ChakraLink with target="_blank"
+                    if (isExternal) {
+                        return (
+                            <ChakraLink
+                                key={href}
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                display="flex"
+                                alignItems="center"
+                                gap="6px"
+                                color="text.subtext.placeholder.light"
+                                opacity={0.8}
+                                transition="0.3s ease-in-out"
+                                _hover={{
+                                    opacity: 1,
+                                    color: 'text.white',
+                                    '& > svg': { color: '#fff' }
+                                }}
+                                _active={{
+                                    opacity: 1,
+                                    color: 'text.white',
+                                    '& > svg': { color: '#fff' }
+                                }}
+                            >
+                                {icon}
+                                <Text as="span" fontSize={14}>{label}</Text>
+                            </ChakraLink>
+                        )
+                    }
 
+                    // For internal links, use IframeAwareLink
                     return (
-                        <ChakraLink
+                        <IframeAwareLink
                             key={href}
-                            {...linkProps}
-                            display="flex"
-                            alignItems="center"
-                            gap="6px"
-                            color="text.subtext.placeholder.light"
-                            opacity={0.8}
-                            transition="0.3s ease-in-out"
-                            _hover={{
-                                opacity: 1,
-                                color: 'text.white',
-                                '& > svg': { color: '#fff' }
-                            }}
-                            _active={{
-                                opacity: 1,
-                                color: 'text.white',
-                                '& > svg': { color: '#fff' }
+                            to={href}
+                            chakraProps={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "6px",
+                                color: "text.subtext.placeholder.light",
+                                opacity: 0.8,
+                                transition: "0.3s ease-in-out",
+                                _hover: {
+                                    opacity: 1,
+                                    color: 'text.white',
+                                    '& > svg': { color: '#fff' }
+                                },
+                                _active: {
+                                    opacity: 1,
+                                    color: 'text.white',
+                                    '& > svg': { color: '#fff' }
+                                }
                             }}
                         >
                             {icon}
                             <Text as="span" fontSize={14}>{label}</Text>
-                        </ChakraLink>
+                        </IframeAwareLink>
                     )
                 })}
             </DotSeparatedList>
