@@ -1,7 +1,7 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import BookDemoForm from './BookDemoForm'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function BookDemoFormSection() {
     const { t } = useLocaleResources('book-demo')
