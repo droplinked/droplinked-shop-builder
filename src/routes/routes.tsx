@@ -135,7 +135,6 @@ const router = createBrowserRouter([
                         path: "template-builder",
                         children: [
                             { index: true, element: <TemplateDesigner /> },
-                            { path: "create", element: <TemplateCreatePage /> },
                             { path: "edit/:templateId", element: <TemplateEditPage /> },
                         ]
                     },
@@ -213,6 +212,7 @@ const router = createBrowserRouter([
     },
     { path: "onboarding", element: <Onboarding /> },
     { path: "invoice/:txId", element: <InvoiceTemplate /> },
+    { path: "analytics/style-center/template-builder/create", element: <TemplateCreatePage /> },
     { path: "*", element: <NotFoundPage /> }
 ])
 
