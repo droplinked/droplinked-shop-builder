@@ -69,6 +69,10 @@
         "customTokens": {
           "label": "Custom Tokens",
           "description": "Unlock the Power of Custom Tokens"
+        },
+        "bookDemo": {
+          "label": "Book Demo",
+          "description": "Discover droplinked for your business"
         }
       }
     },
