@@ -40,7 +40,7 @@ function ProductTypeCard({ icon, title, description, productType }: ProductTypeO
                 {icon}
             </Center>
 
-            <Flex direction="column" gap={1}>
+            <Flex direction="column" gap={1} textAlign="left">
                 <Heading
                     as="h3"
                     fontSize={{ base: 16, md: 18 }}

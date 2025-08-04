@@ -29,6 +29,7 @@
 
 import { Flex, Text, useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { createContext, useContext } from 'react'
 import AppInput from '../input/AppInput'
 import DesktopActionButtons from './components/DesktopActionButtons'
@@ -36,7 +37,6 @@ import MobileFloatingMenu from './components/MobileFloatingMenu'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 /**
  * Context to share loading state across PageGrid components
@@ -54,7 +54,12 @@ const usePageGridContext = () => useContext(PageGridContext)
 function PageGridRoot({ children, loading }: PageGridRootProps) {
     return (
         <PageGridContext.Provider value={{ loading }}>
-            <Flex width="100%" flexDirection="column" alignItems="start">
+            <Flex
+                width="100%"
+                height="100%"
+                flexDirection="column"
+                alignItems="start"
+            >
                 {children}
             </Flex>
         </PageGridContext.Provider>
@@ -100,15 +105,16 @@ function PageGridHeader({ title, description, actionButtons }: PageGridHeaderPro
  */
 function PageGridActions({ search, filters }: PageGridActionsProps) {
     const { t } = useLocaleResources('common')
+
     return (
-        <Flex width="100%" mb="24px" justifyContent="space-between">
+        <Flex width="100%" justifyContent="space-between" marginBottom="24px">
             {search && (
                 <AppInput
                     inputGroupProps={{ width: "300px" }}
                     inputContainerProps={{ bgColor: "neutral.gray.1000", padding: 3, _hover: search.disabled ? {} : { borderColor: "neutral.gray.700" } }}
                     inputProps={{
                         fontSize: 16,
-                        placeholder: search.placeholder ? search.placeholder : t('search'),
+                        placeholder: search.placeholder ?? t('search'),
                         value: search.value,
                         onChange: search.onChange,
                         isDisabled: search.disabled
@@ -129,13 +135,20 @@ function PageGridActions({ search, filters }: PageGridActionsProps) {
  * @param props.children - Content to render
  * @param props.loading - Optional loading state that overrides the context loading state
  */
-function PageGridContent({ children, loading }: PageGridContentProps) {
+function PageGridContent({ children, loading, dataLength, emptyState }: PageGridContentProps) {
     const { loading: contextLoading } = usePageGridContext()
+
     const isLoading = loading ?? contextLoading
+    const isEmpty = !isLoading && typeof dataLength === "number" && dataLength === 0
 
     return (
-        <Flex w="full" flexDirection="column">
-            {isLoading ? <DataGridSkeleton /> : children}
+        <Flex flex={1} width="100%" flexDirection="column">
+            {isLoading
+                ? <DataGridSkeleton />
+                : isEmpty
+                    ? emptyState ?? null
+                    : children
+            }
         </Flex>
     )
 }

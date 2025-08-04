@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react"
 import { AppButtonProps } from "../button/AppButton"
 import { IFiltersDataGridItems } from "./components/filters/interface"
 
@@ -8,8 +9,7 @@ export interface SearchInput {
     disabled?: boolean
 }
 
-export interface PageGridRootProps {
-    children: React.ReactNode;
+export interface PageGridRootProps extends PropsWithChildren {
     loading?: boolean;
 }
 
@@ -28,7 +28,8 @@ export interface PageGridActionsProps {
     filters?: Array<IFiltersDataGridItems>;
 }
 
-export interface PageGridContentProps {
-    children: React.ReactNode;
+export interface PageGridContentProps extends PropsWithChildren {
     loading?: boolean;
+    dataLength?: number;
+    emptyState?: React.ReactNode;
 }
