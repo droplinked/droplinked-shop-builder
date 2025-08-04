@@ -28,7 +28,7 @@ const ProductDrawerHeader = () => {
             padding={9}
         >
             <Heading as="h3" fontSize={24} fontWeight={700} color="neutral.white">
-                {actionText} {productTitle}
+                {actionText}
             </Heading>
             <DrawerCloseButton position="static" color="white" />
         </ChakraDrawerHeader>
