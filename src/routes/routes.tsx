@@ -67,6 +67,7 @@ const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplat
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
+const ShippingManagement = lazy(() => import("pages/shipping-management/ShippingManagement"))
 
 const router = createBrowserRouter([
     {
@@ -151,6 +152,7 @@ const router = createBrowserRouter([
             },
             { path: "collections", element: <Collections /> },
             { path: "purchase-history", element: <PurchaseHistory /> },
+            { path: "shipping-management", element: <ShippingManagement /> },
             {
                 path: "affiliate",
                 children: [

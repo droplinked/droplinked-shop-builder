@@ -98,7 +98,8 @@
         "products": "Products",
         "settings": "Settings",
         "creditsAndActivity": "Credits & Activity",
-        "changelog": "Changelog"
+        "changelog": "Changelog",
+        "shippingManagement": "Shipping Management"
       }
     }
   }
