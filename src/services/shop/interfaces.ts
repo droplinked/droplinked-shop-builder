@@ -36,9 +36,7 @@ export interface IshopUpdateService extends IshopSocial {
     logo?: string;
     addressBookID?: string;
     headerIcon?: string;
-    textColor?: string;
     backgroundColor?: string;
-    theme?: string;
     backgroundText?: string;
     backgroundImage?: string;
     backgroundImageSecondary?: string;
