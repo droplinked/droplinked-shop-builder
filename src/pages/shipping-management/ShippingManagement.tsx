@@ -1,16 +1,14 @@
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
+import useDebounce from 'hooks/useDebounce/useDebounce'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import ShippingProfileTable from './components/ShippingProfileTable/ShippingProfileTable'
 
 function ShippingManagement() {
-    const navigate = useNavigate()
+    const [searchTerm, setSearchTerm] = useState("")
+    const debouncedSearchTerm = useDebounce(searchTerm)
     const { t } = useLocaleResources("common")
-
-    const shippingProfiles = [
-        { id: 1, name: 'Standard Shipping', description: 'Standard shipping profile' },
-    ]
 
     return (
         <PageGrid.Root>
@@ -21,13 +19,21 @@ function ShippingManagement() {
                     {
                         title: 'New Shipping Profile',
                         leftIcon: <PlusMd />,
-                        onClick: () => navigate('/shipping-management/new')
+                        onClick: () => console.log("clicked!")
                     }
                 ]}
             />
 
-            <PageGrid.Content>
+            <PageGrid.Actions
+                search={{
+                    value: searchTerm,
+                    placeholder: t("common:search"),
+                    onChange: (e) => setSearchTerm(e.target.value)
+                }}
+            />
 
+            <PageGrid.Content>
+                <ShippingProfileTable searchTerm={debouncedSearchTerm} />
             </PageGrid.Content>
         </PageGrid.Root>
     )

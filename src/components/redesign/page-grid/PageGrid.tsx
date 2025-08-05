@@ -28,7 +28,7 @@
  */
 
 import { Flex, Text, useMediaQuery } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { SearchLg } from 'assets/icons/System/Search/SearchLg'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { createContext, useContext } from 'react'
 import AppInput from '../input/AppInput'
@@ -110,16 +110,15 @@ function PageGridActions({ search, filters }: PageGridActionsProps) {
         <Flex width="100%" justifyContent="space-between" marginBottom="24px">
             {search && (
                 <AppInput
-                    inputGroupProps={{ width: "300px" }}
-                    inputContainerProps={{ bgColor: "neutral.gray.1000", padding: 3, _hover: search.disabled ? {} : { borderColor: "neutral.gray.700" } }}
+                    inputGroupProps={{ width: "288px" }}
                     inputProps={{
                         fontSize: 16,
                         placeholder: search.placeholder ?? t('search'),
                         value: search.value,
-                        onChange: search.onChange,
-                        isDisabled: search.disabled
+                        isDisabled: search.disabled,
+                        onChange: search.onChange
                     }}
-                    leftElement={<AppIcons.SearchOutlined />}
+                    leftElement={<SearchLg color='#7b7b7b' />}
                 />
             )}
             {filters && <FiltersDataGrid items={filters} />}
