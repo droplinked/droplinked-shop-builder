@@ -18,24 +18,12 @@ function ShippingProfileTable({ searchTerm }: Props) {
         {
             accessorKey: 'profileName',
             header: "Profile Name",
-            cell: info => {
-                return (
-                    <Text>
-                        {info.row.original.profileName}
-                    </Text>
-                )
-            }
+            cell: info => <Text>{info.row.original.profileName}</Text>
         },
         {
             accessorKey: 'rates',
             header: "Rates",
-            cell: (info) => {
-                return (
-                    <Text>
-                        {info.row.original.rates}
-                    </Text>
-                )
-            }
+            cell: info => <Text>{info.row.original.rates}</Text>
         },
     ]
 
