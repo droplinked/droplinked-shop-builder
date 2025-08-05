@@ -11,7 +11,7 @@ interface Props {
 
 function ShippingProfileTable({ searchTerm }: Props) {
     const shippingProfiles = [
-        // { id: 1, profileName: 'Standard Shipping', rates: 'Standard shipping profile' },
+        { id: 1, profileName: 'Standard Shipping', rates: 'Standard shipping profile' },
     ]
 
     const columns: ColumnDef<any>[] = [

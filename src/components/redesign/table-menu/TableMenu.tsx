@@ -1,6 +1,7 @@
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { DotsLg } from "assets/icons/Navigation/Dots/DotsLg";
 import React, { ReactElement } from 'react';
+import RuledGrid from "../ruled-grid/RuledGrid";
 
 /**
  * TableMenu Component - Dropdown menu for table row actions
@@ -21,44 +22,52 @@ interface Props {
         icon: ReactElement,
         title: string,
         color?: string,
-        onClick: () => void,
         isDisabled?: boolean,
+        onClick: () => void
     }[]
 }
 
 export default function TableMenu({ items }: Props) {
+    console.log(items)
+
     return (
-        <>
-            <Menu isLazy>
-                <MenuButton as="button" type="button">
-                    <DotsLg color="#fff" />
-                </MenuButton>
-                <MenuList
-                    borderColor="neutral.gray.800"
-                    borderRadius={8}
-                    padding={0}
-                    overflow="hidden"
-                    bgColor="neutral.gray.1000"
-                    zIndex={10}
-                    sx={{
-                        "button": {
-                            display: "flex",
-                            alignItems: "center",
-                            px: 4,
-                            py: 3,
-                            fontSize: 16,
-                            fontWeight: 500,
-                            bgColor: "inherit",
-                            borderBottom: "inherit",
-                            _last: { borderBottom: "none" }
-                        }
-                    }}
-                >
-                    {items.map((item, index) => (
-                        !!Object.keys(item).length && <MenuItem isDisabled={item.isDisabled} key={index} {...item}>{item.title}</MenuItem>
-                    ))}
-                </MenuList>
-            </Menu>
-        </>
+        <Menu isLazy>
+            <MenuButton as="button" type="button">
+                <DotsLg color="#fff" />
+            </MenuButton>
+            <MenuList
+                borderColor="neutral.gray.800"
+                borderRadius={8}
+                padding={0}
+                overflow="hidden"
+                bgColor="neutral.gray.1000"
+                zIndex={10}
+            >
+                <RuledGrid columns={1} nested>
+                    {items.map((item, index) => {
+                        if (!Object.keys(item).length) return null
+
+                        return (
+                            <MenuItem
+                                key={index}
+                                display="flex"
+                                alignItems="center"
+                                gap={2}
+                                padding="12px 16px"
+                                backgroundColor="inherit"
+                                fontSize={14}
+                                fontWeight={500}
+                                {...item}
+                                sx={{
+                                    ".chakra-menu__icon-wrapper ": { margin: 0 }
+                                }}
+                            >
+                                {item.title}
+                            </MenuItem>
+                        )
+                    })}
+                </RuledGrid>
+            </MenuList>
+        </Menu>
     )
 }
