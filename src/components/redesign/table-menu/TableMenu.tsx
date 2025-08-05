@@ -28,8 +28,6 @@ interface Props {
 }
 
 export default function TableMenu({ items }: Props) {
-    console.log(items)
-
     return (
         <Menu isLazy>
             <MenuButton as="button" type="button">
