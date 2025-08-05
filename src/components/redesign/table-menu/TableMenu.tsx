@@ -55,6 +55,7 @@ export default function TableMenu({ items }: Props) {
                                 backgroundColor="inherit"
                                 fontSize={14}
                                 fontWeight={500}
+                                cursor={item.isDisabled ? "not-allowed" : "pointer"}
                                 {...item}
                                 sx={{
                                     ".chakra-menu__icon-wrapper ": { margin: 0 }
