@@ -11,9 +11,9 @@ interface AppConfirmationDialogProps {
     icon: React.ReactNode
     title: string
     description: string
+    variant?: "default" | "delete"
     confirmButtonProps?: AppButtonProps
     cancelButtonProps?: AppButtonProps
-    variant?: "default" | "delete"
 }
 
 function AppConfirmationDialog({
@@ -22,12 +22,25 @@ function AppConfirmationDialog({
     icon,
     title,
     description,
+    variant = "default",
     confirmButtonProps = {},
     cancelButtonProps = {},
-    variant = "default",
 }: AppConfirmationDialogProps) {
     const { t } = useLocaleResources("common")
-    const isLoading = confirmButtonProps.isLoading ?? false
+
+    const isLoading = !!confirmButtonProps.isLoading
+    const baseButtonProps: AppButtonProps = { size: "lg", flex: 1, isDisabled: isLoading }
+    const getConfirmButtonStyle = (): AppButtonProps => {
+        if (variant === "delete" && !isLoading) {
+            return {
+                backgroundColor: "system.error",
+                color: "text.white",
+                _hover: { backgroundColor: "system.error" },
+                _active: { backgroundColor: "system.error" },
+            }
+        }
+        return {}
+    }
 
     return (
         <AppModal
@@ -38,28 +51,18 @@ function AppConfirmationDialog({
 
             <ModalFooter display="flex" gap={6}>
                 <AppButton
-                    size="lg"
-                    flex={1}
                     variant="secondary"
-                    isDisabled={isLoading}
                     onClick={onClose}
+                    {...baseButtonProps}
                     {...cancelButtonProps}
                 >
                     {cancelButtonProps.children ?? t("cancel")}
                 </AppButton>
+
                 <AppButton
-                    size="lg"
-                    flex={1}
-                    isLoading={isLoading}
-                    isDisabled={isLoading}
-                    {...(variant === "delete" && {
-                        backgroundColor: "system.error",
-                        color: "text.white",
-                        _hover: { backgroundColor: "system.error" },
-                        _active: { backgroundColor: "system.error" },
-                        _focus: { backgroundColor: "system.error" },
-                    })}
+                    {...baseButtonProps}
                     {...confirmButtonProps}
+                    {...getConfirmButtonStyle()}
                 >
                     {confirmButtonProps.children ?? t("confirm")}
                 </AppButton>

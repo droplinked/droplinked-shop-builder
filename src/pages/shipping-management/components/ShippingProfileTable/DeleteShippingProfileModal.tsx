@@ -22,11 +22,11 @@ function DeleteShippingProfileModal({ shippingProfile, isOpen, onClose }: Props)
             icon={<WarningLg color="#fff" />}
             title="Delete Shipping Profile"
             description="Are you sure you want to delete this shipping profile? It will be permanently removed and this action cannot be undone."
+            variant="delete"
             confirmButtonProps={{
                 children: 'Delete Profile',
                 onClick: handleDelete
             }}
-            variant="delete"
         />
     )
 }
