@@ -8,6 +8,7 @@ import { TelegramMd } from 'assets/icons/SocialMedia/Colorless/Telegram/Telegram
 import { XMd } from 'assets/icons/SocialMedia/Colorless/X/XMd'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import LanguageSelect from 'pages/settings/components/pages/general/components/preferences/default-store-language/LanguageSelect'
+import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -34,18 +35,21 @@ function BrandIdentity() {
 
     return (
         <Box>
-            <Flex
-                as={Link}
+            <IframeAwareLink
                 to="/"
-                alignItems="center"
-                gap={3}
-                marginBottom={3}
+                chakraProps={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 3,
+                    marginBottom: 3,
+                    textDecoration: 'none'
+                }}
             >
                 <Box {...ICON_WRAPPER_STYLES}>
                     <Drop3 width="24px" height="24px" color='#fff' />
                 </Box>
                 <DroplinkedTypography width="129px" height="24px" color='#fff' />
-            </Flex>
+            </IframeAwareLink>
 
             <Text fontSize={{ base: 14, md: 16 }} fontWeight={500} color="text.white">
                 {t('Footer.BrandIdentity.commerceTagline')}

@@ -2,6 +2,7 @@ import { Box, Link as ChakraLink, useBreakpointValue, useDisclosure } from '@cha
 import Drop3 from 'assets/brand-identity/Drop3'
 import DroplinkedTypography from 'assets/brand-identity/DroplinkedTypography'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
+import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import React from 'react'
 import { Link } from "react-router-dom"
 import MobileDrawer from '../MobileDrawer/MobileDrawer'
@@ -44,19 +45,26 @@ const BrandIcon = () => {
         <>
             <Box {...flexContainerStyles}>
                 {iconComponent}
-                <Link to='/'>
+                <IframeAwareLink to='/' chakraProps={{ textDecoration: 'none' }}>
                     {typographyComponent}
-                </Link>
+                </IframeAwareLink>
             </Box>
             <MobileDrawer isOpen={isOpen} onClose={onClose} />
         </>
     )
 
     return (
-        <ChakraLink as={Link} to="/" width="200px" {...flexContainerStyles}>
+        <IframeAwareLink 
+            to="/" 
+            chakraProps={{ 
+                width: "200px", 
+                textDecoration: 'none',
+                ...flexContainerStyles 
+            }}
+        >
             {iconComponent}
             {typographyComponent}
-        </ChakraLink>
+        </IframeAwareLink>
     )
 }
 
