@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { EditMd } from 'assets/icons/Action/Edit/EditMd'
+import { LocationMd } from 'assets/icons/System/Location/LocationMd'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 
@@ -29,15 +30,14 @@ export default function AddressHolder({ onOpen, addressData }: Props) {
             borderColor="neutral.gray.800"
         >
             <Flex gap={2} alignItems={"start"}>
-                <AppIcons.Location />
+                <LocationMd color='#fff' />
                 <AppTypography fontSize={{ base: 14, md: 16 }} color={"#fff"}>
                     {`${addressLine1}, ${city}, ${state} ${zip}, ${country}`}
                 </AppTypography>
             </Flex>
-            <AppIcons.EditOutlined
-                style={{ cursor: "pointer" }}
-                onClick={onOpen}
-            />
+            <button onClick={onOpen}>
+                <EditMd color='#fff' />
+            </button>
         </Flex>
     )
 }

@@ -5,35 +5,27 @@ import BlueButton from "components/redesign/button/BlueButton";
 import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
-import { addressByIdService, createAddressService, updateAddressService } from "services/address/addressServices";
-import useAppStore from "stores/app/appStore";
+import useShopAddress from "hooks/useShopAddress/useShopAddress";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import React from "react";
-import { useMutation, useQuery } from "react-query";
-import { formValidation, IAddressInputs, initialValues } from "./formConfigs";
-import AddressInputs from "./components/AddressInputs";
-import AddressHolder from "./components/AddressHolder";
+import { useMutation } from "react-query";
+import { createAddressService, updateAddressService } from "services/address/addressServices";
 import { IcreateAddressService, IupdateAddressService } from "services/address/interfaces";
+import useAppStore from "stores/app/appStore";
+import AddressHolder from "./components/AddressHolder";
+import AddressInputs from "./components/AddressInputs";
+import { formValidation, IAddressInputs, initialValues } from "./formConfigs";
 
 export default function Address() {
+    const { onOpen, onClose, isOpen } = useDisclosure();
+    const { mutateAsync: createAddress } = useMutation((params: IcreateAddressService) => createAddressService(params))
+    const { mutateAsync: updateAddress } = useMutation((params: IupdateAddressService) => updateAddressService(params))
     const { shop, updateShop, loading } = useAppStore();
     const { addressBookID } = shop;
     const { showToast } = useAppToast();
-    const { onOpen, onClose, isOpen } = useDisclosure();
     const { t } = useLocaleResources('settings');
-    const { mutateAsync: createAddress } = useMutation((params: IcreateAddressService) => createAddressService(params))
-    const { mutateAsync: updateAddress } = useMutation((params: IupdateAddressService) => updateAddressService(params))
-    const { isFetching, data, refetch } = useQuery({
-        queryKey: ["shopAddressInformation", addressBookID],
-        enabled: !!addressBookID,
-        queryFn: () => addressByIdService({ addressID: addressBookID }),
-        onError: () => {
-            showToast({
-                message: t("Address.errors.fetchFailed"),
-                type: "error",
-            });
-        },
-    });
+    const { isFetching, data, refetch } = useShopAddress()
+
     const handleSubmit = async (formValues: IAddressInputs, { setSubmitting }) => {
         try {
             if (addressBookID) {
@@ -46,7 +38,7 @@ export default function Address() {
                 })
             }
             showToast({
-                message: addressBookID ? t("Address.success.updated") : t("Address.success.created"),
+                message: t(`common:address.success.${addressBookID ? "updated" : "created"}`),
                 type: "success"
             });
             onClose();
@@ -93,7 +85,7 @@ export default function Address() {
                         )}
                         {isOpen && (
                             <Formik
-                                initialValues={initialValues({ data: data?.data?.data })}
+                                initialValues={initialValues({ data })}
                                 onSubmit={handleSubmit}
                                 validateOnChange={false}
                                 validationSchema={formValidation(t)}
@@ -102,7 +94,7 @@ export default function Address() {
                             </Formik>
                         )}
                         {!isOpen && addressBookID && (
-                            <AddressHolder onOpen={onOpen} addressData={data?.data?.data} />
+                            <AddressHolder onOpen={onOpen} addressData={data} />
                         )}
                     </>
                 )

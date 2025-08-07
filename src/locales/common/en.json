@@ -223,5 +223,37 @@
     "sectionTitle": "JOIN NOW",
     "headingTitle": "Ready to Get Started?",
     "headingSubtitle": "Now's the chance to join the next wave of commerce and make an impact"
+  },
+  "address": {
+    "success": {
+      "created": "Store address has been added successfully!",
+      "updated": "Store address has been updated!"
+    },
+    "errors": {
+      "fetchFailed": "Unable to get address Information",
+      "saveFailed": "Unable to save address Information",
+      "statesError": "Unable to get states Information",
+      "countriesError": "Unable to get countries Information",
+      "citiesError": "Unable to get cities Information"
+    },
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "addressLine1": "Address Line 1",
+      "addressLine2": "Address Line 2",
+      "country": "Country",
+      "state": "State",
+      "city": "City",
+      "zip": "Zip Code"
+    },
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "stateRequired": "State is required",
+      "countryRequired": "Country is required",
+      "cityRequired": "City is required",
+      "zipRequired": "Zip is required",
+      "addressLine1Required": "Address line 1 is required"
+    }
   }
 }

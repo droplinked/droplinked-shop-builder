@@ -1,8 +1,8 @@
 import useAppToast from "hooks/toast/useToast";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
-import { allCountriesService } from "services/address/addressServices";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { allCountriesService } from "services/address/addressServices";
 import DropDown from "./DropDown";
 
 export default function CountriesField() {
@@ -21,7 +21,7 @@ export default function CountriesField() {
         },
         onError: () => {
             showToast({
-                message: t("Address.errors.countriesError"),
+                message: t("common:address.errors.countriesError"),
                 type: "error",
             });
         },
@@ -32,7 +32,7 @@ export default function CountriesField() {
             isLoading={isCountryFetching}
             options={countries}
             name="country"
-                            placeholder={t("Address.fields.country")}
+            placeholder={t("common:address.fields.country")}
             key={"country"}
         />
     );
