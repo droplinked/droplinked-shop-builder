@@ -5,17 +5,19 @@ import AppTypography from 'components/common/typography/AppTypography';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import React from 'react';
 
+
 interface Props {
-    amountType: string
     type: string
+    amountType: string
+    description?: string
 }
 
-export default function TypeColumn({ amountType, type }: Props) {
+export default function TypeColumn({ amountType, type , description}: Props) {
     const [isMobile] = useMediaQuery('(max-width: 768px)')
     const isInbound = amountType === "INCREASE"
 
     return (
-        <Flex
+         <Flex
             maxWidth={isMobile ? "50%" : "100%"}
             direction={isMobile ? 'column' : 'row'}
             alignItems={isMobile ? 'flex-start' : 'center'}
@@ -30,7 +32,14 @@ export default function TypeColumn({ amountType, type }: Props) {
                         : <ArrowupLg color='#ff2244' />
                 }
             />
-            <AppTypography color="#fff" fontSize={16}>{type}</AppTypography>
+            <Flex direction="column">
+                <AppTypography color="#fff" fontSize={16}>{type}</AppTypography>
+                {description && (
+                    <AppTypography color="gray.400" fontSize={12} mt={1}>
+                        {description}
+                    </AppTypography>
+                )}
+            </Flex>
         </Flex>
     )
 }
