@@ -34,7 +34,11 @@ export default function TransactionsTable() {
             accessorKey: "type",
 
             header: t("common:type"),
-            cell: (info) => <TypeColumn type={info.getValue() as string} amountType={info.row.original.amountType} />,
+            cell: (info) => <TypeColumn
+                type={info.getValue() as string}
+                amountType={info.row.original.amountType}
+                description={info.row.original.description} 
+            />,
         },
         {
             accessorKey: "amount",

@@ -27,7 +27,14 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
             bg="#141414"
         >
             <Flex justify="space-between" align="start">
-                <TypeColumn type={type} amountType={amountType} />
+                <Flex direction="column" gap={1}>
+                    <TypeColumn type={type} amountType={amountType} />
+                    {transaction?.description && (
+                        <Text color="text.subtext.placeholder.dark" fontSize={12}>
+                            {transaction.description}
+                        </Text>
+                    )}
+                </Flex>
 
                 <Flex align="center" gap={4}>
                     <StatusBadge status={status as "SUCCESS" | "FAILED"} />
