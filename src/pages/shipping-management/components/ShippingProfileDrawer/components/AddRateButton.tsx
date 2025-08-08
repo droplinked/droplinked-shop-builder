@@ -20,7 +20,7 @@ function AddRateButton({ onClick }: Props) {
                 <Text color="text.subtext.placeholder.dark">Add options and rates for this zone.</Text>
             </Box>
 
-            <button onClick={onClick}>
+            <button type='button' onClick={onClick}>
                 <PlusMd color='currentColor' />
             </button>
         </Flex>

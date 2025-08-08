@@ -40,54 +40,52 @@ function ShippingZoneDrawer({ isOpen, onClose, onSave }: Props) {
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
             <ShippingDrawer.Header title="Add Shipping Zone" description="Create Shipping Profile" />
             <ShippingDrawer.Body>
-                <Flex flexDirection="column" gap={6} padding={9}>
-                    <AppInput
-                        label="Zone Name"
-                        inputProps={{
-                            placeholder: 'Enter zone name',
-                            value: zoneName,
-                            onChange: (e) => setZoneName(e.target.value),
-                            isRequired: true,
-                        }}
-                    />
+                <AppInput
+                    label="Zone Name"
+                    inputProps={{
+                        placeholder: 'Enter zone name',
+                        value: zoneName,
+                        onChange: (e) => setZoneName(e.target.value),
+                        isRequired: true,
+                    }}
+                />
 
-                    <Flex flexDirection="column" gap={3}>
-                        <Text fontSize={16} fontWeight={500} color="text.white">
-                            Choose Zone or Country
-                        </Text>
-                        <Input
-                            placeholder="Search by country or zone"
-                            border="1px solid"
-                            borderColor="neutral.gray.800"
-                            borderRadius={8}
-                            padding={3}
-                            bg="transparent"
-                            color="text.white"
-                            _placeholder={{ color: 'text.subtext.placeholder.dark' }}
-                        />
-                        <Box
-                            maxHeight="240px"
-                            overflowY="auto"
-                            border="1px solid"
-                            borderColor="neutral.gray.800"
-                            borderRadius={8}
-                            padding={3}
+                <Flex flexDirection="column" gap={3}>
+                    <Text fontSize={16} fontWeight={500} color="text.white">
+                        Choose Zone or Country
+                    </Text>
+                    <Input
+                        placeholder="Search by country or zone"
+                        border="1px solid"
+                        borderColor="neutral.gray.800"
+                        borderRadius={8}
+                        padding={3}
+                        bg="transparent"
+                        color="text.white"
+                        _placeholder={{ color: 'text.subtext.placeholder.dark' }}
+                    />
+                    <Box
+                        maxHeight="240px"
+                        overflowY="auto"
+                        border="1px solid"
+                        borderColor="neutral.gray.800"
+                        borderRadius={8}
+                        padding={3}
+                    >
+                        <CheckboxGroup
+                            colorScheme="green"
+                            value={selectedCountries}
+                            onChange={(val) => setSelectedCountries(val as string[])}
                         >
-                            <CheckboxGroup
-                                colorScheme="green"
-                                value={selectedCountries}
-                                onChange={(val) => setSelectedCountries(val as string[])}
-                            >
-                                <Flex flexDirection="column" gap={2}>
-                                    {COUNTRIES.map((country) => (
-                                        <Checkbox key={country} value={country} color="text.white">
-                                            {country}
-                                        </Checkbox>
-                                    ))}
-                                </Flex>
-                            </CheckboxGroup>
-                        </Box>
-                    </Flex>
+                            <Flex flexDirection="column" gap={2}>
+                                {COUNTRIES.map((country) => (
+                                    <Checkbox key={country} value={country} color="text.white">
+                                        {country}
+                                    </Checkbox>
+                                ))}
+                            </Flex>
+                        </CheckboxGroup>
+                    </Box>
                 </Flex>
             </ShippingDrawer.Body>
             <ShippingDrawer.Footer

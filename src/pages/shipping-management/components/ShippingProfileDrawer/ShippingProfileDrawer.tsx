@@ -1,7 +1,9 @@
+import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
 import { Form, Formik, FormikProvider } from 'formik'
 import React from 'react'
 import ShippingDrawer from '../common/ShippingDrawer'
-import FormContent from './FormContent'
+import GeneralInformationAccordion from './components/accordions/GeneralInformationAccordion'
+import ZonesRatesAccordion from './components/accordions/ZonesRatesAccordion'
 
 interface Props {
     isOpen: boolean
@@ -31,7 +33,15 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
                         <ShippingDrawer.Header title={isEditing ? 'Edit Shipping Profile' : 'Create Shipping Profile'} />
                         <ShippingDrawer.Body>
                             <Form>
-                                <FormContent />
+                                <AppAccordion
+                                    display="flex"
+                                    flexDirection="column"
+                                    gap={4}
+                                    multiCollapse
+                                >
+                                    <GeneralInformationAccordion />
+                                    <ZonesRatesAccordion />
+                                </AppAccordion>
                             </Form>
                         </ShippingDrawer.Body>
                         <ShippingDrawer.Footer

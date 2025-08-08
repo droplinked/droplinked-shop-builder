@@ -1,4 +1,4 @@
-import { Drawer as ChakraDrawer, DrawerFooter as ChakraDrawerFooter, DrawerHeader as ChakraDrawerHeader, DrawerCloseButton, DrawerContent, DrawerOverlay, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Drawer as ChakraDrawer, DrawerFooter as ChakraDrawerFooter, DrawerHeader as ChakraDrawerHeader, DrawerCloseButton, DrawerContent, DrawerOverlay, Flex, Heading, Text } from '@chakra-ui/react'
 import AppButton, { AppButtonProps } from 'components/redesign/button/AppButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { PropsWithChildren } from 'react'
@@ -115,9 +115,15 @@ function DrawerFooter({
     )
 }
 
-// simple passthrough for body
-function DrawerBody({ children }: PropsWithChildren) {
-    return <>{children}</>
+function DrawerBody({ children, ...props }: BoxProps) {
+    return (
+        <Box
+            padding={9}
+            {...props}
+        >
+            {children}
+        </Box>
+    )
 }
 
 const ShippingDrawer = Object.assign(DrawerRoot, {

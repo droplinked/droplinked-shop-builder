@@ -116,7 +116,7 @@ function AppSelect(props: Props) {
     return (
         <InputGroup display="flex" flexDirection="column" {...inputGroupProps}>
             <Flex gap={2} alignItems="center" mb={description ? 1 : 4}>
-                <FormLabel display="flex" gap={1} alignItems="center" fontSize={14} fontWeight={500} color="text.white">
+                <FormLabel display="flex" gap={1} alignItems="center" fontSize={16} fontWeight={500} color="text.white">
                     {label} {isRequired && <AsteriskSm width="12px" height="12px" color='#FF2244' />}
                 </FormLabel>
             </Flex>

@@ -5,9 +5,10 @@ import React from 'react'
 
 interface Props {
     address: any
+    isFetching: boolean
 }
 
-export default function ShopAddress({ address }: Props) {
+export default function ShopAddress({ address, isFetching }: Props) {
     const { t } = useLocaleResources("common")
 
     const fullName = `${address?.firstName} ${address?.lastName}`
