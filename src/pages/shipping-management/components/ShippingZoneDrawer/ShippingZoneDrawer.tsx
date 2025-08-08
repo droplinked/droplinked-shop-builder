@@ -3,12 +3,12 @@ import AppInput from 'components/redesign/input/AppInput'
 import React, { useState } from 'react'
 import ShippingDrawer from '../common/ShippingDrawer'
 
-import { ZoneDto, SHIPPING_METHOD } from '../../types/shipping'
+import { SHIPPING_METHOD, Zone } from '../../types/shipping'
 
 interface Props {
     isOpen: boolean
     onClose: () => void
-    onSave: (zone: ZoneDto) => void
+    onSave: (zone: Zone) => void
 }
 
 const COUNTRIES = [

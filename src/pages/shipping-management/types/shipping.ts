@@ -14,7 +14,7 @@ export interface EstimatedDelivery {
     maxDays: number
 }
 
-export interface CustomShippingDto {
+export interface CustomShipping {
     type: CUSTOM_SHIPPING_TYPE
     rateName: string
     pricePerWeight?: number
@@ -23,15 +23,15 @@ export interface CustomShippingDto {
     estimatedDelivery: EstimatedDelivery
 }
 
-export interface ZoneDto {
+export interface Zone {
     name: string
     countries: string[]
     shippingMethod: SHIPPING_METHOD
     thirdParty?: string[]
-    custom?: CustomShippingDto
+    custom?: CustomShipping
 }
 
 export interface CreateShippingRequest {
     name: string
-    zones: ZoneDto[]
+    zones: Zone[]
 }

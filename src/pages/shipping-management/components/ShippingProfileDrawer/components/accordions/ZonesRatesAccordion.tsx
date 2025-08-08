@@ -1,43 +1,24 @@
-import { Flex, Text } from '@chakra-ui/react'
-import AppButton from 'components/redesign/button/AppButton'
+import { Flex } from '@chakra-ui/react'
+import { DotsMd } from 'assets/icons/Navigation/Dots/DotsMd'
+import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
+import BlueButton from 'components/redesign/button/BlueButton'
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import ProductFormAccordion from 'pages/products/components/ProductDrawer/components/common/ProductFormAccordion'
 import SectionContainer from 'pages/shipping-management/components/common/SectionContainer'
 import React, { useState } from 'react'
+import { Zone } from '../../../../types/shipping'
 import ShippingRateDrawer from '../../../ShippingRateDrawer/ShippingRateDrawer'
 import ShippingZoneDrawer from '../../../ShippingZoneDrawer/ShippingZoneDrawer'
-import { ZoneDto } from '../../../../types/shipping'
-
-interface ShippingRate { id: number; name: string }
-
-type ZoneWithRates = ZoneDto & { id: number; rates: ShippingRate[] }
+import AddRateButton from '../AddRateButton'
+import RateItem from '../RateItem'
 
 function ZonesRatesAccordion() {
-    const [zones, setZones] = useState<ZoneWithRates[]>([])
+    const [zones, setZones] = useState<Zone[]>([])
     const [isZoneModalOpen, setZoneModalOpen] = useState(false)
-
     const [isRateModalOpen, setRateModalOpen] = useState(false)
-    const [activeZoneId, setActiveZoneId] = useState<number | null>(null)
 
-    const handleAddZone = (zoneData: ZoneDto) => {
-        const newZone: ZoneWithRates = {
-            ...zoneData,
-            id: Date.now(),
-            rates: [],
-        }
-        setZones((prev) => [...prev, newZone])
-    }
-
-    const handleAddRate = (rateName: string) => {
-        if (activeZoneId === null) return
-        const newRate: ShippingRate = { id: Date.now(), name: rateName }
-        setZones((prev) =>
-            prev.map((z) => (z.id === activeZoneId ? { ...z, rates: [...z.rates, newRate] } : z))
-        )
-    }
-
-    const openRateModalForZone = (zoneId: number) => {
-        setActiveZoneId(zoneId)
-        setRateModalOpen(true)
+    const handleAddZone = (zoneData: Zone) => {
+        setZones((prev) => [...prev, zoneData])
     }
 
     return (
@@ -46,33 +27,29 @@ function ZonesRatesAccordion() {
                 <Flex direction="column" gap={4}>
                     {zones.map((zone) => (
                         <SectionContainer
-                            key={zone.id}
+                            key={zone.name}
                             title={zone.name}
-                            rightAction={
-                                <AppButton size="sm" onClick={() => openRateModalForZone(zone.id)}>
-                                    Add New Rate
-                                </AppButton>
-                            }
+                            description={`${zone.countries.length} Locations Selected`}
+                            rightAction={<DotsMd color='#fff' />}
                         >
-                            {zone.rates.length > 0 ? (
-                                <Flex flexDir="column" gap={2} padding={4}>
-                                    {zone.rates.map((rate) => (
-                                        <Text key={rate.id} color="text.white">
-                                            {rate.name}
-                                        </Text>
-                                    ))}
-                                </Flex>
-                            ) : (
-                                <Flex padding={4}>
-                                    <Text fontSize={14} color="text.subtext.placeholder.dark">
-                                        No rates added yet.
-                                    </Text>
-                                </Flex>
-                            )}
+                            <RuledGrid columns={1} nested>
+                                <RateItem zone={zone} />
+                                <AddRateButton onClick={() => setRateModalOpen(true)} />
+                            </RuledGrid>
                         </SectionContainer>
                     ))}
 
-                    <AppButton onClick={() => setZoneModalOpen(true)}>Add Shipping Zone</AppButton>
+                    <BlueButton
+                        gap="6px"
+                        border="1px solid"
+                        borderColor="neutral.gray.800"
+                        padding="10px 14px"
+                        fontSize={14}
+                        onClick={() => setZoneModalOpen(true)}
+                    >
+                        <PlusMd color='currentColor' />
+                        Add Shipping Zone
+                    </BlueButton>
                 </Flex>
             </ProductFormAccordion>
 
@@ -86,7 +63,7 @@ function ZonesRatesAccordion() {
             <ShippingRateDrawer
                 isOpen={isRateModalOpen}
                 onClose={() => setRateModalOpen(false)}
-                onSave={handleAddRate}
+                onSave={() => { }}
             />
         </>
     )
