@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Heading } from '@chakra-ui/react'
 import AccessLevelBadge, { AccessLevelBadgeProps } from 'components/redesign/access-level-badge/AccessLevelBadge'
 import { AppAccordionChevron, AppAccordionItem, AppAccordionPanel, AppAccordionTrigger } from 'components/redesign/accordion/AppAccordion'
 import React, { PropsWithChildren } from 'react'
@@ -16,31 +16,24 @@ function ProductFormAccordion({ label, accessLevel, defaultOpen = false, childre
                 display="flex"
                 justifyContent="space-between"
                 borderRadius={8}
-                bgColor="neutral.gray.1000"
                 padding="12px 16px"
+                bgColor="neutral.gray.1000"
                 userSelect="none"
             >
-                <Flex
-                    flex={1}
-                    alignItems="center"
-                    gap={4}
-                    fontSize={18}
-                    fontWeight={700}
-                    color="#fff"
-                >
-                    {label}
+                <Flex flex={1} alignItems="center" gap={4}>
+                    <Heading as="h3" fontSize={18} fontWeight={700} color="text.white">
+                        {label}
+                    </Heading>
                     {accessLevel && <AccessLevelBadge level={accessLevel} />}
                 </Flex>
-                <AppAccordionChevron width="24px" height="24px" />
+                <AppAccordionChevron />
             </AppAccordionTrigger>
 
             <AppAccordionPanel
                 display="flex"
                 flexDirection="column"
                 gap={9}
-                mt={9}
-                paddingInline={4}
-                paddingBottom={8}
+                padding="36px 16px"
             >
                 {children}
             </AppAccordionPanel>

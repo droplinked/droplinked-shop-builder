@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Flex, Box, Text, Checkbox, CheckboxGroup, Input } from '@chakra-ui/react'
-import ShippingDrawer from '../../../common/ShippingDrawer'
+import { Box, Checkbox, CheckboxGroup, Flex, Input, Text } from '@chakra-ui/react'
 import AppInput from 'components/redesign/input/AppInput'
+import React, { useState } from 'react'
+import ShippingDrawer from '../../../common/ShippingDrawer'
 
 export interface ShippingZone {
     id: number
