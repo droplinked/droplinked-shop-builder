@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import AppInput from 'components/redesign/input/AppInput'
 import React, { useState } from 'react'
-import ShippingDrawer from '../../../common/ShippingDrawer'
+import ShippingDrawer from '../common/ShippingDrawer'
 
 interface Props {
     isOpen: boolean
@@ -9,7 +9,7 @@ interface Props {
     onSave: (rateName: string) => void
 }
 
-function AddShippingRateModal({ isOpen, onClose, onSave }: Props) {
+function ShippingRateDrawer({ isOpen, onClose, onSave }: Props) {
     const [rateName, setRateName] = useState('')
 
     const handleSave = () => {
@@ -21,7 +21,7 @@ function AddShippingRateModal({ isOpen, onClose, onSave }: Props) {
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
-            <ShippingDrawer.Header title="Add Shipping Rate" description="Create Shopping Profile" />
+            <ShippingDrawer.Header title="Add Shipping Rate" description="Create Shipping Profile" />
             <ShippingDrawer.Body>
                 <Flex flexDirection="column" gap={6} padding={9}>
                     <AppInput
@@ -46,5 +46,5 @@ function AddShippingRateModal({ isOpen, onClose, onSave }: Props) {
     )
 }
 
-export default AddShippingRateModal
+export default ShippingRateDrawer
 

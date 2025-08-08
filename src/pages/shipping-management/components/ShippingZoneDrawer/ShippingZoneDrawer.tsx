@@ -1,27 +1,16 @@
 import { Box, Checkbox, CheckboxGroup, Flex, Input, Text } from '@chakra-ui/react'
 import AppInput from 'components/redesign/input/AppInput'
 import React, { useState } from 'react'
-import ShippingDrawer from '../../../common/ShippingDrawer'
+import ShippingDrawer from '../common/ShippingDrawer'
 
-export interface ShippingZone {
-    id: number
-    name: string
-    countries: string[]
-    rates: ShippingRate[]
-}
-
-export interface ShippingRate {
-    id: number
-    name: string
-}
+import { ZoneDto, SHIPPING_METHOD } from '../../types/shipping'
 
 interface Props {
     isOpen: boolean
     onClose: () => void
-    onSave: (zone: Omit<ShippingZone, 'id' | 'rates'>) => void
+    onSave: (zone: ZoneDto) => void
 }
 
-// A very simple representation of countries / zones list to imitate the UI in the provided screenshot
 const COUNTRIES = [
     'Worldwide',
     'European Union',
@@ -35,23 +24,21 @@ const COUNTRIES = [
     'Angola',
 ]
 
-function AddShippingZoneModal({ isOpen, onClose, onSave }: Props) {
+function ShippingZoneDrawer({ isOpen, onClose, onSave }: Props) {
     const [zoneName, setZoneName] = useState('')
     const [selectedCountries, setSelectedCountries] = useState<string[]>([])
 
     const handleSave = () => {
         if (!zoneName.trim()) return
-
-        onSave({ name: zoneName.trim(), countries: selectedCountries })
+        onSave({ name: zoneName.trim(), countries: selectedCountries, shippingMethod: SHIPPING_METHOD.CUSTOM })
         onClose()
-        // reset state after closing
         setZoneName('')
         setSelectedCountries([])
     }
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
-            <ShippingDrawer.Header title="Add Shipping Zone" description="Create Shopping Profile" />
+            <ShippingDrawer.Header title="Add Shipping Zone" description="Create Shipping Profile" />
             <ShippingDrawer.Body>
                 <Flex flexDirection="column" gap={6} padding={9}>
                     <AppInput
@@ -103,7 +90,6 @@ function AddShippingZoneModal({ isOpen, onClose, onSave }: Props) {
                     </Flex>
                 </Flex>
             </ShippingDrawer.Body>
-
             <ShippingDrawer.Footer
                 primaryText="Save"
                 secondaryText="Discard"
@@ -115,5 +101,5 @@ function AddShippingZoneModal({ isOpen, onClose, onSave }: Props) {
     )
 }
 
-export default AddShippingZoneModal
+export default ShippingZoneDrawer
 

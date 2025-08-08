@@ -3,21 +3,25 @@ import AppButton from 'components/redesign/button/AppButton'
 import ProductFormAccordion from 'pages/products/components/ProductDrawer/components/common/ProductFormAccordion'
 import SectionContainer from 'pages/shipping-management/components/common/SectionContainer'
 import React, { useState } from 'react'
-import AddShippingRateModal from '../modals/AddShippingRateModal'
-import AddShippingZoneModal, { ShippingRate, ShippingZone } from '../modals/AddShippingZoneModal'
+import ShippingRateDrawer from '../../../ShippingRateDrawer/ShippingRateDrawer'
+import ShippingZoneDrawer from '../../../ShippingZoneDrawer/ShippingZoneDrawer'
+import { ZoneDto } from '../../../../types/shipping'
+
+interface ShippingRate { id: number; name: string }
+
+type ZoneWithRates = ZoneDto & { id: number; rates: ShippingRate[] }
 
 function ZonesRatesAccordion() {
-    const [zones, setZones] = useState<ShippingZone[]>([])
+    const [zones, setZones] = useState<ZoneWithRates[]>([])
     const [isZoneModalOpen, setZoneModalOpen] = useState(false)
 
     const [isRateModalOpen, setRateModalOpen] = useState(false)
     const [activeZoneId, setActiveZoneId] = useState<number | null>(null)
 
-    const handleAddZone = (zoneData: Omit<ShippingZone, 'id' | 'rates'>) => {
-        const newZone: ShippingZone = {
+    const handleAddZone = (zoneData: ZoneDto) => {
+        const newZone: ZoneWithRates = {
+            ...zoneData,
             id: Date.now(),
-            name: zoneData.name,
-            countries: zoneData.countries,
             rates: [],
         }
         setZones((prev) => [...prev, newZone])
@@ -73,13 +77,13 @@ function ZonesRatesAccordion() {
             </ProductFormAccordion>
 
             {/* Modals */}
-            <AddShippingZoneModal
+            <ShippingZoneDrawer
                 isOpen={isZoneModalOpen}
                 onClose={() => setZoneModalOpen(false)}
                 onSave={handleAddZone}
             />
 
-            <AddShippingRateModal
+            <ShippingRateDrawer
                 isOpen={isRateModalOpen}
                 onClose={() => setRateModalOpen(false)}
                 onSave={handleAddRate}
