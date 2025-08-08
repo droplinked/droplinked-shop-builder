@@ -10,7 +10,6 @@ interface Props {
 
 function DeleteShippingProfileModal({ shippingProfile, isOpen, onClose }: Props) {
     const handleDelete = () => {
-        // TODO: Replace with actual delete service
         console.log('Delete shipping profile:', shippingProfile)
         onClose()
     }

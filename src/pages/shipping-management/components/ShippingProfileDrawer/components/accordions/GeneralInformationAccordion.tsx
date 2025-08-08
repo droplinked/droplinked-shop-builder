@@ -2,8 +2,8 @@ import useShopAddress from 'hooks/useShopAddress/useShopAddress'
 import ProductFormAccordion from 'pages/products/components/ProductDrawer/components/common/ProductFormAccordion'
 import React from 'react'
 import ShippingProfileName from '../fields/ShippingProfileName'
-import ShopAddress from '../fields/ShopAddressManager/ShopAddress'
-import ShopAddressForm from '../fields/ShopAddressManager/ShopAddressForm'
+import ShopAddress from '../fields/ShopAddress'
+import ShopAddressForm from '../fields/ShopAddressForm'
 
 function GeneralInformationAccordion() {
     const { addressBookID, data } = useShopAddress()

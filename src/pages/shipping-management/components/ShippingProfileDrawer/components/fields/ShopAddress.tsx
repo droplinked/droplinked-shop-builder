@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid, Text } from '@chakra-ui/react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import SectionContainer from 'pages/shipping-management/components/common/SectionContainer'
 import React from 'react'
-import SectionContainer from '../../common/SectionContainer'
 
 interface Props {
     address: any
