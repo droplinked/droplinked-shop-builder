@@ -84,6 +84,7 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
                     helpers.setSubmitting(true)
                     await createCustomShippingService(values)
                     showToast({ type: 'success', message: isEditing ? 'Shipping profile updated' : 'Shipping profile created' })
+                    helpers.resetForm()
                     onClose()
                 } catch (error: any) {
                     showToast({ type: 'error', message: error?.response?.data?.message || 'Failed to save shipping profile' })
@@ -92,33 +93,40 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
                 }
             }}
         >
-            {formik => (
-                <FormikProvider value={formik}>
-                    <ShippingDrawer isOpen={isOpen} onClose={onClose}>
-                        <ShippingDrawer.Header title={isEditing ? 'Edit Shipping Profile' : 'Create Shipping Profile'} />
-                        <ShippingDrawer.Body>
-                            <Form>
-                                <AppAccordion
-                                    display="flex"
-                                    flexDirection="column"
-                                    gap={4}
-                                    multiCollapse
-                                >
-                                    <GeneralInformationAccordion />
-                                    <ZonesRatesAccordion />
-                                </AppAccordion>
-                            </Form>
-                        </ShippingDrawer.Body>
-                        <ShippingDrawer.Footer
-                            primaryText={isEditing ? 'Update Profile' : 'Create Profile'}
-                            secondaryText="Discard"
-                            onPrimary={() => formik.submitForm()}
-                            onSecondary={onClose}
-                            primaryButtonProps={{ isLoading: formik.isSubmitting }}
-                        />
-                    </ShippingDrawer>
-                </FormikProvider>
-            )}
+            {formik => {
+                const handleClose = () => {
+                    formik.resetForm()
+                    onClose()
+                }
+
+                return (
+                    <FormikProvider value={formik}>
+                        <ShippingDrawer isOpen={isOpen} onClose={handleClose}>
+                            <ShippingDrawer.Header title={isEditing ? 'Edit Shipping Profile' : 'Create Shipping Profile'} />
+                            <ShippingDrawer.Body>
+                                <Form>
+                                    <AppAccordion
+                                        display="flex"
+                                        flexDirection="column"
+                                        gap={4}
+                                        multiCollapse
+                                    >
+                                        <GeneralInformationAccordion />
+                                        <ZonesRatesAccordion />
+                                    </AppAccordion>
+                                </Form>
+                            </ShippingDrawer.Body>
+                            <ShippingDrawer.Footer
+                                primaryText={isEditing ? 'Update Profile' : 'Create Profile'}
+                                secondaryText="Discard"
+                                onPrimary={() => formik.submitForm()}
+                                onSecondary={handleClose}
+                                primaryButtonProps={{ isLoading: formik.isSubmitting }}
+                            />
+                        </ShippingDrawer>
+                    </FormikProvider>
+                )
+            }}
         </Formik>
     )
 }
