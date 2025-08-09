@@ -24,6 +24,7 @@ export interface CustomShipping {
 }
 
 export interface Zone {
+    _id?: string
     name: string
     countries: string[]
     shippingMethod: SHIPPING_METHOD
