@@ -3,7 +3,7 @@ import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
 import React from 'react'
 import { CUSTOM_SHIPPING_TYPE, CustomShipping } from '../../types/shipping'
-import TwinInputCard from '../common/TwinInputCard'
+import LabeledContent from '../common/LabeledContent'
 
 interface Props {
     value: CustomShipping
@@ -42,7 +42,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
                 }}
             />
 
-            <TwinInputCard label='Estimated Delivery Time (In Days)'>
+            <LabeledContent label='Estimated Delivery Time (In Days)'>
                 <SimpleGrid columns={2} gap={4}>
                     <AppInput
                         inputProps={{
@@ -73,7 +73,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
                         }}
                     />
                 </SimpleGrid>
-            </TwinInputCard>
+            </LabeledContent>
 
             {value.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE && (
                 <AppInput

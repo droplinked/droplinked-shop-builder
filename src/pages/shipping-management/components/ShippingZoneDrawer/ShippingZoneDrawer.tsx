@@ -1,117 +1,82 @@
-import { Box, Checkbox, CheckboxGroup, Flex, Input, Text } from '@chakra-ui/react'
-import AppInput from 'components/redesign/input/AppInput'
 import { useFormikContext } from 'formik'
-import React, { useMemo, useState } from 'react'
-import ShippingDrawer from '../common/ShippingDrawer'
-
+import React, { useEffect, useState } from 'react'
 import { SHIPPING_METHOD, Zone } from '../../types/shipping'
+import ShippingDrawer from '../common/ShippingDrawer'
+import CountrySelector from './CountrySelector'
+import ZoneNameInput from './ZoneNameInput'
 
 interface Props {
     isOpen: boolean
     onClose: () => void
+    zone?: Zone
     onSave: (zone: Zone) => void
 }
 
 const COUNTRIES = [
-    'Worldwide',
-    'European Union',
-    'Belgium',
-    'Greece',
-    'Lithuania',
-    'Portugal',
-    'Afghanistan',
-    'Albania',
-    'Algeria',
-    'Angola',
+    'Worldwide', 'European Union', 'Belgium', 'Greece', 'Lithuania',
+    'Portugal', 'Afghanistan', 'Albania', 'Algeria', 'Angola',
 ]
 
-function ShippingZoneDrawer({ isOpen, onClose, onSave }: Props) {
-    const [zoneName, setZoneName] = useState('')
-    const [selectedCountries, setSelectedCountries] = useState<string[]>([])
-    const { values } = useFormikContext<{ zones: Zone[] }>()
+function ShippingZoneDrawer({ isOpen, onClose, zone, onSave }: Props) {
+    const { setFieldValue, values } = useFormikContext<{ zones: Zone[] }>()
+    const [draftZone, setDraftZone] = useState<Partial<Zone>>({})
 
-    const isDuplicateName = useMemo(() => {
-        const trimmed = zoneName.trim().toLowerCase()
-        if (!trimmed) return false
-        return (values?.zones || []).some((z) => z.name.trim().toLowerCase() === trimmed)
-    }, [zoneName, values?.zones])
+    useEffect(() => {
+        if (isOpen) {
+            setDraftZone(zone || { shippingMethod: SHIPPING_METHOD.CUSTOM, countries: [], name: '' })
+        }
+    }, [isOpen, zone])
+
+    const updateDraft = (patch: Partial<Zone>) => {
+        setDraftZone((prev) => ({ ...prev, ...patch }))
+    }
 
     const handleSave = () => {
-        if (!zoneName.trim() || isDuplicateName) return
-        onSave({ name: zoneName.trim(), countries: selectedCountries, shippingMethod: SHIPPING_METHOD.CUSTOM })
+        const zoneToSave = { ...draftZone, _id: draftZone._id || String(Date.now()) } as Zone
+
+        const existingZoneIndex = values.zones.findIndex(z => z._id === zoneToSave._id)
+
+        if (existingZoneIndex > -1) {
+            const updatedZones = [...values.zones]
+            updatedZones[existingZoneIndex] = zoneToSave
+            setFieldValue('zones', updatedZones)
+        } else {
+            onSave(zoneToSave)
+        }
+
         onClose()
-        setZoneName('')
-        setSelectedCountries([])
     }
+
+    const isNameValid = draftZone.name && draftZone.name.trim().length > 0
+    const hasCountries = draftZone.countries && draftZone.countries.length > 0
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
-            <ShippingDrawer.Header title="Add Shipping Zone" description="Create Shipping Profile" />
-            <ShippingDrawer.Body
-                display="flex"
-                flexDirection="column"
-                gap={9}
-            >
-                <AppInput
-                    label="Zone Name"
-                    inputProps={{
-                        placeholder: 'Enter zone name',
-                        value: zoneName,
-                        onChange: (e) => setZoneName(e.target.value),
-                        isRequired: true,
-                    }}
-                    state={isDuplicateName ? 'error' : undefined}
-                    message={isDuplicateName ? 'Zone name already exists' : undefined}
+            <ShippingDrawer.Header
+                title={zone ? "Edit Shipping Zone" : "Add Shipping Zone"}
+                description="Manage zones for your shipping profiles"
+            />
+            <ShippingDrawer.Body display="flex" flexDirection="column" gap={9}>
+                <ZoneNameInput
+                    value={draftZone.name || ''}
+                    onChange={(name) => updateDraft({ name })}
+                    currentZoneId={zone?._id}
                 />
-
-                <Flex flexDirection="column" gap={3}>
-                    <Text fontSize={16} fontWeight={500} color="text.white">
-                        Choose Zone or Country
-                    </Text>
-                    <Input
-                        placeholder="Search by country or zone"
-                        border="1px solid"
-                        borderColor="neutral.gray.800"
-                        borderRadius={8}
-                        padding={3}
-                        bg="transparent"
-                        color="text.white"
-                        _placeholder={{ color: 'text.subtext.placeholder.dark' }}
-                    />
-                    <Box
-                        maxHeight="240px"
-                        overflowY="auto"
-                        border="1px solid"
-                        borderColor="neutral.gray.800"
-                        borderRadius={8}
-                        padding={3}
-                    >
-                        <CheckboxGroup
-                            colorScheme="green"
-                            value={selectedCountries}
-                            onChange={(val) => setSelectedCountries(val as string[])}
-                        >
-                            <Flex flexDirection="column" gap={2}>
-                                {COUNTRIES.map((country) => (
-                                    <Checkbox key={country} value={country} color="text.white">
-                                        {country}
-                                    </Checkbox>
-                                ))}
-                            </Flex>
-                        </CheckboxGroup>
-                    </Box>
-                </Flex>
+                <CountrySelector
+                    allCountries={COUNTRIES}
+                    selectedCountries={draftZone.countries || []}
+                    onSelectionChange={(countries) => updateDraft({ countries })}
+                />
             </ShippingDrawer.Body>
             <ShippingDrawer.Footer
                 primaryText="Save"
                 secondaryText="Discard"
                 onPrimary={handleSave}
                 onSecondary={onClose}
-                primaryButtonProps={{ isDisabled: !zoneName.trim() || isDuplicateName || selectedCountries.length === 0 }}
+                primaryButtonProps={{ isDisabled: !isNameValid || !hasCountries }}
             />
         </ShippingDrawer>
     )
 }
 
 export default ShippingZoneDrawer
-

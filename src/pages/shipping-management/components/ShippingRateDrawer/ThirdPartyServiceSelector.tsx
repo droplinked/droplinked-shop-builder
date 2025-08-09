@@ -2,7 +2,7 @@ import { Flex, Text } from '@chakra-ui/react'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import React from 'react'
-import TwinInputCard from '../common/TwinInputCard'
+import LabeledContent from '../common/LabeledContent'
 
 interface Props {
     selected: string[]
@@ -25,9 +25,7 @@ function ThirdPartyServiceSelector({ selected, onChange }: Props) {
     }
 
     return (
-        <TwinInputCard
-            label="Shipping Services"
-        >
+        <LabeledContent label="Shipping Services">
             <RuledGrid columns={1} borderRadius={8}>
                 {AVAILABLE_SERVICES.map((service) => (
                     <Flex
@@ -45,8 +43,7 @@ function ThirdPartyServiceSelector({ selected, onChange }: Props) {
                     </Flex>
                 ))}
             </RuledGrid>
-        </TwinInputCard>
-
+        </LabeledContent>
     )
 }
 

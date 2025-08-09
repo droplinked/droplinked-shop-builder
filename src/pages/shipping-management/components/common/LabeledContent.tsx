@@ -7,7 +7,7 @@ interface Props extends PropsWithChildren {
     description?: string
 }
 
-function TwinInputCard({ label, description, children }: Props) {
+function LabeledContent({ label, description, children }: Props) {
     return (
         <Flex direction="column">
             <Text
@@ -28,4 +28,4 @@ function TwinInputCard({ label, description, children }: Props) {
     )
 }
 
-export default TwinInputCard
+export default LabeledContent
