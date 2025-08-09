@@ -1,8 +1,8 @@
-import { Editor, EditorProps } from 'droplinked-designer-configs'
+import { Editor, EditorProps } from 'droplinked-designer-configs';
+import 'droplinked-designer-configs/dist/droplinked-designer-configs.css';
 import { Data } from 'droplinked-designer-core';
-import "droplinked-designer-core/dist/index.css"
-import 'droplinked-designer-configs/dist/droplinked-designer-configs.css'
-import React from 'react'
+import "droplinked-designer-core/dist/index.css";
+import React from 'react';
 import useAppStore from 'stores/app/appStore';
 
 function TemplateCreatePage() {
@@ -136,6 +136,7 @@ function TemplateCreatePage() {
         initialData: initialData,
         shopName: name,
         onUpdate: (data: Data) => console.log("Data updated:", data),
+        iframe: { enabled: false }
     }
 
     return (
