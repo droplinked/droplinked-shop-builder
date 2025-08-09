@@ -76,7 +76,6 @@ function ZonesRatesAccordion() {
 
             {/* Modals */}
             <ShippingZoneDrawer {...zoneModal} onSave={handleAddZone} />
-
             <ShippingRateDrawer {...rateModal} zone={zones[activeZoneIndex]} />
         </>
     )
