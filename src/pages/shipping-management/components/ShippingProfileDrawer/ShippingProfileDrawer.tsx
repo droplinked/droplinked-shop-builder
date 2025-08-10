@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
-    const { name, zones } = useShippingManagementStore()
+    const { name, zones, resetShippingProfile } = useShippingManagementStore()
     const { showToast } = useAppToast()
     const { t } = useLocaleResources("common")
 
@@ -51,6 +51,7 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
             if (isEditing) await updateShippingProfile(shippingProfile?._id!, shippingProfile)
             else await createShippingProfile(shippingProfile)
             showToast({ type: 'success', message: 'Shipping profile saved successfully' })
+            resetShippingProfile()
             onClose()
         } catch (error) {
             showToast({ type: 'error', message: error.message ?? t("common:genericError") })

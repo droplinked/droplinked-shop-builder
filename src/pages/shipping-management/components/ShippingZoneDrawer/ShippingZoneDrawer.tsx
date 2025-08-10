@@ -1,6 +1,6 @@
-import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
+import useShippingManagementStore, { initialZone } from 'pages/shipping-management/stores/useShippingManagementStore'
 import React, { useEffect, useState } from 'react'
-import { SHIPPING_METHOD, Zone } from '../../types/shipping'
+import { Zone } from '../../types/shipping'
 import ShippingDrawer from '../common/ShippingDrawer'
 import CountrySelector from './CountrySelector'
 import ZoneNameInput from './ZoneNameInput'
@@ -8,43 +8,32 @@ import ZoneNameInput from './ZoneNameInput'
 interface Props {
     isOpen: boolean
     onClose: () => void
-    zone?: Zone
+    zoneIndex?: number
 }
 
-function ShippingZoneDrawer({ isOpen, onClose, zone }: Props) {
-    const [draftZone, setDraftZone] = useState<Partial<Zone>>({
-        name: '',
-        countries: [],
-        shippingMethod: SHIPPING_METHOD.THIRD_PARTY
-    })
-
+function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
+    const [draftZone, setDraftZone] = useState<Partial<Zone>>(initialZone)
     const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
         zones: s.zones,
         updateShippingProfile: s.updateShippingProfile
     }))
 
-    // Update draft zone when the modal opens or when zone prop changes
-    useEffect(() => {
-        if (isOpen && zone) setDraftZone({ ...zone })
-    }, [isOpen, zone])
+    const isNameValid = draftZone.name?.trim().length > 0
+    const hasCountries = draftZone.countries?.length > 0
 
-    const updateDraft = (patch: Partial<Zone>) => setDraftZone((prev) => ({ ...prev, ...patch }))
+    const updateDraft = (patch: Partial<Zone>) => {
+        setDraftZone((prev) => ({ ...prev, ...patch }))
+    }
 
     const handleSave = () => {
         const zoneToSave = { ...draftZone } as Zone
 
         if (!zoneToSave.name || !zoneToSave.countries) return
 
-        // Find existing zone by checking both _id and countries
-        const existingZoneIndex = zones.findIndex(z =>
-            z.countries.length === zoneToSave.countries.length &&
-            z.countries.every(country => zoneToSave.countries.includes(country))
-        )
-
-        if (existingZoneIndex > -1) {
+        if (zoneIndex !== undefined) {
             // If zone exists, update it
             const updatedZones = [...zones]
-            updatedZones[existingZoneIndex] = zoneToSave
+            updatedZones[zoneIndex] = zoneToSave
             updateShippingProfile('zones', updatedZones)
         } else {
             // Create a new zone
@@ -54,13 +43,18 @@ function ShippingZoneDrawer({ isOpen, onClose, zone }: Props) {
         onClose()
     }
 
-    const isNameValid = draftZone.name?.trim().length > 0
-    const hasCountries = draftZone.countries?.length > 0
+    // Update draft zone when the modal opens or when zone prop changes
+    useEffect(() => {
+        if (zoneIndex !== undefined) {
+            const zone = zones[zoneIndex]
+            setDraftZone({ ...zone })
+        }
+    }, [zoneIndex])
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
             <ShippingDrawer.Header
-                title={`${zone ? 'Edit' : 'Add'} Shipping Zone`}
+                title={`${zoneIndex ? 'Edit' : 'Add'} Shipping Zone`}
                 description="Manage zones for your shipping profiles"
             />
             <ShippingDrawer.Body display="flex" flexDirection="column" gap={9}>
