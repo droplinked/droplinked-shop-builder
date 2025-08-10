@@ -3,21 +3,24 @@ import { CopyMd } from 'assets/icons/Action/Copy/CopyMd'
 import { EditMd } from 'assets/icons/Action/Edit/EditMd'
 import { TrashMd } from 'assets/icons/Action/Trash/TrashMd'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
+import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React from 'react'
+import ShippingProfileDrawer from '../ShippingProfileDrawer/ShippingProfileDrawer'
 import DeleteShippingProfileModal from './DeleteShippingProfileModal'
 
 interface Props {
-    shippingProfile: any
+    shippingProfile: ShippingProfile
 }
 
 function ShippingProfileTableActionMenu({ shippingProfile }: Props) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const shippingProfileDrawer = useDisclosure()
+    const deleteModal = useDisclosure()
 
     const actions = [
         {
             icon: <EditMd color='#fff' />,
             title: "Edit",
-            onClick: () => console.log("Edit!")
+            onClick: shippingProfileDrawer.onOpen
         },
         {
             icon: <CopyMd color='#fff' />,
@@ -28,18 +31,15 @@ function ShippingProfileTableActionMenu({ shippingProfile }: Props) {
             icon: <TrashMd color='#ff2244' />,
             title: "Remove",
             color: "system.error",
-            onClick: onOpen
+            onClick: deleteModal.onOpen
         }
     ]
 
     return (
         <>
             <TableMenu items={actions} />
-            <DeleteShippingProfileModal
-                isOpen={isOpen}
-                onClose={onClose}
-                shippingProfile={shippingProfile}
-            />
+            <DeleteShippingProfileModal {...deleteModal} shippingProfile={shippingProfile} />
+            <ShippingProfileDrawer {...shippingProfileDrawer} shippingProfile={shippingProfile} />
         </>
     )
 }

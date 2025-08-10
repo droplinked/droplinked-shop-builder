@@ -1,4 +1,3 @@
-import { useFormikContext } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { CUSTOM_SHIPPING_TYPE, CustomShipping, SHIPPING_METHOD, Zone } from '../../types/shipping'
 import ShippingDrawer from '../common/ShippingDrawer'
@@ -13,8 +12,6 @@ interface Props {
 }
 
 function ShippingRateDrawer({ isOpen, onClose, zone }: Props) {
-    const { values, setFieldValue } = useFormikContext<{ zones: Zone[] }>()
-
     const defaultCustom = (): CustomShipping => ({
         type: CUSTOM_SHIPPING_TYPE.FLAT_RATE,
         rateName: '',
@@ -37,8 +34,7 @@ function ShippingRateDrawer({ isOpen, onClose, zone }: Props) {
     const updateDraft = (patch: Partial<Zone>) => setDraftZone((prev) => ({ ...prev, ...patch }))
 
     const commitDraft = () => {
-        const updatedZones = values.zones.map((z) => (z._id === zone?._id ? draftZone : z))
-        setFieldValue('zones', updatedZones)
+        // TODO: Implement commit draft
     }
 
     const shippingMethod = draftZone?.shippingMethod as SHIPPING_METHOD

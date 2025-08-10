@@ -23,7 +23,6 @@ function ShopAddressForm() {
                     <AppInput
                         label='First Name'
                         inputProps={{
-
                             isRequired: true,
                             placeholder: 'John',
                         }}

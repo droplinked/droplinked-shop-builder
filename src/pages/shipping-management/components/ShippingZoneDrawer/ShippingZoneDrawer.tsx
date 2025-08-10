@@ -1,6 +1,6 @@
-import { useFormikContext } from 'formik'
+import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import React, { useEffect, useState } from 'react'
-import { SHIPPING_METHOD, Zone } from '../../types/shipping'
+import { Zone } from '../../types/shipping'
 import ShippingDrawer from '../common/ShippingDrawer'
 import CountrySelector from './CountrySelector'
 import ZoneNameInput from './ZoneNameInput'
@@ -9,7 +9,6 @@ interface Props {
     isOpen: boolean
     onClose: () => void
     zone?: Zone
-    onSave: (zone: Zone) => void
 }
 
 const COUNTRIES = [
@@ -17,14 +16,15 @@ const COUNTRIES = [
     'Portugal', 'Afghanistan', 'Albania', 'Algeria', 'Angola',
 ]
 
-function ShippingZoneDrawer({ isOpen, onClose, zone, onSave }: Props) {
-    const { setFieldValue, values } = useFormikContext<{ zones: Zone[] }>()
+function ShippingZoneDrawer({ isOpen, onClose, zone }: Props) {
     const [draftZone, setDraftZone] = useState<Partial<Zone>>({})
+    const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
+        zones: s.zones,
+        updateShippingProfile: s.updateShippingProfile
+    }))
 
     useEffect(() => {
-        if (isOpen) {
-            setDraftZone(zone || { shippingMethod: SHIPPING_METHOD.CUSTOM, countries: [], name: '' })
-        }
+        isOpen && setDraftZone(zone)
     }, [isOpen, zone])
 
     const updateDraft = (patch: Partial<Zone>) => {
@@ -32,16 +32,13 @@ function ShippingZoneDrawer({ isOpen, onClose, zone, onSave }: Props) {
     }
 
     const handleSave = () => {
-        const zoneToSave = { ...draftZone, _id: draftZone._id || String(Date.now()) } as Zone
-
-        const existingZoneIndex = values.zones.findIndex(z => z._id === zoneToSave._id)
+        const zoneToSave = { ...draftZone } as Zone
+        const existingZoneIndex = zones.findIndex(z => z._id === zoneToSave._id)
 
         if (existingZoneIndex > -1) {
-            const updatedZones = [...values.zones]
+            const updatedZones = [...zones]
             updatedZones[existingZoneIndex] = zoneToSave
-            setFieldValue('zones', updatedZones)
-        } else {
-            onSave(zoneToSave)
+            updateShippingProfile('zones', updatedZones)
         }
 
         onClose()
@@ -53,7 +50,7 @@ function ShippingZoneDrawer({ isOpen, onClose, zone, onSave }: Props) {
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
             <ShippingDrawer.Header
-                title={zone ? "Edit Shipping Zone" : "Add Shipping Zone"}
+                title={`${zone ? 'Edit' : 'Add'} Shipping Zone`}
                 description="Manage zones for your shipping profiles"
             />
             <ShippingDrawer.Body display="flex" flexDirection="column" gap={9}>

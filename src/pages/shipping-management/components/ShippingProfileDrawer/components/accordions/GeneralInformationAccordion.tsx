@@ -1,5 +1,4 @@
 import useShopAddress from 'hooks/useShopAddress/useShopAddress'
-import { useFormikContext } from 'formik'
 import ProductFormAccordion from 'pages/products/components/ProductDrawer/components/common/ProductFormAccordion'
 import React from 'react'
 import ShippingProfileName from '../ShippingProfileName'
@@ -8,7 +7,6 @@ import ShopAddressForm from '../ShopAddressForm'
 
 function GeneralInformationAccordion() {
     const { addressBookID, isFetching, data } = useShopAddress()
-    const { isSubmitting } = useFormikContext()
 
     return (
         <ProductFormAccordion
@@ -16,11 +14,10 @@ function GeneralInformationAccordion() {
             defaultOpen={true}
         >
             <ShippingProfileName />
-            {/* {addressBookID
+            {addressBookID
                 ? <ShopAddress address={data} isFetching={isFetching} />
                 : <ShopAddressForm />
-            } */}
-            <ShopAddressForm />
+            }
         </ProductFormAccordion>
     )
 }

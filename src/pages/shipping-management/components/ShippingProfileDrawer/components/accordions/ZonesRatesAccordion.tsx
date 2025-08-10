@@ -2,7 +2,6 @@ import { Flex, useDisclosure } from '@chakra-ui/react'
 import { DotsMd } from 'assets/icons/Navigation/Dots/DotsMd'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import BlueButton from 'components/redesign/button/BlueButton'
-import { useFormikContext } from 'formik'
 import ProductFormAccordion from 'pages/products/components/ProductDrawer/components/common/ProductFormAccordion'
 import SectionContainer from 'pages/shipping-management/components/common/SectionContainer'
 import React, { useState } from 'react'
@@ -13,15 +12,9 @@ import AddRateButton from '../AddRateButton'
 import RateItem from '../RateItem'
 
 function ZonesRatesAccordion() {
-    const { values, setFieldValue } = useFormikContext<{ zones: Zone[] }>()
-    const zones = values.zones || []
     const zoneModal = useDisclosure()
     const rateModal = useDisclosure()
     const [activeZoneIndex, setActiveZoneIndex] = useState<number | null>(null)
-
-    const handleAddZone = (zoneData: Zone) => {
-        setFieldValue('zones', [...zones, zoneData])
-    }
 
     const openRateModalForZone = (index: number) => {
         setActiveZoneIndex(index)
@@ -32,7 +25,7 @@ function ZonesRatesAccordion() {
         <>
             <ProductFormAccordion label="Zones and Rates">
                 <Flex direction="column" gap={4}>
-                    {zones.map((zone, index) => {
+                    {[].map((zone, index) => {
                         const shouldShowAddButton = (
                             zone.shippingMethod === SHIPPING_METHOD.THIRD_PARTY &&
                             (!zone.thirdParty || zone.thirdParty.length === 0)
@@ -75,8 +68,8 @@ function ZonesRatesAccordion() {
             </ProductFormAccordion>
 
             {/* Modals */}
-            <ShippingZoneDrawer {...zoneModal} onSave={handleAddZone} />
-            <ShippingRateDrawer {...rateModal} zone={zones[activeZoneIndex]} />
+            <ShippingZoneDrawer {...zoneModal} />
+            <ShippingRateDrawer {...rateModal} zone={null} />
         </>
     )
 }

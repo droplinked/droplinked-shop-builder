@@ -1,7 +1,5 @@
 import AppInput from 'components/redesign/input/AppInput'
-import { useFormikContext } from 'formik'
-import React, { useMemo } from 'react'
-import { Zone } from '../../../types/shipping'
+import React from 'react'
 
 interface Props {
     value: string
@@ -10,16 +8,6 @@ interface Props {
 }
 
 export default function ZoneNameInput({ value, onChange, currentZoneId }: Props) {
-    const { values } = useFormikContext<{ zones: Zone[] }>()
-
-    const isDuplicateName = useMemo(() => {
-        const trimmed = value.trim().toLowerCase()
-        if (!trimmed) return false
-        return (values?.zones || []).some(
-            (z) => z.name.trim().toLowerCase() === trimmed && z._id !== currentZoneId
-        )
-    }, [value, values?.zones, currentZoneId])
-
     return (
         <AppInput
             label="Zone Name"
@@ -30,8 +18,6 @@ export default function ZoneNameInput({ value, onChange, currentZoneId }: Props)
                 fontSize: 16,
                 onChange: (e) => onChange(e.target.value),
             }}
-            state={isDuplicateName ? 'error' : undefined}
-            message={isDuplicateName ? 'Zone name already exists' : undefined}
         />
     )
 }

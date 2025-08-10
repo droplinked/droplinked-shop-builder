@@ -26,13 +26,14 @@ export interface CustomShipping {
 export interface Zone {
     _id?: string
     name: string
-    countries: string[]
+    countries: string[] //ISO 3166-1 alpha-3
     shippingMethod: SHIPPING_METHOD
     thirdParty?: string[]
     custom?: CustomShipping
 }
 
-export interface CreateShippingRequest {
+export interface ShippingProfile {
+    _id?: string
     name: string
     zones: Zone[]
 }
