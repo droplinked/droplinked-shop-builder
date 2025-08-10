@@ -262,15 +262,6 @@
       "colorName": "Color Name",
       "enterValue": "Enter Value"
     },
-    "customShippingForm": {
-      "title": "Create New Custom Shipping",
-      "description": "Add an option to provide custom shipping details.",
-      "titleLabel": "Title",
-      "titlePlaceholder": "e.g., Express Delivery, Standard Shipping",
-      "create": "Create",
-      "successMessage": "Your custom shipping option has been created successfully.",
-      "errorMessage": "common:errors.failedToCreate"
-    },
     "variantSelector": {
       "createCustomVariant": "Create Custom Variant",
       "createVariant": "Create \"{{variant}}\"",
@@ -531,22 +522,6 @@
     "label": "Shipping Method",
     "description": "Choose how to ship this product to customers.",
     "customShipping": "Custom Shipping"
-  },
-  "CustomShippingForm": {
-    "title": "Create New Custom Shipping",
-    "description": "Add an option to provide custom shipping details.",
-    "titleLabel": "Title",
-    "titlePlaceholder": "e.g., Express Delivery, Standard Shipping",
-    "successMessage": "Your custom shipping option has been created successfully."
-  },
-  "CustomShippingFileUpload": {
-    "title": "File",
-    "description": "Upload Shipping Details File.",
-    "sampleFile": {
-      "title": "Sample File",
-      "description": "Use the sample template to ensure correct file format and details.",
-      "downloadTemplate": "Download Template"
-    }
   },
   "PhysicalProductVariants": {
     "label": "Variants",

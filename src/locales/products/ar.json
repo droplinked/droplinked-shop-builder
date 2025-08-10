@@ -262,15 +262,6 @@
       "colorName": "اسم اللون",
       "enterValue": "أدخل القيمة"
     },
-    "customShippingForm": {
-      "title": "إنشاء شحن مخصص جديد",
-      "description": "أضف خياراً لتوفير تفاصيل الشحن المخصصة.",
-      "titleLabel": "العنوان",
-      "titlePlaceholder": "مثال: التوصيل السريع، الشحن القياسي",
-      "create": "إنشاء",
-      "successMessage": "تم إنشاء خيار الشحن المخصص بنجاح.",
-      "errorMessage": "common:errors.failedToCreate"
-    },
     "variantSelector": {
       "createCustomVariant": "إنشاء متغير مخصص",
       "createVariant": "إنشاء \"{{variant}}\"",
@@ -531,22 +522,6 @@
     "label": "طريقة الشحن",
     "description": "اختر كيفية شحن هذا المنتج للعملاء.",
     "customShipping": "شحن مخصص"
-  },
-  "CustomShippingForm": {
-    "title": "إنشاء شحن مخصص جديد",
-    "description": "إضافة خيار لتوفير تفاصيل الشحن المخصصة.",
-    "titleLabel": "العنوان",
-    "titlePlaceholder": "مثال: توصيل سريع، شحن قياسي",
-    "successMessage": "تم إنشاء خيار الشحن المخصص بنجاح."
-  },
-  "CustomShippingFileUpload": {
-    "title": "ملف",
-    "description": "تحميل ملف تفاصيل الشحن.",
-    "sampleFile": {
-      "title": "ملف عينة",
-      "description": "استخدم قالب العينة لضمان تنسيق الملف والتفاصيل الصحيحة.",
-      "downloadTemplate": "تحميل القالب"
-    }
   },
   "PhysicalProductVariants": {
     "label": "المتغيرات",
