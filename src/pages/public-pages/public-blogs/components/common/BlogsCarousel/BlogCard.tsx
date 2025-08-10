@@ -53,7 +53,7 @@ const DiscoverCard: React.FC<DiscoverCardProps> = ({
         }
       }}
       onClick={() => {
-        navigate(`/blog/${slug}`);
+        navigate(`/blogs/${slug}`);
       }}
     >
       {/* Added shadow overlay at bottom */}

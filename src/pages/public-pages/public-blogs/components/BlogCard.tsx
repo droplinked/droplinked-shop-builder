@@ -57,7 +57,7 @@ function BlogCard({ blog }: BlogCardProps) {
   );
 
   return (
-    <Link to={`/blog/${blog.slug}`}>
+    <Link to={`/blogs/${blog.slug}`}>
       <Box
         data-state="Default"
         borderRadius="2xl"

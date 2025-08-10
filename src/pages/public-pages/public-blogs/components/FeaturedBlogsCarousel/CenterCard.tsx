@@ -23,7 +23,7 @@ export function CenterCard({ slide }: CenterCardProps) {
     >
       <Box
         as={Link}
-        to={`/blog/${slide.slug}`}
+        to={`/blogs/${slide.slug}`}
         data-state="Hover"
         w={{ base: '100%', md: '636px' }}
         h={{ base: '384px', md: '480px' }}

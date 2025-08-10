@@ -96,7 +96,7 @@ function LatestBlogsGrid() {
             overflow="hidden"
             onMouseEnter={() => setHoveredCard('card1')}
             onMouseLeave={() => setHoveredCard(null)}
-            onClick={() => navigate(`/blog/${firstBlog?.slug}`)}
+            onClick={() => navigate(`/blogs/${firstBlog?.slug}`)}
             cursor="pointer"
             transition="all 0.2s ease-in-out"
             _hover={{
@@ -163,7 +163,7 @@ function LatestBlogsGrid() {
             overflow="hidden"
             onMouseEnter={() => setHoveredCard('card2')}
             onMouseLeave={() => setHoveredCard(null)}
-            onClick={() => navigate(`/blog/${firstBlog?.slug}`)}
+            onClick={() => navigate(`/blogs/${firstBlog?.slug}`)}
             cursor="pointer"
             transition="all 0.2s ease-in-out"
             role="group"
@@ -227,7 +227,7 @@ function LatestBlogsGrid() {
           overflow="hidden"
           onMouseEnter={() => setHoveredCard('card3')}
           onMouseLeave={() => setHoveredCard(null)}
-          onClick={() => navigate(`/blog/${secondBlog?.slug}`)}
+          onClick={() => navigate(`/blogs/${secondBlog?.slug}`)}
           cursor="pointer"
           transition="all 0.2s ease-in-out"
           role="group"
@@ -287,7 +287,7 @@ function LatestBlogsGrid() {
             overflow="hidden"
             onMouseEnter={() => setHoveredCard('card2')}
             onMouseLeave={() => setHoveredCard(null)}
-            onClick={() => navigate(`/blog/${firstBlog?.slug}`)}
+            onClick={() => navigate(`/blogs/${firstBlog?.slug}`)}
             cursor="pointer"
             transition="all 0.2s ease-in-out"
             _hover={{
@@ -351,7 +351,7 @@ function LatestBlogsGrid() {
             overflow="hidden"
             onMouseEnter={() => setHoveredCard('card4')}
             onMouseLeave={() => setHoveredCard(null)}
-            onClick={() => navigate(`/blog/${thirdBlog?.slug}`)}
+            onClick={() => navigate(`/blogs/${thirdBlog?.slug}`)}
             cursor="pointer"
             transition="all 0.2s ease-in-out"
             _hover={{
@@ -403,7 +403,7 @@ function LatestBlogsGrid() {
             overflow="hidden"
             onMouseEnter={() => setHoveredCard('card5')}
             onMouseLeave={() => setHoveredCard(null)}
-            onClick={() => navigate(`/blog/${thirdBlog?.slug}`)}
+            onClick={() => navigate(`/blogs/${thirdBlog?.slug}`)}
             cursor="pointer"
             transition="all 0.2s ease-in-out"
             _hover={{
