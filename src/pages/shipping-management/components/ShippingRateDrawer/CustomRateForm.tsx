@@ -42,7 +42,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
                 }}
             />
 
-            <LabeledContent label='Estimated Delivery Time (In Days)'>
+            <LabeledContent label='Estimated Delivery Time (In Days)' required>
                 <SimpleGrid columns={2} gap={4}>
                     <AppInput
                         inputProps={{

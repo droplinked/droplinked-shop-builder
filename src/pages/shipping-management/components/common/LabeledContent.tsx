@@ -1,13 +1,14 @@
 import { Flex, Text } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import React, { PropsWithChildren } from 'react'
 
 interface Props extends PropsWithChildren {
     label: string
     description?: string
+    required?: boolean
 }
 
-function LabeledContent({ label, description, children }: Props) {
+function LabeledContent({ label, description, children, required }: Props) {
     return (
         <Flex direction="column">
             <Text
@@ -20,7 +21,7 @@ function LabeledContent({ label, description, children }: Props) {
                 color="text.white"
             >
                 {label}
-                <AppIcons.Required />
+                {required && <AsteriskSm color='#ff2244' width={12} height={12} />}
             </Text>
             {description && <Text marginBottom={4} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>}
             {children}

@@ -1,4 +1,4 @@
-import { Select as ChakraSelect, Flex, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text } from '@chakra-ui/react'
+import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text } from '@chakra-ui/react'
 import { ChevrondownMd } from 'assets/icons/Navigation/ChevronDown/ChevrondownMd'
 import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
@@ -115,11 +115,9 @@ function AppSelect(props: Props) {
 
     return (
         <InputGroup display="flex" flexDirection="column" {...inputGroupProps}>
-            <Flex gap={2} alignItems="center" mb={description ? 1 : 4}>
-                <FormLabel display="flex" gap={1} alignItems="center" fontSize={16} fontWeight={500} color="text.white">
-                    {label} {isRequired && <AsteriskSm width="12px" height="12px" color='#FF2244' />}
-                </FormLabel>
-            </Flex>
+            <FormLabel mb={description ? 1 : 4} display="flex" alignItems="center" gap={1} fontSize={16} fontWeight={500} color="text.white">
+                {label} {isRequired && <AsteriskSm width="12px" height="12px" color='#FF2244' />}
+            </FormLabel>
             {description && <Text mb={4} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>}
             {selectElement}
             {error && <ErrorMessage mt={2}>{error}</ErrorMessage>}

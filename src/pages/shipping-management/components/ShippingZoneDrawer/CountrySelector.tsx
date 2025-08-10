@@ -31,7 +31,7 @@ export default function CountrySelector({ allCountries, selectedCountries, onSel
     }
 
     return (
-        <LabeledContent label='Choose Zone or Country'>
+        <LabeledContent label='Choose Zone or Country' required>
             <Flex direction="column" gap={4}>
                 <AppInput
                     inputProps={{

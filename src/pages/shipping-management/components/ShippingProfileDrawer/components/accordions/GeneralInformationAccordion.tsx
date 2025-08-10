@@ -16,10 +16,11 @@ function GeneralInformationAccordion() {
             defaultOpen={true}
         >
             <ShippingProfileName />
-            {addressBookID
+            {/* {addressBookID
                 ? <ShopAddress address={data} isFetching={isFetching} />
                 : <ShopAddressForm />
-            }
+            } */}
+            <ShopAddressForm />
         </ProductFormAccordion>
     )
 }

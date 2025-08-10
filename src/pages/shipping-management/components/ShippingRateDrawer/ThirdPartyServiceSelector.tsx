@@ -25,7 +25,7 @@ function ThirdPartyServiceSelector({ selected, onChange }: Props) {
     }
 
     return (
-        <LabeledContent label="Shipping Services">
+        <LabeledContent label="Shipping Services" required>
             <RuledGrid columns={1} borderRadius={8}>
                 {AVAILABLE_SERVICES.map((service) => (
                     <Flex
