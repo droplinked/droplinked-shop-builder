@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import arLocale from 'locales/public-pages/blogs/ar.json';
-import enLocale from 'locales/public-pages/blogs/en.json';
+import arLocale from 'locales/public-pages/public-blogs/ar.json';
+import enLocale from 'locales/public-pages/public-blogs/en.json';
 import React from 'react';
 import { LazyLoad } from '../landings/_shared/components/LazyLoad';
 import MaxWidthWrapper from '../landings/_shared/components/MaxWidthWrapper';
@@ -15,7 +15,7 @@ import PublicBlogsHeader from './components/PublicBlogsHeader';
 import useBlogs from './hooks/useBlogs';
 
 function BlogPage() {
-  useLocaleResources('public-pages/blog', { en: enLocale, ar: arLocale });
+  useLocaleResources('public-pages/public-blogs', { en: enLocale, ar: arLocale });
   const { blogs, isLoading } = useBlogs();
 
   const sections = [
