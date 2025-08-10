@@ -131,13 +131,6 @@ const router = createBrowserRouter([
             {
                 path: "style-center",
                 children: [
-                    {
-                        path: "template-builder",
-                        children: [
-                            { index: true, element: <TemplateDesigner /> },
-                            { path: "edit/:templateId", element: <TemplateEditPage /> },
-                        ]
-                    },
                     { path: "product-tiles", element: <TileDesign /> },
                     { path: "product-links", element: <PaymentLink /> }
                 ]
@@ -203,6 +196,13 @@ const router = createBrowserRouter([
         ]
     },
     {
+        path: "/analytics/style-center/template-builder",
+        errorElement: <MaintenancePage />,
+        children: [
+            { index: true, element: <TemplateCreatePage /> }
+        ]
+    },
+    {
         path: "shop-management",
         element: <ProducerLayout hideSidebar={true} showBackground={true} />,
         errorElement: <MaintenancePage />,
@@ -212,7 +212,6 @@ const router = createBrowserRouter([
     },
     { path: "onboarding", element: <Onboarding /> },
     { path: "invoice/:txId", element: <InvoiceTemplate /> },
-    { path: "analytics/style-center/template-builder/create", element: <TemplateCreatePage /> },
     { path: "*", element: <NotFoundPage /> }
 ])
 

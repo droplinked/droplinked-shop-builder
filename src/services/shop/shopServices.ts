@@ -110,3 +110,7 @@ export const deployCircleContract = (network: string) => axiosInstance.post('sho
 
 export const getCurrencyList = () =>
 	axiosInstance.get<{ data: string[] }>('shop/currency-list').then(res => res.data)
+
+export const getShopTemplate = () => axiosInstance.get<{ shopTemplate: string }>('shop/template')
+
+export const updateShopTemplate = (shopTemplate: string) => axiosInstance.put('shop/template', { shopTemplate })
