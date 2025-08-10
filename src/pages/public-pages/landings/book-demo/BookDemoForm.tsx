@@ -50,10 +50,11 @@ export default function BookDemoForm() {
                 message: ''
             }}
             validationSchema={formSchema}
-            validateOnChange={false}
+            validateOnChange={true}
+            validateOnMount={true}
             onSubmit={handleSubmit}
         >
-            {({ values, handleChange, errors, isSubmitting }) => (
+            {({ values, handleChange, errors, isSubmitting, touched, isValid }) => (
                 <Form
                     style={{
                         flex: 1,
@@ -74,7 +75,7 @@ export default function BookDemoForm() {
                                     value: values.name,
                                     onChange: handleChange
                                 }}
-                                message={errors.name}
+                                message={touched.name && errors.name}
 
                             />
                             <AppInput
@@ -86,7 +87,7 @@ export default function BookDemoForm() {
                                     value: values.email,
                                     onChange: handleChange
                                 }}
-                                message={errors.email}
+                                message={touched.email && errors.email}
                             />
                         </Flex>
 
@@ -129,7 +130,7 @@ export default function BookDemoForm() {
                         />
                     </Flex>
 
-                    <AppButton type="submit" isLoading={isSubmitting}>
+                    <AppButton type="submit" isLoading={isSubmitting} isDisabled={!isValid || isSubmitting}>
                         {t('common:submit')}
                     </AppButton>
                 </Form>
