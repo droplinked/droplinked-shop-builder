@@ -4,19 +4,19 @@ import React from 'react'
 interface Props {
     value: string
     onChange: (value: string) => void
-    currentZoneId?: string
 }
 
-export default function ZoneNameInput({ value, onChange, currentZoneId }: Props) {
+export default function ZoneNameInput({ value, onChange }: Props) {
     return (
         <AppInput
             label="Zone Name"
             inputProps={{
-                placeholder: 'i.e. (Domestic, International)',
-                value: value,
-                isRequired: true,
-                fontSize: 16,
+                name: 'zoneName',
+                value,
                 onChange: (e) => onChange(e.target.value),
+                placeholder: 'i.e. (Domestic, International)',
+                isRequired: true,
+                fontSize: 16
             }}
         />
     )

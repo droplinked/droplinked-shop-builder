@@ -9,7 +9,8 @@ export const getShippingProfiles = async () => {
 export const deleteShippingProfile = async (shippingProfileId: string) =>
     axiosInstance.delete(`/shippings/v2/${shippingProfileId}`)
 
-export const createShippingProfile = async (shippingProfile: ShippingProfile) => {
-    const response = await axiosInstance.post('/shipping-profiles', shippingProfile)
-    return response.data
-}
+export const createShippingProfile = async (shippingProfile: ShippingProfile) =>
+    axiosInstance.post('/shippings/v2/', shippingProfile)
+
+export const updateShippingProfile = async (shippingProfileId: string, shippingProfile: ShippingProfile) =>
+    axiosInstance.patch(`/shippings/v2/${shippingProfileId}`, shippingProfile)

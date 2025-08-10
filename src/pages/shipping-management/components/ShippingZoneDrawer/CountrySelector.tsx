@@ -7,13 +7,14 @@ import React, { useMemo, useState } from 'react'
 import LabeledContent from '../common/LabeledContent'
 
 interface Props {
-    allCountries: string[]
     selectedCountries: string[]
     onSelectionChange: (countries: string[]) => void
 }
 
-export default function CountrySelector({ allCountries, selectedCountries, onSelectionChange }: Props) {
+export default function CountrySelector({ selectedCountries, onSelectionChange }: Props) {
     const [searchTerm, setSearchTerm] = useState('')
+
+    const allCountries = ["Worldwide", "European Union", "Belgium", "Greece", "Lithuania", "Portugal", "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau"]
 
     const filteredCountries = useMemo(() => {
         if (!searchTerm) return allCountries
@@ -35,9 +36,10 @@ export default function CountrySelector({ allCountries, selectedCountries, onSel
             <Flex direction="column" gap={4}>
                 <AppInput
                     inputProps={{
-                        placeholder: 'Search by country or zone',
                         value: searchTerm,
                         onChange: (e) => setSearchTerm(e.target.value),
+                        placeholder: 'Search by country or zone',
+                        fontSize: 16
                     }}
                     leftElement={<SearchLg color='#7b7b7b' />}
                 />
