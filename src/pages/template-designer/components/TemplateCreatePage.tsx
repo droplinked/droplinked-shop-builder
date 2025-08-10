@@ -43,6 +43,9 @@ function TemplateCreatePage() {
         },
         publishLoading: isUpdatingTemplate,
         iframe: { enabled: false },
+        themeName: "Theme",
+        isLive: true,
+        isNewTheme: false,
         onExit: () => navigate(-1)
     }
 
