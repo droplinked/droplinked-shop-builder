@@ -17,7 +17,6 @@ export default function SectionTitle({ sectionTitle, icon }: Props) {
             minWidth={{ base: "80%", md: "376px" }}
             position="relative"
             top="-10px"
-            background="neutral.websiteBackground"
             {...(icon && {
                 _before: {
                     content: '""',
