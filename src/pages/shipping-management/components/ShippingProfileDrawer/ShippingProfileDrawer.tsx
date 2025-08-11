@@ -3,7 +3,7 @@ import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import { SHIPPING_METHOD, ShippingProfile } from 'pages/shipping-management/types/shipping'
-import React from 'react'
+import React, { useState } from 'react'
 import { createShippingProfile, updateShippingProfile } from 'services/shipping-management/services'
 import ShippingDrawer from '../common/ShippingDrawer'
 import GeneralInformationAccordion from './components/accordions/GeneralInformationAccordion'
@@ -16,6 +16,7 @@ interface Props {
 }
 
 const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
+    const [isSaving, setIsSaving] = useState(false)
     const { name, zones, resetShippingProfile } = useShippingManagementStore()
     const { showToast } = useAppToast()
     const { t } = useLocaleResources("common")
@@ -47,15 +48,17 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
 
     const handleSave = async () => {
         try {
+            setIsSaving(true)
             validate()
             if (isEditing) await updateShippingProfile(shippingProfile?._id!, shippingProfile)
-            else await createShippingProfile(shippingProfile)
+            else await createShippingProfile({ name, zones })
             showToast({ type: 'success', message: 'Shipping profile saved successfully' })
             resetShippingProfile()
             onClose()
         } catch (error) {
             showToast({ type: 'error', message: error.message ?? t("common:genericError") })
-            return
+        } finally {
+            setIsSaving(false)
         }
     }
 
@@ -83,7 +86,7 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
                 secondaryText="Discard"
                 onPrimary={handleSave}
                 onSecondary={handleClose}
-                primaryButtonProps={{ isLoading: false }}
+                primaryButtonProps={{ isLoading: isSaving, isDisabled: isSaving }}
             />
         </ShippingDrawer>
     )

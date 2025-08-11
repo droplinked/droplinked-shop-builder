@@ -1,6 +1,6 @@
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import { defaultZone } from 'pages/shipping-management/utils/utils'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Zone } from '../../types/shipping'
 import ShippingDrawer from '../common/ShippingDrawer'
 import CountrySelector from './CountrySelector'
@@ -44,6 +44,10 @@ function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
         onClose()
     }
 
+    const handleCountrySelectionChange = useCallback((countries) => {
+        updateDraft({ countries })
+    }, [])
+
     // Update draft zone when the modal opens or when zone prop changes
     useEffect(() => {
         if (zoneIndex !== undefined) {
@@ -65,7 +69,7 @@ function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
                 />
                 <CountrySelector
                     selectedCountries={draftZone.countries || []}
-                    onSelectionChange={(countries) => updateDraft({ countries })}
+                    onSelectionChange={handleCountrySelectionChange}
                 />
             </ShippingDrawer.Body>
             <ShippingDrawer.Footer

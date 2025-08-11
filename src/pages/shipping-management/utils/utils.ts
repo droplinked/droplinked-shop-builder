@@ -24,3 +24,13 @@ export const defaultCustom = (): CustomShipping => ({
     rateName: '',
     estimatedDelivery: { minDays: 0, maxDays: 0 },
 })
+
+export const getEmoji = (emojiU: string) => {
+    if (!emojiU) return ''
+    try {
+        const codes = emojiU.split(' ').map(code => parseInt(code.replace('U+', ''), 16))
+        return String.fromCodePoint(...codes)
+    } catch {
+        return ''
+    }
+}

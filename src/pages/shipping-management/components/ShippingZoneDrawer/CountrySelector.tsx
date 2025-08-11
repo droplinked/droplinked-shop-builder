@@ -1,66 +1,110 @@
-import { Flex, Text } from '@chakra-ui/react'
 import { SearchLg } from 'assets/icons/System/Search/SearchLg'
-import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
-import React, { useMemo, useState } from 'react'
+import useDebounce from 'hooks/useDebounce/useDebounce'
+import React, { useCallback, useMemo, useState } from 'react'
+import { useQuery } from 'react-query'
+import { allCountriesService } from 'services/address/addressServices'
 import LabeledContent from '../common/LabeledContent'
+import CountryItem from './CountryItem'
+import WorldwideSelector from './WorldwideSelector'
 
 interface Props {
     selectedCountries: string[]
     onSelectionChange: (countries: string[]) => void
 }
 
-export default function CountrySelector({ selectedCountries, onSelectionChange }: Props) {
+function CountrySelector({ selectedCountries, onSelectionChange }: Props) {
     const [searchTerm, setSearchTerm] = useState('')
+    const debouncedSearchTerm = useDebounce(searchTerm)
+    const { data: countries } = useQuery({
+        queryKey: ['countries'],
+        queryFn: allCountriesService,
+        select: (data) => data.data.data.countries || []
+    })
 
-    const allCountries = ["Worldwide", "European Union", "Belgium", "Greece", "Lithuania", "Portugal", "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau"]
-
+    // Memoize filtered countries based on search term
     const filteredCountries = useMemo(() => {
-        if (!searchTerm) return allCountries
-        return allCountries.filter(c => c.toLowerCase().includes(searchTerm.toLowerCase()))
-    }, [allCountries, searchTerm])
+        if (!countries || !Array.isArray(countries)) return []
+        if (!debouncedSearchTerm.trim()) return countries
 
-    const handleCheckboxChange = (country: string, isChecked: boolean) => {
-        let newSelection: string[]
+        const searchLower = debouncedSearchTerm.toLowerCase()
+        return countries.filter((country) => country.name.toLowerCase().includes(searchLower))
+    }, [countries, debouncedSearchTerm])
+
+    // Handle checkbox selection changes
+    const handleCheckboxChange = useCallback((countryId: string, isChecked: boolean) => {
+        if (isChecked) onSelectionChange([...selectedCountries, countryId])
+        else onSelectionChange(selectedCountries.filter(id => id !== countryId))
+    }, [selectedCountries, onSelectionChange])
+
+    // Handle worldwide selection changes (select all or deselect all)
+    const handleWorldwideChange = useCallback((isChecked: boolean) => {
         if (isChecked) {
-            newSelection = [...selectedCountries, country]
+            const allCountryIds = countries?.map(country => country.iso3) || []
+            onSelectionChange(allCountryIds)
         } else {
-            newSelection = selectedCountries.filter(c => c !== country)
+            onSelectionChange([])
         }
-        onSelectionChange(newSelection)
-    }
+    }, [countries, onSelectionChange])
+
+    // Memoize country items for efficient rendering
+    const countryItems = useMemo(() => {
+        return filteredCountries.map((country) => (
+            <CountryItem
+                key={country._id}
+                country={country}
+                isSelected={selectedCountries.includes(country.iso3)}
+                onSelectionChange={handleCheckboxChange}
+            />
+        ))
+    }, [filteredCountries, selectedCountries, handleCheckboxChange])
 
     return (
         <LabeledContent label='Choose Zone or Country' required>
-            <Flex direction="column" gap={4}>
-                <AppInput
-                    inputProps={{
-                        value: searchTerm,
-                        onChange: (e) => setSearchTerm(e.target.value),
-                        placeholder: 'Search by country or zone',
-                        fontSize: 16
-                    }}
-                    leftElement={<SearchLg color='#7b7b7b' />}
+            <AppInput
+                leftElement={<SearchLg color='#7b7b7b' />}
+                inputProps={{
+                    value: searchTerm,
+                    onChange: (e) => setSearchTerm(e.target.value),
+                    placeholder: 'Search by country name',
+                    fontSize: 16
+                }}
+            />
+
+            <RuledGrid
+                columns={1}
+                maxH="400px"
+                marginTop={4}
+                borderRadius={8}
+                overflowY="auto"
+                sx={{
+                    '&::-webkit-scrollbar': { width: '8px' },
+                    '&::-webkit-scrollbar-track': {
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        borderRadius: '4px',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                        background: 'rgba(255, 255, 255, 0.3)',
+                        borderRadius: '4px',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                        background: 'rgba(255, 255, 255, 0.5)',
+                    },
+                }}
+            >
+                {/* Worldwide option */}
+                <WorldwideSelector
+                    countries={countries}
+                    selectedCountries={selectedCountries}
+                    onSelectionChange={handleWorldwideChange}
                 />
-                <RuledGrid columns={1} borderRadius={8} maxH="300px" overflowY="auto">
-                    {filteredCountries.map((country) => (
-                        <Flex
-                            key={country}
-                            alignItems="center"
-                            gap={3}
-                            padding="12px 16px"
-                        >
-                            <Checkbox
-                                value={country}
-                                isChecked={selectedCountries.includes(country)}
-                                onChange={(e) => handleCheckboxChange(country, e.target.checked)}
-                            />
-                            <Text color="text.white" fontSize={16} fontWeight={500}>{country}</Text>
-                        </Flex>
-                    ))}
-                </RuledGrid>
-            </Flex>
+
+                {/* Country list */}
+                {countryItems}
+            </RuledGrid>
         </LabeledContent>
     )
 }
+
+export default CountrySelector
