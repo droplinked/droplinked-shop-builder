@@ -14,6 +14,7 @@ function TemplateCreatePage() {
     const navigate = useNavigate()
     const { isLoadingTemplate, isUpdatingTemplate, templateData, updateTemplate } = useTemplate()
     const { shop: { name, shopDesign, backgroundColor, headerIcon, launchDate, logo } } = useAppStore()
+
     const data: Data = isLoadingTemplate ?
         {} :
         templateData ?
@@ -46,7 +47,13 @@ function TemplateCreatePage() {
         themeName: "Theme",
         isLive: true,
         isNewTheme: false,
-        onExit: () => navigate(-1)
+        onExit: () => navigate(-1),
+        updateData: {
+            author: "droplinked",
+            changes: 1,
+            lastUpdate: "Unknown",
+            url: `https://droplinked.io/${name}`
+        }
     }
 
     return (

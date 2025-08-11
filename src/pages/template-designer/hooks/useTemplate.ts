@@ -7,7 +7,7 @@ const useTemplate = () => {
     const { data: templateData, isFetching: isLoadingTemplate } = useQuery({
         queryKey: ['shopTemplate'],
         queryFn: getShopTemplate,
-        select: (data) => data.data.shopTemplate
+        select: (data) => data.data.data.shopTemplate
     });
 
     const { mutate: updateTemplate, isLoading: isUpdatingTemplate } = useMutation(
