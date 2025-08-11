@@ -3,9 +3,9 @@ import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import { SHIPPING_METHOD, ShippingProfile } from 'pages/shipping-management/types/shipping'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { createShippingProfile, updateShippingProfile } from 'services/shipping-management/services'
+import { createShippingProfile, updateShippingProfile as updateShippingProfileService } from 'services/shipping-management/services'
 import ShippingDrawer from '../common/ShippingDrawer'
 import GeneralInformationAccordion from './components/accordions/GeneralInformationAccordion'
 import ZonesRatesAccordion from './components/accordions/ZonesRatesAccordion'
@@ -19,7 +19,7 @@ interface Props {
 const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
     const [isSaving, setIsSaving] = useState(false)
     const queryClient = useQueryClient()
-    const { name, zones, resetShippingProfile } = useShippingManagementStore()
+    const { name, zones, resetShippingProfile, updateShippingProfile } = useShippingManagementStore()
     const { showToast } = useAppToast()
     const { t } = useLocaleResources("common")
 
@@ -52,7 +52,7 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
         try {
             setIsSaving(true)
             validate()
-            if (isEditing) await updateShippingProfile(shippingProfile?._id!, shippingProfile)
+            if (isEditing) await updateShippingProfileService(shippingProfile?._id!, shippingProfile)
             else await createShippingProfile({ name, zones })
             showToast({ type: 'success', message: 'Shipping profile saved successfully' })
             resetShippingProfile()
@@ -69,6 +69,14 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
         resetShippingProfile()
         onClose()
     }
+
+    // Update the shipping profile when the modal is opened and the shipping profile is provided
+    useEffect(() => {
+        if (isEditing && shippingProfile) {
+            updateShippingProfile("name", shippingProfile.name)
+            updateShippingProfile("zones", shippingProfile.zones)
+        }
+    }, [isEditing, shippingProfile, updateShippingProfile])
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={handleClose}>
