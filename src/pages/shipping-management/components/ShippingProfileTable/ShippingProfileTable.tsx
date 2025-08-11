@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
+import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import Table from 'components/redesign/table/Table'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React from 'react'
@@ -18,12 +19,23 @@ function ShippingProfileTable() {
         {
             accessorKey: 'profileName',
             header: "Profile Name",
-            cell: info => <Text>{info.row.original?.name}</Text>
+            cell: info => <Text fontSize={16} fontWeight={500}>{info.row.original?.name}</Text>
         },
         {
             accessorKey: 'rates',
             header: "Rates",
-            cell: info => <Text>{info.row.original?.zones?.length}</Text>
+            cell: info => {
+                const { zones } = info.row.original
+                const zonesCount = zones?.length
+                const countriesCount = zones?.reduce((acc, zone) => acc + zone.countries.length, 0)
+
+                return (
+                    <DotSeparatedList fontSize={16}>
+                        <Text>{countriesCount} {countriesCount === 1 ? 'Country' : 'Countries'}</Text>
+                        <Text>{zonesCount} {zonesCount === 1 ? 'Zone' : 'Zones'}</Text>
+                    </DotSeparatedList>
+                )
+            }
         },
     ]
 

@@ -4,6 +4,7 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import { SHIPPING_METHOD, ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React, { useState } from 'react'
+import { useQueryClient } from 'react-query'
 import { createShippingProfile, updateShippingProfile } from 'services/shipping-management/services'
 import ShippingDrawer from '../common/ShippingDrawer'
 import GeneralInformationAccordion from './components/accordions/GeneralInformationAccordion'
@@ -17,6 +18,7 @@ interface Props {
 
 const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
     const [isSaving, setIsSaving] = useState(false)
+    const queryClient = useQueryClient()
     const { name, zones, resetShippingProfile } = useShippingManagementStore()
     const { showToast } = useAppToast()
     const { t } = useLocaleResources("common")
@@ -54,6 +56,7 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
             else await createShippingProfile({ name, zones })
             showToast({ type: 'success', message: 'Shipping profile saved successfully' })
             resetShippingProfile()
+            queryClient.invalidateQueries(['shipping-profiles'])
             onClose()
         } catch (error) {
             showToast({ type: 'error', message: error.message ?? t("common:genericError") })
