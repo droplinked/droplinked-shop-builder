@@ -2,6 +2,7 @@ import { SearchLg } from 'assets/icons/System/Search/SearchLg'
 import AppInput from 'components/redesign/input/AppInput'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import useDebounce from 'hooks/useDebounce/useDebounce'
+import { Zone } from 'pages/shipping-management/types/shipping'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
 import { allCountriesService } from 'services/address/addressServices'
@@ -10,11 +11,13 @@ import CountryItem from './CountryItem'
 import WorldwideSelector from './WorldwideSelector'
 
 interface Props {
+    allZones: Zone[]
     selectedCountries: string[]
     onSelectionChange: (countries: string[]) => void
+    zoneIndex?: number
 }
 
-function CountrySelector({ selectedCountries, onSelectionChange }: Props) {
+function CountrySelector({ allZones, selectedCountries, onSelectionChange, zoneIndex }: Props) {
     const [searchTerm, setSearchTerm] = useState('')
     const debouncedSearchTerm = useDebounce(searchTerm)
     const { data: countries } = useQuery({
@@ -22,6 +25,20 @@ function CountrySelector({ selectedCountries, onSelectionChange }: Props) {
         queryFn: allCountriesService,
         select: (data) => data.data.data.countries || []
     })
+
+    const usedCountries = useMemo(() => {
+        const set = new Set<string>()
+        allZones.forEach((zone, i) => {
+            if (i !== zoneIndex) {
+                zone.countries.forEach(c => set.add(c))
+            }
+        })
+        return set
+    }, [allZones, zoneIndex])
+
+    const availableCountryIds = useMemo(() => {
+        return countries?.filter(c => !usedCountries.has(c.iso3)).map(c => c.iso3) || []
+    }, [countries, usedCountries])
 
     // Memoize filtered countries based on search term
     const filteredCountries = useMemo(() => {
@@ -34,19 +51,19 @@ function CountrySelector({ selectedCountries, onSelectionChange }: Props) {
 
     // Handle checkbox selection changes
     const handleCheckboxChange = useCallback((countryId: string, isChecked: boolean) => {
+        if (usedCountries.has(countryId)) return
         if (isChecked) onSelectionChange([...selectedCountries, countryId])
         else onSelectionChange(selectedCountries.filter(id => id !== countryId))
-    }, [selectedCountries, onSelectionChange])
+    }, [selectedCountries, onSelectionChange, usedCountries])
 
     // Handle worldwide selection changes (select all or deselect all)
     const handleWorldwideChange = useCallback((isChecked: boolean) => {
         if (isChecked) {
-            const allCountryIds = countries?.map(country => country.iso3) || []
-            onSelectionChange(allCountryIds)
+            onSelectionChange(availableCountryIds)
         } else {
             onSelectionChange([])
         }
-    }, [countries, onSelectionChange])
+    }, [availableCountryIds, onSelectionChange])
 
     // Memoize country items for efficient rendering
     const countryItems = useMemo(() => {
@@ -56,9 +73,10 @@ function CountrySelector({ selectedCountries, onSelectionChange }: Props) {
                 country={country}
                 isSelected={selectedCountries.includes(country.iso3)}
                 onSelectionChange={handleCheckboxChange}
+                isDisabled={usedCountries.has(country.iso3)}
             />
         ))
-    }, [filteredCountries, selectedCountries, handleCheckboxChange])
+    }, [filteredCountries, selectedCountries, handleCheckboxChange, usedCountries])
 
     return (
         <LabeledContent label='Choose Zone or Country' required>
@@ -98,6 +116,7 @@ function CountrySelector({ selectedCountries, onSelectionChange }: Props) {
                     countries={countries}
                     selectedCountries={selectedCountries}
                     onSelectionChange={handleWorldwideChange}
+                    usedCountries={usedCountries}
                 />
 
                 {/* Country list */}

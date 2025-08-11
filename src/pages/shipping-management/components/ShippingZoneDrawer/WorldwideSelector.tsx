@@ -7,20 +7,26 @@ interface WorldwideSelectorProps {
     countries: any[]
     selectedCountries: string[]
     onSelectionChange: (isChecked: boolean) => void
+    usedCountries?: Set<string>
 }
 
-function WorldwideSelector({ countries, selectedCountries, onSelectionChange }: WorldwideSelectorProps) {
+function WorldwideSelector({ countries, selectedCountries, onSelectionChange, usedCountries }: WorldwideSelectorProps) {
+    const availableCountriesCount = useMemo(() => {
+        if (!countries || countries.length === 0) return 0
+        if (!usedCountries) return countries.length
+        return countries.filter(country => !usedCountries.has(country.iso3)).length
+    }, [countries, usedCountries])
 
     const isWorldwideSelected = useMemo(() => {
-        if (!countries || countries.length === 0) return false
-        return selectedCountries.length === countries.length
-    }, [countries, selectedCountries])
+        if (availableCountriesCount === 0) return false
+        return selectedCountries.length === availableCountriesCount
+    }, [availableCountriesCount, selectedCountries])
 
     // Check if worldwide is partially selected (some countries are selected)
     const isWorldwideIndeterminate = useMemo(() => {
-        if (!countries || countries.length === 0) return false
-        return selectedCountries.length > 0 && selectedCountries.length < countries.length
-    }, [countries, selectedCountries])
+        if (availableCountriesCount === 0) return false
+        return selectedCountries.length > 0 && selectedCountries.length < availableCountriesCount
+    }, [availableCountriesCount, selectedCountries])
 
     return (
         <Flex alignItems="center" gap={3} padding="12px 16px">

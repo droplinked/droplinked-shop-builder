@@ -68,8 +68,10 @@ function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
                     onChange={(name) => updateDraft({ name })}
                 />
                 <CountrySelector
+                    allZones={zones}
                     selectedCountries={draftZone.countries || []}
                     onSelectionChange={handleCountrySelectionChange}
+                    zoneIndex={zoneIndex}
                 />
             </ShippingDrawer.Body>
             <ShippingDrawer.Footer
