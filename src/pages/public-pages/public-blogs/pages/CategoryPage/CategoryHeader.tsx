@@ -19,8 +19,8 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category }) => {
         <Breadcrumbs
           items={[
             { label: 'Home', to: '/' },
-            { label: 'Blogs', to: '/blog' },
-            { label: 'Categories', to: '/blog/categories' },
+            { label: 'Blogs', to: '/blogs' },
+            { label: 'Categories', to: '/blogs/categories' },
             { label: category || 'General' }
           ]}
         />
