@@ -1,5 +1,6 @@
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import { defaultCustom, defaultZone } from 'pages/shipping-management/utils/utils'
+import { validateShippingRate } from 'pages/shipping-management/utils/validation'
 import React, { useEffect, useState } from 'react'
 import { SHIPPING_METHOD, Zone } from '../../types/shipping'
 import ShippingDrawer from '../common/ShippingDrawer'
@@ -16,7 +17,7 @@ interface Props {
 function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
     const [draftZone, setDraftZone] = useState<Partial<Zone>>(defaultZone)
     const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
-        zones: s.zones,
+        zones: s.shippingProfile.zones,
         updateShippingProfile: s.updateShippingProfile
     }))
 
@@ -27,41 +28,7 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
     }
 
     // Check if form can be submitted based on validation rules
-    const canSubmit = () => {
-        if (!draftZone?.shippingMethod) return false
-
-        if (draftZone.shippingMethod === SHIPPING_METHOD.THIRD_PARTY) {
-            // Third party must have selected services
-            return draftZone.thirdParty && draftZone.thirdParty.length > 0
-        }
-
-        if (draftZone.shippingMethod === SHIPPING_METHOD.CUSTOM) {
-            const custom = draftZone.custom
-            if (!custom) return false
-
-            // Must have rate name
-            if (!custom.rateName || custom.rateName.trim() === '') return false
-
-            // Must have price based on type
-            let hasPrice = false
-            if (custom.type === 'flat_rate' && custom.price !== undefined && custom.price !== null) {
-                hasPrice = true
-            } else if (custom.type === 'weight_based' && custom.pricePerWeight !== undefined && custom.pricePerWeight !== null) {
-                hasPrice = true
-            } else if (custom.type === 'item_count_based' && custom.pricePerItem !== undefined && custom.pricePerItem !== null) {
-                hasPrice = true
-            }
-            if (!hasPrice) return false
-
-            // Must have delivery days and to value > from value   
-            if (!custom.estimatedDelivery?.minDays || !custom.estimatedDelivery?.maxDays) return false
-            if (custom.estimatedDelivery.maxDays <= custom.estimatedDelivery.minDays) return false
-
-            return true
-        }
-
-        return false
-    }
+    const canSubmit = () => validateShippingRate(draftZone)
 
     const handleSave = () => {
         if (!canSubmit()) return

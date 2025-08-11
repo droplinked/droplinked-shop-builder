@@ -15,7 +15,7 @@ interface Props {
 function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
     const [draftZone, setDraftZone] = useState<Partial<Zone>>(defaultZone)
     const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
-        zones: s.zones,
+        zones: s.shippingProfile.zones,
         updateShippingProfile: s.updateShippingProfile
     }))
 

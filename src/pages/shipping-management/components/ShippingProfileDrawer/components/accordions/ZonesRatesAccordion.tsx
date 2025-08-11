@@ -11,7 +11,7 @@ import ZoneActionMenu from '../ZoneActionMenu'
 
 function ZonesRatesAccordion() {
     const zoneActionModal = useDisclosure()
-    const zones = useShippingManagementStore(s => s.zones)
+    const zones = useShippingManagementStore(s => s.shippingProfile.zones)
 
     return (
         <ProductFormAccordion label="Zones and Rates">

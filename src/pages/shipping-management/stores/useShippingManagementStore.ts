@@ -3,17 +3,26 @@ import { ShippingProfile } from "../types/shipping"
 
 const initialState: ShippingProfile = {
     name: "",
-    zones: []
-}
-interface Actions {
-    updateShippingProfile: <K extends keyof ShippingProfile>(key: K, value: ShippingProfile[K]) => void,
-    resetShippingProfile: () => void
+    zones: [],
 }
 
-const useShippingManagementStore = create<ShippingProfile & Actions>((set) => ({
-    ...initialState,
-    updateShippingProfile: (key, value) => set((state) => ({ ...state, [key]: value })),
-    resetShippingProfile: () => set(initialState)
+interface State {
+    shippingProfile: ShippingProfile,
+    address: any,
+}
+
+interface Actions {
+    updateShippingProfile: <K extends keyof ShippingProfile>(key: K, value: ShippingProfile[K]) => void,
+    updateAddress: (address: any) => void,
+    resetState: () => void
+}
+
+const useShippingManagementStore = create<State & Actions>((set) => ({
+    shippingProfile: initialState,
+    address: {},
+    updateShippingProfile: (key, value) => set((state) => ({ shippingProfile: { ...state.shippingProfile, [key]: value } })),
+    updateAddress: (address) => set({ address }),
+    resetState: () => set({ shippingProfile: initialState, address: {} })
 }))
 
 export default useShippingManagementStore

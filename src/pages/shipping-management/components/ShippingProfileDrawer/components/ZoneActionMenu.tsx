@@ -13,7 +13,7 @@ interface Props {
 function ZoneActionMenu({ zoneIndex }: Props) {
     const editModal = useDisclosure()
     const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
-        zones: s.zones,
+        zones: s.shippingProfile.zones,
         updateShippingProfile: s.updateShippingProfile
     }))
 
@@ -37,8 +37,6 @@ function ZoneActionMenu({ zoneIndex }: Props) {
             onClick: handleDeleteZone
         }
     ]
-
-
 
     return (
         <>

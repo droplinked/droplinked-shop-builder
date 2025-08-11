@@ -4,7 +4,7 @@ import React from 'react'
 
 function ShippingProfileName() {
     const { name, updateShippingProfile } = useShippingManagementStore(s => ({
-        name: s.name,
+        name: s.shippingProfile.name,
         updateShippingProfile: s.updateShippingProfile
     }))
 

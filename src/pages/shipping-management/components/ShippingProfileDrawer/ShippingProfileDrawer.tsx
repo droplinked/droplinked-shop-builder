@@ -3,7 +3,7 @@ import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
-import { validateShippingProfile } from 'pages/shipping-management/utils/utils'
+import { validateShippingProfile } from 'pages/shipping-management/utils/validation'
 import React, { useEffect, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { createShippingProfile, updateShippingProfile as updateShippingProfileService } from 'services/shipping-management/services'
@@ -14,26 +14,26 @@ import ZonesRatesAccordion from './components/accordions/ZonesRatesAccordion'
 interface Props {
     isOpen: boolean
     onClose: () => void
-    shippingProfile?: ShippingProfile
+    editingShippingProfile?: ShippingProfile
 }
 
-const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
+const ShippingProfileDrawer = ({ isOpen, onClose, editingShippingProfile }: Props) => {
     const [isSaving, setIsSaving] = useState(false)
     const queryClient = useQueryClient()
-    const { name, zones, resetShippingProfile, updateShippingProfile } = useShippingManagementStore()
+    const { shippingProfile, updateShippingProfile, resetState } = useShippingManagementStore()
     const { showToast } = useAppToast()
     const { t } = useLocaleResources("common")
 
-    const isEditing = !!shippingProfile
+    const isEditing = !!editingShippingProfile
 
     const handleSave = async () => {
         try {
             setIsSaving(true)
-            validateShippingProfile({ name, zones })
-            if (isEditing) await updateShippingProfileService(shippingProfile?._id!, shippingProfile)
-            else await createShippingProfile({ name, zones })
+            validateShippingProfile(shippingProfile)
+            if (isEditing) await updateShippingProfileService(editingShippingProfile?._id!, shippingProfile)
+            else await createShippingProfile({ name: shippingProfile.name, zones: shippingProfile.zones })
             showToast({ type: 'success', message: 'Shipping profile saved successfully' })
-            resetShippingProfile()
+            resetState()
             queryClient.invalidateQueries(['shipping-profiles'])
             onClose()
         } catch (error) {
@@ -44,17 +44,17 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
     }
 
     const handleClose = () => {
-        resetShippingProfile()
+        resetState()
         onClose()
     }
 
     // Update the shipping profile when the modal is opened and the shipping profile is provided
     useEffect(() => {
-        if (isEditing && shippingProfile) {
-            updateShippingProfile("name", shippingProfile.name)
-            updateShippingProfile("zones", shippingProfile.zones)
+        if (isEditing && editingShippingProfile) {
+            updateShippingProfile("name", editingShippingProfile.name)
+            updateShippingProfile("zones", editingShippingProfile.zones)
         }
-    }, [isEditing, shippingProfile, updateShippingProfile])
+    }, [isEditing, editingShippingProfile, updateShippingProfile])
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={handleClose}>
