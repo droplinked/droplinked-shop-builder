@@ -59,8 +59,13 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
         }
     }
 
+    const handleClose = () => {
+        resetShippingProfile()
+        onClose()
+    }
+
     return (
-        <ShippingDrawer isOpen={isOpen} onClose={onClose}>
+        <ShippingDrawer isOpen={isOpen} onClose={handleClose}>
             <ShippingDrawer.Header title={`${isEditing ? 'Edit' : 'Create'} Shipping Profile`} />
             <ShippingDrawer.Body>
                 <AppAccordion
@@ -77,7 +82,7 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
                 primaryText={`${isEditing ? 'Update' : 'Create'} Profile`}
                 secondaryText="Discard"
                 onPrimary={handleSave}
-                onSecondary={onClose}
+                onSecondary={handleClose}
                 primaryButtonProps={{ isLoading: false }}
             />
         </ShippingDrawer>

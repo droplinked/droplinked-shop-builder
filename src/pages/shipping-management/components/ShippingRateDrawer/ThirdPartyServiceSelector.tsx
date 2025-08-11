@@ -2,6 +2,8 @@ import { Flex, Text } from '@chakra-ui/react'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import React from 'react'
+import { useQuery } from 'react-query'
+import { getShippingProviders } from 'services/shipping-management/services'
 import LabeledContent from '../common/LabeledContent'
 
 interface Props {
@@ -9,14 +11,12 @@ interface Props {
     onChange: (services: string[]) => void
 }
 
-const AVAILABLE_SERVICES = [
-    'FedEx',
-    'UPS',
-    'DHL',
-    'USPS',
-]
-
 function ThirdPartyServiceSelector({ selected, onChange }: Props) {
+    const { data } = useQuery({
+        queryKey: ['shipping-providers'],
+        queryFn: getShippingProviders,
+    })
+
     const handleChange = (service: string) => {
         onChange(selected.includes(service)
             ? selected.filter((s) => s !== service)
@@ -24,25 +24,29 @@ function ThirdPartyServiceSelector({ selected, onChange }: Props) {
         )
     }
 
+    const providers = data ?? []
+
     return (
         <LabeledContent label="Shipping Services" required>
-            <RuledGrid columns={1} borderRadius={8}>
-                {AVAILABLE_SERVICES.map((service) => (
-                    <Flex
-                        key={service}
-                        alignItems="center"
-                        gap={3}
-                        padding="12px 16px"
-                    >
-                        <Checkbox
-                            value={service}
-                            isChecked={selected.includes(service)}
-                            onChange={() => handleChange(service)}
-                        />
-                        <Text color="text.white">{service}</Text>
-                    </Flex>
-                ))}
-            </RuledGrid>
+            {providers.length > 0 && (
+                <RuledGrid columns={1} borderRadius={8}>
+                    {providers.map((service) => (
+                        <Flex
+                            key={service}
+                            alignItems="center"
+                            gap={3}
+                            padding="12px 16px"
+                        >
+                            <Checkbox
+                                value={service}
+                                isChecked={selected.includes(service)}
+                                onChange={() => handleChange(service)}
+                            />
+                            <Text color="text.white">{service}</Text>
+                        </Flex>
+                    ))}
+                </RuledGrid>
+            )}
         </LabeledContent>
     )
 }

@@ -14,3 +14,8 @@ export const createShippingProfile = async (shippingProfile: ShippingProfile) =>
 
 export const updateShippingProfile = async (shippingProfileId: string, shippingProfile: ShippingProfile) =>
     axiosInstance.patch(`/shippings/v2/${shippingProfileId}`, shippingProfile)
+
+export const getShippingProviders = async () => {
+    const response = await axiosInstance.get<{ data: string[] }>('/shippings/v2/providers').then(res => res.data)
+    return response.data
+}
