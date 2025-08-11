@@ -4,9 +4,10 @@ import arLocale from 'locales/public-pages/landings/partner-pages/ar.json';
 import enLocale from 'locales/public-pages/landings/partner-pages/en.json';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { PartnerId, getPartnerConfigs } from './config/partners';
+import { getPartnerConfigs } from './config/partners';
 import { PartnerLandingProvider } from './context/PartnerLandingContext';
 import { PartnerLayout } from './layout/PartnerLayout';
+import { PartnerId } from './config/types';
 
 interface PartnerPageProps {
   partnerId: string;

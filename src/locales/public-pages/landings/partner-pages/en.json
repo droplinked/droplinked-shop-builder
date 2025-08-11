@@ -15,6 +15,10 @@
     "crossmint": {
       "title": "Powering \n Agentic Commerce",
       "subtitle": "Crossmint members unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today."
+    },
+    "base": {
+      "title": "Powering \n Agentic Commerce",
+      "subtitle": "Enabling creators and communities to grow their businesses onchain together"
     }
   },
   "PartnerConfig": {
@@ -37,6 +41,14 @@
       "name": "crossmint",
       "displayName": "crossmint",
       "trialMonths": 3
+    },
+    "base": {
+      "name": "base",
+      "displayName": "Base",
+      "trialMonths": 3,
+      "perkListSectionTitle": "ONCHAIN BENEFITS",
+      "perkListHeadingTitle": "Businesses Built on Base",
+      "perkListHeadingSubtitle": "The platform gives everyone the tools needed to tokenize assets \nlike digital IP, physical inventory and domain hosting as collateral"
     }
   },
   "PerkList": {
@@ -118,5 +130,10 @@
   "useWalletVerification": {
     "metamaskNotInstalled": "Metamask wallet is not installed!",
     "unstoppableNotInstalled": "Unstoppable Wallet is not installed!"
+  },
+  "BaseGetStartedSection": {
+    "sectionTitle": "GO LIVE IN MINUTES",
+    "headingTitle": "Instantly Get Started",
+    "headingSubtitle": "droplinked makes it simple to sell physical and digital inventory \nwhile allowing you to earn in cash or crypto"
   }
 } 

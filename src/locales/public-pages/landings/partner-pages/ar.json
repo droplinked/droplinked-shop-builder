@@ -15,6 +15,10 @@
     "crossmint": {
       "title": "تشغيل \n التجارة الذكية",
       "subtitle": "أعضاء Crossmint يحصلون على 3 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم."
+    },
+    "base": {
+      "title": "تشغيل التجارة الذكية",
+      "subtitle": "تمكين المبدعين والمجتمعات من تطوير أعمالهم معًا على البلوكتشين"
     }
   },
   "PartnerConfig": {
@@ -37,6 +41,13 @@
       "name": "crossmint",
       "displayName": "crossmint",
       "trialMonths": 3
+    },
+    "base": {
+      "name": "base",
+      "displayName": "Base",
+      "trialMonths": 3,
+      "perkListSectionTitle": "مزايا شبكة Base",
+      "perkListHeadingTitle": "مزايا حصرية لأعضاء شبكة Base"
     }
   },
   "PerkList": {

@@ -12,9 +12,10 @@ import { usePartnerLanding } from '../context/PartnerLandingContext'
 
 export default function ModularStack() {
     const { t } = useLocaleResources('public-pages/landings/partner-pages')
-    const { partnerName , trialMonths} = usePartnerLanding()
+    const { partnerName, trialMonths, partnerConfig } = usePartnerLanding()
  
-    const cardsData: CardData[] = [
+    // Base cards that all partners see
+    const baseCards: CardData[] = [
         {
             icon: <BoxLg color="#fff" />,
             title: t('ModularStack.cards.accessProducts.title'),
@@ -28,15 +29,29 @@ export default function ModularStack() {
             description: t('ModularStack.cards.web3Technology.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" },
             children: <CardImage alt={t('ModularStack.cards.web3Technology.title')} src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
-        },
-        {
-            icon: <PriceplanLg color="#fff" />, 
-            title: t('ModularStack.cards.proPlan.title', { partnerName, trialMonths }),
-            description: t('ModularStack.cards.proPlan.description', { partnerName, trialMonths }),
-            gridColumn: { base: "1fr", md: "span 2", lg: "span 2" },
-            hasBackgroundOverlay: true,
-            children: <ProPlanCard />
         }
+    ]
+
+    // Partner-specific additional cards
+    const getPartnerSpecificCards = (): CardData[] => {
+        switch (partnerConfig.id) {
+            case 'base':
+                return [] // Base partner gets no additional cards
+            default: // All other partners get ProPlanCard
+                return [{
+                    icon: <PriceplanLg color="#fff" />, 
+                    title: t('ModularStack.cards.proPlan.title', { partnerName, trialMonths }),
+                    description: t('ModularStack.cards.proPlan.description', { partnerName, trialMonths }),
+                    gridColumn: { base: "1fr", md: "span 2", lg: "span 2" },
+                    hasBackgroundOverlay: true,
+                    children: <ProPlanCard />
+                }]
+        }
+    }
+
+    const cardsData: CardData[] = [
+        ...baseCards,
+        ...getPartnerSpecificCards()
     ]
 
     return <PlatformFunctionalities cardsData={cardsData} isGridCards={false} />

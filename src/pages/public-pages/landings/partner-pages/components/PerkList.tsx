@@ -12,7 +12,14 @@ import { usePartnerLanding } from '../context/PartnerLandingContext'
 
 export default function PerkList() {
     const { t } = useLocaleResources('public-pages/landings/partner-pages');
-    const { partnerName, trialMonths } = usePartnerLanding();
+    const { partnerName, trialMonths, partnerConfig } = usePartnerLanding();
+
+    // Helper function to get translation with fallback
+    const getTranslation = (key: string, fallback: string) => {
+        const translation = t(key);
+        // If translation returns the same key, it means the key wasn't found
+        return translation === key ? fallback : translation;
+    };
 
     const cardsData: CardData[] = [
         {
@@ -38,9 +45,9 @@ export default function PerkList() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle={t('PerkList.sectionTitle')}
-            headingTitle={t('PerkList.headingTitle', { partnerName: toCamelCase(partnerName) })}
-            headingSubtitle={t('PerkList.headingSubtitle', { trialMonths })}
+            sectionTitle={getTranslation(`PartnerConfig.${partnerConfig.id}.perkListSectionTitle`, t('PerkList.sectionTitle'))}
+            headingTitle={getTranslation(`PartnerConfig.${partnerConfig.id}.perkListHeadingTitle`, t('PerkList.headingTitle', { partnerName: toCamelCase(partnerName) }))}
+            headingSubtitle={getTranslation(`PartnerConfig.${partnerConfig.id}.perkListHeadingSubtitle`, t('PerkList.headingSubtitle', { trialMonths }))}
             typographySvg={<Perks />}
         >
             <Cards

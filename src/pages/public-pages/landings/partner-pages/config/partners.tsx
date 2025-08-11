@@ -2,6 +2,7 @@ import CrossmintLogo from 'assets/brand-identity/Crossmint';
 import D3Logo from 'assets/brand-identity/D3';
 import PolygonLogo from 'assets/brand-identity/Polygon';
 import UnstoppableDomainsLogo from 'assets/brand-identity/UnstoppableDomains';
+import { BaseLogo } from 'assets/logo/NetworkAndTokens/Coinbase/Base/BaseLogo';
 import { TFunction } from 'i18next';
 import JoinCommunity from 'pages/public-pages/landings/_shared/components/JoinCommunity';
 import MarqueeSection from 'pages/public-pages/landings/_shared/components/marquee-wrapper/MarqueeSection';
@@ -11,13 +12,45 @@ import PerkList from 'pages/public-pages/landings/partner-pages/components/PerkL
 import D3BentoGrids from 'pages/public-pages/landings/partner-pages/components/partner-specific/D3BentoGrids';
 import UDTldFeatures from 'pages/public-pages/landings/partner-pages/components/partner-specific/UDTldFeatures';
 import React from 'react';
-import { Section } from './types';
+import { PartnerId, Section } from './types';
+import BaseGetStartedSection from '../components/partner-specific/BaseGetStartedSection';
+
+/**
+ * PARTNER LANDING PAGE CONFIGURATION
+ * 
+ * This file configures partner-specific landing pages with flexible section positioning.
+ * 
+ * CUSTOM SECTION POSITIONING OPTIONS:
+ * 
+ * 1. insertAfter: 'section-id' - Insert after a specific section
+ *    Examples:
+ *    - insertAfter: 'partner-list' → After partner showcase
+ *    - insertAfter: 'perk-list' → After perks section
+ *    - insertAfter: 'modular-stack' → After tech stack
+ * 
+ * 2. insertAt: number - Insert at specific index position
+ *    Examples:
+ *    - insertAt: 0 → At the very beginning
+ *    - insertAt: 1 → After first section
+ *    - insertAt: 3 → After third section
+ * 
+ * 3. No positioning - Default behavior
+ *    - For partners with partner-list: Insert after partner-list
+ *    - For base partner: Insert at beginning
+ * 
+ * DEFAULT SECTION ORDER:
+ * 1. partner-list (MarqueeSection) - excluded for base partner
+ * 2. perk-list
+ * 3. modular-stack
+ * 4. join-community
+ * 5. claim-now
+ */
 
 export interface PartnerConfig {
   id: PartnerId;
   name: string;
   displayName: string;
-  trialMonths: 3 | 6 | 12;
+  trialMonths: number;
   logo: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   hero: {
     title: string;
@@ -27,38 +60,37 @@ export interface PartnerConfig {
   sections: Section[];
 }
 
-export type PartnerId = 'd3' | 'unstoppableDomains' | 'polygon' | 'crossmint';
-
 /**
- * Helper function to build partner landing page sections
+ * Simple function to build partner landing page sections
  * 
  * @param t - Translation function
- * @param customSections - Array of partner-specific sections to insert after partners section
+ * @param partnerId - Partner ID to determine if partner-list should be shown
+ * @param customSections - Array of partner-specific sections
  * 
- * Default section order:
- * 1. partner-list (MarqueeSection)
- * 2. [custom sections inserted here]
- * 3. perk-list
- * 4. modular-stack
- * 5. join-community
- * 6. claim-now
+ * Custom sections can use:
+ * - position: number → Insert at specific index
+ * - No position → Insert at default position (index 1)
  */
 const buildSections = (
   t: TFunction,
+  partnerId: PartnerId,
   customSections: Section[] = []
 ): Section[] => {
   const defaultSections: Section[] = [
-    { id: 'partner-list', component: <MarqueeSection /> },
+    // Only show partner-list for non-base partners
+    ...(partnerId !== 'base' ? [{ id: 'partner-list', component: <MarqueeSection /> }] : []),
     { id: 'perk-list', component: <PerkList /> },
     { id: 'modular-stack', component: <ModularStack /> },
     { id: 'join-community', component: <JoinCommunity /> },
     { id: 'claim-now', component: <ClaimNow /> },
   ];
 
-  // Insert custom sections after partners section (index 1)
+  // Add custom sections
   const sections = [...defaultSections];
-  customSections.forEach((customSection, index) => {
-    sections.splice(1 + index, 0, customSection);
+  
+  customSections.forEach((customSection) => {
+    const position = customSection.position ?? 1; // Default to position 1
+    sections.splice(position, 0, customSection);
   });
 
   return sections;
@@ -75,14 +107,17 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
     id: 'd3',
     name: t('PartnerConfig.d3.name'),
     displayName: t('PartnerConfig.d3.displayName'),
-    trialMonths: Number(t('PartnerConfig.d3.trialMonths')) as 3 | 6 | 12,
+    trialMonths: Number(t('PartnerConfig.d3.trialMonths')),
     logo: D3Logo,
     hero: {
       title: t('PartnerHero.d3.title'),
       subtitle: t('PartnerHero.d3.subtitle'),
     },
-    sections: buildSections(t, [
-      { id: 'd3-features', component: <D3BentoGrids /> }
+    sections: buildSections(t, 'd3', [
+      { 
+        id: 'd3-features', 
+        component: <D3BentoGrids />,
+      }
     ])
   },
 
@@ -90,14 +125,17 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
     id: 'unstoppableDomains',
     name: t('PartnerConfig.unstoppableDomains.name'),
     displayName: t('PartnerConfig.unstoppableDomains.displayName'),
-    trialMonths: Number(t('PartnerConfig.unstoppableDomains.trialMonths')) as 3 | 6 | 12,
+    trialMonths: Number(t('PartnerConfig.unstoppableDomains.trialMonths')),
     logo: UnstoppableDomainsLogo,
     hero: {
       title: t('PartnerHero.unstoppableDomains.title'),
       subtitle: t('PartnerHero.unstoppableDomains.subtitle'),
     },
-    sections: buildSections(t, [
-      { id: 'ud-features', component: <UDTldFeatures /> }
+    sections: buildSections(t, 'unstoppableDomains', [
+      { 
+        id: 'ud-features', 
+        component: <UDTldFeatures />,
+      }
     ])
   },
 
@@ -105,25 +143,53 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
     id: 'polygon',
     name: t('PartnerConfig.polygon.name'),
     displayName: t('PartnerConfig.polygon.displayName'),
-    trialMonths: Number(t('PartnerConfig.polygon.trialMonths')) as 3 | 6 | 12,
+    trialMonths: Number(t('PartnerConfig.polygon.trialMonths')),
     logo: PolygonLogo,
     hero: {
       title: t('PartnerHero.polygon.title'),
       subtitle: t('PartnerHero.polygon.subtitle'),
     },
-    sections: buildSections(t, []),
+    sections: buildSections(t, 'polygon', [
+      // Example: Add custom section
+      // { 
+      //   id: 'polygon-features', 
+      //   component: <PolygonFeatures />,
+      //   position: 2 // Insert at index 2
+      // }
+    ]),
   },
 
   crossmint: {
     id: 'crossmint',
     name: t('PartnerConfig.crossmint.name'),
     displayName: t('PartnerConfig.crossmint.displayName'),
-    trialMonths: Number(t('PartnerConfig.crossmint.trialMonths')) as 3 | 6 | 12,
+    trialMonths: Number(t('PartnerConfig.crossmint.trialMonths')),
     logo: CrossmintLogo,
     hero: {
       title: t('PartnerHero.crossmint.title'),
       subtitle: t('PartnerHero.crossmint.subtitle'),
     },
-    sections: buildSections(t, []),
+    sections: buildSections(t, 'crossmint', []),
+  },
+
+  base :{
+    id: 'base',
+    name: t('PartnerConfig.base.name'),
+    displayName: t('PartnerConfig.base.displayName'),
+    trialMonths: Number(t('PartnerConfig.base.trialMonths')),
+    logo: BaseLogo,
+    hero: {
+      title: t('PartnerHero.base.title'),
+      subtitle: t('PartnerHero.base.subtitle'),
+    },
+    sections: buildSections(t, 'base', [
+      {
+        id: 'base-get-started',
+        component: <BaseGetStartedSection />,
+        position: 1
+      }
+    ]),
   }
+
+
 }); 
