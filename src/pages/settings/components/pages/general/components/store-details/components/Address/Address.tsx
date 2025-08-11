@@ -24,7 +24,7 @@ export default function Address() {
     const { addressBookID } = shop;
     const { showToast } = useAppToast();
     const { t } = useLocaleResources('settings');
-    const { isFetching, data, refetch } = useShopAddress()
+    const { isLoading, data, refetch } = useShopAddress()
 
     const handleSubmit = async (formValues: IAddressInputs, { setSubmitting }) => {
         try {
@@ -57,7 +57,7 @@ export default function Address() {
             title={t("Address.title")}
             description={t("Address.description")}
             rightContent={
-                (isFetching || loading) ? (
+                (isLoading || loading) ? (
                     <AppSkeleton
                         isLoaded={false}
                         borderRadius={"8px"}

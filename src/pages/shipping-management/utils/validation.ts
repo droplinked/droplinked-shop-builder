@@ -1,3 +1,4 @@
+import { IcreateAddressService } from "services/address/interfaces"
 import { SHIPPING_METHOD, ShippingProfile, Zone } from "../types/shipping"
 
 export const validateShippingRate = (zone: Partial<Zone>): boolean => {
@@ -59,4 +60,14 @@ export const validateShippingProfile = (shippingProfile: ShippingProfile) => {
             }
         }
     }
+}
+
+export const validateAddress = (address: IcreateAddressService) => {
+    if (!address.firstName?.trim()) throw new Error('First name is required.')
+    if (!address.lastName?.trim()) throw new Error('Last name is required.')
+    if (!address.addressLine1?.trim()) throw new Error('Address line 1 is required.')
+    if (!address.country?.trim()) throw new Error('Country is required.')
+    if (!address.state?.trim()) throw new Error('State is required.')
+    if (!address.city?.trim()) throw new Error('City is required.')
+    if (!address.zip?.trim()) throw new Error('Zip code is required.')
 }
