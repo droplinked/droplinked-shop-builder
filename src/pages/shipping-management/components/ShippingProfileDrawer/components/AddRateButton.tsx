@@ -1,14 +1,13 @@
 import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
-import { Zone } from 'pages/shipping-management/types/shipping'
 import React from 'react'
 import ShippingRateDrawer from '../../ShippingRateDrawer/ShippingRateDrawer'
 
 interface Props {
-    zone: Zone
+    zoneIndex: number
 }
 
-function AddRateButton({ zone }: Props) {
+function AddRateButton({ zoneIndex }: Props) {
     const rateModal = useDisclosure()
 
     return (
@@ -30,7 +29,7 @@ function AddRateButton({ zone }: Props) {
                 </button>
             </Flex>
 
-            <ShippingRateDrawer {...rateModal} zone={zone} />
+            {rateModal.isOpen && <ShippingRateDrawer {...rateModal} zoneIndex={zoneIndex} />}
         </>
     )
 }

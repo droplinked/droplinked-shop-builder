@@ -45,8 +45,8 @@ function ZonesRatesAccordion() {
                                 }
                             >
                                 {shouldShowAddButton
-                                    ? <AddRateButton zone={zone} />
-                                    : <RateItem zone={zone} />
+                                    ? <AddRateButton zoneIndex={index} />
+                                    : <RateItem zone={zone} zoneIndex={index} />
                                 }
                             </SectionContainer>
                         )

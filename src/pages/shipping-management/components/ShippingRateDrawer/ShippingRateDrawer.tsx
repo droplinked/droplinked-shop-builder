@@ -1,5 +1,7 @@
+import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
+import { defaultCustom, defaultZone } from 'pages/shipping-management/utils/utils'
 import React, { useEffect, useState } from 'react'
-import { CUSTOM_SHIPPING_TYPE, CustomShipping, SHIPPING_METHOD, Zone } from '../../types/shipping'
+import { SHIPPING_METHOD, Zone } from '../../types/shipping'
 import ShippingDrawer from '../common/ShippingDrawer'
 import CustomRateForm from './CustomRateForm'
 import ShippingMethodSelect from './ShippingMethodSelect'
@@ -8,41 +10,38 @@ import ThirdPartyServiceSelector from './ThirdPartyServiceSelector'
 interface Props {
     isOpen: boolean
     onClose: () => void
-    zone: Zone
+    zoneIndex: number
 }
 
-function ShippingRateDrawer({ isOpen, onClose, zone }: Props) {
-    const defaultCustom = (): CustomShipping => ({
-        type: CUSTOM_SHIPPING_TYPE.FLAT_RATE,
-        rateName: '',
-        estimatedDelivery: { minDays: 0, maxDays: 0 },
-    })
-
-    const [draftZone, setDraftZone] = useState<Zone>(() => ({
-        ...zone,
-        shippingMethod: zone?.shippingMethod ?? SHIPPING_METHOD.THIRD_PARTY,
+function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
+    const [draftZone, setDraftZone] = useState<Partial<Zone>>(defaultZone)
+    console.log('draftZone', draftZone)
+    const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
+        zones: s.zones,
+        updateShippingProfile: s.updateShippingProfile
     }))
-
-    // Sync draft when prop zone changes (e.g., open different zone)
-    useEffect(() => {
-        setDraftZone({
-            ...zone,
-            shippingMethod: zone?.shippingMethod ?? SHIPPING_METHOD.THIRD_PARTY,
-        })
-    }, [zone, isOpen])
-
-    const updateDraft = (patch: Partial<Zone>) => setDraftZone((prev) => ({ ...prev, ...patch }))
-
-    const commitDraft = () => {
-        // TODO: Implement commit draft
-    }
 
     const shippingMethod = draftZone?.shippingMethod as SHIPPING_METHOD
 
+    const updateDraft = (patch: Partial<Zone>) => {
+        setDraftZone((prev) => ({ ...prev, ...patch }))
+    }
+
     const handleSave = () => {
-        commitDraft()
+        const zoneToSave = { ...draftZone } as Zone
+        const updatedZones = [...zones]
+        updatedZones[zoneIndex] = zoneToSave
+        updateShippingProfile('zones', updatedZones)
         onClose()
     }
+
+    // Update draft zone when the modal opens or when zone prop changes
+    useEffect(() => {
+        if (zoneIndex !== undefined) {
+            const zone = zones[zoneIndex]
+            setDraftZone({ ...zone })
+        }
+    }, [zoneIndex])
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
@@ -51,19 +50,11 @@ function ShippingRateDrawer({ isOpen, onClose, zone }: Props) {
                 <ShippingMethodSelect
                     value={shippingMethod}
                     onChange={(method) => {
-                        if (method === SHIPPING_METHOD.THIRD_PARTY) {
-                            updateDraft({
-                                shippingMethod: method,
-                                thirdParty: draftZone?.thirdParty ?? [],
-                                custom: undefined,
-                            })
-                        } else {
-                            updateDraft({
-                                shippingMethod: method,
-                                custom: draftZone?.custom ?? defaultCustom(),
-                                thirdParty: undefined,
-                            })
-                        }
+                        updateDraft({
+                            shippingMethod: method,
+                            thirdParty: method === SHIPPING_METHOD.THIRD_PARTY ? [] : undefined,
+                            custom: method === SHIPPING_METHOD.CUSTOM ? defaultCustom() : undefined,
+                        })
                     }}
                 />
 
@@ -86,23 +77,7 @@ function ShippingRateDrawer({ isOpen, onClose, zone }: Props) {
                 secondaryText="Discard"
                 onPrimary={handleSave}
                 onSecondary={onClose}
-                primaryButtonProps={{
-                    isDisabled: (() => {
-                        if (shippingMethod === SHIPPING_METHOD.THIRD_PARTY) return false
-                        const cr = draftZone?.custom ?? defaultCustom()
-                        const hasNameAndType = cr.rateName?.trim() && cr.type
-                        const hasEta =
-                            typeof cr.estimatedDelivery?.minDays === 'number' &&
-                            typeof cr.estimatedDelivery?.maxDays === 'number' &&
-                            cr.estimatedDelivery.minDays >= 0 &&
-                            cr.estimatedDelivery.maxDays >= cr.estimatedDelivery.minDays
-                        const hasAmount =
-                            (cr.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE && typeof cr.price === 'number') ||
-                            (cr.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED && typeof cr.pricePerWeight === 'number') ||
-                            (cr.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED && typeof cr.pricePerItem === 'number')
-                        return !(hasNameAndType && hasEta && hasAmount)
-                    })(),
-                }}
+                primaryButtonProps={{}}
             />
         </ShippingDrawer>
     )

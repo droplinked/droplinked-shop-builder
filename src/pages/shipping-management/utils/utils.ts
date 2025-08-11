@@ -1,0 +1,32 @@
+import { CUSTOM_SHIPPING_TYPE, CustomShipping, SHIPPING_METHOD, Zone } from "../types/shipping"
+
+export function humanizeCustomType(type: CUSTOM_SHIPPING_TYPE) {
+    switch (type) {
+        case CUSTOM_SHIPPING_TYPE.FLAT_RATE:
+            return 'Flat Rate'
+        case CUSTOM_SHIPPING_TYPE.WEIGHT_BASED:
+            return 'Weight Based Rate'
+        case CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED:
+            return 'Order Based Rate'
+        default:
+            return ''
+    }
+}
+
+export const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+})
+
+export const defaultZone = (): Zone => ({
+    name: "",
+    countries: [],
+    shippingMethod: SHIPPING_METHOD.THIRD_PARTY
+})
+
+export const defaultCustom = (): CustomShipping => ({
+    type: CUSTOM_SHIPPING_TYPE.FLAT_RATE,
+    rateName: '',
+    estimatedDelivery: { minDays: 0, maxDays: 0 },
+})

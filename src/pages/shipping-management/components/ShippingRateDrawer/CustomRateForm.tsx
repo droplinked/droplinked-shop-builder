@@ -1,6 +1,8 @@
 import { SimpleGrid } from '@chakra-ui/react'
+import { DollarMd } from 'assets/icons/Finance/Dollar/DollarMd'
 import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
+import CurrencySelect from 'components/redesign/select/CurrencySelect'
 import React from 'react'
 import { CUSTOM_SHIPPING_TYPE, CustomShipping } from '../../types/shipping'
 import LabeledContent from '../common/LabeledContent'
@@ -13,6 +15,25 @@ interface Props {
 export default function CustomRateForm({ value, onChange }: Props) {
     const update = (patch: Partial<CustomShipping>) => onChange({ ...value, ...patch })
 
+    const { priceLabel, priceValue } = (() => {
+        if (value.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE) {
+            return { priceLabel: 'Price', priceValue: value.price ?? '' }
+        }
+        if (value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED) {
+            return { priceLabel: 'Price per Unit', priceValue: value.pricePerWeight ?? '' }
+        }
+        if (value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED) {
+            return { priceLabel: 'Price per Item', priceValue: value.pricePerItem ?? '' }
+        }
+        return { priceLabel: 'Price', priceValue: '' }
+    })()
+
+    const handlePriceChange = (newValue: number) => {
+        if (value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED) return update({ pricePerWeight: newValue })
+        if (value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED) return update({ pricePerItem: newValue })
+        return update({ price: newValue })
+    }
+
     return (
         <>
             <AppSelect
@@ -22,7 +43,16 @@ export default function CustomRateForm({ value, onChange }: Props) {
                 valueAccessor="value"
                 selectProps={{
                     value: value.type,
-                    onChange: (selected) => update({ type: (selected as any)?.value as CUSTOM_SHIPPING_TYPE }),
+                    onChange: (e) => {
+                        const newType = e.target.value as CUSTOM_SHIPPING_TYPE
+                        // Clear all price fields when switching types
+                        update({
+                            type: newType,
+                            price: undefined,
+                            pricePerWeight: undefined,
+                            pricePerItem: undefined,
+                        })
+                    },
                 }}
                 items={[
                     { name: 'Flat Rate', value: CUSTOM_SHIPPING_TYPE.FLAT_RATE },
@@ -35,20 +65,36 @@ export default function CustomRateForm({ value, onChange }: Props) {
                 label='Rate Name'
                 description='Rates are shown to customers as delivery options during checkout.'
                 inputProps={{
-                    placeholder: 'i.e. (Standard Shipping, Express Shipping)',
-                    isRequired: true,
                     value: value.rateName,
                     onChange: (e) => update({ rateName: e.target.value }),
+                    placeholder: 'i.e. (Standard Shipping, Express Shipping)',
+                    isRequired: true,
+                    fontSize: 16
                 }}
             />
+
+            <LabeledContent label={priceLabel} required>
+                <SimpleGrid columns={2} gap={4}>
+                    <AppInput
+                        leftElement={<DollarMd color='#7b7b7b' />}
+                        inputProps={{
+                            value: priceValue,
+                            onChange: (e) => handlePriceChange(Number(e.target.value)),
+                            placeholder: '0.00',
+                            type: 'number',
+                            numberType: 'float',
+                            fontSize: 16
+                        }}
+                    />
+
+                    <CurrencySelect isDisabled />
+                </SimpleGrid>
+            </LabeledContent>
 
             <LabeledContent label='Estimated Delivery Time (In Days)' required>
                 <SimpleGrid columns={2} gap={4}>
                     <AppInput
                         inputProps={{
-                            placeholder: 'From',
-                            type: 'number',
-                            numberType: 'int',
                             value: value.estimatedDelivery?.minDays ?? '',
                             onChange: (e) => update({
                                 estimatedDelivery: {
@@ -56,13 +102,14 @@ export default function CustomRateForm({ value, onChange }: Props) {
                                     maxDays: value.estimatedDelivery?.maxDays ?? 0,
                                 },
                             }),
+                            placeholder: 'From',
+                            type: 'number',
+                            numberType: 'int',
+                            fontSize: 16
                         }}
                     />
                     <AppInput
                         inputProps={{
-                            placeholder: 'To',
-                            type: 'number',
-                            numberType: 'int',
                             value: value.estimatedDelivery?.maxDays ?? '',
                             onChange: (e) => update({
                                 estimatedDelivery: {
@@ -70,51 +117,14 @@ export default function CustomRateForm({ value, onChange }: Props) {
                                     maxDays: Number(e.target.value),
                                 },
                             }),
+                            placeholder: 'To',
+                            type: 'number',
+                            numberType: 'int',
+                            fontSize: 16
                         }}
                     />
                 </SimpleGrid>
             </LabeledContent>
-
-            {value.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE && (
-                <AppInput
-                    label='Flat Rate Amount'
-                    inputProps={{
-                        placeholder: '0.00',
-                        type: 'number',
-                        numberType: 'float',
-                        value: value.price ?? '',
-                        onChange: (e) => update({ price: Number(e.target.value) }),
-                    }}
-                />
-            )}
-
-            {value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED && (
-                <AppInput
-                    label='Price Per Weight Unit'
-                    inputProps={{
-                        placeholder: '0.00',
-                        type: 'number',
-                        numberType: 'float',
-                        value: value.pricePerWeight ?? '',
-                        onChange: (e) => update({ pricePerWeight: Number(e.target.value) }),
-                    }}
-                />
-            )}
-
-            {value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED && (
-                <AppInput
-                    label='Price Per Item'
-                    inputProps={{
-                        placeholder: '0.00',
-                        type: 'number',
-                        numberType: 'float',
-                        value: value.pricePerItem ?? '',
-                        onChange: (e) => update({ pricePerItem: Number(e.target.value) }),
-                    }}
-                />
-            )}
         </>
     )
 }
-
-

@@ -2,38 +2,16 @@ import { Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { DotsMd } from 'assets/icons/Navigation/Dots/DotsMd'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import { CUSTOM_SHIPPING_TYPE, SHIPPING_METHOD, Zone } from 'pages/shipping-management/types/shipping'
+import { currencyFormatter, humanizeCustomType } from 'pages/shipping-management/utils/utils'
 import React from 'react'
 import ShippingRateDrawer from '../../ShippingRateDrawer/ShippingRateDrawer'
 
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-})
-
-function humanizeCustomType(type: CUSTOM_SHIPPING_TYPE) {
-    switch (type) {
-        case CUSTOM_SHIPPING_TYPE.FLAT_RATE:
-            return 'Flat Rate'
-        case CUSTOM_SHIPPING_TYPE.WEIGHT_BASED:
-            return 'Weight Based Rate'
-        case CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED:
-            return 'Order Based Rate'
-        default:
-            return ''
-    }
+interface Props {
+    zone: Zone
+    zoneIndex: number
 }
 
-function DetailRow({ label, children }: { label: string, children: React.ReactNode }) {
-    return (
-        <Flex alignItems="center" justifyContent="space-between" fontSize={14}>
-            <Text color='text.subtext.placeholder.dark'>{label}</Text>
-            {children}
-        </Flex>
-    )
-}
-
-export default function RateItem({ zone }: { zone: Zone }) {
+export default function RateItem({ zone, zoneIndex }: Props) {
     const rateModal = useDisclosure()
 
     const isThirdParty = zone?.shippingMethod === SHIPPING_METHOD.THIRD_PARTY
@@ -135,7 +113,16 @@ export default function RateItem({ zone }: { zone: Zone }) {
                 </Flex>
             </Flex>
 
-            <ShippingRateDrawer {...rateModal} zone={zone} />
+            {rateModal.isOpen && <ShippingRateDrawer {...rateModal} zoneIndex={zoneIndex} />}
         </>
+    )
+}
+
+function DetailRow({ label, children }: { label: string, children: React.ReactNode }) {
+    return (
+        <Flex alignItems="center" justifyContent="space-between" fontSize={14}>
+            <Text color='text.subtext.placeholder.dark'>{label}</Text>
+            {children}
+        </Flex>
     )
 }

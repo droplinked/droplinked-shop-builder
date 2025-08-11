@@ -1,4 +1,5 @@
-import useShippingManagementStore, { initialZone } from 'pages/shipping-management/stores/useShippingManagementStore'
+import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
+import { defaultZone } from 'pages/shipping-management/utils/utils'
 import React, { useEffect, useState } from 'react'
 import { Zone } from '../../types/shipping'
 import ShippingDrawer from '../common/ShippingDrawer'
@@ -12,7 +13,7 @@ interface Props {
 }
 
 function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
-    const [draftZone, setDraftZone] = useState<Partial<Zone>>(initialZone)
+    const [draftZone, setDraftZone] = useState<Partial<Zone>>(defaultZone)
     const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
         zones: s.zones,
         updateShippingProfile: s.updateShippingProfile
