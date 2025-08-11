@@ -2,7 +2,8 @@ import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
-import { SHIPPING_METHOD, ShippingProfile } from 'pages/shipping-management/types/shipping'
+import { ShippingProfile } from 'pages/shipping-management/types/shipping'
+import { validateShippingProfile } from 'pages/shipping-management/utils/utils'
 import React, { useEffect, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { createShippingProfile, updateShippingProfile as updateShippingProfileService } from 'services/shipping-management/services'
@@ -25,33 +26,10 @@ const ShippingProfileDrawer = ({ isOpen, onClose, shippingProfile }: Props) => {
 
     const isEditing = !!shippingProfile
 
-    const validate = () => {
-        if (!name.trim()) throw new Error('Profile name is required.')
-
-        if (zones.length === 0) throw new Error('At least one shipping zone is required.')
-
-        for (const zone of zones) {
-            const { shippingMethod, name: zoneName, thirdParty, custom } = zone
-
-            if (shippingMethod === SHIPPING_METHOD.THIRD_PARTY) {
-                if (!thirdParty || thirdParty.length === 0) {
-                    throw new Error(`The zone "${zoneName}" must have at least one shipping service.`)
-                }
-            }
-
-            if (shippingMethod === SHIPPING_METHOD.CUSTOM) {
-                const { minDays, maxDays } = custom?.estimatedDelivery || {}
-                if (!minDays || !maxDays) {
-                    throw new Error(`The zone "${zoneName}" requires estimated delivery days.`)
-                }
-            }
-        }
-    }
-
     const handleSave = async () => {
         try {
             setIsSaving(true)
-            validate()
+            validateShippingProfile({ name, zones })
             if (isEditing) await updateShippingProfileService(shippingProfile?._id!, shippingProfile)
             else await createShippingProfile({ name, zones })
             showToast({ type: 'success', message: 'Shipping profile saved successfully' })
