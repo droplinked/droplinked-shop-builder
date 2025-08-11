@@ -1,7 +1,7 @@
 import SectionContainer from 'pages/public-pages/landings/_shared/components/SectionContainer/SectionContainer';
 import React from 'react';
 import BlogPosts from '../../assets/BlogPosts';
-import BlogGrid from '../../components/BlogGrid';
+import BlogGrid from '../../components/common/‌BlogGrid/BlogGrid';
 
 interface CategoryBlogSectionProps {
   blogs: any[];

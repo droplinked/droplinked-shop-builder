@@ -1,11 +1,11 @@
 import { Box, Flex } from '@chakra-ui/react';
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
 import React from 'react';
-import useBlogs from '../hooks/useBlogs';
+import useBlogs from '../../hooks/useBlogs';
 import CategoryCard from './CategoryCard';
-import SectionTitle from './common/SectionTitle';
+import SectionTitle from '../common/SectionTitle';
 
-function Categories() {
+function TopCategoriesSection() {
   const { categories, isLoading } = useBlogs();
 
   if (isLoading) {
@@ -37,4 +37,4 @@ function Categories() {
   );
 }
 
-export default Categories;
+export default TopCategoriesSection;

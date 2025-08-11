@@ -6,10 +6,10 @@ import React from 'react';
 import { LazyLoad } from '../landings/_shared/components/LazyLoad';
 import MaxWidthWrapper from '../landings/_shared/components/MaxWidthWrapper';
 import SignUpCta from '../landings/_shared/components/SignUpCta';
-import BackgroundImage from './components/BackgroundImage';
-import BlogGrid from './components/BlogGrid';
+import BackgroundImage from './components/common/BackgroundImage';
+import BlogGrid from './components/common/‌BlogGrid/BlogGrid';
 import BlogsCarousel from './components/common/BlogsCarousel/BlogsCarousel';
-import Categories from './components/Categories';
+import Categories from './components/TopCategoriesSection/TopCategoriesSection';
 import LatestBlogsGrid from './components/LatestBlogsGrid/LatestBlogsGrid';
 import PublicBlogsHeader from './components/PublicBlogsHeader';
 import useBlogs from './hooks/useBlogs';
@@ -29,7 +29,7 @@ function BlogPage() {
 
   return (
     <>
-      <BackgroundImage height="100vh" zIndex={1} />
+      <BackgroundImage zIndex={1} />
 
       {/* Content container */}
       <Box position="relative" zIndex={2}>

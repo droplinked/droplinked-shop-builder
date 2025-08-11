@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 import SectionContainer from 'pages/public-pages/landings/_shared/components/SectionContainer/SectionContainer';
-import Breadcrumbs from 'pages/public-pages/public-blogs/components/Breadcrumbs';
+import Breadcrumbs from 'pages/public-pages/public-blogs/components/common/Breadcrumbs';
 import React from 'react';
 
 interface BlogHeaderProps {

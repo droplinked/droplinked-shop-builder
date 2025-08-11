@@ -41,26 +41,33 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       width="100%"
     >
       {items.length > 0 ? (
-        items.map((item, index) => (
-          <Box 
-            key={item.id} 
-            pl={4} 
-            py={2} 
-            width="100%"
-            cursor="pointer"
-            onClick={() => handleItemClick(item.id)}
-            _hover={{ bg: 'neutral.gray.800' }}
-            borderRadius="md"
-          >
-            <Text
-              color={item.id === activeItemId ? 'neutral.gray.400' : 'text.white'}
-              fontSize="base"
-              fontWeight={item.id === activeItemId ? 'normal' : 'medium'}
+        items.map((item, index) => {
+          const isActive = item.id === activeItemId;
+          return (
+            <Box 
+              key={item.id} 
+              pl={4} 
+              py={2} 
+              width="100%"
+              cursor="pointer"
+              onClick={() => handleItemClick(item.id)}
+              position="relative"
+              transition="all 0.2s ease"
+              borderLeft={isActive ? '2px solid' : '2px solid transparent'}
+              borderLeftColor={isActive ? 'white' : 'transparent'}
+              marginLeft={isActive ? '-2px' : '0'}
             >
-              {item.text}
-            </Text>
-          </Box>
-        ))
+              <Text
+                color={isActive ? 'white' : 'text.subtext.placeholder.dark'}
+                fontSize="base"
+                fontWeight={isActive ? 'medium' : 'normal'}
+                transition="all 0.2s ease"
+              >
+                {item.text}
+              </Text>
+            </Box>
+          );
+        })
       ) : (
         <Box pl={4} py={2} width="100%">
           <Text

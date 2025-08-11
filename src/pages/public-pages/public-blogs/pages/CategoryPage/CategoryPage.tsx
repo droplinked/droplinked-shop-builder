@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { LazyLoad } from '../../../landings/_shared/components/LazyLoad';
 import MaxWidthWrapper from '../../../landings/_shared/components/MaxWidthWrapper';
-import BackgroundImage from '../../components/BackgroundImage';
+import BackgroundImage from '../../components/common/BackgroundImage';
 import CategoryBlogSection from './CategoryBlogSection';
 import CategoryHeader from './CategoryHeader';
 import useBlogs from '../../hooks/useBlogs';
@@ -16,7 +16,7 @@ function CategoryPage() {
 
   return (
     <>
-      <BackgroundImage height="100vh" />
+      <BackgroundImage />
       {/* Content container */}
       <Box position="relative" zIndex={1}>
         <MaxWidthWrapper>

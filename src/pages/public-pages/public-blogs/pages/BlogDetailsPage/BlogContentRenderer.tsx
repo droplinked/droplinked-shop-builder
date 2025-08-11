@@ -2,13 +2,28 @@ import React from "react";
 import { Box, Text, Heading, Image, UnorderedList, ListItem } from "@chakra-ui/react";
 import { IBlogDetail } from "../../types/blog.types";
 
-
 // Interface for TOC items
 export interface ITocItem {
   id: string;
   text: string;
   level: number;
 }
+
+// Utility function to generate consistent heading IDs
+const generateHeadingId = (block: any, index: number): string => {
+  if (block.id) return block.id;
+  
+  const headingText = block.content
+    ?.map((item: any) => item.text || "")
+    .join("")
+    .trim();
+  
+  if (headingText) {
+    return `heading-${index}-${headingText.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
+  }
+  
+  return `heading-${index}-${Math.random().toString(36).substr(2, 9)}`;
+};
 
 // Utility function to extract TOC items from blog content
 export const extractTocItems = (blog: IBlogDetail): ITocItem[] => {
@@ -30,7 +45,7 @@ export const extractTocItems = (blog: IBlogDetail): ITocItem[] => {
   }
 
   // Extract headings from content blocks
-  contentBlocks.forEach((block) => {
+  contentBlocks.forEach((block, index) => {
     if (block.type === "heading" && block.props?.level) {
       const headingText = block.content
         ?.map((item: any) => item.text || "")
@@ -38,8 +53,10 @@ export const extractTocItems = (blog: IBlogDetail): ITocItem[] => {
         .trim();
 
       if (headingText) {
+        const headingId = generateHeadingId(block, index);
+        
         tocItems.push({
-          id: block.id || `heading-${tocItems.length}`,
+          id: headingId,
           text: headingText,
           level: block.props.level
         });
@@ -72,7 +89,7 @@ function BlogContentRenderer({ blog }: { blog: IBlogDetail }) {
     });
   };
 
-  const renderBlock = (block: any) => {
+  const renderBlock = (block: any, index: number) => {
     switch (block.type) {
       case "paragraph":
         return (
@@ -83,8 +100,17 @@ function BlogContentRenderer({ blog }: { blog: IBlogDetail }) {
 
       case "heading":
         const headingLevel = `h${block.props.level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        const headingId = generateHeadingId(block, index);
+        
         return (
-          <Heading key={block.id} as={headingLevel} fontSize={{base:"18px", md:"24px"}} mb={4} fontWeight="600">
+          <Heading 
+            key={block.id} 
+            id={headingId}
+            as={headingLevel} 
+            fontSize={{base:"18px", md:"24px"}} 
+            mb={4} 
+            fontWeight="600"
+          >
             {renderContent(block.content)}
           </Heading>
         );
@@ -137,7 +163,7 @@ function BlogContentRenderer({ blog }: { blog: IBlogDetail }) {
 
   return (
     <Box>
-      {contentBlocks.map((block) => renderBlock(block))}
+      {contentBlocks.map((block, index) => renderBlock(block, index))}
     </Box>
   );
 }

@@ -1,15 +1,16 @@
-import React from 'react';
 import {
-  HStack,
   Button,
+  HStack,
   Icon
 } from '@chakra-ui/react';
 import { LinkSm } from 'assets/icons/Action/Link/LinkSm';
-import { XMd } from 'assets/icons/SocialMedia/Colorless/X/XMd';
-import { LinkedinMd } from 'assets/icons/SocialMedia/Colorless/LinkedIn/LinkedinMd';
-import { InstagramMd } from 'assets/icons/SocialMedia/Colorless/Instagram/InstagramMd';
-import { TelegramMd } from 'assets/icons/SocialMedia/Colorless/Telegram/TelegramMd';
 import { DiscordMd } from 'assets/icons/SocialMedia/Colorless/Discord/DiscordMd';
+import { InstagramMd } from 'assets/icons/SocialMedia/Colorless/Instagram/InstagramMd';
+import { LinkedinMd } from 'assets/icons/SocialMedia/Colorless/LinkedIn/LinkedinMd';
+import { TelegramMd } from 'assets/icons/SocialMedia/Colorless/Telegram/TelegramMd';
+import { XMd } from 'assets/icons/SocialMedia/Colorless/X/XMd';
+import useAppToast from 'hooks/toast/useToast';
+import React, { useState } from 'react';
 
 interface SocialShareButtonsProps {
   url?: string;
@@ -22,6 +23,9 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
   title = document.title,
   onShare
 }) => {
+  const [copied, setCopied] = useState(false);
+  const toast = useAppToast();
+
   const socialPlatforms = [
     { name: 'Link', icon: LinkSm },
     { name: 'X', icon: XMd },
@@ -31,7 +35,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
     { name: 'Discord', icon: DiscordMd }
   ];
 
-  const handleShare = (platform: string) => {
+  const handleShare = async (platform: string) => {
     if (onShare) {
       onShare(platform);
       return;
@@ -41,14 +45,40 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
     const shareUrls = {
       X: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
       LinkedIn: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+      Instagram: `https://www.instagram.com/?url=${encodeURIComponent(url)}`,
       Telegram: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
-      Discord: `https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=0&scope=bot`
+      Discord: `https://discord.com/channels/@me?content=${encodeURIComponent(`${title} ${url}`)}`
     };
 
     if (shareUrls[platform as keyof typeof shareUrls]) {
       window.open(shareUrls[platform as keyof typeof shareUrls], '_blank');
     } else if (platform === 'Link') {
-      navigator.clipboard.writeText(url);
+      try {
+        await navigator.clipboard.writeText(url);
+        setCopied(true);
+        toast.showToast({
+          type: 'success',
+          message: 'Link copied!',
+          description: 'The blog link has been copied to your clipboard'
+        });
+        setTimeout(() => setCopied(false), 2000);
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        setCopied(true);
+        toast.showToast({
+          type: 'success',
+          message: 'Link copied!',
+          description: 'The blog link has been copied to your clipboard'
+        });
+        setTimeout(() => setCopied(false), 2000);
+      }
     }
   };
 
@@ -59,16 +89,19 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
           key={platform.name}
           size="40px"
           variant="outline"
-          borderColor='neutral.gray.800'
+          borderColor={platform.name === 'Link' && copied ? 'green.500' : 'neutral.gray.800'}
           borderRadius="lg"
           padding="10px"
-          bg="transparent"
-          _hover={{ bg: 'neutral.gray.800' }}
+          bg={platform.name === 'Link' && copied ? 'green.50' : 'transparent'}
+          _hover={{ 
+            bg: platform.name === 'Link' && copied ? 'green.100' : 'neutral.gray.800' 
+          }}
           onClick={() => handleShare(platform.name)}
+          transition="all 0.2s"
         >
           <Icon
             as={platform.icon}
-            color="#7B7B7B"
+            color={platform.name === 'Link' && copied ? 'green.500' : '#7B7B7B'}
           />
         </Button>
       ))}

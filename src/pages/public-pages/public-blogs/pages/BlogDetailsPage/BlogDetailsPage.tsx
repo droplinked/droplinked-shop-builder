@@ -2,7 +2,7 @@ import { Flex, Image } from '@chakra-ui/react';
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
 import { LazyLoad } from 'pages/public-pages/landings/_shared/components/LazyLoad';
 import MaxWidthWrapper from 'pages/public-pages/landings/_shared/components/MaxWidthWrapper';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { getPublicBlogBySlugService } from 'services/blog/services';
@@ -14,6 +14,7 @@ import BlogSidebar from './BlogSidebar/BlogSidebar';
 
 function BlogDetailPage() {
   const { slug } = useParams();
+  const [activeTocItemId, setActiveTocItemId] = useState<string>('');
 
   // Use useQuery directly for fetching the specific blog
   const { data, isLoading } = useQuery({
@@ -26,6 +27,62 @@ function BlogDetailPage() {
 
   // Extract TOC items from blog content
   const tocItems = blog ? extractTocItems(blog) : [];
+
+  // Scroll tracking logic for table of contents
+  useEffect(() => {
+    if (tocItems.length === 0) return;
+
+    const handleScroll = () => {
+      const headingElements = tocItems.map(item => ({
+        id: item.id,
+        element: document.getElementById(item.id)
+      })).filter(item => item.element);
+
+      if (headingElements.length === 0) return;
+
+      const scrollPosition = window.scrollY + 100; // Offset for better detection
+
+      // Find the heading that's currently in view
+      let activeHeading = '';
+      
+      for (let i = headingElements.length - 1; i >= 0; i--) {
+        const heading = headingElements[i];
+        if (heading.element) {
+          const rect = heading.element.getBoundingClientRect();
+          if (rect.top <= 100) { // Consider heading active when it's near the top
+            activeHeading = heading.id;
+            break;
+          }
+        }
+      }
+
+      // If no heading is found, check if we're at the top
+      if (!activeHeading && scrollPosition < 200) {
+        activeHeading = headingElements[0]?.id || '';
+      }
+
+      if (activeHeading !== activeTocItemId) {
+        setActiveTocItemId(activeHeading);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [tocItems, activeTocItemId]);
+
+  const handleTocItemClick = (itemId: string) => {
+    const element = document.getElementById(itemId);
+    if (element) {
+      const offsetTop = element.offsetTop - 120; // Offset for header
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+      setActiveTocItemId(itemId);
+    }
+  };
 
   if (isLoading) {
     return <FullScreenLoading />;
@@ -70,6 +127,8 @@ function BlogDetailPage() {
               createdAt={blog.createdAt}
               tags={blog.tags}
               tocItems={tocItems}
+              activeTocItemId={activeTocItemId}
+              onTocItemClick={handleTocItemClick}
             />
           </Flex>
 

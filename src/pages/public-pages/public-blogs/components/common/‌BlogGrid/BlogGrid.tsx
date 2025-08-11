@@ -1,9 +1,9 @@
 import { Flex, Grid } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { IBlogListItem } from '../types/blog.types';
+import { IBlogListItem } from '../../../types/blog.types';
 import BlogCard from './BlogCard';
 import AppButton from 'components/redesign/button/AppButton';
-import SectionTitle from './common/SectionTitle';
+import SectionTitle from '../SectionTitle';
 
 interface BlogGridProps {
   blogs: IBlogListItem[];
