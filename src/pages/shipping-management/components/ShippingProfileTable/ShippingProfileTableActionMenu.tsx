@@ -7,6 +7,7 @@ import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React from 'react'
 import ShippingProfileDrawer from '../ShippingProfileDrawer/ShippingProfileDrawer'
 import DeleteShippingProfileModal from './DeleteShippingProfileModal'
+import DuplicateShippingProfileModal from './DuplicateShippingProfileModal'
 
 interface Props {
     shippingProfile: ShippingProfile
@@ -15,6 +16,7 @@ interface Props {
 function ShippingProfileTableActionMenu({ shippingProfile }: Props) {
     const shippingProfileDrawer = useDisclosure()
     const deleteModal = useDisclosure()
+    const duplicateModal = useDisclosure()
 
     const actions = [
         {
@@ -22,11 +24,11 @@ function ShippingProfileTableActionMenu({ shippingProfile }: Props) {
             title: "Edit",
             onClick: shippingProfileDrawer.onOpen
         },
-        {
-            icon: <CopyMd color='#fff' />,
-            title: "Duplicate",
-            onClick: () => console.log("Duplicate!")
-        },
+        // {
+        //     icon: <CopyMd color='#fff' />,
+        //     title: "Duplicate",
+        //     onClick: duplicateModal.onOpen
+        // },
         {
             icon: <TrashMd color='#ff2244' />,
             title: "Remove",
@@ -40,6 +42,7 @@ function ShippingProfileTableActionMenu({ shippingProfile }: Props) {
             <TableMenu items={actions} />
             <DeleteShippingProfileModal {...deleteModal} shippingProfile={shippingProfile} />
             <ShippingProfileDrawer {...shippingProfileDrawer} shippingProfile={shippingProfile} />
+            <DuplicateShippingProfileModal {...duplicateModal} shippingProfile={shippingProfile} />
         </>
     )
 }
