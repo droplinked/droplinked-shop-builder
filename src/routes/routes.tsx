@@ -15,8 +15,9 @@ import ChangelogDetail from "pages/changelog/components/ChangelogDetail"
 import Onboarding from "pages/onboarding/Onboarding"
 import AboutUs from "pages/public-pages/about/AboutUs"
 import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
-import PublicBlog from "pages/public-pages/blogs/blog/Blog"
-import PublicBlogs from "pages/public-pages/blogs/Blogs"
+import BlogPage from "pages/public-pages/public-blogs/PublicBlogs"
+import CategoryPage from "pages/public-pages/public-blogs/pages/CategoryPage/CategoryPage"
+import BlogDetailPage from "pages/public-pages/public-blogs/pages/BlogDetailsPage/BlogDetailsPage"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import BookDemoPage from "pages/public-pages/landings/book-demo/BookDemoPage"
@@ -102,8 +103,9 @@ const router = createBrowserRouter([
             {
                 path: "blogs",
                 children: [
-                    { index: true, element: <PublicBlogs /> },
-                    { path: ":slug", element: <PublicBlog /> }
+                    { index: true, element: <BlogPage /> },
+                    { path: "categories/:category", element: <CategoryPage /> },
+                    { path: ":slug", element: <BlogDetailPage /> }
                 ]
             },
             { path: "plans", element: <PricingPage /> },

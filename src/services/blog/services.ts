@@ -19,4 +19,4 @@ export const deleteBlogService = (blogId: string) => axiosInstance.delete(`blogs
 
 export const getPublicBlogsService = () => axiosInstance.get(`/blogs/public/admin`)
 
-export const getPublicBlogByIdService = (slug: string) => axiosInstance.get(`/blogs/public/admin/${slug}`).then(res => res?.data)
+export const getPublicBlogBySlugService = (slug: string) => axiosInstance.get(`/blogs/public/admin/${slug}`).then(res => res?.data)

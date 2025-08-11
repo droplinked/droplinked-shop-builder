@@ -63,7 +63,7 @@ function BlogTable({ searchTerm }: Props) {
             header: t("common:status"),
             cell: info => {
                 const isVisible = info.getValue() as boolean
-                const text = isVisible ? t("BlogTable.status.published") : t("BlogTable.status.draft")
+                const text = isVisible ? t("BlogTable.status.published") : t("common:draft")
                 const status = isVisible ? "success" : "pending"
 
                 return <AppBadge text={text} status={status} />

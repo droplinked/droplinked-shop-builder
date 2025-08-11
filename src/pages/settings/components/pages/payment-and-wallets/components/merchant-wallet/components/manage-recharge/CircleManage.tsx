@@ -282,7 +282,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
             <AppModal modalRootProps={{ isOpen: connectWalletModal.isOpen, onClose: connectWalletModal.onClose, isCentered: false, size: "3xl" }}>
                 <ModalHeader display="flex" justifyContent="center" alignItems="center" alignSelf="stretch">
                     <AppTypography color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="700" lineHeight="36px">
-                        {t("settings.merchantWallet.manage.connectYourWallets")}
+                        {t("MerchantWallet.manage.connectYourWallets")}
                     </AppTypography>
                 </ModalHeader>
                 <ModalBody paddingInline="0px !important" padding="0px" overflow="auto">
