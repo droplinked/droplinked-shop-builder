@@ -13,12 +13,6 @@ export function humanizeCustomType(type: CUSTOM_SHIPPING_TYPE) {
     }
 }
 
-export const currencyFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-})
-
 export const defaultZone = (): Zone => ({
     name: "",
     countries: [],

@@ -15,7 +15,6 @@ interface Props {
 
 function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
     const [draftZone, setDraftZone] = useState<Partial<Zone>>(defaultZone)
-    console.log('draftZone', draftZone)
     const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
         zones: s.zones,
         updateShippingProfile: s.updateShippingProfile
@@ -27,7 +26,46 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
         setDraftZone((prev) => ({ ...prev, ...patch }))
     }
 
+    // Check if form can be submitted based on validation rules
+    const canSubmit = () => {
+        if (!draftZone?.shippingMethod) return false
+
+        if (draftZone.shippingMethod === SHIPPING_METHOD.THIRD_PARTY) {
+            // Third party must have selected services
+            return draftZone.thirdParty && draftZone.thirdParty.length > 0
+        }
+
+        if (draftZone.shippingMethod === SHIPPING_METHOD.CUSTOM) {
+            const custom = draftZone.custom
+            if (!custom) return false
+
+            // Must have rate name
+            if (!custom.rateName || custom.rateName.trim() === '') return false
+
+            // Must have price based on type
+            let hasPrice = false
+            if (custom.type === 'flat_rate' && custom.price !== undefined && custom.price !== null) {
+                hasPrice = true
+            } else if (custom.type === 'weight_based' && custom.pricePerWeight !== undefined && custom.pricePerWeight !== null) {
+                hasPrice = true
+            } else if (custom.type === 'item_count_based' && custom.pricePerItem !== undefined && custom.pricePerItem !== null) {
+                hasPrice = true
+            }
+            if (!hasPrice) return false
+
+            // Must have delivery days and to value > from value   
+            if (!custom.estimatedDelivery?.minDays || !custom.estimatedDelivery?.maxDays) return false
+            if (custom.estimatedDelivery.maxDays <= custom.estimatedDelivery.minDays) return false
+
+            return true
+        }
+
+        return false
+    }
+
     const handleSave = () => {
+        if (!canSubmit()) return
+
         const zoneToSave = { ...draftZone } as Zone
         const updatedZones = [...zones]
         updatedZones[zoneIndex] = zoneToSave
@@ -77,7 +115,9 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
                 secondaryText="Discard"
                 onPrimary={handleSave}
                 onSecondary={onClose}
-                primaryButtonProps={{}}
+                primaryButtonProps={{
+                    isDisabled: !canSubmit()
+                }}
             />
         </ShippingDrawer>
     )

@@ -1,8 +1,9 @@
-import { Flex, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { DotsMd } from 'assets/icons/Navigation/Dots/DotsMd'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import { CUSTOM_SHIPPING_TYPE, SHIPPING_METHOD, Zone } from 'pages/shipping-management/types/shipping'
-import { currencyFormatter, humanizeCustomType } from 'pages/shipping-management/utils/utils'
+import { humanizeCustomType } from 'pages/shipping-management/utils/utils'
 import React from 'react'
 import ShippingRateDrawer from '../../ShippingRateDrawer/ShippingRateDrawer'
 
@@ -33,32 +34,30 @@ export default function RateItem({ zone, zoneIndex }: Props) {
     } else if (customDetails) {
         switch (customDetails.type) {
             case CUSTOM_SHIPPING_TYPE.FLAT_RATE:
-                if (customDetails.price !== undefined) {
-                    detailsToRender['Price'] = (
-                        <Text color='text.white' fontSize={14}>
-                            {currencyFormatter.format(customDetails.price)} USD
-                        </Text>
-                    )
-                }
+                detailsToRender['Price'] = (
+                    <FormattedPrice
+                        price={customDetails.price}
+                        abbreviationProps={{ color: 'text.subtext.placeholder.dark' }}
+                    />
+                )
                 break
+
             case CUSTOM_SHIPPING_TYPE.WEIGHT_BASED:
-                if (customDetails.pricePerWeight !== undefined) {
-                    detailsToRender['Price per Unit'] = (
-                        <Text color='text.white' fontSize={14}>
-                            {currencyFormatter.format(customDetails.pricePerWeight)} USD
-                        </Text>
-                    )
-                }
-                detailsToRender['Weight Unit'] = <Text color='text.white' fontSize={14}>kg</Text>
+                detailsToRender['Price per Unit'] = (
+                    <FormattedPrice
+                        price={customDetails.pricePerWeight}
+                        abbreviationProps={{ color: 'text.subtext.placeholder.dark' }}
+                    />
+                )
                 break
+
             case CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED:
-                if (customDetails.pricePerItem !== undefined) {
-                    detailsToRender['Price per Item'] = (
-                        <Text color='text.white' fontSize={14}>
-                            {currencyFormatter.format(customDetails.pricePerItem)} USD
-                        </Text>
-                    )
-                }
+                detailsToRender['Price per Item'] = (
+                    <FormattedPrice
+                        price={customDetails.pricePerItem}
+                        abbreviationProps={{ color: 'text.subtext.placeholder.dark' }}
+                    />
+                )
                 break
         }
 
@@ -66,8 +65,18 @@ export default function RateItem({ zone, zoneIndex }: Props) {
             const { minDays, maxDays } = customDetails.estimatedDelivery
             detailsToRender['Estimated Time'] = (
                 <DotSeparatedList>
-                    <Text color='text.white' fontSize={14}>{minDays} days</Text>
-                    <Text color='text.white' fontSize={14}>{maxDays} days</Text>
+                    <Text color='text.white' fontSize={14}>
+                        {minDays}{' '}
+                        <Box as='span' color='text.subtext.placeholder.dark'>
+                            {minDays === 1 ? 'day' : 'days'}
+                        </Box>
+                    </Text>
+                    <Text color='text.white' fontSize={14}>
+                        {maxDays}{' '}
+                        <Box as='span' color='text.subtext.placeholder.dark'>
+                            {maxDays === 1 ? 'day' : 'days'}
+                        </Box>
+                    </Text>
                 </DotSeparatedList>
             )
         }
