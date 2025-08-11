@@ -6,7 +6,7 @@ import ShopAddress from '../ShopAddress'
 import ShopAddressForm from '../ShopAddressForm'
 
 function GeneralInformationAccordion() {
-    const { addressBookID, isFetching, data } = useShopAddress()
+    const { addressBookID, isLoading, data } = useShopAddress()
 
     return (
         <ProductFormAccordion
@@ -15,7 +15,7 @@ function GeneralInformationAccordion() {
         >
             <ShippingProfileName />
             {addressBookID
-                ? <ShopAddress address={data} isFetching={isFetching} />
+                ? <ShopAddress address={data} isLoading={isLoading} />
                 : <ShopAddressForm />
             }
         </ProductFormAccordion>

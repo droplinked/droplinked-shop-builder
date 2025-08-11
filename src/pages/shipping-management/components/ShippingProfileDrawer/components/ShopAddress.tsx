@@ -1,23 +1,25 @@
-import { Flex, SimpleGrid, Text } from '@chakra-ui/react'
+import { Flex, SimpleGrid, Skeleton, Text } from '@chakra-ui/react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import SectionContainer from 'pages/shipping-management/components/common/SectionContainer'
 import React from 'react'
 
 interface Props {
     address: any
-    isFetching: boolean
+    isLoading: boolean
 }
 
-export default function ShopAddress({ address, isFetching }: Props) {
+export default function ShopAddress({ address, isLoading }: Props) {
     const { t } = useLocaleResources("common")
 
-    const fullName = `${address?.firstName} ${address?.lastName}`
+    const fullNameElement = isLoading
+        ? <Skeleton width="120px" height="24px" isLoaded={false} />
+        : `${address?.firstName} ${address?.lastName}`
 
     return (
         <Flex direction="column" gap={4}>
             <Text fontWeight={500} color="text.white">Store Address</Text>
 
-            <SectionContainer title={fullName}>
+            <SectionContainer title={fullNameElement}>
                 <Flex
                     minHeight="100px"
                     direction="column"

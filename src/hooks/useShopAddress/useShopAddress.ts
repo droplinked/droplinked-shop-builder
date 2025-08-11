@@ -9,7 +9,7 @@ const useShopAddress = () => {
     const { t } = useLocaleResources("common")
     const { showToast } = useAppToast()
 
-    const { data, isFetching, error, refetch } = useQuery({
+    const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["shopAddress", addressBookID],
         queryFn: () => addressByIdService({ addressID: addressBookID }),
         enabled: !!addressBookID,
@@ -23,7 +23,7 @@ const useShopAddress = () => {
 
     return {
         addressBookID,
-        isFetching,
+        isLoading,
         error,
         data: data?.data,
         refetch
