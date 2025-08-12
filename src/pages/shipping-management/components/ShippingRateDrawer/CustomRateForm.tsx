@@ -6,6 +6,7 @@ import CurrencySelect from 'components/redesign/select/CurrencySelect'
 import React from 'react'
 import { CUSTOM_SHIPPING_TYPE, CustomShipping } from '../../types/shipping'
 import LabeledContent from '../common/LabeledContent'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     value: CustomShipping
@@ -13,19 +14,20 @@ interface Props {
 }
 
 export default function CustomRateForm({ value, onChange }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     const update = (patch: Partial<CustomShipping>) => onChange({ ...value, ...patch })
 
     const { priceLabel, priceValue } = (() => {
         if (value.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE) {
-            return { priceLabel: 'Price', priceValue: value.price ?? '' }
+            return { priceLabel: t('CustomRateForm.price'), priceValue: value.price ?? '' }
         }
         if (value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED) {
-            return { priceLabel: 'Price per Unit', priceValue: value.pricePerWeight ?? '' }
+            return { priceLabel: t('CustomRateForm.pricePerUnit'), priceValue: value.pricePerWeight ?? '' }
         }
         if (value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED) {
-            return { priceLabel: 'Price per Item', priceValue: value.pricePerItem ?? '' }
+            return { priceLabel: t('CustomRateForm.pricePerItem'), priceValue: value.pricePerItem ?? '' }
         }
-        return { priceLabel: 'Price', priceValue: '' }
+        return { priceLabel: t('CustomRateForm.price'), priceValue: '' }
     })()
 
     const handlePriceChange = (newValue: number) => {
@@ -37,7 +39,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
     return (
         <>
             <AppSelect
-                label="Configure Custom Rate"
+                label={t('CustomRateForm.select.label')}
                 isRequired
                 labelAccessor="name"
                 valueAccessor="value"
@@ -55,19 +57,19 @@ export default function CustomRateForm({ value, onChange }: Props) {
                     },
                 }}
                 items={[
-                    { name: 'Flat Rate', value: CUSTOM_SHIPPING_TYPE.FLAT_RATE },
-                    { name: 'Weight Based Rate', value: CUSTOM_SHIPPING_TYPE.WEIGHT_BASED },
-                    { name: 'Per Item Rate', value: CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED },
+                    { name: t('CustomRateForm.select.options.flatRate'), value: CUSTOM_SHIPPING_TYPE.FLAT_RATE },
+                    { name: t('CustomRateForm.select.options.weightBasedRate'), value: CUSTOM_SHIPPING_TYPE.WEIGHT_BASED },
+                    { name: t('CustomRateForm.select.options.perItemRate'), value: CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED },
                 ]}
             />
 
             <AppInput
-                label='Rate Name'
-                description='Rates are shown to customers as delivery options during checkout.'
+                label={t('CustomRateForm.rateName.label')}
+                description={t('CustomRateForm.rateName.description')}
                 inputProps={{
                     value: value.rateName,
                     onChange: (e) => update({ rateName: e.target.value }),
-                    placeholder: 'i.e. (Standard Shipping, Express Shipping)',
+                    placeholder: t('CustomRateForm.rateName.placeholder'),
                     isRequired: true,
                     fontSize: 16
                 }}
@@ -91,7 +93,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
                 </SimpleGrid>
             </LabeledContent>
 
-            <LabeledContent label='Estimated Delivery Time (In Days)' required>
+            <LabeledContent label={t('CustomRateForm.estimatedDelivery.label')} required>
                 <SimpleGrid columns={2} gap={4}>
                     <AppInput
                         inputProps={{
@@ -102,7 +104,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
                                     maxDays: value.estimatedDelivery?.maxDays ?? 0,
                                 },
                             }),
-                            placeholder: 'From',
+                            placeholder: t('CustomRateForm.estimatedDelivery.placeholder.from'),
                             type: 'number',
                             numberType: 'int',
                             fontSize: 16
@@ -117,7 +119,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
                                     maxDays: Number(e.target.value),
                                 },
                             }),
-                            placeholder: 'To',
+                            placeholder: t('CustomRateForm.estimatedDelivery.placeholder.to'),
                             type: 'number',
                             numberType: 'int',
                             fontSize: 16

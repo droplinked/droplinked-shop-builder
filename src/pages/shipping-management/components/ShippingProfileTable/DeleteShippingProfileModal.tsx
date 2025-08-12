@@ -1,6 +1,7 @@
 import { WarningLg } from 'assets/icons/Sign/Warning/WarningLg'
 import AppConfirmationDialog from 'components/redesign/app-confirmation-dialog/AppConfirmationDialog'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React from 'react'
 import { useMutation } from 'react-query'
@@ -13,6 +14,7 @@ interface Props {
 }
 
 function DeleteShippingProfileModal({ shippingProfile, isOpen, onClose }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     const { mutateAsync, isLoading } = useMutation({
         mutationFn: () => deleteShippingProfile(shippingProfile._id)
     })
@@ -21,10 +23,10 @@ function DeleteShippingProfileModal({ shippingProfile, isOpen, onClose }: Props)
     const handleDelete = async () => {
         try {
             await mutateAsync()
-            showToast({ type: "success", message: "Shipping profile deleted successfully" })
+            showToast({ type: "success", message: t('DeleteShippingProfileModal.toast.success') })
             onClose()
         } catch (error) {
-            showToast({ type: "error", message: "Failed to delete shipping profile" })
+            showToast({ type: "error", message: t('DeleteShippingProfileModal.toast.error') })
         }
     }
 
@@ -33,11 +35,11 @@ function DeleteShippingProfileModal({ shippingProfile, isOpen, onClose }: Props)
             isOpen={isOpen}
             onClose={onClose}
             icon={<WarningLg color="#fff" />}
-            title="Delete Shipping Profile"
-            description="Are you sure you want to delete this shipping profile? It will be permanently removed and this action cannot be undone."
+            title={t('DeleteShippingProfileModal.title')}
+            description={t('DeleteShippingProfileModal.description')}
             variant="delete"
             confirmButtonProps={{
-                children: 'Delete Profile',
+                children: t('DeleteShippingProfileModal.confirmButton'),
                 isLoading,
                 onClick: handleDelete
             }}

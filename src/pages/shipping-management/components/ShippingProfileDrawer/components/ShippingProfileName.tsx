@@ -1,8 +1,10 @@
 import AppInput from 'components/redesign/input/AppInput'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ShippingProfileName() {
+    const { t } = useLocaleResources("shipping-management")
     const { name, updateShippingProfile } = useShippingManagementStore(s => ({
         name: s.shippingProfile.name,
         updateShippingProfile: s.updateShippingProfile
@@ -10,13 +12,13 @@ function ShippingProfileName() {
 
     return (
         <AppInput
-            label="Profile Name"
-            description='Keep shipping profiles uniquely identifiable by name. This will not be visible to customers.'
+            label={t('ShippingProfileName.label')}
+            description={t('ShippingProfileName.description')}
             inputProps={{
                 name: 'profileName',
                 value: name,
                 onChange: (e) => updateShippingProfile('name', e.target.value),
-                placeholder: 'i.e. (Standard Shipping, Express Shipping)',
+                placeholder: t('ShippingProfileName.placeholder'),
                 isRequired: true,
                 fontSize: 16,
             }}

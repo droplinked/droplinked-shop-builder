@@ -1,6 +1,7 @@
 import AppSelect from 'components/redesign/select/AppSelect'
 import React from 'react'
 import { SHIPPING_METHOD } from '../../types/shipping'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     value: SHIPPING_METHOD
@@ -8,9 +9,10 @@ interface Props {
 }
 
 export default function ShippingMethodSelect({ value, onChange }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     return (
         <AppSelect
-            label="Set Shipping Rates"
+            label={t('ShippingMethodSelect.label')}
             isRequired
             labelAccessor="name"
             valueAccessor="value"
@@ -19,8 +21,8 @@ export default function ShippingMethodSelect({ value, onChange }: Props) {
                 onChange: (e) => onChange(e.target.value as SHIPPING_METHOD)
             }}
             items={[
-                { name: 'Carrier Services', value: SHIPPING_METHOD.THIRD_PARTY },
-                { name: 'Custom Rates', value: SHIPPING_METHOD.CUSTOM },
+                { name: t('ShippingMethodSelect.items.carrierServices'), value: SHIPPING_METHOD.THIRD_PARTY },
+                { name: t('ShippingMethodSelect.items.customRates'), value: SHIPPING_METHOD.CUSTOM },
             ]}
         />
     )

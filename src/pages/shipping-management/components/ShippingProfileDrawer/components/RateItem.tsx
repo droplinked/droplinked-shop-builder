@@ -3,9 +3,9 @@ import { DotsMd } from 'assets/icons/Navigation/Dots/DotsMd'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import { CUSTOM_SHIPPING_TYPE, SHIPPING_METHOD, Zone } from 'pages/shipping-management/types/shipping'
-import { humanizeCustomType } from 'pages/shipping-management/utils/utils'
 import React from 'react'
 import ShippingRateDrawer from '../../ShippingRateDrawer/ShippingRateDrawer'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     zone: Zone
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function RateItem({ zone, zoneIndex }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     const rateModal = useDisclosure()
 
     const isThirdParty = zone?.shippingMethod === SHIPPING_METHOD.THIRD_PARTY
@@ -21,7 +22,7 @@ export default function RateItem({ zone, zoneIndex }: Props) {
 
     if (isThirdParty) {
         if (zone.thirdParty && zone.thirdParty.length > 0) {
-            detailsToRender['Shipping Services'] = (
+            detailsToRender[t('ThirdPartyServiceSelector.label')] = (
                 <DotSeparatedList>
                     {zone.thirdParty.map((service) => (
                         <Text key={service} color='text.white' fontSize={14}>
@@ -34,7 +35,7 @@ export default function RateItem({ zone, zoneIndex }: Props) {
     } else if (customDetails) {
         switch (customDetails.type) {
             case CUSTOM_SHIPPING_TYPE.FLAT_RATE:
-                detailsToRender['Price'] = (
+                detailsToRender[t('CustomRateForm.price')] = (
                     <FormattedPrice
                         price={customDetails.price}
                         abbreviationProps={{ color: 'text.subtext.placeholder.dark' }}
@@ -43,7 +44,7 @@ export default function RateItem({ zone, zoneIndex }: Props) {
                 break
 
             case CUSTOM_SHIPPING_TYPE.WEIGHT_BASED:
-                detailsToRender['Price per Unit'] = (
+                detailsToRender[t('CustomRateForm.pricePerUnit')] = (
                     <FormattedPrice
                         price={customDetails.pricePerWeight}
                         abbreviationProps={{ color: 'text.subtext.placeholder.dark' }}
@@ -52,7 +53,7 @@ export default function RateItem({ zone, zoneIndex }: Props) {
                 break
 
             case CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED:
-                detailsToRender['Price per Item'] = (
+                detailsToRender[t('CustomRateForm.pricePerItem')] = (
                     <FormattedPrice
                         price={customDetails.pricePerItem}
                         abbreviationProps={{ color: 'text.subtext.placeholder.dark' }}
@@ -63,18 +64,18 @@ export default function RateItem({ zone, zoneIndex }: Props) {
 
         if (customDetails.estimatedDelivery) {
             const { minDays, maxDays } = customDetails.estimatedDelivery
-            detailsToRender['Estimated Time'] = (
+            detailsToRender[t('RateItem.estimatedTime')] = (
                 <DotSeparatedList>
                     <Text color='text.white' fontSize={14}>
                         {minDays}{' '}
                         <Box as='span' color='text.subtext.placeholder.dark'>
-                            {minDays === 1 ? 'day' : 'days'}
+                            {minDays === 1 ? t('RateItem.daySingular') : t('RateItem.dayPlural')}
                         </Box>
                     </Text>
                     <Text color='text.white' fontSize={14}>
                         {maxDays}{' '}
                         <Box as='span' color='text.subtext.placeholder.dark'>
-                            {maxDays === 1 ? 'day' : 'days'}
+                            {maxDays === 1 ? t('RateItem.daySingular') : t('RateItem.dayPlural')}
                         </Box>
                     </Text>
                 </DotSeparatedList>
@@ -84,7 +85,7 @@ export default function RateItem({ zone, zoneIndex }: Props) {
 
     const headerContent = isThirdParty ? (
         <Text fontSize={14} fontWeight={500} color='text.white'>
-            Carrier Services
+            {t('ShippingMethodSelect.items.carrierServices')}
         </Text>
     ) : (
         <DotSeparatedList>
@@ -93,7 +94,9 @@ export default function RateItem({ zone, zoneIndex }: Props) {
             </Text>
             {customDetails?.type &&
                 <Text fontSize={14} color='text.subtext.placeholder.dark'>
-                    {humanizeCustomType(customDetails.type)}
+                    {customDetails.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE && t('CustomRateForm.select.options.flatRate')}
+                    {customDetails.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED && t('CustomRateForm.select.options.weightBasedRate')}
+                    {customDetails.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED && t('CustomRateForm.select.options.perItemRate')}
                 </Text>
             }
         </DotSeparatedList>

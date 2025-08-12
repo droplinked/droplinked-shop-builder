@@ -7,6 +7,7 @@ import ShippingDrawer from '../common/ShippingDrawer'
 import CustomRateForm from './CustomRateForm'
 import ShippingMethodSelect from './ShippingMethodSelect'
 import ThirdPartyServiceSelector from './ThirdPartyServiceSelector'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -15,6 +16,7 @@ interface Props {
 }
 
 function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     const [draftZone, setDraftZone] = useState<Partial<Zone>>(defaultZone)
     const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
         zones: s.shippingProfile.zones,
@@ -50,7 +52,7 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
-            <ShippingDrawer.Header title="Add Shipping Rate" description="Create Shipping Profile" />
+            <ShippingDrawer.Header title={t('ShippingRateDrawer.header.title')} description={t('ShippingRateDrawer.header.description')} />
             <ShippingDrawer.Body display="flex" flexDirection="column" gap={9}>
                 <ShippingMethodSelect
                     value={shippingMethod}
@@ -78,8 +80,8 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
                 )}
             </ShippingDrawer.Body>
             <ShippingDrawer.Footer
-                primaryText="Save"
-                secondaryText="Discard"
+                primaryText={t('common:save')}
+                secondaryText={t('common:discard')}
                 onPrimary={handleSave}
                 onSecondary={onClose}
                 primaryButtonProps={{

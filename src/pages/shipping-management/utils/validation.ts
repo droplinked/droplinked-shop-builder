@@ -40,34 +40,35 @@ export const validateShippingRate = (zone: Partial<Zone>): boolean => {
 export const validateShippingProfile = (shippingProfile: ShippingProfile) => {
     const { name, zones } = shippingProfile
 
-    if (!name.trim()) throw new Error('Profile name is required.')
+    // Throw i18n keys instead of raw messages
+    if (!name.trim()) throw new Error('shipping-management:validation.profileNameRequired')
 
-    if (zones.length === 0) throw new Error('At least one shipping zone is required.')
+    if (zones.length === 0) throw new Error('shipping-management:validation.atLeastOneZone')
 
     for (const zone of zones) {
         const { shippingMethod, name: zoneName, thirdParty, custom } = zone
 
         if (shippingMethod === SHIPPING_METHOD.THIRD_PARTY) {
             if (!thirdParty || thirdParty.length === 0) {
-                throw new Error(`The zone "${zoneName}" must have at least one shipping service.`)
+                throw new Error('shipping-management:validation.zoneServicesRequired')
             }
         }
 
         if (shippingMethod === SHIPPING_METHOD.CUSTOM) {
             const { minDays, maxDays } = custom?.estimatedDelivery || {}
             if (!minDays || !maxDays) {
-                throw new Error(`The zone "${zoneName}" requires estimated delivery days.`)
+                throw new Error('shipping-management:validation.zoneEstimatedDeliveryRequired')
             }
         }
     }
 }
 
 export const validateAddress = (address: IcreateAddressService) => {
-    if (!address.firstName?.trim()) throw new Error('First name is required.')
-    if (!address.lastName?.trim()) throw new Error('Last name is required.')
-    if (!address.addressLine1?.trim()) throw new Error('Address line 1 is required.')
-    if (!address.country?.trim()) throw new Error('Country is required.')
-    if (!address.state?.trim()) throw new Error('State is required.')
-    if (!address.city?.trim()) throw new Error('City is required.')
-    if (!address.zip?.trim()) throw new Error('Zip code is required.')
+    if (!address.firstName?.trim()) throw new Error('common:address.validation.firstNameRequired')
+    if (!address.lastName?.trim()) throw new Error('common:address.validation.lastNameRequired')
+    if (!address.addressLine1?.trim()) throw new Error('common:address.validation.addressLine1Required')
+    if (!address.country?.trim()) throw new Error('common:address.validation.countryRequired')
+    if (!address.state?.trim()) throw new Error('common:address.validation.stateRequired')
+    if (!address.city?.trim()) throw new Error('common:address.validation.cityRequired')
+    if (!address.zip?.trim()) throw new Error('common:address.validation.zipRequired')
 }

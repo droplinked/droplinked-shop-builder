@@ -8,13 +8,15 @@ import AddRateButton from '../AddRateButton'
 import AddZoneButton from '../AddZoneButton'
 import RateItem from '../RateItem'
 import ZoneActionMenu from '../ZoneActionMenu'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ZonesRatesAccordion() {
+    const { t } = useLocaleResources("shipping-management")
     const zoneActionModal = useDisclosure()
     const zones = useShippingManagementStore(s => s.shippingProfile.zones)
 
     return (
-        <ProductFormAccordion label="Zones and Rates">
+        <ProductFormAccordion label={t('ZonesRatesAccordion.label')}>
             <Flex direction="column" gap={4}>
                 {zones.map((zone, index) => {
                     const shouldShowAddButton = (
@@ -29,7 +31,7 @@ function ZonesRatesAccordion() {
                         <SectionContainer
                             key={zone.name}
                             title={zone.name}
-                            description={`${zone.countries.length} Locations Selected`}
+                            description={t('ZonesRatesAccordion.locationsSelected', { count: zone.countries.length })}
                             rightAction={<ZoneActionMenu zoneIndex={index} />}
                         >
                             {shouldShowAddButton

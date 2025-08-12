@@ -3,9 +3,11 @@ import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import BlueButton from 'components/redesign/button/BlueButton'
 import React from 'react'
 import ShippingZoneDrawer from '../../ShippingZoneDrawer/ShippingZoneDrawer'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function AddZoneButton({ zoneModal }: { zoneModal: UseDisclosureReturn }) {
     const { isOpen, onOpen } = zoneModal
+    const { t } = useLocaleResources("shipping-management")
 
     return (
         <>
@@ -18,7 +20,7 @@ function AddZoneButton({ zoneModal }: { zoneModal: UseDisclosureReturn }) {
                 onClick={onOpen}
             >
                 <PlusMd color='currentColor' />
-                Add Shipping Zone
+                {t('AddZoneButton.title')}
             </BlueButton>
 
             {isOpen && <ShippingZoneDrawer {...zoneModal} />}

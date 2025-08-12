@@ -21,7 +21,7 @@ export const useShippingProfileOperations = () => {
     const [isSaving, setIsSaving] = useState(false)
     const queryClient = useQueryClient()
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources("common")
+    const { t } = useLocaleResources("shipping-management")
     const { shop, updateShop } = useAppStore()
 
     const handleSave = async (params: SaveShippingProfileParams) => {
@@ -35,7 +35,7 @@ export const useShippingProfileOperations = () => {
             if (isEditing) {
                 // Update existing profile
                 await updateShippingProfileService(editingProfileId!, shippingProfile)
-                showToast({ type: 'success', message: 'Shipping profile updated successfully' })
+                showToast({ type: 'success', message: t('useShippingProfileOperations.toast.updateSuccess') })
             } else {
                 // Create new profile - check if address exists
                 const { addressBookID } = shop
@@ -57,7 +57,7 @@ export const useShippingProfileOperations = () => {
                     zones: shippingProfile.zones
                 })
 
-                showToast({ type: 'success', message: 'Shipping profile created successfully' })
+                showToast({ type: 'success', message: t('useShippingProfileOperations.toast.createSuccess') })
             }
 
             // Invalidate queries and call success callbacks
@@ -65,9 +65,12 @@ export const useShippingProfileOperations = () => {
             onSuccess?.()
 
         } catch (error) {
+            const errorKey = typeof error.message === 'string' ? error.message : ''
+            // If the error message looks like a translation key, translate it; otherwise fallback to generic
+            const translated = errorKey.includes(':') ? t(errorKey) : t('common:genericError')
             showToast({
                 type: 'error',
-                message: error.message ?? t("common:genericError")
+                message: translated
             })
         } finally {
             setIsSaving(false)

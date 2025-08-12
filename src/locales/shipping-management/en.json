@@ -24,5 +24,136 @@
   "ZoneNameInput": {
     "label": "Zone Name",
     "placeholder": "i.e. (Domestic, International)"
+  },
+  "ShippingRateDrawer": {
+    "header": {
+      "title": "Add Shipping Rate",
+      "description": "Create Shipping Profile"
+    }
+  },
+  "ShippingMethodSelect": {
+    "label": "Set Shipping Rates",
+    "items": {
+      "carrierServices": "Carrier Services",
+      "customRates": "Custom Rates"
+    }
+  },
+  "ThirdPartyServiceSelector": {
+    "label": "Shipping Services"
+  },
+  "CustomRateForm": {
+    "select": {
+      "label": "Configure Custom Rate",
+      "options": {
+        "flatRate": "Flat Rate",
+        "weightBasedRate": "Weight Based Rate",
+        "perItemRate": "Per Item Rate"
+      }
+    },
+    "rateName": {
+      "label": "Rate Name",
+      "description": "Rates are shown to customers as delivery options during checkout.",
+      "placeholder": "i.e. (Standard Shipping, Express Shipping)"
+    },
+    "price": "Price",
+    "pricePerUnit": "Price per Unit",
+    "pricePerItem": "Price per Item",
+    "estimatedDelivery": {
+      "label": "Estimated Delivery Time (In Days)",
+      "placeholder": {
+        "from": "From",
+        "to": "To"
+      }
+    }
+  },
+  "ShippingProfileTable": {
+    "columns": {
+      "profileName": "Profile Name",
+      "rates": "Rates"
+    },
+    "values": {
+      "countrySingular": "Country",
+      "countryPlural": "Countries",
+      "zoneSingular": "Zone",
+      "zonePlural": "Zones"
+    }
+  },
+  "ShippingProfileEmptyState": {
+    "title": "Create a shipping profile to get started!"
+  },
+  "DeleteShippingProfileModal": {
+    "title": "Delete Shipping Profile",
+    "description": "Are you sure you want to delete this shipping profile? It will be permanently removed and this action cannot be undone.",
+    "confirmButton": "Delete Profile",
+    "toast": {
+      "success": "Shipping profile deleted successfully",
+      "error": "Failed to delete shipping profile"
+    }
+  },
+  "DuplicateShippingProfileModal": {
+    "title": "Duplicate Shipping Profile",
+    "description": "Are you sure you want to duplicate this shipping profile?",
+    "confirmButton": "Duplicate Profile",
+    "toast": {
+      "success": "Shipping profile duplicated successfully",
+      "error": "Failed to duplicate shipping profile"
+    }
+  },
+  "ShippingProfileDrawer": {
+    "header": {
+      "createTitle": "Create Shipping Profile",
+      "editTitle": "Edit Shipping Profile"
+    },
+    "footer": {
+      "createProfile": "Create Profile",
+      "updateProfile": "Update Profile"
+    }
+  },
+  "GeneralInformationAccordion": {
+    "label": "General Information"
+  },
+  "ZonesRatesAccordion": {
+    "label": "Zones and Rates",
+    "locationsSelected": "{{count}} Locations Selected"
+  },
+  "AddRateButton": {
+    "title": "Add New Rate",
+    "description": "Add options and rates for this zone."
+  },
+  "AddZoneButton": {
+    "title": "Add Shipping Zone"
+  },
+  "ShippingProfileName": {
+    "label": "Profile Name",
+    "description": "Keep shipping profiles uniquely identifiable by name. This will not be visible to customers.",
+    "placeholder": "i.e. (Standard Shipping, Express Shipping)"
+  },
+  "ShopAddress": {
+    "heading": "Store Address"
+  },
+  "ShopAddressForm": {
+    "label": "Shop Address",
+    "placeholder": {
+      "addressLine1": "e.g., 123 Main St, PO Box 456",
+      "addressLine2": "e.g., Apt 4B, Suite 205, Building 7",
+      "zip": "10001"
+    }
+  },
+  "RateItem": {
+    "estimatedTime": "Estimated Time",
+    "daySingular": "day",
+    "dayPlural": "days"
+  },
+  "useShippingProfileOperations": {
+    "toast": {
+      "updateSuccess": "Shipping profile updated successfully",
+      "createSuccess": "Shipping profile created successfully"
+    }
+  },
+  "validation": {
+    "profileNameRequired": "Profile name is required.",
+    "atLeastOneZone": "At least one shipping zone is required.",
+    "zoneServicesRequired": "Each zone must have at least one shipping service.",
+    "zoneEstimatedDeliveryRequired": "Each zone requires estimated delivery days."
   }
 }

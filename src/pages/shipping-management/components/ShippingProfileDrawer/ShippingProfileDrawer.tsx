@@ -6,6 +6,7 @@ import { useShippingProfileOperations } from '../../hooks/useShippingProfileOper
 import ShippingDrawer from '../common/ShippingDrawer'
 import GeneralInformationAccordion from './components/accordions/GeneralInformationAccordion'
 import ZonesRatesAccordion from './components/accordions/ZonesRatesAccordion'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -16,6 +17,7 @@ interface Props {
 const ShippingProfileDrawer = ({ isOpen, onClose, editingShippingProfile }: Props) => {
     const { shippingProfile, updateShippingProfile, resetState, address } = useShippingManagementStore()
     const { handleSave, isSaving } = useShippingProfileOperations()
+    const { t } = useLocaleResources("shipping-management")
 
     const isEditing = !!editingShippingProfile
 
@@ -42,7 +44,7 @@ const ShippingProfileDrawer = ({ isOpen, onClose, editingShippingProfile }: Prop
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={handleClose}>
-            <ShippingDrawer.Header title={`${isEditing ? 'Edit' : 'Create'} Shipping Profile`} />
+            <ShippingDrawer.Header title={isEditing ? t('ShippingProfileDrawer.header.editTitle') : t('ShippingProfileDrawer.header.createTitle')} />
             <ShippingDrawer.Body>
                 <AppAccordion
                     display="flex"
@@ -55,8 +57,8 @@ const ShippingProfileDrawer = ({ isOpen, onClose, editingShippingProfile }: Prop
                 </AppAccordion>
             </ShippingDrawer.Body>
             <ShippingDrawer.Footer
-                primaryText={`${isEditing ? 'Update' : 'Create'} Profile`}
-                secondaryText="Discard"
+                primaryText={isEditing ? t('ShippingProfileDrawer.footer.updateProfile') : t('ShippingProfileDrawer.footer.createProfile')}
+                secondaryText={t('common:discard')}
                 onPrimary={onSave}
                 onSecondary={handleClose}
                 primaryButtonProps={{ isLoading: isSaving, isDisabled: isSaving }}

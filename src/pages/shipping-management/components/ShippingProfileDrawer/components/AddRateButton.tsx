@@ -2,12 +2,14 @@ import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import React from 'react'
 import ShippingRateDrawer from '../../ShippingRateDrawer/ShippingRateDrawer'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     zoneIndex: number
 }
 
 function AddRateButton({ zoneIndex }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     const rateModal = useDisclosure()
 
     return (
@@ -20,8 +22,8 @@ function AddRateButton({ zoneIndex }: Props) {
                 color="text.link"
             >
                 <Box>
-                    <Text fontWeight={500}>Add New Rate</Text>
-                    <Text color="text.subtext.placeholder.dark">Add options and rates for this zone.</Text>
+                    <Text fontWeight={500}>{t('AddRateButton.title')}</Text>
+                    <Text color="text.subtext.placeholder.dark">{t('AddRateButton.description')}</Text>
                 </Box>
 
                 <button type='button' onClick={rateModal.onOpen}>

@@ -8,8 +8,10 @@ import { useQuery } from 'react-query'
 import { getShippingProfiles } from 'services/shipping-management/services'
 import ShippingProfileEmptyState from './ShippingProfileEmptyState'
 import ShippingProfileTableActionMenu from './ShippingProfileTableActionMenu'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ShippingProfileTable() {
+    const { t } = useLocaleResources("shipping-management")
     const { data: shippingProfiles, isLoading } = useQuery({
         queryKey: ['shipping-profiles'],
         queryFn: getShippingProfiles
@@ -18,12 +20,12 @@ function ShippingProfileTable() {
     const columns: ColumnDef<ShippingProfile>[] = [
         {
             accessorKey: 'profileName',
-            header: "Profile Name",
+            header: t('ShippingProfileTable.columns.profileName'),
             cell: info => <Text fontSize={16} fontWeight={500}>{info.row.original?.name}</Text>
         },
         {
             accessorKey: 'rates',
-            header: "Rates",
+            header: t('ShippingProfileTable.columns.rates'),
             cell: info => {
                 const { zones } = info.row.original
                 const zonesCount = zones?.length
@@ -31,8 +33,8 @@ function ShippingProfileTable() {
 
                 return (
                     <DotSeparatedList fontSize={16}>
-                        <Text>{countriesCount} {countriesCount === 1 ? 'Country' : 'Countries'}</Text>
-                        <Text>{zonesCount} {zonesCount === 1 ? 'Zone' : 'Zones'}</Text>
+                        <Text>{countriesCount} {countriesCount === 1 ? t('ShippingProfileTable.values.countrySingular') : t('ShippingProfileTable.values.countryPlural')}</Text>
+                        <Text>{zonesCount} {zonesCount === 1 ? t('ShippingProfileTable.values.zoneSingular') : t('ShippingProfileTable.values.zonePlural')}</Text>
                     </DotSeparatedList>
                 )
             }

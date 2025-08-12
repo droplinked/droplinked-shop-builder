@@ -5,6 +5,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { getShippingProviders } from 'services/shipping-management/services'
 import LabeledContent from '../common/LabeledContent'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     selected: string[]
@@ -12,6 +13,7 @@ interface Props {
 }
 
 function ThirdPartyServiceSelector({ selected, onChange }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     const { data } = useQuery({
         queryKey: ['shipping-providers'],
         queryFn: getShippingProviders,
@@ -27,7 +29,7 @@ function ThirdPartyServiceSelector({ selected, onChange }: Props) {
     const providers = data ?? []
 
     return (
-        <LabeledContent label="Shipping Services" required>
+        <LabeledContent label={t('ThirdPartyServiceSelector.label')} required>
             {providers.length > 0 && (
                 <RuledGrid columns={1} borderRadius={8}>
                     {providers.map((service) => (

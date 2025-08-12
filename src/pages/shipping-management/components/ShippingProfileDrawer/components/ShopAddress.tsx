@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function ShopAddress({ address, isLoading }: Props) {
-    const { t } = useLocaleResources("common")
+    const { t } = useLocaleResources("shipping-management")
 
     const fullNameElement = isLoading
         ? <Skeleton width="120px" height="24px" isLoaded={false} />
@@ -17,7 +17,7 @@ export default function ShopAddress({ address, isLoading }: Props) {
 
     return (
         <Flex direction="column" gap={4}>
-            <Text fontWeight={500} color="text.white">Store Address</Text>
+            <Text fontWeight={500} color="text.white">{t('ShopAddress.heading')}</Text>
 
             <SectionContainer title={fullNameElement}>
                 <Flex

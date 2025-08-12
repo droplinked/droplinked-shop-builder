@@ -1,6 +1,7 @@
 import { WarningLg } from 'assets/icons/Sign/Warning/WarningLg'
 import AppConfirmationDialog from 'components/redesign/app-confirmation-dialog/AppConfirmationDialog'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React from 'react'
 import { useMutation } from 'react-query'
@@ -13,6 +14,7 @@ interface Props {
 }
 
 function DuplicateShippingProfileModal({ shippingProfile, isOpen, onClose }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     const { showToast } = useAppToast()
     const { mutateAsync, isLoading } = useMutation({
         mutationFn: () =>
@@ -25,10 +27,10 @@ function DuplicateShippingProfileModal({ shippingProfile, isOpen, onClose }: Pro
     const handleDuplicate = async () => {
         try {
             await mutateAsync()
-            showToast({ type: "success", message: "Shipping profile duplicated successfully" })
+            showToast({ type: "success", message: t('DuplicateShippingProfileModal.toast.success') })
             onClose()
         } catch (error) {
-            showToast({ type: "error", message: "Failed to duplicate shipping profile" })
+            showToast({ type: "error", message: t('DuplicateShippingProfileModal.toast.error') })
         }
     }
 
@@ -37,10 +39,10 @@ function DuplicateShippingProfileModal({ shippingProfile, isOpen, onClose }: Pro
             isOpen={isOpen}
             onClose={onClose}
             icon={<WarningLg color="#fff" />}
-            title="Duplicate Shipping Profile"
-            description="Are you sure you want to duplicate this shipping profile?"
+            title={t('DuplicateShippingProfileModal.title')}
+            description={t('DuplicateShippingProfileModal.description')}
             confirmButtonProps={{
-                children: 'Duplicate Profile',
+                children: t('DuplicateShippingProfileModal.confirmButton'),
                 isLoading,
                 onClick: handleDuplicate
             }}

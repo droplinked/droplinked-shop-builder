@@ -1,6 +1,7 @@
 import { Flex, SimpleGrid } from '@chakra-ui/react'
 import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import React, { useCallback } from 'react'
 import { useQuery } from 'react-query'
@@ -8,6 +9,7 @@ import { allCountriesService, citiesService, statesService } from 'services/addr
 import LabeledContent from '../../common/LabeledContent'
 
 function ShopAddressForm() {
+    const { t } = useLocaleResources("shipping-management")
     const { address, updateAddress } = useShippingManagementStore(s => ({
         address: s.address,
         updateAddress: s.updateAddress
@@ -49,7 +51,7 @@ function ShopAddressForm() {
     }, [updateAddress])
 
     return (
-        <LabeledContent label='Shop Address' >
+        <LabeledContent label={t('ShopAddressForm.label')} >
             <Flex
                 direction='column'
                 gap={9}
@@ -61,20 +63,20 @@ function ShopAddressForm() {
             >
                 <SimpleGrid columns={2} gap={4}>
                     <AppInput
-                        label='First Name'
+                        label={t('common:address.fields.firstName')}
                         inputProps={{
                             value: address.firstName,
                             onChange: (e) => updateAddress('firstName', e.target.value),
-                            placeholder: 'John',
+                            placeholder: t('common:address.fields.firstName'),
                             isRequired: true
                         }}
                     />
                     <AppInput
-                        label='Last Name'
+                        label={t('common:address.fields.lastName')}
                         inputProps={{
                             value: address.lastName,
                             onChange: (e) => updateAddress('lastName', e.target.value),
-                            placeholder: 'Doe',
+                            placeholder: t('common:address.fields.lastName'),
                             isRequired: true
                         }}
                     />
@@ -82,20 +84,20 @@ function ShopAddressForm() {
 
                 <Flex direction='column' gap={6}>
                     <AppInput
-                        label='Address Line 1'
+                        label={t('common:address.fields.addressLine1')}
                         inputProps={{
                             value: address.addressLine1,
                             onChange: (e) => updateAddress('addressLine1', e.target.value),
-                            placeholder: 'e.g., 123 Main St, PO Box 456',
+                            placeholder: t('ShopAddressForm.placeholder.addressLine1'),
                             isRequired: true
                         }}
                     />
                     <AppInput
-                        label='Address Line 2'
+                        label={t('common:address.fields.addressLine2')}
                         inputProps={{
                             value: address.addressLine2,
                             onChange: (e) => updateAddress('addressLine2', e.target.value),
-                            placeholder: 'e.g., Apt 4B, Suite 205, Building 7'
+                            placeholder: t('ShopAddressForm.placeholder.addressLine2')
                         }}
                     />
                 </Flex>
@@ -103,7 +105,7 @@ function ShopAddressForm() {
                 <Flex direction='column' gap={6}>
                     <SimpleGrid columns={2} gap={4}>
                         <AppSelect
-                            label='Country'
+                            label={t('common:address.fields.country')}
                             isRequired
                             isLoading={isFetchingCountries}
                             items={countriesOptions}
@@ -111,12 +113,12 @@ function ShopAddressForm() {
                             selectProps={{
                                 value: address.country,
                                 onChange: (e) => handleCountryChange(e.target.value),
-                                placeholder: 'Country'
+                                placeholder: t('common:address.fields.country')
                             }}
                         />
 
                         <AppSelect
-                            label='State'
+                            label={t('common:address.fields.state')}
                             isRequired
                             isLoading={isFetchingStates}
                             items={statesOptions}
@@ -124,14 +126,14 @@ function ShopAddressForm() {
                             selectProps={{
                                 value: address.state,
                                 onChange: (e) => handleStateChange(e.target.value),
-                                placeholder: 'State'
+                                placeholder: t('common:address.fields.state')
                             }}
                         />
                     </SimpleGrid>
 
                     <SimpleGrid columns={2} gap={4}>
                         <AppSelect
-                            label='City'
+                            label={t('common:address.fields.city')}
                             isRequired
                             isLoading={isFetchingCities}
                             items={citiesOptions}
@@ -139,16 +141,16 @@ function ShopAddressForm() {
                             selectProps={{
                                 value: address.city,
                                 onChange: (e) => updateAddress('city', e.target.value),
-                                placeholder: 'City',
+                                placeholder: t('common:address.fields.city'),
                             }}
                         />
 
                         <AppInput
-                            label='Zip Code'
+                            label={t('common:address.fields.zip')}
                             inputProps={{
                                 value: address.zip,
                                 onChange: (e) => updateAddress('zip', e.target.value),
-                                placeholder: '10001',
+                                placeholder: t('ShopAddressForm.placeholder.zip'),
                                 isRequired: true
                             }}
                         />
