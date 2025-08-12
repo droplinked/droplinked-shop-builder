@@ -40,10 +40,11 @@ import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import TemplateCreatePage from "pages/template-designer/components/TemplateCreatePage"
+import TemplateEditPage from "pages/template-designer/components/TemplateEditPage"
 import ExplorePage from "pages/explore/ExplorePage"
 
 // Lazy-loaded components for other routes
-const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"))
 const Blogs = lazy(() => import("pages/blogs/Blogs"))
 const Collections = lazy(() => import("pages/collections/Collections"))
@@ -67,6 +68,7 @@ const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplat
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
+const TemplateDesigner = lazy(() => import("pages/template-designer/TemplateDesigner"))
 const ShippingManagement = lazy(() => import("pages/shipping-management/ShippingManagement"))
 
 const router = createBrowserRouter([
@@ -202,19 +204,18 @@ const router = createBrowserRouter([
         ]
     },
     {
+        path: "/analytics/style-center/template-builder",
+        errorElement: <MaintenancePage />,
+        children: [
+            { index: true, element: <TemplateCreatePage /> }
+        ]
+    },
+    {
         path: "shop-management",
         element: <ProducerLayout hideSidebar={true} showBackground={true} />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> }
-        ]
-    },
-    {
-        path: 'style-center/storefront-designer',
-        element: <ProducerLayout hideSidebar={true} />,
-        errorElement: <MaintenancePage />,
-        children: [
-            { index: true, element: <StorefrontDesigner /> }
         ]
     },
     { path: "onboarding", element: <Onboarding /> },

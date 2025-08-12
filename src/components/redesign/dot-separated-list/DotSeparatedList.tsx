@@ -22,7 +22,12 @@ function DotSeparatedList({ children, dotColor, ...props }: DotSeparatedListProp
   if (validChildren.length === 0) return null
 
   return (
-    <Flex flexWrap="wrap" alignItems="center" gap={2} {...props}>
+    <Flex
+      flexWrap="wrap"
+      alignItems="center"
+      gap={2}
+      {...props}
+    >
       {validChildren.map((child, index) => (
         <React.Fragment key={index}>
           {child}
