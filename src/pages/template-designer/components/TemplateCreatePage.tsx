@@ -5,15 +5,18 @@ import "droplinked-designer-core/dist/index.css";
 import React from 'react';
 import useAppStore from 'stores/app/appStore';
 import useTemplate from '../hooks/useTemplate';
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Flex, Spinner, useBreakpointValue } from '@chakra-ui/react';
 import { compressToBase64, decompressFromBase64 } from "lz-string"
 import { getInitialData } from '../data/InitialData';
 import { useNavigate } from 'react-router-dom';
+import DesktopOnlyNotice from './DesignerPage/DesktopOnlyNotice';
 
 function TemplateCreatePage() {
     const navigate = useNavigate()
     const { isLoadingTemplate, isUpdatingTemplate, templateData, updateTemplate } = useTemplate()
     const { shop: { name, shopDesign, backgroundColor, headerIcon, launchDate, logo } } = useAppStore()
+    const shouldShowDesktopNotice = useBreakpointValue({ base: true, lg: false })
+
 
     const data: Data = isLoadingTemplate ?
         {} :
@@ -55,6 +58,8 @@ function TemplateCreatePage() {
             url: `https://droplinked.io/${name}`
         }
     }
+
+    if (shouldShowDesktopNotice) return <DesktopOnlyNotice />
 
     return (
         <>
