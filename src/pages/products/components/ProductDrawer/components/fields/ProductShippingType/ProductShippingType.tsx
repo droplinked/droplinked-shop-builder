@@ -8,10 +8,12 @@ import ShippingList from './ShippingList'
 
 function ProductShippingType() {
     const { t } = useLocaleResources('products')
-    const { data: shippingProfiles } = useQuery({
+    const { data } = useQuery({
         queryKey: ['shipping-profiles'],
         queryFn: getShippingProfiles
     })
+
+    const shippingProfiles = data ?? []
 
     return (
         <FormFieldWrapper
@@ -20,7 +22,7 @@ function ProductShippingType() {
             isRequired
         >
             {
-                shippingProfiles?.length === 0
+                shippingProfiles.length === 0
                     ? <ShippingEmpty />
                     : <ShippingList shippingProfiles={shippingProfiles} />
             }
