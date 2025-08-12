@@ -54,7 +54,7 @@ export type Namespace =
     | 'public-pages/landings/tokenpay'
     | 'public-pages/landings/social-quests'
     | 'book-demo'
-
+    | 'shipping-management'
 
 /**
  * A custom hook to easily load translation resources into i18next and provide the translation function
