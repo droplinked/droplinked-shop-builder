@@ -54,7 +54,7 @@ export default function BookDemoForm() {
             validateOnMount={true}
             onSubmit={handleSubmit}
         >
-            {({ values, handleChange, errors, isSubmitting, touched, isValid }) => (
+            {({ values, handleChange, errors, isSubmitting, touched, isValid, handleBlur }) => (
                 <Form
                     style={{
                         flex: 1,
@@ -73,7 +73,8 @@ export default function BookDemoForm() {
                                     name: "name",
                                     isRequired: true,
                                     value: values.name,
-                                    onChange: handleChange
+                                    onChange: handleChange,
+                                    onBlur: handleBlur
                                 }}
                                 message={touched.name && errors.name}
 
@@ -85,7 +86,8 @@ export default function BookDemoForm() {
                                     name: "email",
                                     isRequired: true,
                                     value: values.email,
-                                    onChange: handleChange
+                                    onChange: handleChange,
+                                    onBlur: handleBlur
                                 }}
                                 message={touched.email && errors.email}
                             />
@@ -98,7 +100,8 @@ export default function BookDemoForm() {
                                     id: "phone",
                                     name: "phone",
                                     value: values.phone,
-                                    onChange: handleChange
+                                    onChange: handleChange,
+                                    onBlur: handleBlur
                                 }}
                                 message={errors.phone}
                             />
