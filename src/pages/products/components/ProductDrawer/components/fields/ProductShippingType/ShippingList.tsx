@@ -1,11 +1,36 @@
 import { Flex } from '@chakra-ui/react'
 import { EditLg } from 'assets/icons/Action/Edit/EditLg'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
+import AppSelect from 'components/redesign/select/AppSelect'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React from 'react'
 
-function ShippingList() {
+interface ShippingListProps {
+    shippingProfiles: ShippingProfile[]
+}
+
+function ShippingList({ shippingProfiles }: ShippingListProps) {
+    const { values, setFieldValue } = useProductForm()
+
+    console.log({ shippingProfiles })
+
+    const shippingProfileOptions = shippingProfiles.map((profile) => ({
+        name: `${profile.name} (${profile.zones.length} zones)`,
+        value: profile._id
+    }))
+
     return (
         <Flex direction='column' gap={4}>
+
+            <AppSelect
+                items={shippingProfileOptions}
+                selectProps={{
+                    placeholder: 'Shipping Profile',
+                    value: values.shippingType,
+                    onChange: (value) => setFieldValue('shippingType', value)
+                }}
+            />
             <InteractiveText
                 to='/analytics/shipping-management'
                 justifyContent="center"
