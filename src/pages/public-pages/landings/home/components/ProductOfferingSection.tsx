@@ -2,18 +2,16 @@ import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
 import { PositionLg } from 'assets/icons/Sign/Position/PositionLg'
 import { ImageLg } from 'assets/icons/System/Image/ImageLg'
 import { MinttomerchLg } from 'assets/icons/System/MintToMerch/MinttomerchLg'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/homePage/en.json'
-import localAr from 'locales/public-pages/landings/homePage/ar.json'
-import { Cards } from '../../_shared/components/card'
-import { CardData } from '../../_shared/components/card/Cards'
+import React from 'react'
 import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
+import { Cards } from '../../_shared/components/card'
+import { CardData } from '../../_shared/components/card/Cards'
 import Products from '../svgs/Products'
 
 export default function ProductOfferingSection() {
-    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('homePage')
 
     const cardsData: CardData[] = [
         {

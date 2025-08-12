@@ -1,15 +1,13 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/homePage/en.json'
-import localAr from 'locales/public-pages/landings/homePage/ar.json'
 import HeroSection from '../../_shared/components/hero-section/HeroSection'
 
 export default function HomePageHero() {
-    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('homePage')
 
     return (
         <HeroSection
@@ -22,7 +20,7 @@ export default function HomePageHero() {
                             {t("hero.startNow")}
                         </AppButton>
                     </Link>
-                    <Link to='mailto:support@droplinked.com'>
+                    <Link to='/book-demo'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
                             {t("hero.requestDemo")}
                         </AppButton>

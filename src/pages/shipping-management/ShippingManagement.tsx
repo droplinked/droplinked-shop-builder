@@ -1,0 +1,40 @@
+import { useDisclosure } from '@chakra-ui/react'
+import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
+import PageGrid from 'components/redesign/page-grid/PageGrid'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/shipping-management/ar.json'
+import enLocale from 'locales/shipping-management/en.json'
+import React from 'react'
+import ShippingProfileDrawer from './components/ShippingProfileDrawer/ShippingProfileDrawer'
+import ShippingProfileTable from './components/ShippingProfileTable/ShippingProfileTable'
+
+function ShippingManagement() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { t } = useLocaleResources("shipping-management", { en: enLocale, ar: arLocale })
+
+    return (
+        <>
+            <PageGrid.Root>
+                <PageGrid.Header
+                    title={t('ShippingManagement.pageTitle')}
+                    description={t('ShippingManagement.pageDescription')}
+                    actionButtons={[
+                        {
+                            title: t('ShippingManagement.action.newShippingProfile'),
+                            leftIcon: <PlusMd />,
+                            onClick: onOpen
+                        }
+                    ]}
+                />
+
+                <PageGrid.Content>
+                    <ShippingProfileTable />
+                </PageGrid.Content>
+            </PageGrid.Root>
+
+            <ShippingProfileDrawer isOpen={isOpen} onClose={onClose} />
+        </>
+    )
+}
+
+export default ShippingManagement

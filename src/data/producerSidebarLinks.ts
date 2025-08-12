@@ -39,7 +39,8 @@ const createSidebarLinks = (t: TFunction) => [
                 list: [
                     { listTitle: t('Sidebar.NavLinks.lists.inventoryManagement'), linkTo: '/analytics/products' },
                     { listTitle: t('Sidebar.NavLinks.lists.productCollections'), linkTo: '/analytics/collections' },
-                    { listTitle: t('Sidebar.NavLinks.lists.onchainInventory'), linkTo: '/analytics/onchain-records' }
+                    { listTitle: t('Sidebar.NavLinks.lists.shippingManagement'), linkTo: '/analytics/shipping-management' },
+                    { listTitle: t('Sidebar.NavLinks.lists.onchainInventory'), linkTo: '/analytics/onchain-records' },
                 ]
             },
             {

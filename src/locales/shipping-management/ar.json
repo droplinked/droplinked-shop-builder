@@ -1,0 +1,159 @@
+{
+  "ShippingManagement": {
+    "pageTitle": "إدارة ملفات الشحن",
+    "pageDescription": "أنشئ وعدّل وادِر ملفات الشحن هنا.",
+    "action": {
+      "newShippingProfile": "ملف شحن جديد"
+    }
+  },
+  "ShippingZoneDrawer": {
+    "shippingZone": "منطقة الشحن",
+    "header": {
+      "description": "إدارة المناطق لملفات الشحن الخاصة بك"
+    }
+  },
+  "WorldwideSelector": {
+    "label": "جميع أنحاء العالم"
+  },
+  "CountrySelector": {
+    "label": "اختر المنطقة أو الدولة",
+    "placeholder": {
+      "searchByCountryName": "ابحث حسب اسم الدولة"
+    }
+  },
+  "ZoneNameInput": {
+    "label": "اسم المنطقة",
+    "placeholder": "مثل (محلي، دولي)"
+  },
+  "ShippingRateDrawer": {
+    "header": {
+      "title": "إضافة سعر شحن",
+      "description": "إنشاء ملف شحن"
+    }
+  },
+  "ShippingMethodSelect": {
+    "label": "تعيين أسعار الشحن",
+    "items": {
+      "carrierServices": "خدمات الناقل",
+      "customRates": "أسعار مخصصة"
+    }
+  },
+  "ThirdPartyServiceSelector": {
+    "label": "خدمات الشحن"
+  },
+  "CustomRateForm": {
+    "select": {
+      "label": "إعداد سعر مخصص",
+      "options": {
+        "flatRate": "سعر ثابت",
+        "weightBasedRate": "سعر حسب الوزن",
+        "perItemRate": "سعر لكل قطعة"
+      }
+    },
+    "rateName": {
+      "label": "اسم السعر",
+      "description": "يتم عرض الأسعار للعملاء كخيارات توصيل أثناء الخروج.",
+      "placeholder": "مثل (الشحن القياسي، الشحن السريع)"
+    },
+    "price": "السعر",
+    "pricePerUnit": "السعر لكل وحدة",
+    "pricePerItem": "السعر لكل قطعة",
+    "estimatedDelivery": {
+      "label": "الوقت المتوقع للتسليم (بالأيام)",
+      "placeholder": {
+        "from": "من",
+        "to": "إلى"
+      }
+    }
+  },
+  "ShippingProfileTable": {
+    "columns": {
+      "profileName": "اسم الملف",
+      "rates": "الأسعار"
+    },
+    "values": {
+      "countrySingular": "دولة",
+      "countryPlural": "دول",
+      "zoneSingular": "منطقة",
+      "zonePlural": "مناطق"
+    }
+  },
+  "ShippingProfileEmptyState": {
+    "title": "أنشئ ملف شحن للبدء!"
+  },
+  "DeleteShippingProfileModal": {
+    "title": "حذف ملف الشحن",
+    "description": "هل أنت متأكد أنك تريد حذف ملف الشحن هذا؟ سيتم حذفه نهائيًا ولا يمكن التراجع عن هذا الإجراء.",
+    "confirmButton": "حذف الملف",
+    "toast": {
+      "success": "تم حذف ملف الشحن بنجاح",
+      "error": "فشل حذف ملف الشحن"
+    }
+  },
+  "DuplicateShippingProfileModal": {
+    "title": "استنساخ ملف الشحن",
+    "description": "هل أنت متأكد أنك تريد استنساخ ملف الشحن هذا؟",
+    "confirmButton": "استنساخ الملف",
+    "toast": {
+      "success": "تم استنساخ ملف الشحن بنجاح",
+      "error": "فشل استنساخ ملف الشحن"
+    }
+  },
+  "ShippingProfileDrawer": {
+    "header": {
+      "createTitle": "إنشاء ملف شحن",
+      "editTitle": "تعديل ملف الشحن"
+    },
+    "footer": {
+      "createProfile": "إنشاء الملف",
+      "updateProfile": "تحديث الملف"
+    }
+  },
+  "GeneralInformationAccordion": {
+    "label": "معلومات عامة"
+  },
+  "ZonesRatesAccordion": {
+    "label": "المناطق والأسعار",
+    "locationsSelected": "{{count}} موقعًا محددًا"
+  },
+  "AddRateButton": {
+    "title": "إضافة سعر جديد",
+    "description": "أضف خيارات وأسعار لهذه المنطقة."
+  },
+  "AddZoneButton": {
+    "title": "إضافة منطقة شحن"
+  },
+  "ShippingProfileName": {
+    "label": "اسم الملف",
+    "description": "حافظ على تمييز ملفات الشحن بأسماء فريدة. لن تكون مرئية للعملاء.",
+    "placeholder": "مثل (الشحن القياسي، الشحن السريع)"
+  },
+  "ShopAddress": {
+    "heading": "عنوان المتجر"
+  },
+  "ShopAddressForm": {
+    "label": "عنوان المتجر",
+    "placeholder": {
+      "addressLine1": "مثال: 123 شارع رئيسي، صندوق بريد 456",
+      "addressLine2": "مثال: شقة 4B، جناح 205، مبنى 7",
+      "zip": "10001"
+    }
+  },
+  "RateItem": {
+    "estimatedTime": "الوقت المقدر",
+    "daySingular": "يوم",
+    "dayPlural": "أيام"
+  },
+  "useShippingProfileOperations": {
+    "toast": {
+      "updateSuccess": "تم تحديث ملف الشحن بنجاح",
+      "createSuccess": "تم إنشاء ملف الشحن بنجاح"
+    }
+  },
+  "validation": {
+    "profileNameRequired": "اسم الملف مطلوب.",
+    "atLeastOneZone": "مطلوب منطقة شحن واحدة على الأقل.",
+    "zoneServicesRequired": "يجب أن تحتوي كل منطقة على خدمة شحن واحدة على الأقل.",
+    "zoneEstimatedDeliveryRequired": "تتطلب كل منطقة وقت تسليم تقديري."
+  }
+}

@@ -69,7 +69,12 @@ function ProductTable({ products, isFetching, hasNextPage, fetchNextPage, isFetc
             columns={columns}
             data={products}
             renderActions={(product: any) => <ProductTableActionMenu product={product} />}
-            infiniteScroll={{ dataLength: products.length, hasMore: hasNextPage, next: fetchNextPage, isFetchingNextPage }}
+            infiniteScroll={{
+                dataLength: products.length,
+                hasMore: hasNextPage,
+                next: fetchNextPage,
+                isFetchingNextPage
+            }}
         />
     )
 }

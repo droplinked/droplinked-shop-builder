@@ -192,5 +192,67 @@
       "cancelAnytime": "إلغاء في أي وقت",
       "seamlessActivation": "تفعيل سلس"
     }
+  },
+  "feedbacks": [
+     {
+      "content": "مع droplinked، تمكنت من توسيع مبيعاتي بسرعة لم أكن أتوقعها. تكامل البلوكشين غير قواعد اللعبة!",
+      "authorName": "إيميلي ر.، رائدة أعمال",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/6657fbefd65755465c5efb806032e7f0385d422740e9cf1d6f1b23c1dad7a1c9.png",
+      "submittedAt": "أبريل 2025"
+    },
+    {
+      "content": "أطلقت مجموعة NFT الخاصة بي في دقائق. droplinked سهلت العملية بشكل كبير وكانت الشفافية في المبيعات مذهلة.",
+      "authorName": "جون د.، فنان رقمي",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/ac31212706927ab0670276812230a9b428f553d3e86e1e29a364e34068ad5520.png",
+      "submittedAt": "أغسطس 2024"
+    },
+    {
+      "content": "خيارات الدفع بالعملات الرقمية والطبيعة اللامركزية للمنصة كانت ما أحتاجه تمامًا. متجري ينمو بسرعة مع مجتمعي.",
+      "authorName": "مايكل ت.، تاجر تجزئة",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/9e5b3744f2e1e055d2cb2a7ed2a2e497d721ea7cbe8b8a434833d5118ea4557a.png",
+      "submittedAt": "ديسمبر 2024"
+    }
+  ],
+  "joinCommunity": {
+    "sectionTitle": "ننمو معًا",
+    "headingTitle": "انضم إلى المجتمع",
+    "headingSubtitle": "تابعنا عبر قنواتنا للحصول على أحدث الأخبار والتحديثات والعروض الحصرية"
+  },
+  "joinNow": {
+    "sectionTitle": "انضم الآن",
+    "headingTitle": "هل أنت مستعد للانطلاق؟",
+    "headingSubtitle": "الآن فرصتك للانضمام إلى موجة التجارة القادمة وصنع التأثير"
+  },
+  "address": {
+    "success": {
+      "created": "تمت إضافة عنوان المتجر بنجاح!",
+      "updated": "تم تحديث عنوان المتجر!"
+    },
+    "errors": {
+      "fetchFailed": "تعذر الحصول على معلومات العنوان",
+      "saveFailed": "تعذر حفظ معلومات العنوان",
+      "statesError": "تعذر الحصول على معلومات الولايات",
+      "countriesError": "تعذر الحصول على معلومات الدول",
+      "citiesError": "تعذر الحصول على معلومات المدن"
+    },
+    "fields": {
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "addressLine1": "العنوان 1",
+      "addressLine2": "العنوان 2",
+      "country": "الدولة",
+      "state": "الولاية",
+      "city": "المدينة",
+      "zip": "الرمز البريدي"
+    },
+    "validation": {
+      "firstNameRequired": "الاسم الأول مطلوب",
+      "lastNameRequired": "اسم العائلة مطلوب",
+      "stateRequired": "الولاية مطلوبة",
+      "countryRequired": "الدولة مطلوبة",
+      "cityRequired": "المدينة مطلوبة",
+      "zipRequired": "الرمز البريدي مطلوب",
+      "addressLine1Required": "العنوان 1 مطلوب"
+    }
   }
 }

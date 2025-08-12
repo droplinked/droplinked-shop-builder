@@ -1,4 +1,5 @@
-import { TrashMd } from "assets/icons/Action/Trash/TrashMd"
+import { TrashLg } from "assets/icons/Action/Trash/TrashLg"
+import AppConfirmationDialog from "components/redesign/app-confirmation-dialog/AppConfirmationDialog"
 import useAppToast from "hooks/toast/useToast"
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import { useInvalidateBlogList } from "pages/blogs/hooks/useBlogs"
@@ -6,7 +7,6 @@ import React from "react"
 import { useMutation } from "react-query"
 import { Blog } from "services/blog/interfaces"
 import { deleteBlogService } from "services/blog/services"
-import ConfirmationModal from "./ConfirmationModal"
 
 interface Props {
     blogPost: Blog
@@ -30,16 +30,14 @@ function DeleteBlogModal({ blogPost, isOpen, onClose }: Props) {
     })
 
     return (
-        <ConfirmationModal
+        <AppConfirmationDialog
             isOpen={isOpen}
             onClose={onClose}
+            icon={<TrashLg color="#fff" />}
             title={t("DeleteBlogModal.title")}
             description={t("DeleteBlogModal.description")}
-            icon={<TrashMd color="#fff" />}
+            variant="delete"
             confirmButtonProps={{
-                variant: "normal",
-                bgColor: "system.error",
-                color: "text.white",
                 children: t("common:remove"),
                 isLoading,
                 onClick: () => deleteBlog()

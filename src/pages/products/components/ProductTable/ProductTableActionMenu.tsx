@@ -1,5 +1,12 @@
 import { useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { CopyMd } from 'assets/icons/Action/Copy/CopyMd'
+import { EditMd } from 'assets/icons/Action/Edit/EditMd'
+import { ShareMd } from 'assets/icons/Action/Share/ShareMd'
+import { TrashMd } from 'assets/icons/Action/Trash/TrashMd'
+import { InvoiceMd } from 'assets/icons/Finance/Invoice/InvoiceMd'
+import { ShirtMd } from 'assets/icons/Items/Shirt/ShirtMd'
+import { TransferMd } from 'assets/icons/Navigation/Transfer/TransferMd'
+import { NftMd } from 'assets/icons/System/NFT/NftMd'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
@@ -34,18 +41,18 @@ function ProductTableActionMenu({ product }: { product: any }) {
 
     const actions = [
         {
-            icon: <AppIcons.Invoice />,
+            icon: <InvoiceMd color='#fff' />,
             title: t('common:details'),
             onClick: onDetailsModalOpen
         },
         {
-            icon: <AppIcons.EditOutlined />,
+            icon: <EditMd color='#fff' />,
             title: t('common:edit'),
             onClick: () => updateProductPageState("editingProductId", product._id)
         },
         {
             ...product.nftData && {
-                icon: <AppIcons.DropProduct />,
+                icon: <NftMd color='#fff' />,
                 title: t('ProductTableActionMenu.actions.dropInfo'),
                 onClick: onDropInfoModalOpen
             }
@@ -53,33 +60,33 @@ function ProductTableActionMenu({ product }: { product: any }) {
         {
             ...product.product_type === "PRINT_ON_DEMAND" &&
             {
-                icon: <AppIcons.Shirt />,
+                icon: <ShirtMd color='#fff' />,
                 title: t('ProductTableActionMenu.actions.orderPodSample'),
                 onClick: () => navigate("/analytics/products/order/" + product._id)
             },
         },
         {
-            icon: <AppIcons.Share />,
+            icon: <ShareMd color='#fff' />,
             title: t('common:share'),
             onClick: onShareModalOpen
         },
         {
-            icon: <AppIcons.Copy />,
+            icon: <CopyMd color='#fff' />,
             title: t('common:duplicate'),
             onClick: () => handleActionClick("DUPLICATE")
         },
         {
             ...!isProductRecorded &&
             {
-                icon: <AppIcons.Transfer />,
+                icon: <TransferMd color='#fff' />,
                 title: t('ProductTableActionMenu.actions.makeStatus', { status: isProductPublished ? t('common:draft') : t('common:public') }),
                 onClick: () => handleActionClick(isProductPublished ? "DRAFT" : "PUBLISH"),
             }
         },
         {
-            icon: <AppIcons.RedTrash />,
+            icon: <TrashMd color='#ff2244' />,
             title: t('common:delete'),
-            color: "#F24",
+            color: "system.error",
             onClick: () => handleActionClick("DELETE")
         }
     ]

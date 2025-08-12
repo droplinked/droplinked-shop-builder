@@ -69,6 +69,10 @@
         "customTokens": {
           "label": "الرموز المخصصة",
           "description": "أطلق قوة الرموز المخصصة"
+        },
+        "bookDemo": {
+          "label": "طلب عرض تجريبي",
+          "description": "اكتشف droplinked لنشاطك التجاري"
         }
       }
     },

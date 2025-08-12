@@ -1,6 +1,5 @@
-import { Flex, Image, Text } from '@chakra-ui/react'
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm'
-import AppButton from 'components/redesign/button/AppButton'
+import PageEmptyState from 'components/redesign/page-empty-state/PageEmptyState'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -10,32 +9,16 @@ function BlogTableEmptyState() {
     const { t } = useLocaleResources("blogs")
 
     return (
-        <Flex
-            width="100%"
-            height="80vh"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-        >
-            <Image
-                width="750px"
-                height="273px"
-                src="https://upload-file-droplinked.s3.amazonaws.com/09cb061ba207cddb9eecf0befbd2e7a8a69f44d7ec1c83a7ed387da3f2651526.png"
-                alt='Empty Table'
-            />
-
-            <Text mt="36px" mb="16px" fontSize={14} color="text.white">
-                {t("BlogTable.emptyState.message")}
-            </Text>
-
-            <AppButton
-                variant='normal'
-                leftIcon={<PlusSm color='#2BCFA1' />}
-                onClick={() => navigate('/analytics/blogs/new')}
-            >
-                {t("Blogs.newPost")}
-            </AppButton>
-        </Flex>
+        <PageEmptyState
+            image="https://upload-file-droplinked.s3.amazonaws.com/09cb061ba207cddb9eecf0befbd2e7a8a69f44d7ec1c83a7ed387da3f2651526.png"
+            imageProps={{ width: "750px", height: "273px" }}
+            title={t("BlogTable.emptyState.message")}
+            action={{
+                text: t("Blogs.newPost"),
+                icon: <PlusSm color="#2BCFA1" />,
+                onClick: () => navigate('/analytics/blogs/new')
+            }}
+        />
     )
 }
 

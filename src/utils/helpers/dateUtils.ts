@@ -64,6 +64,21 @@ export const formatDateToLongStyle = (date: Date): string => {
 }
 
 /**
+ * Formats a date in a short style format (e.g., "Nov 21, 2025")
+ */
+export const formatDateToShortStyle = (date: Date | string): string => {
+    if (!date) return '---';
+    
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    }
+    return dateObj.toLocaleDateString('en-US', options)
+}
+
+/**
  * Formats a time to a localized string (e.g., 14:30)
  */
 export const formattedTime = (date: Date | string): string => {

@@ -1,0 +1,48 @@
+{
+  "header": {
+    "sectionTitle": "المصدر للأفكار الجديدة",
+    "headingTitle": "نصائح واتجاهات وإلهام",
+    "headingSubtitle": "ابق على اطلاع بآخر الأخبار والرؤى من فريقنا."
+  },
+  "sections": {
+    "trending": "رائج",
+    "topCategories": "أفضل الفئات",
+    "discover": "اكتشف المزيد",
+    "latestBlogs": "أحدث المدونات"
+  },
+  "common": {
+    "readMore": "اقرأ المزيد",
+    "viewAll": "عرض الكل",
+    "loading": "جاري التحميل...",
+    "noBlogs": "لم يتم العثور على مدونات",
+    "noCategories": "لم يتم العثور على فئات"
+  },
+  "blogCard": {
+    "readTime": "{{minutes}} دقيقة للقراءة",
+    "byAuthor": "بواسطة {{author}}",
+    "publishedOn": "نُشر في {{date}}",
+    "category": "الفئة"
+  },
+  "categories": {
+    "all": "جميع الفئات",
+    "technology": "التكنولوجيا",
+    "business": "الأعمال",
+    "marketing": "التسويق",
+    "design": "التصميم",
+    "development": "التطوير"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "blogs": "المدونات",
+    "about": "حول",
+    "contact": "اتصل بنا",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "actions": {
+    "subscribe": "اشترك",
+    "signUp": "سجل",
+    "learnMore": "اعرف المزيد",
+    "getStarted": "ابدأ الآن"
+  }
+}
