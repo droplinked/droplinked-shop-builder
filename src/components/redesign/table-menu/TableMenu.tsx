@@ -25,13 +25,14 @@ interface Props {
         isDisabled?: boolean,
         onClick: () => void
     }[]
+    menuButtonIcon?: ReactElement
 }
 
-export default function TableMenu({ items }: Props) {
+export default function TableMenu({ items, menuButtonIcon }: Props) {
     return (
         <Menu isLazy>
             <MenuButton as="button" type="button">
-                <DotsLg color="#fff" />
+                {menuButtonIcon || <DotsLg color="#fff" />}
             </MenuButton>
             <MenuList
                 borderColor="neutral.gray.800"

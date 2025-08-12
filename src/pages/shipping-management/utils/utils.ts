@@ -34,5 +34,5 @@ export const defaultZone = (): Zone => ({
 export const defaultCustom = (): CustomShipping => ({
     type: CUSTOM_SHIPPING_TYPE.FLAT_RATE,
     rateName: '',
-    estimatedDelivery: { minDays: 0, maxDays: 0 },
+    estimatedDelivery: { minDays: undefined, maxDays: undefined },
 })

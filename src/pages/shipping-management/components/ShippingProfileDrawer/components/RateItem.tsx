@@ -1,11 +1,10 @@
-import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
-import { DotsMd } from 'assets/icons/Navigation/Dots/DotsMd'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { CUSTOM_SHIPPING_TYPE, SHIPPING_METHOD, Zone } from 'pages/shipping-management/types/shipping'
 import React from 'react'
-import ShippingRateDrawer from '../../ShippingRateDrawer/ShippingRateDrawer'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import RateActionMenu from './RateActionMenu'
 
 interface Props {
     zone: Zone
@@ -14,7 +13,6 @@ interface Props {
 
 export default function RateItem({ zone, zoneIndex }: Props) {
     const { t } = useLocaleResources("shipping-management")
-    const rateModal = useDisclosure()
 
     const isThirdParty = zone?.shippingMethod === SHIPPING_METHOD.THIRD_PARTY
     const customDetails = zone?.custom
@@ -103,30 +101,24 @@ export default function RateItem({ zone, zoneIndex }: Props) {
     );
 
     return (
-        <>
-            <Flex
-                direction="column"
-                padding={4}
-                gap={4}
-            >
-                <Flex justifyContent="space-between" alignItems="center" gap={2}>
-                    {headerContent}
-                    <button type='button' onClick={rateModal.onOpen}>
-                        <DotsMd color='#fff' />
-                    </button>
-                </Flex>
-
-                <Flex direction="column" gap={3}>
-                    {Object.entries(detailsToRender).map(([key, value]) => (
-                        <DetailRow key={key} label={key}>
-                            {value}
-                        </DetailRow>
-                    ))}
-                </Flex>
+        <Flex
+            direction="column"
+            padding={4}
+            gap={4}
+        >
+            <Flex justifyContent="space-between" alignItems="center" gap={2}>
+                {headerContent}
+                <RateActionMenu zoneIndex={zoneIndex} />
             </Flex>
 
-            {rateModal.isOpen && <ShippingRateDrawer {...rateModal} zoneIndex={zoneIndex} />}
-        </>
+            <Flex direction="column" gap={3}>
+                {Object.entries(detailsToRender).map(([key, value]) => (
+                    <DetailRow key={key} label={key}>
+                        {value}
+                    </DetailRow>
+                ))}
+            </Flex>
+        </Flex>
     )
 }
 
