@@ -1,4 +1,4 @@
-import { TrashLg } from 'assets/icons/Action/Trash/TrashLg'
+import { WarningLg } from 'assets/icons/Sign/Warning/WarningLg'
 import AppConfirmationDialog from 'components/redesign/app-confirmation-dialog/AppConfirmationDialog'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
@@ -37,7 +37,7 @@ function DeleteShippingProfileModal({ shippingProfile, isOpen, onClose }: Props)
         <AppConfirmationDialog
             isOpen={isOpen}
             onClose={onClose}
-            icon={<TrashLg color="#fff" />}
+            icon={<WarningLg color="#fff" />}
             title={t('DeleteShippingProfileModal.title')}
             description={t('DeleteShippingProfileModal.description')}
             variant="delete"

@@ -58,6 +58,7 @@
     "price": "Price",
     "pricePerUnit": "Price per Unit",
     "pricePerItem": "Price per Item",
+    "weightUnit": "Weight Unit",
     "estimatedDelivery": {
       "label": "Estimated Delivery Time (In Days)",
       "placeholder": {
@@ -143,6 +144,14 @@
     "estimatedTime": "Estimated Time",
     "daySingular": "day",
     "dayPlural": "days"
+  },
+  "DeleteShippingRateModal": {
+    "title": "Delete Shipping Rate",
+    "description": "Are you sure you want to delete this shipping rate? It will be permanently removed and this action cannot be undone."
+  },
+  "DeleteShippingZoneModal": {
+    "title": "Delete Shipping Zone",
+    "description": "Are you sure you want to delete this shipping zone? It will be permanently removed and this action cannot be undone."
   },
   "useShippingProfileOperations": {
     "toast": {

@@ -58,6 +58,7 @@
     "price": "السعر",
     "pricePerUnit": "السعر لكل وحدة",
     "pricePerItem": "السعر لكل قطعة",
+    "weightUnit": "وحدة الوزن",
     "estimatedDelivery": {
       "label": "الوقت المتوقع للتسليم (بالأيام)",
       "placeholder": {
@@ -143,6 +144,14 @@
     "estimatedTime": "الوقت المقدر",
     "daySingular": "يوم",
     "dayPlural": "أيام"
+  },
+  "DeleteShippingRateModal": {
+    "title": "حذف سعر الشحن",
+    "description": "هل أنت متأكد أنك تريد حذف سعر الشحن هذا؟ سيتم حذفه نهائيًا ولا يمكن التراجع عن هذا الإجراء."
+  },
+  "DeleteShippingZoneModal": {
+    "title": "حذف منطقة الشحن",
+    "description": "هل أنت متأكد أنك تريد حذف منطقة الشحن هذه؟ سيتم حذفها نهائيًا ولا يمكن التراجع عن هذا الإجراء."
   },
   "useShippingProfileOperations": {
     "toast": {

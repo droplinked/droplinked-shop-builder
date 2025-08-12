@@ -3,10 +3,10 @@ import { DollarMd } from 'assets/icons/Finance/Dollar/DollarMd'
 import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { CUSTOM_SHIPPING_TYPE, CustomShipping } from '../../types/shipping'
 import LabeledContent from '../common/LabeledContent'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     value: CustomShipping
@@ -17,22 +17,20 @@ export default function CustomRateForm({ value, onChange }: Props) {
     const { t } = useLocaleResources("shipping-management")
     const update = (patch: Partial<CustomShipping>) => onChange({ ...value, ...patch })
 
+    const isWeightBased = value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED
+    const isItemCountBased = value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED
+    const isFlatRate = value.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE
+
     const { priceLabel, priceValue } = (() => {
-        if (value.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE) {
-            return { priceLabel: t('CustomRateForm.price'), priceValue: value.price ?? '' }
-        }
-        if (value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED) {
-            return { priceLabel: t('CustomRateForm.pricePerUnit'), priceValue: value.pricePerWeight ?? '' }
-        }
-        if (value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED) {
-            return { priceLabel: t('CustomRateForm.pricePerItem'), priceValue: value.pricePerItem ?? '' }
-        }
+        if (isFlatRate) return { priceLabel: t('CustomRateForm.price'), priceValue: value.price ?? '' }
+        if (isWeightBased) return { priceLabel: t('CustomRateForm.pricePerUnit'), priceValue: value.pricePerWeight ?? '' }
+        if (isItemCountBased) return { priceLabel: t('CustomRateForm.pricePerItem'), priceValue: value.pricePerItem ?? '' }
         return { priceLabel: t('CustomRateForm.price'), priceValue: '' }
     })()
 
     const handlePriceChange = (newValue: number) => {
-        if (value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED) return update({ pricePerWeight: newValue })
-        if (value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED) return update({ pricePerItem: newValue })
+        if (isWeightBased) return update({ pricePerWeight: newValue })
+        if (isItemCountBased) return update({ pricePerItem: newValue })
         return update({ price: newValue })
     }
 
@@ -93,6 +91,19 @@ export default function CustomRateForm({ value, onChange }: Props) {
                 </SimpleGrid>
             </LabeledContent>
 
+            {isWeightBased && (
+                <AppSelect
+                    label={t('CustomRateForm.weightUnit')}
+                    isRequired
+                    items={[{ name: "kg", value: "kg" }]}
+                    selectProps={{
+                        value: 'kg',
+                        fontSize: 16,
+                        isDisabled: true,
+                    }}
+                />
+            )}
+
             <LabeledContent label={t('CustomRateForm.estimatedDelivery.label')} required>
                 <SimpleGrid columns={2} gap={4}>
                     <AppInput
@@ -101,7 +112,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
                             onChange: (e) => update({
                                 estimatedDelivery: {
                                     minDays: Number(e.target.value),
-                                    maxDays: value.estimatedDelivery?.maxDays ?? 0,
+                                    maxDays: value.estimatedDelivery?.maxDays,
                                 },
                             }),
                             placeholder: t('CustomRateForm.estimatedDelivery.placeholder.from'),
@@ -115,7 +126,7 @@ export default function CustomRateForm({ value, onChange }: Props) {
                             value: value.estimatedDelivery?.maxDays ?? '',
                             onChange: (e) => update({
                                 estimatedDelivery: {
-                                    minDays: value.estimatedDelivery?.minDays ?? 0,
+                                    minDays: value.estimatedDelivery?.minDays,
                                     maxDays: Number(e.target.value),
                                 },
                             }),
