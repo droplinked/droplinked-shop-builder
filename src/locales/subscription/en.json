@@ -62,7 +62,7 @@
     "cycles": {
       "monthly": "Monthly",
       "annual": "Annual",
-      "fiveYear": "5-Year"
+      "threeYear": "3-Year"
     }
   },
   "PlanCard": {
