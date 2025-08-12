@@ -2,6 +2,7 @@ import { SearchLg } from 'assets/icons/System/Search/SearchLg'
 import AppInput from 'components/redesign/input/AppInput'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import useDebounce from 'hooks/useDebounce/useDebounce'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { Zone } from 'pages/shipping-management/types/shipping'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
@@ -18,6 +19,7 @@ interface Props {
 }
 
 function CountrySelector({ allZones, selectedCountries, onSelectionChange, zoneIndex }: Props) {
+    const { t } = useLocaleResources("shipping-management")
     const [searchTerm, setSearchTerm] = useState('')
     const debouncedSearchTerm = useDebounce(searchTerm)
     const { data: countries } = useQuery({
@@ -79,13 +81,13 @@ function CountrySelector({ allZones, selectedCountries, onSelectionChange, zoneI
     }, [filteredCountries, selectedCountries, handleCheckboxChange, usedCountries])
 
     return (
-        <LabeledContent label='Choose Zone or Country' required>
+        <LabeledContent label={t('CountrySelector.label')} required>
             <AppInput
                 leftElement={<SearchLg color='#7b7b7b' />}
                 inputProps={{
                     value: searchTerm,
                     onChange: (e) => setSearchTerm(e.target.value),
-                    placeholder: 'Search by country name',
+                    placeholder: t('CountrySelector.placeholder.searchByCountryName'),
                     fontSize: 16
                 }}
             />

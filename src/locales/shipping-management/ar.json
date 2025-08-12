@@ -1,3 +1,28 @@
 {
-    
+  "ShippingManagement": {
+    "pageTitle": "إدارة ملفات الشحن",
+    "pageDescription": "أنشئ وعدّل وادِر ملفات الشحن هنا.",
+    "action": {
+      "newShippingProfile": "ملف شحن جديد"
+    }
+  },
+  "ShippingZoneDrawer": {
+    "shippingZone": "منطقة الشحن",
+    "header": {
+      "description": "إدارة المناطق لملفات الشحن الخاصة بك"
+    }
+  },
+  "WorldwideSelector": {
+    "label": "جميع أنحاء العالم"
+  },
+  "CountrySelector": {
+    "label": "اختر المنطقة أو الدولة",
+    "placeholder": {
+      "searchByCountryName": "ابحث حسب اسم الدولة"
+    }
+  },
+  "ZoneNameInput": {
+    "label": "اسم المنطقة",
+    "placeholder": "مثل (محلي، دولي)"
+  }
 }

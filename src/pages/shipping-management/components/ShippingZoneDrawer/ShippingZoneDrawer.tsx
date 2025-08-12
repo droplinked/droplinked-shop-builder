@@ -1,3 +1,4 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import { defaultZone } from 'pages/shipping-management/utils/utils'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -18,6 +19,7 @@ function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
         zones: s.shippingProfile.zones,
         updateShippingProfile: s.updateShippingProfile
     }))
+    const { t } = useLocaleResources("shipping-management")
 
     const isNameValid = draftZone.name?.trim().length > 0
     const hasCountries = draftZone.countries?.length > 0
@@ -59,8 +61,8 @@ function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
             <ShippingDrawer.Header
-                title={`${zoneIndex ? 'Edit' : 'Add'} Shipping Zone`}
-                description="Manage zones for your shipping profiles"
+                title={`${zoneIndex !== undefined ? t('common.edit') : t('common.add')} ${t('ShippingZoneDrawer.shippingZone')}`}
+                description={t('ShippingZoneDrawer.header.description')}
             />
             <ShippingDrawer.Body display="flex" flexDirection="column" gap={9}>
                 <ZoneNameInput
@@ -75,8 +77,8 @@ function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
                 />
             </ShippingDrawer.Body>
             <ShippingDrawer.Footer
-                primaryText="Save"
-                secondaryText="Discard"
+                primaryText={t('common:save')}
+                secondaryText={t('common:discard')}
                 onPrimary={handleSave}
                 onSecondary={onClose}
                 primaryButtonProps={{ isDisabled: !isNameValid || !hasCountries }}

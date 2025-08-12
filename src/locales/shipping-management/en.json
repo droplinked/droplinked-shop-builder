@@ -1,3 +1,28 @@
 {
-    
+  "ShippingManagement": {
+    "pageTitle": "Shipping Profile Management",
+    "pageDescription": "Create, edit and manage shipping profiles here.",
+    "action": {
+      "newShippingProfile": "New Shipping Profile"
+    }
+  },
+  "ShippingZoneDrawer": {
+    "shippingZone": "Shipping Zone",
+    "header": {
+      "description": "Manage zones for your shipping profiles"
+    }
+  },
+  "WorldwideSelector": {
+    "label": "Worldwide"
+  },
+  "CountrySelector": {
+    "label": "Choose Zone or Country",
+    "placeholder": {
+      "searchByCountryName": "Search by country name"
+    }
+  },
+  "ZoneNameInput": {
+    "label": "Zone Name",
+    "placeholder": "i.e. (Domestic, International)"
+  }
 }

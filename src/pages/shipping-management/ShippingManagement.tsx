@@ -16,11 +16,11 @@ function ShippingManagement() {
         <>
             <PageGrid.Root>
                 <PageGrid.Header
-                    title="Shipping Profile Management"
-                    description='Create, edit and manage shipping profiles here.'
+                    title={t('ShippingManagement.pageTitle')}
+                    description={t('ShippingManagement.pageDescription')}
                     actionButtons={[
                         {
-                            title: 'New Shipping Profile',
+                            title: t('ShippingManagement.action.newShippingProfile'),
                             leftIcon: <PlusMd />,
                             onClick: onOpen
                         }

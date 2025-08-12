@@ -2,6 +2,7 @@ import { Center, Flex, Text } from '@chakra-ui/react'
 import { GlobeSm } from 'assets/icons/Sign/Globe/GlobeSm'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import React, { useMemo } from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface WorldwideSelectorProps {
     countries: any[]
@@ -11,6 +12,7 @@ interface WorldwideSelectorProps {
 }
 
 function WorldwideSelector({ countries, selectedCountries, onSelectionChange, usedCountries }: WorldwideSelectorProps) {
+    const { t } = useLocaleResources("shipping-management")
     const availableCountriesCount = useMemo(() => {
         if (!countries || countries.length === 0) return 0
         if (!usedCountries) return countries.length
@@ -44,7 +46,7 @@ function WorldwideSelector({ countries, selectedCountries, onSelectionChange, us
             >
                 <GlobeSm color='#fff' />
             </Center>
-            <Text color="text.white">Worldwide</Text>
+            <Text color="text.white">{t('WorldwideSelector.label')}</Text>
         </Flex>
     )
 }
