@@ -1,4 +1,3 @@
-import { Box, Spinner } from '@chakra-ui/react'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
@@ -9,22 +8,10 @@ import ShippingList from './ShippingList'
 
 function ProductShippingType() {
     const { t } = useLocaleResources('products')
-    const { data: shippingProfiles, isLoading } = useQuery({
+    const { data: shippingProfiles } = useQuery({
         queryKey: ['shipping-profiles'],
         queryFn: getShippingProfiles
     })
-
-    const renderContent = () => {
-        if (isLoading) return (
-            <Box textAlign='center'>
-                <Spinner />
-            </Box>
-        )
-
-        return (shippingProfiles?.length === 0)
-            ? <ShippingEmpty />
-            : <ShippingList shippingProfiles={shippingProfiles} />
-    }
 
     return (
         <FormFieldWrapper
@@ -32,7 +19,11 @@ function ProductShippingType() {
             description={t('ProductShippingType.description')}
             isRequired
         >
-            {renderContent()}
+            {
+                shippingProfiles?.length === 0
+                    ? <ShippingEmpty />
+                    : <ShippingList shippingProfiles={shippingProfiles} />
+            }
         </FormFieldWrapper>
     )
 }

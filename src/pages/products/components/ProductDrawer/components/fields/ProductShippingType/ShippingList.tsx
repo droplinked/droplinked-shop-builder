@@ -4,21 +4,30 @@ import InteractiveText from 'components/redesign/interactive-text/InteractiveTex
 import AppSelect from 'components/redesign/select/AppSelect'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 interface ShippingListProps {
     shippingProfiles: ShippingProfile[]
 }
 
 function ShippingList({ shippingProfiles }: ShippingListProps) {
-    const { values, setFieldValue } = useProductForm()
+    const { values, setFieldValue, errors } = useProductForm()
 
-    console.log({ shippingProfiles })
+    const shippingProfileOptions = shippingProfiles.map((profile) => {
+        const zonesCount = profile.zones?.length
+        const countriesCount = profile.zones?.reduce((acc, zone) => acc + zone.countries.length, 0)
 
-    const shippingProfileOptions = shippingProfiles.map((profile) => ({
-        name: `${profile.name} (${profile.zones.length} zones)`,
-        value: profile._id
-    }))
+        return {
+            name: `${profile.name} (${countriesCount} ${countriesCount === 1 ? 'Country' : 'Countries'} - ${zonesCount} ${zonesCount === 1 ? 'Zone' : 'Zones'})`,
+            value: profile._id
+        }
+    })
+
+    useEffect(() => {
+        if (shippingProfiles.length > 0) {
+            setFieldValue('shippingType', shippingProfiles[0]._id)
+        }
+    }, [shippingProfiles])
 
     return (
         <Flex direction='column' gap={4}>
@@ -26,10 +35,10 @@ function ShippingList({ shippingProfiles }: ShippingListProps) {
             <AppSelect
                 items={shippingProfileOptions}
                 selectProps={{
-                    placeholder: 'Shipping Profile',
                     value: values.shippingType,
                     onChange: (value) => setFieldValue('shippingType', value)
                 }}
+                error={errors.shippingType}
             />
             <InteractiveText
                 to='/analytics/shipping-management'
