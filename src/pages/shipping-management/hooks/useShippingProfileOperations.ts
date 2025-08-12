@@ -6,6 +6,7 @@ import { createAddressService } from 'services/address/addressServices'
 import { IcreateAddressService } from 'services/address/interfaces'
 import { createShippingProfile, updateShippingProfile as updateShippingProfileService } from 'services/shipping-management/services'
 import useAppStore from 'stores/app/appStore'
+import { SHIPPING_PROFILES_QUERY_KEY } from '../constants/constants'
 import { ShippingProfile } from '../types/shipping'
 import { validateAddress, validateShippingProfile } from '../utils/validation'
 
@@ -60,8 +61,7 @@ export const useShippingProfileOperations = () => {
                 showToast({ type: 'success', message: t('useShippingProfileOperations.toast.createSuccess') })
             }
 
-            // Invalidate queries and call success callbacks
-            queryClient.invalidateQueries(['shipping-profiles'])
+            queryClient.invalidateQueries([SHIPPING_PROFILES_QUERY_KEY])
             onSuccess?.()
 
         } catch (error) {

@@ -2,18 +2,19 @@ import { Text } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import Table from 'components/redesign/table/Table'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { SHIPPING_PROFILES_QUERY_KEY } from 'pages/shipping-management/constants/constants'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { getShippingProfiles } from 'services/shipping-management/services'
 import ShippingProfileEmptyState from './ShippingProfileEmptyState'
 import ShippingProfileTableActionMenu from './ShippingProfileTableActionMenu'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ShippingProfileTable() {
     const { t } = useLocaleResources("shipping-management")
     const { data: shippingProfiles, isLoading } = useQuery({
-        queryKey: ['shipping-profiles'],
+        queryKey: [SHIPPING_PROFILES_QUERY_KEY],
         queryFn: getShippingProfiles
     })
 
