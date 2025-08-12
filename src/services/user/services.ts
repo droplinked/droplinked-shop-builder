@@ -3,6 +3,7 @@ import { removeFalsyValues } from "utils/helpers";
 import {
     IAcceptInvitation,
     IDemoRequest,
+    IEnterpriseFeatureRequest,
     IGetUserService,
     IInvitation,
     IPostUserVerifyPartner,
@@ -64,3 +65,9 @@ export const subscribeFeature = (subscribeData: ISubscribeFeature) => {
 export const postDemoRequestService = (payload: IDemoRequest) => {
     return axiosInstance.post("/user-features/demo-request", removeFalsyValues(payload));
 };
+
+export const postEnterpriseRequestService = (payload: IEnterpriseFeatureRequest) => {
+    return axiosInstance.post("/user-features/enterprise-feature-request", removeFalsyValues(payload));
+};
+
+
