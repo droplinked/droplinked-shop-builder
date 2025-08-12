@@ -3,8 +3,10 @@ import { InformationMd } from 'assets/icons/Sign/Information/InformationMd'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ShippingEmpty() {
+    const { t } = useLocaleResources('products')
     return (
         <Flex
             padding={4}
@@ -22,10 +24,10 @@ function ShippingEmpty() {
                     color="text.white"
                     lineHeight="20px"
                 >
-                    No Shipping Profiles
+                    {t('ShippingEmpty.title')}
                 </Heading>
 
-                <Text marginTop={1} color="text.subtext.placeholder.dark">Set up a shipping profile to get started.</Text>
+                <Text marginTop={1} color="text.subtext.placeholder.dark">{t('ShippingEmpty.description')}</Text>
 
                 <InteractiveText
                     to='/analytics/shipping-management'
@@ -37,7 +39,7 @@ function ShippingEmpty() {
                     padding="10px 14px"
                 >
                     <PlusMd color='currentColor' />
-                    New Shipping Profile
+                    {t('ShippingEmpty.action.newShippingProfile')}
                 </InteractiveText>
             </Box>
         </Flex>

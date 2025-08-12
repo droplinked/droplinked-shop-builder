@@ -3,6 +3,7 @@ import { EditLg } from 'assets/icons/Action/Edit/EditLg'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import AppSelect from 'components/redesign/select/AppSelect'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React, { useEffect } from 'react'
 
@@ -11,6 +12,7 @@ interface ShippingListProps {
 }
 
 function ShippingList({ shippingProfiles }: ShippingListProps) {
+    const { t } = useLocaleResources('products')
     const { values, setFieldValue, errors } = useProductForm()
 
     const shippingProfileOptions = shippingProfiles.map((profile) => {
@@ -18,7 +20,7 @@ function ShippingList({ shippingProfiles }: ShippingListProps) {
         const countriesCount = profile.zones?.reduce((acc, zone) => acc + zone.countries.length, 0)
 
         return {
-            name: `${profile.name} (${countriesCount} ${countriesCount === 1 ? 'Country' : 'Countries'} - ${zonesCount} ${zonesCount === 1 ? 'Zone' : 'Zones'})`,
+            name: `${profile.name} (${countriesCount} ${countriesCount === 1 ? t('ShippingList.countrySingular') : t('ShippingList.countryPlural')} - ${zonesCount} ${zonesCount === 1 ? t('ShippingList.zoneSingular') : t('ShippingList.zonePlural')})`,
             value: profile._id
         }
     })
@@ -51,7 +53,7 @@ function ShippingList({ shippingProfiles }: ShippingListProps) {
                 fontSize={16}
             >
                 <EditLg color='currentColor' />
-                New Shipping Profile
+                {t('ShippingList.action.newShippingProfile')}
             </InteractiveText>
         </Flex>
     )

@@ -1,9 +1,9 @@
 import { UseDisclosureReturn } from '@chakra-ui/react'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import BlueButton from 'components/redesign/button/BlueButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import ShippingZoneDrawer from '../../ShippingZoneDrawer/ShippingZoneDrawer'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function AddZoneButton({ zoneModal }: { zoneModal: UseDisclosureReturn }) {
     const { isOpen, onOpen } = zoneModal

@@ -585,5 +585,21 @@
     "printOnDemand": "الطباعة عند الطلب",
     "physical": "المنتج المادي",
     "event": "الفعالية"
+  },
+  "ShippingEmpty": {
+    "title": "لا توجد ملفات شحن",
+    "description": "قم بإعداد ملف شحن للبدء.",
+    "action": {
+      "newShippingProfile": "ملف شحن جديد"
+    }
+  },
+  "ShippingList": {
+    "countrySingular": "دولة",
+    "countryPlural": "دول",
+    "zoneSingular": "منطقة",
+    "zonePlural": "مناطق",
+    "action": {
+      "newShippingProfile": "ملف شحن جديد"
+    }
   }
 }

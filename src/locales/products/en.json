@@ -586,5 +586,21 @@
     "printOnDemand": "Print on Demand",
     "physical": "Physical Product",
     "event": "Event"
+  },
+  "ShippingEmpty": {
+    "title": "No Shipping Profiles",
+    "description": "Set up a shipping profile to get started.",
+    "action": {
+      "newShippingProfile": "New Shipping Profile"
+    }
+  },
+  "ShippingList": {
+    "countrySingular": "Country",
+    "countryPlural": "Countries",
+    "zoneSingular": "Zone",
+    "zonePlural": "Zones",
+    "action": {
+      "newShippingProfile": "New Shipping Profile"
+    }
   }
 } 
