@@ -35,7 +35,7 @@ function PlanDescription({ currentSubData, data }: props) {
                 {t('CurrentPlan.activeMessageWithPrice', {
                     plan: t(currentSubData.title),
                     price: data.paidAmount?.toFixed(2),
-                    period: data.monthLength === 1 ? t('Plans.cycles.monthly') : data.monthLength === 12 ? t('Plans.cycles.annual') : t('Plans.cycles.fiveYear'),
+                    period: data.monthLength === 1 ? t('Plans.cycles.monthly') : data.monthLength === 12 ? t('Plans.cycles.annual') : t('Plans.cycles.threeYear'),
                     startDate: formatDate(data.startsAt),
                     endDate: formatDate(data.expiresAt)
                 })}
