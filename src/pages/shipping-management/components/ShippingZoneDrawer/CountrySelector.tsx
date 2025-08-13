@@ -73,7 +73,7 @@ function CountrySelector({ allZones, selectedCountries, onSelectionChange, zoneI
             <CountryItem
                 key={country._id}
                 country={country}
-                isSelected={selectedCountries.includes(country.iso3)}
+                isSelected={selectedCountries.includes(country.iso3) || usedCountries.has(country.iso3)}
                 onSelectionChange={handleCheckboxChange}
                 isDisabled={usedCountries.has(country.iso3)}
             />
