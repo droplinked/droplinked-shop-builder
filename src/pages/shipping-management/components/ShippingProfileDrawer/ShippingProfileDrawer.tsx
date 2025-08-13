@@ -1,4 +1,5 @@
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React, { useEffect } from 'react'
@@ -6,7 +7,6 @@ import { useShippingProfileOperations } from '../../hooks/useShippingProfileOper
 import ShippingDrawer from '../common/ShippingDrawer'
 import GeneralInformationAccordion from './components/accordions/GeneralInformationAccordion'
 import ZonesRatesAccordion from './components/accordions/ZonesRatesAccordion'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -36,11 +36,11 @@ const ShippingProfileDrawer = ({ isOpen, onClose, editingShippingProfile }: Prop
 
     // Update the shipping profile when the modal is opened and the shipping profile is provided
     useEffect(() => {
-        if (isEditing && editingShippingProfile) {
+        if (isOpen && isEditing) {
             updateShippingProfile("name", editingShippingProfile.name)
             updateShippingProfile("zones", editingShippingProfile.zones)
         }
-    }, [isEditing, editingShippingProfile, updateShippingProfile])
+    }, [isOpen, isEditing, updateShippingProfile, editingShippingProfile])
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={handleClose}>

@@ -2,12 +2,12 @@ import { IcreateAddressService } from "services/address/interfaces"
 import { create } from "zustand"
 import { ShippingProfile } from "../types/shipping"
 
-const initialState: ShippingProfile = {
+const initialShippingProfileState: ShippingProfile = {
     name: "",
     zones: [],
 }
 
-const initialAddress: IcreateAddressService = {
+const initialAddressState: IcreateAddressService = {
     firstName: "",
     lastName: "",
     addressLine1: "",
@@ -31,11 +31,11 @@ interface Actions {
 }
 
 const useShippingManagementStore = create<State & Actions>((set) => ({
-    shippingProfile: initialState,
-    address: initialAddress,
+    shippingProfile: initialShippingProfileState,
+    address: initialAddressState,
     updateShippingProfile: (key, value) => set((state) => ({ shippingProfile: { ...state.shippingProfile, [key]: value } })),
     updateAddress: (key, value) => set((state) => ({ address: { ...state.address, [key]: value } })),
-    resetState: () => set({ shippingProfile: initialState, address: initialAddress })
+    resetState: () => set({ shippingProfile: initialShippingProfileState, address: initialAddressState })
 }))
 
 export default useShippingManagementStore
