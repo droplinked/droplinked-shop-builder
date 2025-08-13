@@ -77,23 +77,27 @@
       }
     },
     "partners": {
-      "label": "الشركاء",
+      "label": "Partners",
       "links": {
         "unstoppableDomains": {
-          "label": "أنستوبابل دومينز",
-          "description": "دروب لينكد وأنستوبابل دومينز"
+          "label": "Unstoppable Domains",
+          "description": "droplinked & Unstoppable Domains"
         },
         "d3": {
-          "label": "دي 3",
-          "description": "دروب لينكد ودي 3"
+          "label": "D3",
+          "description": "droplinked & D3"
         },
         "polygon": {
-          "label": "بوليجون",
-          "description": "دروب لينكد وبوليجون"
+          "label": "Polygon",
+          "description": "droplinked & Polygon"
         },
         "crossmint": {
-          "label": "كروس مينت",
-          "description": "دروب لينكد وكروس مينت"
+          "label": "Crossmint",
+          "description": "droplinked & Crossmint"
+        },
+        "base": {
+          "label": "Base",
+          "description": "droplinked & Base"
         }
       }
     }

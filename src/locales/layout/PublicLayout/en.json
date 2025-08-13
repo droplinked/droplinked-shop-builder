@@ -94,6 +94,10 @@
         "crossmint": {
           "label": "Crossmint",
           "description": "droplinked & Crossmint"
+        },
+        "base": {
+          "label": "Base",
+          "description": "droplinked & Base"
         }
       }
     }
