@@ -6,17 +6,19 @@ import { Link } from 'react-router-dom'
 function CategoryCard({ categoryId, categoryName }: { categoryId: string; categoryName: string }) {
     return (
         <Link to={`/blogs/categories/${categoryId}`}>
-             <Box
+            <Box
             key={categoryId}
             p={6}
             borderRadius="2xl"
             border="1px"
+            bg="neutral.background"
             borderColor="neutral.gray.800"
             display="flex"
             justifyContent="flex-start"
             alignItems="flex-end"
             gap={4}
             overflow="hidden"
+            
           >
             <Box
               w="2px"

@@ -64,7 +64,7 @@ function LatestBlogsGrid() {
         <Flex
           display={{ base: 'flex', md: 'none', xl: 'flex' }}
           flex={{ base: 'initial', xl: '1' }}
-          h={{ base: 'auto', xl: 'full' }}
+          h={{ base: 'auto', md: 'auto', xl: 'full' }}
           direction="column"
           justify="flex-start"
           align="flex-start"
@@ -214,7 +214,7 @@ function LatestBlogsGrid() {
           data-state="Hover"
           w={{ base: 'full', md: 'auto' }}
           h={{ base: '360px', md: 'auto', xl: 'full' }}
-          flex={{ base: 'initial', md: 1, xl: 'initial' }}
+          flex={{ base: 'initial', md: 1, xl: '1' }}
           p={6}
           position="relative"
           rounded="2xl"
