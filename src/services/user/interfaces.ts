@@ -71,3 +71,9 @@ export interface IDemoRequest {
     message: string;
     organizationSize: string;
 }
+
+export interface IEnterpriseFeatureRequest {
+    primaryGoal: string;
+    organizationSize: string;
+    featureDescription: string;
+}

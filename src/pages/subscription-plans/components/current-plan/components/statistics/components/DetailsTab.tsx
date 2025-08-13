@@ -30,7 +30,7 @@ export default function DetailsTab({ data }: Props) {
         ? t('Plans.cycles.monthly')
         : data.monthLength === 12 
         ? t('Plans.cycles.annual')
-        : t('Plans.cycles.fiveYear');
+        : t('Plans.cycles.threeYear');
     const period = `${formatDateToLongStyle(new Date(data.startsAt))} - ${formatDateToLongStyle(new Date(data.expiresAt))}`;
     const nextBillingDate = formatDateToLongStyle(new Date(data.expiresAt));
 
