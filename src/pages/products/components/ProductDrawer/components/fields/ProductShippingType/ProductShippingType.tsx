@@ -11,7 +11,8 @@ function ProductShippingType() {
     const { t } = useLocaleResources('products')
     const { data } = useQuery({
         queryKey: [SHIPPING_PROFILES_QUERY_KEY],
-        queryFn: getShippingProfiles
+        queryFn: getShippingProfiles,
+        refetchOnWindowFocus: true
     })
 
     const shippingProfiles = data ?? []

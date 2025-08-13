@@ -2,8 +2,8 @@ import { Flex } from '@chakra-ui/react'
 import { EditLg } from 'assets/icons/Action/Edit/EditLg'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import AppSelect from 'components/redesign/select/AppSelect'
-import useProductForm from 'pages/products/hooks/useProductForm'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React, { useEffect } from 'react'
 
@@ -44,6 +44,7 @@ function ShippingList({ shippingProfiles }: ShippingListProps) {
             />
             <InteractiveText
                 to='/analytics/shipping-management'
+                target="_blank"
                 justifyContent="center"
                 gap={2}
                 border="1px solid"
