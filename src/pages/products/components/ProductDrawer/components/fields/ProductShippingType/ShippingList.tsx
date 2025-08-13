@@ -27,21 +27,22 @@ function ShippingList({ shippingProfiles }: ShippingListProps) {
 
     useEffect(() => {
         if (shippingProfiles.length > 0) {
-            setFieldValue('shippingType', shippingProfiles[0]._id)
+            setFieldValue('shippingModelId', shippingProfiles[0]._id)
         }
     }, [shippingProfiles])
 
     return (
         <Flex direction='column' gap={4}>
-
             <AppSelect
                 items={shippingProfileOptions}
+                valueAccessor='value'
                 selectProps={{
-                    value: values.shippingType,
-                    onChange: (value) => setFieldValue('shippingType', value)
+                    value: values.shippingModelId,
+                    onChange: (e) => setFieldValue('shippingModelId', e.target.value)
                 }}
-                error={errors.shippingType}
+                error={errors.shippingModelId}
             />
+
             <InteractiveText
                 to='/analytics/shipping-management'
                 target="_blank"

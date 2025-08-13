@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import Table from 'components/redesign/table/Table'
@@ -39,7 +39,7 @@ function ShippingProfileTable() {
                     </DotSeparatedList>
                 )
             }
-        },
+        }
     ]
 
     if (shippingProfiles?.length === 0) return <ShippingProfileEmptyState />
@@ -49,7 +49,11 @@ function ShippingProfileTable() {
             isLoading={isLoading}
             columns={columns}
             data={shippingProfiles || []}
-            renderActions={(shippingProfile: ShippingProfile) => <ShippingProfileTableActionMenu shippingProfile={shippingProfile} />}
+            renderActions={(shippingProfile: ShippingProfile) => (
+                <Flex justifyContent="flex-end">
+                    <ShippingProfileTableActionMenu shippingProfile={shippingProfile} />
+                </Flex>
+            )}
         />
     )
 }
