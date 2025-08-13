@@ -18,6 +18,7 @@ export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
       case 'd3':
       case 'unstoppableDomains':
       case 'polygon':
+      case 'base':
         onOpen(); // Open the wallet verification modal
         break;
       case 'crossmint':
@@ -32,10 +33,10 @@ export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
   return (
     <>
       <AppButton mt={6} onClick={handleClaimClick} {...buttonProps}>
-        {t('claimNow')}
+        {partnerId === 'base' ? t('common:getStarted') : t('common:claimNow')}
       </AppButton>
 
-      {['d3', 'unstoppableDomains', 'polygon'].includes(partnerId) && (
+      {['d3', 'unstoppableDomains', 'polygon', 'base'].includes(partnerId) && (
         <WalletVerificationModal isOpen={isOpen} onClose={onClose} />
       )}
     </>

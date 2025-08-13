@@ -99,6 +99,7 @@ const router = createBrowserRouter([
             { path: "unstoppable-domains", element: <PartnerPage partnerId="unstoppableDomains" /> },
             { path: "polygon", element: <PartnerPage partnerId="polygon" /> },
             { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
+            { path: "base", element: <PartnerPage partnerId="base" /> },
             { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
             { path: "roi", element: <DIMST /> },
             { path: "dpp", element: <DPPPage /> },
@@ -207,7 +208,7 @@ const router = createBrowserRouter([
         path: "/analytics/style-center/template-builder",
         errorElement: <MaintenancePage />,
         children: [
-            { index: true, element: <TemplateCreatePage /> }
+            // { index: true, element: <TemplateCreatePage /> }
         ]
     },
     {

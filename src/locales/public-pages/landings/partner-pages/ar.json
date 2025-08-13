@@ -15,6 +15,10 @@
     "crossmint": {
       "title": "تشغيل \n التجارة الذكية",
       "subtitle": "أعضاء Crossmint يحصلون على 3 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم."
+    },
+    "base": {
+      "title": "تشغيل التجارة الذكية",
+      "subtitle": "تمكين المبدعين والمجتمعات من تطوير أعمالهم معًا على البلوكتشين"
     }
   },
   "PartnerConfig": {
@@ -37,6 +41,13 @@
       "name": "crossmint",
       "displayName": "crossmint",
       "trialMonths": 3
+    },
+    "base": {
+      "name": "base",
+      "displayName": "Base",
+      "trialMonths": 3,
+      "perkListSectionTitle": "مزايا شبكة Base",
+      "perkListHeadingTitle": "مزايا حصرية لأعضاء شبكة Base"
     }
   },
   "PerkList": {
@@ -93,7 +104,11 @@
   "ModalHeader": {
     "connect": {
       "title": "اتصل بالمحفظة للتحقق",
-      "description": "اتصل بمحفظتك لمعرفة ما إذا كنت مؤهلاً للحصول على خطة برو لمدة {{trialMonths}} شهر"
+      "description": "يرجى الانتظار بينما يتم التحقق من حسابك",
+      "base": {
+        "title": "اتصل بالمحفظة للتحقق",
+        "description": "يرجى الانتظار بينما يتم التحقق من حسابك"
+      }
     },
     "loading": {
       "title": "جارٍ التحقق من حالة المحفظة",
@@ -105,7 +120,11 @@
     },
     "done": {
       "title": "تهانينا، تم التحقق من عرض المحفظة",
-      "description": "يمكنك الآن إنشاء حساب والاستمتاع بخطة برو لمدة {{trialMonths}} شهر"
+      "description": "يمكنك الآن إنشاء حساب والاستمتاع بخطة برو لمدة {{trialMonths}} شهر",
+      "base": {
+        "title": "تهانينا، تم التحقق من الحساب",
+        "description": "دعنا نبدأ!"
+      }
     }
   },
   "ModalButtons": {
@@ -113,7 +132,8 @@
   },
   "FeatureList": {
     "proPlanLabel": "خطة برو لمدة {{trialMonths}} شهر",
-    "instantVerificationLabel": "تحقق فوري"
+    "instantVerificationLabel": "تحقق فوري",
+    "enterprisePlanLabel": "أدوات مستوى المؤسسات"
   },
   "useWalletVerification": {
     "metamaskNotInstalled": "محفظة Metamask غير مثبتة!",
