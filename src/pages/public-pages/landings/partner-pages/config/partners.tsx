@@ -14,6 +14,7 @@ import UDTldFeatures from 'pages/public-pages/landings/partner-pages/components/
 import React from 'react';
 import { PartnerId, Section } from './types';
 import BaseGetStartedSection from '../components/partner-specific/BaseGetStartedSection';
+import SignUpCta from '../../_shared/components/SignUpCta';
 
 /**
  * PARTNER LANDING PAGE CONFIGURATION
@@ -65,7 +66,7 @@ const buildSections = (
     { id: 'perk-list', component: <PerkList /> },
     { id: 'modular-stack', component: <ModularStack /> },
     { id: 'join-community', component: <JoinCommunity /> },
-    { id: 'claim-now', component: <ClaimNow /> },
+    ...(partnerId !== 'base' ? [{ id: 'claim-now', component: <ClaimNow /> }] : []),
   ];
 
   // Add custom sections
@@ -163,6 +164,11 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
         id: 'base-get-started',
         component: <BaseGetStartedSection />,
         position: 1
+      },
+      {
+        id: 'signup-cta',
+        component: <SignUpCta />,
+        position: 4
       }
     ]),
   }
