@@ -10,6 +10,7 @@ import { compressToBase64, decompressFromBase64 } from "lz-string"
 import { getInitialData } from '../data/InitialData';
 import { useNavigate } from 'react-router-dom';
 import DesktopOnlyNotice from './DesignerPage/DesktopOnlyNotice';
+import "../style/fonts.css"
 
 function TemplateCreatePage() {
     const navigate = useNavigate()
