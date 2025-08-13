@@ -162,13 +162,17 @@
       "title": "Free Pro Plan Unlocked!",
       "description": "You now have access to the Pro Plan for 3 months for free."
     },
+    "enterprise": {
+      "title": "Unlock Enterprise Access!",
+      "description": "Tell us more about the business to tailor to your needs."
+    },
     "trial": {
       "title": "Use droplinked AI to Create A Shop",
       "description": "Feel free to use the AI tools to customize shops and inventory. Add your details below to get started."
     },
     "upgrade": {
       "title": "Access Exclusive Features",
-      "description": "Upgrade today to take advantage of the benefits associated with a Premium Plan."
+      "description": "Upgrade today to take advantage of the benefits associated with a {{activeTab}} Plan."
     },
     "payment": {
       "successMessage": "Trial activated successfully! Your Pro features are now available."
@@ -179,7 +183,9 @@
       "unsure": "Still unsure?",
       "comparePlans": "Compare plans and pricing options",
       "keepCurrentPlan": "Keep Current Plan",
-      "close": "Close"
+      "close": "Close",
+      "requestMeeting": "Request a Meeting",
+      "notNow": "Not Now"
     },
     "features": {
       "less": "Less",
