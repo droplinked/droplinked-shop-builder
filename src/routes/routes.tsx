@@ -208,7 +208,7 @@ const router = createBrowserRouter([
         path: "/analytics/style-center/template-builder",
         errorElement: <MaintenancePage />,
         children: [
-            // { index: true, element: <TemplateCreatePage /> }
+            { index: true, element: <TemplateCreatePage /> }
         ]
     },
     {
