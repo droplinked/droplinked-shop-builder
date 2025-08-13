@@ -9,7 +9,8 @@
   "ShippingZoneDrawer": {
     "shippingZone": "Shipping Zone",
     "header": {
-      "description": "Manage zones for your shipping profiles"
+      "title": "Add Shipping Zone",
+      "description": "Create Shipping Profile"
     }
   },
   "WorldwideSelector": {

@@ -52,7 +52,10 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
 
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
-            <ShippingDrawer.Header title={t('ShippingRateDrawer.header.title')} description={t('ShippingRateDrawer.header.description')} />
+            <ShippingDrawer.Header
+                title={t('ShippingRateDrawer.header.title')}
+                description={t('ShippingRateDrawer.header.description')}
+            />
             <ShippingDrawer.Body display="flex" flexDirection="column" gap={9}>
                 <ShippingMethodSelect
                     value={shippingMethod}

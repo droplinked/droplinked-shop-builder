@@ -61,7 +61,7 @@ function ShippingZoneDrawer({ isOpen, onClose, zoneIndex }: Props) {
     return (
         <ShippingDrawer isOpen={isOpen} onClose={onClose}>
             <ShippingDrawer.Header
-                title={`${zoneIndex !== undefined ? t('common:edit') : t('common:add')} ${t('ShippingZoneDrawer.shippingZone')}`}
+                title={t('ShippingZoneDrawer.header.title')}
                 description={t('ShippingZoneDrawer.header.description')}
             />
             <ShippingDrawer.Body display="flex" flexDirection="column" gap={9}>

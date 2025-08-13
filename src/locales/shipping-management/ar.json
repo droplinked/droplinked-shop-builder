@@ -9,7 +9,8 @@
   "ShippingZoneDrawer": {
     "shippingZone": "منطقة الشحن",
     "header": {
-      "description": "إدارة المناطق لملفات الشحن الخاصة بك"
+      "title": "إضافة منطقة شحن",
+      "description": "إنشاء ملف شحن"
     }
   },
   "WorldwideSelector": {
