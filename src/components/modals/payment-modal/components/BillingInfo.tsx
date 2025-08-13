@@ -1,32 +1,21 @@
-import React from 'react';
 import { Flex, Text, VStack } from '@chakra-ui/react';
 import { InformationSm } from 'assets/icons/Sign/Information/InformationSm';
-import { SubscriptionPlan } from 'services/subscription/interfaces';
-import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import React from 'react';
+import { SubscriptionPlan } from 'services/subscription/interfaces';
 import BillingSummary from './BillingSummary';
 import PlanCard from './PlanCard';
 
 interface BillingInfoProps {
   planDetail: SubscriptionPlan;
+  actualPaymentAmount?: number;
 }
 
-const BillingInfo = ({ planDetail }: BillingInfoProps) => {
-  const { preferredPlanDuration, selectedPlan } = useSubscriptionPlanStore(state => ({
-    preferredPlanDuration: state.preferredPlanDuration,
-    selectedPlan: state.selectedPlan
-  }));
+const BillingInfo = ({ planDetail, actualPaymentAmount }: BillingInfoProps) => {
   const { t } = useLocaleResources('subscription');
   
-  // Get the target price based on plan duration
-  const targetPrice = selectedPlan && Array.isArray(selectedPlan.price) && typeof selectedPlan.price[0] !== 'string' 
-    ? (selectedPlan.price as any[]).find(price => price.month === preferredPlanDuration.month)
-    : null;
-    
-  const originalPrice = targetPrice?.price ? parseFloat(targetPrice.price) : 0;
-  const discount = targetPrice?.discount || 0;
-  const subscriptionCost = Number((originalPrice * (1 - discount / 100)).toFixed(2));
-  const total = subscriptionCost.toFixed(2);
+  const subscriptionCost = actualPaymentAmount?.toFixed(2);
+  const total = actualPaymentAmount?.toFixed(2);
 
   return (
     <VStack spacing={4} alignItems="flex-start">

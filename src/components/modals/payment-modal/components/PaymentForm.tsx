@@ -13,14 +13,15 @@ interface PaymentFormProps {
   onClose: () => void;
   onSuccess?: () => void;
   successMessage?: string;
+  onPaymentAmountReceived?: (amount: number) => void;
 }
 
-
-const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessage }: PaymentFormProps) => {
+const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessage, onPaymentAmountReceived }: PaymentFormProps) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [intentType, setIntentType] = useState<'payment' | 'setup'>();
   const [clientSecret, setClientSecret] = useState('');
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [paymentAmount, setPaymentAmount] = useState<number>(0);
 
   const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan);
   const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration);
@@ -41,6 +42,9 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
     onSuccess: (data) => {
       setClientSecret(data.data.clientSecret);
       setIntentType(data.data.intentType);
+      setPaymentAmount(data.data.amount);
+      // Notify parent component about the payment amount
+      onPaymentAmountReceived?.(data.data.amount);
     },
     onError: (error: any) => {
       const errorMessage =

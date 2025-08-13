@@ -6,7 +6,7 @@ import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPl
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface BillingSummaryProps {
-  subscriptionCost: number;
+  subscriptionCost: string;
   total: string;
 }
 
@@ -63,7 +63,7 @@ function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
         </Text>
         <Flex alignItems="center" gap={1}>
           <Text color="white" fontSize="base" fontWeight="medium">
-            {total === '0.00' ? t('BillingSummary.free') : `$${total}`}
+            { total === '0.00' || canActivateTrial ? t('BillingSummary.free') : `$${total}`}
           </Text>
         </Flex>
       </Flex>
