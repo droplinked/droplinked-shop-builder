@@ -17,7 +17,7 @@ interface UseUpgradePlanProps {
 
 
 const DEFAULT_TAB: PlanType = 'pro';
-const ENTERPRISE_FIELDS = ['primaryGoal', 'organizationSize', 'featureDescription'] as const;
+const ENTERPRISE_FIELDS = ['primaryGoal', 'organizationSize'] as const;
 
 export function useUpgradePlan({ onClose, initialActiveTab }: UseUpgradePlanProps) {
   const { t } = useLocaleResources('subscription', {

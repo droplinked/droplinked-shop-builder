@@ -14,7 +14,6 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object({
   primaryGoal: Yup.string().required('Primary goal is required'),
   organizationSize: Yup.string().required('Organization size is required'),
-  featureDescription: Yup.string().required('Feature description is required')
 });
 
 export function EnterpriseContent({
@@ -124,11 +123,7 @@ export function EnterpriseContent({
 
                 <Textarea
                   bg="transparent"
-                  borderColor={
-                    errors.featureDescription && touched.featureDescription
-                      ? 'red.400'
-                      : 'neutral.gray.800'
-                  }
+                  borderColor="neutral.gray.800"
                   borderRadius="8px"
                   placeholder="Briefly describe your primary goal"
                   name="featureDescription"
@@ -138,15 +133,9 @@ export function EnterpriseContent({
                   onBlur={handleBlur}
                   _placeholder={{ color: 'text.subtext.placeholder.dark' }}
                   _focus={{
-                    borderColor:
-                      errors.featureDescription && touched.featureDescription
-                        ? 'red.400'
-                        : 'blue.400'
+                    borderColor: 'blue.400'
                   }}
                 />
-                <FormErrorMessage color="red.400" fontSize="sm">
-                  {errors.featureDescription}
-                </FormErrorMessage>
               </Flex>
 
               <Flex direction="column" w="100%">
