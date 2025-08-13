@@ -5,7 +5,7 @@ import SectionContainer from '../../../_shared/components/SectionContainer/Secti
 import HowItWorks from '../../assets/HowItWorks';
 import MobileAnimationFrame from 'pages/public-pages/landings/home/components/go-live-section/MobileAnimationFrame';
 import DesktopAnimationFrame from 'pages/public-pages/landings/home/components/go-live-section/DesktopAnimationFrame';
-import { useBreakpointValue, useMediaQuery } from '@chakra-ui/react';
+import { Box, useBreakpointValue, useMediaQuery } from '@chakra-ui/react';
 
 export default function BaseGetStartedSection() {
   const { t } = useLocaleResources('public-pages/landings/partner-pages');
@@ -14,7 +14,12 @@ export default function BaseGetStartedSection() {
 
   // YouTube video component
   const YouTubeVideo = () => {
-    const height = useBreakpointValue({ base: "185px", md: "280px", lg: "350px", xl: "624px" })
+    const height = useBreakpointValue({
+      base: '185px',
+      md: '280px',
+      lg: '350px',
+      xl: '624px'
+    });
     return (
       <iframe
         width="100%"
@@ -27,7 +32,7 @@ export default function BaseGetStartedSection() {
         style={{ borderRadius: '12px', maxHeight: '624px' }}
       />
     );
-  }
+  };
   return (
     <SectionContainer
       icon="sparkle"
@@ -35,25 +40,25 @@ export default function BaseGetStartedSection() {
       headingTitle={t('BaseGetStartedSection.headingTitle')}
       headingSubtitle={t('BaseGetStartedSection.headingSubtitle')}
       typographySvg={<HowItWorks />}
-      width="100%"
-      alignItems="stretch"
     >
-      {isSmallerThan768 && (
-        <MobileAnimationFrame
-          LottieView={<YouTubeVideo />}
-          completedSteps={[]}
-          isTransitioning={false}
-        />
-      )}
+      <Box alignItems="stretch" width="100%">
+        {isSmallerThan768 && (
+          <MobileAnimationFrame
+            LottieView={<YouTubeVideo />}
+            completedSteps={[]}
+            isTransitioning={false}
+          />
+        )}
 
-      {!isSmallerThan768 && (
-        <DesktopAnimationFrame
-          LottieView={<YouTubeVideo />}
-          completedSteps={[]}
-          isTransitioning={false}
-          width="100%"
-        />
-      )}
+        {!isSmallerThan768 && (
+          <DesktopAnimationFrame
+            LottieView={<YouTubeVideo />}
+            completedSteps={[]}
+            isTransitioning={false}
+            width="100%"
+          />
+        )}
+      </Box>
     </SectionContainer>
   );
 }
