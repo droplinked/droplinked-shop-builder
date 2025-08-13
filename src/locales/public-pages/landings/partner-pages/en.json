@@ -105,7 +105,11 @@
   "ModalHeader": {
     "connect": {
       "title": "Connect Wallet for Verification",
-      "description": "Connect your wallet to check if you're eligible for the {{trialMonths}} month Pro Plan"
+      "description": "Please wait while your account is being verified",
+      "base": {
+        "title": "Connect Wallet for Verification",
+        "description": "Please wait while your account is being verified"
+      }
     },
     "loading": {
       "title": "Verifying Wallet Status",
@@ -117,7 +121,11 @@
     },
     "done": {
       "title": "Congrats, Wallet Offer Verified",
-      "description": "You can now create an account and enjoy {{trialMonths}} months of a Pro Plan"
+      "description": "You can now create an account and enjoy {{trialMonths}} months of a Pro Plan",
+      "base": {
+        "title": "Congrats, Account Verified",
+        "description": "Let's get you going!"
+      }
     }
   },
   "ModalButtons": {
@@ -125,7 +133,8 @@
   },
   "FeatureList": {
     "proPlanLabel": "{{trialMonths}} Month Pro Plan",
-    "instantVerificationLabel": "Instant Verification"
+    "instantVerificationLabel": "Instant Verification",
+    "enterprisePlanLabel": "Enterprise-Level Tools"
   },
   "useWalletVerification": {
     "metamaskNotInstalled": "Metamask wallet is not installed!",

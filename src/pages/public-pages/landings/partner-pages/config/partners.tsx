@@ -20,23 +20,6 @@ import BaseGetStartedSection from '../components/partner-specific/BaseGetStarted
  * 
  * This file configures partner-specific landing pages with flexible section positioning.
  * 
- * CUSTOM SECTION POSITIONING OPTIONS:
- * 
- * 1. insertAfter: 'section-id' - Insert after a specific section
- *    Examples:
- *    - insertAfter: 'partner-list' → After partner showcase
- *    - insertAfter: 'perk-list' → After perks section
- *    - insertAfter: 'modular-stack' → After tech stack
- * 
- * 2. insertAt: number - Insert at specific index position
- *    Examples:
- *    - insertAt: 0 → At the very beginning
- *    - insertAt: 1 → After first section
- *    - insertAt: 3 → After third section
- * 
- * 3. No positioning - Default behavior
- *    - For partners with partner-list: Insert after partner-list
- *    - For base partner: Insert at beginning
  * 
  * DEFAULT SECTION ORDER:
  * 1. partner-list (MarqueeSection) - excluded for base partner
@@ -149,14 +132,7 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
       title: t('PartnerHero.polygon.title'),
       subtitle: t('PartnerHero.polygon.subtitle'),
     },
-    sections: buildSections(t, 'polygon', [
-      // Example: Add custom section
-      // { 
-      //   id: 'polygon-features', 
-      //   component: <PolygonFeatures />,
-      //   position: 2 // Insert at index 2
-      // }
-    ]),
+    sections: buildSections(t, 'polygon', []),
   },
 
   crossmint: {
