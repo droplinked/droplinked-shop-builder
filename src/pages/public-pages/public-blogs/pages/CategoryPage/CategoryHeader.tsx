@@ -20,8 +20,7 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category }) => {
           items={[
             { label: 'Home', to: '/' },
             { label: 'Blogs', to: '/blogs' },
-            { label: 'Categories', to: '/blogs/categories' },
-            { label: category || 'General' }
+            { label: 'Categories', to: '/blogs' },
           ]}
         />
         <Text

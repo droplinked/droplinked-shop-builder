@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 export type BreadcrumbItem = {
   label: string
-  to?: string
+  to: string
 }
 
 type BreadcrumbsProps = {
@@ -17,17 +17,18 @@ function Breadcrumbs({ items }: BreadcrumbsProps) {
     <Flex gap={1} justify="flex-start" align="center">
       {items.map((item, index) => {
         const isFirst = index === 0
-        const isLast = index === items.length - 1
-        const content = item.to && !isLast ? (
+        
+        const content = (
           <Link to={item.to}>
-            <Text color="text.subtext.placeholder.dark" fontSize={{base: "14px", md: "16px"}} fontWeight="400px">
+            <Text 
+              color="text.subtext.placeholder.dark" 
+              fontSize={{base: "14px", md: "16px"}} 
+              fontWeight="400" 
+              _hover={{color: "white"}}
+            > 
               {item.label}
             </Text>
           </Link>
-        ) : (
-          <Text color="text.subtext.placeholder.dark" fontSize={{base: "14px", md: "16px"}} fontWeight="400px">
-            {item.label}
-          </Text>
         )
 
         return (

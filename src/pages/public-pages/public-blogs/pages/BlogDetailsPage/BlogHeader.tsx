@@ -22,7 +22,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ title, writer, readTime }) => {
         <Breadcrumbs
           items={[
             { label: 'Home', to: '/' },
-            { label: 'Blogs', to: '/blog' }
+            { label: 'Blogs', to: '/blogs' }
           ]}
         />
 
