@@ -7,7 +7,6 @@ import useAppStore from 'stores/app/appStore';
 import useTemplate from '../hooks/useTemplate';
 import { Flex, Spinner, useBreakpointValue } from '@chakra-ui/react';
 import { compressToBase64, decompressFromBase64 } from "lz-string"
-import { getInitialData } from '../data/InitialData';
 import { useNavigate } from 'react-router-dom';
 import DesktopOnlyNotice from './DesignerPage/DesktopOnlyNotice';
 import "../style/fonts.css"
@@ -15,29 +14,10 @@ import "../style/fonts.css"
 function TemplateCreatePage() {
     const navigate = useNavigate()
     const { isLoadingTemplate, isUpdatingTemplate, templateData, updateTemplate } = useTemplate()
-    const { shop: { name, shopDesign, backgroundColor, headerIcon, launchDate, logo } } = useAppStore()
+    const { shop: { name } } = useAppStore()
     const shouldShowDesktopNotice = useBreakpointValue({ base: true, lg: false })
 
-
-    const data: Data = isLoadingTemplate ?
-        {} :
-        templateData ?
-            JSON.parse(decompressFromBase64(templateData))
-            : getInitialData({
-                backgroundColor,
-                headerIcon,
-                launchDate,
-                logo,
-                shopDesign: {
-                    backgroundBody: shopDesign.backgroundBody,
-                    faviconURL: shopDesign.faviconURL,
-                    fontfamily: shopDesign.fontfamily,
-                    foreground: shopDesign.foreground,
-                    iconHeaderColor: shopDesign.iconHeaderColor,
-                    isLogoAsFavicon: shopDesign.isLogoAsFavicon,
-                    textColorParagraphs: shopDesign.textColorParagraphs
-                }
-            })
+    const data: Data = isLoadingTemplate ? {} : JSON.parse(decompressFromBase64(templateData))
 
     const editorProps: EditorProps = {
         initialData: data,
