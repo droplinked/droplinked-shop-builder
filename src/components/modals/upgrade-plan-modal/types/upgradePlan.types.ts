@@ -2,16 +2,9 @@ import React from 'react';
 
 export type PlanType = 'pro' | 'premium' | 'enterprise';
 
-export interface PlanTabData {
-  icon: React.ReactNode;
-  label: string;
-  image: string;
-}
-
 export interface PlanModalProps {
   isOpen: boolean;
   onClose: () => void;
-  isTrial?: boolean;
   initialActiveTab?: PlanType;
 }
 
@@ -27,16 +20,22 @@ export interface BillingCycleSelectorProps {
   canActivateTrial: boolean;
 }
 
-export interface PlanHeaderProps {
-  isCrossmint: boolean;
-  canActivateTrial: boolean;
-  activeTab: PlanType;
+export interface PlanInfo {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  features: string[];
 }
 
-export interface PlanFooterProps {
-  isCrossmint: boolean;
-  canActivateTrial: boolean;
-  activeTab: PlanType;
-  onClose: () => void;
-  onUpgrade: () => void;
+export interface EnterpriseFormData {
+  primaryGoal: string;
+  organizationSize: string;
+  featureDescription: string;
+}
+
+export interface UpgradePlanTexts {
+  title: string;
+  description: string;
+  saveButtonText: string;
+  discardButtonText: string;
 } 

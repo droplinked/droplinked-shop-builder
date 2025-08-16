@@ -1,41 +1,98 @@
+import React from "react";
+import { TFunction } from "i18next";
+import { getSubscriptionPlans } from "data/subscriptionPlans";
+import {
+    PlanType,
+    UpgradePlanTexts,
+    PlanInfo,
+} from "../types/upgradePlan.types";
+import { PLAN_TYPE_MAP } from "../constants";
+
 export function getUpgradePlanTexts(
-    activeTab: string,
+    activeTab: PlanType,
     isCrossmint: boolean,
     canActivateTrial: boolean,
-    t: (key: string, options?: any) => string
-) {
-    const isEnterprise = activeTab === 'enterprise';
+    t: TFunction
+): UpgradePlanTexts {
+    const isEnterprise = activeTab === "enterprise";
+
     return {
-        // Header texts
         title: isCrossmint
-            ? t('proPlan.crossmint.title')
+            ? t("UpgradePlanModal.ModalHeader.crossmintTitle")
             : isEnterprise
-                ? t('proPlan.enterprise.title')
-                : canActivateTrial
-                ? t('proPlan.trial.title')
-                : t('proPlan.upgrade.title'),
+            ? t("UpgradePlanModal.ModalHeader.enterpriseTitle")
+            : canActivateTrial
+            ? t("UpgradePlanModal.ModalHeader.trialTitle")
+            : t("UpgradePlanModal.ModalHeader.upgradeTitle"),
 
         description: isCrossmint
-            ? t('proPlan.crossmint.description')
+            ? t("UpgradePlanModal.ModalHeader.crossmintDescription")
             : isEnterprise
-                ? t('proPlan.enterprise.description')
+            ? t("UpgradePlanModal.ModalHeader.enterpriseDescription")
             : canActivateTrial
-                ? t('proPlan.trial.description')
-                : t('proPlan.upgrade.description', { activeTab }),
+            ? t("UpgradePlanModal.ModalHeader.trialDescription")
+            : t("UpgradePlanModal.ModalHeader.upgradeDescription", {
+                  activeTab,
+              }),
 
-        // Button texts
         saveButtonText: isEnterprise
-            ? t('proPlan.footer.requestMeeting')
+            ? t("UpgradePlanModal.ModalFooter.requestMeeting")
             : isCrossmint
-                ? t('proPlan.footer.continue')
-                : canActivateTrial
-                    ? t('proPlan.footer.claimTrial')
-                    : t('proPlan.footer.upgrade'),
+            ? t("common:continue")
+            : canActivateTrial
+            ? t("UpgradePlanModal.ModalFooter.claimTrial")
+            : t("UpgradePlanModal.ModalFooter.upgrade"),
 
         discardButtonText: isEnterprise
-            ? t('proPlan.footer.notNow')
+            ? t("UpgradePlanModal.ModalFooter.notNow")
             : !canActivateTrial
-                ? t('proPlan.footer.keepCurrentPlan')
-                : t('proPlan.footer.close')
+            ? t("UpgradePlanModal.ModalFooter.keepCurrentPlan")
+            : t("common:close"),
     };
+}
+
+export function getDurationName(months: number): string {
+    switch (months) {
+        case 1:
+            return "Monthly";
+        case 12:
+            return "Annually";
+        case 36:
+            return "3-Year";
+        default:
+            return `${months} Month${months > 1 ? "s" : ""}`;
+    }
+}
+
+export function getPlanInfo(planType: PlanType, t: TFunction): PlanInfo {
+    const subscriptionPlans = getSubscriptionPlans(t);
+    const planKey = PLAN_TYPE_MAP[planType] as keyof typeof subscriptionPlans;
+    const plan = subscriptionPlans[planKey] || subscriptionPlans.BUSINESS;
+
+    return {
+        icon: React.createElement(plan.icon, { color: "white" }),
+        title: plan.title,
+        description: plan.description,
+        features: plan.features.items,
+    };
+}
+
+export function getCurrentPlanData(activeTab: PlanType, t: TFunction) {
+    const subscriptionPlans = getSubscriptionPlans(t);
+    const planKey = PLAN_TYPE_MAP[activeTab] as keyof typeof subscriptionPlans;
+    const plan = subscriptionPlans[planKey] || subscriptionPlans.BUSINESS;
+
+    return {
+        plan: {
+            _id: plan.type,
+            type: plan.type,
+            subOptionIds: [],
+            price: "0",
+        },
+        features: plan.features.items,
+    };
+}
+
+export function getPlanForPayment(activeTab: PlanType): string {
+    return activeTab === "pro" ? "BUSINESS" : "BUSINESS_PRO";
 }

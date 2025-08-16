@@ -2,6 +2,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import { WalletMd } from 'assets/icons/Finance/Wallet/WalletMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import arLocale from "locales/onchain-records/ar.json"
 import enLocale from "locales/onchain-records/en.json"
 import React from 'react'
@@ -11,7 +12,14 @@ import Records from './records/Records'
 
 export default function OnchainRecords() {
     const { onClose, isOpen, onOpen } = useDisclosure()
+    const { isOpen: isEnterpriseModalOpen, onOpen: showEnterpriseModal, onClose: closeEnterpriseModal } = useDisclosure();
     const { t } = useLocaleResources("onchainRecords", { en: enLocale, ar: arLocale })
+
+    const handleConnectWalletClick = () => {
+        showEnterpriseModal();
+        return;
+        onOpen()
+    }
 
     return (
         <OnchainRecordsProvider>
@@ -23,7 +31,7 @@ export default function OnchainRecords() {
                         {
                             title: t("ConnectWallets.connect"),
                             leftIcon: <WalletMd />,
-                            onClick: onOpen,
+                            onClick: handleConnectWalletClick,
                         }
                     ]}
                 />
@@ -33,6 +41,12 @@ export default function OnchainRecords() {
                 </PageGrid.Content>
 
                 <ConnectWalletModal isOpen={isOpen} onClose={onClose} />
+                
+                <UpgradePlanModalContainer
+                    isOpen={isEnterpriseModalOpen}
+                    onClose={closeEnterpriseModal}
+                    initialActiveTab="enterprise"
+                />
             </PageGrid.Root>
         </OnchainRecordsProvider>
     )

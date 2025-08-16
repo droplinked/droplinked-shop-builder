@@ -1,35 +1,17 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import { PlanType } from '../types/upgradePlan.types';
-import { getSubscriptionPlans } from 'data/subscriptionPlans';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import localAr from 'locales/subscription/ar.json';
-import localEn from 'locales/subscription/en.json';
+import { usePlanData } from '../hooks/usePlanData';
 
-interface PlanTabProps {
+interface PlanTabItemProps {
   planType: PlanType;
   isActive: boolean;
   onClick: () => void;
   showIcon?: boolean;
 }
 
-export function PlanTabItem({ planType, isActive, onClick, showIcon = true }: PlanTabProps) {
-  const { t } = useLocaleResources('subscription', {
-    en: localEn,
-    ar: localAr
-  });
-
-  const subscriptionPlans = getSubscriptionPlans(t);
-  
-  // Map plan types to subscription plan keys
-  const planTypeMap: Record<PlanType, keyof typeof subscriptionPlans> = {
-    pro: 'BUSINESS',
-    premium: 'BUSINESS_PRO',
-    enterprise: 'ENTERPRISE'
-  };
-
-  const planKey = planTypeMap[planType];
-  const plan = subscriptionPlans[planKey];
+export function PlanTabItem({ planType, isActive, onClick, showIcon = true }: PlanTabItemProps) {
+  const plan = usePlanData(planType);
 
   return (
     <Flex

@@ -1,6 +1,6 @@
 import { Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm'
-import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
@@ -84,7 +84,7 @@ function GenerateWithAI() {
                 </Flex>
             </AnimatedBox>
             
-            <ProTrialModal
+            <UpgradePlanModalContainer
                 isOpen={isProTrialModalOpen}
                 onClose={handleCloseProTrialModal}
             />

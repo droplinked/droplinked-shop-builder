@@ -7,20 +7,10 @@ import React from 'react';
 import { PlanTabHeaders } from '../components/PlanTabContainer';
 import { UpgradePlanContent } from '../components/UpgradePlanContent';
 import { useUpgradePlan } from '../hooks/useUpgradePlan';
-import { PlanType } from '../types/upgradePlan.types';
+import { PlanModalProps } from '../types/upgradePlan.types';
 import { getUpgradePlanTexts } from '../utils/upgradePlanUtils';
 
-interface UpgradePlanDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-  initialActiveTab?: PlanType;
-}
-
-export default function UpgradePlanDrawer({
-  isOpen,
-  onClose,
-  initialActiveTab,
-}: UpgradePlanDrawerProps) {
+export default function UpgradePlanDrawer({ isOpen, onClose, initialActiveTab }: PlanModalProps) {
   const { t } = useLocaleResources('subscription', {
     en: localEn,
     ar: localAr
@@ -31,20 +21,23 @@ export default function UpgradePlanDrawer({
     setActiveTab,
     isPaymentModalOpen,
     setEnterpriseFormData,
-    getPlanInfo,
-    getCurrentPlanData,
+    planInfo,
+    currentPlanData,
     handleUpgrade,
     closePaymentModal,
     handlePaymentSuccess,
-    getPlanForPayment,
+    planForPayment,
     isSubmitting,
     canActivateTrial,
     isCrossmint
   } = useUpgradePlan({ onClose, initialActiveTab });
 
-  const planInfo = getPlanInfo(activeTab);
-  const { features } = getCurrentPlanData();
-  const { title, description, saveButtonText, discardButtonText } = getUpgradePlanTexts(activeTab, isCrossmint, canActivateTrial, t);
+  const { title, description, saveButtonText, discardButtonText } = getUpgradePlanTexts(
+    activeTab, 
+    isCrossmint, 
+    canActivateTrial, 
+    t
+  );
 
   return (
     <>
@@ -83,16 +76,16 @@ export default function UpgradePlanDrawer({
           isDrawer={true}
           onDataChange={setEnterpriseFormData}
           planInfo={planInfo}
-          features={features}
+          features={currentPlanData.features}
           canActivateTrial={canActivateTrial}
         />
       </Drawer>
 
-      {/* Payment Modal for Pro and Premium plans */}
       <PaymentModal
+        TrialMonths={isCrossmint ? 3 : 1}
         isOpen={isPaymentModalOpen}
         onClose={closePaymentModal}
-        plan={getPlanForPayment()}
+        plan={planForPayment}
         onSuccess={handlePaymentSuccess}
       />
     </>
