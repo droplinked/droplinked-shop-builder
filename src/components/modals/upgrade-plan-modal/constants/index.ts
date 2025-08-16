@@ -16,6 +16,6 @@ export const PLAN_TYPE_MAP: Record<PlanType, string> = {
   enterprise: 'ENTERPRISE'
 };
 
-export const ENTERPRISE_FIELDS = ['primaryGoal', 'organizationSize', 'featureDescription'] as const;
+export const ENTERPRISE_FIELDS = ['primaryGoal', 'organizationSize'] as const;
 
 export const MOBILE_BREAKPOINT = '(max-width: 1024px)';
