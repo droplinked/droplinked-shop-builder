@@ -323,5 +323,8 @@
       "zipRequired": "Zip is required",
       "addressLine1Required": "Address line 1 is required"
     }
+  },
+  "useCollections": {
+    "error": "Unable to retrieve collections."
   }
 }

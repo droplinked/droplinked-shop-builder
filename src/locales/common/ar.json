@@ -279,5 +279,8 @@
       "zipRequired": "الرمز البريدي مطلوب",
       "addressLine1Required": "العنوان 1 مطلوب"
     }
+  },
+  "useCollections": {
+    "error": "تعذر الحصول على المجموعات."
   }
 }

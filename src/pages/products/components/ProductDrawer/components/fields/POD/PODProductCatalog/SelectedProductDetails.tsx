@@ -1,9 +1,10 @@
 import useAppToast from "hooks/toast/useToast"
-import { podProductService } from "services/pod/services"
+import useCollections from "hooks/useCollections/useCollections"
 import useProductForm from "pages/products/hooks/useProductForm"
 import useProductPageStore from "pages/products/stores/ProductPageStore"
-import React from "react"
+import React, { useEffect } from "react"
 import { useQuery } from "react-query"
+import { podProductService } from "services/pod/services"
 import LoadingPlaceholder from "../../../common/LoadingPlaceholder"
 import PODProductCard from "./ProductList/PODProductCard"
 
@@ -16,7 +17,7 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
     const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
     const { values: { _id: editingProductId }, setFieldValue } = useProductForm()
     const { showToast } = useAppToast()
-
+    const { data: collections } = useCollections()
     const { data, isFetching } = useQuery({
         queryKey: ["POD_PRODUCT_DETAILS", productId],
         queryFn: () => podProductService({ pod_blank_product_id: productId }),
@@ -35,6 +36,7 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
             onBack()
         }
     })
+
     const fetchedProduct = data?.data?.data
 
     const deleteProduct = () => {
@@ -56,6 +58,12 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
         setFieldValue("sku", [])
         onBack()
     }
+
+    useEffect(() => {
+        if (collections?.data?.length > 0) {
+            setFieldValue("productCollectionID", collections.data[0]._id)
+        }
+    }, [collections, setFieldValue])
 
     if (isFetching) return <LoadingPlaceholder skeletonProps={{ h: "83px" }} />
 
