@@ -25,7 +25,7 @@ const useSubscription = (): SubscriptionInfo => {
     const isEnterprise = planType === 'ENTERPRISE';
     
     const hasPaidSubscription = !isStarter;
-    const shouldShowUpgradeModal = isStarter || isBusiness;
+    const shouldShowUpgradeModal = isStarter || isBusiness || isBusinessPro;
     
     return {
       planType,

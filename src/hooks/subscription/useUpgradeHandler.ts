@@ -32,7 +32,7 @@ const useUpgradeHandler = (requiredPlan: PlanType = 'BUSINESS') => {
       return;
     }
     
-    if (shouldShowUpgradeModal && !hasRequiredPlan()) {
+    if (!hasRequiredPlan()) {
       onOpen();
       return;
     }
