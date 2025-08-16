@@ -1,12 +1,11 @@
 import useAppToast from 'hooks/toast/useToast'
 import { getShopExtractedData, startWebsiteCrawling } from 'services/crawler/services'
 import { usePolling } from 'hooks/usePolling/usePolling'
-import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'    
 
 export const useShopUrlProcessor = () => {
-    const { hasPaidSubscription } = useAppStore()
+
     const { updateShopData } = useOnboardingStore()
     const { showToast } = useAppToast()
     const { t } = useLocaleResources('onboarding')
@@ -73,6 +72,5 @@ export const useShopUrlProcessor = () => {
         // Functions
         processShopUrl,
         stopPolling: polling.stopPolling,
-        hasPaidSubscription
     }
 } 

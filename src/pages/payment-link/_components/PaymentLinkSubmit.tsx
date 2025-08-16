@@ -4,14 +4,14 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { updateProductLinkOptionsService } from 'services/product/productServices'
 import useAppStore from 'stores/app/appStore'
 import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import React, { useContext, useState } from 'react'
 import { PaymentLinkContext } from '../context/PaymentLinkContext'
 import enLocale from 'locales/payment-link/en.json'
 import arLocale from 'locales/payment-link/ar.json'
-import { useDisclosure } from '@chakra-ui/react'
 
 function PaymentLinkSubmit() {
-    const { isOpen: isEnterpriseModalOpen, onOpen: showEnterpriseModal, onClose: closeEnterpriseModal } = useDisclosure();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
     const { t } = useLocaleResources('payment-link' , {
         en: enLocale,
         ar: arLocale
@@ -22,22 +22,20 @@ function PaymentLinkSubmit() {
     const { updateState, shop } = useAppStore()
 
     const handleSubmit = async () => {
-        // Show upgrade modal for save functionality
-        showEnterpriseModal();
-        return;
-        
-        try {
-            setLoading(true)
-            await updateProductLinkOptionsService(paymentLinkData)
-            updateState({ key: 'shop', params: { ...shop, productLinkOptions: paymentLinkData } })
-            showToast({ message: t('PaymentLinkSubmit.successMessage'), type: 'success' })
-        }
-        catch (error) {
-            showToast({ message: t('PaymentLinkSubmit.errorMessage'), type: 'error' })
-        }
-        finally {
-            setLoading(false)
-        }
+        handleFeatureAccess(async () => {
+            try {
+                setLoading(true)
+                await updateProductLinkOptionsService(paymentLinkData)
+                updateState({ key: 'shop', params: { ...shop, productLinkOptions: paymentLinkData } })
+                showToast({ message: t('PaymentLinkSubmit.successMessage'), type: 'success' })
+            }
+            catch (error) {
+                showToast({ message: t('PaymentLinkSubmit.errorMessage'), type: 'error' })
+            }
+            finally {
+                setLoading(false)
+            }
+        })
     }
 
     return (
@@ -45,8 +43,8 @@ function PaymentLinkSubmit() {
             <BasicButton alignSelf={"flex-end"} isLoading={isLoading} isDisabled={isLoading} onClick={handleSubmit}>{t('common:save')}</BasicButton>
             
             <UpgradePlanModalContainer
-                isOpen={isEnterpriseModalOpen}
-                onClose={closeEnterpriseModal}
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
                 initialActiveTab={'enterprise'}
             />
         </>

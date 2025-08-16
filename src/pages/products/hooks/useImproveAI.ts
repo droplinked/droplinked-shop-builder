@@ -4,18 +4,16 @@ import { useState } from 'react';
 import { useMutation } from 'react-query';
 import useProductPageStore from '../stores/ProductPageStore';
 import useProductForm from './useProductForm';
-import useAppStore from 'stores/app/appStore';
-import { useDisclosure } from '@chakra-ui/react';
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const [selectedItem, setSelectedItem] = useState("");
     const [revertData, setRevertData] = useState("");
-    const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
     const { isAiGenerateLoading, updateProductPageState } = useProductPageStore();
     const { values: { description, title }, setFieldValue } = useProductForm();
     const { showToast } = useAppToast();
-    const { hasPaidSubscription } = useAppStore();
     const { t } = useLocaleResources('products');
 
     const { mutateAsync, isLoading, isSuccess } = useMutation(
@@ -42,31 +40,21 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     );
 
     const handleSelectItem = async (item: string) => {
-        if (!hasPaidSubscription()) {
-            openProTrialModal();
-            return;
-        }
-
-        setSelectedItem(item);
-        await mutateAsync(item.toUpperCase());
+        handleFeatureAccess(async () => {
+            setSelectedItem(item);
+            await mutateAsync(item.toUpperCase());
+        });
     };
 
     const handleTryAgain = () => {
-        if (!hasPaidSubscription()) {
-            openProTrialModal();
-            return;
-        }
-
-        mutateAsync(selectedItem.toUpperCase());
+        handleFeatureAccess(() => {
+            mutateAsync(selectedItem.toUpperCase());
+        });
     };
 
     const handleRevert = () => {
         setFieldValue(type, revertData);
         setSelectedItem("");
-    };
-
-    const handleCloseProTrialModal = () => {
-        closeProTrialModal();
     };
 
     return {
@@ -76,7 +64,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
         handleRevert,
         isImproveLoading: isLoading || isAiGenerateLoading,
         isLoaded: !!isSuccess && !!selectedItem,
-        isProTrialModalOpen,
-        handleCloseProTrialModal
+        isUpgradeModalOpen,
+        closeUpgradeModal
     };
 };

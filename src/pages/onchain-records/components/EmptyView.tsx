@@ -5,18 +5,19 @@ import AppTypography from 'components/common/typography/AppTypography'
 import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import BlueButton from 'components/redesign/button/BlueButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import React from 'react'
 import ConnectWalletModal from './connect-wallets-modal/ConnectWalletModal'
 
 export default function EmptyView() {
     const { t } = useLocaleResources("onchainRecords")
     const { onClose, onOpen, isOpen } = useDisclosure()
-    const { isOpen: isEnterpriseModalOpen, onOpen: showEnterpriseModal, onClose: closeEnterpriseModal } = useDisclosure();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
 
     const handleConnectWalletClick = () => {
-        showEnterpriseModal();
-        return;
-        onOpen()
+        handleFeatureAccess(() => {
+            onOpen()
+        });
     }
 
     return (
@@ -41,8 +42,8 @@ export default function EmptyView() {
             <ConnectWalletModal isOpen={isOpen} onClose={onClose} />
             
             <UpgradePlanModalContainer
-                isOpen={isEnterpriseModalOpen}
-                onClose={closeEnterpriseModal}
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
                 initialActiveTab="enterprise"
             />
         </Flex>

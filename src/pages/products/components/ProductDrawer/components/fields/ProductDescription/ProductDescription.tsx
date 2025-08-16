@@ -18,7 +18,7 @@ function ProductDescription() {
     const { values: { description, title }, errors, setFieldValue } = useProductForm()
     const editorRef = useRef(null);
     const improveAI = useImproveAI({ type: 'description' });
-    const { isImproveLoading, isProTrialModalOpen, handleCloseProTrialModal } = improveAI
+    const { isImproveLoading, isUpgradeModalOpen, closeUpgradeModal } = improveAI
 
     useEffect(() => {
         if (editorRef.current) {
@@ -97,8 +97,8 @@ function ProductDescription() {
             </FormFieldWrapper>
             
             <UpgradePlanModalContainer
-                isOpen={isProTrialModalOpen}
-                onClose={handleCloseProTrialModal}
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
             />
         </>
     )

@@ -46,7 +46,6 @@ export interface IAppStore {
     checkPermissionAndShowToast: (permission: string, message?: string) => boolean,
     getPermissionValue: (permission: string) => any,
     updateShopLegalUsage: (shopLegalUsage: any) => void,
-    hasPaidSubscription: () => boolean
 }
 
 const states = (set, get): IAppStore => ({
@@ -177,11 +176,6 @@ const states = (set, get): IAppStore => ({
     updateShopLegalUsage: (shopLegalUsage) => {
         const { shop } = get()
         set({ shop: { ...shop, subscription: { ...shop.subscription, legalUsage: shopLegalUsage } } })
-    },
-    hasPaidSubscription: () => {
-        const { shop } = get()
-        const subscriptionType = shop?.subscription?.subscriptionId?.type;
-        return subscriptionType !== 'STARTER' && subscriptionType !== undefined;
     }
 })
 
@@ -201,6 +195,5 @@ export const useGetPermissionValue = () => useAppStore(state => state.getPermiss
 export const useLegalUsage = () => useAppStore(state => state.shop.subscription.legalUsage)
 export const useUpdateShopPermissions = () => useAppStore(state => state.updateShopSubscriptionData)
 export const useUpdateShopLegalUsage = () => useAppStore(state => state.updateShopLegalUsage)
-export const useHasActiveSubscription = () => useAppStore(state => state.hasPaidSubscription)
 
 export default useAppStore

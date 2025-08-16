@@ -135,7 +135,8 @@
     "invoiceNotFound": "لم يتم العثور على الفاتورة بهذا المعرف",
     "permissionDenied": "تم رفض الإذن",
     "imageSizeLimit": "يجب أن تكون الصورة أقل من {{size}}. يرجى اختيار ملف أصغر والمحاولة مرة أخرى.",
-    "imageTypeNotSupported": "يرجى رفع صورة بصيغة JPG أو PNG أو GIF."
+    "imageTypeNotSupported": "يرجى رفع صورة بصيغة JPG أو PNG أو GIF.",
+    "enterpriseSupport": "يرجى التواصل مع الدعم للحصول على ميزات المؤسسة"
   },
 
   "AddBalanceModal": {
