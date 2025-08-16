@@ -89,7 +89,7 @@ function BlogDetailPage() {
   }
 
   return (
-    <MaxWidthWrapper paddingBlockStart={{base:"48px", lg:"80px"}} paddingBlockEnd={{base:"80px", lg:"128px"}}>
+    <MaxWidthWrapper paddingBlockStart={{base:"48px", lg:"80px"}} paddingBlockEnd={{base:"80px", lg:"128px"}} dir="ltr">
       <LazyLoad>
           {/* Header Section */}
           <BlogHeader

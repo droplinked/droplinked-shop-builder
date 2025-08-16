@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flex, IconButton, Box } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import { ChevronleftLg } from 'assets/icons/Navigation/ChevronLeft/ChevronleftLg';
 import { ChevronrightLg } from 'assets/icons/Navigation/ChevronRight/ChevronrightLg';
 
@@ -19,6 +20,7 @@ const SliderControls: React.FC<SliderControlsProps> = ({
   totalItems,
   visibleItems
 }) => {
+  const { t } = useTranslation('public-pages/public-blogs');
   const maxIndex = Math.max(0, totalItems - visibleItems);
   const progress = totalItems > 0 ? (currentIndex / maxIndex) * 100 : 0;
   const canGoPrevious = currentIndex > 0;
@@ -27,7 +29,7 @@ const SliderControls: React.FC<SliderControlsProps> = ({
   return (
     <Flex align="center" gap={2} justifyContent="space-between">
       <IconButton
-        aria-label="Previous"
+        aria-label={t('SliderControls.previousAriaLabel')}
         icon={<ChevronleftLg />}
         variant="ghost"
         size="lg"
@@ -57,7 +59,7 @@ const SliderControls: React.FC<SliderControlsProps> = ({
       </Flex>
 
       <IconButton
-        aria-label="Next"
+        aria-label={t('SliderControls.nextAriaLabel')}
         icon={<ChevronrightLg />}
         variant="ghost"
         size="lg"

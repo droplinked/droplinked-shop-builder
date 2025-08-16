@@ -18,7 +18,7 @@ function CategoryPage() {
     <>
       <BackgroundImage />
       {/* Content container */}
-      <Box position="relative" zIndex={1}>
+      <Box position="relative" zIndex={1} dir="ltr">
         <MaxWidthWrapper>
           <LazyLoad>
             <CategoryHeader category={category} />

@@ -1,6 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import SectionTitle from '../common/SectionTitle';
 import { ExternalarrowLg } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowLg';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
@@ -23,6 +24,7 @@ import { BlogCardFooter } from '../common/BlogCardFooter';
  */
 function LatestBlogsGrid() {
   const navigate = useNavigate();
+  const { t } = useTranslation('public-pages/public-blogs');
 
   // Track which card is currently being hovered for showing external arrow icon
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -52,7 +54,7 @@ function LatestBlogsGrid() {
       alignItems="flex-start"
       gap={6}
     >
-      <SectionTitle>Trending</SectionTitle>
+      <SectionTitle>{t('LatestBlogsGrid.sectionTitle')}</SectionTitle>
 
       {/* Main grid container - responsive layout changes based on screen size */}
       <Flex
