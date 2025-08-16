@@ -37,6 +37,7 @@ function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
             icon={<TrashLg color='#fff' />}
             title={t("ConfirmDeleteCollection.title")}
             description={t("ConfirmDeleteCollection.confirmationText")}
+            variant='delete'
             confirmButtonProps={{
                 children: t("common:delete"),
                 isLoading,
