@@ -1,48 +1,27 @@
 {
-  "header": {
+  "PublicBlogsHeader": {
     "sectionTitle": "المصدر للأفكار الجديدة",
     "headingTitle": "نصائح واتجاهات وإلهام",
     "headingSubtitle": "ابق على اطلاع بآخر الأخبار والرؤى من فريقنا."
   },
-  "sections": {
-    "trending": "رائج",
-    "topCategories": "أفضل الفئات",
-    "discover": "اكتشف المزيد",
-    "latestBlogs": "أحدث المدونات"
+  "LatestBlogsGrid": {
+    "sectionTitle": "رائج"
   },
-  "common": {
-    "readMore": "اقرأ المزيد",
-    "viewAll": "عرض الكل",
-    "loading": "جاري التحميل...",
-    "noBlogs": "لم يتم العثور على مدونات",
-    "noCategories": "لم يتم العثور على فئات"
+  "TopCategoriesSection": {
+    "sectionTitle": "أفضل الفئات"
   },
-  "blogCard": {
-    "readTime": "{{minutes}} دقيقة للقراءة",
-    "byAuthor": "بواسطة {{author}}",
-    "publishedOn": "نُشر في {{date}}",
-    "category": "الفئة"
+  "BlogsCarousel": {
+    "sectionTitle": "اكتشف المزيد"
   },
-  "categories": {
-    "all": "جميع الفئات",
-    "technology": "التكنولوجيا",
-    "business": "الأعمال",
-    "marketing": "التسويق",
-    "design": "التصميم",
-    "development": "التطوير"
+  "BlogGrid": {
+    "sectionTitle": "اعرف المزيد",
+    "viewMore": "عرض المزيد"
   },
-  "navigation": {
-    "home": "الرئيسية",
-    "blogs": "المدونات",
-    "about": "حول",
-    "contact": "اتصل بنا",
-    "previous": "السابق",
-    "next": "التالي"
+  "BlogCard": {
+    "defaultCategory": "عام"
   },
-  "actions": {
-    "subscribe": "اشترك",
-    "signUp": "سجل",
-    "learnMore": "اعرف المزيد",
-    "getStarted": "ابدأ الآن"
+  "SliderControls": {
+    "previousAriaLabel": "السابق",
+    "nextAriaLabel": "التالي"
   }
 }
