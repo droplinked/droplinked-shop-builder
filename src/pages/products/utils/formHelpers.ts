@@ -27,7 +27,6 @@ export function getFormInitialValues({ product, selectedProductType, convertPric
             ...(selectedProductType === "DIGITAL" && { sku: [digitalProductSKU] }),
             ...(selectedProductType === "PRINT_ON_DEMAND" && {
                 prodviderID: "PRINTFUL",
-                shippingModelId: "",
                 custome_external_id: Date.now() + nanoid(13)
             })
         }

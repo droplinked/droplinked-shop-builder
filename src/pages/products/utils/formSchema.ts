@@ -142,7 +142,7 @@ export const initialValues: Product = {
 
     // Pricing and Commission
     priceUnit: "USD",
-    shippingModelId: "",
+    shippingModelId: undefined,
     shippingPrice: 0,
     commission: 0,
     canBeAffiliated: false,
