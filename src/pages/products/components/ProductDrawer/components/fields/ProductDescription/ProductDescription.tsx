@@ -1,8 +1,10 @@
 import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
-import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/products/ar.json'
+import enLocale from 'locales/products/en.json'
 import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect, useRef } from 'react'
@@ -10,8 +12,6 @@ import AnimatedBox from '../../common/AnimatedBox'
 import ImproveWithAi from '../../common/ImproveWithAi'
 import './loading.css'
 import classes from './ProductDescription.module.scss'
-import arLocale from 'locales/products/ar.json'
-import enLocale from 'locales/products/en.json'
 
 function ProductDescription() {
     const { t } = useLocaleResources('products', { en: enLocale, ar: arLocale });
@@ -96,7 +96,7 @@ function ProductDescription() {
                 </AnimatedBox>
             </FormFieldWrapper>
             
-            <ProTrialModal
+            <UpgradePlanModalContainer
                 isOpen={isProTrialModalOpen}
                 onClose={handleCloseProTrialModal}
             />

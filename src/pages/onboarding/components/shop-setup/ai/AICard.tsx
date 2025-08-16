@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import useAppStore from 'stores/app/appStore';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer';
 
 function AICard() {
   const [isOpen, setIsOpen] = useState(false);
@@ -134,7 +135,7 @@ function AICard() {
         </Box>
       </Box>
 
-      <ProTrialModal isOpen={isProTrialModalOpen} onClose={handleCloseProTrialModal} />
+      <UpgradePlanModalContainer  isOpen={isProTrialModalOpen} onClose={handleCloseProTrialModal} />
     </Box>
   );
 }
