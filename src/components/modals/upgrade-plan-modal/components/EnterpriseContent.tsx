@@ -1,64 +1,52 @@
-import {
-  Flex,
-  FormErrorMessage,
-  Text,
-  Textarea
-} from '@chakra-ui/react';
-import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm';
+import { Flex, Textarea } from '@chakra-ui/react';
 import AppSelect from 'components/redesign/select/AppSelect';
 import { Form, Formik } from 'formik';
 import React, { useRef } from 'react';
 import * as Yup from 'yup';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { EnterpriseFormData } from '../types/upgradePlan.types';
+import { FormField } from './FormField';
 
-// Validation schema using Yup
-const validationSchema = Yup.object({
-  primaryGoal: Yup.string().required('Primary goal is required'),
-  organizationSize: Yup.string().required('Organization size is required'),
+const createValidationSchema = (t: (key: string) => string) => Yup.object({
+  primaryGoal: Yup.string().required(t('UpgradePlanModal.EnterpriseContent.primaryGoalRequired')),
+  organizationSize: Yup.string().required(t('UpgradePlanModal.EnterpriseContent.organizationSizeRequired')),
+  featureDescription: Yup.string().required(t('UpgradePlanModal.EnterpriseContent.featureDescriptionRequired'))
 });
 
-export function EnterpriseContent({
-  isDrawer = false,
-  onDataChange,
-  onValidationChange
-}: {
+interface EnterpriseContentProps {
   isDrawer?: boolean;
-  onDataChange?: (data: {
-    primaryGoal: string;
-    organizationSize: string;
-    featureDescription: string;
-  }) => void;
-  onValidationChange?: (isValid: boolean) => void;
-}) {
-  const previousValuesRef = useRef({
+  onDataChange?: (data: EnterpriseFormData) => void;
+}
+
+export function EnterpriseContent({ isDrawer = false, onDataChange }: EnterpriseContentProps) {
+  const { t } = useLocaleResources('common');
+  const previousValuesRef = useRef<EnterpriseFormData>({
     primaryGoal: '',
     organizationSize: '',
     featureDescription: ''
   });
-  const previousIsValidRef = useRef(false);
 
-  // Notify parent component when data changes
-  const handleFormChange = (values: {
-    primaryGoal: string;
-    organizationSize: string;
-    featureDescription: string;
-  }) => {
-    // Only notify if values actually changed
+  const handleFormChange = (values: EnterpriseFormData) => {
     if (JSON.stringify(values) !== JSON.stringify(previousValuesRef.current)) {
       previousValuesRef.current = values;
-      if (onDataChange) {
-        onDataChange(values);
-      }
+      onDataChange?.(values);
     }
   };
 
-  // Check validation and notify parent
-  const handleValidationChange = (isValid: boolean) => {
-    // Only notify if validation state changed
-    if (isValid !== previousIsValidRef.current) {
-      previousIsValidRef.current = isValid;
-      onValidationChange?.(isValid);
-    }
-  };
+  const primaryGoalOptions = [
+    t('UpgradePlanModal.EnterpriseContent.primaryGoalOptions.blockchainTechnology'),
+    t('UpgradePlanModal.EnterpriseContent.primaryGoalOptions.enhanceSecurity'),
+    t('UpgradePlanModal.EnterpriseContent.primaryGoalOptions.digitalAssetPayment'),
+    t('UpgradePlanModal.EnterpriseContent.primaryGoalOptions.affiliateInventory'),
+    t('UpgradePlanModal.EnterpriseContent.primaryGoalOptions.other')
+  ];
+
+  const organizationSizeOptions = [
+    t('UpgradePlanModal.EnterpriseContent.organizationSizeOptions.small'),
+    t('UpgradePlanModal.EnterpriseContent.organizationSizeOptions.medium'),
+    t('UpgradePlanModal.EnterpriseContent.organizationSizeOptions.large'),
+    t('UpgradePlanModal.EnterpriseContent.organizationSizeOptions.enterprise')
+  ];
 
   return (
     <Formik
@@ -67,15 +55,13 @@ export function EnterpriseContent({
         organizationSize: '',
         featureDescription: ''
       }}
-      validationSchema={validationSchema}
+      validationSchema={createValidationSchema(t)}
       validateOnChange={true}
       validateOnBlur={true}
-      onSubmit={() => {}} // Form submission is handled by parent component
+      onSubmit={() => {}}
     >
-      {({ values, errors, touched, handleChange, handleBlur, isValid }) => {
-        // Notify parent of changes using refs to avoid infinite loops
+      {({ values, errors, touched, handleChange, handleBlur }) => {
         handleFormChange(values);
-        handleValidationChange(isValid);
 
         return (
           <Form>
@@ -87,45 +73,22 @@ export function EnterpriseContent({
               w="100%"
               overflow="hidden"
             >
-              <Flex direction="column" gap={4} w="100%">
-                <Flex align="center" gap={1}>
-                  <Text
-                    display="flex"
-                    alignItems="center"
-                    gap={1}
-                    color="white"
-                    fontSize="base"
-                    fontWeight="medium"
-                  >
-                    What's your primary goal? <AsteriskSm color="#FF2244" />
-                  </Text>
-                </Flex>
-
+              <FormField label={t('UpgradePlanModal.EnterpriseContent.primaryGoalLabel')} error={errors.primaryGoal}>
                 <AppSelect
-                  items={[
-                    'Leverage Blockchain Technology',
-                    'Enhance Security',
-                    'Digital Asset Payment Enablement',
-                    'Affiliate Inventory Automation',
-                    'Other'
-                  ]}
+                  items={primaryGoalOptions}
                   selectProps={{
-                    placeholder: 'Select Category',
+                    placeholder: t('UpgradePlanModal.EnterpriseContent.selectCategoryPlaceholder'),
                     name: 'primaryGoal',
                     value: values.primaryGoal,
                     onChange: handleChange,
                     onBlur: handleBlur
                   }}
                 />
-                <FormErrorMessage color="red.400" fontSize="sm">
-                  {errors.primaryGoal}
-                </FormErrorMessage>
-
                 <Textarea
                   bg="transparent"
                   borderColor="neutral.gray.800"
                   borderRadius="8px"
-                  placeholder="Briefly describe your primary goal"
+                  placeholder={t('UpgradePlanModal.EnterpriseContent.descriptionPlaceholder')}
                   name="featureDescription"
                   color="white"
                   value={values.featureDescription}
@@ -136,42 +99,20 @@ export function EnterpriseContent({
                     borderColor: 'blue.400'
                   }}
                 />
-              </Flex>
+              </FormField>
 
-              <Flex direction="column" w="100%">
-                <Flex align="center" gap={1}>
-                  <Text
-                    display="flex"
-                    alignItems="center"
-                    gap={1}
-                    color="white"
-                    fontSize="base"
-                    fontWeight="medium"
-                  >
-                    How large is the organization?{' '}
-                    <AsteriskSm color="#FF2244" />
-                  </Text>
-                </Flex>
-
+              <FormField label={t('UpgradePlanModal.EnterpriseContent.organizationSizeLabel')} error={errors.organizationSize}>
                 <AppSelect
-                  items={[
-                    '1-10 Employees',
-                    '11-50 Employees',
-                    '51-200 Employees',
-                    '200+ Employees'
-                  ]}
+                  items={organizationSizeOptions}
                   selectProps={{
-                    placeholder: 'Team Size',
+                    placeholder: t('UpgradePlanModal.EnterpriseContent.teamSizePlaceholder'),
                     name: 'organizationSize',
                     value: values.organizationSize,
                     onChange: handleChange,
                     onBlur: handleBlur
                   }}
                 />
-                <FormErrorMessage color="red.400" fontSize="sm">
-                  {errors.organizationSize}
-                </FormErrorMessage>
-              </Flex>
+              </FormField>
             </Flex>
           </Form>
         );

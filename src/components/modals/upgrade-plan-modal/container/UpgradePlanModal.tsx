@@ -9,29 +9,22 @@ import { UpgradePlanContent } from '../components/UpgradePlanContent';
 import { useUpgradePlan } from '../hooks/useUpgradePlan';
 import { PlanModalProps } from '../types/upgradePlan.types';
 
-export default function UpgradePlanModal({
-  isOpen,
-  onClose,
-  initialActiveTab
-}: PlanModalProps) {
+export default function UpgradePlanModal({ isOpen, onClose, initialActiveTab }: PlanModalProps) {
   const {
     activeTab,
     setActiveTab,
     isPaymentModalOpen,
     setEnterpriseFormData,
-    getPlanInfo,
-    getCurrentPlanData,
+    planInfo,
+    currentPlanData,
     handleUpgrade,
     closePaymentModal,
     handlePaymentSuccess,
-    getPlanForPayment,
+    planForPayment,
     isSubmitting,
     canActivateTrial,
     isCrossmint
   } = useUpgradePlan({ onClose, initialActiveTab });
-
-  const planInfo = getPlanInfo(activeTab);
-  const { features } = getCurrentPlanData();
 
   return (
     <AppModal
@@ -58,7 +51,7 @@ export default function UpgradePlanModal({
               activeTab={activeTab}
               onDataChange={setEnterpriseFormData}
               planInfo={planInfo}
-              features={features}
+              features={currentPlanData.features}
               canActivateTrial={canActivateTrial}
             />
             <ModalFooter
@@ -76,12 +69,11 @@ export default function UpgradePlanModal({
         </Flex>
       </Grid>
 
-      {/* Payment Modal for Pro and Premium plans */}
       <PaymentModal
         TrialMonths={isCrossmint ? 3 : 1}
         isOpen={isPaymentModalOpen}
         onClose={closePaymentModal}
-        plan={getPlanForPayment()}
+        plan={planForPayment}
         onSuccess={handlePaymentSuccess}
       />
     </AppModal>

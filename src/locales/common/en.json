@@ -200,6 +200,67 @@
       "seamlessActivation": "Seamless Activation"
     }
   },
+  "UpgradePlanModal": {
+    "ModalHeader": {
+        "crossmintTitle": "Free Pro Plan Unlocked!",
+        "crossmintDescription": "You now have access to the Pro Plan for 3 months for free.",
+        "enterpriseTitle": "Unlock Enterprise Access!",
+        "enterpriseDescription": "Tell us more about the business to tailor to your needs.",
+        "trialTitle": "Use droplinked AI to Create A Shop",
+        "trialDescription": "Feel free to use the AI tools to customize shops and inventory. Add your details below to get started.",
+        "upgradeTitle": "Access Exclusive Features",
+        "upgradeDescription": "Upgrade today to take advantage of the benefits associated with a {{activeTab}} Plan."
+    },
+    "ModalFooter": {
+        "claimTrial": "Claim Trial Now",
+        "upgrade": "Upgrade",
+        "keepCurrentPlan": "Keep Current Plan",
+        "requestMeeting": "Request a Meeting",
+        "notNow": "Not Now"
+    },
+    "BillingCycleSelector": {
+        "title": "Billing Cycle"
+    },
+    "BillingOptionCard": {
+        "firstMonthFree": "First month free",
+        "months": "months",
+        "monthAfterwards": "/month afterwards"
+    },
+    "EnterpriseContent": {
+        "primaryGoalLabel": "What's your primary goal?",
+        "organizationSizeLabel": "How large is the organization?",
+        "selectCategoryPlaceholder": "Select Category",
+        "teamSizePlaceholder": "Team Size",
+        "descriptionPlaceholder": "Briefly describe your primary goal",
+        "primaryGoalRequired": "Primary goal is required",
+        "organizationSizeRequired": "Organization size is required",
+        "featureDescriptionRequired": "Feature description is required",
+        "primaryGoalOptions": {
+            "blockchainTechnology": "Leverage Blockchain Technology",
+            "enhanceSecurity": "Enhance Security",
+            "digitalAssetPayment": "Digital Asset Payment Enablement",
+            "affiliateInventory": "Affiliate Inventory Automation",
+            "other": "Other"
+        },
+        "organizationSizeOptions": {
+            "small": "1-10 Employees",
+            "medium": "11-50 Employees",
+            "large": "51-200 Employees",
+            "enterprise": "200+ Employees"
+        }
+    },
+    "ErrorState": {
+        "errorLoadingPlans": "Error loading plans: {{error}}"
+    },
+    "useUpgradePlan": {
+        "fillRequiredFields": "Please fill in all required fields",
+        "enterpriseRequestSuccess": "Enterprise request submitted successfully!",
+        "submittingText": "Submitting..."
+    },
+    "useBillingOptions": {
+        "failedToFetchPlans": "Failed to fetch plans"
+    }
+  },
   "feedbacks": [
     {
       "content": "With droplinked, I scaled my product sales faster than I could have imagined. The integrations across blockchains were game changers!",

@@ -1,7 +1,8 @@
 import { Badge, Box, Flex, HStack, Text } from '@chakra-ui/react';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
-import { BillingOption } from './BillingCycleSelector';
+import { BillingOption } from '../hooks/useBillingOptions';
 import { PricingDisplay } from './PricingDisplay';
 
 interface BillingOptionCardProps {
@@ -10,6 +11,8 @@ interface BillingOptionCardProps {
 }
 
 export function BillingOptionCard({ option, onSelect }: BillingOptionCardProps) {
+  const { t } = useLocaleResources('common');
+
   const handleClick = () => {
     if (onSelect) {
       onSelect(option);
@@ -55,10 +58,13 @@ export function BillingOptionCard({ option, onSelect }: BillingOptionCardProps) 
 
         <DotSeparatedList>
           <Text color="neutral.gray.500" fontSize="xs" fontWeight="normal">
-            {option.month === 1 && option.showFree ? 'First month free' : `${option.month} months`}
+            {option.month === 1 && option.showFree 
+              ? t('UpgradePlanModal.BillingOptionCard.firstMonthFree') 
+              : `${option.month} ${t('UpgradePlanModal.BillingOptionCard.months')}`
+            }
           </Text>
           <Text color="neutral.gray.500" fontSize="xs" fontWeight="normal">
-            {`${option.finalPrice}/month afterwards`}
+            {`${option.finalPrice}${t('UpgradePlanModal.BillingOptionCard.monthAfterwards')}`}
           </Text>
         </DotSeparatedList>
       </Flex>
