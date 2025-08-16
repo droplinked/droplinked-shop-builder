@@ -1,23 +1,25 @@
-import { Flex, HStack, VStack } from "@chakra-ui/react";
-import React, { useCallback, useState } from "react";
-import TileDesignHeader from "./tile.design.header";
-import { ITileDesignState, TILE_DESIGN_PAGES_ENUM, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
-import TileDesignForm from "./tile.design.form";
-import TileDesignPageProduct from "./tile.design.page.product";
-import { initialTileDesignState, TileDesignContext } from "./context/tile.design.context";
+import { Flex, HStack, useDisclosure, VStack } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
-import TileDesignPagePostPurchase from "./tile.design.page.post.purchase";
-import TileDesignPageInformation from "./tile.design.page.information";
-import TileDesignPageShipping from "./tile.design.page.shipping";
-import TileDesignPagePayment from "./tile.design.page.payment";
-import { shopUpdateService } from "services/shop/shopServices";
+import UpgradePlanModalContainer from "components/modals/upgrade-plan-modal/UpgradePlanModalContainer";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { useProfile } from "hooks/useProfile/useProfile";
+import React, { useCallback, useState } from "react";
 import { useMutation } from "react-query";
 import { IshopUpdateService } from "services/shop/interfaces";
+import { shopUpdateService } from "services/shop/shopServices";
 import useAppStore from "stores/app/appStore";
-import { useProfile } from "hooks/useProfile/useProfile";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { initialTileDesignState, TileDesignContext } from "./context/tile.design.context";
+import TileDesignForm from "./tile.design.form";
+import TileDesignHeader from "./tile.design.header";
+import TileDesignPageInformation from "./tile.design.page.information";
+import TileDesignPagePayment from "./tile.design.page.payment";
+import TileDesignPagePostPurchase from "./tile.design.page.post.purchase";
+import TileDesignPageProduct from "./tile.design.page.product";
+import TileDesignPageShipping from "./tile.design.page.shipping";
+import { ITileDesignState, PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
 
 const TileDesign = () => {
+    const { isOpen: isEnterpriseModalOpen, onOpen: showEnterpriseModal, onClose: closeEnterpriseModal } = useDisclosure()
     const { t } = useLocaleResources('tile-design');
     const { shop } = useAppStore();
     const { updateShopData } = useProfile();
@@ -41,6 +43,9 @@ const TileDesign = () => {
     }, []);
     const updateState = (key: "current" | "design", value: Pick<ITileDesignState, "current"> | Pick<ITileDesignState, "design">) => setState((prev) => ({ ...prev, [key]: value }));
     const submit = async () => {
+        showEnterpriseModal();
+        return;
+        
         if (isLoading) return null;
         await mutateAsync({ productTileStyle: States?.design, currencyAbbreviation: shop?.currencyAbbreviation })
             .then(async (res) => await updateShopData())
@@ -104,6 +109,12 @@ const TileDesign = () => {
                     {component_to_show()}
                 </VStack>
             </VStack>
+
+            <UpgradePlanModalContainer
+                isOpen={isEnterpriseModalOpen}
+                onClose={closeEnterpriseModal}
+                initialActiveTab={'enterprise'}
+            />
         </TileDesignContext.Provider>
     );
 };

@@ -4,7 +4,6 @@ import AppButton from 'components/redesign/button/AppButton';
 import useAppToast from 'hooks/toast/useToast';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl';
-import useProductPageStore from 'pages/products/stores/ProductPageStore';
 import React from 'react';
 import { useMutation } from 'react-query';
 import { uploadProductCSV } from 'services/product/productServices';
@@ -16,14 +15,14 @@ interface Props {
 }
 
 function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { t } = useLocaleResources('products');
-  const formData = new FormData();
-  const { targetShopUrl } = useProductPageStore();
-  const { showToast } = useAppToast();
   const { mutateAsync, isLoading } = useMutation(uploadProductCSV);
-  const { startCrawling, crawlingLoading } = importWithUrl;
+  const { isOpen, onOpen : showUpgradeModal, onClose : closeUpgradeModal } = useDisclosure();
+  const { t } = useLocaleResources('products');
+  const { showToast } = useAppToast();
 
+  const formData = new FormData();
+  const { startCrawling, crawlingLoading } = importWithUrl;
+  
   const handleFileUpload = async () => {
     if (!file) return;
 
@@ -41,12 +40,14 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
   };
 
   const handleSubmit = () => {
-    // if (file) {
-    //   handleFileUpload();
-    // } else {
-    //   startCrawling();
-    // }
-    onOpen();
+    showUpgradeModal();
+    return;
+    
+     if (file) {
+       handleFileUpload();
+     } else {
+       startCrawling();
+     }
   };
 
 
@@ -77,8 +78,8 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
 
       <UpgradePlanModalContainer
         isOpen={isOpen}
-        onClose={onClose}
-        initialActiveTab="enterprise"
+        onClose={closeUpgradeModal}
+        initialActiveTab={'enterprise'}
       />
     </>
   );
