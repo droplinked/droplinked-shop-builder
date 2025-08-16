@@ -91,7 +91,7 @@
         "onchainInventory": "On-chain Inventory",
         "purchaseHistory": "Purchase History",
         "invoices": "Invoices",
-        "templateBuilder": "Template Builder",
+        "templateBuilder": "Design Studio",
         "productTiles": "Product Tiles",
         "productLinks": "Product Links",
         "blogEditor": "Blog Editor",
@@ -103,4 +103,4 @@
       }
     }
   }
-} 
+}

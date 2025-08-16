@@ -48,7 +48,7 @@ function TemplateDesigner() {
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title="Template Builder"
+                title="Design Studio"
                 description="Easily create, manage and view templates all in one place."
                 actionButtons={[
                     {
