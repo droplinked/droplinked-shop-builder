@@ -12,7 +12,7 @@ import ConnectWalletModal from './connect-wallets-modal/ConnectWalletModal'
 export default function EmptyView() {
     const { t } = useLocaleResources("onchainRecords")
     const { onClose, onOpen, isOpen } = useDisclosure()
-    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE');
 
     const handleConnectWalletClick = () => {
         handleFeatureAccess(() => {

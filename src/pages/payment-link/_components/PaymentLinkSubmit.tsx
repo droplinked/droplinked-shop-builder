@@ -11,7 +11,7 @@ import enLocale from 'locales/payment-link/en.json'
 import arLocale from 'locales/payment-link/ar.json'
 
 function PaymentLinkSubmit() {
-    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE');
     const { t } = useLocaleResources('payment-link' , {
         en: enLocale,
         ar: arLocale
@@ -45,7 +45,7 @@ function PaymentLinkSubmit() {
             <UpgradePlanModalContainer
                 isOpen={isUpgradeModalOpen}
                 onClose={closeUpgradeModal}
-                initialActiveTab={'enterprise'}
+                initialActiveTab="enterprise"
             />
         </>
     )

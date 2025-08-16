@@ -13,7 +13,7 @@ import Records from './records/Records'
 
 export default function OnchainRecords() {
     const { onClose, isOpen, onOpen } = useDisclosure()
-    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE');
     const { t } = useLocaleResources("onchainRecords", { en: enLocale, ar: arLocale })
 
     const handleConnectWalletClick = () => {

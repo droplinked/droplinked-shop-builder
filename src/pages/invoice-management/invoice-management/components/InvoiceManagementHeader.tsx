@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm'
 
 function InvoiceManagementHeader() {
-    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE');
     const { t } = useLocaleResources('invoice-management');
     const navigate = useNavigate()
 

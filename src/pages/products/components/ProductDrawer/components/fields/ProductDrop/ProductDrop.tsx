@@ -20,7 +20,7 @@ export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggle
     const { values, setFieldValue } = useProductForm()
     const { showToast } = useAppToast()
     const { isLegal, errorMessage } = useProductTypeLegality("drop")
-    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE')
 
     function handleDropToggle(checked: boolean) {
         const { _id, product_type, publish_status, digitalDetail, sku } = values

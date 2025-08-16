@@ -28,7 +28,7 @@ function CreateInvoice() {
     const { isInvoiceDataValid, createInvoice, updateInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: openInvoiceDetailsModal })
     const { data, isFetching } = useInvoiceInformation(invoiceId)
     const { showToast } = useAppToast()
-    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE')
     
     // This is used to reset cart when user navigates away
     useEffect(() => {

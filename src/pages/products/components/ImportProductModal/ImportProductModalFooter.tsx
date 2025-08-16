@@ -17,7 +17,7 @@ interface Props {
 
 function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
   const { mutateAsync, isLoading } = useMutation(uploadProductCSV);
-  const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
+  const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('BUSINESS');
   const { t } = useLocaleResources('products');
   const { showToast } = useAppToast();
 
@@ -79,7 +79,7 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
       <UpgradePlanModalContainer
         isOpen={isUpgradeModalOpen}
         onClose={closeUpgradeModal}
-        initialActiveTab={'enterprise'}
+        initialActiveTab="enterprise"
       />
     </>
   );

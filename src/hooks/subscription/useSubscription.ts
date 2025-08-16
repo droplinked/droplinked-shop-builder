@@ -11,7 +11,6 @@ export interface SubscriptionInfo {
   hasPaidSubscription: boolean;
   canUseFeature: (feature: string) => boolean;
   shouldShowUpgradeModal: boolean;
-  shouldShowEnterpriseToast: boolean;
 }
 
 const useSubscription = (): SubscriptionInfo => {
@@ -27,7 +26,6 @@ const useSubscription = (): SubscriptionInfo => {
     
     const hasPaidSubscription = !isStarter;
     const shouldShowUpgradeModal = isStarter || isBusiness;
-    const shouldShowEnterpriseToast = isEnterprise;
     
     return {
       planType,
@@ -37,7 +35,6 @@ const useSubscription = (): SubscriptionInfo => {
       isEnterprise,
       hasPaidSubscription,
       shouldShowUpgradeModal,
-      shouldShowEnterpriseToast,
       canUseFeature: (feature: string) => {
         if (!shop?.subscription?.subscriptionId?.subOptionIds) return false;
         const permissions = shop.subscription.subscriptionId.subOptionIds;

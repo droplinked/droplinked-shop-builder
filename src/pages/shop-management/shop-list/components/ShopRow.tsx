@@ -13,7 +13,7 @@ import { appDevelopment } from 'utils/app/variable'
 
 function ShopRow({ shop }: { shop: UserShop }) {
     const navigate = useNavigate()
-    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE')
     const { t } = useLocaleResources('shopManagement')
     const { isLoading, mutateAsync: switchShop } = useShopSwitcher()
     const { showToast } = useAppToast()
@@ -77,7 +77,7 @@ function ShopRow({ shop }: { shop: UserShop }) {
             <UpgradePlanModalContainer
                 isOpen={isUpgradeModalOpen}
                 onClose={closeUpgradeModal}
-                initialActiveTab={'enterprise'}
+                initialActiveTab="enterprise"
             />
         </Flex>
     )

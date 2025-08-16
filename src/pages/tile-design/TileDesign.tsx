@@ -20,7 +20,7 @@ import TileDesignPageShipping from "./tile.design.page.shipping";
 import { ITileDesignState, PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
 
 const TileDesign = () => {
-    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE')
     const { t } = useLocaleResources('tile-design');
     const { shop } = useAppStore();
     const { updateShopData } = useProfile();
@@ -113,7 +113,7 @@ const TileDesign = () => {
             <UpgradePlanModalContainer
                 isOpen={isUpgradeModalOpen}
                 onClose={closeUpgradeModal}
-                initialActiveTab={'enterprise'}
+                initialActiveTab="enterprise"
             />
         </TileDesignContext.Provider>
     );
