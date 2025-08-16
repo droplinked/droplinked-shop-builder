@@ -20,7 +20,7 @@ export default function NavigationLinks() {
     const COMPANY_LINKS = [
         { label: t('home'), href: '/' },
         { label: t('publicHeaderLinks.pricing'), href: '/plans' },
-        { label: t('publicHeaderLinks.affiliate'), href: '/affiliate' },
+        { label: t('publicHeaderLinks.affiliate'), href: '/affiliate/products' },
         { label: t('publicHeaderLinks.blog'), href: '/blogs' },
         { label: t('publicHeaderLinks.about'), href: '/about' }
     ] as const
