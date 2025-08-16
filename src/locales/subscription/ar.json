@@ -244,7 +244,13 @@
     "select": "اختر",
     "noData": "---",
     "network": "شبكة",
-    "month": "شهر"
+    "day": "يوم",
+    "days": "أيام",
+    "month": "شهر",
+    "months": "أشهر",
+    "year": "سنة",
+    "years": "سنوات",
+    "left": "متبقي"
   },
   "messages": {
     "upgradeSuccess": "تمت ترقية الخطة بنجاح",
