@@ -4,6 +4,7 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 import { BillingOption } from '../hooks/useBillingOptions';
 import { PricingDisplay } from './PricingDisplay';
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 
 interface BillingOptionCardProps {
   option: BillingOption;
@@ -12,6 +13,7 @@ interface BillingOptionCardProps {
 
 export function BillingOptionCard({ option, onSelect }: BillingOptionCardProps) {
   const { t } = useLocaleResources('common');
+  const { shopSetupUI } = useOnboardingStore();
 
   const handleClick = () => {
     if (onSelect) {
@@ -58,7 +60,9 @@ export function BillingOptionCard({ option, onSelect }: BillingOptionCardProps) 
 
         <DotSeparatedList>
           <Text color="neutral.gray.500" fontSize="xs" fontWeight="normal">
-            {option.month === 1 && option.showFree 
+           {option.month === 1 && shopSetupUI.isFromCrossmint
+              ? t('UpgradePlanModal.BillingOptionCard.threeMonthFree')
+              : option.month === 1 && option.showFree
               ? t('UpgradePlanModal.BillingOptionCard.firstMonthFree') 
               : `${option.month} ${t('UpgradePlanModal.BillingOptionCard.months')}`
             }

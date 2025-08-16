@@ -224,6 +224,7 @@
     },
     "BillingOptionCard": {
         "firstMonthFree": "First month free",
+        "threeMonthFree": "3 month free",
         "months": "months",
         "monthAfterwards": "/month afterwards"
     },

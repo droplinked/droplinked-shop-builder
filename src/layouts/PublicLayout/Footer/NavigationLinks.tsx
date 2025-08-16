@@ -1,9 +1,8 @@
 import { Box, Link as ChakraLink, Flex, Grid, Heading } from '@chakra-ui/react'
+import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import getPublicMegaMenuItems from 'data/publicMegaMenuItems'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import React from 'react'
-import { Link } from "react-router-dom"
 
 export default function NavigationLinks() {
     const { t } = useLocaleResources('layout/PublicLayout')

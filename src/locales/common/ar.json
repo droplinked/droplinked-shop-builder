@@ -180,6 +180,7 @@
     },
     "BillingOptionCard": {
       "firstMonthFree": "الشهر الأول مجانًا",
+      "threeMonthFree": "3 شهر مجاني",
       "months": "أشهر",
       "monthAfterwards": "/شهر بعد ذلك"
     },
