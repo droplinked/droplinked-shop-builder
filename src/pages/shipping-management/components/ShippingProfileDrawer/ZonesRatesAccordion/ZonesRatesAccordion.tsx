@@ -1,14 +1,14 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import ProductFormAccordion from 'pages/products/components/ProductDrawer/components/common/ProductFormAccordion'
 import SectionContainer from 'pages/shipping-management/components/common/SectionContainer'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
+import { SHIPPING_METHOD } from 'pages/shipping-management/types/shipping'
 import React from 'react'
-import { SHIPPING_METHOD } from '../../../../types/shipping'
-import AddRateButton from '../AddRateButton'
-import AddZoneButton from '../AddZoneButton'
-import RateItem from '../RateItem'
-import ZoneActionMenu from '../ZoneActionMenu'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import AddRateButton from './AddRateButton'
+import AddZoneButton from './AddZoneButton'
+import RateItem from './RateItem'
+import ZoneActionMenu from './ZoneActionMenu'
 
 function ZonesRatesAccordion() {
     const { t } = useLocaleResources("shipping-management")

@@ -5,8 +5,8 @@ import { ShippingProfile } from 'pages/shipping-management/types/shipping'
 import React, { useEffect } from 'react'
 import { useShippingProfileOperations } from '../../hooks/useShippingProfileOperations'
 import ShippingDrawer from '../common/ShippingDrawer'
-import GeneralInformationAccordion from './components/accordions/GeneralInformationAccordion'
-import ZonesRatesAccordion from './components/accordions/ZonesRatesAccordion'
+import GeneralInformationAccordion from './GeneralInformationAccordion/GeneralInformationAccordion'
+import ZonesRatesAccordion from './ZonesRatesAccordion/ZonesRatesAccordion'
 
 interface Props {
     isOpen: boolean
