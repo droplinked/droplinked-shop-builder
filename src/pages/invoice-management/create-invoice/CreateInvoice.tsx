@@ -17,17 +17,18 @@ import { InvoiceFormSchema, findSelectedShippingMethod, getInvoiceFormInitialVal
 import useCreateInvoice from './hooks/useCreateInvoice'
 import useInvoiceStore from './store/invoiceStore'
 import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 
 function CreateInvoice() {
     const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale });
     const navigate = useNavigate()
     const { invoiceId } = useParams()
     const { isOpen, onOpen: openInvoiceDetailsModal, onClose: closeInvoiceDetailsModal } = useDisclosure()
-    const { isOpen: isEnterpriseModalOpen, onOpen: showEnterpriseModal, onClose: closeEnterpriseModal } = useDisclosure();
     const { updateCart, resetCart, updateIsAddressSwitchToggled, isAddressSwitchToggled, updateShippingMethod, isEditMode, updateIsEditMode } = useInvoiceStore()
     const { isInvoiceDataValid, createInvoice, updateInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: openInvoiceDetailsModal })
     const { data, isFetching } = useInvoiceInformation(invoiceId)
     const { showToast } = useAppToast()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler()
     
     // This is used to reset cart when user navigates away
     useEffect(() => {
@@ -50,16 +51,15 @@ function CreateInvoice() {
             const selectedShippingGroup = findSelectedShippingMethod(data.shippings)
             if (selectedShippingGroup) updateShippingMethod(selectedShippingGroup)
         }
-    }, [invoiceId, data, updateCart, updateIsEditMode])
+    }, [invoiceId, data, updateCart, updateIsEditMode, updateIsAddressSwitchToggled, updateShippingMethod, showToast, t, navigate])
 
     if (isFetching) return <FullScreenLoading />
 
     const handleSubmit = (values: InvoiceFormSchema) => {
-        showEnterpriseModal();
-        return;
-        
-        if (!isInvoiceDataValid(values)) return
-        isEditMode ? updateInvoice(values) : createInvoice(values)
+        handleFeatureAccess(() => {
+            if (!isInvoiceDataValid(values)) return
+            isEditMode ? updateInvoice(values) : createInvoice(values)
+        });
     }
 
     const handleDiscard = () => {
@@ -105,8 +105,8 @@ function CreateInvoice() {
             {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={closeInvoiceModal} />}
             
             <UpgradePlanModalContainer
-                isOpen={isEnterpriseModalOpen}
-                onClose={closeEnterpriseModal}
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
                 initialActiveTab="enterprise"
             />
         </>

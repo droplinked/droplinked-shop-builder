@@ -1,8 +1,9 @@
-import { ModalFooter, useDisclosure } from '@chakra-ui/react';
+import { ModalFooter } from '@chakra-ui/react';
 import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer';
 import AppButton from 'components/redesign/button/AppButton';
 import useAppToast from 'hooks/toast/useToast';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler';
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl';
 import React from 'react';
 import { useMutation } from 'react-query';
@@ -16,7 +17,7 @@ interface Props {
 
 function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
   const { mutateAsync, isLoading } = useMutation(uploadProductCSV);
-  const { isOpen, onOpen : showUpgradeModal, onClose : closeUpgradeModal } = useDisclosure();
+  const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
   const { t } = useLocaleResources('products');
   const { showToast } = useAppToast();
 
@@ -40,14 +41,13 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
   };
 
   const handleSubmit = () => {
-    showUpgradeModal();
-    return;
-    
-     if (file) {
-       handleFileUpload();
-     } else {
-       startCrawling();
-     }
+    handleFeatureAccess(() => {
+      if (file) {
+        handleFileUpload();
+      } else {
+        startCrawling();
+      }
+    });
   };
 
 
@@ -77,7 +77,7 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
       </ModalFooter>
 
       <UpgradePlanModalContainer
-        isOpen={isOpen}
+        isOpen={isUpgradeModalOpen}
         onClose={closeUpgradeModal}
         initialActiveTab={'enterprise'}
       />
