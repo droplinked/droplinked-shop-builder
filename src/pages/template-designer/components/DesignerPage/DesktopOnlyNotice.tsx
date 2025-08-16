@@ -14,6 +14,7 @@ function DesktopOnlyNotice() {
             height="100vh"
             alignItems="center"
             justifyContent="center"
+            style={{ direction: "ltr" }}
         >
             <Lottie animationData={DesktopOnlyNoticePayload} loop={false} />
 

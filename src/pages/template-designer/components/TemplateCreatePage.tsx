@@ -44,14 +44,14 @@ function TemplateCreatePage() {
     if (shouldShowDesktopNotice) return <DesktopOnlyNotice />
 
     return (
-        <>
+        <div style={{ direction: "ltr" }}>
             {isLoadingTemplate &&
                 <Flex height="100dvh" justifyContent="center" alignItems="center">
                     <Spinner color='#fff' size="lg" />
                 </Flex>
             }
             {!isLoadingTemplate && <Editor {...editorProps} />}
-        </>
+        </div>
     )
 }
 
