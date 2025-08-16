@@ -1,10 +1,10 @@
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import AppInput from 'components/redesign/input/AppInput'
-import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
-import useProductForm from 'pages/products/hooks/useProductForm'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { useImproveAI } from 'pages/products/hooks/useImproveAI'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import ImproveWithAi from '../common/ImproveWithAi'
-import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 
 function ProductTitle() {
     const { t } = useLocaleResources('products');
@@ -41,7 +41,7 @@ function ProductTitle() {
                 {...isImproveLoading && { showAnimatedLoading: true }}
             />
             
-            <ProTrialModal
+            <UpgradePlanModalContainer
                 isOpen={isProTrialModalOpen}
                 onClose={handleCloseProTrialModal}
             />

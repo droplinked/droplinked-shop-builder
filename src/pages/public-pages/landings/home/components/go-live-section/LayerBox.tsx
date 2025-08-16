@@ -7,14 +7,16 @@ interface LayerBoxProps {
     opacity?: number
     isActive?: boolean
     isTransitioning?: boolean
+    width?: string | object
 }
 
-export default function LayerBox({ LottieView, zIndex, opacity = 1, isActive = false, isTransitioning = false }: LayerBoxProps) {
+export default function LayerBox({ LottieView, zIndex, opacity = 1, isActive = false, isTransitioning = false, width }: LayerBoxProps) {
     const topCalculateNumber = useBreakpointValue({ base: 10, md: 13, lg: 15, xl: 25 })
+    const defaultWidth = { base: "100%", md: "100%", lg: "100dvh" }
 
     return (
         <Box
-            width={{ base: "100%", md: "100%", lg: "100dvh" }}
+            width={width || defaultWidth}
             height="100%"
             borderRadius="24px 24px 0px 0px"
             border="1px solid rgba(43, 207, 161, 0.16)"

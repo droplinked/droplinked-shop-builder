@@ -97,7 +97,7 @@ export interface Product {
 
     // Pricing and Commission
     priceUnit: string
-    shippingType: string
+    shippingModelId: string
     shippingPrice: number
     commission: number
     canBeAffiliated: boolean

@@ -4,7 +4,7 @@ import { ExternalarrowLg } from 'assets/icons/Navigation/ExternalArrow/Externala
 import { ExternalarrowleftLg } from 'assets/icons/Navigation/ExternalArrowLeft/ExternalArrowLeftLg';
 import { TFunction } from 'i18next';
 
-export const getLevelUpSections = (t: TFunction , isRTL: boolean) => [
+export const getLevelUpSections = (t: TFunction, isRTL: boolean) => [
   {
     title: t('LevelUpWidget.sections.createFirstProduct.title'),
     objectField: 'createFirstProduct',
@@ -79,7 +79,7 @@ export const getLevelUpSections = (t: TFunction , isRTL: boolean) => [
             rightIcon: isRTL ? ExternalarrowleftLg : ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
               onClose?.()
-              navigate?.('/style-center/storefront-designer')
+              navigate?.('/analytics/style-center/template-builder')
             }
           }
         }

@@ -156,41 +156,127 @@
     "Enterprise": "مؤسسة",
     "feature": "ميزة"
   },
-  "proPlan": {
-    "crossmint": {
-      "title": "تم تفعيل الخطة الاحترافية مجانًا!",
-      "description": "لديك الآن إمكانية الوصول إلى الخطة الاحترافية لمدة 3 أشهر مجانًا."
+  "UpgradePlanModal": {
+    "ModalHeader": {
+      "crossmintTitle": "تم تفعيل الخطة الاحترافية مجانًا!",
+      "crossmintDescription": "لديك الآن إمكانية الوصول إلى الخطة الاحترافية لمدة 3 أشهر مجانًا.",
+      "enterpriseTitle": "تم تفعيل الخطة المؤسسية مجانًا!",
+      "enterpriseDescription": "أخبرنا المزيد عن الشركة لتناسب احتياجاتك.",
+      "trialTitle": "استخدم Droplinked AI لإنشاء متجر",
+      "trialDescription": "استخدم أدوات الذكاء الاصطناعي لتخصيص المتاجر والمخزون. أضف بياناتك أدناه للبدء.",
+      "upgradeTitle": "الوصول إلى الميزات الحصرية",
+      "upgradeDescription": "قم بالترقية اليوم للاستفادة من مزايا الخطة {{activeTab}}."
     },
-    "trial": {
-      "title": "استخدم Droplinked AI لإنشاء متجر",
-      "description": "استخدم أدوات الذكاء الاصطناعي لتخصيص المتاجر والمخزون. أضف بياناتك أدناه للبدء."
-    },
-    "upgrade": {
-      "title": "الوصول إلى الميزات الحصرية",
-      "description": "قم بالترقية اليوم للاستفادة من مزايا الخطة المميزة."
-    },
-    "payment": {
-      "successMessage": "تم تفعيل النسخة التجريبية بنجاح! ميزات الخطة الاحترافية أصبحت متاحة الآن."
-    },
-    "footer": {
+    "ModalFooter": {
       "claimTrial": "احصل على النسخة التجريبية الآن",
       "upgrade": "ترقية",
-      "unsure": "ما زلت غير متأكد؟",
-      "comparePlans": "قارن الخطط وخيارات التسعير",
       "keepCurrentPlan": "الاحتفاظ بالخطة الحالية",
-      "close": "إغلاق"
+      "requestMeeting": "طلب مقابلة",
+      "notNow": "لا الآن"
     },
-    "features": {
-      "less": "أقل",
-      "more": "أكثر"
+    "BillingCycleSelector": {
+      "title": "دورة الفوترة"
     },
-    "card": {
-      "crossmintTitle": "3 أشهر مجانًا بعد إضافة بطاقة الدفع",
-      "proTitle": "الخطة الاحترافية",
-      "description": "للشركات الصغيرة والفرق المستعدة للنمو.",
-      "proAccess": "الوصول للاحترافية",
-      "cancelAnytime": "إلغاء في أي وقت",
-      "seamlessActivation": "تفعيل سلس"
+    "BillingOptionCard": {
+      "firstMonthFree": "الشهر الأول مجانًا",
+      "months": "أشهر",
+      "monthAfterwards": "/شهر بعد ذلك"
+    },
+    "EnterpriseContent": {
+      "primaryGoalLabel": "ما هو هدفك الأساسي؟",
+      "organizationSizeLabel": "ما حجم المؤسسة؟",
+      "selectCategoryPlaceholder": "اختر الفئة",
+      "teamSizePlaceholder": "حجم الفريق",
+      "descriptionPlaceholder": "اوصف هدفك الأساسي بإيجاز",
+      "primaryGoalRequired": "الهدف الأساسي مطلوب",
+      "organizationSizeRequired": "حجم المؤسسة مطلوب",
+      "featureDescriptionRequired": "وصف الميزة مطلوب",
+      "primaryGoalOptions": {
+        "blockchainTechnology": "الاستفادة من تقنية البلوك تشين",
+        "enhanceSecurity": "تعزيز الأمان",
+        "digitalAssetPayment": "تمكين دفع الأصول الرقمية",
+        "affiliateInventory": "أتمتة مخزون الشركاء",
+        "other": "أخرى"
+      },
+      "organizationSizeOptions": {
+        "small": "1-10 موظفين",
+        "medium": "11-50 موظف",
+        "large": "51-200 موظف",
+        "enterprise": "200+ موظف"
+      }
+    },
+    "ErrorState": {
+      "errorLoadingPlans": "خطأ في تحميل الخطط: {{error}}"
+    },
+    "useUpgradePlan": {
+      "fillRequiredFields": "يرجى ملء جميع الحقول المطلوبة",
+      "enterpriseRequestSuccess": "تم إرسال طلب المؤسسة بنجاح!",
+      "submittingText": "جاري الإرسال..."
+    },
+    "useBillingOptions": {
+      "failedToFetchPlans": "فشل في جلب الخطط"
+    }
+  },
+  "feedbacks": [
+     {
+      "content": "مع droplinked، تمكنت من توسيع مبيعاتي بسرعة لم أكن أتوقعها. تكامل البلوكشين غير قواعد اللعبة!",
+      "authorName": "إيميلي ر.، رائدة أعمال",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/6657fbefd65755465c5efb806032e7f0385d422740e9cf1d6f1b23c1dad7a1c9.png",
+      "submittedAt": "أبريل 2025"
+    },
+    {
+      "content": "أطلقت مجموعة NFT الخاصة بي في دقائق. droplinked سهلت العملية بشكل كبير وكانت الشفافية في المبيعات مذهلة.",
+      "authorName": "جون د.، فنان رقمي",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/ac31212706927ab0670276812230a9b428f553d3e86e1e29a364e34068ad5520.png",
+      "submittedAt": "أغسطس 2024"
+    },
+    {
+      "content": "خيارات الدفع بالعملات الرقمية والطبيعة اللامركزية للمنصة كانت ما أحتاجه تمامًا. متجري ينمو بسرعة مع مجتمعي.",
+      "authorName": "مايكل ت.، تاجر تجزئة",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/9e5b3744f2e1e055d2cb2a7ed2a2e497d721ea7cbe8b8a434833d5118ea4557a.png",
+      "submittedAt": "ديسمبر 2024"
+    }
+  ],
+  "joinCommunity": {
+    "sectionTitle": "ننمو معًا",
+    "headingTitle": "انضم إلى المجتمع",
+    "headingSubtitle": "تابعنا عبر قنواتنا للحصول على أحدث الأخبار والتحديثات والعروض الحصرية"
+  },
+  "joinNow": {
+    "sectionTitle": "انضم الآن",
+    "headingTitle": "هل أنت مستعد للانطلاق؟",
+    "headingSubtitle": "الآن فرصتك للانضمام إلى موجة التجارة القادمة وصنع التأثير"
+  },
+  "address": {
+    "success": {
+      "created": "تمت إضافة عنوان المتجر بنجاح!",
+      "updated": "تم تحديث عنوان المتجر!"
+    },
+    "errors": {
+      "fetchFailed": "تعذر الحصول على معلومات العنوان",
+      "saveFailed": "تعذر حفظ معلومات العنوان",
+      "statesError": "تعذر الحصول على معلومات الولايات",
+      "countriesError": "تعذر الحصول على معلومات الدول",
+      "citiesError": "تعذر الحصول على معلومات المدن"
+    },
+    "fields": {
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "addressLine1": "العنوان 1",
+      "addressLine2": "العنوان 2",
+      "country": "الدولة",
+      "state": "الولاية",
+      "city": "المدينة",
+      "zip": "الرمز البريدي"
+    },
+    "validation": {
+      "firstNameRequired": "الاسم الأول مطلوب",
+      "lastNameRequired": "اسم العائلة مطلوب",
+      "stateRequired": "الولاية مطلوبة",
+      "countryRequired": "الدولة مطلوبة",
+      "cityRequired": "المدينة مطلوبة",
+      "zipRequired": "الرمز البريدي مطلوب",
+      "addressLine1Required": "العنوان 1 مطلوب"
     }
   }
 }

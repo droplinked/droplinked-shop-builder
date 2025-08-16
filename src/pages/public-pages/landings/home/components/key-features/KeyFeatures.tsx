@@ -1,16 +1,14 @@
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/homePage/en.json'
-import localAr from 'locales/public-pages/landings/homePage/ar.json'
-import { Cards } from '../../../_shared/components/card'
-import { CardData } from '../../../_shared/components/card/Cards'
+import React from 'react'
 import InlineVideoPlayer from '../../../_shared/components/InlineVideoPlayer'
 import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
+import { Cards } from '../../../_shared/components/card'
+import { CardData } from '../../../_shared/components/card/Cards'
 import KeyFeaturesTypography from '../../svgs/KeyFeaturesTypography'
 import Charts from './Charts'
 
 export default function KeyFeatures() {
-    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('homePage')
 
     const cards: CardData[] = [
         {

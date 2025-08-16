@@ -16,7 +16,7 @@ const WalletStatusDisplay: React.FC<IWalletStatusProps> = ({ variant = "green", 
     const sideIconsSize = 72;
     const sideIconsSizeSm = 44;
 
-    const { partnerName } = usePartnerLanding();
+    const { partnerId } = usePartnerLanding();
 
     return (
         <Box
@@ -42,7 +42,7 @@ const WalletStatusDisplay: React.FC<IWalletStatusProps> = ({ variant = "green", 
             <SideIcons
                 isGreen={isGreen}
                 color={color}
-                partnerName={partnerName}
+                partnerId={partnerId}
                 sideIconsSize={sideIconsSize}
                 sideIconsSizeSm={sideIconsSizeSm}
             >

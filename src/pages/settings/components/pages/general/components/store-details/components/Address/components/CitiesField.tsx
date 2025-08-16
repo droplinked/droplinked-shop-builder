@@ -1,11 +1,11 @@
+import { useFormikContext } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
-import { citiesService } from "services/address/addressServices";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import DropDown from "./DropDown";
-import { useFormikContext } from "formik";
+import { citiesService } from "services/address/addressServices";
 import { IAddressInputs } from "../formConfigs";
+import DropDown from "./DropDown";
 
 export default function CitiesField() {
     const { showToast } = useAppToast();
@@ -26,7 +26,7 @@ export default function CitiesField() {
             citiesService({ country_name: values.country, state_name: values.state }),
         onError: () => {
             showToast({
-                message: t("Address.errors.citiesError"),
+                message: t("common:address.errors.citiesError"),
                 type: "error",
             });
         },
@@ -37,7 +37,7 @@ export default function CitiesField() {
             isLoading={isCityFetching}
             options={cities}
             name="city"
-                            placeholder={t("Address.fields.city")}
+            placeholder={t("common:address.fields.city")}
             disabled={isCityFetching || !values.state}
             key={"city"}
         />

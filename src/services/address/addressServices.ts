@@ -14,7 +14,7 @@ export const updateAddressService = ({ addressID, params }: IupdateAddressServic
 }
 
 export const addressByIdService = ({ addressID }: IaddressByIdService) => {
-    return axiosInstance.get(`address-book/${addressID}`)
+    return axiosInstance.get(`address-book/${addressID}`).then(res => res.data)
 }
 
 export const deleteAddressService = ({ addressID }: IdeleteAddressService) => {

@@ -162,13 +162,17 @@
       "title": "Free Pro Plan Unlocked!",
       "description": "You now have access to the Pro Plan for 3 months for free."
     },
+    "enterprise": {
+      "title": "Unlock Enterprise Access!",
+      "description": "Tell us more about the business to tailor to your needs."
+    },
     "trial": {
       "title": "Use droplinked AI to Create A Shop",
       "description": "Feel free to use the AI tools to customize shops and inventory. Add your details below to get started."
     },
     "upgrade": {
       "title": "Access Exclusive Features",
-      "description": "Upgrade today to take advantage of the benefits associated with a Premium Plan."
+      "description": "Upgrade today to take advantage of the benefits associated with a {{activeTab}} Plan."
     },
     "payment": {
       "successMessage": "Trial activated successfully! Your Pro features are now available."
@@ -179,7 +183,9 @@
       "unsure": "Still unsure?",
       "comparePlans": "Compare plans and pricing options",
       "keepCurrentPlan": "Keep Current Plan",
-      "close": "Close"
+      "close": "Close",
+      "requestMeeting": "Request a Meeting",
+      "notNow": "Not Now"
     },
     "features": {
       "less": "Less",
@@ -192,6 +198,129 @@
       "proAccess": "Pro Access",
       "cancelAnytime": "Cancel anytime",
       "seamlessActivation": "Seamless Activation"
+    }
+  },
+  "UpgradePlanModal": {
+    "ModalHeader": {
+        "crossmintTitle": "Free Pro Plan Unlocked!",
+        "crossmintDescription": "You now have access to the Pro Plan for 3 months for free.",
+        "enterpriseTitle": "Unlock Enterprise Access!",
+        "enterpriseDescription": "Tell us more about the business to tailor to your needs.",
+        "trialTitle": "Use droplinked AI to Create A Shop",
+        "trialDescription": "Feel free to use the AI tools to customize shops and inventory. Add your details below to get started.",
+        "upgradeTitle": "Access Exclusive Features",
+        "upgradeDescription": "Upgrade today to take advantage of the benefits associated with a {{activeTab}} Plan."
+    },
+    "ModalFooter": {
+        "claimTrial": "Claim Trial Now",
+        "upgrade": "Upgrade",
+        "keepCurrentPlan": "Keep Current Plan",
+        "requestMeeting": "Request a Meeting",
+        "notNow": "Not Now"
+    },
+    "BillingCycleSelector": {
+        "title": "Billing Cycle"
+    },
+    "BillingOptionCard": {
+        "firstMonthFree": "First month free",
+        "months": "months",
+        "monthAfterwards": "/month afterwards"
+    },
+    "EnterpriseContent": {
+        "primaryGoalLabel": "What's your primary goal?",
+        "organizationSizeLabel": "How large is the organization?",
+        "selectCategoryPlaceholder": "Select Category",
+        "teamSizePlaceholder": "Team Size",
+        "descriptionPlaceholder": "Briefly describe your primary goal",
+        "primaryGoalRequired": "Primary goal is required",
+        "organizationSizeRequired": "Organization size is required",
+        "featureDescriptionRequired": "Feature description is required",
+        "primaryGoalOptions": {
+            "blockchainTechnology": "Leverage Blockchain Technology",
+            "enhanceSecurity": "Enhance Security",
+            "digitalAssetPayment": "Digital Asset Payment Enablement",
+            "affiliateInventory": "Affiliate Inventory Automation",
+            "other": "Other"
+        },
+        "organizationSizeOptions": {
+            "small": "1-10 Employees",
+            "medium": "11-50 Employees",
+            "large": "51-200 Employees",
+            "enterprise": "200+ Employees"
+        }
+    },
+    "ErrorState": {
+        "errorLoadingPlans": "Error loading plans: {{error}}"
+    },
+    "useUpgradePlan": {
+        "fillRequiredFields": "Please fill in all required fields",
+        "enterpriseRequestSuccess": "Enterprise request submitted successfully!",
+        "submittingText": "Submitting..."
+    },
+    "useBillingOptions": {
+        "failedToFetchPlans": "Failed to fetch plans"
+    }
+  },
+  "feedbacks": [
+    {
+      "content": "With droplinked, I scaled my product sales faster than I could have imagined. The integrations across blockchains were game changers!",
+      "authorName": "Emily R., Entrepreneur",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/6657fbefd65755465c5efb806032e7f0385d422740e9cf1d6f1b23c1dad7a1c9.png",
+      "submittedAt": "April 2025"
+    },
+    {
+      "content": "I launched my NFT collection in minutes. droplinked made it super easy and the sales transparency has been incredible.",
+      "authorName": "John D., Digital Artist",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/ac31212706927ab0670276812230a9b428f553d3e86e1e29a364e34068ad5520.png",
+      "submittedAt": "August 2024"
+    },
+    {
+      "content": "The seamless crypto payment options and decentralized nature of the platform are exactly what I needed. My store is growing quickly with my community.",
+      "authorName": "Michael T., Retailer",
+      "authorImage": "https://upload-file-droplinked.s3.amazonaws.com/9e5b3744f2e1e055d2cb2a7ed2a2e497d721ea7cbe8b8a434833d5118ea4557a.png",
+      "submittedAt": "December 2024"
+    }
+  ],
+  "joinCommunity": {
+    "sectionTitle": "GROW TOGETHER",
+    "headingTitle": "Join the Community",
+    "headingSubtitle": "Follow us across our channels to get the latest news, updates and exclusive offers"
+  },
+  "joinNow": {
+    "sectionTitle": "JOIN NOW",
+    "headingTitle": "Ready to Get Started?",
+    "headingSubtitle": "Now's the chance to join the next wave of commerce and make an impact"
+  },
+  "address": {
+    "success": {
+      "created": "Store address has been added successfully!",
+      "updated": "Store address has been updated!"
+    },
+    "errors": {
+      "fetchFailed": "Unable to get address Information",
+      "saveFailed": "Unable to save address Information",
+      "statesError": "Unable to get states Information",
+      "countriesError": "Unable to get countries Information",
+      "citiesError": "Unable to get cities Information"
+    },
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "addressLine1": "Address Line 1",
+      "addressLine2": "Address Line 2",
+      "country": "Country",
+      "state": "State",
+      "city": "City",
+      "zip": "Zip Code"
+    },
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "stateRequired": "State is required",
+      "countryRequired": "Country is required",
+      "cityRequired": "City is required",
+      "zipRequired": "Zip is required",
+      "addressLine1Required": "Address line 1 is required"
     }
   }
 }

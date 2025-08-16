@@ -1,5 +1,5 @@
-import useProductForm from 'pages/products/hooks/useProductForm'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
 import React, { useState } from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
@@ -7,7 +7,7 @@ import ProductDrop from '../fields/ProductDrop/ProductDrop'
 import ProductRoyalty from '../fields/ProductRoyalty'
 
 function Web3SettingsAccordion() {
-    const { t } = useLocaleResources('products');
+    const { t } = useLocaleResources('products')
     const { values: { digitalDetail, nftData, sku } } = useProductForm()
     const isProductRecorded = checkIfProductIsRecorded(sku)
 
@@ -20,7 +20,7 @@ function Web3SettingsAccordion() {
     }
 
     return (
-                    <ProductFormAccordion label={t('ProductForm.accordions.web3Settings.label')}>
+        <ProductFormAccordion label={t('ProductForm.accordions.web3Settings.label')}>
             <ProductDrop
                 isProductRecorded={isProductRecorded}
                 isDropEnabled={isDropEnabled}

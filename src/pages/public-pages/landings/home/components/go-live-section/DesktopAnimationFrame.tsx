@@ -6,16 +6,18 @@ interface DesktopAnimationFrameProps {
     LottieView: React.ReactNode
     completedSteps: number[]
     isTransitioning: boolean
+    width?: string | object
 }
 
-export default function DesktopAnimationFrame({ LottieView, completedSteps, isTransitioning }: DesktopAnimationFrameProps) {
+export default function DesktopAnimationFrame({ LottieView, completedSteps, isTransitioning, width }: DesktopAnimationFrameProps) {
     return (
         <Box
             position="relative"
             backgroundImage="url('https://upload-file-droplinked.s3.amazonaws.com/23cf80fd633d9c14976dbd81b510663bca2e8584b4ac09ad667e6da2c34dbd52.png')"
-            backgroundSize="contain"
+            backgroundSize="cover"
             backgroundRepeat="no-repeat"
             backgroundPosition="center"
+            borderRadius="24px"
             padding={{ md: "16px 16px 0px 16px", lg: "24px 24px 0px 24px", xl: "48px 48px 0px 48px" }}
         >
             <Box position="relative">
@@ -26,6 +28,7 @@ export default function DesktopAnimationFrame({ LottieView, completedSteps, isTr
                         zIndex={index + 1}
                         opacity={0.6}
                         isTransitioning={isTransitioning}
+                        width={width}
                     />
                 ))}
                 {/* Render active layer */}
@@ -35,6 +38,7 @@ export default function DesktopAnimationFrame({ LottieView, completedSteps, isTr
                     opacity={1}
                     isActive={true}
                     isTransitioning={isTransitioning}
+                    width={width}
                 />
             </Box>
         </Box>

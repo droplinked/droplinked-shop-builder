@@ -11,6 +11,7 @@ import { TargetMd } from "assets/icons/Sign/Target/TargetMd"
 import { Layout1Md } from "assets/icons/StyleDesigner/Layout1/Layout1Md"
 import { AffiliateMd } from "assets/icons/System/Affiliate/AffiliateMd"
 import { BuildingLg } from "assets/icons/System/Building/BuildingLg"
+import { CalendarMd } from "assets/icons/System/Calendar/CalendarMd"
 import { ImageMd } from "assets/icons/System/Image/ImageMd"
 import { Layer1Lg } from "assets/icons/System/Layer1/Layer1Lg"
 import { MetaverseMd } from "assets/icons/System/Metaverse/MetaverseMd"
@@ -18,6 +19,7 @@ import { NetworkMd } from "assets/icons/System/Network/NetworkMd"
 import { PassportMd } from "assets/icons/System/Passport/PassportMd"
 import { SubscriptionMd } from "assets/icons/System/Subscription/SubscriptionMd"
 import { TokenpayMd } from "assets/icons/System/Tokenpay/TokenpayMd"
+import { BaseLogo } from "assets/logo/NetworkAndTokens/Coinbase/Base/BaseLogo"
 import { TFunction } from "i18next"
 
 const getPublicMegaMenuItems = (t: TFunction) => [
@@ -45,6 +47,7 @@ const getPublicMegaMenuItems = (t: TFunction) => [
             { label: t('publicMegaMenuItems.enterprise.links.tokenpay.label'), description: t('publicMegaMenuItems.enterprise.links.tokenpay.description'), icon: TokenpayMd, href: '/tokenpay' },
             { label: t('publicMegaMenuItems.enterprise.links.metaverseShowroom.label'), description: t('publicMegaMenuItems.enterprise.links.metaverseShowroom.description'), icon: MetaverseMd, href: '/metaverse-store' },
             { label: t('publicMegaMenuItems.enterprise.links.customTokens.label'), description: t('publicMegaMenuItems.enterprise.links.customTokens.description'), icon: LinkMd, href: '/custom-tokens' },
+            { label: t('publicMegaMenuItems.enterprise.links.bookDemo.label'), description: t('publicMegaMenuItems.enterprise.links.bookDemo.description'), icon: CalendarMd, href: '/book-demo' }
         ]
     },
     {
@@ -54,7 +57,8 @@ const getPublicMegaMenuItems = (t: TFunction) => [
             { label: t('publicMegaMenuItems.partners.links.unstoppableDomains.label'), description: t('publicMegaMenuItems.partners.links.unstoppableDomains.description'), icon: UnstoppableDomains, href: '/unstoppable-domains' },
             { label: t('publicMegaMenuItems.partners.links.d3.label'), description: t('publicMegaMenuItems.partners.links.d3.description'), icon: D3, href: '/d3' },
             { label: t('publicMegaMenuItems.partners.links.polygon.label'), description: t('publicMegaMenuItems.partners.links.polygon.description'), icon: Polygon, href: '/polygon' },
-            { label: t('publicMegaMenuItems.partners.links.crossmint.label'), description: t('publicMegaMenuItems.partners.links.crossmint.description'), icon: CrossmintWhite, href: '/crossmint' }
+            { label: t('publicMegaMenuItems.partners.links.crossmint.label'), description: t('publicMegaMenuItems.partners.links.crossmint.description'), icon: CrossmintWhite, href: '/crossmint' },
+            { label: t('publicMegaMenuItems.partners.links.base.label'), description: t('publicMegaMenuItems.partners.links.base.description'), icon: BaseLogo, href: '/base' }
         ]
     }
 ]

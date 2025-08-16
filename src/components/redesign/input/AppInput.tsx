@@ -1,5 +1,6 @@
 import { Box, Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { AlertSm } from 'assets/icons/Sign/Alert/AlertSm'
+import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import { TooltipMd } from 'assets/icons/Sign/Tooltip/TooltipMd'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AnimatedBox from 'pages/products/components/ProductDrawer/components/common/AnimatedBox'
@@ -77,7 +78,7 @@ export function AppInputHeader({ label, description, inputProps, labelProps, too
                         color="#FFF"
                         {...labelProps}
                     >
-                        {label} {inputProps?.isRequired && <AppIcons.Required />}
+                        {label} {inputProps?.isRequired && <AsteriskSm color='#ff2244' width={12} height={12} />}
                     </FormLabel>
                     {tooltipText && <AppTooltip label={tooltipText}>
                         <Box>
@@ -204,7 +205,7 @@ function InputFooter({ message, maxCharacters, inputProps, stateColor = "#fff", 
                 >
                     {message && (
                         <Flex alignItems="center" gap={2}>
-                            {showErrorIcon && <AppIcons.WhiteWarning />}
+                            {showErrorIcon && <AlertSm color='#fff' />}
                             <Text>{message}</Text>
                         </Flex>
                     )}

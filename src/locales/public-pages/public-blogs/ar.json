@@ -1,0 +1,27 @@
+{
+  "PublicBlogsHeader": {
+    "sectionTitle": "المصدر للأفكار الجديدة",
+    "headingTitle": "نصائح واتجاهات وإلهام",
+    "headingSubtitle": "ابق على اطلاع بآخر الأخبار والرؤى من فريقنا."
+  },
+  "LatestBlogsGrid": {
+    "sectionTitle": "رائج"
+  },
+  "TopCategoriesSection": {
+    "sectionTitle": "أفضل الفئات"
+  },
+  "BlogsCarousel": {
+    "sectionTitle": "اكتشف المزيد"
+  },
+  "BlogGrid": {
+    "sectionTitle": "اعرف المزيد",
+    "viewMore": "عرض المزيد"
+  },
+  "BlogCard": {
+    "defaultCategory": "عام"
+  },
+  "SliderControls": {
+    "previousAriaLabel": "السابق",
+    "nextAriaLabel": "التالي"
+  }
+}

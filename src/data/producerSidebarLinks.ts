@@ -5,12 +5,11 @@ import { HelpMd } from "assets/icons/Sign/Help/HelpMd";
 import { TargetMd } from "assets/icons/Sign/Target/TargetMd";
 import { BrushMd } from "assets/icons/StyleDesigner/Brush/BrushMd";
 import { AffiliateMd } from "assets/icons/System/Affiliate/AffiliateMd";
-import { ChatMd } from "assets/icons/System/Chat/ChatMd";
 import { DashboardMd } from "assets/icons/System/Dashboard/DashboardMd";
 import { GiftMd } from "assets/icons/System/Gift/GiftMd";
 import { SettinggearMd } from "assets/icons/System/SettingGear/SettinggearMd";
-import React from "react";
 import { TFunction } from "i18next";
+import React from "react";
 
 const createSidebarLinks = (t: TFunction) => [
     {
@@ -40,7 +39,8 @@ const createSidebarLinks = (t: TFunction) => [
                 list: [
                     { listTitle: t('Sidebar.NavLinks.lists.inventoryManagement'), linkTo: '/analytics/products' },
                     { listTitle: t('Sidebar.NavLinks.lists.productCollections'), linkTo: '/analytics/collections' },
-                    { listTitle: t('Sidebar.NavLinks.lists.onchainInventory'), linkTo: '/analytics/onchain-records' }
+                    { listTitle: t('Sidebar.NavLinks.lists.shippingManagement'), linkTo: '/analytics/shipping-management' },
+                    { listTitle: t('Sidebar.NavLinks.lists.onchainInventory'), linkTo: '/analytics/onchain-records' },
                 ]
             },
             {
@@ -57,7 +57,7 @@ const createSidebarLinks = (t: TFunction) => [
                 icon: React.createElement(BrushMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: t('Sidebar.NavLinks.lists.storefrontDesigner'), linkTo: '/style-center/storefront-designer' },
+                    { listTitle: t('Sidebar.NavLinks.lists.templateBuilder'), linkTo: '/analytics/style-center/template-builder' },
                     { listTitle: t('Sidebar.NavLinks.lists.productTiles'), linkTo: '/analytics/style-center/product-tiles' },
                     { listTitle: t('Sidebar.NavLinks.lists.productLinks'), linkTo: '/analytics/style-center/product-links' },
                     { listTitle: t('Sidebar.NavLinks.lists.blogEditor'), linkTo: '/analytics/blogs' }

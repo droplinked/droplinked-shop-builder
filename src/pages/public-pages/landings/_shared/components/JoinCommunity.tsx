@@ -1,15 +1,13 @@
 import { Box, Grid } from '@chakra-ui/react'
 import SocialMediaLink from 'components/redesign/community-engagement/SocialMediaLink'
-import React from 'react'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/homePage/en.json'
-import localAr from 'locales/public-pages/landings/homePage/ar.json'
 import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from 'data/socialMediaLinks'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
 import Community from '../svgs/Community'
 import SectionContainer from './SectionContainer/SectionContainer'
 
 export default function JoinTheCommuity() {
-    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('common')
 
     return (
         <SectionContainer
@@ -34,9 +32,7 @@ export default function JoinTheCommuity() {
                         overflow="hidden"
                         background="neutral.websiteBackground"
                     >
-                        <SocialMediaLink
-                            linkData={socialMediaLink}
-                        />
+                        <SocialMediaLink linkData={socialMediaLink} />
                     </Box>
                 ))}
             </Grid>

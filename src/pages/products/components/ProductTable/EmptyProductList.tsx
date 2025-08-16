@@ -1,38 +1,28 @@
-import { Flex, Image, Text } from '@chakra-ui/react';
-import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
-import AppButton from 'components/redesign/button/AppButton';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import React from 'react';
-import ProductTypeSelector from '../ProductTypeSelector/ProductTypeSelector';
+import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm'
+import PageEmptyState from 'components/redesign/page-empty-state/PageEmptyState'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
+import ProductTypeSelector from '../ProductTypeSelector/ProductTypeSelector'
 
 function EmptyProductList() {
-    const { t } = useLocaleResources('products');
+    const { t } = useLocaleResources('products')
 
     return (
-        <Flex
-            width="100%"
-            height="80vh"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-        >
-            <Image
-                width="420px"
-                height="352px"
-                src="https://upload-file-droplinked.s3.amazonaws.com/34486d750011c9c70ff3a03fce40a866be649d583f049a1dbfa341c551d8e7f6_or.png"
-                alt={t('EmptyProductList.alt')}
-            />
-
-            <Text mt="64px" mb="16px" color="#fff">
-                {t('EmptyProductList.description')}
-            </Text>
-
-            <ProductTypeSelector placement='top'>
-                <AppButton variant='normal' leftIcon={<PlusSm color='#2BCFA1' />}>
-                    {t('PageHeader.actions.newProduct')}
-                </AppButton>
-            </ProductTypeSelector>
-        </Flex>
+        <PageEmptyState
+            image="https://upload-file-droplinked.s3.amazonaws.com/34486d750011c9c70ff3a03fce40a866be649d583f049a1dbfa341c551d8e7f6_or.png"
+            imageProps={{ width: '420px', height: '352px', alt: t('EmptyProductList.alt') }}
+            title={t('EmptyProductList.description')}
+            action={{
+                text: t('PageHeader.actions.newProduct'),
+                icon: <PlusSm color="#2BCFA1" />,
+                onClick: () => { }, // handled by wrapper
+                wrapper: (btn) => (
+                    <ProductTypeSelector placement="top">
+                        {btn}
+                    </ProductTypeSelector>
+                )
+            }}
+        />
     )
 }
 

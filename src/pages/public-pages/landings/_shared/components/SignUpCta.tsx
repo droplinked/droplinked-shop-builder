@@ -1,14 +1,12 @@
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import FinalCta from './FinalCta'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/homePage/en.json'
-import localAr from 'locales/public-pages/landings/homePage/ar.json'
 
 export default function SignUpCta() {
-    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('common')
 
     return (
         <FinalCta

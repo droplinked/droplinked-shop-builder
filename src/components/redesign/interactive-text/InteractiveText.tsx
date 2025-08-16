@@ -47,7 +47,7 @@ type Props = (ButtonProps | LinkProps) & {
 }
 
 function InteractiveText({ to, onClick, iconLeft, iconRight, hasExternalIcon, children, ...textProps }: Props) {
-    const { isRTL } = useLocaleResources('common');
+    const { isRTL } = useLocaleResources('common')
 
     const Component: React.ElementType = to ? RouterLink : 'button'
     const externalArrowIcon = isRTL ? <ExternalArrowLeftAlignedMd color="#179ef8" /> : <ExternalarrowMd color="#179ef8" />

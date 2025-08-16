@@ -23,6 +23,13 @@ export const useWalletVerification = () => {
 			case 'unstoppableDomains':
 			case 'polygon':
 				return postUserVerifyUD(props);
+			case 'base':
+				// Mock data for Base partner - always passes verification
+				return Promise.resolve({
+					data: {
+						data: 'base-mock-verification-id'
+					}
+				});
 			default:
 				throw new Error('Unsupported partner');
 		}
@@ -42,7 +49,15 @@ export const useWalletVerification = () => {
 			if (!data || data === 'false' || data === false) {
 				updateStates({ key: 'currentStep', value: 'error' });
 			} else {
-				const paramKey = partnerId === 'd3' ? 'd3-id' : 'ud-id';
+				let paramKey;
+				if (partnerId === 'd3') {
+					paramKey = 'd3-id';
+				} else if (partnerId === 'base') {
+					paramKey = 'base-id';
+				} else {
+					paramKey = 'ud-id';
+				}
+				
 				searchParams.set(paramKey, data);
 				setSearchParams(searchParams);
 
@@ -120,6 +135,20 @@ export const useWalletVerification = () => {
 		});
 	};
 
+	const connectBaseWallet = () => {
+		return new Promise<void>((resolve) => {
+			updateStates({ key: 'currentStep', value: 'loading' });
+			
+			// Simulate loading delay for Base partner
+			setTimeout(async () => {
+				// Mock wallet address for Base partner
+				const mockWalletAddress = '0xBaseMockWalletAddress123456789';
+				await handleVerification(mockWalletAddress, 'BASE');
+				resolve();
+			}, 2000); // 2 second delay to simulate verification process
+		});
+	};
+
 	const connectWallet = () => {
 		switch (partnerId) {
 			case 'd3':
@@ -127,6 +156,8 @@ export const useWalletVerification = () => {
 			case 'unstoppableDomains':
 			case 'polygon':
 				return connectUnstoppableWallet();
+			case 'base':
+				return connectBaseWallet();
 			default:
 				throw new Error('Unsupported partner');
 		}

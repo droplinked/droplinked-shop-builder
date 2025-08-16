@@ -21,10 +21,8 @@ function FormContent() {
 
     return (
         <AppAccordion
-            width="full"
             display="flex"
             flexDirection="column"
-            alignItems="flex-start"
             gap={4}
             paddingBlock={12}
             paddingInline={9}

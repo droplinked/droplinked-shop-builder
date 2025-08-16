@@ -27,7 +27,7 @@ export function getFormInitialValues({ product, selectedProductType, convertPric
             ...(selectedProductType === "DIGITAL" && { sku: [digitalProductSKU] }),
             ...(selectedProductType === "PRINT_ON_DEMAND" && {
                 prodviderID: "PRINTFUL",
-                shippingType: "PRINTFUL",
+                shippingModelId: "",
                 custome_external_id: Date.now() + nanoid(13)
             })
         }
@@ -48,7 +48,7 @@ export function getFormInitialValues({ product, selectedProductType, convertPric
         // Identifiers
         _id: product._id,
         ownerID: product.ownerID,
-        prodviderID: product.prodviderID || product.shippingType || "PRINTFUL",
+        prodviderID: product.prodviderID || "PRINTFUL",
         custome_external_id: product.custome_external_id,
 
         // Product Type and Classification
@@ -66,7 +66,7 @@ export function getFormInitialValues({ product, selectedProductType, convertPric
 
         // Pricing and Commission
         priceUnit: product.priceUnit,
-        shippingType: product.shippingType,
+        shippingModelId: product.shippingModelId,
         shippingPrice: product.shippingPrice,
         commission: product.commission,
         canBeAffiliated: product.canBeAffiliated,

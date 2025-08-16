@@ -1,9 +1,9 @@
-import React from 'react'
-import FilterInputs from '../FilterInputs'
 import { Flex, useMediaQuery } from '@chakra-ui/react'
-import MobileTable from './MobileTable'
-import DesktopTable from './DesktopTable'
+import React from 'react'
 import { UseInfiniteQueryResult } from 'react-query'
+import FilterInputs from '../FilterInputs'
+import DesktopTable from './DesktopTable'
+import MobileTable from './MobileTable'
 
 interface Props {
     onSearchChange?: (value: string) => void // Made optional
@@ -35,9 +35,9 @@ export default function HistoryTable({ onStatusChange, onSearchChange, searchVal
                 searchValue={searchValue}
             />
 
-            {isSmallerThan768 ?
-                <MobileTable purchaseHistoryQuery={purchaseHistoryQuery} /> :
-                <DesktopTable purchaseHistoryQuery={purchaseHistoryQuery} />
+            {isSmallerThan768
+                ? <MobileTable purchaseHistoryQuery={purchaseHistoryQuery} />
+                : <DesktopTable purchaseHistoryQuery={purchaseHistoryQuery} />
             }
         </Flex>
     )

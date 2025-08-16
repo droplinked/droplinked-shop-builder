@@ -3,7 +3,7 @@ import { AILg } from 'assets/icons/AI'
 import { ArrowleftMd } from 'assets/icons/Navigation/ArrowLeft/ArrowleftMd'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
-import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import AppButton from 'components/redesign/button/AppButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
@@ -62,7 +62,7 @@ function ExistingWebsite() {
                 {t('common:continue')}
             </AppButton>
 
-            <ProTrialModal
+            <UpgradePlanModalContainer
                 isOpen={isProTrialModalOpen}
                 onClose={closeProTrialModal}
             />
