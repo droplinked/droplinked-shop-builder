@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import useBlogs from '../../../hooks/useBlogs';
 import DiscoverCard from './BlogCard';
 import SliderControls from '../SliderControls';
@@ -31,6 +32,7 @@ const BlogsCarousel: React.FC<BlogsCarouselProps> = ({
 }) => {
   const { getLatestBlogs, isLoading } = useBlogs();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useTranslation('public-pages/public-blogs');
 
   const latest = getLatestBlogs(6);
   const items = latest;
@@ -85,7 +87,7 @@ const BlogsCarousel: React.FC<BlogsCarouselProps> = ({
       gap={6}
     >
       <Flex w="full" justify="space-between" align="center">
-        <SectionTitle>Discover</SectionTitle>
+        <SectionTitle>{t('BlogsCarousel.sectionTitle')}</SectionTitle>
 
         {showControls && items.length > slidesToShow && (
           <SliderControls

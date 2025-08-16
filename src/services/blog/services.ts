@@ -17,6 +17,9 @@ export const updateBlogService = (blog: Blog) => axiosInstance.put(`blogs/${blog
 
 export const deleteBlogService = (blogId: string) => axiosInstance.delete(`blogs/${blogId}`)
 
-export const getPublicBlogsService = () => axiosInstance.get(`/blogs/public/admin`)
+export const getPublicBlogsService = (params: IBlogFetchParams) => {
+    const queryParams = createQueryString(params).toString();
+    return axiosInstance.get(`/blogs/public/admin?${queryParams}`);
+};
 
 export const getPublicBlogBySlugService = (slug: string) => axiosInstance.get(`/blogs/public/admin/${slug}`).then(res => res?.data)

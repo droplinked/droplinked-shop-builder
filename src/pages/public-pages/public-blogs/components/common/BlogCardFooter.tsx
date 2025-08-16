@@ -1,10 +1,11 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { formatDateToShortStyle } from 'utils/helpers/dateUtils';
 
 export function BlogCardFooter({
-  category = 'General',
+  category,
   title,
   writer,
   createdAt
@@ -14,6 +15,7 @@ export function BlogCardFooter({
   writer: string;
   createdAt: string;
 }) {
+  const { t } = useTranslation('public-pages/public-blogs');
   return (
     <>
       <Box
@@ -44,7 +46,7 @@ export function BlogCardFooter({
           fontSize={{ base: '14px', lg: '16px' }}
           fontFamily="Inter"
         >
-          {category || 'General'}
+          {category || t('BlogCard.defaultCategory')}
         </Text>
         <Text
           color="white"

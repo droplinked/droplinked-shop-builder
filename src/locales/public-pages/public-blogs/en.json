@@ -1,48 +1,27 @@
 {
-  "header": {
-    "sectionTitle": "THE SOURCE FOR FRESH IDEAS",
-    "headingTitle": "Tips, Trends & Inspiration",
-    "headingSubtitle": "Stay up to date with the latest news and insights from our team."
-  },
-  "sections": {
-    "trending": "Trending",
-    "topCategories": "Top Categories",
-    "discover": "Discover More",
-    "latestBlogs": "Latest Blogs"
-  },
-  "common": {
-    "readMore": "Read More",
-    "viewAll": "View All",
-    "loading": "Loading...",
-    "noBlogs": "No blogs found",
-    "noCategories": "No categories found"
-  },
-  "blogCard": {
-    "readTime": "{{minutes}} min read",
-    "byAuthor": "By {{author}}",
-    "publishedOn": "Published on {{date}}",
-    "category": "Category"
-  },
-  "categories": {
-    "all": "All Categories",
-    "technology": "Technology",
-    "business": "Business",
-    "marketing": "Marketing",
-    "design": "Design",
-    "development": "Development"
-  },
-  "navigation": {
-    "home": "Home",
-    "blogs": "Blogs",
-    "about": "About",
-    "contact": "Contact",
-    "previous": "Previous",
-    "next": "Next"
-  },
-  "actions": {
-    "subscribe": "Subscribe",
-    "signUp": "Sign Up",
-    "learnMore": "Learn More",
-    "getStarted": "Get Started"
-  }
+    "PublicBlogsHeader": {
+        "sectionTitle": "THE SOURCE FOR FRESH IDEAS",
+        "headingTitle": "Tips, Trends & Inspiration",
+        "headingSubtitle": "Stay up to date with the latest news and insights from our team."
+    },
+    "LatestBlogsGrid": {
+        "sectionTitle": "Trending"
+    },
+    "TopCategoriesSection": {
+        "sectionTitle": "Top Categories"
+    },
+    "BlogsCarousel": {
+        "sectionTitle": "Discover"
+    },
+    "BlogGrid": {
+        "sectionTitle": "Learn More",
+        "viewMore": "View More"
+    },
+    "BlogCard": {
+        "defaultCategory": "General"
+    },
+    "SliderControls": {
+        "previousAriaLabel": "Previous",
+        "nextAriaLabel": "Next"
+    }
 }

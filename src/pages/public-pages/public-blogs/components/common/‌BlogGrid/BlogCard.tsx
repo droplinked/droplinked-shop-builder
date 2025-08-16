@@ -2,24 +2,21 @@ import { Box, Image, Text, VStack } from '@chakra-ui/react';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { formatDateToShortStyle } from 'utils/helpers/dateUtils';
-import { IBlogListItem } from '../types/blog.types';
+import { IBlogListItem } from 'pages/public-pages/public-blogs/types/blog.types';
 
 interface BlogCardProps {
   blog: IBlogListItem;
 }
 
 function BlogCard({ blog }: BlogCardProps) {
-  const collapseRepeatedWords = (input: string | undefined | null): string => {
-    if (!input) return ''
-    // Replace adjacent duplicated words like "text text" -> "text"
-    return input.replace(/\b(\w+)(\s+\1\b)+/gi, '$1')
-  }
+  const { t } = useTranslation('public-pages/public-blogs');
 
   const Meta = () => (
     <DotSeparatedList fontSize="14px">
       <Text color="text.link" fontWeight="medium" lineHeight="tight">
-        {blog.category || 'General'}
+        {blog.category || t('BlogCard.defaultCategory')}
       </Text>
       <Text
         color="text.subtext.placeholder.dark"
@@ -40,7 +37,7 @@ function BlogCard({ blog }: BlogCardProps) {
         fontWeight="medium"
         lineHeight="loose"
       >
-        {collapseRepeatedWords(blog.title)}
+       {blog.title}
       </Text>
       <Text
         alignSelf="stretch"
@@ -51,7 +48,7 @@ function BlogCard({ blog }: BlogCardProps) {
         noOfLines={2}
         textOverflow="ellipsis"
       >
-        {collapseRepeatedWords(blog.searchEngineSummary)}
+        {blog.searchEngineSummary}
       </Text>
     </VStack>
   );
@@ -59,6 +56,7 @@ function BlogCard({ blog }: BlogCardProps) {
   return (
     <Link to={`/blogs/${blog.slug}`}>
       <Box
+        w='100%'
         data-state="Default"
         borderRadius="2xl"
         border="1px solid"
