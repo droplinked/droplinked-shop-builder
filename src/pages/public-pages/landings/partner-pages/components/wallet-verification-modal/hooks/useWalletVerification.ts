@@ -35,7 +35,7 @@ export const useWalletVerification = () => {
 		}
 	});
 
-	const UNSTOPPABLE_CLIENT_ID = process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID;
+	const UNSTOPPABLE_CLIENT_ID = import.meta.env.VITE_UNSTOPPABLE_CLIENT_ID;
 
 	const handleVerification = async (walletAddress: string, walletType: string) => {
 		try {
@@ -57,7 +57,7 @@ export const useWalletVerification = () => {
 				} else {
 					paramKey = 'ud-id';
 				}
-				
+
 				searchParams.set(paramKey, data);
 				setSearchParams(searchParams);
 
@@ -138,7 +138,7 @@ export const useWalletVerification = () => {
 	const connectBaseWallet = () => {
 		return new Promise<void>((resolve) => {
 			updateStates({ key: 'currentStep', value: 'loading' });
-			
+
 			// Simulate loading delay for Base partner
 			setTimeout(async () => {
 				// Mock wallet address for Base partner

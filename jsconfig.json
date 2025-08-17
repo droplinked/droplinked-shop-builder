@@ -2,7 +2,15 @@
 	"compilerOptions": {
 		"resolveJsonModule": true,
 		"baseUrl": "src",
-		"jsx": "react"
+		"jsx": "react",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"target": "esnext",
+		"lib": ["esnext", "dom", "dom.iterable"],
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"strict": false
 	},
 	"include": ["src"]
 }
