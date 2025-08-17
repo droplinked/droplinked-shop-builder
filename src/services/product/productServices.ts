@@ -12,6 +12,7 @@ import {
     IProductReorder,
     IproductState,
     IProductUpdateService,
+    ISemanticSearchParams,
 } from "./interfaces";
 
 export const getShopProductsService = ({ page, limit, filter }: IProductFetchParams) =>
@@ -86,3 +87,7 @@ export const getPODShippingAvailability = (product_id: string) =>
 
 export const createDefaultSampleProducts = (logo: string) =>
     axiosInstance.post('/product/create-template-products', { logo }).then(res => res.data)
+
+export const semanticSearchService = ({ query, limit = 10 }: ISemanticSearchParams) => {
+    return axiosInstance.get(`/product/search/semantic${query && query !== "" ? `?query=${query}` : ""}&limit=${limit}`);
+};
