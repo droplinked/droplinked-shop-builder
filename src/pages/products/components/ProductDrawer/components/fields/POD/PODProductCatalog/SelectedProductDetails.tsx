@@ -60,10 +60,10 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
     }
 
     useEffect(() => {
-        if (collections?.data?.length > 0) {
+        if (collections?.data?.length > 0 && !editingProductId) {
             setFieldValue("productCollectionID", collections.data[0]._id)
         }
-    }, [collections, setFieldValue])
+    }, [collections, setFieldValue, editingProductId])
 
     if (isFetching) return <LoadingPlaceholder skeletonProps={{ h: "83px" }} />
 

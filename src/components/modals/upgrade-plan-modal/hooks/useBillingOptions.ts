@@ -59,7 +59,6 @@ export function useBillingOptions(plan: PlanType, canActivateTrial: boolean) {
         if (priceOption) {
           const discount = duration.discount;
           const discountPercentage = discount ? `-${discount}%` : undefined;
-          const shouldShowFree = plan === 'pro' && duration.month === 1 && canActivateTrial;
           
           options.push({
             name: getDurationName(duration.month),
@@ -70,12 +69,11 @@ export function useBillingOptions(plan: PlanType, canActivateTrial: boolean) {
             stripePriceId: priceOption.stripePriceId,
             isSelected: duration.month === preferredPlanDuration.month,
             plan: targetPlan,
-            showFree: shouldShowFree
+            showFree: canActivateTrial
           });
         }
       });
     } else if (typeof targetPlan.price === 'string') {
-      const shouldShowFree = plan === 'pro' && canActivateTrial;
       
       options.push({
         name: 'Monthly',
@@ -84,7 +82,7 @@ export function useBillingOptions(plan: PlanType, canActivateTrial: boolean) {
         finalPrice: targetPlan.price === 'FREE' ? 'Free' : targetPlan.price,
         isSelected: true,
         plan: targetPlan,
-        showFree: shouldShowFree
+        showFree: canActivateTrial
       });
     }
     

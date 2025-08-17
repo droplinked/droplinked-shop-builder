@@ -1,9 +1,8 @@
 import { Box, Link as ChakraLink, Flex, Grid, Heading } from '@chakra-ui/react'
+import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import getPublicMegaMenuItems from 'data/publicMegaMenuItems'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import React from 'react'
-import { Link } from "react-router-dom"
 
 export default function NavigationLinks() {
     const { t } = useLocaleResources('layout/PublicLayout')
@@ -20,7 +19,7 @@ export default function NavigationLinks() {
     const COMPANY_LINKS = [
         { label: t('home'), href: '/' },
         { label: t('publicHeaderLinks.pricing'), href: '/plans' },
-        { label: t('publicHeaderLinks.affiliate'), href: '/affiliate' },
+        { label: t('publicHeaderLinks.affiliate'), href: '/affiliate/products' },
         { label: t('publicHeaderLinks.blog'), href: '/blogs' },
         { label: t('publicHeaderLinks.about'), href: '/about' }
     ] as const
