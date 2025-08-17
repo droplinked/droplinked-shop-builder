@@ -75,7 +75,7 @@ export function BillingOptionCard({ option, onSelect }: BillingOptionCardProps) 
 
       <PricingDisplay
         plan={option.plan}
-        showFree={option.showFree || false}
+        showFree={option.month === 1 || false}
         planDuration={option.month}
       />
     </Box>
