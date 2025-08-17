@@ -1,15 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Box, Divider, Flex, VStack } from "@chakra-ui/react";
-import AppEmptyPage from "components/common/empty/AppEmptyPage";
+import { Box, Divider, Flex, Text, VStack } from "@chakra-ui/react";
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import React, { useEffect, useMemo, useState } from "react";
+import { useQuery } from "react-query";
 import { getOrderService, getProductOrdersService } from "services/order/services";
 import useAppStore from "stores/app/appStore";
-import { useQuery } from "react-query";
+import { OrderHeader } from "./ OrderHeader";
+import { CustomerInfo } from "./CustomerInfo";
+import { OrderProducts } from "./OrderProducts";
 import OrderSkeleton from "./OrderSkeleton";
 import { OrderTotal } from "./OrderTotal";
-import { OrderProducts } from "./OrderProducts";
-import { CustomerInfo } from "./CustomerInfo";
-import { OrderHeader } from "./ OrderHeader";
 
 const OrdersContent = ({ productId }: { productId: string }) => {
   const { t } = useLocaleResources('products')
@@ -61,7 +60,18 @@ const OrdersContent = ({ productId }: { productId: string }) => {
   }
 
   if (!orders.length) {
-    return <AppEmptyPage title={t('OrdersContent.noOrdersAvailable')} />;
+      return (
+        <Flex
+          justifyContent={'center'}
+          width="100%"
+          marginTop={8}
+          marginBottom={5}
+        >
+          <Text fontSize="18px" color={'#777'}>
+            {t('OrdersContent.noOrdersAvailable')}
+          </Text>
+        </Flex>
+      )
   }
 
   return (
