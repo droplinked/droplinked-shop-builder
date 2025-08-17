@@ -59,7 +59,7 @@ export function useBillingOptions(plan: PlanType, canActivateTrial: boolean) {
         if (priceOption) {
           const discount = duration.discount;
           const discountPercentage = discount ? `-${discount}%` : undefined;
-          const shouldShowFree = plan === 'pro' && duration.month === 1 && canActivateTrial;
+          const shouldShowFree = duration.month === 1 && canActivateTrial;
           
           options.push({
             name: getDurationName(duration.month),

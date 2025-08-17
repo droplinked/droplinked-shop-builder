@@ -60,15 +60,15 @@ export function BillingOptionCard({ option, onSelect }: BillingOptionCardProps) 
 
         <DotSeparatedList>
           <Text color="neutral.gray.500" fontSize="xs" fontWeight="normal">
-           {option.month === 1 && shopSetupUI.isFromCrossmint
+           { shopSetupUI.isFromCrossmint
               ? t('UpgradePlanModal.BillingOptionCard.threeMonthFree')
-              : option.month === 1 && option.showFree
+              : option.showFree
               ? t('UpgradePlanModal.BillingOptionCard.firstMonthFree') 
               : `${option.month} ${t('UpgradePlanModal.BillingOptionCard.months')}`
             }
           </Text>
           <Text color="neutral.gray.500" fontSize="xs" fontWeight="normal">
-            {`${option.finalPrice}${t('UpgradePlanModal.BillingOptionCard.monthAfterwards')}`}
+            {`$${option.finalPrice}${t('UpgradePlanModal.BillingOptionCard.monthAfterwards')}`}
           </Text>
         </DotSeparatedList>
       </Flex>
