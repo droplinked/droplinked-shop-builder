@@ -3,6 +3,7 @@ import 'droplinked-designer-configs/dist/droplinked-designer-configs.css';
 import { Data } from 'droplinked-designer-core';
 import "droplinked-designer-core/dist/index.css";
 import React from 'react';
+import { appDevelopment } from 'utils/app/variable';
 import useAppStore from 'stores/app/appStore';
 import useTemplate from '../hooks/useTemplate';
 import { Flex, Spinner, useBreakpointValue } from '@chakra-ui/react';
@@ -36,21 +37,21 @@ function TemplateCreatePage() {
             author: "droplinked",
             changes: 1,
             lastUpdate: "Unknown",
-            url: `https://droplinked.io/${name}`
+            url: `https://${appDevelopment ? 'dev.' : ''}droplinked.io/${name}`
         }
     }
 
     if (shouldShowDesktopNotice) return <DesktopOnlyNotice />
 
     return (
-        <>
+        <div style={{ direction: "ltr" }}>
             {isLoadingTemplate &&
                 <Flex height="100dvh" justifyContent="center" alignItems="center">
                     <Spinner color='#fff' size="lg" />
                 </Flex>
             }
             {!isLoadingTemplate && <Editor {...editorProps} />}
-        </>
+        </div>
     )
 }
 

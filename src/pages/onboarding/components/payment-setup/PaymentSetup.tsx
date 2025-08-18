@@ -1,7 +1,7 @@
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useSubscription from 'hooks/subscription/useSubscription'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
-import useAppStore from 'stores/app/appStore'
 import ControlButtons from '../common/ControlButtons'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import CurrencySection from './CurrencySection'
@@ -11,14 +11,14 @@ function PaymentSetup() {
   const [isLoading, setIsLoading] = useState(false)
   const { updateOnboardingState } = useOnboardingStore()
   const { t } = useLocaleResources('onboarding')
-  const { hasPaidSubscription } = useAppStore()
+  const { hasPaidSubscription } = useSubscription()
 
   const handleCurrencyLoading = (loading: boolean) => {
     setIsLoading(loading)
   }
 
   const handleNextStep = () => {
-    const nextStep = hasPaidSubscription() ? 'YOU_ARE_ALL_SET' : 'PLAN_SELECTION'
+    const nextStep = hasPaidSubscription ? 'YOU_ARE_ALL_SET' : 'PLAN_SELECTION'
     updateOnboardingState('currentStep', nextStep)
   }
 

@@ -31,17 +31,17 @@ const InvoiceItems: React.FC = () => {
                             <p className="item-description">{itemDescription}</p>
                         </td>
                         <td className="item-cycle">{transactionType}</td>
-                        <td className="item-amount">{transactionAmount}</td>
+                        <td className="item-amount" style={{ whiteSpace: 'nowrap' }}>{transactionAmount} <span className="currency">{currency}</span></td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr className="subtotal-row">
                         <td colSpan={2} className="summary-label">Subtotal</td>
-                        <td className="summary-value">{subtotal}</td>
+                        <td className="summary-value" style={{ whiteSpace: 'nowrap' }}>{subtotal} <span className="currency">{currency}</span></td>
                     </tr>
                     <tr>
                         <td colSpan={2} className="summary-label">Tax</td>
-                        <td className="summary-value">{tax}</td>
+                        <td className="summary-value" style={{ whiteSpace: 'nowrap' }}>{tax} <span className="currency">{currency}</span></td>
                     </tr>
                     <tr className="total-row">
                         <td colSpan={2} className="summary-label">Total</td>

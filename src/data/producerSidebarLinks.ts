@@ -53,7 +53,7 @@ const createSidebarLinks = (t: TFunction) => [
                 ]
             },
             {
-                title: t('Sidebar.NavLinks.items.styleCenter'),
+                title: t('Sidebar.NavLinks.items.designStudio'),
                 icon: React.createElement(BrushMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [

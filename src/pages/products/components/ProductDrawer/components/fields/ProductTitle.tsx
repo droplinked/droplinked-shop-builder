@@ -10,7 +10,7 @@ function ProductTitle() {
     const { t } = useLocaleResources('products');
     const { values: { product_type, title }, errors, setFieldValue } = useProductForm()
     const improveAI = useImproveAI({ type: 'title' });
-    const { isImproveLoading, isProTrialModalOpen, handleCloseProTrialModal } = improveAI
+    const { isImproveLoading, isUpgradeModalOpen, closeUpgradeModal } = improveAI
 
     const label = product_type === "EVENT" ? t('ProductTitle.eventName') : t('ProductTitle.productName')
 
@@ -42,8 +42,8 @@ function ProductTitle() {
             />
             
             <UpgradePlanModalContainer
-                isOpen={isProTrialModalOpen}
-                onClose={handleCloseProTrialModal}
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
             />
         </>
     )

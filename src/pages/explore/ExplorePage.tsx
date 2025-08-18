@@ -1,34 +1,28 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { semanticSearchService } from './services/services';
-import { ISemanticSearchParams } from './services/services';
-import { useMutation } from 'react-query';
-import ExplorePageProduct from './ExplorePageProduct';
-import SearchLottie from './components/SearchLottie';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { useState } from 'react';
 import {
   Box,
+  Button,
+  Center,
   Container,
   Flex,
-  Heading,
-  Text,
-  Input,
-  Button,
-  VStack,
-  HStack,
   Grid,
-  GridItem,
-  useColorModeValue,
+  Heading,
+  HStack,
   IconButton,
-  Badge,
-  Center,
-  Spinner
+  Input,
+  Text,
+  VStack
 } from '@chakra-ui/react';
-import { Star2Md } from 'assets/icons/System/Star2/Star2Md';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { CloseMd } from 'assets/icons/Sign/Close/CloseMd';
 import { SearchMd } from 'assets/icons/System/Search/SearchMd';
-import Header from 'layouts/PublicLayout/Header';
-import Footer from 'layouts/PublicLayout/Footer';
+import { Star2Md } from 'assets/icons/System/Star2/Star2Md';
+import { useMutation } from 'react-query';
+import { ISemanticSearchParams } from 'services/product/interfaces';
+import { semanticSearchService } from 'services/product/productServices';
+import ExplorePageProduct from './ExplorePageProduct';
 
 export interface Product {
   _id: string;
@@ -57,14 +51,6 @@ const ProductSearch = () => {
     (params: ISemanticSearchParams) => semanticSearchService(params)
   );
   const productData = data?.data?.data;
-
-  // useEffect(() => {
-  //   const links = document.querySelectorAll('a[href]');
-  //   links.forEach(link => {
-  //     link.setAttribute('target', '_blank');
-  //     link.setAttribute('rel', 'noopener noreferrer');
-  //   });
-  // }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -312,7 +298,7 @@ const ProductSearch = () => {
                     </Flex>
 
                     {isLoading ? (
-                      <SearchLottie />
+                     <DotLottieReact src="/search.lottie" style={{width: "auto", height: "auto"}} autoplay loop />
                     ) : isError ? (
                       <Center py={12}>
                         <VStack spacing={4}>

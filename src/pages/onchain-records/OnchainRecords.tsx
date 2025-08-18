@@ -3,6 +3,7 @@ import { WalletMd } from 'assets/icons/Finance/Wallet/WalletMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import arLocale from "locales/onchain-records/ar.json"
 import enLocale from "locales/onchain-records/en.json"
 import React from 'react'
@@ -12,13 +13,13 @@ import Records from './records/Records'
 
 export default function OnchainRecords() {
     const { onClose, isOpen, onOpen } = useDisclosure()
-    const { isOpen: isEnterpriseModalOpen, onOpen: showEnterpriseModal, onClose: closeEnterpriseModal } = useDisclosure();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE');
     const { t } = useLocaleResources("onchainRecords", { en: enLocale, ar: arLocale })
 
     const handleConnectWalletClick = () => {
-        showEnterpriseModal();
-        return;
-        onOpen()
+        handleFeatureAccess(() => {
+            onOpen()
+        });
     }
 
     return (
@@ -43,8 +44,8 @@ export default function OnchainRecords() {
                 <ConnectWalletModal isOpen={isOpen} onClose={onClose} />
                 
                 <UpgradePlanModalContainer
-                    isOpen={isEnterpriseModalOpen}
-                    onClose={closeEnterpriseModal}
+                    isOpen={isUpgradeModalOpen}
+                    onClose={closeUpgradeModal}
                     initialActiveTab="enterprise"
                 />
             </PageGrid.Root>

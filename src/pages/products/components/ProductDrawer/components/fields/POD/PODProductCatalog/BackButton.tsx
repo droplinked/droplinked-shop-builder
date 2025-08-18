@@ -18,7 +18,7 @@ function BackButton({ onBackClick }: { onBackClick: () => void }) {
             onClick={onBackClick}
         >
             <AppIcons.BackArrow />
-            {t('common.back')}
+            {t('common:back')}
         </Flex>
     )
 }

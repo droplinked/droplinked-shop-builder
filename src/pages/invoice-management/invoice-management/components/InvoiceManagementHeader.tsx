@@ -1,21 +1,22 @@
-import { Flex, Heading, useDisclosure } from '@chakra-ui/react'
+import { Flex, Heading } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm'
 
 function InvoiceManagementHeader() {
-    const { isOpen: isEnterpriseModalOpen, onOpen: showEnterpriseModal, onClose: closeEnterpriseModal } = useDisclosure();
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE');
     const { t } = useLocaleResources('invoice-management');
     const navigate = useNavigate()
 
     const handleCreateInvoice = () => {
-        showEnterpriseModal();
-        return;
-        navigate("/analytics/invoice-management/create");
+        handleFeatureAccess(() => {
+            navigate("/analytics/invoice-management/create");
+        });
     }
 
     return (
@@ -33,8 +34,8 @@ function InvoiceManagementHeader() {
             </AppButton>
             
             <UpgradePlanModalContainer
-                isOpen={isEnterpriseModalOpen}
-                onClose={closeEnterpriseModal}
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
                 initialActiveTab="enterprise"
             />
         </Flex>

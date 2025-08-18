@@ -11,9 +11,10 @@ function DesktopOnlyNotice() {
     return (
         <Flex
             direction="column"
-            height="100%"
+            height="100vh"
             alignItems="center"
             justifyContent="center"
+            style={{ direction: "ltr" }}
         >
             <Lottie animationData={DesktopOnlyNoticePayload} loop={false} />
 

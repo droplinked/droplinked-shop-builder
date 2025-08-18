@@ -17,8 +17,7 @@ interface Action {
 const initialState: State = {
     date: (() => {
         const endDate = new Date()
-        const startDate = new Date()
-        startDate.setFullYear(startDate.getFullYear() - 1)
+        const startDate = new Date(2024, 0, 1) // January 1, 2024
         return [startDate, endDate]
     })(),
     selectedFilter: null,

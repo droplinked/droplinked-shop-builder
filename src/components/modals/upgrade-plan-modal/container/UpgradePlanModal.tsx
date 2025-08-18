@@ -64,8 +64,8 @@ export default function UpgradePlanModal({ isOpen, onClose, initialActiveTab }: 
             />
           </ModalBody>
         </Flex>
-        <Flex direction="column">
-          <PlanTabs activeTab={activeTab} onTabChange={setActiveTab} />
+        <Flex direction="column" backgroundColor="red">
+          <PlanTabs activeTab={activeTab} onTabChange={setActiveTab}/>
         </Flex>
       </Grid>
 

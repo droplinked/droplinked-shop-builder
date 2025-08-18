@@ -77,7 +77,7 @@
         "analytics": "Analytics",
         "products": "Products",
         "orderManagement": "Order Management",
-        "styleCenter": "Style Center",
+        "designStudio": "Design Studio",
         "affiliateNetwork": "Affiliate Network",
         "accountSettings": "Account Settings",
         "rewardsCenter": "Rewards Center",
@@ -103,4 +103,4 @@
       }
     }
   }
-} 
+}

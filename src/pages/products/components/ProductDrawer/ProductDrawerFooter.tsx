@@ -12,11 +12,11 @@ interface Props {
 }
 
 const ProductDrawerFooter = ({ onClose }: Props) => {
-    const { t } = useLocaleResources('products');
+    const { t } = useLocaleResources('products')
     const { showToast } = useAppToast()
-    const { values, errors, setFieldValue, handleSubmit, isSubmitting, validateForm } = useProductForm()
-    const { _id: editingProductId, sku, publish_product } = values
+    const { values, setFieldValue, handleSubmit, isSubmitting, validateForm } = useProductForm()
 
+    const { _id: editingProductId, sku, publish_product } = values
     const isProductRecorded = checkIfProductIsRecorded(sku)
     const isButtonDisabled = isProductRecorded || isSubmitting
 

@@ -1,7 +1,8 @@
-import { Flex, HStack, useDisclosure, VStack } from "@chakra-ui/react";
+import { Flex, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import UpgradePlanModalContainer from "components/modals/upgrade-plan-modal/UpgradePlanModalContainer";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import useUpgradeHandler from "hooks/subscription/useUpgradeHandler";
 import { useProfile } from "hooks/useProfile/useProfile";
 import React, { useCallback, useState } from "react";
 import { useMutation } from "react-query";
@@ -19,7 +20,7 @@ import TileDesignPageShipping from "./tile.design.page.shipping";
 import { ITileDesignState, PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
 
 const TileDesign = () => {
-    const { isOpen: isEnterpriseModalOpen, onOpen: showEnterpriseModal, onClose: closeEnterpriseModal } = useDisclosure()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE')
     const { t } = useLocaleResources('tile-design');
     const { shop } = useAppStore();
     const { updateShopData } = useProfile();
@@ -43,13 +44,12 @@ const TileDesign = () => {
     }, []);
     const updateState = (key: "current" | "design", value: Pick<ITileDesignState, "current"> | Pick<ITileDesignState, "design">) => setState((prev) => ({ ...prev, [key]: value }));
     const submit = async () => {
-        showEnterpriseModal();
-        return;
-        
-        if (isLoading) return null;
-        await mutateAsync({ productTileStyle: States?.design, currencyAbbreviation: shop?.currencyAbbreviation })
-            .then(async (res) => await updateShopData())
-            .catch((e) => { });
+        handleFeatureAccess(async () => {
+            if (isLoading) return null;
+            await mutateAsync({ productTileStyle: States?.design, currencyAbbreviation: shop?.currencyAbbreviation })
+                .then(async (res) => await updateShopData())
+                .catch((e) => { });
+        });
     };
 
     const component_to_show = () => {
@@ -111,9 +111,9 @@ const TileDesign = () => {
             </VStack>
 
             <UpgradePlanModalContainer
-                isOpen={isEnterpriseModalOpen}
-                onClose={closeEnterpriseModal}
-                initialActiveTab={'enterprise'}
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
+                initialActiveTab="enterprise"
             />
         </TileDesignContext.Provider>
     );

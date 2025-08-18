@@ -27,7 +27,6 @@ export function getFormInitialValues({ product, selectedProductType, convertPric
             ...(selectedProductType === "DIGITAL" && { sku: [digitalProductSKU] }),
             ...(selectedProductType === "PRINT_ON_DEMAND" && {
                 prodviderID: "PRINTFUL",
-                shippingModelId: "",
                 custome_external_id: Date.now() + nanoid(13)
             })
         }
@@ -107,7 +106,11 @@ export function getFieldErrorMessage(error: any): string {
     if (!error) return '' // No error
     if (typeof error === 'string') return error // Error is a single string
     if (Array.isArray(error) && error.length > 0) {
-        return getFieldErrorMessage(error[0]) // Recursively check the first element
+        // Find the first non-undefined/non-null error in the array
+        const firstValidError = error.find(item => item !== undefined && item !== null)
+        if (firstValidError) {
+            return getFieldErrorMessage(firstValidError) // Recursively check the first valid element
+        }
     }
     if (typeof error === 'object' && error !== null) {
         const firstKey = Object.keys(error)[0] // Get the first key

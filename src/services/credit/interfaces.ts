@@ -53,6 +53,7 @@ export interface IDetailedTransaction {
     details: {};
     createdAt: Date;
     id: string;
+    description?: string;
 }
 export interface IDetailedAnalyticData {
     data: IDetailedTransaction[];

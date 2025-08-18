@@ -1,24 +1,23 @@
-import { Flex, Text, useDisclosure } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm'
 import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { useMutation } from 'react-query'
 import { IGenerateTitleDescription } from 'services/ai/interfaces'
 import { generateTitleDescription } from 'services/ai/services'
-import useAppStore from 'stores/app/appStore'
 import AnimatedBox from './AnimatedBox'
 
 function GenerateWithAI() {
     const { t } = useLocaleResources('products');
-    const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler()
     const { values: { media }, setFieldValue } = useProductForm()
     const { updateProductPageState, isAiGenerateLoading, isGenerateDisabled } = useProductPageStore()
     const { showToast } = useAppToast()
-    const { hasPaidSubscription } = useAppStore()
    
     const { mutateAsync } = useMutation((params: IGenerateTitleDescription) => generateTitleDescription(params),
         {
@@ -39,18 +38,11 @@ function GenerateWithAI() {
     )
 
     const handleMutate = () => {
-        if (!hasPaidSubscription()) {
-            openProTrialModal();
-            return;
-        }
-
-        const mainImage = media.find((item) => item.isMain)
-        mutateAsync({ imageUrl: mainImage.url })
+        handleFeatureAccess(() => {
+            const mainImage = media.find((item) => item.isMain)
+            mutateAsync({ imageUrl: mainImage.url })
+        });
     }
-
-    const handleCloseProTrialModal = () => {
-        closeProTrialModal();
-    };
 
     const isDisabled = media.length === 0 || isAiGenerateLoading || isGenerateDisabled;
 
@@ -85,8 +77,8 @@ function GenerateWithAI() {
             </AnimatedBox>
             
             <UpgradePlanModalContainer
-                isOpen={isProTrialModalOpen}
-                onClose={handleCloseProTrialModal}
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
             />
         </>
     )

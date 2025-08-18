@@ -163,3 +163,8 @@ export interface IimportAffiliateProduct {
 export interface IGetHotProductsParams {
     range?: "daily" | "weekly" | "monthly";
 }
+
+export interface ISemanticSearchParams {
+    query: string;
+    limit?: number;
+  }

@@ -136,7 +136,8 @@
     "invoiceNotFound": "Invoice not found with this ID",
     "permissionDenied": "Permission Denied",
     "imageSizeLimit": "Image must be less than {{size}}. Please choose a smaller file size and try again.",
-    "imageTypeNotSupported": "Please upload an image in JPG, PNG, or GIF format."
+    "imageTypeNotSupported": "Please upload an image in JPG, PNG, or GIF format.",
+    "enterpriseSupport": "Please connect to support for enterprise features"
   },
 
   "AddBalanceModal": {
@@ -223,6 +224,7 @@
     },
     "BillingOptionCard": {
         "firstMonthFree": "First month free",
+        "threeMonthFree": "3 month free",
         "months": "months",
         "monthAfterwards": "/month afterwards"
     },
@@ -322,5 +324,8 @@
       "zipRequired": "Zip is required",
       "addressLine1Required": "Address line 1 is required"
     }
+  },
+  "useCollections": {
+    "error": "Unable to retrieve collections."
   }
 }

@@ -10,7 +10,6 @@ import { FormField } from './FormField';
 const createValidationSchema = (t: (key: string) => string) => Yup.object({
   primaryGoal: Yup.string().required(t('UpgradePlanModal.EnterpriseContent.primaryGoalRequired')),
   organizationSize: Yup.string().required(t('UpgradePlanModal.EnterpriseContent.organizationSizeRequired')),
-  featureDescription: Yup.string().required(t('UpgradePlanModal.EnterpriseContent.featureDescriptionRequired'))
 });
 
 interface EnterpriseContentProps {
