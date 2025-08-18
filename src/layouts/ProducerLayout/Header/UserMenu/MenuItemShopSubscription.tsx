@@ -52,49 +52,26 @@ function MenuItemShopSubscription() {
     const formatDuration = (days: number) => {
         if (days < 30) {
             // Less than a month: show days
-            return `${days} ${days === 1 ? t("common.day") : t("common.days")}`;
+            return `${days} ${days === 1 ? t("common.day") : t("common.days")}`
         } else if (days < 365) {
-            // Less than a year: show months/days
-            const months = Math.floor(days / 30);
-            const remainingDays = days % 30;
-            if (remainingDays === 0) {
+            // Less than a year: show months
+            const months = Math.floor(days / 30)            
                 return `${months} ${
                     months === 1 ? t("common.month") : t("common.months")
-                }`;
-            }
-            return `${months} ${
-                months === 1 ? t("common.month") : t("common.months")
-            } ${remainingDays} ${
-                remainingDays === 1 ? t("common.day") : t("common.days")
-            }`;
+                }`     
         } else {
-            // More than a year: show years/months/days
-            const years = Math.floor(days / 365);
-            const remainingDaysAfterYears = days % 365;
-            const months = Math.floor(remainingDaysAfterYears / 30);
-            const remainingDays = remainingDaysAfterYears % 30;
-
-            let result = `${years} ${
+            // More than a year: show year
+            const years = Math.floor(days / 365)
+            return `${years} ${
                 years === 1 ? t("common.year") : t("common.years")
-            }`;
-            if (months > 0) {
-                result += ` ${months} ${
-                    months === 1 ? t("common.month") : t("common.months")
-                }`;
-            }
-            if (remainingDays > 0) {
-                result += ` ${remainingDays} ${
-                    remainingDays === 1 ? t("common.day") : t("common.days")
-                }`;
-            }
-            return result;
+            }`
         }
-    };
+    }
 
     // Determine button text based on days left
-    const buttonText = isExpired
+    const buttonText = isExpired || subscriptionType === 'STARTER'
         ? t("Plans.cta.upgrade")
-        : `${formatDuration(daysLeft)} ${t("common.left")}`;
+        : `${formatDuration(daysLeft)} ${t("common.left")}`
 
     return (
         <Flex
