@@ -31,8 +31,6 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
         setDraftZone((prev) => ({ ...prev, ...patch }))
     }
 
-
-
     // Check if form can be submitted based on validation rules
     const canSubmit = () => validateShippingRate(draftZone)
 
