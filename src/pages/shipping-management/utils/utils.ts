@@ -36,3 +36,28 @@ export const defaultCustom = (): CustomShipping => ({
     rateName: '',
     estimatedDelivery: { minDays: undefined, maxDays: undefined },
 })
+
+// Currency Conversion Utility
+export const convertZonePrices = (
+    zone: Zone,
+    convertPrice: (params: { amount: number; toUSD?: boolean }) => number,
+    toUSD: boolean
+): Zone => {
+    if (!zone.custom) return zone
+
+    const convertedZone = { ...zone }
+    const custom = { ...zone.custom }
+
+    if (custom.price) {
+        custom.price = parseFloat(convertPrice({ amount: custom.price, toUSD }).toFixed(2))
+    }
+    if (custom.pricePerWeight) {
+        custom.pricePerWeight = parseFloat(convertPrice({ amount: custom.pricePerWeight, toUSD }).toFixed(2))
+    }
+    if (custom.pricePerItem) {
+        custom.pricePerItem = parseFloat(convertPrice({ amount: custom.pricePerItem, toUSD }).toFixed(2))
+    }
+
+    convertedZone.custom = custom
+    return convertedZone
+}
