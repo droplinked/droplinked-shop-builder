@@ -53,20 +53,26 @@ export default function SaveChangesDrawer() {
                     </Flex>
                 </Flex>
                 <Flex gap={4}>
+                    <Box width="max-content">
                     <AppButton
                         variant="secondary"
                         isDisabled={isSubmitting}
                         onClick={() => resetForm()}
-                    >
+                        >
                         {t("common:cancel")}
                     </AppButton>
+                        </Box>
+                    <Box 
+                        width={{ base: "100%", lg: "max-content" }}
+                    >
                     <AppButton
                         isLoading={isSubmitting}
-                        width={{ base: "80%", lg: "max-content" }}
                         onClick={handleSaveClick}
-                    >
+                        width="100%"
+                        >
                         {t("SaveChangesDrawer.save")}
                     </AppButton>
+                        </Box>
                 </Flex>
             </Flex>
         </Slide>
