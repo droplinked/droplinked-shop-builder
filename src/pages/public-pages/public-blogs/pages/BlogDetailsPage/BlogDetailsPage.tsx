@@ -4,7 +4,7 @@ import { LazyLoad } from 'pages/public-pages/landings/_shared/components/LazyLoa
 import MaxWidthWrapper from 'pages/public-pages/landings/_shared/components/MaxWidthWrapper';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getPublicBlogBySlugService } from 'services/blog/services';
 import BlogsCarousel from '../../components/common/BlogsCarousel/BlogsCarousel';
 import BlogContent from './BlogContent';
@@ -14,13 +14,20 @@ import BlogSidebar from './BlogSidebar/BlogSidebar';
 
 function BlogDetailPage() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [activeTocItemId, setActiveTocItemId] = useState<string>('');
 
   // Use useQuery directly for fetching the specific blog
   const { data, isLoading } = useQuery({
     queryKey: ['blog', slug],
     queryFn: () => getPublicBlogBySlugService(slug),
-    enabled: !!slug
+    enabled: !!slug,
+    onError: (error: any) => {
+      const errorData = error?.response?.data;
+      if (errorData?.statusCode === 404) {
+        navigate('/blogs');
+      }
+    }
   });
 
   const blog = data?.data;
