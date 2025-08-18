@@ -29,7 +29,7 @@ export default function SKURow({ currentSKU, index, onInputChange, onToggleQuant
                         value: currentSKU.price ?? '',
                         onChange: (e) => onInputChange(index, 'price', parseFloat(e.target.value) || 0)
                     }}
-                    leftElement={<CurrencyIcon />}
+                    leftElement={<CurrencyIcon color="#7B7B7B" size='sm'/>}
                 />
             </Td>
             <Td>

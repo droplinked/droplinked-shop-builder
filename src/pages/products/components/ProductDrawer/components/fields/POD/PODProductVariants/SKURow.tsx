@@ -28,7 +28,7 @@ function SKURow({ currentSKU, index, onPriceInputChange }: Props) {
                         value: currentSKU.price ?? '',
                         onChange: (e) => onPriceInputChange(index, parseFloat(e.target.value) || 0)
                     }}
-                    leftElement={<CurrencyIcon />}
+                    leftElement={<CurrencyIcon color="#7B7B7B" size='sm'/>}
                 />
             </Td>
             <Td>
