@@ -19,7 +19,6 @@ export default function CustomRateForm({ value, onChange }: Props) {
     const { shop } = useAppStore()
 
     const update = (patch: Partial<CustomShipping>) => onChange({ ...value, ...patch })
-
     const isWeightBased = value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED
     const isItemCountBased = value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED
     const isFlatRate = value.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE
@@ -31,10 +30,14 @@ export default function CustomRateForm({ value, onChange }: Props) {
         return { priceLabel: t('CustomRateForm.price'), priceValue: '' }
     })()
 
-    const handlePriceChange = (newValue: number) => {
-        if (isWeightBased) return update({ pricePerWeight: newValue })
-        if (isItemCountBased) return update({ pricePerItem: newValue })
-        return update({ price: newValue })
+    const handlePriceChange = (value: string) => {
+        let numericValue: number | undefined
+
+        numericValue = value === '' ? undefined : parseFloat(value)
+
+        if (isWeightBased) return update({ pricePerWeight: numericValue })
+        if (isItemCountBased) return update({ pricePerItem: numericValue })
+        return update({ price: numericValue })
     }
 
     return (
@@ -82,10 +85,10 @@ export default function CustomRateForm({ value, onChange }: Props) {
                         leftElement={<CurrencyIcon color='#7b7b7b' size='md' />}
                         inputProps={{
                             value: priceValue,
-                            onChange: (e) => handlePriceChange(Number(e.target.value)),
+                            onChange: (e) => handlePriceChange(e.target.value),
                             placeholder: '0.00',
-                            type: 'number',
-                            numberType: 'float',
+                            type: 'text',
+                            inputMode: 'decimal',
                             fontSize: 16
                         }}
                     />

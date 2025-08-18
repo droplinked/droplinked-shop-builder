@@ -95,26 +95,27 @@ export function AppInputHeader({ label, description, inputProps, labelProps, too
 
 function InputContainer(props: Props) {
     const { leftElement, rightElement, inputContainerProps, inputProps, maxCharacters, state, showAnimatedLoading } = props
+    const { numberType, ...otherInputProps } = inputProps ?? {}
     const borderColorMap = { success: "#2BCFA1", error: "#F24" }
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (inputProps?.type === 'number') {
+        if (otherInputProps?.type === 'number') {
             const invalidChars = ['e', 'E', '+', '-', ',']
-            if (inputProps.numberType === 'int') invalidChars.push('.')
+            if (numberType === 'int') invalidChars.push('.')
             if (invalidChars.includes(event.key)) event.preventDefault()
         }
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (inputProps?.isDisabled) return
+        if (otherInputProps?.isDisabled) return
 
         const { value, validity } = event.target
 
-        if (inputProps?.type !== 'number') return inputProps?.onChange?.(event)
+        if (otherInputProps?.type !== 'number') return otherInputProps?.onChange?.(event)
 
-        const numericValue = inputProps.numberType === 'float' ? parseFloat(value) : parseInt(value, 10)
+        const numericValue = numberType === 'float' ? parseFloat(value) : parseInt(value, 10)
 
-        if (!isNaN(numericValue) && validity.valid) inputProps?.onChange?.(event)
+        if (!isNaN(numericValue) && validity.valid) otherInputProps?.onChange?.(event)
     }
 
     return (
@@ -176,16 +177,16 @@ function InputContainer(props: Props) {
                             }
                         }}
                         onKeyDown={handleKeyDown}
-                        {...inputProps}
+                        {...otherInputProps}
                         onChange={handleChange}
                     />
                 }
                 {showAnimatedLoading &&
                     <AnimatedLoadingText
-                        text={inputProps.value}
-                        fontSize={inputProps.fontSize ?? 14}
-                        fontWeight={inputProps.fontWeight ?? 400}
-                        color={inputProps.color ?? "#fff"}
+                        text={otherInputProps.value}
+                        fontSize={otherInputProps.fontSize ?? 14}
+                        fontWeight={otherInputProps.fontWeight ?? 400}
+                        color={otherInputProps.color ?? "#fff"}
                     />
                 }
                 {rightElement}
