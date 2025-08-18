@@ -28,12 +28,12 @@ function ControlsListCollection({ collection, fetch }) {
     const { shop: { name } } = useAppStore();
     const checkPermissionAndShowToast = useCheckPermission();
     const { t } = useLocaleResources("collections");
-    
+
     const { mutateAsync, isLoading } = useMutation(
         () => updateCollectionVisiblityService({
-                collectionID: collection?._id,
+            collectionID: collection?._id,
             published: !isPublished
-            }),
+        }),
         {
             onSuccess: () => setIsPublished(prev => !prev),
             onError: () => showToast({
@@ -61,7 +61,7 @@ function ControlsListCollection({ collection, fetch }) {
 
     return (
         <HStack gap={"16px"} justifyContent={"end"}>
-            {isLoading ? <Spinner size={"sm"} /> : <Box cursor={"pointer"} onClick={() => mutateAsync()}>
+            {/* {isLoading ? <Spinner size={"sm"} /> : <Box cursor={"pointer"} onClick={() => mutateAsync()}>
                 {renderVisibilityIcon()}
             </Box>}
             <Box height={"40px"}>
@@ -69,7 +69,7 @@ function ControlsListCollection({ collection, fetch }) {
             </Box>
             <Link style={{ cursor: "pointer" }} target='_blank' rel="noopener noreferrer" to={redirectUrl}>
                 <ShareLg />
-            </Link>
+            </Link> */}
             <TableMenu key={collection._id} items={[
                 {
                     title: t("common:edit"),
