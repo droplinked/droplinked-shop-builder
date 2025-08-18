@@ -27,7 +27,7 @@ interface Props extends TextProps {
 
 export default function FormattedPrice({ price, abbreviationProps, ...rest }: Props) {
     const { symbol, abbreviation, convertPrice } = useCurrencyConverter()
-    const { isRTL } = useLocaleResources("common")    
+    const { isRTL } = useLocaleResources("common")
 
     // Convert and format the price
     const formattedPrice = formatPrice(convertPrice({ amount: price, toUSD: false }), isRTL)
