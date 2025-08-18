@@ -12,8 +12,8 @@ function PODProductTemplate() {
 
     return (
         <FormFieldWrapper
-            label={t('ProductForm.fields.pod.productTemplate.label')}
-            description={t('ProductForm.fields.pod.productTemplate.description')}
+            label={t('ProductForm.pod.productTemplate.label')}
+            description={t('ProductForm.pod.productTemplate.description')}
             isRequired
         >
             <PODDesignMaker />
