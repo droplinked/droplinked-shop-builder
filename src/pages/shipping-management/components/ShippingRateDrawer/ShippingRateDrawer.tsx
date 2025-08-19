@@ -1,5 +1,7 @@
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useShippingManagementStore from 'pages/shipping-management/stores/useShippingManagementStore'
-import { defaultCustom, defaultZone } from 'pages/shipping-management/utils/utils'
+import { convertZonePrices, defaultCustom, defaultZone } from 'pages/shipping-management/utils/utils'
 import { validateShippingRate } from 'pages/shipping-management/utils/validation'
 import React, { useEffect, useState } from 'react'
 import { SHIPPING_METHOD, Zone } from '../../types/shipping'
@@ -7,7 +9,6 @@ import ShippingDrawer from '../common/ShippingDrawer'
 import CustomRateForm from './CustomRateForm'
 import ShippingMethodSelect from './ShippingMethodSelect'
 import ThirdPartyServiceSelector from './ThirdPartyServiceSelector'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -17,6 +18,7 @@ interface Props {
 
 function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
     const { t } = useLocaleResources("shipping-management")
+    const { convertPrice } = useCurrencyConverter()
     const [draftZone, setDraftZone] = useState<Partial<Zone>>(defaultZone)
     const { zones, updateShippingProfile } = useShippingManagementStore(s => ({
         zones: s.shippingProfile.zones,
@@ -36,8 +38,11 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
         if (!canSubmit()) return
 
         const zoneToSave = { ...draftZone } as Zone
+        // Convert prices back to USD before saving
+        const zoneWithUSDPrices = convertZonePrices(zoneToSave, convertPrice, true)
+
         const updatedZones = [...zones]
-        updatedZones[zoneIndex] = zoneToSave
+        updatedZones[zoneIndex] = zoneWithUSDPrices
         updateShippingProfile('zones', updatedZones)
         onClose()
     }
@@ -46,7 +51,10 @@ function ShippingRateDrawer({ isOpen, onClose, zoneIndex }: Props) {
     useEffect(() => {
         if (zoneIndex !== undefined) {
             const zone = zones[zoneIndex]
-            setDraftZone({ ...zone })
+
+            // Convert prices from USD to shop currency for editing
+            const convertedZone = convertZonePrices(zone, convertPrice, false)
+            setDraftZone({ ...convertedZone })
         }
     }, [zoneIndex])
 

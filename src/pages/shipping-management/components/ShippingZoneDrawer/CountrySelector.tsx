@@ -48,7 +48,22 @@ function CountrySelector({ allZones, selectedCountries, onSelectionChange, zoneI
         if (!debouncedSearchTerm.trim()) return countries
 
         const searchLower = debouncedSearchTerm.toLowerCase()
-        return countries.filter((country) => country.name.toLowerCase().includes(searchLower))
+        const filtered = countries.filter((country) => country.name.toLowerCase().includes(searchLower))
+
+        // Sort to prioritize countries that start with the search term
+        return filtered.sort((a, b) => {
+            const aName = a.name.toLowerCase()
+            const bName = b.name.toLowerCase()
+            const aStartsWith = aName.startsWith(searchLower)
+            const bStartsWith = bName.startsWith(searchLower)
+
+            // If one starts with search term and the other doesn't, prioritize the one that starts with it
+            if (aStartsWith && !bStartsWith) return -1
+            if (!aStartsWith && bStartsWith) return 1
+
+            // If both start with or both don't start with the search term, sort alphabetically
+            return aName.localeCompare(bName)
+        })
     }, [countries, debouncedSearchTerm])
 
     // Handle checkbox selection changes
@@ -60,11 +75,8 @@ function CountrySelector({ allZones, selectedCountries, onSelectionChange, zoneI
 
     // Handle worldwide selection changes (select all or deselect all)
     const handleWorldwideChange = useCallback((isChecked: boolean) => {
-        if (isChecked) {
-            onSelectionChange(availableCountryIds)
-        } else {
-            onSelectionChange([])
-        }
+        if (isChecked) onSelectionChange(availableCountryIds)
+        else onSelectionChange([])
     }, [availableCountryIds, onSelectionChange])
 
     // Memoize country items for efficient rendering

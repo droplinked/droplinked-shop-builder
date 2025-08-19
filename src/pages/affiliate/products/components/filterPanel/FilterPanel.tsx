@@ -28,7 +28,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic, showFilters, setS
   const isSmallScreen = useBreakpointValue({ base: true, lg: false });
   const isMediumScreen = useBreakpointValue({ base: false, md: true, lg: false });
   const { t, isRTL } = useLocaleResources('affiliate');
-  const priceIcon = isPublic ? <DollarMd /> : <CurrencyIcon />;
+  const priceIcon = isPublic ? <DollarMd /> : <CurrencyIcon size='sm' color="#7B7B7B" />;
 
   const resetFilters = () => {
     const defaultFilters = {

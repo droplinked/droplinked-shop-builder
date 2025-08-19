@@ -1,13 +1,13 @@
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductTypeLegality from 'pages/products/hooks/useProductTypeLegality'
 import React from 'react'
 import SwitchBox from '../../common/SwitchBox'
 import DropDetailsSection from './DropConfigurationPanel'
 import DropSummary from './DropSummary'
-import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
-import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 
 interface Props {
     isProductRecorded: boolean

@@ -2,14 +2,14 @@ import { Flex, Text } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import chainNameMap from 'constants/blockchainMap'
-import useProductForm from 'pages/products/hooks/useProductForm'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 
 function DropSummary() {
     const { t } = useLocaleResources('products')
     const { values: { nftData } } = useProductForm()
-    const { transactionUrl = "", networkName = "" } = nftData
+    const { transactionUrl = "", networkName = "" } = nftData ?? {}
 
     const truncatedTransactionUrl = transactionUrl
         ? `${transactionUrl.slice(0, 50)}...`

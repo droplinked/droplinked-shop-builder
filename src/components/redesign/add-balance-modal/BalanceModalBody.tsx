@@ -54,7 +54,7 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
                             }
                         }
                     }}
-                    leftElement={<CurrencyIcon />}
+                    leftElement={<CurrencyIcon color="#7B7B7B" />}
                 />
             </ModalBody>
             <Divider borderColor={"neutral.gray.800"} />

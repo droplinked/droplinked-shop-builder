@@ -26,7 +26,6 @@ const useUpgradeHandler = (requiredPlan: PlanType = 'BUSINESS') => {
   };
   
   const handleFeatureAccess = (callback?: () => void) => {
-    console.log(planType, requiredPlan)
     if (planType === 'ENTERPRISE' && requiredPlan === 'ENTERPRISE') {
       showToast({ type: "info", message: t("errors.enterpriseSupport") })
       return;

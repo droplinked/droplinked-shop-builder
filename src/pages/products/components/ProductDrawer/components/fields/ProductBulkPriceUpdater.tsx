@@ -50,7 +50,7 @@ function ProductBulkPriceUpdater() {
                         placeholder: t('ProductBulkPriceUpdater.placeholder'),
                         onChange: (e) => handleInputChange((parseFloat(e.target.value)))
                     }}
-                    leftElement={<CurrencyIcon />}
+                    leftElement={<CurrencyIcon color="#7B7B7B"/>}
                 />
             )}
         />

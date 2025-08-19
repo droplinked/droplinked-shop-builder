@@ -18,8 +18,10 @@ export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
       case 'd3':
       case 'unstoppableDomains':
       case 'polygon':
-      case 'base':
         onOpen(); // Open the wallet verification modal
+        break;
+      case 'base':
+        navigateBasedOnStatus();
         break;
       case 'crossmint':
         // Call the actual crossmint navigation

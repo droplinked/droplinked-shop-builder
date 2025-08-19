@@ -33,7 +33,7 @@ function InventoryValueCard({ totalInventoryValue, isLoading }) {
 
     return (
         <DataPointCard
-            icon={<CurrencyIcon __css={{ path: { stroke: "white" } }} />}
+            icon={<CurrencyIcon color="#fff" />}
             title={t('InventorySummary.totalInventoryValue')}
             isLoading={isLoading}
         >

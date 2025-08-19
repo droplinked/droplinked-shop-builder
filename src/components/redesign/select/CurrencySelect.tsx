@@ -1,8 +1,8 @@
 import { SelectProps } from "@chakra-ui/react"
-import AppSelect from "./AppSelect"
-import { getCurrencyList } from "services/shop/shopServices"
 import React from 'react'
 import { useQuery } from "react-query"
+import { getCurrencyList } from "services/shop/shopServices"
+import AppSelect from "./AppSelect"
 
 /**
  * CurrencySelect Component - Currency selection dropdown

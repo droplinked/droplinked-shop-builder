@@ -15,7 +15,7 @@ function RevenueStatsGrid() {
     const { t } = useLocaleResources("dashboardPage")
 
     const stats = [
-        { icon: <CurrencyIcon __css={{ path: { stroke: "neutral.white" } }} />, label: t('RevenueStatsGrid.totalRevenue'), value: shopStats?.totalRevenue, isPrice: true },
+        { icon: <CurrencyIcon color='white' size='lg' />, label: t('RevenueStatsGrid.totalRevenue'), value: shopStats?.totalRevenue, isPrice: true },
         { icon: <CoinsLg color='white' />, label: t('netProfit'), value: shopStats?.profit, isPrice: true },
         { icon: <InvoiceLg color='white' />, label: t('orders'), value: shopStats?.orders, isPrice: false },
         { icon: <UserLg color='white' />, label: t('customers'), value: shopStats?.customers, isPrice: false }

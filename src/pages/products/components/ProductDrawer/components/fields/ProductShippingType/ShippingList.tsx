@@ -26,7 +26,7 @@ function ShippingList({ shippingProfiles }: ShippingListProps) {
     })
 
     useEffect(() => {
-        if (shippingProfiles.length > 0) {
+        if (!values.shippingModelId && shippingProfiles.length > 0) {
             setFieldValue('shippingModelId', shippingProfiles[0]._id)
         }
     }, [shippingProfiles])

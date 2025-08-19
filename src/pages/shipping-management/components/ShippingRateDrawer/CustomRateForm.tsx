@@ -1,10 +1,11 @@
 import { SimpleGrid } from '@chakra-ui/react'
-import { DollarMd } from 'assets/icons/Finance/Dollar/DollarMd'
+import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import useAppStore from 'stores/app/appStore'
 import { CUSTOM_SHIPPING_TYPE, CustomShipping } from '../../types/shipping'
 import LabeledContent from '../common/LabeledContent'
 
@@ -15,8 +16,9 @@ interface Props {
 
 export default function CustomRateForm({ value, onChange }: Props) {
     const { t } = useLocaleResources("shipping-management")
-    const update = (patch: Partial<CustomShipping>) => onChange({ ...value, ...patch })
+    const { shop } = useAppStore()
 
+    const update = (patch: Partial<CustomShipping>) => onChange({ ...value, ...patch })
     const isWeightBased = value.type === CUSTOM_SHIPPING_TYPE.WEIGHT_BASED
     const isItemCountBased = value.type === CUSTOM_SHIPPING_TYPE.ITEM_COUNT_BASED
     const isFlatRate = value.type === CUSTOM_SHIPPING_TYPE.FLAT_RATE
@@ -28,10 +30,14 @@ export default function CustomRateForm({ value, onChange }: Props) {
         return { priceLabel: t('CustomRateForm.price'), priceValue: '' }
     })()
 
-    const handlePriceChange = (newValue: number) => {
-        if (isWeightBased) return update({ pricePerWeight: newValue })
-        if (isItemCountBased) return update({ pricePerItem: newValue })
-        return update({ price: newValue })
+    const handlePriceChange = (value: string) => {
+        let numericValue: number | undefined
+
+        numericValue = value === '' ? undefined : parseFloat(value)
+
+        if (isWeightBased) return update({ pricePerWeight: numericValue })
+        if (isItemCountBased) return update({ pricePerItem: numericValue })
+        return update({ price: numericValue })
     }
 
     return (
@@ -76,18 +82,18 @@ export default function CustomRateForm({ value, onChange }: Props) {
             <LabeledContent label={priceLabel} required>
                 <SimpleGrid columns={2} gap={4}>
                     <AppInput
-                        leftElement={<DollarMd color='#7b7b7b' />}
+                        leftElement={<CurrencyIcon color='#7b7b7b' size='md' />}
                         inputProps={{
                             value: priceValue,
-                            onChange: (e) => handlePriceChange(Number(e.target.value)),
+                            onChange: (e) => handlePriceChange(e.target.value),
                             placeholder: '0.00',
-                            type: 'number',
-                            numberType: 'float',
+                            type: 'text',
+                            inputMode: 'decimal',
                             fontSize: 16
                         }}
                     />
 
-                    <CurrencySelect isDisabled />
+                    <CurrencySelect isDisabled value={shop.currency?.abbreviation} />
                 </SimpleGrid>
             </LabeledContent>
 

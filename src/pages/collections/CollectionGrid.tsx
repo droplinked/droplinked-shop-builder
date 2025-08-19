@@ -23,8 +23,8 @@ interface CollectionGridProps {
 }
 
 function CollectionGrid({ isFetching, rows, searchTerm, onSearchChange, onCreateCollection, onReorderClick, refetch }: CollectionGridProps) {
-    const { t } = useLocaleResources("collections", {en: enLocale, ar: arLocale})
-    
+    const { t } = useLocaleResources("collections", { en: enLocale, ar: arLocale })
+
     const columns: ColumnDef<Collection>[] = [
         {
             accessorKey: 'title',
@@ -59,11 +59,11 @@ function CollectionGrid({ isFetching, rows, searchTerm, onSearchChange, onCreate
                         leftIcon: <PlusSm color="#000" />,
                         onClick: onCreateCollection,
                     },
-                    {
-                        title: t('CollectionGrid.visibilityAndReorder'),
-                        variant: "secondary",
-                        onClick: onReorderClick,
-                    }
+                    // {
+                    //     title: t('CollectionGrid.visibilityAndReorder'),
+                    //     variant: "secondary",
+                    //     onClick: onReorderClick,
+                    // }
                 ]}
             />
             <PageGrid.Actions
