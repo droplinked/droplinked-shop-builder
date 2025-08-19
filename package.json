@@ -26,7 +26,7 @@
 		"canvas-confetti": "^1.9.3",
 		"chart.js": "^4.4.1",
 		"crypto-browserify": "^3.12.0",
-		"droplinked-designer-configs": "^1.7.8",
+		"droplinked-designer-configs": "^1.7.9",
 		"droplinked-designer-core": "^1.1.6",
 		"droplinked-payment-intent": "^1.5.0",
 		"droplinked-web3": "^2.2.4",
