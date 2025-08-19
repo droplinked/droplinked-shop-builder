@@ -23,6 +23,7 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
 
     const handleClose = () => {
         invalidateProductsQuery()
+        setUploadedFile(null)
         onClose()
     }
 
