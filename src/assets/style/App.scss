@@ -1,58 +1,4 @@
-@font-face {
-    font-family: "Inter";
-    font-weight: 100;
-    src: url(../fonts/inter/Inter-Thin.ttf);
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 200;
-    src: url(../fonts/inter/Inter-ExtraLight.ttf);
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 300;
-    src: url(../fonts/inter/Inter-Light.ttf);
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 400;
-    src: url(../fonts/inter/Inter-Regular.ttf);
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 500;
-    src: url(../fonts/inter/Inter-Medium.ttf);
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 600;
-    src: url(../fonts/inter/Inter-SemiBold.ttf);
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 700;
-    src: url(../fonts/inter/Inter-Bold.ttf);
-}
-@font-face {
-    font-family: "Inter";
-    font-weight: 800;
-    src: url(../fonts/inter/Inter-ExtraBold.ttf);
-}
-@font-face {
-    font-family: "Inter";
-    font-weight: 900;
-    src: url(../fonts/inter/Inter-Black.ttf);
-}
-@font-face {
-    font-family: "NotoSansArabic-VariableFont_wdth,wght";
-    src: url(../fonts/noto-sans-arabic/NotoSansArabic-VariableFont_wdth,wght.ttf);
-}
+/* Google Fonts are loaded via index.html - no local @font-face needed */
 
 ::-webkit-scrollbar {
     width: 2px;
@@ -81,9 +27,9 @@ body {
 }
 
 [lang="ar"] * , [dir="rtl"] * {
-    font-family: "NotoSansArabic-VariableFont_wdth,wght" !important;
+    font-family: "Noto Sans Arabic", sans-serif !important;
 }
 
 [lang="en"] *, [dir="ltr"] * {
-    font-family: "Inter" !important;
+    font-family: "Inter", sans-serif !important;
 }
