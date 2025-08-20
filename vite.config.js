@@ -60,7 +60,7 @@ export default defineConfig({
             'hoc': path.resolve(__dirname, './src/hoc'),
             'data': path.resolve(__dirname, './src/data'),
 
-            // Node.js polyfills - matching your webpack config
+            // Node.js polyfills for Web3 and blockchain functionality
             'stream': 'stream-browserify',
             'buffer': 'buffer',
             'crypto': 'crypto-browserify',
