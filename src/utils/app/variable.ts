@@ -15,9 +15,9 @@ export const appDevelopment = env === "dev"
 
 // Map the BASE_URL values for each environment
 const baseUrls = {
-    prod: process.env.REACT_APP_BASE_API_URL,
-    stage: process.env.REACT_APP_BASE_API_URL_STAGE,
-    dev: process.env.REACT_APP_BASE_API_URL_DEV,
+    prod: import.meta.env.VITE_BASE_API_URL,
+    stage: import.meta.env.VITE_BASE_API_URL_STAGE,
+    dev: import.meta.env.VITE_BASE_API_URL_DEV,
 }
 
 export const BASE_URL = baseUrls[env]
