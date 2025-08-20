@@ -21,7 +21,6 @@ export type Namespace =
     | 'subscription'
     | 'settings'
     | 'collections'
-    | 'blogs'
     | 'gamification'
     | 'orderSamplePOD'
     | 'maintenancePage'
@@ -38,6 +37,7 @@ export type Namespace =
     | 'products'
     | 'invoice-management'
     | 'crossmint'
+    | 'public-pages/public-blogs'
     | 'public-pages/landings/custom-tokens'
     | 'public-pages/landings/digital-goods'
     | 'public-pages/landings/DIMST'
@@ -53,7 +53,8 @@ export type Namespace =
     | 'public-pages/landings/tokenizing-products'
     | 'public-pages/landings/tokenpay'
     | 'public-pages/landings/social-quests'
-
+    | 'book-demo'
+    | 'shipping-management'
 
 /**
  * A custom hook to easily load translation resources into i18next and provide the translation function

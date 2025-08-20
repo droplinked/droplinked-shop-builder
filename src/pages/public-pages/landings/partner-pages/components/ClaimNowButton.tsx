@@ -20,6 +20,9 @@ export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
       case 'polygon':
         onOpen(); // Open the wallet verification modal
         break;
+      case 'base':
+        navigateBasedOnStatus();
+        break;
       case 'crossmint':
         // Call the actual crossmint navigation
         navigateBasedOnStatus({ source: 'crossmint' });
@@ -32,10 +35,10 @@ export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
   return (
     <>
       <AppButton mt={6} onClick={handleClaimClick} {...buttonProps}>
-        {t('claimNow')}
+        {partnerId === 'base' ? t('common:getStarted') : t('common:claimNow')}
       </AppButton>
 
-      {['d3', 'unstoppableDomains', 'polygon'].includes(partnerId) && (
+      {['d3', 'unstoppableDomains', 'polygon', 'base'].includes(partnerId) && (
         <WalletVerificationModal isOpen={isOpen} onClose={onClose} />
       )}
     </>

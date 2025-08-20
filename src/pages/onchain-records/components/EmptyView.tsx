@@ -2,14 +2,23 @@ import { Flex, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import BlueButton from 'components/redesign/button/BlueButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import React from 'react'
 import ConnectWalletModal from './connect-wallets-modal/ConnectWalletModal'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function EmptyView() {
     const { t } = useLocaleResources("onchainRecords")
     const { onClose, onOpen, isOpen } = useDisclosure()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE');
+
+    const handleConnectWalletClick = () => {
+        handleFeatureAccess(() => {
+            onOpen()
+        });
+    }
 
     return (
         <Flex justify="center" align="center" flexDirection="column" height="60dvh" gap="64px">
@@ -25,12 +34,18 @@ export default function EmptyView() {
                     color="#2BCFA1"
                     fontSize={12}
                     fontWeight={500}
-                    onClick={onOpen}
+                    onClick={handleConnectWalletClick}
                 >
                     {t("ConnectWallets.connect")}
                 </BlueButton>
             </Flex>
             <ConnectWalletModal isOpen={isOpen} onClose={onClose} />
+            
+            <UpgradePlanModalContainer
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
+                initialActiveTab="enterprise"
+            />
         </Flex>
     )
 }

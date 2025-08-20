@@ -1,21 +1,15 @@
-import React from 'react'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/homePage/en.json'
-import localAr from 'locales/public-pages/landings/homePage/ar.json'
-import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
-import Feedback from '../../svgs/Feedback'
-import TestmonialCard from './TestmonialCard'
 import { Grid } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { Feedback } from 'pages/public-pages/landings/_shared/types/types'
+import React from 'react'
+import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
+import FeedbackSvg from '../../svgs/Feedback'
+import TestmonialCard from './TestmonialCard'
 
 export default function Testmonials() {
-    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('homePage')
 
-    const feedbacks = t('testimonials.feedbacks', { returnObjects: true }) as Array<{
-        feedback: string;
-        name: string;
-        image: string;
-        time: string;
-    }>
+    const feedbacks = t('feedbacks', { returnObjects: true }) as Feedback[]
 
     return (
         <SectionContainer
@@ -23,7 +17,7 @@ export default function Testmonials() {
             sectionTitle={t('testimonials.sectionTitle')}
             headingTitle={t('testimonials.headingTitle')}
             headingSubtitle={t('testimonials.headingSubtitle')}
-            typographySvg={<Feedback />}
+            typographySvg={<FeedbackSvg />}
         >
             <Grid
                 templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
@@ -32,10 +26,7 @@ export default function Testmonials() {
                 {feedbacks.map((feedback, index) => (
                     <TestmonialCard
                         key={index}
-                        feedback={feedback.feedback}
-                        name={feedback.name}
-                        image={feedback.image}
-                        time={feedback.time}
+                        feedback={feedback}
                         display={index === feedbacks.length - 1 ? { base: "block", md: "none", lg: "block" } : "block"}
                     />
                 ))}

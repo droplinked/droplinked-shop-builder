@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { Blog } from 'services/blog/interfaces'
 import { formatDateToLongStyle } from 'utils/helpers'
 import BlogTableActionMenu from './BlogTableActionMenu'
+import BlogTableEmptyState from './BlogTableEmptyState'
 
 interface Props {
     searchTerm: string
@@ -22,6 +23,8 @@ function BlogTable({ searchTerm }: Props) {
     const { t } = useLocaleResources("blogs")
 
     const blogPosts = data?.pages.flatMap(page => page.data.data) || []
+
+    if (blogPosts.length === 0) return <BlogTableEmptyState />
 
     const columns: ColumnDef<Blog>[] = [
         {
@@ -63,7 +66,7 @@ function BlogTable({ searchTerm }: Props) {
             header: t("common:status"),
             cell: info => {
                 const isVisible = info.getValue() as boolean
-                const text = isVisible ? t("BlogTable.status.published") : t("BlogTable.status.draft")
+                const text = isVisible ? t("BlogTable.status.published") : t("common:draft")
                 const status = isVisible ? "success" : "pending"
 
                 return <AppBadge text={text} status={status} />

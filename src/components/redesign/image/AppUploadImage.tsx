@@ -5,7 +5,7 @@ import React, { useCallback, useRef } from 'react';
 import { useMutation } from 'react-query';
 import FileUpload from '../file-upload/FileUpload';
 import appUploadImageContext, { IUploadImageDefault, ImodeUploadImage } from './context';
-import UploadImageModel from './model';
+import { validateImageFile } from './model';
 
 type sizes = "small" | "original" | "standard"
 
@@ -56,7 +56,9 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
 
     const create = useCallback(async (file: File) => {
         try {
-            UploadImageModel.validate(file)
+            // Use the safe validation utility from model
+            validateImageFile(file);
+            
             const formData = new FormData();
             formData.append("image", file);
             const data = await mutateAsync(formData)
@@ -69,7 +71,7 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
         } catch (error) {
             showToast({ message: error.message, type: "error" });
         }
-    }, [values, toast, size, product])
+    }, [values, toast, size, product, onChange, onSuccess, mutateAsync, showToast, setFileData])
 
     const deleted = useCallback((name: string) => {
         if (typeof values !== "object") return false

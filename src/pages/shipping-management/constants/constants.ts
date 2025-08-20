@@ -1,0 +1,1 @@
+export const SHIPPING_PROFILES_QUERY_KEY = 'shipping-profiles'

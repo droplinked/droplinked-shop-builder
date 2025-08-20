@@ -1,6 +1,7 @@
 import { Link as ChakraLink, Flex, Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { appVersion } from 'utils/app/variable'
@@ -31,9 +32,9 @@ function FooterLegal() {
 
             <DotSeparatedList>
                 {LEGAL_LINKS.map(({ to, label }) => (
-                    <ChakraLink key={label} as={Link} to={to}>
+                    <IframeAwareLink key={label} to={to}>
                         {label}
-                    </ChakraLink>
+                    </IframeAwareLink>
                 ))}
             </DotSeparatedList>
         </Flex>

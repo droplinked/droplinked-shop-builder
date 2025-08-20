@@ -1,9 +1,9 @@
-import { Select as ChakraSelect, Flex, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text } from '@chakra-ui/react'
+import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text } from '@chakra-ui/react'
 import { ChevrondownMd } from 'assets/icons/Navigation/ChevronDown/ChevrondownMd'
+import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useMemo } from 'react'
 import ErrorMessage from '../error-message/ErrorMessage'
-import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 
 /**
  * Customizable select component with support for complex data structures
@@ -84,7 +84,6 @@ function AppSelect(props: Props) {
             height={12}
             border="1px solid "
             borderColor={`${error ? "text.error" : "neutral.gray.800"}`}
-            borderWidth="1.5px"
             borderRadius={8}
             color="#FFF"
             icon={isLoading ? <Spinner size="sm" color='text.subtext.placeholder.dark' /> : <ChevrondownMd color='#7b7b7b' />}
@@ -116,11 +115,9 @@ function AppSelect(props: Props) {
 
     return (
         <InputGroup display="flex" flexDirection="column" {...inputGroupProps}>
-            <Flex gap={2} alignItems="center" mb={description ? 1 : 4}>
-                <FormLabel display="flex" gap={1} alignItems="center" fontSize={14} fontWeight={500} color="text.white">
-                    {label} {isRequired && <AsteriskSm width="12px" height="12px" color='#FF2244' />}
-                </FormLabel>
-            </Flex>
+            <FormLabel mb={description ? 1 : 4} display="flex" alignItems="center" gap={1} fontSize={16} fontWeight={500} color="text.white">
+                {label} {isRequired && <AsteriskSm width="12px" height="12px" color='#FF2244' />}
+            </FormLabel>
             {description && <Text mb={4} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>}
             {selectElement}
             {error && <ErrorMessage mt={2}>{error}</ErrorMessage>}

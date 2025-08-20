@@ -42,8 +42,8 @@ function FileUpload({
         :
         <>
             <AppTypography fontSize={14} color="#fff">
-                <Box as="span" fontWeight={500} color="#179EF8" textDecoration="underline">{t('FileUpload.click')}</Box> {" "}
-                {t('FileUpload.orDragDropHere')}
+                <Box as="span" fontWeight={500} color="#179EF8" textDecoration="underline">{t('fileUpload.click')}</Box> {" "}
+                {t('fileUpload.dragAndDrop')}
             </AppTypography>
             <AppTypography color="text.subtext.placeholder.dark">{text.footerText}</AppTypography>
         </>

@@ -262,15 +262,6 @@
       "colorName": "اسم اللون",
       "enterValue": "أدخل القيمة"
     },
-    "customShippingForm": {
-      "title": "إنشاء شحن مخصص جديد",
-      "description": "أضف خياراً لتوفير تفاصيل الشحن المخصصة.",
-      "titleLabel": "العنوان",
-      "titlePlaceholder": "مثال: التوصيل السريع، الشحن القياسي",
-      "create": "إنشاء",
-      "successMessage": "تم إنشاء خيار الشحن المخصص بنجاح.",
-      "errorMessage": "common:errors.failedToCreate"
-    },
     "variantSelector": {
       "createCustomVariant": "إنشاء متغير مخصص",
       "createVariant": "إنشاء \"{{variant}}\"",
@@ -532,22 +523,6 @@
     "description": "اختر كيفية شحن هذا المنتج للعملاء.",
     "customShipping": "شحن مخصص"
   },
-  "CustomShippingForm": {
-    "title": "إنشاء شحن مخصص جديد",
-    "description": "إضافة خيار لتوفير تفاصيل الشحن المخصصة.",
-    "titleLabel": "العنوان",
-    "titlePlaceholder": "مثال: توصيل سريع، شحن قياسي",
-    "successMessage": "تم إنشاء خيار الشحن المخصص بنجاح."
-  },
-  "CustomShippingFileUpload": {
-    "title": "ملف",
-    "description": "تحميل ملف تفاصيل الشحن.",
-    "sampleFile": {
-      "title": "ملف عينة",
-      "description": "استخدم قالب العينة لضمان تنسيق الملف والتفاصيل الصحيحة.",
-      "downloadTemplate": "تحميل القالب"
-    }
-  },
   "PhysicalProductVariants": {
     "label": "المتغيرات",
     "description": "أضف إصدارات مختلفة من هذا المنتج (مثال: الحجم، اللون).",
@@ -610,5 +585,21 @@
     "printOnDemand": "الطباعة عند الطلب",
     "physical": "المنتج المادي",
     "event": "الفعالية"
+  },
+  "ShippingEmpty": {
+    "title": "لا توجد ملفات شحن",
+    "description": "قم بإعداد ملف شحن للبدء.",
+    "action": {
+      "newShippingProfile": "ملف شحن جديد"
+    }
+  },
+  "ShippingList": {
+    "countrySingular": "دولة",
+    "countryPlural": "دول",
+    "zoneSingular": "منطقة",
+    "zonePlural": "مناطق",
+    "action": {
+      "newShippingProfile": "ملف شحن جديد"
+    }
   }
 }

@@ -1,38 +1,50 @@
 import { Checkbox as ChakraCheckbox, CheckboxProps } from "@chakra-ui/react"
 import React from "react"
 
-/**
- * Custom styled checkbox component that extends Chakra UI's Checkbox
- * 
- * @param {object} props - Component props extending Chakra UI's CheckboxProps
- * @param {ReactNode} [props.children] - Label content for the checkbox
- * @param {boolean} [props.isChecked] - Controlled checked state
- * @param {boolean} [props.defaultChecked] - Default checked state (uncontrolled)
- * @param {boolean} [props.isDisabled] - Whether the checkbox is disabled
- * @param {function} [props.onChange] - Function called when the checkbox state changes
- * 
- * @returns {JSX.Element} Styled checkbox component
- */
-function Checkbox({ children, ...rest }: CheckboxProps) {
+function Checkbox({ children, size = 'md', ...rest }: CheckboxProps) {
+    const sizeMap: Record<string, number> = {
+        sm: 4,
+        md: 5,
+        lg: 6,
+    }
+
+    const controlSize = sizeMap[size as keyof typeof sizeMap] ?? 5
+    const borderWidth = size === 'lg' ? '1.5px' : '1px'
+
     return (
         <ChakraCheckbox
             color="text.white"
             iconColor="neutral.background"
             colorScheme="primary"
+            size={size as any}
             sx={{
                 ".chakra-checkbox__label": { fontSize: 14 },
                 ".chakra-checkbox__control": {
-                    width: 5,
-                    height: 5,
-                    border: "1px solid",
+                    width: controlSize,
+                    height: controlSize,
+                    border: `${borderWidth} solid`,
                     borderColor: "neutral.gray.700",
                     borderRadius: 4,
+
+                    // Checked state
                     "&[data-checked]": {
                         backgroundColor: "main.primary",
-                        borderColor: "main.primary"
+                        borderColor: "main.primary",
                     },
+
+                    // Disabled (unchecked) state
                     "&[data-disabled]": {
                         backgroundColor: "transparent",
+                        borderColor: "button.disable.dark",
+                    },
+
+                    // Disabled AND checked state
+                    "&[data-disabled][data-checked]": {
+                        backgroundColor: "button.disable.dark",
+                        borderColor: "button.disable.dark",
+                        ".chakra-checkbox__icon": {
+                            color: "neutral.gray.650",
+                        }
                     }
                 }
             }}

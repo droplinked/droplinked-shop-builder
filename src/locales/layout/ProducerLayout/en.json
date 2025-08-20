@@ -77,7 +77,7 @@
         "analytics": "Analytics",
         "products": "Products",
         "orderManagement": "Order Management",
-        "styleCenter": "Style Center",
+        "designStudio": "Design Studio",
         "affiliateNetwork": "Affiliate Network",
         "accountSettings": "Account Settings",
         "rewardsCenter": "Rewards Center",
@@ -91,15 +91,16 @@
         "onchainInventory": "On-chain Inventory",
         "purchaseHistory": "Purchase History",
         "invoices": "Invoices",
-        "storefrontDesigner": "Storefront Designer",
+        "templateBuilder": "Template Builder",
         "productTiles": "Product Tiles",
         "productLinks": "Product Links",
         "blogEditor": "Blog Editor",
         "products": "Products",
         "settings": "Settings",
         "creditsAndActivity": "Credits & Activity",
-        "changelog": "Changelog"
+        "changelog": "Changelog",
+        "shippingManagement": "Shipping Management"
       }
     }
   }
-} 
+}

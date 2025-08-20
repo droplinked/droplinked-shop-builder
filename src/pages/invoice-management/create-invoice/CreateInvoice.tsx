@@ -16,8 +16,10 @@ import InvoiceProductTable from './components/form/product-table/InvoiceProductT
 import { InvoiceFormSchema, findSelectedShippingMethod, getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
 import useCreateInvoice from './hooks/useCreateInvoice'
 import useInvoiceStore from './store/invoiceStore'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 
-export default function CreateInvoice() {
+function CreateInvoice() {
     const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale });
     const navigate = useNavigate()
     const { invoiceId } = useParams()
@@ -26,7 +28,8 @@ export default function CreateInvoice() {
     const { isInvoiceDataValid, createInvoice, updateInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: openInvoiceDetailsModal })
     const { data, isFetching } = useInvoiceInformation(invoiceId)
     const { showToast } = useAppToast()
-
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE')
+    
     // This is used to reset cart when user navigates away
     useEffect(() => {
         return () => resetCart()
@@ -48,13 +51,15 @@ export default function CreateInvoice() {
             const selectedShippingGroup = findSelectedShippingMethod(data.shippings)
             if (selectedShippingGroup) updateShippingMethod(selectedShippingGroup)
         }
-    }, [invoiceId, data, updateCart, updateIsEditMode])
+    }, [invoiceId, data, updateCart, updateIsEditMode, updateIsAddressSwitchToggled, updateShippingMethod, showToast, t, navigate])
 
     if (isFetching) return <FullScreenLoading />
 
     const handleSubmit = (values: InvoiceFormSchema) => {
-        if (!isInvoiceDataValid(values)) return
-        isEditMode ? updateInvoice(values) : createInvoice(values)
+        handleFeatureAccess(() => {
+            if (!isInvoiceDataValid(values)) return
+            isEditMode ? updateInvoice(values) : createInvoice(values)
+        });
     }
 
     const handleDiscard = () => {
@@ -98,6 +103,14 @@ export default function CreateInvoice() {
                 )}
             </Formik>
             {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={closeInvoiceModal} />}
+            
+            <UpgradePlanModalContainer
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
+                initialActiveTab="enterprise"
+            />
         </>
     )
 }
+
+export default CreateInvoice;

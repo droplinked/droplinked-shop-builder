@@ -29,7 +29,7 @@ export const paymentPublicServiceV2 = async () =>
 	axiosInstance.get<{ data: IPaymentPublicService[] }>(`shop/public/available-payment-methodsV2`);
 
 export const getShopCredit = () =>
-	axiosInstance.get<IShopCredit>(`shop/credit`);
+	axiosInstance.get<IShopCredit>(`credits/shop-credit?type=REFUND`);
 
 export const productService = (productId: string) =>
 	axiosInstance.get(`product/${productId}`)
@@ -110,3 +110,7 @@ export const deployCircleContract = (network: string) => axiosInstance.post('sho
 
 export const getCurrencyList = () =>
 	axiosInstance.get<{ data: string[] }>('shop/currency-list').then(res => res.data)
+
+export const getShopTemplate = () => axiosInstance.get<{ data: { shopTemplate: string } }>('shop/template')
+
+export const updateShopTemplate = (shopTemplate: string) => axiosInstance.put('shop/template', { shopTemplate })

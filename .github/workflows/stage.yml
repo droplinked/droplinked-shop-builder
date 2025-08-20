@@ -21,7 +21,7 @@ jobs:
       - name: Copy the env variables
         run:  echo "${{ vars.ENV_FILE_STAGE }}" > .env
       - name: Build React App
-        run: npm install && npm run build 
+        run: npm install --legacy-peer-deps && NODE_OPTIONS=--max-old-space-size=6144 npm run build 
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build s3://stage-droplinked-com-bucket --delete
       - name: Invalidate cache

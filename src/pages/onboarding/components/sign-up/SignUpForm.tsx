@@ -71,7 +71,7 @@ function SignUpForm() {
                 validationSchema={formSchema(t)}
                 onSubmit={handleSignUp}
             >
-                {({ values, errors, handleChange, submitForm, isSubmitting }) => {
+                {({ values, errors, handleChange, isSubmitting }) => {
                     const isPasswordValid = arePasswordRulesMet(values.password)
 
                     return (
@@ -118,9 +118,9 @@ function SignUpForm() {
                             </Checkbox>
 
                             <AppButton
+                                type="submit"
                                 isLoading={isSubmitting}
                                 isDisabled={!acceptTerms || isSubmitting || !isPasswordValid}
-                                onClick={submitForm}
                             >
                                 {t('common:signUp')}
                             </AppButton>

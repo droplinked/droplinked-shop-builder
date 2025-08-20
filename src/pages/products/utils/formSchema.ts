@@ -43,10 +43,22 @@ export const validationSchema = object().shape({
                             then: (schema) =>
                                 schema.test(
                                     'price-greater-than-rawPrice',
-                                    'Price must be greater than the raw price for POD products',
                                     function (value) {
                                         const { rawPrice } = this.parent // Access rawPrice from the same SKU object
-                                        return !rawPrice || value > rawPrice // Ensure price > rawPrice
+
+                                        // Skip validation if no rawPrice is set
+                                        if (!rawPrice) return true
+
+                                        // Check if price is greater than rawPrice
+                                        if (value <= rawPrice) {
+                                            const skuIndex = this.path?.match(/\[(\d+)\]/)?.[1] // Extract SKU index from path
+                                            const skuNumber = skuIndex ? parseInt(skuIndex) + 1 : 'this' // Convert to 1-based indexing
+                                            return this.createError({
+                                                message: `SKU ${skuNumber}: Price ($${value}) must be greater than the raw price ($${rawPrice}) for POD products`
+                                            })
+                                        }
+
+                                        return true // Validation passes
                                     }
                                 ),
                             otherwise: (schema) => schema, // No additional validation for non-POD products
@@ -142,7 +154,7 @@ export const initialValues: Product = {
 
     // Pricing and Commission
     priceUnit: "USD",
-    shippingType: "EASY_POST",
+    shippingModelId: undefined,
     shippingPrice: 0,
     commission: 0,
     canBeAffiliated: false,

@@ -1,5 +1,5 @@
-// import useProductPageStore from 'pages/products/stores/ProductPageStore'
-// import UrlInput from './UrlInput'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
+import UrlInput from './UrlInput'
 // import RecentTasks from './RecentTasks'
 import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default function ImportProductModalBody({ file, onFileChange, importWithUrl }: Props) {
-    // const { crawlerError } = useProductPageStore()
+    const { crawlerError } = useProductPageStore()
     // const { recentTasks, recentTasksLoading, getProducts, getProductsLoading } = importWithUrl
 
     return (
@@ -32,7 +32,7 @@ export default function ImportProductModalBody({ file, onFileChange, importWithU
         >
             <FileUpload onFileChange={onFileChange} />
             {file && <FilePreview file={file} onFileChange={onFileChange} />}
-            {/* <UrlInput isDisabled={!!file} crawlerError={crawlerError} /> */}
+             <UrlInput isDisabled={!!file} crawlerError={crawlerError} /> 
             {/* <RecentTasks
                 isLoading={recentTasksLoading}
                 recentTasks={recentTasks}

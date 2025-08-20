@@ -4,7 +4,7 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 function BackButton({ onBackClick }: { onBackClick: () => void }) {
-    const { t } = useLocaleResources('products');
+    const { t } = useLocaleResources('common');
     
     return (
         <Flex
@@ -18,7 +18,7 @@ function BackButton({ onBackClick }: { onBackClick: () => void }) {
             onClick={onBackClick}
         >
             <AppIcons.BackArrow />
-            {t('ProductForm.fields.pod.backButton')}
+            {t('common:back')}
         </Flex>
     )
 }

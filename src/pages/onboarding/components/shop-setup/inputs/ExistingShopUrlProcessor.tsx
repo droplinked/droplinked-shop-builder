@@ -1,16 +1,16 @@
-import { useDisclosure } from '@chakra-ui/react'
-import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
 import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
 import { Form, Formik } from 'formik'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import { useShopUrlProcessor } from 'pages/onboarding/hooks/useShopUrlProcessor'
 import React from 'react'
 import * as Yup from 'yup'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ExistingShopUrlProcessor() {
-    const { hasPaidSubscription, processShopUrl, isLoading } = useShopUrlProcessor()
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { processShopUrl, isLoading } = useShopUrlProcessor()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler()
     const { t } = useLocaleResources('onboarding')
 
     const validationSchema = Yup.object().shape({
@@ -18,8 +18,9 @@ function ExistingShopUrlProcessor() {
     })
 
     const handleSubmit = async (values) => {
-        if (hasPaidSubscription()) await processShopUrl(values.url)
-        else onOpen()
+        handleFeatureAccess(async () => {
+            await processShopUrl(values.url)
+        })
     }
 
     return (
@@ -67,7 +68,7 @@ function ExistingShopUrlProcessor() {
                 )}
             </Formik>
 
-            <ProTrialModal isOpen={isOpen} onClose={onClose} />
+            <UpgradePlanModalContainer isOpen={isUpgradeModalOpen} onClose={closeUpgradeModal} />
         </>
     )
 }

@@ -1,53 +1,92 @@
-import { Box, BoxProps } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
-import AppTypography from 'components/common/typography/AppTypography';
+// Australian Dollar imports
+import { AustralianDollarLg } from 'assets/icons/Finance/AustralianDollar/AustralianDollarLg';
+import { AustralianDollarMd } from 'assets/icons/Finance/AustralianDollar/AustralianDollarMd';
+import { AustralianDollarSm } from 'assets/icons/Finance/AustralianDollar/AustralianDollarSm';
+
+// Canadian Dollar imports
+import { CanadianDollarLg } from 'assets/icons/Finance/CanadianDollar/CanadianDollarLg';
+import { CanadianDollarMd } from 'assets/icons/Finance/CanadianDollar/CanadianDollarMd';
+import { CanadianDollarSm } from 'assets/icons/Finance/CanadianDollar/CanadianDollarSm';
+
+// Chinese Yuan imports
+import { ChineeseyuanLg } from 'assets/icons/Finance/ChineeseYuan/ChineeseyuanLg';
+import { ChineeseyuanMd } from 'assets/icons/Finance/ChineeseYuan/ChineeseyuanMd';
+import { ChineeseyuanSm } from 'assets/icons/Finance/ChineeseYuan/ChineeseyuanSm';
+
+// Dirham imports
+import { DirhamLg } from 'assets/icons/Finance/Dirham/DirhamLg';
+import { DirhamMd } from 'assets/icons/Finance/Dirham/DirhamMd';
+import { DirhamSm } from 'assets/icons/Finance/Dirham/DirhamSm';
+
+// Dollar imports
+import { DollarLg } from 'assets/icons/Finance/Dollar/DollarLg';
+import { DollarMd } from 'assets/icons/Finance/Dollar/DollarMd';
+import { DollarSm } from 'assets/icons/Finance/Dollar/DollarSm';
+
+// Euro imports
+import { EuroLg } from 'assets/icons/Finance/Euro/EuroLg';
+import { EuroMd } from 'assets/icons/Finance/Euro/EuroMd';
+import { EuroSm } from 'assets/icons/Finance/Euro/EuroSm';
+
+// Japanese Yen imports
+import { JapaneseyenLg } from 'assets/icons/Finance/JapaneseYen/JapaneseyenLg';
+import { JapaneseyenMd } from 'assets/icons/Finance/JapaneseYen/JapaneseyenMd';
+import { JapaneseyenSm } from 'assets/icons/Finance/JapaneseYen/JapaneseyenSm';
+
+// Pound imports
+import { PoundLg } from 'assets/icons/Finance/Pound/PoundLg';
+import { PoundMd } from 'assets/icons/Finance/Pound/PoundMd';
+import { PoundSm } from 'assets/icons/Finance/Pound/PoundSm';
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 import React from 'react';
 
-/**
- * CurrencyIcon Component - Displays currency symbol icon
- * 
- * Automatically displays the appropriate currency icon based on the user's
- * selected currency settings. Supports major currencies like USD, EUR, GBP, JPY.
- * 
- * @param {object} props - Component props extending Chakra UI's BoxProps
- * @param {BoxProps} props - Additional styling properties for the container
- */
-export default function CurrencyIcon({ ...boxProps }: BoxProps) {
-    const { symbol, abbreviation } = useCurrencyConverter()
+interface Props {
+    color?: string
+    size?: "sm" | "md" | "lg"
+}
+
+export default function CurrencyIcon({ color, size = "md" }: Props) {
+    const { abbreviation } = useCurrencyConverter()
+    const iconProps = color ? { color } : {}
 
     const renderIcon = () => {
         switch (abbreviation) {
             case "USD":
-                return <AppIcons.DollarSign />
+                if (size === "sm") return <DollarSm {...iconProps} />
+                if (size === "lg") return <DollarLg {...iconProps} />
+                return <DollarMd {...iconProps} />
             case "EUR":
-                return <AppIcons.Euro />
+                if (size === "sm") return <EuroSm {...iconProps} />
+                if (size === "lg") return <EuroLg {...iconProps} />
+                return <EuroMd {...iconProps} />
             case "JPY":
-                return <AppIcons.JapaneseYen />
+                if (size === "sm") return <JapaneseyenSm {...iconProps} />
+                if (size === "lg") return <JapaneseyenLg {...iconProps} />
+                return <JapaneseyenMd {...iconProps} />
             case "GBP":
-                return <AppIcons.Pound />
+                if (size === "sm") return <PoundSm {...iconProps} />
+                if (size === "lg") return <PoundLg {...iconProps} />
+                return <PoundMd {...iconProps} />
             case "AUD":
-                return <AppTypography userSelect={"none"} fontSize={16} color={"text.subtext.placeholder.dark"}>{symbol}</AppTypography>
+                if (size === "sm") return <AustralianDollarSm {...iconProps} />
+                if (size === "lg") return <AustralianDollarLg {...iconProps} />
+                return <AustralianDollarMd {...iconProps} />
             case "CAD":
-                return <AppIcons.CanadianDollar />
+                if (size === "sm") return <CanadianDollarSm {...iconProps} />
+                if (size === "lg") return <CanadianDollarLg {...iconProps} />
+                return <CanadianDollarMd {...iconProps} />
             case "AED":
-                return <AppIcons.Dirham />
+                if (size === "sm") return <DirhamSm {...iconProps} />
+                if (size === "lg") return <DirhamLg {...iconProps} />
+                return <DirhamMd {...iconProps} />
             case "CNY":
-                return <AppIcons.ChineseYuan />
+                if (size === "sm") return <ChineeseyuanSm {...iconProps} />
+                if (size === "lg") return <ChineeseyuanLg {...iconProps} />
+                return <ChineeseyuanMd {...iconProps} />
             default:
-                return null;
+                return null
         }
     }
 
-    return (
-        <Box
-            __css={{
-                path: { stroke: "#7b7b7b" },
-                svg: { width: "20px", height: "20px" }
-            }}
-            {...boxProps}
-        >
-            {renderIcon()}
-        </Box>
-    )
+    return renderIcon()
 }

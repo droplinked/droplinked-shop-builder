@@ -4,6 +4,8 @@ import AppImage from 'components/common/image/AppImage'
 import useShopSwitcher from 'hooks/shop/useShopSwitch'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserShop } from 'services/shop/interfaces'
@@ -11,6 +13,7 @@ import { appDevelopment } from 'utils/app/variable'
 
 function ShopRow({ shop }: { shop: UserShop }) {
     const navigate = useNavigate()
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE')
     const { t } = useLocaleResources('shopManagement')
     const { isLoading, mutateAsync: switchShop } = useShopSwitcher()
     const { showToast } = useAppToast()
@@ -19,13 +22,15 @@ function ShopRow({ shop }: { shop: UserShop }) {
     const shopLogo = shop.logo || "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/485e583b2b3048f7b540dc7fa867021eba57be89781c1a6ee4f81156412c88e6.png_st.png"
 
     const switchToShop = async () => {
-        try {
-            if (shop.selected) return navigate("/analytics")
-            await switchShop(shop._id)
-        }
-        catch {
-            showToast({ type: "error", message: t('ShopRow.switchError') })
-        }
+        handleFeatureAccess(async () => {
+            try {
+                if (shop.selected) return navigate("/analytics")
+                await switchShop(shop._id)
+            }
+            catch {
+                showToast({ type: "error", message: t('ShopRow.switchError') })
+            }
+        })
     }
 
     return (
@@ -67,6 +72,13 @@ function ShopRow({ shop }: { shop: UserShop }) {
             >
                 {t('ShopRow.switchButton')}
             </BasicButton>
+            
+            {/* Feature Restriction Modal */}
+            <UpgradePlanModalContainer
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
+                initialActiveTab="enterprise"
+            />
         </Flex>
     )
 }

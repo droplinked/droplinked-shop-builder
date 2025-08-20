@@ -49,10 +49,29 @@ function MenuItemShopSubscription() {
     // Check if subscription has expired
     const isExpired = daysLeft === 0
 
+    const formatDuration = (days: number) => {
+        if (days < 30) {
+            // Less than a month: show days
+            return `${days} ${days === 1 ? t("common.day") : t("common.days")}`
+        } else if (days < 365) {
+            // Less than a year: show months
+            const months = Math.floor(days / 30)            
+                return `${months} ${
+                    months === 1 ? t("common.month") : t("common.months")
+                }`     
+        } else {
+            // More than a year: show year
+            const years = Math.floor(days / 365)
+            return `${years} ${
+                years === 1 ? t("common.year") : t("common.years")
+            }`
+        }
+    }
+
     // Determine button text based on days left
-    const buttonText = isExpired 
-        ? t('Plans.cta.upgrade') 
-        : `${daysLeft} ${t('common.month')} ${t('Plans.cta.upgrade')}`
+    const buttonText = isExpired || subscriptionType === 'STARTER'
+        ? t("Plans.cta.upgrade")
+        : `${formatDuration(daysLeft)} ${t("common.left")}`
 
     return (
         <Flex

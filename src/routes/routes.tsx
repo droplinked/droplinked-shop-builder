@@ -15,10 +15,12 @@ import ChangelogDetail from "pages/changelog/components/ChangelogDetail"
 import Onboarding from "pages/onboarding/Onboarding"
 import AboutUs from "pages/public-pages/about/AboutUs"
 import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
-import PublicBlog from "pages/public-pages/blogs/blog/Blog"
-import PublicBlogs from "pages/public-pages/blogs/Blogs"
+import BlogPage from "pages/public-pages/public-blogs/PublicBlogs"
+import CategoryPage from "pages/public-pages/public-blogs/pages/CategoryPage/CategoryPage"
+import BlogDetailPage from "pages/public-pages/public-blogs/pages/BlogDetailsPage/BlogDetailsPage"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
+import BookDemoPage from "pages/public-pages/landings/book-demo/BookDemoPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-tokens/CustomTokensPage"
 import DigitalGoodsPage from "pages/public-pages/landings/digital-goods/DigitalGoodsPage"
 import DIMST from "pages/public-pages/landings/DIMST/DIMST"
@@ -38,9 +40,11 @@ import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import TemplateCreatePage from "pages/template-designer/components/TemplateCreatePage"
+import TemplateEditPage from "pages/template-designer/components/TemplateEditPage"
+import ExplorePage from "pages/explore/ExplorePage"
 
 // Lazy-loaded components for other routes
-const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"))
 const Blogs = lazy(() => import("pages/blogs/Blogs"))
 const Collections = lazy(() => import("pages/collections/Collections"))
@@ -64,6 +68,8 @@ const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplat
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
+const TemplateDesigner = lazy(() => import("pages/template-designer/TemplateDesigner"))
+const ShippingManagement = lazy(() => import("pages/shipping-management/ShippingManagement"))
 
 const router = createBrowserRouter([
     {
@@ -87,11 +93,13 @@ const router = createBrowserRouter([
             { path: "onchain-subscriptions", element: <OnchainSubscriptionsPage /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
+            { path: "book-demo", element: <BookDemoPage /> },
             // Partner routes using dynamic component 
             { path: "d3", element: <PartnerPage partnerId="d3" /> },
             { path: "unstoppable-domains", element: <PartnerPage partnerId="unstoppableDomains" /> },
             { path: "polygon", element: <PartnerPage partnerId="polygon" /> },
             { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
+            { path: "base", element: <PartnerPage partnerId="base" /> },
             { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
             { path: "roi", element: <DIMST /> },
             { path: "dpp", element: <DPPPage /> },
@@ -99,8 +107,9 @@ const router = createBrowserRouter([
             {
                 path: "blogs",
                 children: [
-                    { index: true, element: <PublicBlogs /> },
-                    { path: ":slug", element: <PublicBlog /> }
+                    { index: true, element: <BlogPage /> },
+                    { path: "categories/:category", element: <CategoryPage /> },
+                    { path: ":slug", element: <BlogDetailPage /> }
                 ]
             },
             { path: "plans", element: <PricingPage /> },
@@ -111,7 +120,8 @@ const router = createBrowserRouter([
                     { index: true, element: <AffiliateProductsPage isPublic={true} /> },
                     { path: ":slug", element: <AffiliateProductsSinglePage isPublic={true} /> },
                 ]
-            }
+            },
+            { path: "explore", element: <ExplorePage /> }
         ]
     },
     {
@@ -145,6 +155,7 @@ const router = createBrowserRouter([
             },
             { path: "collections", element: <Collections /> },
             { path: "purchase-history", element: <PurchaseHistory /> },
+            { path: "shipping-management", element: <ShippingManagement /> },
             {
                 path: "affiliate",
                 children: [
@@ -194,19 +205,18 @@ const router = createBrowserRouter([
         ]
     },
     {
+        path: "/analytics/style-center/template-builder",
+        errorElement: <MaintenancePage />,
+        children: [
+            { index: true, element: <TemplateCreatePage /> }
+        ]
+    },
+    {
         path: "shop-management",
         element: <ProducerLayout hideSidebar={true} showBackground={true} />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> }
-        ]
-    },
-    {
-        path: 'style-center/storefront-designer',
-        element: <ProducerLayout hideSidebar={true} />,
-        errorElement: <MaintenancePage />,
-        children: [
-            { index: true, element: <StorefrontDesigner /> }
         ]
     },
     { path: "onboarding", element: <Onboarding /> },

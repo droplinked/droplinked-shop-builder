@@ -1,8 +1,7 @@
-import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { AILg } from 'assets/icons/AI';
 import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg';
 import { SuitcaseSm } from 'assets/icons/System/SuitCase/SuitcaseSm';
-import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal';
 import AppButton from 'components/redesign/button/AppButton';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
@@ -11,17 +10,17 @@ import Textarea from 'components/redesign/textarea/Textarea';
 import { getCategories } from 'pages/onboarding/constants/categories';
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import React, { useState } from 'react';
-import useAppStore from 'stores/app/appStore';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer';
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler';
 
 function AICard() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure();
   const { shopSetupUI, updateShopSetupUI } = useOnboardingStore();
   const { generateAllContent, isLoading } = useAiGeneratedContent();
-  const { hasPaidSubscription } = useAppStore();
   const { t } = useLocaleResources('onboarding');
+  const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler();
 
   const categories = getCategories(t);
 
@@ -39,19 +38,9 @@ function AICard() {
   };
 
   const handleGenerateWithAI = () => {
-    const hasValidSubscription = hasPaidSubscription();
-
-    if (hasValidSubscription) {
-      // User has a valid subscription (Pro, Premium, or Enterprise), generate content
+    handleFeatureAccess(() => {
       generateAllContent();
-    } else {
-      // User has no subscription or has STARTER plan, show pro trial modal
-      openProTrialModal();
-    }
-  };
-
-  const handleCloseProTrialModal = () => {
-    closeProTrialModal();
+    });
   };
 
   return (
@@ -134,7 +123,7 @@ function AICard() {
         </Box>
       </Box>
 
-      <ProTrialModal isOpen={isProTrialModalOpen} onClose={handleCloseProTrialModal} />
+      <UpgradePlanModalContainer isOpen={isUpgradeModalOpen} onClose={closeUpgradeModal} />
     </Box>
   );
 }

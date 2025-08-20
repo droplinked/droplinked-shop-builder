@@ -26,7 +26,6 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
             modalRootProps={{ isOpen: true, onClose: () => { }, size: "3xl", isCentered: true }}
             modalContentProps={{ width: "auto !important", padding: "0px !important" }}
         >
-            <WalletStatus isLoading={isCreatingWallet && !isError} variant={isError ? "red" : "green"} icon={createWalletData?.data?.data || hasCreatedCircleWallet ? "tick" : "wallet"} />
             <ModalBody
                 display="flex"
                 width={{ base: "360px", md: "625px" }}

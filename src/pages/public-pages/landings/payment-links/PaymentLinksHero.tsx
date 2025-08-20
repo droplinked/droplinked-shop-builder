@@ -20,7 +20,7 @@ function PaymentLinksHero() {
                             {t('PaymentLinksHero.startNow')}
                         </AppButton>
                     </Link>
-                    <Link to='mailto:support@droplinked.com'>
+                    <Link to='/book-demo'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
                             {t('PaymentLinksHero.requestDemo')}
                         </AppButton>

@@ -1,4 +1,5 @@
-import AppDialog from 'components/common/dialog'
+import { TrashLg } from 'assets/icons/Action/Trash/TrashLg'
+import AppConfirmationDialog from 'components/redesign/app-confirmation-dialog/AppConfirmationDialog'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
@@ -8,44 +9,40 @@ import { deleteCollectionService } from 'services/collection/services'
 
 interface IProps {
     open: boolean
-    close: Function
-    fetch: Function
+    close: () => void
+    fetch: () => void
     collectionID: string
 }
+
 function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
-    const { mutate, isLoading } = useMutation((params: IdeleteCollectionService) => deleteCollectionService(params))
+    const { mutateAsync, isLoading } = useMutation((params: IdeleteCollectionService) => deleteCollectionService(params))
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources("collections");
+    const { t } = useLocaleResources("collections")
+
+    const handleDelete = async () => {
+        try {
+            await mutateAsync({ collectionID })
+            showToast({ message: t("ConfirmDeleteCollection.success"), type: "success" })
+            fetch()
+            close()
+        } catch (error) {
+            showToast({ message: t("common:genericError"), type: "error" })
+        }
+    }
 
     return (
-        <AppDialog
-            open={open}
-            close={() => { }}
+        <AppConfirmationDialog
+            isOpen={open}
+            onClose={close}
+            icon={<TrashLg color='#fff' />}
             title={t("ConfirmDeleteCollection.title")}
-            text={t("ConfirmDeleteCollection.confirmationText")}
-            buttons={[
-                {
-                    children: t("common:cancel"),
-                    onClick: () => close(),
-                    buttonProps: {
-                        variant: "outline"
-                    }
-                },
-                {
-                    children: t("common:delete"),
-                    buttonProps: { isLoading },
-                    onClick: () => {
-                        mutate({ collectionID }, {
-                            onSuccess: () => {
-                                showToast({ message: t("ConfirmDeleteCollection.success"), type: "success" })
-                                fetch()
-                                close()
-                            },
-                            onError: async () => showToast({ message: t("common:genericError"), type: "error" })
-                        })
-                    }
-                }
-            ]}
+            description={t("ConfirmDeleteCollection.confirmationText")}
+            variant='delete'
+            confirmButtonProps={{
+                children: t("common:delete"),
+                isLoading,
+                onClick: handleDelete
+            }}
         />
     )
 }

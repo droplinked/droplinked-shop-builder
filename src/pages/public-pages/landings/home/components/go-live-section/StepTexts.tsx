@@ -1,8 +1,8 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/homePage/en.json'
 import localAr from 'locales/public-pages/landings/homePage/ar.json'
+import localEn from 'locales/public-pages/landings/homePage/en.json'
+import React from 'react'
 
 interface StepData {
     title: string

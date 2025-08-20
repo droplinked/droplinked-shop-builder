@@ -1,8 +1,8 @@
 import { Box, Link as ChakraLink, Flex, Grid, Heading } from '@chakra-ui/react'
+import IframeAwareLink from 'components/redesign/iframe-aware-link/IframeAwareLink'
 import getPublicMegaMenuItems from 'data/publicMegaMenuItems'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
-import { Link } from "react-router-dom"
 
 export default function NavigationLinks() {
     const { t } = useLocaleResources('layout/PublicLayout')
@@ -19,7 +19,7 @@ export default function NavigationLinks() {
     const COMPANY_LINKS = [
         { label: t('home'), href: '/' },
         { label: t('publicHeaderLinks.pricing'), href: '/plans' },
-        { label: t('publicHeaderLinks.affiliate'), href: '/affiliate' },
+        { label: t('publicHeaderLinks.affiliate'), href: '/affiliate/products' },
         { label: t('publicHeaderLinks.blog'), href: '/blogs' },
         { label: t('publicHeaderLinks.about'), href: '/about' }
     ] as const
@@ -51,21 +51,64 @@ function NavigationGroup({ label, links }) {
 function NavigationLink({ label, href, isExternal }) {
     const { isRTL } = useLocaleResources('common')
 
-    const LinkComponent = isExternal ? ChakraLink : Link
-    const linkProps = isExternal ? { href, target: '_blank' } : { to: href }
+    // For external links, always use ChakraLink with target="_blank"
+    if (isExternal) {
+        return (
+            <ChakraLink
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                position="relative"
+                transition="0.3s ease-in-out"
+                _hover={{
+                    '& > span': {
+                        color: 'text.white',
+                        transform: isRTL ? 'translateX(-8px)' : 'translateX(8px)'
+                    },
+                    '& > .border': { opacity: 1 }
+                }}
+            >
+                <Box
+                    className="border"
+                    position="absolute"
+                    top={0}
+                    left={isRTL ? 'unset' : 0}
+                    right={isRTL ? 0 : 'unset'}
+                    width="2px"
+                    height="100%"
+                    borderRadius={2}
+                    bg="neutral.white"
+                    opacity={0}
+                    transition="opacity 0.3s ease-in-out"
+                />
+                <Box
+                    as="span"
+                    display="inline-block"
+                    fontSize={14}
+                    fontWeight={400}
+                    color='text.subtext.placeholder.dark'
+                    transition="transform 0.3s ease-in-out"
+                >
+                    {label}
+                </Box>
+            </ChakraLink>
+        )
+    }
 
+    // For internal links, use IframeAwareLink
     return (
-        <ChakraLink
-            as={LinkComponent}
-            {...linkProps}
-            position="relative"
-            transition="0.3s ease-in-out"
-            _hover={{
-                '& > span': {
-                    color: 'text.white',
-                    transform: isRTL ? 'translateX(-8px)' : 'translateX(8px)'
-                },
-                '& > .border': { opacity: 1 }
+        <IframeAwareLink
+            to={href}
+            chakraProps={{
+                position: "relative",
+                transition: "0.3s ease-in-out",
+                _hover: {
+                    '& > span': {
+                        color: 'text.white',
+                        transform: isRTL ? 'translateX(-8px)' : 'translateX(8px)'
+                    },
+                    '& > .border': { opacity: 1 }
+                }
             }}
         >
             <Box
@@ -91,6 +134,6 @@ function NavigationLink({ label, href, isExternal }) {
             >
                 {label}
             </Box>
-        </ChakraLink>
+        </IframeAwareLink>
     )
 }

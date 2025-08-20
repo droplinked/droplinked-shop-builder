@@ -1,5 +1,7 @@
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductTypeLegality from 'pages/products/hooks/useProductTypeLegality'
 import React from 'react'
@@ -18,6 +20,7 @@ export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggle
     const { values, setFieldValue } = useProductForm()
     const { showToast } = useAppToast()
     const { isLegal, errorMessage } = useProductTypeLegality("drop")
+    const { handleFeatureAccess, isUpgradeModalOpen, closeUpgradeModal } = useUpgradeHandler('ENTERPRISE')
 
     function handleDropToggle(checked: boolean) {
         const { _id, product_type, publish_status, digitalDetail, sku } = values
@@ -32,12 +35,14 @@ export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggle
             return
         }
 
-        onToggleDrop(checked)
+        handleFeatureAccess(() => {
+            onToggleDrop(checked)
 
-        if (!checked) {
-            setFieldValue('digitalDetail', { ...digitalDetail, chain: '' })
-            setFieldValue('sku', sku.map(s => ({ ...s, royalty: null })))
-        }
+            if (!checked) {
+                setFieldValue('digitalDetail', { ...digitalDetail, chain: '' })
+                setFieldValue('sku', sku.map(s => ({ ...s, royalty: null })))
+            }
+        })
     }
 
     return (
@@ -53,6 +58,11 @@ export default function ProductDrop({ isProductRecorded, isDropEnabled, onToggle
                 ? <DropSummary />
                 : <DropDetailsSection isDropEnabled={isDropEnabled} />
             }
+            <UpgradePlanModalContainer
+                isOpen={isUpgradeModalOpen}
+                onClose={closeUpgradeModal}
+                initialActiveTab="enterprise"
+            />
         </SwitchBox>
     )
 }

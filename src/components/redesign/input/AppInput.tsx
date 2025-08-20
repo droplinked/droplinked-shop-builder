@@ -1,5 +1,6 @@
 import { Box, Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { AlertSm } from 'assets/icons/Sign/Alert/AlertSm'
+import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import { TooltipMd } from 'assets/icons/Sign/Tooltip/TooltipMd'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AnimatedBox from 'pages/products/components/ProductDrawer/components/common/AnimatedBox'
@@ -77,7 +78,7 @@ export function AppInputHeader({ label, description, inputProps, labelProps, too
                         color="#FFF"
                         {...labelProps}
                     >
-                        {label} {inputProps?.isRequired && <AppIcons.Required />}
+                        {label} {inputProps?.isRequired && <AsteriskSm color='#ff2244' width={12} height={12} />}
                     </FormLabel>
                     {tooltipText && <AppTooltip label={tooltipText}>
                         <Box>
@@ -94,26 +95,27 @@ export function AppInputHeader({ label, description, inputProps, labelProps, too
 
 function InputContainer(props: Props) {
     const { leftElement, rightElement, inputContainerProps, inputProps, maxCharacters, state, showAnimatedLoading } = props
+    const { numberType, ...otherInputProps } = inputProps ?? {}
     const borderColorMap = { success: "#2BCFA1", error: "#F24" }
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (inputProps?.type === 'number') {
+        if (otherInputProps?.type === 'number') {
             const invalidChars = ['e', 'E', '+', '-', ',']
-            if (inputProps.numberType === 'int') invalidChars.push('.')
+            if (numberType === 'int') invalidChars.push('.')
             if (invalidChars.includes(event.key)) event.preventDefault()
         }
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (inputProps?.isDisabled) return
+        if (otherInputProps?.isDisabled) return
 
         const { value, validity } = event.target
 
-        if (inputProps?.type !== 'number') return inputProps?.onChange?.(event)
+        if (otherInputProps?.type !== 'number') return otherInputProps?.onChange?.(event)
 
-        const numericValue = inputProps.numberType === 'float' ? parseFloat(value) : parseInt(value, 10)
+        const numericValue = numberType === 'float' ? parseFloat(value) : parseInt(value, 10)
 
-        if (!isNaN(numericValue) && validity.valid) inputProps?.onChange?.(event)
+        if (!isNaN(numericValue) && validity.valid) otherInputProps?.onChange?.(event)
     }
 
     return (
@@ -175,16 +177,16 @@ function InputContainer(props: Props) {
                             }
                         }}
                         onKeyDown={handleKeyDown}
-                        {...inputProps}
+                        {...otherInputProps}
                         onChange={handleChange}
                     />
                 }
                 {showAnimatedLoading &&
                     <AnimatedLoadingText
-                        text={inputProps.value}
-                        fontSize={inputProps.fontSize ?? 14}
-                        fontWeight={inputProps.fontWeight ?? 400}
-                        color={inputProps.color ?? "#fff"}
+                        text={otherInputProps.value}
+                        fontSize={otherInputProps.fontSize ?? 14}
+                        fontWeight={otherInputProps.fontWeight ?? 400}
+                        color={otherInputProps.color ?? "#fff"}
                     />
                 }
                 {rightElement}
@@ -204,7 +206,7 @@ function InputFooter({ message, maxCharacters, inputProps, stateColor = "#fff", 
                 >
                     {message && (
                         <Flex alignItems="center" gap={2}>
-                            {showErrorIcon && <AppIcons.WhiteWarning />}
+                            {showErrorIcon && <AlertSm color='#fff' />}
                             <Text>{message}</Text>
                         </Flex>
                     )}
