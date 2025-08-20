@@ -89,7 +89,7 @@
 		}
 	},
 	"scripts": {
-		"start": "vite",
+		"dev": "vite",
 		"build": "NODE_OPTIONS='--max-old-space-size=4096' vite build",
 		"preview": "vite preview",
 		"find-deadcode": "ts-prune -s=.test.ts? -p ./jsconfig.json",
@@ -97,8 +97,7 @@
 		"test:watch": "NODE_ENV=test jest --watch",
 		"test:coverage": "NODE_ENV=test jest --coverage",
 		"test:debug": "NODE_ENV=test node --inspect-brk node_modules/.bin/jest --runInBand",
-		"profile": "vite build --mode analyze",
-		"analyze": "vite-bundle-analyzer",
+		"analyze": "ANALYZE=true NODE_OPTIONS='--max-old-space-size=4096' vite build",
 		"types:update": "node scripts/download-types.js"
 	},
 	"eslintConfig": {
@@ -147,8 +146,6 @@
 		"vite-bundle-analyzer": "^1.2.1",
 		"vite-plugin-eslint": "^1.8.1",
 		"vite-plugin-node-polyfills": "^0.24.0",
-		"vite-plugin-svgr": "^4.3.0",
-		"webpack": "^5.74.0",
-		"webpack-bundle-analyzer": "^4.10.2"
+		"vite-plugin-svgr": "^4.3.0"
 	}
 }

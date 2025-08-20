@@ -1,8 +1,9 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
+import { defineConfig } from 'vite'
+import bundleAnalyzer from 'vite-bundle-analyzer'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import svgr from 'vite-plugin-svgr'
-import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -30,7 +31,12 @@ export default defineConfig({
             // Exclude constants to prevent conflicts with local constants directory
             exclude: ['constants'],
         }),
-    ],
+        process.env.ANALYZE && bundleAnalyzer({
+            openAnalyzer: true,
+            analyzerMode: 'static',
+            reportFilename: 'bundle-report.html',
+        }),
+    ].filter(Boolean),
 
     resolve: {
         alias: {

@@ -35,11 +35,12 @@ This platform enables merchants to create their online presence with a focus on 
   - And more networks via our abstraction layer
 
 ### 2.3. Dev Tools
-- **Build Tool**: React Scripts with [react-app-rewired](https://github.com/timarney/react-app-rewired)
+- **Build Tool**: [Vite](https://vitejs.dev/) - Fast build tool and dev server
 - **Package Manager**: npm
-- **Bundler**: Custom Webpack configuration
+- **Bundler**: Vite (using Rollup under the hood)
 - **CSS Preprocessor**: SASS
 - **Code Analysis**: [ts-prune](https://github.com/nadeesha/ts-prune) for detecting unused exports
+- **Bundle Analysis**: [vite-bundle-analyzer](https://github.com/nonzzz/vite-bundle-analyzer) for bundle optimization
 
 ---
 
