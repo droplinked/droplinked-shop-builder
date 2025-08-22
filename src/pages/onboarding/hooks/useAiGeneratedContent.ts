@@ -1,32 +1,116 @@
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { usePolling } from 'hooks/usePolling/usePolling'
-import { useState } from 'react'
+import { useRef } from 'react'
 import { useMutation } from 'react-query'
 import { generateDomains, generateHeroSection, generateLogos, generateShopNames, getAiImageStatus } from 'services/ai/services'
 import useOnboardingStore from '../stores/useOnboardingStore'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { GenerationState } from '../types/aiAssistant'
 
 export const useAiGeneratedContent = () => {
-    // State to track completed generations
-    const [completedLogos, setCompletedLogos] = useState<string[]>([])
-    const [completedCovers, setCompletedCovers] = useState<string[]>([])
-    const [finishedLogoRequests, setFinishedLogoRequests] = useState<number>(0)
-    const [finishedCoverRequests, setFinishedCoverRequests] = useState<number>(0)
+    // Use refs to track generation state to avoid race conditions
+    const logoState = useRef<GenerationState>({ completedResults: [], finishedRequests: 0, totalRequests: 3 })
+    const coverState = useRef<GenerationState>({ completedResults: [], finishedRequests: 0, totalRequests: 3 })
 
     // Create 3 separate polling instances for logos
-    const logoPolling1 = usePolling()
-    const logoPolling2 = usePolling()
-    const logoPolling3 = usePolling()
+    const logoPolling1 = usePolling({ maxAttempts: 120 }) // 10 minutes max
+    const logoPolling2 = usePolling({ maxAttempts: 120 })
+    const logoPolling3 = usePolling({ maxAttempts: 120 })
 
     // Create 3 separate polling instances for covers
-    const coverPolling1 = usePolling()
-    const coverPolling2 = usePolling()
-    const coverPolling3 = usePolling()
+    const coverPolling1 = usePolling({ maxAttempts: 120 })
+    const coverPolling2 = usePolling({ maxAttempts: 120 })
+    const coverPolling3 = usePolling({ maxAttempts: 120 })
 
     const { showToast } = useAppToast()
     const { shopSetupUI, aiGeneratedContent, updateAiContent, updateAiLoadingState } = useOnboardingStore()
     const { businessCategory, businessDescription } = shopSetupUI
     const { t } = useLocaleResources('onboarding')
+
+    // Helper function to reset state and stop all polling for a specific type
+    const resetAndStopPolling = (type: 'logos' | 'covers') => {
+        if (type === 'logos') {
+            logoState.current = { completedResults: [], finishedRequests: 0, totalRequests: 3 }
+            logoPolling1.stopPolling()
+            logoPolling2.stopPolling()
+            logoPolling3.stopPolling()
+        } else {
+            coverState.current = { completedResults: [], finishedRequests: 0, totalRequests: 3 }
+            coverPolling1.stopPolling()
+            coverPolling2.stopPolling()
+            coverPolling3.stopPolling()
+        }
+    }
+
+    // Helper function to handle completion of all requests
+    const handleAllRequestsCompleted = (type: 'logos' | 'covers', state: GenerationState) => {
+        const hasResults = state.completedResults.length > 0
+        const successKey = type === 'logos' ? 'logosGenerated' : 'coversGenerated'
+        const errorKey = type === 'logos' ? 'allLogoGenerationFailed' : 'allCoverGenerationFailed'
+
+        if (hasResults) {
+            updateAiContent(type, state.completedResults.slice(0, 3))
+            showToast({ type: "success", message: t(`useAiGeneratedContent.success.${successKey}`) })
+        } else {
+            showToast({ type: "error", message: t(`useAiGeneratedContent.errors.${errorKey}`) })
+        }
+
+        updateAiLoadingState(type, false)
+        resetAndStopPolling(type)
+    }
+
+    // Helper function to create polling logic for image generation
+    const createPollingHandler = (type: 'logos' | 'covers', stateRef: React.MutableRefObject<GenerationState>) => {
+        return async (requestId: string) => {
+            try {
+                const response = await getAiImageStatus(requestId)
+                const statusData = response.data
+
+                if (statusData.status === "SUCCESS") {
+                    // Add result and increment finished count
+                    stateRef.current.completedResults.push(statusData.result)
+                    stateRef.current.finishedRequests++
+
+                    // Check if all requests are finished
+                    if (stateRef.current.finishedRequests >= stateRef.current.totalRequests) {
+                        handleAllRequestsCompleted(type, stateRef.current)
+                    }
+
+                    return true // Stop this specific polling instance
+                }
+
+                if (statusData.status === "PENDING") {
+                    return false // Continue polling
+                }
+
+                if (statusData.status === "FAILURE") {
+                    // Just increment finished count for failed request
+                    stateRef.current.finishedRequests++
+
+                    // Check if all requests are finished
+                    if (stateRef.current.finishedRequests >= stateRef.current.totalRequests) {
+                        handleAllRequestsCompleted(type, stateRef.current)
+                    }
+
+                    return true // Stop this specific polling instance
+                }
+
+                // Handle any other unexpected status
+                console.error(`Unexpected status for ${type} request ${requestId}:`, statusData.status)
+                stateRef.current.finishedRequests++
+
+                if (stateRef.current.finishedRequests >= stateRef.current.totalRequests) {
+                    handleAllRequestsCompleted(type, stateRef.current)
+                }
+
+                return true // Stop this specific polling instance
+            } catch (error) {
+                console.error(`Error checking ${type} status:`, error)
+                // Don't increment finished count on network errors, just continue polling
+                return false
+            }
+        }
+    }
 
     const { mutate: generateLogosMutation } = useMutation(
         async () => {
@@ -43,99 +127,19 @@ export const useAiGeneratedContent = () => {
         {
             onMutate: () => {
                 updateAiLoadingState('logos', true)
-                setCompletedLogos([])
-                setFinishedLogoRequests(0)
+                resetAndStopPolling('logos')
             },
             onSuccess(requestIds) {
                 if (requestIds.length > 0) {
+                    const pollingInstances = [logoPolling1, logoPolling2, logoPolling3]
+                    const logoPollingHandler = createPollingHandler('logos', logoState)
+
                     // Start polling for each logo request separately
                     requestIds.forEach((requestId, index) => {
-                        const pollingInstance = [logoPolling1, logoPolling2, logoPolling3][index]
-
-                        pollingInstance.startPolling(async () => {
-                            try {
-                                const response = await getAiImageStatus(requestId)
-                                const statusData = response.data
-
-                                if (statusData.status === "SUCCESS") {
-                                    // Add this logo to completed list and increment finished count
-                                    setCompletedLogos(prev => {
-                                        const newLogos = [...prev, statusData.result]
-                                        return newLogos
-                                    })
-
-                                    setFinishedLogoRequests(prev => {
-                                        const newFinished = prev + 1
-
-                                        // Check if all 3 requests are finished or we have enough logos
-                                        if (newFinished >= 3) {
-                                            setCompletedLogos(currentLogos => {
-                                                if (currentLogos.length > 0) {
-                                                    updateAiContent('logos', currentLogos.slice(0, 3))
-                                                    showToast({ type: "success", message: t('useAiGeneratedContent.success.logosGenerated') })
-                                                } else {
-                                                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.allLogoGenerationFailed') })
-                                                }
-                                                updateAiLoadingState('logos', false)
-
-                                                // Stop all logo polling
-                                                logoPolling1.stopPolling()
-                                                logoPolling2.stopPolling()
-                                                logoPolling3.stopPolling()
-
-                                                return currentLogos
-                                            })
-                                        }
-
-                                        return newFinished
-                                    })
-
-                                    return true // Stop this specific polling instance
-                                }
-
-                                if (statusData.status === "PENDING") {
-                                    return false // Continue polling
-                                }
-
-                                if (statusData.status === "FAILURE") {
-                                    // Increment finished count for failed request
-                                    setFinishedLogoRequests(prev => {
-                                        const newFinished = prev + 1
-
-                                        // Check if all 3 requests are finished
-                                        if (newFinished >= 3) {
-                                            setCompletedLogos(currentLogos => {
-                                                if (currentLogos.length > 0) {
-                                                    updateAiContent('logos', currentLogos.slice(0, 3))
-                                                    showToast({ type: "success", message: t('useAiGeneratedContent.success.logosGenerated') })
-                                                } else {
-                                                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.allLogoGenerationFailed') })
-                                                }
-                                                updateAiLoadingState('logos', false)
-
-                                                // Stop all logo polling
-                                                logoPolling1.stopPolling()
-                                                logoPolling2.stopPolling()
-                                                logoPolling3.stopPolling()
-
-                                                return currentLogos
-                                            })
-                                        }
-
-                                        return newFinished
-                                    })
-
-                                    return true // Stop this specific polling instance, ignore the failure
-                                }
-
-                                // Handle any other unexpected status
-                                console.error(`Unexpected status for logo request ${requestId}:`, statusData.status)
-                                return true // Stop this specific polling instance
-                            } catch (error) {
-                                console.error('Error checking logo status:', error)
-                                return false
-                            }
-                        })
+                        const pollingInstance = pollingInstances[index]
+                        if (pollingInstance) {
+                            pollingInstance.startPolling(() => logoPollingHandler(requestId))
+                        }
                     })
                 } else {
                     showToast({ message: t('useAiGeneratedContent.errors.failedToGetLogoRequestIds'), type: "error" })
@@ -145,6 +149,7 @@ export const useAiGeneratedContent = () => {
             onError(err: any) {
                 showToast({ message: err.response?.data?.data?.message || t('useAiGeneratedContent.errors.failedToGenerateLogos'), type: "error" })
                 updateAiLoadingState('logos', false)
+                resetAndStopPolling('logos')
             }
         }
     )
@@ -164,99 +169,19 @@ export const useAiGeneratedContent = () => {
         {
             onMutate: () => {
                 updateAiLoadingState('covers', true)
-                setCompletedCovers([])
-                setFinishedCoverRequests(0)
+                resetAndStopPolling('covers')
             },
             onSuccess(requestIds) {
                 if (requestIds.length > 0) {
+                    const pollingInstances = [coverPolling1, coverPolling2, coverPolling3]
+                    const coverPollingHandler = createPollingHandler('covers', coverState)
+
                     // Start polling for each cover request separately
                     requestIds.forEach((requestId, index) => {
-                        const pollingInstance = [coverPolling1, coverPolling2, coverPolling3][index]
-
-                        pollingInstance.startPolling(async () => {
-                            try {
-                                const response = await getAiImageStatus(requestId)
-                                const statusData = response.data
-
-                                if (statusData.status === "SUCCESS") {
-                                    // Add this cover to completed list and increment finished count
-                                    setCompletedCovers(prev => {
-                                        const newCovers = [...prev, statusData.result]
-                                        return newCovers
-                                    })
-
-                                    setFinishedCoverRequests(prev => {
-                                        const newFinished = prev + 1
-
-                                        // Check if all 3 requests are finished or we have enough covers
-                                        if (newFinished >= 3) {
-                                            setCompletedCovers(currentCovers => {
-                                                if (currentCovers.length > 0) {
-                                                    updateAiContent('covers', currentCovers.slice(0, 3))
-                                                    showToast({ type: "success", message: t('useAiGeneratedContent.success.coversGenerated') })
-                                                } else {
-                                                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.allCoverGenerationFailed') })
-                                                }
-                                                updateAiLoadingState('covers', false)
-
-                                                // Stop all cover polling
-                                                coverPolling1.stopPolling()
-                                                coverPolling2.stopPolling()
-                                                coverPolling3.stopPolling()
-
-                                                return currentCovers
-                                            })
-                                        }
-
-                                        return newFinished
-                                    })
-
-                                    return true // Stop this specific polling instance
-                                }
-
-                                if (statusData.status === "PENDING") {
-                                    return false // Continue polling
-                                }
-
-                                if (statusData.status === "FAILURE") {
-                                    // Increment finished count for failed request
-                                    setFinishedCoverRequests(prev => {
-                                        const newFinished = prev + 1
-
-                                        // Check if all 3 requests are finished
-                                        if (newFinished >= 3) {
-                                            setCompletedCovers(currentCovers => {
-                                                if (currentCovers.length > 0) {
-                                                    updateAiContent('covers', currentCovers.slice(0, 3))
-                                                    showToast({ type: "success", message: t('useAiGeneratedContent.success.coversGenerated') })
-                                                } else {
-                                                    showToast({ type: "error", message: t('useAiGeneratedContent.errors.allCoverGenerationFailed') })
-                                                }
-                                                updateAiLoadingState('covers', false)
-
-                                                // Stop all cover polling
-                                                coverPolling1.stopPolling()
-                                                coverPolling2.stopPolling()
-                                                coverPolling3.stopPolling()
-
-                                                return currentCovers
-                                            })
-                                        }
-
-                                        return newFinished
-                                    })
-
-                                    return true // Stop this specific polling instance, ignore the failure
-                                }
-
-                                // Handle any other unexpected status
-                                console.error(`Unexpected status for cover request ${requestId}:`, statusData.status)
-                                return true // Stop this specific polling instance
-                            } catch (error) {
-                                console.error('Error checking cover status:', error)
-                                return false
-                            }
-                        })
+                        const pollingInstance = pollingInstances[index]
+                        if (pollingInstance) {
+                            pollingInstance.startPolling(() => coverPollingHandler(requestId))
+                        }
                     })
                 } else {
                     showToast({ message: t('useAiGeneratedContent.errors.failedToGetCoverRequestIds'), type: "error" })
@@ -266,6 +191,7 @@ export const useAiGeneratedContent = () => {
             onError(err: any) {
                 showToast({ message: err.response?.data?.data?.message || t('useAiGeneratedContent.errors.failedToGenerateCovers'), type: "error" })
                 updateAiLoadingState('covers', false)
+                resetAndStopPolling('covers')
             }
         }
     )
