@@ -21,6 +21,7 @@ export const usePolling = (options: UsePollingOptions = {}) => {
     const [isProcessing, setIsProcessing] = useState(false)
     const [attempts, setAttempts] = useState(0)
     const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null)
+    const attemptsRef = useRef<number>(0) // Use ref to avoid stale closure issues
 
     // Cleanup on unmount
     useEffect(() => {
@@ -32,17 +33,21 @@ export const usePolling = (options: UsePollingOptions = {}) => {
             setIsPolling(false)
             setIsProcessing(false)
             setAttempts(0)
+            attemptsRef.current = 0
         }
     }, [])
 
     const startPolling = (pollFunction: () => Promise<boolean>) => {
         setIsPolling(true)
         setAttempts(0)
+        attemptsRef.current = 0
 
         // Poll every specified interval
         pollingIntervalRef.current = setInterval(async () => {
             try {
-                setAttempts(prev => prev + 1)
+                attemptsRef.current += 1
+                setAttempts(attemptsRef.current)
+
                 const isReady = await pollFunction()
 
                 if (isReady) {
@@ -51,8 +56,8 @@ export const usePolling = (options: UsePollingOptions = {}) => {
                     return
                 }
 
-                // Check if max attempts reached
-                if (attempts >= maxAttempts) {
+                // Check if max attempts reached using ref to avoid stale closure
+                if (attemptsRef.current >= maxAttempts) {
                     stopPolling()
                     onTimeout?.()
                     return
@@ -73,6 +78,7 @@ export const usePolling = (options: UsePollingOptions = {}) => {
         setIsPolling(false)
         setIsProcessing(false)
         setAttempts(0)
+        attemptsRef.current = 0
     }
 
     const startProcessing = () => {
