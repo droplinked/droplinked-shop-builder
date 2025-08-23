@@ -5,7 +5,7 @@ A modular, configurable landing page system for different partner integrations w
 ## 🏗️ Architecture Overview
 
 This system provides dynamic, partner-specific landing pages that are:
-- **Configuration-driven** - Easy to add new partners
+- **Template-driven** - Easy to add new partners using predefined templates
 - **Performance optimized** - Lazy loading for all sections
 - **Type-safe** - Comprehensive TypeScript definitions
 - **Modular** - Reusable components and configurable sections
@@ -19,6 +19,7 @@ partnerLandings/
 ├── PartnerPage.tsx              # Main entry point component
 ├── config/                      # Configuration management
 │   ├── types.ts                 # TypeScript type definitions
+│   ├── templates.ts             # Template definitions
 │   └── partners.tsx             # Partner configurations
 ├── context/                     # State management
 │   ├── PartnerLandingContext.tsx    # Main context provider
@@ -65,83 +66,47 @@ import PartnerPage from './partnerLandings/PartnerPage';
 - `unstoppableDomains` - Unstoppable Domains (3 months trial)
 - `polygon` - Polygon domain holders (3 months trial)
 - `crossmint` - Crossmint members (3 months trial)
+- `base` - Base network creators (no trial)
+- `gaia` - Gaia network creators (no trial)
 
-## ⚙️ Configuration System
+## ⚙️ Template System
 
-### Partner Configuration Structure
+### Available Templates
+
+1. **STANDARD** - Regular partners with claim functionality
+   - Shows partners section
+   - Shows claim now section
+   - Shows Pro Plan card
+   - Requires wallet verification
+   - Supports custom sections
+
+2. **CREATOR_FOCUSED** - Creator-focused partners without claim
+   - No partners section
+   - No claim now section
+   - No Pro Plan card
+   - No wallet verification
+   - **Automatically includes SignUpCta section**
+   - Supports custom sections
+
+### Template Configuration
 
 ```typescript
-interface PartnerConfig {
-  id: PartnerId;
-  name: string;
-  displayName: string;
-  trialMonths: 3 | 6 | 12;
-  logo: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  hero: {
-    title: string;
-    subtitle: string;
-    videoUrl?: string;
-  };
-  sections: Section[];
+interface PartnerTemplate {
+  sections: string[];
+  showPartners: boolean;
+  showClaimNow: boolean;
+  showProPlanCard: boolean;
+  buttonAction: 'claim' | 'get-started';
+  requiresWalletVerification: boolean;
+  allowCustomSections: boolean;
 }
 ```
 
-### Adding a New Partner
-
-1. **Add partner ID to types** (`config/types.ts`):
-   ```typescript
-   export type PartnerId = 'd3' | 'unstoppableDomains' | 'polygon' | 'crossmint' | 'newPartner';
-   ```
-
-2. **Create partner-specific components** (`components/partner-specific/`):
-   ```tsx
-   // components/partner-specific/NewPartnerFeatures.tsx
-   import React from 'react';
-   
-   const NewPartnerFeatures: React.FC = () => {
-     return (
-       <section className="new-partner-features">
-         {/* Partner-specific content */}
-       </section>
-     );
-   };
-   
-   export default NewPartnerFeatures;
-   ```
-
-3. **Add configuration** (`config/partners.tsx`):
-   ```typescript
-   import NewPartnerLogo from 'assets/brand-identity/NewPartner';
-   import NewPartnerFeatures from '../components/partner-specific/NewPartnerFeatures';
-   
-   export const PARTNER_CONFIGS: Record<string, PartnerConfig> = {
-     // ... existing partners
-     newPartner: {
-       id: 'newPartner',
-       name: 'New Partner',
-       displayName: 'New Partner',
-       trialMonths: 3,
-       logo: NewPartnerLogo,
-       hero: {
-         title: 'New Partner \n Members',
-         subtitle: 'Unlock 3 months of the Pro Plan absolutely free!',
-       },
-       sections: buildSections([
-         { id: 'new-partner-features', component: <NewPartnerFeatures /> }
-       ])
-     }
-   };
-   ```
-
-4. **Add route** (in your routing configuration):
-   ```tsx
-   <Route path="/partner/newPartner" element={<PartnerPage partnerId="newPartner" />} />
-   ```
-
 ## 🎯 Section System
 
-### Default Section Order
+### Default Section Order by Template
 
+#### STANDARD Template
 1. **Partners** - Marquee section showing partner logos
 2. **[Custom Sections]** - Partner-specific sections (injected here)
 3. **Set of Perks** - Benefits and features
@@ -149,22 +114,31 @@ interface PartnerConfig {
 5. **Join Community** - Community engagement section
 6. **Claim Now** - Call-to-action section
 
+#### CREATOR_FOCUSED Template
+1. **[Custom Sections]** - Partner-specific sections (injected here)
+2. **Set of Perks** - Benefits and features
+3. **Modular Stack** - Technology stack display
+4. **Join Community** - Community engagement section
+5. **SignUp CTA** - **Automatically included** signup call-to-action
+
 ### Custom Sections
 
-Partner-specific sections are automatically inserted after the partners section:
+Partner-specific sections are automatically inserted at specified positions:
 
 ```typescript
-sections: buildSections([
-  { id: 'custom-features', component: <CustomFeatures /> },
-  { id: 'special-offer', component: <SpecialOffer /> }
-])
+customSections: [
+  { id: 'custom-features', component: <CustomFeatures />, position: 1 },
+  { id: 'special-offer', component: <SpecialOffer />, position: 4 }
+]
 ```
+
+**Note**: For `CREATOR_FOCUSED` template, the `SignUpCta` section is automatically included at the end, so you don't need to add it manually.
 
 ## 🔧 Context System
 
 ### PartnerLandingContext
 
-Provides partner-specific data throughout the component tree:
+Provides template-based data throughout the component tree:
 
 ```tsx
 import { usePartnerLanding } from './context/PartnerLandingContext';
@@ -176,10 +150,16 @@ const MyComponent = () => {
     partnerName, 
     trialMonths, 
     hero,
+    template,
+    showPartners,
+    showClaimNow,
+    showProPlanCard,
+    buttonAction,
+    requiresWalletVerification,
     isPartner 
   } = usePartnerLanding();
   
-  // Use partner data
+  // Use template-based data
 };
 ```
 
@@ -192,6 +172,12 @@ const MyComponent = () => {
 - `trialMonths` - Trial period duration
 - `logo` - Partner logo component
 - `hero` - Hero section content
+- `template` - Current template type
+- `showPartners` - Whether to show partners section
+- `showClaimNow` - Whether to show claim now section
+- `showProPlanCard` - Whether to show Pro Plan card
+- `buttonAction` - Button action type
+- `requiresWalletVerification` - Whether wallet verification is needed
 - `isPartner(id)` - Utility function to check partner type
 
 ## 🎨 Component Development
@@ -208,12 +194,12 @@ interface MyComponentProps {
 }
 
 const MyComponent: React.FC<MyComponentProps> = ({ className }) => {
-  const { partnerName, trialMonths } = usePartnerLanding();
+  const { partnerName, trialMonths, showProPlanCard } = usePartnerLanding();
   
   return (
     <div className={className}>
       <h2>{partnerName} Special Offer</h2>
-      <p>{trialMonths} months free trial</p>
+      {showProPlanCard && <p>{trialMonths} months free trial</p>}
     </div>
   );
 };
@@ -221,26 +207,25 @@ const MyComponent: React.FC<MyComponentProps> = ({ className }) => {
 export default MyComponent;
 ```
 
-### Partner-Specific Components
+### Template-Based Conditional Rendering
 
 ```tsx
-// components/partner-specific/PartnerFeatures.tsx
+// components/PartnerFeatures.tsx
 import React from 'react';
-import { usePartnerLanding } from '../../context/PartnerLandingContext';
+import { usePartnerLanding } from '../context/PartnerLandingContext';
 
 const PartnerFeatures: React.FC = () => {
-  const { partnerId, isPartner } = usePartnerLanding();
+  const { template, showPartners, showClaimNow } = usePartnerLanding();
   
-  // Conditional rendering based on partner
-  if (isPartner('d3')) {
-    return <D3SpecificFeatures />;
-  }
-  
-  if (isPartner('unstoppableDomains')) {
-    return <UDSpecificFeatures />;
-  }
-  
-  return <DefaultFeatures />;
+  return (
+    <div>
+      {showPartners && <PartnersSection />}
+      <PerksSection />
+      <ModularStackSection />
+      <JoinCommunitySection />
+      {showClaimNow && <ClaimNowSection />}
+    </div>
+  );
 };
 ```
 
@@ -251,9 +236,9 @@ const PartnerFeatures: React.FC = () => {
 All sections are automatically lazy-loaded using the `LazyLoad` component in `PartnerLayout.tsx`:
 
 ```tsx
-{partnerConfig.sections.map((section) => (
-  <LazyLoad key={section.id}>
-    {section.component}
+{sections.map((section, index) => (
+  <LazyLoad key={`section-${index}`}>
+    {section}
   </LazyLoad>
 ))}
 ```
@@ -295,13 +280,14 @@ import { renderHook } from '@testing-library/react';
 import { usePartnerLanding } from '../context/PartnerLandingContext';
 
 describe('PartnerLandingContext', () => {
-  it('provides correct partner data', () => {
+  it('provides correct template data', () => {
     const { result } = renderHook(() => usePartnerLanding(), {
       wrapper: PartnerLandingProvider,
       initialProps: { partnerConfig: mockConfig }
     });
     
-    expect(result.current.partnerId).toBe('d3');
+    expect(result.current.template).toBe('STANDARD');
+    expect(result.current.showPartners).toBe(true);
   });
 });
 ```
@@ -363,4 +349,4 @@ describe('PartnerLandingContext', () => {
 ---
  
 **Last Updated:** December 2024  
-**Version:** 1.0.0 
+**Version:** 2.0.0 - Template-Based System 
