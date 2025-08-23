@@ -19,7 +19,8 @@ import { NetworkMd } from "assets/icons/System/Network/NetworkMd"
 import { PassportMd } from "assets/icons/System/Passport/PassportMd"
 import { SubscriptionMd } from "assets/icons/System/Subscription/SubscriptionMd"
 import { TokenpayMd } from "assets/icons/System/Tokenpay/TokenpayMd"
-import { BaseLogo } from "assets/logo/NetworkAndTokens/Coinbase/Base/BaseLogo"
+import Base from "assets/brand-identity/Base"
+import Gaia from "assets/brand-identity/Gaia"
 import { TFunction } from "i18next"
 
 const getPublicMegaMenuItems = (t: TFunction) => [
@@ -58,7 +59,8 @@ const getPublicMegaMenuItems = (t: TFunction) => [
             { label: t('publicMegaMenuItems.partners.links.d3.label'), description: t('publicMegaMenuItems.partners.links.d3.description'), icon: D3, href: '/d3' },
             { label: t('publicMegaMenuItems.partners.links.polygon.label'), description: t('publicMegaMenuItems.partners.links.polygon.description'), icon: Polygon, href: '/polygon' },
             { label: t('publicMegaMenuItems.partners.links.crossmint.label'), description: t('publicMegaMenuItems.partners.links.crossmint.description'), icon: CrossmintWhite, href: '/crossmint' },
-            { label: t('publicMegaMenuItems.partners.links.base.label'), description: t('publicMegaMenuItems.partners.links.base.description'), icon: BaseLogo, href: '/base' }
+            { label: t('publicMegaMenuItems.partners.links.base.label'), description: t('publicMegaMenuItems.partners.links.base.description'), icon: Base, href: '/base' },
+            { label: t('publicMegaMenuItems.partners.links.gaia.label'), description: t('publicMegaMenuItems.partners.links.gaia.description'), icon: Gaia, href: '/gaia' }
         ]
     }
 ]
