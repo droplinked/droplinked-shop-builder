@@ -3,10 +3,8 @@ import { ProducerLayoutProvider } from 'context/ProducerLayoutContext'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/layout/ProducerLayout/ar.json'
 import enLocale from 'locales/layout/ProducerLayout/en.json'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import React, { PropsWithChildren, useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
-import useAppStore from 'stores/app/appStore'
+import React, { PropsWithChildren } from 'react'
+import { Outlet } from 'react-router-dom'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
 
@@ -16,18 +14,7 @@ interface ProducerLayoutProps extends PropsWithChildren {
 }
 
 function ProducerLayout({ children, hideSidebar = false, showBackground = false }: ProducerLayoutProps) {
-    const navigate = useNavigate()
-    const { user } = useAppStore()
-    const { resetOnboarding } = useOnboardingStore()
     useLocaleResources('layout/ProducerLayout', { en: enLocale, ar: arLocale })
-
-    // Prevent users from accessing panel and other areas until store setup is complete
-    // Redirects users with incomplete profiles to onboarding and prevents default URL access
-    useEffect(() => {
-        if (['PROFILE_COMPLETED', 'VERIFIED'].includes(user?.status))
-            navigate('/onboarding?entry=store-details')
-        else resetOnboarding()
-    }, [user, navigate, resetOnboarding])
 
     return (
         <ProducerLayoutProvider>

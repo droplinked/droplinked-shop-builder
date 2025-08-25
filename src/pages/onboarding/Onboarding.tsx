@@ -2,7 +2,7 @@ import { useBreakpointValue } from '@chakra-ui/react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/onboarding/ar.json'
 import enLocale from 'locales/onboarding/en.json'
-import React, { useEffect } from 'react'
+import React from 'react'
 import EmailConfirmation from './components/common/email-confirmation/EmailConfirmation'
 import CompletionSection from './components/completion/CompletionSection'
 import ExistingWebsite from './components/existing-website/ExistingWebsite'
@@ -22,30 +22,12 @@ import SignInForm from './components/sign-in/SignInForm'
 import SignUpForm from './components/sign-up/SignUpForm'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
-import useOnboardingStore from './stores/useOnboardingStore'
+import { useOnboardingLifecycle } from './hooks/useOnboardingLifecycle'
 
 function Onboarding() {
   const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
-  const { currentStep, updateOnboardingState, shopSetupUI } = useOnboardingStore()
+  const { currentStep } = useOnboardingLifecycle()
   useLocaleResources('onboarding', { en: enLocale, ar: arLocale })
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search)
-    const entry = searchParams.get('entry')
-    const source = searchParams.get('source')
-
-    if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
-    else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
-    else if (entry === 'email-verification') updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
-    else if (entry === 'existing-website') updateOnboardingState('currentStep', 'EXISTING_WEBSITE')
-
-    // Check if user came from Crossmint landing page
-    if (source === 'crossmint') updateOnboardingState('shopSetupUI', { ...shopSetupUI, isFromCrossmint: true })
-  }, [updateOnboardingState])
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [currentStep])
 
   const stepContentMap = {
     SIGN_IN: { leftContent: <SignInForm />, rightContent: <ProductCards />, isAuthStep: true },
