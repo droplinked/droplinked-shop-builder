@@ -129,7 +129,6 @@
     "oopsSomethingWentWrong": "Oops! Something went wrong. Please try again.",
     "oopsSomethingWentWrongShort": "Oops! Something went wrong.",
     "somethingWentWrong": "Something went wrong. Please try again.",
-    "failedToCreate": "Failed to create. Please try again.",
     "anErrorOccurred": "An error occurred",
     "unexpectedError": "An unexpected error occurred.",
     "pdfGenerationFailed": "Failed to generate PDF. Please try again.",

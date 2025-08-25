@@ -47,8 +47,6 @@ const Blogs = lazy(() => import("pages/blogs/Blogs"))
 const Collections = lazy(() => import("pages/collections/Collections"))
 const Analytics = lazy(() => import("pages/analytics/Analytics"))
 const Gamification = lazy(() => import("pages/gamification/Gamification"))
-const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })))
-const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
 const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"))
 const Products = lazy(() => import("pages/products/Products"))
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"))
@@ -64,7 +62,6 @@ const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplat
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
-const TemplateDesigner = lazy(() => import("pages/template-designer/TemplateDesigner"))
 const ShippingManagement = lazy(() => import("pages/shipping-management/ShippingManagement"))
 
 const router = createBrowserRouter([
@@ -181,9 +178,6 @@ const router = createBrowserRouter([
             },
             { path: "plans", element: <SubscriptionPlans /> },
             { path: "gamification", element: <Gamification /> },
-            { path: "invoice-management", element: <InvoiceManagement /> },
-            { path: "invoice-management/create", element: <CreateInvoice /> },
-            { path: "invoice-management/edit/:invoiceId", element: <CreateInvoice /> },
             {
                 path: "changelog",
                 children: [

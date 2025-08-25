@@ -37,7 +37,7 @@
   "QuickActionsGrid": {
     "createProduct": "Create Product",
     "createCollection": "Create Collection",
-    "createInvoice": "Create Invoice",
+    "createShippingProfile": "Create Shipping Profile",
     "createDiscount": "Create Discount"
   },
   "OrderSummaryCard": {

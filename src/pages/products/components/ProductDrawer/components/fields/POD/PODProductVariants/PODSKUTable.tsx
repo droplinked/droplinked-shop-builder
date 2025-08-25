@@ -1,5 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table'
-import Table from 'pages/invoice-management/components/table-v2/TableV2'
+import Table from 'components/redesign/table-v2/TableV2'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import SKURow from './SKURow'
