@@ -2,7 +2,7 @@
 	"name": "droplinked-shop-builder",
 	"version": "2.4.0",
 	"private": true,
-	"type": "commonjs",
+	"type": "module",
 	"dependencies": {
 		"@blocknote/core": "^0.35.0",
 		"@blocknote/mantine": "^0.35.0",
@@ -95,7 +95,7 @@
 	},
 	"scripts": {
 		"dev": "react-router dev",
-		"build": "NODE_OPTIONS='--max-old-space-size=4096' vite build",
+		"build": "NODE_OPTIONS='--max-old-space-size=4096' react-router build",
 		"preview": "vite preview",
 		"find-deadcode": "ts-prune -s=.test.ts? -p ./jsconfig.json",
 		"test": "NODE_ENV=test jest",

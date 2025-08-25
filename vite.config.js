@@ -72,19 +72,9 @@ export default defineConfig({
     build: {
         outDir: 'build',
         assetsDir: 'static',
-        sourcemap: true,
+        sourcemap: false,
         // Increase chunk size warning limit
         chunkSizeWarningLimit: 1000,
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    // Split vendor chunks for better caching
-                    'react-vendor': ['react', 'react-dom'],
-                    'chakra-ui': ['@chakra-ui/react', '@emotion/react', '@emotion/styled'],
-                    'utils': ['axios', 'moment', 'formik', 'yup'],
-                },
-            },
-        },
     },
 
     // Include Excel and CSV files as assets
