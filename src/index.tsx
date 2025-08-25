@@ -7,6 +7,7 @@ import App from "./App"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import { theme } from "./theme"
 import 'lib/i18n'
+import { HelmetProvider } from "react-helmet-async"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,13 +21,13 @@ const rootElement = document.getElementById("root")
 const root = createRoot(rootElement)
 
 root.render(
-  <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
+  <QueryClientProvider client={queryClient}>
+    <ChakraProvider theme={theme}>
+      <HelmetProvider>
         <App />
-      </ChakraProvider>
-    </QueryClientProvider>
-  </StrictMode>
+      </HelmetProvider>
+    </ChakraProvider>
+  </QueryClientProvider>
 )
 
 serviceWorkerRegistration.unregister()
