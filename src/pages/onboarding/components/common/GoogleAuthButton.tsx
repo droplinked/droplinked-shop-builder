@@ -17,7 +17,7 @@ interface GoogleAuthButtonProps {
 
 function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, source }: GoogleAuthButtonProps) {
     const [searchParams] = useSearchParams()
-    const { authenticateUser, finalizeLogin, loading } = useLogin()
+    const { authenticateUser, handleLoginSuccess, loading } = useLogin()
     const { t } = useLocaleResources('onboarding')
 
     function handleClick() {
@@ -46,12 +46,12 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, sour
                     refresh_token,
                     params: { access_token }
                 })
-                if (result) await finalizeLogin(result)
+                if (result) await handleLoginSuccess(result)
             }
         }
 
         handleGoogleLogin()
-    }, [searchParams, loading, authenticateUser, finalizeLogin])
+    }, [searchParams, loading, authenticateUser, handleLoginSuccess])
 
     return (
         <AppButton

@@ -26,7 +26,7 @@ const savedPassword = Cookies.get('remembered_password')
 
 function SignInForm() {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
-    const { onLoginSubmit } = useLogin()
+    const { handleLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
     const { t } = useLocaleResources('onboarding')
 
@@ -39,7 +39,7 @@ function SignInForm() {
             Cookies.remove('remembered_password')
         }
         updateOnboardingState("credentials", values)
-        return onLoginSubmit(values)
+        return handleLoginSubmit(values)
     }
 
     return (

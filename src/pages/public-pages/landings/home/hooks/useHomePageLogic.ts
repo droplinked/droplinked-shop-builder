@@ -7,7 +7,7 @@ import useAppStore from 'stores/app/appStore'
 const useHomePageLogic = () => {
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
-    const { authenticateUser, finalizeLogin, loading } = useLogin()
+    const { authenticateUser, handleLoginSuccess, loading } = useLogin()
     const { showToast } = useAppToast()
     const { isLoggedIn } = useAppStore()
 
@@ -34,7 +34,7 @@ const useHomePageLogic = () => {
                     params: { access_token }
                 })
 
-                finalizeLogin(result)
+                handleLoginSuccess(result)
 
                 const isCompleted = ["SHOP_INFO_COMPLETED", "ACTIVE"].includes(result.user.status)
                 const redirectPath = isCompleted ? "/analytics/dashboard" : "/onboarding"
@@ -47,7 +47,7 @@ const useHomePageLogic = () => {
         }
 
         handleGoogleAuth()
-    }, [searchParams, loading, authenticateUser, finalizeLogin, showToast, navigate, isLoggedIn])
+    }, [searchParams, loading, authenticateUser, handleLoginSuccess, showToast, navigate, isLoggedIn])
 
     return {
         loading,
