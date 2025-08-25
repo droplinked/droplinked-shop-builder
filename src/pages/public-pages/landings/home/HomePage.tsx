@@ -12,7 +12,6 @@ import GoLiveSection from './components/go-live-section/GoLiveSection'
 import KeyFeatures from './components/key-features/KeyFeatures'
 import Testmonials from './components/testmonials/Testmonials'
 import useHomePageLogic from './hooks/useHomePageLogic'
-import { Helmet } from 'react-helmet-async'
 
 export default function HomePage() {
   useLocaleResources('homePage', { en: enLocale, ar: arLocale })
@@ -20,10 +19,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Helmet prioritizeSeoTags>
-        <title>Home Page</title>
-        <meta name="description" content="Welcome to the Home Page" />
-      </Helmet>
       <HomePageHero />
       <MaxWidthWrapper>
         <MarqueeSection />
