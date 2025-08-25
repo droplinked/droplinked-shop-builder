@@ -1,6 +1,5 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { ProducerLayoutProvider } from 'context/ProducerLayoutContext'
-import AdminHoc from 'hoc/admin/adminHoc'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/layout/ProducerLayout/ar.json'
 import enLocale from 'locales/layout/ProducerLayout/en.json'
@@ -55,4 +54,4 @@ function ProducerLayout({ children, hideSidebar = false, showBackground = false 
     )
 }
 
-export default AdminHoc(ProducerLayout)
+export default ProducerLayout

@@ -1,3 +1,4 @@
+import AuthGuard from "components/AuthGuard/AuthGuard"
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
 import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
 import PublicLayout from "layouts/PublicLayout/PublicLayout"
@@ -119,11 +120,17 @@ const router = createBrowserRouter([
     },
     {
         path: "analytics",
-        element: <ProducerLayout />,
+        element: (
+            <AuthGuard>
+                <ProducerLayout />
+            </AuthGuard>
+        ),
         errorElement: (
-            <ProducerLayout>
-                <MaintenancePage />
-            </ProducerLayout>
+            <AuthGuard>
+                <ProducerLayout>
+                    <MaintenancePage />
+                </ProducerLayout>
+            </AuthGuard>
         ),
         children: [
             { index: true, element: <Analytics /> },
@@ -197,7 +204,11 @@ const router = createBrowserRouter([
     },
     {
         path: "shop-management",
-        element: <ProducerLayout hideSidebar={true} showBackground={true} />,
+        element: (
+            <AuthGuard>
+                <ProducerLayout hideSidebar={true} showBackground={true} />
+            </AuthGuard>
+        ),
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> }
