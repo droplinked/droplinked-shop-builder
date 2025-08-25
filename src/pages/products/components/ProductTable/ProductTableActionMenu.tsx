@@ -4,7 +4,6 @@ import { EditMd } from 'assets/icons/Action/Edit/EditMd'
 import { ShareMd } from 'assets/icons/Action/Share/ShareMd'
 import { TrashMd } from 'assets/icons/Action/Trash/TrashMd'
 import { InvoiceMd } from 'assets/icons/Finance/Invoice/InvoiceMd'
-import { ShirtMd } from 'assets/icons/Items/Shirt/ShirtMd'
 import { TransferMd } from 'assets/icons/Navigation/Transfer/TransferMd'
 import { NftMd } from 'assets/icons/System/NFT/NftMd'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
@@ -12,7 +11,6 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import ConfirmationModal from './components/ConfirmationModal'
 import DetailsModal from './components/details-modal/DetailsModal'
 import DropInfoModal from './components/drop-info-modal/DropInfoModal'
@@ -21,8 +19,7 @@ import ProductShareModal from './components/share-modal/ShareModal'
 export type action = "DELETE" | "DUPLICATE" | "PUBLISH" | "DRAFT"
 
 function ProductTableActionMenu({ product }: { product: any }) {
-    const { t } = useLocaleResources('products');
-    const navigate = useNavigate()
+    const { t } = useLocaleResources('products')
     const [action, setAction] = useState<action>("DELETE")
     const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
 
@@ -56,14 +53,6 @@ function ProductTableActionMenu({ product }: { product: any }) {
                 title: t('ProductTableActionMenu.actions.dropInfo'),
                 onClick: onDropInfoModalOpen
             }
-        },
-        {
-            ...product.product_type === "PRINT_ON_DEMAND" &&
-            {
-                icon: <ShirtMd color='#fff' />,
-                title: t('ProductTableActionMenu.actions.orderPodSample'),
-                onClick: () => navigate("/analytics/products/order/" + product._id)
-            },
         },
         {
             icon: <ShareMd color='#fff' />,
