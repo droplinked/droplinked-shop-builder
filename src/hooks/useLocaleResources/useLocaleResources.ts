@@ -4,9 +4,10 @@ import commonEn from 'locales/common/en.json'
 import { useTranslation } from 'react-i18next'
 
 export type Namespace =
-    | '404Page'
-    | 'homePage'
     | 'common'
+    | '404Page'
+    | 'blogs'
+    | 'homePage'
     | 'shopManagement'
     | 'onchainRecords'
     | 'changelogPage'
