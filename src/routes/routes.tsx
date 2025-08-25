@@ -1,10 +1,6 @@
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
 import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
 import PublicLayout from "layouts/PublicLayout/PublicLayout"
-import React, { lazy, Suspense } from "react"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-
-// public routes
 import AffiliateProductsSinglePage from "pages/affiliate/product/ProductPage"
 import AffiliateProductsPage from "pages/affiliate/products/AffiliateProductsPage"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
@@ -12,12 +8,10 @@ import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
 import Changelog from "pages/changelog/Changelog"
 import ChangelogDetail from "pages/changelog/components/ChangelogDetail"
+import ExplorePage from "pages/explore/ExplorePage"
 import Onboarding from "pages/onboarding/Onboarding"
 import AboutUs from "pages/public-pages/about/AboutUs"
 import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
-import BlogPage from "pages/public-pages/public-blogs/PublicBlogs"
-import CategoryPage from "pages/public-pages/public-blogs/pages/CategoryPage/CategoryPage"
-import BlogDetailPage from "pages/public-pages/public-blogs/pages/BlogDetailsPage/BlogDetailsPage"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import BookDemoPage from "pages/public-pages/landings/book-demo/BookDemoPage"
@@ -39,10 +33,13 @@ import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-produ
 import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
+import BlogDetailPage from "pages/public-pages/public-blogs/pages/BlogDetailsPage/BlogDetailsPage"
+import CategoryPage from "pages/public-pages/public-blogs/pages/CategoryPage/CategoryPage"
+import BlogPage from "pages/public-pages/public-blogs/PublicBlogs"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import TemplateCreatePage from "pages/template-designer/components/TemplateCreatePage"
-import TemplateEditPage from "pages/template-designer/components/TemplateEditPage"
-import ExplorePage from "pages/explore/ExplorePage"
+import React, { lazy, Suspense } from "react"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 // Lazy-loaded components for other routes
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"))
@@ -53,7 +50,6 @@ const Gamification = lazy(() => import("pages/gamification/Gamification"))
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })))
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
 const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"))
-const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"))
 const Products = lazy(() => import("pages/products/Products"))
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"))
 const PaymentLink = lazy(() => import("pages/payment-link/PaymentLink"))
@@ -68,7 +64,6 @@ const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplat
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
-const TemplateDesigner = lazy(() => import("pages/template-designer/TemplateDesigner"))
 const ShippingManagement = lazy(() => import("pages/shipping-management/ShippingManagement"))
 
 const router = createBrowserRouter([
@@ -146,13 +141,7 @@ const router = createBrowserRouter([
             { path: "account-settings", element: <SettingsPage /> },
             { path: "credits-and-activity", element: <CreditsAndActivity /> },
             { path: "onchain-records", element: <OnchainRecords /> },
-            {
-                path: "products",
-                children: [
-                    { index: true, element: <Products /> },
-                    { path: "order/:productID", element: <ProductOrder /> }
-                ]
-            },
+            { path: "products", element: <Products /> },
             { path: "collections", element: <Collections /> },
             { path: "purchase-history", element: <PurchaseHistory /> },
             { path: "shipping-management", element: <ShippingManagement /> },

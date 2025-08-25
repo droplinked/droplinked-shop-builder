@@ -23,7 +23,6 @@ export type Namespace =
     | 'settings'
     | 'collections'
     | 'gamification'
-    | 'orderSamplePOD'
     | 'maintenancePage'
     | 'about'
     | 'privacyPage'
