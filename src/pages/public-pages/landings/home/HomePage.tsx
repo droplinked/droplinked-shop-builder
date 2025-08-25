@@ -13,6 +13,21 @@ import KeyFeatures from './components/key-features/KeyFeatures'
 import Testmonials from './components/testmonials/Testmonials'
 import useHomePageLogic from './hooks/useHomePageLogic'
 
+export function meta() {
+  return [
+    { title: "Home Page" },
+    {
+      property: "og:title",
+      content: "Droplinked Home Page",
+    },
+    {
+      name: "description",
+      content: "Droplinked Home Page Description",
+    },
+  ];
+}
+
+
 export default function HomePage() {
   useLocaleResources('homePage', { en: enLocale, ar: arLocale })
   useHomePageLogic()

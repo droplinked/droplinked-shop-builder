@@ -1,14 +1,21 @@
-import react from '@vitejs/plugin-react'
 import path from 'path'
 import { defineConfig } from 'vite'
 import bundleAnalyzer from 'vite-bundle-analyzer'
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import svgr from 'vite-plugin-svgr'
+import { reactRouter } from "@react-router/dev/vite";
+import { cjsInterop } from "vite-plugin-cjs-interop";
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    worker: {
+        format: "es"
+    },
     plugins: [
-        react(),
+        reactRouter(),
+        cjsInterop({
+            dependencies: ["react-to-pdf", "react-color"]
+        }),
         svgr({
             // Enable importing SVGs as React components
             svgrOptions: {
@@ -18,18 +25,6 @@ export default defineConfig({
                 titleProp: true,
             },
             include: '**/*.svg',
-        }),
-        nodePolyfills({
-            // Enable polyfills for specific globals and modules
-            globals: {
-                Buffer: true,
-                global: true,
-                process: true,
-            },
-            // Enable polyfills for Node.js built-in modules
-            protocolImports: true,
-            // Exclude constants to prevent conflicts with local constants directory
-            exclude: ['constants'],
         }),
         process.env.ANALYZE && bundleAnalyzer({
             openAnalyzer: true,
@@ -60,32 +55,12 @@ export default defineConfig({
             'hoc': path.resolve(__dirname, './src/hoc'),
             'data': path.resolve(__dirname, './src/data'),
 
-            // Node.js polyfills for Web3 and blockchain functionality
-            'stream': 'stream-browserify',
-            'buffer': 'buffer',
-            'crypto': 'crypto-browserify',
-            'util': 'util',
-            'process': 'process/browser',
-
-
         },
         extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
     },
 
-    define: {
-        // Define global constants
-        global: 'globalThis',
-    },
-
-    optimizeDeps: {
-        include: [
-            'buffer',
-            'process',
-            'stream-browserify',
-            'crypto-browserify',
-            'util',
-        ],
-        exclude: ['fs']
+    ssr: {
+        noExternal: ["gsap", "chakra-ui", "i18next", "droplinked-designer-configs"]
     },
 
     server: {
