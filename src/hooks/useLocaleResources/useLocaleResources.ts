@@ -35,7 +35,6 @@ export type Namespace =
     | 'affiliate'
     | 'payment-link'
     | 'products'
-    | 'invoice-management'
     | 'crossmint'
     | 'public-pages/public-blogs'
     | 'public-pages/landings/custom-tokens'

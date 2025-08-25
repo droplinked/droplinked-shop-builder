@@ -37,7 +37,7 @@
   "QuickActionsGrid": {
     "createProduct": "إنشاء منتج",
     "createCollection": "إنشاء مجموعة",
-    "createInvoice": "إنشاء فاتورة",
+    "createShippingProfile": "إنشاء ملف شحن",
     "createDiscount": "إنشاء خصم"
   },
   "OrderSummaryCard": {
