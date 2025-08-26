@@ -6,8 +6,9 @@ import AppToastify from "components/common/toastify/AppToastify";
 import "lib/i18n";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useNavigation } from "react-router";
 import { theme } from "./theme";
+import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -94,11 +95,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function Root() {
+    const navigation = useNavigation()
+    const isNavigating = Boolean(navigation.location)
+
     return (
         <QueryClientProvider client={queryClient}>
             <ChakraProvider theme={theme}>
                 <AppToastify />
                 <AppGDPR />
+                {isNavigating && <FullScreenLoading />}
                 <Outlet />
             </ChakraProvider>
         </QueryClientProvider>
