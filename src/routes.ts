@@ -30,7 +30,7 @@ export default [
         route("unstoppable-domains", "./pages/public-pages/landings/partner-pages/PartnerPageUnstoppableDomains.tsx"),
         route("polygon", "./pages/public-pages/landings/partner-pages/PartnerPagePolygon.tsx"),
         route("crossmint", "./pages/public-pages/landings/partner-pages/PartnerPageCrossmint.tsx"),
-        route("base", "./pages/public-pages/landings/partner-pages/PartnerPageBase.tsx"),
+        route("gaia", "./pages/public-pages/landings/partner-pages/PartnerPageGaia.tsx"),
         route("onchain-affiliate", "./pages/public-pages/landings/onchain-affiliate/OnchainAffiliatePage.tsx"),
         route("roi", "./pages/public-pages/landings/DIMST/DIMST.tsx"),
         route("dpp", "./pages/public-pages/landings/dpp/DPPPage.tsx"),
