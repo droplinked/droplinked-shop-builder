@@ -1,17 +1,17 @@
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { useMutation } from 'react-query'
+import { uploadToCdn } from 'services/ai/services'
 import { createDefaultSampleProducts } from 'services/product/productServices'
 import { setupShop } from 'services/shop/shopServices'
-import { uploadToCdn } from 'services/ai/services'
-import { useMutation } from 'react-query'
 import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'
 import { validateStoreData } from '../utils/shopSetupFormValidation'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export function useShopSetupSubmit() {
     const { updateState, user, shop } = useAppStore()
     const { showToast } = useAppToast()
-    const { shopData, shopSetupUI, setError, resetOnboarding, updateOnboardingState } = useOnboardingStore()
+    const { shopData, shopSetupUI, setError, updateOnboardingState } = useOnboardingStore()
     const { t } = useLocaleResources('onboarding')
 
     const { mutateAsync: submitShopSetup, isLoading } = useMutation({
@@ -80,7 +80,6 @@ export function useShopSetupSubmit() {
 
     return {
         handleSubmit,
-        isLoading,
-        resetOnboarding
+        isLoading
     }
 }

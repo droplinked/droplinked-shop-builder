@@ -9,11 +9,11 @@ const useHomePageLogic = () => {
     const [searchParams] = useSearchParams()
     const { authenticateUser, handleLoginSuccess, loading } = useLogin()
     const { showToast } = useAppToast()
-    const { isLoggedIn } = useAppStore()
+    const { user } = useAppStore()
 
     useEffect(() => {
-        // Redirect to dashboard if user is logged in
-        if (isLoggedIn) return navigate("/analytics/dashboard")
+        // Redirect to dashboard if user is active
+        if (user && ["SHOP_INFO_COMPLETED", "ACTIVE"].includes(user.status)) return navigate("/analytics/dashboard")
 
         // Handle legacy referral links
         const referral = searchParams.get("referral")
@@ -47,12 +47,7 @@ const useHomePageLogic = () => {
         }
 
         handleGoogleAuth()
-    }, [searchParams, loading, authenticateUser, handleLoginSuccess, showToast, navigate, isLoggedIn])
-
-    return {
-        loading,
-        isLoggedIn
-    }
+    }, [user, navigate, searchParams, loading, authenticateUser, handleLoginSuccess, showToast])
 }
 
 export default useHomePageLogic
