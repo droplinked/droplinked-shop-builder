@@ -9,6 +9,28 @@ import SignUpCta from '../_shared/components/SignUpCta'
 import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
 import DIMSTHero from './DIMSTHero'
 
+export function meta() {
+    return [
+        { title: "Product Record ROI Calculator | Droplinked" },
+        {
+            name: "description",
+            content: "Use the Droplinked Product Record Calculator to project the ROI of using onchain inventory. Analyze costs, revenue, and profitability for your business.",
+        },
+        {
+            name: "keywords",
+            content: "ROI calculator, return on investment, financial planning, cost-benefit analysis, inventory management ROI, sales projection",
+        },
+        {
+            property: "og:title",
+            content: "Product Record ROI Calculator | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Use the Droplinked Product Record Calculator to project the ROI of using onchain inventory. Analyze costs, revenue, and profitability for your business.",
+        },
+    ];
+}
+
 export default function DIMST() {
     useLocaleResources('public-pages/landings/DIMST', { en: enLocale, ar: arLocale })
 

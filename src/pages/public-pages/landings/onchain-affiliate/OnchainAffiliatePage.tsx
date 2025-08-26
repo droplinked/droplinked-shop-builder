@@ -13,25 +13,25 @@ import OnchainAffiliateModularStack from './OnchainAffiliateModularStack'
 
 export function meta() {
     return [
-        { title: 'Droplinked Affiliate Program | Earn Onchain' },
+        { title: 'Onchain Affiliate Platform | Transparent & Automated | Droplinked' },
         {
             name: 'description',
             content:
-                'Join the Droplinked Affiliate Program. Promote the future of Web3 commerce and earn transparent, onchain commissions for every referral.',
+                'Leverage the power of blockchain with our onchain affiliate program. Get transparent, automated commission payouts via smart contracts.',
         },
         {
             name: 'keywords',
             content:
-                'affiliate program, partner program, earn commission, Web3 affiliate, onchain affiliate, promote products, referral program',
+                'onchain affiliate, Web3 affiliate program, blockchain affiliate, transparent commissions, smart contract affiliate, crypto rewards',
         },
         {
             property: 'og:title',
-            content: 'Droplinked Affiliate Program | Earn Onchain',
+            content: 'Onchain Affiliate Platform | Transparent & Automated | Droplinked',
         },
         {
             property: 'og:description',
             content:
-                'Join the Droplinked Affiliate Program. Promote the future of Web3 commerce and earn transparent, onchain commissions for every referral.',
+                'Leverage the power of blockchain with our onchain affiliate program. Get transparent, automated commission payouts via smart contracts.',
         },
     ]
 }

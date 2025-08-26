@@ -11,6 +11,28 @@ import PaymentLinksFeatures from './PaymentLinksFeatures'
 import PaymentLinksHero from './PaymentLinksHero'
 import PaymentLinksModularStack from './PaymentLinksModularStack'
 
+export function meta() {
+    return [
+        { title: "Multi-Network Payment Links | Droplinked" },
+        {
+            name: "description",
+            content: "Create instant, customizable payment links to sell anywhere. Accept crypto across multiple blockchains or traditional fiat payments seamlessly.",
+        },
+        {
+            name: "keywords",
+            content: "payment links, crypto payments, fiat payments, Stripe, multi-network, sell anywhere, instant payments",
+        },
+        {
+            property: "og:title",
+            content: "Multi-Network Payment Links | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Create instant, customizable payment links to sell anywhere. Accept crypto across multiple blockchains or traditional fiat payments seamlessly.",
+        },
+    ];
+}
+
 export default function PaymentLinksPage() {
     useLocaleResources('public-pages/landings/payment-links', { en: enLocale, ar: arLocale })
 
