@@ -5,6 +5,28 @@ import arLocale from 'locales/public-pages/about/ar.json'
 import enLocale from 'locales/public-pages/about/en.json'
 import React from 'react'
 
+export function meta() {
+    return [
+        { title: "About Droplinked | Our Mission for Web3 Commerce" },
+        {
+            name: "description",
+            content: "Learn about Droplinked's mission to simplify Web3 and empower creators and businesses with accessible, no-code tools for the future of e-commerce.",
+        },
+        {
+            name: "keywords",
+            content: "about us, company mission, Web3 e-commerce, our story, e-commerce innovation, blockchain technology",
+        },
+        {
+            property: "og:title",
+            content: "About Droplinked | Our Mission for Web3 Commerce",
+        },
+        {
+            property: "og:description",
+            content: "Learn about Droplinked's mission to simplify Web3 and empower creators and businesses with accessible, no-code tools for the future of e-commerce.",
+        },
+    ];
+}
+
 function AboutUs() {
     const { t } = useLocaleResources("about", {
         ar: arLocale,

@@ -11,6 +11,28 @@ import CustomTokensFeatures from './CustomTokensFeatures'
 import CustomTokensHero from './CustomTokensHero'
 import CustomTokensModularStack from './CustomTokensModularStack'
 
+export function meta() {
+    return [
+        { title: "Create Custom Tokens | Droplinked" },
+        {
+            name: "description",
+            content: "Design and launch your own custom-branded utility tokens with Droplinked's no-code tools. Build your brand on the blockchain.",
+        },
+        {
+            name: "keywords",
+            content: "custom tokens, branded tokens, utility tokens, token creation, blockchain branding, no-code tokens",
+        },
+        {
+            property: "og:title",
+            content: "Create Custom Tokens | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Design and launch your own custom-branded utility tokens with Droplinked's no-code tools. Build your brand on the blockchain.",
+        },
+    ];
+}
+
 function CustomTokensPage() {
     useLocaleResources('public-pages/landings/custom-tokens', { en: enLocale, ar: arLocale })
 

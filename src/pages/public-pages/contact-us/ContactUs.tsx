@@ -7,6 +7,28 @@ import React from 'react'
 import ContactUsForm from './components/Form'
 import SpectrumHeader from './components/SpectrumHeader'
 
+export function meta() {
+    return [
+        { title: "Contact Us | Get In Touch with Droplinked" },
+        {
+            name: "description",
+            content: "Have a question or need support? Contact the Droplinked team for sales, partnership, or general inquiries. We're here to help.",
+        },
+        {
+            name: "keywords",
+            content: "contact us, get in touch, support, sales, help, customer service, inquiry",
+        },
+        {
+            property: "og:title",
+            content: "Contact Us | Get In Touch with Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Have a question or need support? Contact the Droplinked team for sales, partnership, or general inquiries. We're here to help.",
+        },
+    ];
+}
+
 function ContactUs() {
     const { t } = useLocaleResources("contactUs", {
         ar: arLocale,

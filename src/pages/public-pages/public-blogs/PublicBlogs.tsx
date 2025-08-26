@@ -16,6 +16,28 @@ import LatestBlogsGrid from "./components/LatestBlogsGrid/LatestBlogsGrid";
 import PublicBlogsHeader from "./components/PublicBlogsHeader";
 import useBlogs from "./hooks/useBlogs";
 
+export function meta() {
+    return [
+        { title: "The Droplinked Blog | Web3 & E-commerce Insights" },
+        {
+            name: "description",
+            content: "Read the latest articles, insights, and company news from Droplinked. Stay ahead of the curve on Web3, tokenization, and the future of e-commerce.",
+        },
+        {
+            name: "keywords",
+            content: "blog, articles, Web3 insights, e-commerce trends, company news, updates, tokenization, blockchain news",
+        },
+        {
+            property: "og:title",
+            content: "The Droplinked Blog | Web3 & E-commerce Insights",
+        },
+        {
+            property: "og:description",
+            content: "Read the latest articles, insights, and company news from Droplinked. Stay ahead of the curve on Web3, tokenization, and the future of e-commerce.",
+        },
+    ];
+}
+
 export async function loader() {
     const initialBlogs = await getPublicBlogsServerSide({ page: 1, limit: 9 });
 

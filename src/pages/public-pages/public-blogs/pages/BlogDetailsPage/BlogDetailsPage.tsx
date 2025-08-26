@@ -19,6 +19,30 @@ export async function loader({ params }: { params: { slug: string } }) {
   };
 }
 
+export function meta({ data }: { data: Awaited<ReturnType<typeof loader>> }) {
+  const blog = data?.initialBlog;
+
+  if (!blog) {
+    return [
+      { title: "Blog Not Found | Droplinked" },
+      { name: "description", content: "The requested blog post could not be found." },
+    ];
+  }
+
+  const title = `${blog.title} | Droplinked Blog`;
+  const description = blog.searchEngineSummary || blog.content?.replace(/<[^>]*>/g, '').substring(0, 155) + '...' || 'Read the latest insights from Droplinked.';
+
+  return [
+    { title },
+    { name: "description", content: description },
+    { name: "keywords", content: blog.tags?.join(', ') || 'droplinked, blog, web3, ecommerce' },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:image", content: blog.image },
+    { property: "og:type", content: "article" },
+  ];
+}
+
 function BlogDetailPage() {
   const navigate = useNavigate();
   const [activeTocItemId, setActiveTocItemId] = useState<string>('');

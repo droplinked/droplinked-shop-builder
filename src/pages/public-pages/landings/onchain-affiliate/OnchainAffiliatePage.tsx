@@ -11,6 +11,31 @@ import OnchainAffiliateFeatures from './OnchainAffiliateFeatures'
 import OnchainAffiliateHero from './OnchainAffiliateHero'
 import OnchainAffiliateModularStack from './OnchainAffiliateModularStack'
 
+export function meta() {
+    return [
+        { title: 'Droplinked Affiliate Program | Earn Onchain' },
+        {
+            name: 'description',
+            content:
+                'Join the Droplinked Affiliate Program. Promote the future of Web3 commerce and earn transparent, onchain commissions for every referral.',
+        },
+        {
+            name: 'keywords',
+            content:
+                'affiliate program, partner program, earn commission, Web3 affiliate, onchain affiliate, promote products, referral program',
+        },
+        {
+            property: 'og:title',
+            content: 'Droplinked Affiliate Program | Earn Onchain',
+        },
+        {
+            property: 'og:description',
+            content:
+                'Join the Droplinked Affiliate Program. Promote the future of Web3 commerce and earn transparent, onchain commissions for every referral.',
+        },
+    ]
+}
+
 function OnchainAffiliatePage() {
     useLocaleResources('public-pages/landings/onchain-affiliate', { en: enLocale, ar: arLocale })
 
@@ -19,7 +44,7 @@ function OnchainAffiliatePage() {
         { id: 'feature-list', component: <OnchainAffiliateFeatures /> },
         { id: 'modular-stack', component: <OnchainAffiliateModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },
-        { id: 'sign-up-cta', component: <SignUpCta /> }
+        { id: 'sign-up-cta', component: <SignUpCta /> },
     ]
 
     return (
