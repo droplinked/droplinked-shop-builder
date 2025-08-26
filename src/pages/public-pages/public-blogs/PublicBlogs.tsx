@@ -18,7 +18,7 @@ import useBlogs from "./hooks/useBlogs";
 
 export async function loader() {
     const initialBlogs = await getPublicBlogsServerSide({ page: 1, limit: 9 });
-    console.log(initialBlogs)
+
     return {
         initialBlogs: initialBlogs.data || [],
         totalBlogs: initialBlogs.totalDocuments || 0,

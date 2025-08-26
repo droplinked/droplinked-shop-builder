@@ -3,9 +3,7 @@ import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreen
 import { LazyLoad } from 'pages/public-pages/landings/_shared/components/LazyLoad';
 import MaxWidthWrapper from 'pages/public-pages/landings/_shared/components/MaxWidthWrapper';
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import { useParams, useNavigate, useLoaderData } from 'react-router-dom';
-import { getPublicBlogBySlugService } from 'services/blog/services';
+import { useNavigate, useLoaderData } from 'react-router-dom';
 import { getPublicBlogBySlugServerSide } from 'services/blog/server-services';
 import BlogsCarousel from '../../components/common/BlogsCarousel/BlogsCarousel';
 import BlogContent from './BlogContent';
@@ -22,29 +20,16 @@ export async function loader({ params }: { params: { slug: string } }) {
 }
 
 function BlogDetailPage() {
-  const { slug } = useParams();
   const navigate = useNavigate();
   const [activeTocItemId, setActiveTocItemId] = useState<string>('');
   const { initialBlog } = useLoaderData<typeof loader>();
 
-  // Use useQuery for client-side fetching with initial data from server
-  const { data, isLoading } = useQuery({
-    queryKey: ['blog', slug],
-    queryFn: () => getPublicBlogBySlugService(slug),
-    enabled: !!slug,
-    initialData: initialBlog ? { data: initialBlog } : undefined,
-    onError: (error: any) => {
-      const errorData = error?.response?.data;
-      if (errorData?.statusCode === 404) {
-        navigate('/blogs');
-      }
-    }
-  });
-
-  const blog = data?.data;
+  const blog = initialBlog;
 
   // Extract TOC items from blog content
   const tocItems = blog ? extractTocItems(blog) : [];
+
+  if (typeof window === "undefined") return null;
 
   // Scroll tracking logic for table of contents
   useEffect(() => {
@@ -102,18 +87,9 @@ function BlogDetailPage() {
     }
   };
 
-  if (isLoading) {
-    return <FullScreenLoading />;
-  }
-
   // If no blog data is available, navigate to blogs page
-  if (!blog && !isLoading) {
-    navigate('/blogs');
-    return <FullScreenLoading />;
-  }
-
-  // Don't render if blog is still null/undefined
   if (!blog) {
+    navigate('/blogs');
     return <FullScreenLoading />;
   }
 
