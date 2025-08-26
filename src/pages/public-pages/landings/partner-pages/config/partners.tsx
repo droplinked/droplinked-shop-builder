@@ -1,24 +1,84 @@
-import BaseLogo from 'assets/brand-identity/Base';
 import CrossmintLogo from 'assets/brand-identity/Crossmint';
 import D3Logo from 'assets/brand-identity/D3';
-import GaiaLogo from 'assets/brand-identity/Gaia';
 import PolygonLogo from 'assets/brand-identity/Polygon';
 import UnstoppableDomainsLogo from 'assets/brand-identity/UnstoppableDomains';
+import { BaseLogo } from 'assets/logo/NetworkAndTokens/Coinbase/Base/BaseLogo';
 import { TFunction } from 'i18next';
+import JoinCommunity from 'pages/public-pages/landings/_shared/components/JoinCommunity';
+import MarqueeSection from 'pages/public-pages/landings/_shared/components/marquee-wrapper/MarqueeSection';
+import ClaimNow from 'pages/public-pages/landings/partner-pages/components/ClaimNow';
+import ModularStack from 'pages/public-pages/landings/partner-pages/components/ModularStack';
+import PerkList from 'pages/public-pages/landings/partner-pages/components/PerkList';
 import D3BentoGrids from 'pages/public-pages/landings/partner-pages/components/partner-specific/D3BentoGrids';
 import UDTldFeatures from 'pages/public-pages/landings/partner-pages/components/partner-specific/UDTldFeatures';
 import React from 'react';
-import { PartnerConfig } from './types';
+import { PartnerId, Section } from './types';
+import BaseGetStartedSection from '../components/partner-specific/BaseGetStartedSection';
+import SignUpCta from '../../_shared/components/SignUpCta';
 
 /**
  * PARTNER LANDING PAGE CONFIGURATION
  * 
- * This file configures partner-specific landing pages using templates.
+ * This file configures partner-specific landing pages with flexible section positioning.
  * 
- * TEMPLATES:
- * - TRIAL_TEMPLATE: Regular partners with claim functionality (d3, ud, polygon, crossmint)
- * - SHOWCASE_TEMPLATE: Creator-focused partners without claim (base, gaia)
+ * 
+ * DEFAULT SECTION ORDER:
+ * 1. partner-list (MarqueeSection) - excluded for base partner
+ * 2. perk-list
+ * 3. modular-stack
+ * 4. join-community
+ * 5. claim-now
  */
+
+export interface PartnerConfig {
+  id: PartnerId;
+  name: string;
+  displayName: string;
+  trialMonths: number;
+  logo: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  hero: {
+    title: string;
+    subtitle: string;
+    videoUrl?: string;
+  };
+  sections: Section[];
+}
+
+/**
+ * Simple function to build partner landing page sections
+ * 
+ * @param t - Translation function
+ * @param partnerId - Partner ID to determine if partner-list should be shown
+ * @param customSections - Array of partner-specific sections
+ * 
+ * Custom sections can use:
+ * - position: number → Insert at specific index
+ * - No position → Insert at default position (index 1)
+ */
+const buildSections = (
+  t: TFunction,
+  partnerId: PartnerId,
+  customSections: Section[] = []
+): Section[] => {
+  const defaultSections: Section[] = [
+    // Only show partner-list for non-base partners
+    ...(partnerId !== 'base' ? [{ id: 'partner-list', component: <MarqueeSection /> }] : []),
+    { id: 'perk-list', component: <PerkList /> },
+    { id: 'modular-stack', component: <ModularStack /> },
+    { id: 'join-community', component: <JoinCommunity /> },
+    ...(partnerId !== 'base' ? [{ id: 'claim-now', component: <ClaimNow /> }] : []),
+  ];
+
+  // Add custom sections
+  const sections = [...defaultSections];
+  
+  customSections.forEach((customSection) => {
+    const position = customSection.position ?? 1; // Default to position 1
+    sections.splice(position, 0, customSection);
+  });
+
+  return sections;
+};
 
 /**
  * Get partner landing page configurations with i18n support
@@ -33,13 +93,16 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
     displayName: t('PartnerConfig.d3.displayName'),
     trialMonths: Number(t('PartnerConfig.d3.trialMonths')),
     logo: D3Logo,
-    template: 'TRIAL_TEMPLATE',
     hero: {
       title: t('PartnerHero.d3.title'),
       subtitle: t('PartnerHero.d3.subtitle'),
     },
-    customSections: [ { id: 'd3-features', component: <D3BentoGrids /> }
-    ]
+    sections: buildSections(t, 'd3', [
+      { 
+        id: 'd3-features', 
+        component: <D3BentoGrids />,
+      }
+    ])
   },
 
   unstoppableDomains: {
@@ -48,12 +111,16 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
     displayName: t('PartnerConfig.unstoppableDomains.displayName'),
     trialMonths: Number(t('PartnerConfig.unstoppableDomains.trialMonths')),
     logo: UnstoppableDomainsLogo,
-    template: 'TRIAL_TEMPLATE',
     hero: {
       title: t('PartnerHero.unstoppableDomains.title'),
       subtitle: t('PartnerHero.unstoppableDomains.subtitle'),
     },
-    customSections: [{ id: 'ud-features', component: <UDTldFeatures /> }]
+    sections: buildSections(t, 'unstoppableDomains', [
+      { 
+        id: 'ud-features', 
+        component: <UDTldFeatures />,
+      }
+    ])
   },
 
   polygon: {
@@ -62,11 +129,11 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
     displayName: t('PartnerConfig.polygon.displayName'),
     trialMonths: Number(t('PartnerConfig.polygon.trialMonths')),
     logo: PolygonLogo,
-    template: 'TRIAL_TEMPLATE',
     hero: {
       title: t('PartnerHero.polygon.title'),
       subtitle: t('PartnerHero.polygon.subtitle'),
-    }
+    },
+    sections: buildSections(t, 'polygon', []),
   },
 
   crossmint: {
@@ -75,38 +142,36 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
     displayName: t('PartnerConfig.crossmint.displayName'),
     trialMonths: Number(t('PartnerConfig.crossmint.trialMonths')),
     logo: CrossmintLogo,
-    template: 'TRIAL_TEMPLATE',
     hero: {
       title: t('PartnerHero.crossmint.title'),
       subtitle: t('PartnerHero.crossmint.subtitle'),
-    }
+    },
+    sections: buildSections(t, 'crossmint', []),
   },
 
-  base: {
+  base :{
     id: 'base',
     name: t('PartnerConfig.base.name'),
     displayName: t('PartnerConfig.base.displayName'),
     trialMonths: Number(t('PartnerConfig.base.trialMonths')),
     logo: BaseLogo,
-    template: 'SHOWCASE_TEMPLATE',
     hero: {
       title: t('PartnerHero.base.title'),
       subtitle: t('PartnerHero.base.subtitle'),
     },
-    showcaseVideoUrl: "https://www.youtube.com/embed/dr4tbUcjrDQ?si=6OsH0wNOlEPWMhbx"
-  },
-  
-  gaia: {
-    id: 'gaia',
-    name: t('PartnerConfig.gaia.name'),
-    displayName: t('PartnerConfig.gaia.displayName'),
-    trialMonths: Number(t('PartnerConfig.gaia.trialMonths')),
-    logo: GaiaLogo,
-    template: 'SHOWCASE_TEMPLATE',
-    hero: {
-      title: t('PartnerHero.gaia.title'),
-      subtitle: t('PartnerHero.gaia.subtitle'),
-    },
-    showcaseVideoUrl: "https://www.youtube.com/embed/JpvG9m4M3yg?si=iYefusskD5xru87_"
+    sections: buildSections(t, 'base', [
+      {
+        id: 'base-get-started',
+        component: <BaseGetStartedSection />,
+        position: 1
+      },
+      {
+        id: 'signup-cta',
+        component: <SignUpCta />,
+        position: 4
+      }
+    ]),
   }
+
+
 }); 

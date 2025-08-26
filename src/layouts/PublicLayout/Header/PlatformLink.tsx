@@ -34,7 +34,7 @@ export default function PlatformLink({ link, onNavigate }: Props) {
                 onClick: onNavigate
             }}
         >
-            {link.icon && React.cloneElement(link.icon({ color: isActive ? '#2bcfa1' : '#fff', width: 20, height: 20 }))}
+            {link.icon && React.cloneElement(link.icon({ color: isActive ? '#2bcfa1' : '#fff' }))}
             <Flex direction="column" gap={1}>
                 <Text
                     fontSize={16}

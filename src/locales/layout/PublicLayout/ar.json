@@ -98,10 +98,6 @@
         "base": {
           "label": "Base",
           "description": "droplinked & Base"
-        },
-        "gaia": {
-          "label": "Gaia",
-          "description": "droplinked & Gaia"
         }
       }
     }

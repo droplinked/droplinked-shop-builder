@@ -10,27 +10,35 @@ import WalletVerificationModal from './wallet-verification-modal/WalletVerificat
 export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { t } = useLocaleResources('public-pages/landings/partner-pages');
-  const { partnerId, buttonAction, requiresWalletVerification } = usePartnerLanding();
+  const { partnerId } = usePartnerLanding();
   const { navigateBasedOnStatus } = useAuthNavigation();
 
   const handleClaimClick = () => {
-    if (buttonAction === 'get-started') {
-      navigateBasedOnStatus();
-    } else if (requiresWalletVerification) {
-      onOpen(); // Open the wallet verification modal
-    } else {
-      // For partners like crossmint that don't need wallet verification
-      navigateBasedOnStatus({ source: partnerId });
+    switch (partnerId) {
+      case 'd3':
+      case 'unstoppableDomains':
+      case 'polygon':
+        onOpen(); // Open the wallet verification modal
+        break;
+      case 'base':
+        navigateBasedOnStatus();
+        break;
+      case 'crossmint':
+        // Call the actual crossmint navigation
+        navigateBasedOnStatus({ source: 'crossmint' });
+        break;
+      default:
+        console.log('Unknown partner ID:', partnerId);
     }
   };
 
   return (
     <>
       <AppButton mt={6} onClick={handleClaimClick} {...buttonProps}>
-        {buttonAction === 'get-started' ? t('common:getStarted') : t('common:claimNow')}
+        {partnerId === 'base' ? t('common:getStarted') : t('common:claimNow')}
       </AppButton>
 
-      {requiresWalletVerification && (
+      {['d3', 'unstoppableDomains', 'polygon', 'base'].includes(partnerId) && (
         <WalletVerificationModal isOpen={isOpen} onClose={onClose} />
       )}
     </>

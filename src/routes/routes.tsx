@@ -100,7 +100,6 @@ const router = createBrowserRouter([
             { path: "polygon", element: <PartnerPage partnerId="polygon" /> },
             { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
             { path: "base", element: <PartnerPage partnerId="base" /> },
-            { path: "gaia", element: <PartnerPage partnerId="gaia" /> },
             { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
             { path: "roi", element: <DIMST /> },
             { path: "dpp", element: <DPPPage /> },

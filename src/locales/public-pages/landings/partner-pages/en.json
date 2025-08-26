@@ -19,10 +19,6 @@
     "base": {
       "title": "Powering \n Agentic Commerce",
       "subtitle": "Enabling creators and communities to grow their businesses onchain together"
-    },
-    "gaia": {
-      "title": "Powering \n Agentic Commerce",
-      "subtitle": "Enabling creators and communities to grow their businesses onchain together"
     }
   },
   "PartnerConfig": {
@@ -49,15 +45,9 @@
     "base": {
       "name": "base",
       "displayName": "Base",
+      "trialMonths": 3,
       "perkListSectionTitle": "ONCHAIN BENEFITS",
       "perkListHeadingTitle": "Businesses Built on Base",
-      "perkListHeadingSubtitle": "The platform gives everyone the tools needed to tokenize assets \nlike digital IP, physical inventory and domain hosting as collateral"
-    },
-    "gaia": {
-      "name": "gaia",
-      "displayName": "gaia",
-      "perkListSectionTitle": "ONCHAIN BENEFITS",
-      "perkListHeadingTitle": "Creators on Gaia",
       "perkListHeadingSubtitle": "The platform gives everyone the tools needed to tokenize assets \nlike digital IP, physical inventory and domain hosting as collateral"
     }
   },
@@ -150,7 +140,7 @@
     "metamaskNotInstalled": "Metamask wallet is not installed!",
     "unstoppableNotInstalled": "Unstoppable Wallet is not installed!"
   },
-  "PartnerVideoShowcase": {
+  "BaseGetStartedSection": {
     "sectionTitle": "GO LIVE IN MINUTES",
     "headingTitle": "Instantly Get Started",
     "headingSubtitle": "droplinked makes it simple to sell physical and digital inventory \nwhile allowing you to earn in cash or crypto"
