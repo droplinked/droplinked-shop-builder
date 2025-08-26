@@ -17,6 +17,11 @@ export const validationSchema = object().shape({
             .required('At least one image is required'),
     }),
     productCollectionID: string().required('Please select a product collection'), // Always required
+    shippingModelId: string().when('$product_type', {
+        is: 'NORMAL',
+        then: (schema) => schema.required('Please select a shipping model'),
+        otherwise: (schema) => schema.nullable(),
+    }),
     canBeAffiliated: boolean(),
     commission: number()
         .when('canBeAffiliated', {
