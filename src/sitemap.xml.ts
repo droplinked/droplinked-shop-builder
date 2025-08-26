@@ -5,7 +5,6 @@ import { getPublicBlogsServerSide } from "./services/blog/server-services";
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   // @ts-ignore
   const { routes } = await import("virtual:react-router/server-build");
-  console.log("Routes structure:", JSON.stringify(routes, null, 2));
   const { origin } = new URL(request.url);
 
   // Function to determine priority and changefreq based on route data
