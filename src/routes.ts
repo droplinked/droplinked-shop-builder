@@ -61,7 +61,6 @@ export default [
             route("registration", "./pages/simple-registration/SimpleRegistration.tsx"),
             route("style-center/product-tiles", "./pages/tile-design/TileDesign.tsx"),
             route("style-center/product-links", "./pages/payment-link/PaymentLink.tsx"),
-            // route("style-center/template-builder", "./pages/template-designer/components/TemplateCreatePage.tsx"),
             route("account-settings", "./pages/settings/SettingsPage.tsx"),
             route("credits-and-activity", "./pages/credits-and-activity/CreditsAndActivity.tsx"),
             route("onchain-records", "./pages/onchain-records/OnchainRecords.tsx"),
@@ -105,6 +104,9 @@ export default [
     layout("./layouts/AuthGuardProducerLayoutShop.tsx", [
         route("shop-management", "./pages/shop-management/ShopManagement.tsx"),
     ]),
+
+    route("/analytics/style-center/template-builder", "./pages/template-designer/components/TemplateCreatePage.client.tsx"),
+
 
     // Standalone Routes
     route("onboarding", "./pages/onboarding/Onboarding.tsx"),
