@@ -1,5 +1,6 @@
 import { Flex, Image } from '@chakra-ui/react';
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
+import JsonLdScript from 'components/common/JsonLdScript/JsonLdScript';
 import { LazyLoad } from 'pages/public-pages/landings/_shared/components/LazyLoad';
 import MaxWidthWrapper from 'pages/public-pages/landings/_shared/components/MaxWidthWrapper';
 import React, { useEffect, useState } from 'react';
@@ -10,6 +11,7 @@ import BlogContent from './BlogContent';
 import { extractTocItems } from './BlogContentRenderer';
 import BlogHeader from './BlogHeader';
 import BlogSidebar from './BlogSidebar/BlogSidebar';
+import { createBlogPostSchema } from 'utils/jsonLdSchemas';
 
 export async function loader({ params }: { params: { slug: string } }) {
   const initialBlog = await getPublicBlogBySlugServerSide(params.slug);
@@ -118,53 +120,57 @@ function BlogDetailPage() {
   }
 
   return (
-    <MaxWidthWrapper paddingBlockStart={{ base: "48px", lg: "80px" }} paddingBlockEnd={{ base: "80px", lg: "128px" }} dir="ltr">
-      <LazyLoad>
-        {/* Header Section */}
-        <BlogHeader
-          title={blog.title}
-          writer={blog.writer}
-          readTime={blog.readTime}
-        />
+    <>
+      <JsonLdScript data={createBlogPostSchema(blog)} />
 
-        {/* Featured Image */}
-        <Image
-          src={blog.image}
-          width="100%"
-          height="384px"
-          borderRadius="2xl"
-          objectFit="cover"
-
-        />
-
-        {/* Main Content */}
-        <Flex
-          direction={{ base: 'column', xl: 'row' }}
-          justify="flex-start"
-          align="flex-start"
-          gap={9}
-          width="100%"
-          paddingBlockStart={{ base: '36px', lg: '48px' }}
-          paddingBlockEnd={{ base: '48px', lg: '80px' }}
-        >
-          {/* Blog Content */}
-          <BlogContent blog={blog} />
-
-          {/* Sidebar */}
-          <BlogSidebar
-            category={blog.category}
-            createdAt={blog.createdAt}
-            tags={blog.tags}
-            tocItems={tocItems}
-            activeTocItemId={activeTocItemId}
-            onTocItemClick={handleTocItemClick}
+      <MaxWidthWrapper paddingBlockStart={{ base: "48px", lg: "80px" }} paddingBlockEnd={{ base: "80px", lg: "128px" }} dir="ltr">
+        <LazyLoad>
+          {/* Header Section */}
+          <BlogHeader
+            title={blog.title}
+            writer={blog.writer}
+            readTime={blog.readTime}
           />
-        </Flex>
 
-        <BlogsCarousel />
+          {/* Featured Image */}
+          <Image
+            src={blog.image}
+            width="100%"
+            height="384px"
+            borderRadius="2xl"
+            objectFit="cover"
 
-      </LazyLoad>
-    </MaxWidthWrapper>
+          />
+
+          {/* Main Content */}
+          <Flex
+            direction={{ base: 'column', xl: 'row' }}
+            justify="flex-start"
+            align="flex-start"
+            gap={9}
+            width="100%"
+            paddingBlockStart={{ base: '36px', lg: '48px' }}
+            paddingBlockEnd={{ base: '48px', lg: '80px' }}
+          >
+            {/* Blog Content */}
+            <BlogContent blog={blog} />
+
+            {/* Sidebar */}
+            <BlogSidebar
+              category={blog.category}
+              createdAt={blog.createdAt}
+              tags={blog.tags}
+              tocItems={tocItems}
+              activeTocItemId={activeTocItemId}
+              onTocItemClick={handleTocItemClick}
+            />
+          </Flex>
+
+          <BlogsCarousel />
+
+        </LazyLoad>
+      </MaxWidthWrapper>
+    </>
   );
 }
 
