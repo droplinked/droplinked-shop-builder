@@ -1,41 +1,86 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import "assets/style/index.css";
 import "assets/style/App.scss";
-import AppGDPR from 'components/common/app-gdpr/AppGDPR';
-import AppToastify from 'components/common/toastify/AppToastify';
-import 'lib/i18n';
-import React from 'react';
+import AppGDPR from "components/common/app-gdpr/AppGDPR";
+import AppToastify from "components/common/toastify/AppToastify";
+import "lib/i18n";
+import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import {
-    Links,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-} from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { theme } from "./theme";
 
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            refetchOnWindowFocus: false
-        }
-    }
-})
+            refetchOnWindowFocus: false,
+        },
+    },
+});
 
-export function Layout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export function Layout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             <head>
                 <meta charSet="UTF-8" />
                 <meta
                     name="viewport"
-                    content="width=device-width, initial-scale=1.0"
+                    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
                 />
+                <meta name="theme-color" content="#000000" />
+                <meta
+                    name="description"
+                    content="Powering the Next Generation of Commerce. Droplinked is an infrastructure network supporting onchain inventory management and sales tracking for digital and physical goods."
+                />
+                <link rel="manifest" href="/manifest.json" />
+
+                {/* Google Analytics */}
+                <script
+                    async
+                    src="https://www.googletagmanager.com/gtag/js?id=G-C81Y33TK9F"
+                ></script>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'G-C81Y33TK9F');
+                            gtag('config', 'G-DB498XSD55');
+                        `,
+                    }}
+                />
+
+                {/* Microsoft Clarity */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            (function (c, l, a, r, i, t, y) {
+                                c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+                                t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+                                y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+                            })(window, document, "clarity", "script", "gnyqesyfrp");
+                        `,
+                    }}
+                />
+
+                <link
+                    rel="apple-touch-icon"
+                    sizes="180x180"
+                    href="/apple-touch-icon.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="32x32"
+                    href="/favicon-32x32.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="16x16"
+                    href="/favicon-16x16.png"
+                />
+
                 <Meta />
                 <Links />
             </head>
@@ -57,5 +102,5 @@ export default function Root() {
                 <Outlet />
             </ChakraProvider>
         </QueryClientProvider>
-    )
+    );
 }
