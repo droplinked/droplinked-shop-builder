@@ -2,8 +2,27 @@ import { generateRobotsTxt } from "@forge42/seo-tools/robots";
 import { LoaderFunctionArgs } from "react-router";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-    const { origin } = new URL(request.url);
+    const { origin, hostname } = new URL(request.url);
 
+    // Block all crawlers on dev and staging environments
+    if (hostname === 'dev.droplinked.com' || hostname === 'stage.droplinked.com') {
+        const robotsConfig = [
+            {
+                userAgent: "*",
+                disallow: ["/"], // Block everything
+            },
+        ];
+
+        const robotsTxt = generateRobotsTxt(robotsConfig);
+        return new Response(robotsTxt, {
+            headers: {
+                "Content-Type": "text/plain",
+                "Cache-Control": "public, max-age=86400", // Cache for 24 hours
+            },
+        });
+    }
+
+    // Production configuration
     const robotsConfig = [
         {
             userAgent: "*",
