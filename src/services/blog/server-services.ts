@@ -26,3 +26,28 @@ export async function getPublicBlogsServerSide(params: { page?: number; limit?: 
         return { data: [], totalDocuments: 0 };
     }
 }
+
+export async function getPublicBlogBySlugServerSide(slug: string) {
+    try {
+        // Use the same endpoint as the client-side service
+        const url = `${BASE_URL}/blogs/public/admin/${slug}`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data || null;
+    } catch (error) {
+        console.error('Failed to fetch blog by slug on server:', error);
+        return null;
+    }
+}

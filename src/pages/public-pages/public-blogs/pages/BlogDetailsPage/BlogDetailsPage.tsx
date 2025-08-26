@@ -4,24 +4,35 @@ import { LazyLoad } from 'pages/public-pages/landings/_shared/components/LazyLoa
 import MaxWidthWrapper from 'pages/public-pages/landings/_shared/components/MaxWidthWrapper';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLoaderData } from 'react-router-dom';
 import { getPublicBlogBySlugService } from 'services/blog/services';
+import { getPublicBlogBySlugServerSide } from 'services/blog/server-services';
 import BlogsCarousel from '../../components/common/BlogsCarousel/BlogsCarousel';
 import BlogContent from './BlogContent';
 import { extractTocItems } from './BlogContentRenderer';
 import BlogHeader from './BlogHeader';
 import BlogSidebar from './BlogSidebar/BlogSidebar';
 
+export async function loader({ params }: { params: { slug: string } }) {
+  const initialBlog = await getPublicBlogBySlugServerSide(params.slug);
+  return {
+    initialBlog: initialBlog?.data || null,
+    slug: params.slug,
+  };
+}
+
 function BlogDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [activeTocItemId, setActiveTocItemId] = useState<string>('');
+  const { initialBlog } = useLoaderData<typeof loader>();
 
-  // Use useQuery directly for fetching the specific blog
+  // Use useQuery for client-side fetching with initial data from server
   const { data, isLoading } = useQuery({
     queryKey: ['blog', slug],
     queryFn: () => getPublicBlogBySlugService(slug),
     enabled: !!slug,
+    initialData: initialBlog ? { data: initialBlog } : undefined,
     onError: (error: any) => {
       const errorData = error?.response?.data;
       if (errorData?.statusCode === 404) {
@@ -51,7 +62,7 @@ function BlogDetailPage() {
 
       // Find the heading that's currently in view
       let activeHeading = '';
-      
+
       for (let i = headingElements.length - 1; i >= 0; i--) {
         const heading = headingElements[i];
         if (heading.element) {
@@ -95,51 +106,62 @@ function BlogDetailPage() {
     return <FullScreenLoading />;
   }
 
+  // If no blog data is available, navigate to blogs page
+  if (!blog && !isLoading) {
+    navigate('/blogs');
+    return <FullScreenLoading />;
+  }
+
+  // Don't render if blog is still null/undefined
+  if (!blog) {
+    return <FullScreenLoading />;
+  }
+
   return (
-    <MaxWidthWrapper paddingBlockStart={{base:"48px", lg:"80px"}} paddingBlockEnd={{base:"80px", lg:"128px"}} dir="ltr">
+    <MaxWidthWrapper paddingBlockStart={{ base: "48px", lg: "80px" }} paddingBlockEnd={{ base: "80px", lg: "128px" }} dir="ltr">
       <LazyLoad>
-          {/* Header Section */}
-          <BlogHeader
-            title={blog.title}
-            writer={blog.writer}
-            readTime={blog.readTime}
+        {/* Header Section */}
+        <BlogHeader
+          title={blog.title}
+          writer={blog.writer}
+          readTime={blog.readTime}
+        />
+
+        {/* Featured Image */}
+        <Image
+          src={blog.image}
+          width="100%"
+          height="384px"
+          borderRadius="2xl"
+          objectFit="cover"
+
+        />
+
+        {/* Main Content */}
+        <Flex
+          direction={{ base: 'column', xl: 'row' }}
+          justify="flex-start"
+          align="flex-start"
+          gap={9}
+          width="100%"
+          paddingBlockStart={{ base: '36px', lg: '48px' }}
+          paddingBlockEnd={{ base: '48px', lg: '80px' }}
+        >
+          {/* Blog Content */}
+          <BlogContent blog={blog} />
+
+          {/* Sidebar */}
+          <BlogSidebar
+            category={blog.category}
+            createdAt={blog.createdAt}
+            tags={blog.tags}
+            tocItems={tocItems}
+            activeTocItemId={activeTocItemId}
+            onTocItemClick={handleTocItemClick}
           />
+        </Flex>
 
-          {/* Featured Image */}
-          <Image
-            src={blog.image}
-            width="100%"
-            height="384px"
-            borderRadius="2xl"
-            objectFit="cover"
-           
-          />
-  
-          {/* Main Content */}
-          <Flex
-            direction={{ base: 'column', xl: 'row' }}
-            justify="flex-start"
-            align="flex-start"
-            gap={9}
-            width="100%"
-            paddingBlockStart={{ base: '36px', lg: '48px' }}
-            paddingBlockEnd={{ base: '48px', lg: '80px' }}
-          >
-            {/* Blog Content */}
-            <BlogContent blog={blog} />
-
-            {/* Sidebar */}
-            <BlogSidebar
-              category={blog.category}
-              createdAt={blog.createdAt}
-              tags={blog.tags}
-              tocItems={tocItems}
-              activeTocItemId={activeTocItemId}
-              onTocItemClick={handleTocItemClick}
-            />
-          </Flex>
-
-          <BlogsCarousel />
+        <BlogsCarousel />
 
       </LazyLoad>
     </MaxWidthWrapper>
