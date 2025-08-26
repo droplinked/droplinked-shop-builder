@@ -114,4 +114,5 @@ export default [
 
     // Catch-all route for 404
     route("*", "./pages/404/NotFoundPage.tsx"),
+    route("sitemap.xml", "./sitemap.xml.ts"),
 ] satisfies RouteConfig;

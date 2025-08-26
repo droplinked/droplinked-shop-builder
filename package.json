@@ -14,6 +14,7 @@
 		"@dnd-kit/utilities": "^3.2.2",
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.0",
+		"@forge42/seo-tools": "^1.4.5",
 		"@gsap/react": "^2.1.2",
 		"@lottiefiles/dotlottie-react": "^0.14.4",
 		"@popmotion/popcorn": "^0.4.4",
@@ -97,7 +98,7 @@
 	"scripts": {
 		"dev": "react-router dev",
 		"build": "NODE_OPTIONS='--max-old-space-size=4096' react-router build",
-		"preview": "react-router-serve ./build/server/index.js",
+		"start": "react-router-serve ./build/server/index.js",
 		"find-deadcode": "ts-prune -s=.test.ts? -p ./jsconfig.json",
 		"test": "NODE_ENV=test jest",
 		"test:watch": "NODE_ENV=test jest --watch",
