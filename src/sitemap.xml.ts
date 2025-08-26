@@ -5,8 +5,29 @@ import { getPublicBlogsServerSide } from "./services/blog/server-services";
 export const loader = async ({ request }: LoaderFunctionArgs) => {
     // @ts-ignore
     const { routes } = await import("virtual:react-router/server-build");
-    console.log(routes)
+    console.log('Routes structure:', JSON.stringify(routes, null, 2));
     const { origin } = new URL(request.url);
+
+    // Function to determine priority and changefreq based on route data
+    const getRouteMetadata = (routeId: string, routePath: string) => {
+        // Landing pages - high priority
+        if (routeId.startsWith('pages/public-pages/landings/')) {
+            return { priority: '0.9', changefreq: 'monthly' };
+        }
+
+        // Main public pages - medium-high priority
+        if (routeId.startsWith('pages/public-pages/')) {
+            return { priority: '0.7', changefreq: 'monthly' };
+        }
+
+        // Home page - high priority
+        if (routePath === '/' || routePath === '') {
+            return { priority: '1.0', changefreq: 'monthly' };
+        }
+
+        // Default for other pages
+        return { priority: '0.5', changefreq: 'monthly' };
+    };
 
     // Fetch all blog data to include in sitemap
     let allBlogs: any[] = [];
@@ -42,6 +63,58 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
         ignore: ["/analytics/*", "/accept-invitation/*", "/analytics", "/invoice/*", "/shop-management"],
         routes
     });
+
+    // Enhance the generated sitemap with custom priority and changefreq
+    let enhancedSitemap = sitemap;
+
+    // Extract URLs from the original sitemap and enhance them
+    const urlMatches = sitemap.match(/<url>[\s\S]*?<\/url>/g);
+
+    if (urlMatches) {
+        urlMatches.forEach((originalUrl: string) => {
+            const locMatch = originalUrl.match(/<loc>(.*?)<\/loc>/);
+            if (locMatch) {
+                const fullUrl = locMatch[1];
+                const path = fullUrl.replace(origin, '').replace(/^\//, ''); // Remove leading slash
+
+                // Find matching route to get route ID
+                let routeId = '';
+
+                // Search through routes to find matching path
+                const findRouteId = (routesObj: any, targetPath: string): string => {
+                    if (typeof routesObj === 'object' && routesObj !== null) {
+                        for (const [key, value] of Object.entries(routesObj)) {
+                            if (typeof value === 'object' && value !== null) {
+                                const route = value as any;
+                                if (route.path === targetPath || route.path === `/${targetPath}`) {
+                                    return route.id || key;
+                                }
+                                // Recursively search in nested routes
+                                const nestedResult = findRouteId(route, targetPath);
+                                if (nestedResult) return nestedResult;
+                            }
+                        }
+                    }
+                    return '';
+                };
+
+                routeId = findRouteId(routes, path);
+
+                const metadata = getRouteMetadata(routeId, path);
+
+                // Create enhanced URL with priority and changefreq
+                const enhancedUrl = originalUrl.replace(
+                    /<\/loc>/,
+                    `</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>${metadata.changefreq}</changefreq>
+    <priority>${metadata.priority}</priority>`
+                );
+
+                enhancedSitemap = enhancedSitemap.replace(originalUrl, enhancedUrl);
+            }
+        });
+    }
 
     // If the sitemap generator doesn't support additionalPaths, we'll manually add blog URLs
     if (allBlogs.length > 0) {
@@ -97,7 +170,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
         // Insert blog and category URLs into the sitemap before the closing </urlset> tag
         // Also add image namespace to the sitemap
-        let modifiedSitemap = sitemap.replace(
+        let modifiedSitemap = enhancedSitemap.replace(
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">'
         );
@@ -114,7 +187,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
         });
     }
 
-    return new Response(sitemap, {
+    return new Response(enhancedSitemap, {
         headers: {
             "Content-Type": "application/xml",
         },
