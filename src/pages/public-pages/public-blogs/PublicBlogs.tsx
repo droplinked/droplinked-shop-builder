@@ -3,6 +3,8 @@ import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import arLocale from "locales/public-pages/public-blogs/ar.json";
 import enLocale from "locales/public-pages/public-blogs/en.json";
 import React from "react";
+import { useLoaderData } from "react-router";
+import { getPublicBlogsServerSide } from "services/blog/server-services";
 import { LazyLoad } from "../landings/_shared/components/LazyLoad";
 import MaxWidthWrapper from "../landings/_shared/components/MaxWidthWrapper";
 import SignUpCta from "../landings/_shared/components/SignUpCta";
@@ -14,12 +16,26 @@ import LatestBlogsGrid from "./components/LatestBlogsGrid/LatestBlogsGrid";
 import PublicBlogsHeader from "./components/PublicBlogsHeader";
 import useBlogs from "./hooks/useBlogs";
 
+export async function loader() {
+    const initialBlogs = await getPublicBlogsServerSide({ page: 1, limit: 9 });
+    console.log(initialBlogs)
+    return {
+        initialBlogs: initialBlogs.data || [],
+        totalBlogs: initialBlogs.totalDocuments || 0,
+    };
+}
+
 function BlogPage() {
     useLocaleResources("public-pages/public-blogs", {
         en: enLocale,
         ar: arLocale,
     });
-    const { blogs, isLoading, isFetching, hasMore, loadMore } = useBlogs();
+
+    const { initialBlogs, totalBlogs } = useLoaderData<typeof loader>();
+    const { blogs, isLoading, isFetching, hasMore, loadMore } = useBlogs(
+        initialBlogs,
+        totalBlogs
+    );
 
     const sections = [
         { id: "blog-header", component: <PublicBlogsHeader /> },
