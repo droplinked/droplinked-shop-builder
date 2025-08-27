@@ -24,6 +24,30 @@ import SubscriptionPlansDisplay from './components/subscription-plans-display/Su
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import { useOnboardingLifecycle } from './hooks/useOnboardingLifecycle'
 
+export function meta() {
+  return [
+    { title: 'Create Your Droplinked Account' },
+    {
+      name: 'description',
+      content:
+        'Sign up for Droplinked today and get started with the future of Web3 commerce. Access no-code tools to tokenize and sell your products.',
+    },
+    {
+      name: 'keywords',
+      content: 'sign up, create account, get started, join Droplinked, register, Web3 account',
+    },
+    {
+      property: 'og:title',
+      content: 'Create Your Droplinked Account',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Sign up for Droplinked today and get started with the future of Web3 commerce. Access no-code tools to tokenize and sell your products.',
+    },
+  ]
+}
+
 function Onboarding() {
   const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
   const { currentStep } = useOnboardingLifecycle()

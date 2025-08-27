@@ -11,6 +11,28 @@ import DigitalGoodsFeatures from './DigitalGoodsFeatures'
 import DigitalGoodsHero from './DigitalGoodsHero'
 import DigitalGoodsModularStack from './DigitalGoodsModularStack'
 
+export function meta() {
+    return [
+        { title: "Sell Digital Goods & Collectibles | Droplinked" },
+        {
+            name: "description",
+            content: "Easily sell any digital product, from software and ebooks to tokenized media and collectibles, using Droplinked's secure platform.",
+        },
+        {
+            name: "keywords",
+            content: "digital goods, sell digital products, digital collectibles, ebooks, music, art, tokenized media, digital assets",
+        },
+        {
+            property: "og:title",
+            content: "Sell Digital Goods & Collectibles | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Easily sell any digital product, from software and ebooks to tokenized media and collectibles, using Droplinked's secure platform.",
+        },
+    ];
+}
+
 function DigitalGoodsPage() {
     useLocaleResources('public-pages/landings/digital-goods', { en: enLocale, ar: arLocale })
 

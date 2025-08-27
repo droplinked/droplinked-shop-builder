@@ -5,6 +5,31 @@ import enLocale from "locales/public-pages/privacy-page/en.json";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
 
+export function meta() {
+  return [
+    { title: "Privacy Policy | Droplinked" },
+    {
+      name: "description",
+      content:
+        "Read the official Droplinked Privacy Policy to understand how we collect, use, and protect your data and personal information.",
+    },
+    {
+      name: "keywords",
+      content:
+        "privacy policy, data protection, user data, GDPR, terms of service, legal, data security",
+    },
+    {
+      property: "og:title",
+      content: "Privacy Policy | Droplinked",
+    },
+    {
+      property: "og:description",
+      content:
+        "Read the official Droplinked Privacy Policy to understand how we collect, use, and protect your data and personal information.",
+    },
+  ];
+}
+
 export default function PrivacyPage() {
   const { t } = useLocaleResources("privacyPage", {
     ar: arLocale,

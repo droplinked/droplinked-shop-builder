@@ -1,10 +1,7 @@
 import { Flex, Image } from '@chakra-ui/react';
-import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
 import { LazyLoad } from 'pages/public-pages/landings/_shared/components/LazyLoad';
 import MaxWidthWrapper from 'pages/public-pages/landings/_shared/components/MaxWidthWrapper';
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import { useParams, useNavigate } from 'react-router-dom';
 import { getPublicBlogBySlugService } from 'services/blog/services';
 import BlogsCarousel from '../../components/common/BlogsCarousel/BlogsCarousel';
 import BlogContent from './BlogContent';
@@ -12,25 +9,55 @@ import { extractTocItems } from './BlogContentRenderer';
 import BlogHeader from './BlogHeader';
 import BlogSidebar from './BlogSidebar/BlogSidebar';
 
-function BlogDetailPage() {
-  const { slug } = useParams();
-  const navigate = useNavigate();
-  const [activeTocItemId, setActiveTocItemId] = useState<string>('');
+export function meta({ data }) {
+  if (!data?.blog) {
+    return [
+      { title: "Blog Not Found | Droplinked" },
+      { name: "description", content: "The requested blog post could not be found." }
+    ];
+  }
 
-  // Use useQuery directly for fetching the specific blog
-  const { data, isLoading } = useQuery({
-    queryKey: ['blog', slug],
-    queryFn: () => getPublicBlogBySlugService(slug),
-    enabled: !!slug,
-    onError: (error: any) => {
-      const errorData = error?.response?.data;
-      if (errorData?.statusCode === 404) {
-        navigate('/blogs');
-      }
+  const { blog } = data;
+
+  return [
+    { title: `${blog.title} | Droplinked Blog` },
+    { name: "description", content: blog.description || blog.title },
+    { name: "keywords", content: blog.tags?.join(', ') || '' },
+    { property: "og:title", content: blog.title },
+    { property: "og:description", content: blog.description || blog.title },
+    { property: "og:image", content: blog.image },
+    { property: "og:type", content: "article" },
+    { name: "article:author", content: blog.writer?.name || '' },
+    { name: "article:published_time", content: blog.createdAt },
+    { name: "article:section", content: blog.category?.name || '' },
+    ...(blog.tags?.map(tag => ({ name: "article:tag", content: tag })) || [])
+  ];
+}
+
+export async function clientLoader({ params }) {
+  try {
+    const { slug } = params;
+    if (!slug) {
+      throw new Error('No slug provided');
     }
-  });
 
-  const blog = data?.data;
+    const response = await getPublicBlogBySlugService(slug);
+    const blog = response?.data;
+
+    if (!blog) {
+      throw new Error('Blog not found');
+    }
+
+    return { blog };
+  } catch (error) {
+    // Handle error case - could redirect or return error state
+    throw new Response('Blog not found', { status: 404 });
+  }
+}
+
+function BlogDetailPage(props) {
+  const { blog } = props.loaderData;
+  const [activeTocItemId, setActiveTocItemId] = useState<string>('');
 
   // Extract TOC items from blog content
   const tocItems = blog ? extractTocItems(blog) : [];
@@ -51,7 +78,7 @@ function BlogDetailPage() {
 
       // Find the heading that's currently in view
       let activeHeading = '';
-      
+
       for (let i = headingElements.length - 1; i >= 0; i--) {
         const heading = headingElements[i];
         if (heading.element) {
@@ -91,55 +118,51 @@ function BlogDetailPage() {
     }
   };
 
-  if (isLoading) {
-    return <FullScreenLoading />;
-  }
-
   return (
-    <MaxWidthWrapper paddingBlockStart={{base:"48px", lg:"80px"}} paddingBlockEnd={{base:"80px", lg:"128px"}} dir="ltr">
+    <MaxWidthWrapper paddingBlockStart={{ base: "48px", lg: "80px" }} paddingBlockEnd={{ base: "80px", lg: "128px" }} dir="ltr">
       <LazyLoad>
-          {/* Header Section */}
-          <BlogHeader
-            title={blog.title}
-            writer={blog.writer}
-            readTime={blog.readTime}
+        {/* Header Section */}
+        <BlogHeader
+          title={blog.title}
+          writer={blog.writer}
+          readTime={blog.readTime}
+        />
+
+        {/* Featured Image */}
+        <Image
+          src={blog.image}
+          width="100%"
+          height="384px"
+          borderRadius="2xl"
+          objectFit="cover"
+
+        />
+
+        {/* Main Content */}
+        <Flex
+          direction={{ base: 'column', xl: 'row' }}
+          justify="flex-start"
+          align="flex-start"
+          gap={9}
+          width="100%"
+          paddingBlockStart={{ base: '36px', lg: '48px' }}
+          paddingBlockEnd={{ base: '48px', lg: '80px' }}
+        >
+          {/* Blog Content */}
+          <BlogContent blog={blog} />
+
+          {/* Sidebar */}
+          <BlogSidebar
+            category={blog.category}
+            createdAt={blog.createdAt}
+            tags={blog.tags}
+            tocItems={tocItems}
+            activeTocItemId={activeTocItemId}
+            onTocItemClick={handleTocItemClick}
           />
+        </Flex>
 
-          {/* Featured Image */}
-          <Image
-            src={blog.image}
-            width="100%"
-            height="384px"
-            borderRadius="2xl"
-            objectFit="cover"
-           
-          />
-  
-          {/* Main Content */}
-          <Flex
-            direction={{ base: 'column', xl: 'row' }}
-            justify="flex-start"
-            align="flex-start"
-            gap={9}
-            width="100%"
-            paddingBlockStart={{ base: '36px', lg: '48px' }}
-            paddingBlockEnd={{ base: '48px', lg: '80px' }}
-          >
-            {/* Blog Content */}
-            <BlogContent blog={blog} />
-
-            {/* Sidebar */}
-            <BlogSidebar
-              category={blog.category}
-              createdAt={blog.createdAt}
-              tags={blog.tags}
-              tocItems={tocItems}
-              activeTocItemId={activeTocItemId}
-              onTocItemClick={handleTocItemClick}
-            />
-          </Flex>
-
-          <BlogsCarousel />
+        <BlogsCarousel />
 
       </LazyLoad>
     </MaxWidthWrapper>

@@ -12,6 +12,12 @@ import { useNavigate } from 'react-router-dom';
 import DesktopOnlyNotice from './DesignerPage/DesktopOnlyNotice';
 import "../style/fonts.css"
 
+export function meta() {
+    return [
+        { title: "Template Builder | Droplinked" },
+    ];
+}
+
 function TemplateCreatePage() {
     const navigate = useNavigate()
     const { isLoadingTemplate, isUpdatingTemplate, templateData, updateTemplate } = useTemplate()
@@ -42,6 +48,7 @@ function TemplateCreatePage() {
     }
 
     if (shouldShowDesktopNotice) return <DesktopOnlyNotice />
+
 
     return (
         <div style={{ direction: "ltr" }}>

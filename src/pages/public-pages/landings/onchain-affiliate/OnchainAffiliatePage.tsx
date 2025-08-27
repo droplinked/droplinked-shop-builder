@@ -11,6 +11,31 @@ import OnchainAffiliateFeatures from './OnchainAffiliateFeatures'
 import OnchainAffiliateHero from './OnchainAffiliateHero'
 import OnchainAffiliateModularStack from './OnchainAffiliateModularStack'
 
+export function meta() {
+    return [
+        { title: 'Onchain Affiliate Platform | Transparent & Automated | Droplinked' },
+        {
+            name: 'description',
+            content:
+                'Leverage the power of blockchain with our onchain affiliate program. Get transparent, automated commission payouts via smart contracts.',
+        },
+        {
+            name: 'keywords',
+            content:
+                'onchain affiliate, Web3 affiliate program, blockchain affiliate, transparent commissions, smart contract affiliate, crypto rewards',
+        },
+        {
+            property: 'og:title',
+            content: 'Onchain Affiliate Platform | Transparent & Automated | Droplinked',
+        },
+        {
+            property: 'og:description',
+            content:
+                'Leverage the power of blockchain with our onchain affiliate program. Get transparent, automated commission payouts via smart contracts.',
+        },
+    ]
+}
+
 function OnchainAffiliatePage() {
     useLocaleResources('public-pages/landings/onchain-affiliate', { en: enLocale, ar: arLocale })
 
@@ -19,7 +44,7 @@ function OnchainAffiliatePage() {
         { id: 'feature-list', component: <OnchainAffiliateFeatures /> },
         { id: 'modular-stack', component: <OnchainAffiliateModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },
-        { id: 'sign-up-cta', component: <SignUpCta /> }
+        { id: 'sign-up-cta', component: <SignUpCta /> },
     ]
 
     return (
