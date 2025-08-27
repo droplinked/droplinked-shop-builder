@@ -1,16 +1,16 @@
 // Generic layout component for all partner landing pages
 import React, { PropsWithChildren } from 'react';
-import { LazyLoad } from '../../_shared/components/LazyLoad';
-import MaxWidthWrapper from '../../_shared/components/MaxWidthWrapper';
-import { usePartnerLanding } from '../context/PartnerLandingContext';
-import { PARTNER_TEMPLATES } from '../config/templates';
-import PartnerHero from './PartnerHero';
-import MarqueeSection from '../../_shared/components/marquee-wrapper/MarqueeSection';
-import PerkList from '../components/PerkList';
-import ModularStack from '../components/ModularStack';
 import JoinCommunity from '../../_shared/components/JoinCommunity';
-import ClaimNow from '../components/ClaimNow';
+import { LazyLoad } from '../../_shared/components/LazyLoad';
+import MarqueeSection from '../../_shared/components/marquee-wrapper/MarqueeSection';
+import MaxWidthWrapper from '../../_shared/components/MaxWidthWrapper';
 import SignUpCta from '../../_shared/components/SignUpCta';
+import ClaimNow from '../components/ClaimNow';
+import ModularStack from '../components/ModularStack';
+import PerkList from '../components/PerkList';
+import { PARTNER_TEMPLATES } from '../config/templates';
+import { usePartnerLanding } from '../context/PartnerLandingContext';
+import PartnerHero from './PartnerHero';
 
 export function PartnerLayout({ children }: PropsWithChildren) {
   const { partnerConfig, template } = usePartnerLanding();
@@ -19,7 +19,7 @@ export function PartnerLayout({ children }: PropsWithChildren) {
   // Build sections based on template
   const buildSections = () => {
     const sections: React.ReactElement[] = [];
-    
+
     templateConfig.sections.forEach((sectionId) => {
       switch (sectionId) {
         case 'partners':
@@ -58,7 +58,7 @@ export function PartnerLayout({ children }: PropsWithChildren) {
           sections.splice(position, 0, defaultSection.component);
         });
       }
-      
+
       // Then add partner-specific custom sections
       if (partnerConfig.customSections) {
         partnerConfig.customSections.forEach(customSection => {

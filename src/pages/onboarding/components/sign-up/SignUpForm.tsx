@@ -36,6 +36,7 @@ function SignUpForm() {
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")
     const udId = searchParams.get("ud-id")
+    const baseId = searchParams.get("base-id")
     const source = searchParams.get("source")
 
     async function handleSignUp(values: any) {
@@ -47,6 +48,7 @@ function SignUpForm() {
                 referralCode: referralCode || undefined,
                 d3UserId: d3Id || undefined,
                 udUserId: udId || undefined,
+                baseUserId: baseId || undefined,
                 hasProducerAccount: true
             })
             updateOnboardingState("credentials", { email, password })
@@ -133,6 +135,7 @@ function SignUpForm() {
                                 referralCode={values.referralCode}
                                 d3Id={d3Id}
                                 udId={udId}
+                                baseId={baseId}
                                 source={source}
                             />
 
