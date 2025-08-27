@@ -12,12 +12,12 @@ interface WalletVerificationModalProps {
   onClose: () => void;
 }
 
-const WalletVerificationModal = ({isOpen, onClose }: WalletVerificationModalProps) => {
+const WalletVerificationModal = ({ isOpen, onClose }: WalletVerificationModalProps) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { trialMonths } = usePartnerLanding();
   const { connectWallet } = useWalletVerification();
-  const { states: { currentStep }, methods: { updateStates }} = useWalletVerificationContext();
+  const { states: { currentStep }, methods: { updateStates } } = useWalletVerificationContext();
 
   const handleConnectWallet = async () => {
     await connectWallet();
@@ -30,12 +30,14 @@ const WalletVerificationModal = ({isOpen, onClose }: WalletVerificationModalProp
   const handleClaimNow = () => {
     const d3Id = searchParams.get('d3-id');
     const udId = searchParams.get('ud-id');
+    const baseId = searchParams.get('base-id');
 
     const newParams = new URLSearchParams();
     newParams.set('entry', 'signup');
 
     if (d3Id) newParams.set('d3-id', d3Id);
     if (udId) newParams.set('ud-id', udId);
+    if (baseId) newParams.set('base-id', baseId);
 
     navigate(`/onboarding/?${newParams.toString()}`);
   };

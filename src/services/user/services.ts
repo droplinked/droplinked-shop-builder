@@ -58,6 +58,10 @@ export const postUserVerifyUD = (props: IPostUserVerifyPartner) => {
     return axiosInstance.post(`user/ud/verify`, props);
 }
 
+export const postUserVerifyBase = (props: IPostUserVerifyPartner) => {
+    return axiosInstance.post(`user/base/verify`, props);
+}
+
 export const subscribeFeature = (subscribeData: ISubscribeFeature) => {
     return axiosInstance.post("/user/add/email/landing", subscribeData);
 }

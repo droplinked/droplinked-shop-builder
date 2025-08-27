@@ -1,0 +1,49 @@
+/* Custom styling for ConnectWallet button to match default AppButton */
+button[data-testid="ockConnectButton"] {
+  /* Reset OnchainKit styles and match default AppButton */
+  background: #2BCFA1 !important;
+  border: 1px solid #2BCFA1 !important;
+  border-radius: 8px !important;
+  color: #000000 !important;
+  
+  /* Match AppButton styling */
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 24px !important;
+  padding: 0px 16px !important;
+  min-width: auto !important;
+  height: 40px !important;
+  
+  /* Hover and active states */
+  transition: all 0.2s ease-in-out !important;
+}
+
+button[data-testid="ockConnectButton"]:hover {
+  background: #26B891 !important;
+  border-color: #26B891 !important;
+}
+
+button[data-testid="ockConnectButton"]:active {
+  background: #22A482 !important;
+  border-color: #22A482 !important;
+}
+
+button[data-testid="ockConnectButton"] span {
+  color: #000000 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 24px !important;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  button[data-testid="ockConnectButton"] {
+    font-size: 14px !important;
+    line-height: 16px !important;
+  }
+  
+  button[data-testid="ockConnectButton"] span {
+    font-size: 14px !important;
+    line-height: 16px !important;
+  }
+}
