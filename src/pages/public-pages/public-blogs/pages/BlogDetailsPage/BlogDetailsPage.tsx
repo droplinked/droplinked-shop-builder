@@ -1,64 +1,43 @@
 import { Flex, Image } from '@chakra-ui/react';
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
-import JsonLdScript from 'components/common/JsonLdScript/JsonLdScript';
 import { LazyLoad } from 'pages/public-pages/landings/_shared/components/LazyLoad';
 import MaxWidthWrapper from 'pages/public-pages/landings/_shared/components/MaxWidthWrapper';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLoaderData } from 'react-router-dom';
-import { getPublicBlogBySlugServerSide } from 'services/blog/server-services';
+import { useQuery } from 'react-query';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getPublicBlogBySlugService } from 'services/blog/services';
 import BlogsCarousel from '../../components/common/BlogsCarousel/BlogsCarousel';
 import BlogContent from './BlogContent';
 import { extractTocItems } from './BlogContentRenderer';
 import BlogHeader from './BlogHeader';
 import BlogSidebar from './BlogSidebar/BlogSidebar';
-import { createBlogPostSchema } from 'utils/jsonLdSchemas';
-
-export async function loader({ params }: { params: { slug: string } }) {
-  const initialBlog = await getPublicBlogBySlugServerSide(params.slug);
-  return {
-    initialBlog: initialBlog?.data || null,
-    slug: params.slug,
-  };
-}
-
-export function meta({ data }: { data: Awaited<ReturnType<typeof loader>> }) {
-  const blog = data?.initialBlog;
-
-  if (!blog) {
-    return [
-      { title: "Blog Not Found | Droplinked" },
-      { name: "description", content: "The requested blog post could not be found." },
-    ];
-  }
-
-  const title = `${blog.title} | Droplinked Blog`;
-  const description = blog.searchEngineSummary || blog.content?.replace(/<[^>]*>/g, '').substring(0, 155) + '...' || 'Read the latest insights from Droplinked.';
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: blog.tags?.join(', ') || 'droplinked, blog, web3, ecommerce' },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: blog.image },
-    { property: "og:type", content: "article" },
-  ];
-}
 
 function BlogDetailPage() {
+  const { slug } = useParams();
   const navigate = useNavigate();
   const [activeTocItemId, setActiveTocItemId] = useState<string>('');
-  const { initialBlog } = useLoaderData<typeof loader>();
 
-  const blog = initialBlog;
+  // Use useQuery directly for fetching the specific blog
+  const { data, isLoading } = useQuery({
+    queryKey: ['blog', slug],
+    queryFn: () => getPublicBlogBySlugService(slug),
+    enabled: !!slug,
+    onError: (error: any) => {
+      const errorData = error?.response?.data;
+      if (errorData?.statusCode === 404) {
+        navigate('/blogs');
+      }
+    }
+  });
+
+  const blog = data?.data;
 
   // Extract TOC items from blog content
   const tocItems = blog ? extractTocItems(blog) : [];
 
   // Scroll tracking logic for table of contents
   useEffect(() => {
-    // Only run scroll logic in browser
-    if (typeof window === "undefined" || tocItems.length === 0) return;
+    if (tocItems.length === 0) return;
 
     const handleScroll = () => {
       const headingElements = tocItems.map(item => ({
@@ -101,9 +80,6 @@ function BlogDetailPage() {
   }, [tocItems, activeTocItemId]);
 
   const handleTocItemClick = (itemId: string) => {
-    // Only run in browser
-    if (typeof window === "undefined") return;
-
     const element = document.getElementById(itemId);
     if (element) {
       const offsetTop = element.offsetTop - 120; // Offset for header
@@ -115,66 +91,58 @@ function BlogDetailPage() {
     }
   };
 
-  // If no blog data is available, navigate to blogs page
-  if (!blog) {
-    navigate('/blogs');
+  if (isLoading) {
     return <FullScreenLoading />;
   }
 
   return (
-    <>
-      <JsonLdScript data={createBlogPostSchema(blog)} />
+    <MaxWidthWrapper paddingBlockStart={{ base: "48px", lg: "80px" }} paddingBlockEnd={{ base: "80px", lg: "128px" }} dir="ltr">
+      <LazyLoad>
+        {/* Header Section */}
+        <BlogHeader
+          title={blog.title}
+          writer={blog.writer}
+          readTime={blog.readTime}
+        />
 
-      <MaxWidthWrapper paddingBlockStart={{ base: "48px", lg: "80px" }} paddingBlockEnd={{ base: "80px", lg: "128px" }} dir="ltr">
-        <LazyLoad>
-          {/* Header Section */}
-          <BlogHeader
-            title={blog.title}
-            writer={blog.writer}
-            readTime={blog.readTime}
+        {/* Featured Image */}
+        <Image
+          src={blog.image}
+          width="100%"
+          height="384px"
+          borderRadius="2xl"
+          objectFit="cover"
+
+        />
+
+        {/* Main Content */}
+        <Flex
+          direction={{ base: 'column', xl: 'row' }}
+          justify="flex-start"
+          align="flex-start"
+          gap={9}
+          width="100%"
+          paddingBlockStart={{ base: '36px', lg: '48px' }}
+          paddingBlockEnd={{ base: '48px', lg: '80px' }}
+        >
+          {/* Blog Content */}
+          <BlogContent blog={blog} />
+
+          {/* Sidebar */}
+          <BlogSidebar
+            category={blog.category}
+            createdAt={blog.createdAt}
+            tags={blog.tags}
+            tocItems={tocItems}
+            activeTocItemId={activeTocItemId}
+            onTocItemClick={handleTocItemClick}
           />
+        </Flex>
 
-          {/* Featured Image */}
-          <Image
-            src={blog.image}
-            width="100%"
-            height="384px"
-            borderRadius="2xl"
-            objectFit="cover"
+        <BlogsCarousel />
 
-          />
-
-          {/* Main Content */}
-          <Flex
-            direction={{ base: 'column', xl: 'row' }}
-            justify="flex-start"
-            align="flex-start"
-            gap={9}
-            width="100%"
-            paddingBlockStart={{ base: '36px', lg: '48px' }}
-            paddingBlockEnd={{ base: '48px', lg: '80px' }}
-          >
-            {/* Blog Content */}
-            <BlogContent blog={blog} />
-
-            {/* Sidebar */}
-            <BlogSidebar
-              category={blog.category}
-              createdAt={blog.createdAt}
-              tags={blog.tags}
-              tocItems={tocItems}
-              activeTocItemId={activeTocItemId}
-              onTocItemClick={handleTocItemClick}
-              shareUrl={typeof window !== 'undefined' ? window.location.href : `https://droplinked.com/blogs/${blog.slug}`}
-              shareTitle={blog.title}
-            />
-          </Flex>
-
-          <BlogsCarousel />
-
-        </LazyLoad>
-      </MaxWidthWrapper>
-    </>
+      </LazyLoad>
+    </MaxWidthWrapper>
   );
 }
 

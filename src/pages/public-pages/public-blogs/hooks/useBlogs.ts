@@ -3,38 +3,28 @@ import { useQuery } from "react-query";
 import { getPublicBlogsService } from "services/blog/services";
 import { IBlogListItem, ICategory } from "../types/blog.types";
 
-function useBlogs(
-    initialBlogs: IBlogListItem[] = [],
-    initialTotalBlogs: number = 0
-) {
+function useBlogs() {
     const [page, setPage] = useState(1);
-    const [allBlogs, setAllBlogs] = useState<IBlogListItem[]>(initialBlogs);
+    const [allBlogs, setAllBlogs] = useState<IBlogListItem[]>([]);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     const scrollPositionRef = useRef<number>(0);
-    const [totalBlogs, setTotalBlogs] = useState(initialTotalBlogs);
-    const [hasInitialData, setHasInitialData] = useState(initialBlogs.length > 0);
     const limit = 9;
 
     const { data, isLoading, isFetching } = useQuery({
         queryKey: ["public-blogs", page, limit],
         queryFn: () => getPublicBlogsService({ page, limit }),
-        keepPreviousData: false,
-        enabled: true,
+        keepPreviousData: false, // Changed to false to prevent scroll issues
     });
 
     const currentPageBlogs: IBlogListItem[] = data?.data?.data?.data || [];
+    const totalBlogs = data?.data?.data?.totalDocuments || 0;
 
     // Accumulate blogs from all pages
     useEffect(() => {
         if (currentPageBlogs.length > 0) {
-            if (page === 1 && !hasInitialData) {
-                // First page without server data - replace all blogs
+            if (page === 1) {
+                // First page - replace all blogs
                 setAllBlogs(currentPageBlogs);
-                setIsLoadingMore(false);
-            } else if (page === 1 && hasInitialData) {
-                // First page with server data - update if different
-                setAllBlogs(currentPageBlogs);
-                setHasInitialData(false); // Mark that we've processed initial data
                 setIsLoadingMore(false);
             } else {
                 // Subsequent pages - append to existing blogs
@@ -59,14 +49,7 @@ function useBlogs(
                 }
             }
         }
-    }, [currentPageBlogs, page, hasInitialData]);
-
-    // Update totalBlogs when data is fetched
-    useEffect(() => {
-        if (data?.data?.data?.totalDocuments) {
-            setTotalBlogs(data.data.data.totalDocuments);
-        }
-    }, [data]);
+    }, [currentPageBlogs, page]);
 
     const blogs = allBlogs;
     const hasMore = allBlogs.length < totalBlogs;
@@ -134,7 +117,7 @@ function useBlogs(
     return {
         blogs,
         categories,
-        isLoading: hasInitialData && page === 1 ? false : isLoading,
+        isLoading,
         isFetching: isFetching || isLoadingMore,
         hasMore,
         totalBlogs,
