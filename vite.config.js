@@ -14,7 +14,7 @@ export default defineConfig({
     plugins: [
         reactRouter(),
         cjsInterop({
-            dependencies: ["react-to-pdf", "react-color", "react-dom/server", "lz-string"]
+            dependencies: ["react-to-pdf", "react-color", "react-dom/server", "lz-string", "react-dropzone"]
         }),
         svgr({
             // Enable importing SVGs as React components
