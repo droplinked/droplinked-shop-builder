@@ -6,9 +6,10 @@ interface JsonLdScriptProps {
 
 const JsonLdScript: React.FC<JsonLdScriptProps> = ({ data }) => {
     return (
-        <script type="application/ld+json">
-            {JSON.stringify(data)}
-        </script>
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+        />
     );
 };
 

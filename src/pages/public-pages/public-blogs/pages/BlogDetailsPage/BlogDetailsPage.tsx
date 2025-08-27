@@ -55,11 +55,10 @@ function BlogDetailPage() {
   // Extract TOC items from blog content
   const tocItems = blog ? extractTocItems(blog) : [];
 
-  if (typeof window === "undefined") return null;
-
   // Scroll tracking logic for table of contents
   useEffect(() => {
-    if (tocItems.length === 0) return;
+    // Only run scroll logic in browser
+    if (typeof window === "undefined" || tocItems.length === 0) return;
 
     const handleScroll = () => {
       const headingElements = tocItems.map(item => ({
@@ -102,6 +101,9 @@ function BlogDetailPage() {
   }, [tocItems, activeTocItemId]);
 
   const handleTocItemClick = (itemId: string) => {
+    // Only run in browser
+    if (typeof window === "undefined") return;
+
     const element = document.getElementById(itemId);
     if (element) {
       const offsetTop = element.offsetTop - 120; // Offset for header
@@ -163,6 +165,8 @@ function BlogDetailPage() {
               tocItems={tocItems}
               activeTocItemId={activeTocItemId}
               onTocItemClick={handleTocItemClick}
+              shareUrl={typeof window !== 'undefined' ? window.location.href : `https://droplinked.com/blogs/${blog.slug}`}
+              shareTitle={blog.title}
             />
           </Flex>
 

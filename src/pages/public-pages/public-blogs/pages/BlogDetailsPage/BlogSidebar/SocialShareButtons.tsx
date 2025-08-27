@@ -19,12 +19,16 @@ interface SocialShareButtonsProps {
 }
 
 const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
-  url = window.location.href,
-  title = document.title,
+  url,
+  title,
   onShare
 }) => {
   const [copied, setCopied] = useState(false);
   const toast = useAppToast();
+
+  // Use fallback values that work in SSR
+  const currentUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
+  const currentTitle = title || (typeof window !== 'undefined' ? document.title : '');
 
   const socialPlatforms = [
     { name: 'Link', icon: LinkSm },
@@ -36,6 +40,9 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
   ];
 
   const handleShare = async (platform: string) => {
+    // Only run share logic in browser
+    if (typeof window === 'undefined') return;
+
     if (onShare) {
       onShare(platform);
       return;
@@ -43,18 +50,18 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
 
     // Default sharing behavior
     const shareUrls = {
-      X: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
-      LinkedIn: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-      Instagram: `https://www.instagram.com/?url=${encodeURIComponent(url)}`,
-      Telegram: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
-      Discord: `https://discord.com/channels/@me?content=${encodeURIComponent(`${title} ${url}`)}`
+      X: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(currentTitle)}`,
+      LinkedIn: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`,
+      Instagram: `https://www.instagram.com/?url=${encodeURIComponent(currentUrl)}`,
+      Telegram: `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(currentTitle)}`,
+      Discord: `https://discord.com/channels/@me?content=${encodeURIComponent(`${currentTitle} ${currentUrl}`)}`
     };
 
     if (shareUrls[platform as keyof typeof shareUrls]) {
       window.open(shareUrls[platform as keyof typeof shareUrls], '_blank');
     } else if (platform === 'Link') {
       try {
-        await navigator.clipboard.writeText(url);
+        await navigator.clipboard.writeText(currentUrl);
         setCopied(true);
         toast.showToast({
           type: 'success',
@@ -65,12 +72,12 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
       } catch (err) {
         // Fallback for older browsers
         const textArea = document.createElement('textarea');
-        textArea.value = url;
+        textArea.value = currentUrl;
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        
+
         setCopied(true);
         toast.showToast({
           type: 'success',
@@ -93,8 +100,8 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
           borderRadius="lg"
           padding="10px"
           bg={platform.name === 'Link' && copied ? 'green.50' : 'transparent'}
-          _hover={{ 
-            bg: platform.name === 'Link' && copied ? 'green.100' : 'neutral.gray.800' 
+          _hover={{
+            bg: platform.name === 'Link' && copied ? 'green.100' : 'neutral.gray.800'
           }}
           onClick={() => handleShare(platform.name)}
           transition="all 0.2s"
