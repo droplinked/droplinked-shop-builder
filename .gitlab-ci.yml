@@ -9,6 +9,9 @@ build_dev:
     - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_TEST
     - "npm install"
     - CI=false NODE_OPTIONS=--max-old-space-size=6144 npm run build
+    - cd build
+    - mv client/* .
+    - rmdir client
     
   artifacts:
     paths:
@@ -44,7 +47,10 @@ build_prod:
     - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_LIVE
     - "npm install"
     - CI=false NODE_OPTIONS=--max-old-space-size=6144 npm run build
-      
+    - cd build
+    - mv client/* .
+    - rmdir client
+
   artifacts:
     paths:
       # Build folder
