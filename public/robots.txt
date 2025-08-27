@@ -1,0 +1,7 @@
+# Robots.txt for dev environment
+# Block all crawlers
+User-agent: *
+Disallow: /
+
+# Prevent indexing of development/staging sites
+Crawl-delay: 86400
