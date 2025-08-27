@@ -4,7 +4,7 @@ import useOnboardingStore from '../stores/useOnboardingStore'
 
 export function useOnboardingLifecycle() {
     const { search } = useLocation()
-    const { currentStep, updateOnboardingState, shopSetupUI, resetOnboarding } = useOnboardingStore()
+    const { currentStep, updateOnboardingState, updateShopSetupUI, resetOnboarding } = useOnboardingStore()
 
     const searchParams = new URLSearchParams(search)
     const entry = searchParams.get('entry')
@@ -21,9 +21,9 @@ export function useOnboardingLifecycle() {
     // Handle Crossmint source parameter separately
     useEffect(() => {
         if (source === 'crossmint') {
-            updateOnboardingState('shopSetupUI', { ...shopSetupUI, isFromCrossmint: true })
+            updateShopSetupUI('isFromCrossmint', true)
         }
-    }, [updateOnboardingState, shopSetupUI, source])
+    }, [updateShopSetupUI, source])
 
     // Scroll to top when step changes
     useEffect(() => {
