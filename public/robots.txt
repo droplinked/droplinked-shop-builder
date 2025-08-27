@@ -1,0 +1,39 @@
+# Robots.txt for production environment
+# Allow all crawlers with specific configurations
+
+# Default crawlers
+User-agent: *
+Allow: /
+Disallow: /analytics/
+Crawl-delay: 1
+Sitemap: https://droplinked.com/sitemap.xml
+
+# Google Bot - optimized for faster product indexing
+User-agent: Googlebot
+Allow: /
+Disallow: /analytics/
+Crawl-delay: 0.5
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Disallow: /analytics/
+Crawl-delay: 0.8
+
+# Facebook external hit - social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /analytics/
+Crawl-delay: 2
+
+# Twitter Bot
+User-agent: Twitterbot
+Allow: /
+Disallow: /analytics/
+Crawl-delay: 2
+
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+Disallow: /analytics/
+Crawl-delay: 2

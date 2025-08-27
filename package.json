@@ -99,6 +99,10 @@
 	"scripts": {
 		"dev": "react-router dev",
 		"build": "NODE_OPTIONS='--max-old-space-size=4096' react-router build",
+		"build:dev": "NODE_OPTIONS='--max-old-space-size=4096' react-router build && node scripts/generate-robots.js dev",
+		"build:stage": "NODE_OPTIONS='--max-old-space-size=4096' react-router build && node scripts/generate-robots.js stage",
+		"build:main": "NODE_OPTIONS='--max-old-space-size=4096' react-router build && node scripts/generate-robots.js main",
+		"generate-robots": "node scripts/generate-robots.js",
 		"find-deadcode": "ts-prune -s=.test.ts? -p ./jsconfig.json",
 		"test": "NODE_ENV=test jest",
 		"test:watch": "NODE_ENV=test jest --watch",
