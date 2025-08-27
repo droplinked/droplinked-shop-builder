@@ -98,7 +98,6 @@
 	"scripts": {
 		"dev": "react-router dev",
 		"build": "NODE_OPTIONS='--max-old-space-size=4096' react-router build",
-		"start": "react-router-serve ./build/server/index.js",
 		"find-deadcode": "ts-prune -s=.test.ts? -p ./jsconfig.json",
 		"test": "NODE_ENV=test jest",
 		"test:watch": "NODE_ENV=test jest --watch",
