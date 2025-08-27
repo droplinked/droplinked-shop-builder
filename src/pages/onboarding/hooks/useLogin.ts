@@ -29,7 +29,7 @@ export function useLogin() {
         return true
     }, [showToast, t])
 
-    const navigateBasedOnUserStatus = useCallback((userStatus: string) => {
+    const redirectAfterOnboardingLogin = useCallback((userStatus: string) => {
         switch (userStatus) {
             case "NEW":
                 updateOnboardingState("currentStep", "SIGNUP_EMAIL_VERIFICATION")
@@ -57,12 +57,12 @@ export function useLogin() {
 
             if (!handleUserValidation(user)) return
 
-            navigateBasedOnUserStatus(user.status)
+            redirectAfterOnboardingLogin(user.status)
         }
         catch (error) {
             showToast({ message: t('common:genericError'), type: "error" })
         }
-    }, [handleUserValidation, navigateBasedOnUserStatus, showToast, t])
+    }, [handleUserValidation, redirectAfterOnboardingLogin, showToast, t])
 
     const handleLoginSubmit = useCallback(async (loginData: any) => {
         try {

@@ -10,17 +10,21 @@ import WalletVerificationModal from './wallet-verification-modal/WalletVerificat
 export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { t } = useLocaleResources('public-pages/landings/partner-pages');
-  const { partnerId, buttonAction, requiresWalletVerification } = usePartnerLanding();
+  const { partnerId, buttonAction } = usePartnerLanding();
   const { navigateBasedOnStatus } = useAuthNavigation();
 
   const handleClaimClick = () => {
-    if (buttonAction === 'get-started') {
-      navigateBasedOnStatus();
-    } else if (requiresWalletVerification) {
-      onOpen(); // Open the wallet verification modal
-    } else {
-      // For partners like crossmint that don't need wallet verification
-      navigateBasedOnStatus({ source: partnerId });
+    switch (partnerId) {
+      case 'gaia':
+        navigateBasedOnStatus();
+        break;
+      case 'crossmint':
+        navigateBasedOnStatus({ source: partnerId });
+        break;
+      default:
+        // For partners that require wallet verification
+        onOpen();
+        break;
     }
   };
 
@@ -30,7 +34,7 @@ export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
         {buttonAction === 'get-started' ? t('common:getStarted') : t('common:claimNow')}
       </AppButton>
 
-      {requiresWalletVerification && (
+      { partnerId && (
         <WalletVerificationModal isOpen={isOpen} onClose={onClose} />
       )}
     </>

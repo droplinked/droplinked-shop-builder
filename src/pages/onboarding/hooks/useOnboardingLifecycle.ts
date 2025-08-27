@@ -3,25 +3,27 @@ import { useLocation } from 'react-router-dom'
 import useOnboardingStore from '../stores/useOnboardingStore'
 
 export function useOnboardingLifecycle() {
-    const location = useLocation()
-    const { currentStep, updateOnboardingState, shopSetupUI, resetOnboarding } = useOnboardingStore()
+    const { search } = useLocation()
+    const { currentStep, updateOnboardingState, updateShopSetupUI, resetOnboarding } = useOnboardingStore()
+
+    const searchParams = new URLSearchParams(search)
+    const entry = searchParams.get('entry')
+    const source = searchParams.get('source')
 
     // Handle URL entry parameters when component mounts
     useEffect(() => {
-        const searchParams = new URLSearchParams(window.location.search)
-        const entry = searchParams.get('entry')
-        const source = searchParams.get('source')
-
         if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
         else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
         else if (entry === 'email-verification') updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
         else if (entry === 'existing-website') updateOnboardingState('currentStep', 'EXISTING_WEBSITE')
+    }, [updateOnboardingState, entry])
 
-        // Check if user came from Crossmint landing page
+    // Handle Crossmint source parameter separately
+    useEffect(() => {
         if (source === 'crossmint') {
-            updateOnboardingState('shopSetupUI', { ...shopSetupUI, isFromCrossmint: true })
+            updateShopSetupUI('isFromCrossmint', true)
         }
-    }, [updateOnboardingState, shopSetupUI])
+    }, [updateShopSetupUI, source])
 
     // Scroll to top when step changes
     useEffect(() => {
@@ -33,7 +35,7 @@ export function useOnboardingLifecycle() {
         return () => {
             resetOnboarding()
         }
-    }, [location.pathname, resetOnboarding])
+    }, [resetOnboarding])
 
     return {
         currentStep
