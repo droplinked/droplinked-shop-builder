@@ -1,12 +1,15 @@
 // Dynamic partner page component that handles all partners based on partnerId prop
+import { OnchainKitProvider } from "@coinbase/onchainkit";
+import '@coinbase/onchainkit/styles.css';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import arLocale from 'locales/public-pages/landings/partner-pages/ar.json';
 import enLocale from 'locales/public-pages/landings/partner-pages/en.json';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { base } from 'wagmi/chains';
 import { getPartnerConfigs } from './config/partners';
+import { PartnerId } from './config/types';
 import { PartnerLandingProvider } from './context/PartnerLandingContext';
 import { PartnerLayout } from './layout/PartnerLayout';
-import { PartnerId } from './config/types';
 import { useNavigate } from 'react-router-dom';
 
 interface PartnerPageProps {
@@ -29,9 +32,23 @@ export default function PartnerPage({ partnerId }: PartnerPageProps) {
 
   const config = partnerConfigs[partnerId as PartnerId];
 
+  // Clean up base localStorage when navigating away from base partner page
+  useEffect(() => {
+    return () => {
+      if (partnerId === "base") {
+        localStorage.removeItem('base-acc-sdk.store');
+      }
+    };
+  }, [partnerId]);
+
   return (
-    <PartnerLandingProvider partnerConfig={config}>
-      <PartnerLayout />
-    </PartnerLandingProvider>
+    <OnchainKitProvider
+      apiKey={process.env.VITE_ONCHAINKIT_API_KEY}
+      chain={base}
+    >
+      <PartnerLandingProvider partnerConfig={config}>
+        <PartnerLayout />
+      </PartnerLandingProvider>
+    </OnchainKitProvider>
   );
 } 
