@@ -4,8 +4,9 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { useMutation } from 'react-query';
 import { useSearchParams } from 'react-router-dom';
 import { IPostUserVerifyPartner } from 'services/user/interfaces';
-import { postUserVerifyD3, postUserVerifyUD } from 'services/user/services';
+import { postUserVerifyBase, postUserVerifyD3, postUserVerifyUD } from 'services/user/services';
 import { appDevelopment } from 'utils/app/variable';
+import { useAccount } from 'wagmi';
 import { usePartnerLanding } from '../../../context/PartnerLandingContext';
 import { useWalletVerificationContext } from '../../../context/WalletVerificationContext';
 
@@ -15,6 +16,7 @@ export const useWalletVerification = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const { partnerId } = usePartnerLanding();
 	const { methods: { updateStates } } = useWalletVerificationContext();
+	const { address: baseWalletAddress } = useAccount();
 
 	const mutation = useMutation(async (props: IPostUserVerifyPartner) => {
 		switch (partnerId) {
@@ -24,12 +26,7 @@ export const useWalletVerification = () => {
 			case 'polygon':
 				return postUserVerifyUD(props);
 			case 'base':
-				// Mock data for Base partner - always passes verification
-				return Promise.resolve({
-					data: {
-						data: 'base-mock-verification-id'
-					}
-				});
+				return postUserVerifyBase(props);
 			default:
 				throw new Error('Unsupported partner');
 		}
@@ -50,14 +47,10 @@ export const useWalletVerification = () => {
 				updateStates({ key: 'currentStep', value: 'error' });
 			} else {
 				let paramKey;
-				if (partnerId === 'd3') {
-					paramKey = 'd3-id';
-				} else if (partnerId === 'base') {
-					paramKey = 'base-id';
-				} else {
-					paramKey = 'ud-id';
-				}
-				
+				if (partnerId === 'd3') paramKey = 'd3-id';
+				else if (partnerId === 'base') paramKey = 'base-id';
+				else paramKey = 'ud-id';
+
 				searchParams.set(paramKey, data);
 				setSearchParams(searchParams);
 
@@ -136,16 +129,31 @@ export const useWalletVerification = () => {
 	};
 
 	const connectBaseWallet = () => {
-		return new Promise<void>((resolve) => {
+		return new Promise<void>((resolve, reject) => {
 			updateStates({ key: 'currentStep', value: 'loading' });
-			
-			// Simulate loading delay for Base partner
-			setTimeout(async () => {
-				// Mock wallet address for Base partner
-				const mockWalletAddress = '0xBaseMockWalletAddress123456789';
-				await handleVerification(mockWalletAddress, 'BASE');
-				resolve();
-			}, 2000); // 2 second delay to simulate verification process
+
+			if (!baseWalletAddress) {
+				showToast({
+					type: 'error',
+					message: t('useWalletVerification.baseWalletError'),
+				});
+				updateStates({ key: 'currentStep', value: 'error' });
+				reject(new Error('Base wallet address not available'));
+				return;
+			}
+
+			handleVerification(baseWalletAddress, 'BASE')
+				.then(() => {
+					resolve();
+				})
+				.catch((error) => {
+					updateStates({ key: 'currentStep', value: 'error' });
+					showToast({
+						type: 'error',
+						message: t('common:genericError'),
+					});
+					reject(error);
+				});
 		});
 	};
 

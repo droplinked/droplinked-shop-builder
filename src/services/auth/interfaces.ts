@@ -23,6 +23,7 @@ export interface IsignupService {
     hasProducerAccount: boolean
     d3UserId?: string
     udUserId?: string
+    baseUserId?: string
     subscriptionId?: string
 }
 
