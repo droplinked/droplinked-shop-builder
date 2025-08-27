@@ -9,7 +9,13 @@ import { InvoiceProvider } from './context/InvoiceContext'
 import useInvoiceData from './hooks/useInvoiceData'
 import './styles/styles.css'
 
-export const InvoiceTemplate: React.FC = () => {
+export function meta() {
+    return [
+        { title: "Invoice Viewer | Droplinked" },
+    ];
+}
+
+const InvoiceTemplate: React.FC = () => {
     const [isSmallerThan768] = useMediaQuery('(max-width: 768px)')
     const { data, isFetching, isDownloading, targetRef, handleDownload } = useInvoiceData()
 
