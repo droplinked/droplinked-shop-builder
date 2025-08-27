@@ -10,8 +10,9 @@ import WalletVerificationModal from './wallet-verification-modal/WalletVerificat
 export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { t } = useLocaleResources('public-pages/landings/partner-pages');
-  const { partnerId, buttonAction, requiresWalletVerification } = usePartnerLanding();
+  const { partnerId, buttonAction } = usePartnerLanding();
   const { navigateBasedOnStatus } = useAuthNavigation();
+  const requiresWalletVerification  = !(partnerId==='crossmint')
 
   const handleClaimClick = () => {
     if (buttonAction === 'get-started') {
