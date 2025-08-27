@@ -24,13 +24,6 @@ export default function PartnerPage({ partnerId }: PartnerPageProps) {
 
   const partnerConfigs = getPartnerConfigs(t);
 
-  // Validate partner ID and get config
-  if (!(partnerId in partnerConfigs)) {
-    return <Navigate to="/404" replace />;
-  }
-
-  const config = partnerConfigs[partnerId as PartnerId];
-
   // Clean up base localStorage when navigating away from base partner page
   useEffect(() => {
     return () => {
@@ -39,6 +32,13 @@ export default function PartnerPage({ partnerId }: PartnerPageProps) {
       }
     };
   }, [partnerId]);
+
+  // Validate partner ID and get config
+  if (!(partnerId in partnerConfigs)) {
+    return <Navigate to="/404" replace />;
+  }
+
+  const config = partnerConfigs[partnerId as PartnerId];
 
   return (
     <OnchainKitProvider

@@ -92,7 +92,7 @@
 	},
 	"scripts": {
 		"start": "react-app-rewired start",
-		"build": "react-app-rewired build",
+		"build": "NODE_OPTIONS=\"--max-old-space-size=4096\" react-app-rewired build",
 		"eject": "react-app-rewired eject",
 		"find-deadcode": "ts-prune -s=.test.ts? -p ./jsconfig.json",
 		"test": "NODE_ENV=test jest",
@@ -137,6 +137,7 @@
 		"@types/react-beautiful-dnd": "^13.1.8",
 		"@types/react-color": "^3.0.13",
 		"@types/react-dom": "^19.0.4",
+		"ajv": "^8.17.1",
 		"babel-jest": "^29.7.0",
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^29.7.0",
