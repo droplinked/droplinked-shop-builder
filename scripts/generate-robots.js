@@ -85,25 +85,13 @@ Crawl-delay: 2
 // Generate the robots.txt content
 const robotsContent = generateRobotsTxt(environment);
 
-// Determine output paths
-const buildDir = path.join(path.dirname(__dirname), 'build');
+// Determine output path - only public directory
 const publicDir = path.join(path.dirname(__dirname), 'public');
 
-// Ensure build directory exists (it should after build)
-if (!fs.existsSync(buildDir)) {
-    console.warn('Build directory does not exist. Creating it...');
-    fs.mkdirSync(buildDir, { recursive: true });
-}
-
-// Write robots.txt to build directory (this will be deployed)
-const buildRobotsPath = path.join(buildDir, 'robots.txt');
-fs.writeFileSync(buildRobotsPath, robotsContent);
-console.log(`✅ Generated robots.txt in build directory: ${buildRobotsPath}`);
-
-// Also update the public directory for development
+// Write robots.txt to public directory only
 const publicRobotsPath = path.join(publicDir, 'robots.txt');
 fs.writeFileSync(publicRobotsPath, robotsContent);
-console.log(`✅ Updated robots.txt in public directory: ${publicRobotsPath}`);
+console.log(`✅ Generated robots.txt in public directory: ${publicRobotsPath}`);
 
 console.log('Robots.txt generation completed successfully!');
 console.log('\nGenerated content:');
