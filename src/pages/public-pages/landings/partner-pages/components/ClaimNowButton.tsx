@@ -15,7 +15,7 @@ export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
   const requiresWalletVerification  = !(partnerId==='crossmint')
 
   const handleClaimClick = () => {
-    if (buttonAction === 'get-started') {
+    if (partnerId === 'gaia') {
       navigateBasedOnStatus();
     } else if (requiresWalletVerification) {
       onOpen(); // Open the wallet verification modal
