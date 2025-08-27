@@ -42,7 +42,7 @@ export default function PartnerPage({ partnerId }: PartnerPageProps) {
 
   return (
     <OnchainKitProvider
-      apiKey={process.env.VITE_ONCHAINKIT_API_KEY}
+      apiKey={process.env.REACT_APP_ONCHAINKIT_API_KEY}
       chain={base}
     >
       <PartnerLandingProvider partnerConfig={config}>
