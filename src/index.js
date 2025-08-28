@@ -1,12 +1,12 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import "assets/style/index.css"
+import 'lib/i18n'
 import React, { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { QueryClient, QueryClientProvider } from "react-query"
 import App from "./App"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import { theme } from "./theme"
-import 'lib/i18n'
 
 const queryClient = new QueryClient({
   defaultOptions: {

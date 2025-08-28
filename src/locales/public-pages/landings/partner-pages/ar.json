@@ -19,6 +19,10 @@
     "base": {
       "title": "تشغيل التجارة الذكية",
       "subtitle": "تمكين المبدعين والمجتمعات من تطوير أعمالهم معًا على البلوكتشين"
+    },
+    "gaia": {
+      "title": "تشغيل التجارة الذكية",
+      "subtitle": "تمكين المبدعين والمجتمعات من تطوير أعمالهم معًا على البلوكتشين"
     }
   },
   "PartnerConfig": {
@@ -45,9 +49,14 @@
     "base": {
       "name": "base",
       "displayName": "Base",
-      "trialMonths": 3,
       "perkListSectionTitle": "مزايا شبكة Base",
       "perkListHeadingTitle": "مزايا حصرية لأعضاء شبكة Base"
+    },
+    "gaia": {
+      "name": "gaia",
+      "displayName": "gaia",
+      "perkListHeadingTitle": "المبدعون على Gaia",
+      "perkListHeadingSubtitle": "توفر المنصة للجميع الأدوات اللازمة لرمزنة الأصول مثل الملكية الفكرية الرقمية، والمخزون المادي، واستضافة النطاقات كضمان"
     }
   },
   "PerkList": {
@@ -138,5 +147,10 @@
   "useWalletVerification": {
     "metamaskNotInstalled": "محفظة Metamask غير مثبتة!",
     "unstoppableNotInstalled": "محفظة Unstoppable غير مثبتة!"
+  },
+  "PartnerVideoShowcase": {
+    "sectionTitle": "انطلق خلال دقائق",
+    "headingTitle": "ابدأ فوراً",
+    "headingSubtitle": "يجعل droplinked من السهل بيع المخزون المادي والرقمي \nمع السماح لك بالكسب نقداً أو بالعملات المشفرة"
   }
 } 

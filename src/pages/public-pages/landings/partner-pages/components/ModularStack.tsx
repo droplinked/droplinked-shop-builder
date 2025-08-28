@@ -12,7 +12,7 @@ import { usePartnerLanding } from '../context/PartnerLandingContext'
 
 export default function ModularStack() {
     const { t } = useLocaleResources('public-pages/landings/partner-pages')
-    const { partnerName, trialMonths, partnerConfig } = usePartnerLanding()
+    const { partnerName, trialMonths, showProPlanCard } = usePartnerLanding()
  
     // Base cards that all partners see
     const baseCards: CardData[] = [
@@ -32,26 +32,23 @@ export default function ModularStack() {
         }
     ]
 
-    // Partner-specific additional cards
-    const getPartnerSpecificCards = (): CardData[] => {
-        switch (partnerConfig.id) {
-            case 'base':
-                return [] // Base partner gets no additional cards
-            default: // All other partners get ProPlanCard
-                return [{
-                    icon: <PriceplanLg color="#fff" />, 
-                    title: t('ModularStack.cards.proPlan.title', { partnerName, trialMonths }),
-                    description: t('ModularStack.cards.proPlan.description', { partnerName, trialMonths }),
-                    gridColumn: { base: "1fr", md: "span 2", lg: "span 2" },
-                    hasBackgroundOverlay: true,
-                    children: <ProPlanCard />
-                }]
-        }
+    // Template-based additional cards
+    const getTemplateSpecificCards = (): CardData[] => {
+        if (!showProPlanCard) return [];
+        
+        return [{
+            icon: <PriceplanLg color="#fff" />, 
+            title: t('ModularStack.cards.proPlan.title', { partnerName, trialMonths }),
+            description: t('ModularStack.cards.proPlan.description', { partnerName, trialMonths }),
+            gridColumn: { base: "1fr", md: "span 2", lg: "span 2" },
+            hasBackgroundOverlay: true,
+            children: <ProPlanCard />
+        }]
     }
 
     const cardsData: CardData[] = [
         ...baseCards,
-        ...getPartnerSpecificCards()
+        ...getTemplateSpecificCards()
     ]
 
     return <PlatformFunctionalities cardsData={cardsData} isGridCards={false} />
