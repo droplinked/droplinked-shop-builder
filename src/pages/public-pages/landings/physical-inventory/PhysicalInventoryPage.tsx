@@ -11,6 +11,28 @@ import PhysicalInventoryFeatures from './PhysicalInventoryFeatures'
 import PhysicalInventoryHero from './PhysicalInventoryHero'
 import PhysicalInventoryModularStack from './PhysicalInventoryModularStack'
 
+export function meta() {
+    return [
+        { title: "Tokenize Physical Inventory | Onchain Inventory Management | Droplinked" },
+        {
+            name: "description",
+            content: "Bridge the gap between physical and digital. Tokenize your physical inventory for transparent, onchain management and proof of ownership.",
+        },
+        {
+            name: "keywords",
+            content: "physical inventory, tokenized stock, onchain inventory management, supply chain, logistics, phygital, asset tokenization",
+        },
+        {
+            property: "og:title",
+            content: "Tokenize Physical Inventory | Onchain Inventory Management | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Bridge the gap between physical and digital. Tokenize your physical inventory for transparent, onchain management and proof of ownership.",
+        },
+    ];
+}
+
 function PhysicalInventoryPage() {
     useLocaleResources('public-pages/landings/physical-inventory', { en: enLocale, ar: arLocale })
 

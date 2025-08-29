@@ -1,11 +1,11 @@
 // Dynamic partner page component that handles all partners based on partnerId prop
-import { OnchainKitProvider } from "@coinbase/onchainkit";
+import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
 import '@coinbase/onchainkit/styles.css';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import arLocale from 'locales/public-pages/landings/partner-pages/ar.json';
 import enLocale from 'locales/public-pages/landings/partner-pages/en.json';
 import React, { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { base } from 'wagmi/chains';
 import { getPartnerConfigs } from './config/partners';
 import { PartnerId } from './config/types';
@@ -17,12 +17,20 @@ interface PartnerPageProps {
 }
 
 export default function PartnerPage({ partnerId }: PartnerPageProps) {
+  const navigate = useNavigate()
   const { t } = useLocaleResources('public-pages/landings/partner-pages', {
     en: enLocale,
     ar: arLocale
   });
 
   const partnerConfigs = getPartnerConfigs(t);
+
+  // Validate partner ID and get config
+  if (!partnerId || !(partnerId in partnerConfigs)) {
+    return navigate("/404", { replace: true })
+  }
+
+  const config = partnerConfigs[partnerId as PartnerId];
 
   // Clean up base localStorage when navigating away from base partner page
   useEffect(() => {
@@ -33,21 +41,14 @@ export default function PartnerPage({ partnerId }: PartnerPageProps) {
     };
   }, [partnerId]);
 
-  // Validate partner ID and get config
-  if (!(partnerId in partnerConfigs)) {
-    return <Navigate to="/404" replace />;
-  }
-
-  const config = partnerConfigs[partnerId as PartnerId];
-
   return (
-    <OnchainKitProvider
-      apiKey={process.env.REACT_APP_ONCHAINKIT_API_KEY}
+    <MiniKitProvider
+      apiKey={import.meta.env.VITE_ONCHAINKIT_API_KEY}
       chain={base}
     >
       <PartnerLandingProvider partnerConfig={config}>
         <PartnerLayout />
       </PartnerLandingProvider>
-    </OnchainKitProvider>
+    </MiniKitProvider>
   );
 } 

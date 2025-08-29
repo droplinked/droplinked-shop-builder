@@ -4,7 +4,7 @@ import { appDevelopment } from 'utils/app/variable';
 import React from 'react';
 import CheckoutForm, { IFormStripe } from './parts/CheckoutForm';
 
-const stripePromise = loadStripe(`${appDevelopment ? process.env.REACT_APP_STRIPE_KEY_DEV : process.env.REACT_APP_STRIPE_KEY_MAIN}`);
+const stripePromise = loadStripe(`${appDevelopment ? import.meta.env.VITE_STRIPE_KEY_DEV : import.meta.env.VITE_STRIPE_KEY_MAIN}`);
 
 interface IProps extends IFormStripe {
   clientSecret: string

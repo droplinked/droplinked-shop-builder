@@ -2,11 +2,13 @@ import i18next from 'i18next'
 import commonAr from 'locales/common/ar.json'
 import commonEn from 'locales/common/en.json'
 import { useTranslation } from 'react-i18next'
+import { isRTLLanguage } from '../../utils/languageUtils'
 
 export type Namespace =
-    | '404Page'
-    | 'homePage'
     | 'common'
+    | '404Page'
+    | 'blogs'
+    | 'homePage'
     | 'shopManagement'
     | 'onchainRecords'
     | 'changelogPage'
@@ -22,7 +24,6 @@ export type Namespace =
     | 'settings'
     | 'collections'
     | 'gamification'
-    | 'orderSamplePOD'
     | 'maintenancePage'
     | 'about'
     | 'privacyPage'
@@ -35,7 +36,6 @@ export type Namespace =
     | 'affiliate'
     | 'payment-link'
     | 'products'
-    | 'invoice-management'
     | 'crossmint'
     | 'public-pages/public-blogs'
     | 'public-pages/landings/custom-tokens'
@@ -98,16 +98,11 @@ export default function useLocaleResources(
     })
 
     // Check if current language is RTL
-    const isRTL = () => {
-        const currentLanguage = i18n.language;
-        // List of RTL languages
-        const rtlLanguages = ['ar', 'he', 'fa', 'ur'];
-        return rtlLanguages.includes(currentLanguage);
-    }
+    const isRTL = isRTLLanguage(i18n.language);
 
     // Return the translation function and isRTL check
     return {
         t,
-        isRTL: isRTL(),
+        isRTL,
     }
 }

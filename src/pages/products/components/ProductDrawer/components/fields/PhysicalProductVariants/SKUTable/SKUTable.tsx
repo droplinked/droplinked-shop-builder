@@ -1,5 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table'
-import Table from 'pages/invoice-management/components/table-v2/TableV2'
+import Table from 'components/redesign/table-v2/TableV2'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { updatePropertiesOnSKUDelete } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'

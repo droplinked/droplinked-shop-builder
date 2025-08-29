@@ -11,6 +11,7 @@ import MarqueeWrapper from './MarqueeWrapper'
  */
 export default function MarqueeSection() {
     const { t } = useLocaleResources('common')
+    if (typeof window === 'undefined') return null
 
     return (
         <SectionContainer sectionTitle={t('marqueeSection.sectionTitle')} paddingBlock={6}>

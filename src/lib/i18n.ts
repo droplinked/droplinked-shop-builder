@@ -2,17 +2,15 @@ import i18n from 'i18next'
 import arCommon from 'locales/common/ar.json'
 import enCommon from 'locales/common/en.json'
 import { initReactI18next } from 'react-i18next'
+import { getLanguageFromCookie, setLanguageInCookie, setHTMLAttributes } from '../utils/languageUtils'
 
-// Read the saved language from localStorage (if executed in a browser environment)
-const LOCAL_STORAGE_LANG_KEY = 'language'
-const savedLanguage = typeof window !== 'undefined' ? localStorage.getItem(LOCAL_STORAGE_LANG_KEY) : null
-const initialLanguage = savedLanguage || 'en'
+// Read the saved language from cookie (if executed in a browser environment)
+const initialLanguage = getLanguageFromCookie();
 
 // Set the HTML `dir` and `lang` attributes on first load so the document has the right
 // direction and language before any React rendering happens.
 if (typeof document !== 'undefined') {
-    document.documentElement.setAttribute('dir', initialLanguage === 'ar' ? 'rtl' : 'ltr')
-    document.documentElement.setAttribute('lang', initialLanguage)
+    setHTMLAttributes(initialLanguage);
 }
 
 i18n
@@ -30,12 +28,9 @@ i18n
     })
 
 i18n.on('languageChanged', (lng) => {
-    document.documentElement.setAttribute('dir', lng === 'ar' ? 'rtl' : 'ltr')
-    document.documentElement.setAttribute('lang', lng)
-    // Persist the selected language so it can be restored on the next visit
-    if (typeof window !== 'undefined') {
-        localStorage.setItem(LOCAL_STORAGE_LANG_KEY, lng)
-    }
+    setHTMLAttributes(lng);
+    // Persist the selected language in cookie so it can be restored on the next visit
+    setLanguageInCookie(lng);
 })
 
 export default i18n

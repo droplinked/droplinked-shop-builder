@@ -70,7 +70,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        
+
         setCopied(true);
         toast.showToast({
           type: 'success',
@@ -93,8 +93,8 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
           borderRadius="lg"
           padding="10px"
           bg={platform.name === 'Link' && copied ? 'green.50' : 'transparent'}
-          _hover={{ 
-            bg: platform.name === 'Link' && copied ? 'green.100' : 'neutral.gray.800' 
+          _hover={{
+            bg: platform.name === 'Link' && copied ? 'green.100' : 'neutral.gray.800'
           }}
           onClick={() => handleShare(platform.name)}
           transition="all 0.2s"

@@ -8,7 +8,10 @@ build_dev:
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_DEV
     - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_TEST
     - "npm install"
-    - CI=false NODE_OPTIONS=--max-old-space-size=6144 npm run build
+    - CI=false NODE_OPTIONS=--max-old-space-size=6144 npm run build:dev
+    - cd build
+    - cp -r client/. .
+    - rm -rf client
     
   artifacts:
     paths:
@@ -43,8 +46,11 @@ build_prod:
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_PROD
     - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_LIVE
     - "npm install"
-    - CI=false NODE_OPTIONS=--max-old-space-size=6144 npm run build
-      
+    - CI=false NODE_OPTIONS=--max-old-space-size=6144 npm run build:main
+    - cd build
+    - cp -r client/. .
+    - rm -rf client
+
   artifacts:
     paths:
       # Build folder

@@ -11,6 +11,28 @@ import OnchainSubscriptionsFeatures from './OnchainSubscriptionsFeatures'
 import OnchainSubscriptionsHero from './OnchainSubscriptionsHero'
 import OnchainSubscriptionsModularStack from './OnchainSubscriptionsModularStack'
 
+export function meta() {
+    return [
+        { title: "Onchain Subscriptions & Recurring Payments | Droplinked" },
+        {
+            name: "description",
+            content: "Offer subscription services and accept recurring crypto payments with ease. Droplinked's onchain subscription service is secure and automated.",
+        },
+        {
+            name: "keywords",
+            content: "onchain subscriptions, recurring crypto payments, Web3 subscriptions, token subscriptions, decentralized billing",
+        },
+        {
+            property: "og:title",
+            content: "Onchain Subscriptions & Recurring Payments | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Offer subscription services and accept recurring crypto payments with ease. Droplinked's onchain subscription service is secure and automated.",
+        },
+    ];
+}
+
 function OnchainSubscriptionsPage() {
     useLocaleResources('public-pages/landings/onchain-subscriptions', { en: enLocale, ar: arLocale })
 

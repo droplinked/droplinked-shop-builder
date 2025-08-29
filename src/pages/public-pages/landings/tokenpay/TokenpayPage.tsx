@@ -7,24 +7,41 @@ import { LazyLoad } from '../_shared/components/LazyLoad'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import SignUpCta from '../_shared/components/SignUpCta'
 import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
-import TokenpayFeatures from './TokenpayFeatures'
-import TokenpayHero from './TokenpayHero'
-import TokenpayModularStack from './TokenpayModularStack'
+
+export function meta() {
+    return [
+        { title: "TokenPay | Web3 Payment Gateway | Droplinked" },
+        {
+            name: "description",
+            content: "Power your sales with TokenPay, Droplinked's secure Web3 payment gateway. Accept crypto payments and settle transactions on-chain.",
+        },
+        {
+            name: "keywords",
+            content: "TokenPay, Web3 payments, crypto checkout, blockchain payment gateway, secure crypto payments, decentralized finance",
+        },
+        {
+            property: "og:title",
+            content: "TokenPay | Web3 Payment Gateway | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Power your sales with TokenPay, Droplinked's secure Web3 payment gateway. Accept crypto payments and settle transactions on-chain.",
+        },
+    ];
+}
 
 function TokenpayPage() {
     useLocaleResources('public-pages/landings/tokenpay', { en: enLocale, ar: arLocale })
 
     const sections = [
         { id: 'partner-list', component: <MarqueeSection /> },
-        { id: 'feature-list', component: <TokenpayFeatures /> },
-        { id: 'modular-stack', component: <TokenpayModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },
-        { id: 'sign-up-cta', component: <SignUpCta /> }
+        { id: 'sign-up-cta', component: <SignUpCta /> },
     ]
 
     return (
         <>
-            <TokenpayHero />
+            {/* TokenPay Hero Component would go here */}
             <MaxWidthWrapper>
                 {sections.map((section) => (
                     <LazyLoad key={section.id}>

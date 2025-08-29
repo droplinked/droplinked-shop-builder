@@ -12,47 +12,81 @@ export function useLogin() {
     const { updateOnboardingState } = useOnboardingStore()
     const { t } = useLocaleResources('onboarding')
 
-    const finalizeLogin = useCallback(async (data: any) => {
+    const handleUserValidation = useCallback((user: any) => {
+        if (user.status === "DELETED") {
+            showToast({ message: t('useLogin.errors.accountDeleted'), type: "error" })
+            return false
+        }
+
+        if (user.type !== "SHOPBUILDER") {
+            showToast({
+                message: t('useLogin.errors.accountUnableToLogin'),
+                type: "error"
+            })
+            return false
+        }
+
+        return true
+    }, [showToast, t])
+
+    const redirectAfterOnboardingLogin = useCallback((userStatus: string) => {
+        switch (userStatus) {
+            case "NEW":
+                updateOnboardingState("currentStep", "SIGNUP_EMAIL_VERIFICATION")
+                break
+
+            case "VERIFIED":
+            case "PROFILE_COMPLETED":
+                updateOnboardingState("currentStep", "EXISTING_WEBSITE")
+                break
+
+            case "SHOP_INFO_COMPLETED":
+            case "ACTIVE":
+                // AuthGuard will now handle access to dashboard automatically
+                shopNavigate("dashboard")
+                break
+
+            default:
+                showToast({ message: t('common:genericError'), type: "error" })
+        }
+    }, [updateOnboardingState, shopNavigate, showToast, t])
+
+    const handleLoginSuccess = useCallback(async (loginResponse: any) => {
         try {
-            const { user } = data
-            const status = user.status
+            const { user } = loginResponse
 
-            if (status === "DELETED")
-                return showToast({ message: t('useLogin.errors.accountDeleted'), type: "error" })
+            if (!handleUserValidation(user)) return
 
-            if (user.type !== "SHOPBUILDER")
-                return showToast({
-                    message: t('useLogin.errors.accountUnableToLogin'),
-                    type: "error"
-                })
-
-            switch (status) {
-                case "NEW":
-                    return updateOnboardingState("currentStep", "SIGNUP_EMAIL_VERIFICATION")
-
-                case "VERIFIED":
-                case "PROFILE_COMPLETED":
-                    return updateOnboardingState("currentStep", "EXISTING_WEBSITE")
-
-                case "SHOP_INFO_COMPLETED":
-                case "ACTIVE":
-                    return shopNavigate("dashboard")
-            }
+            redirectAfterOnboardingLogin(user.status)
         }
         catch (error) {
             showToast({ message: t('common:genericError'), type: "error" })
         }
-    }, [showToast, updateOnboardingState, shopNavigate, t])
+    }, [handleUserValidation, redirectAfterOnboardingLogin, showToast, t])
 
-    const onLoginSubmit = useCallback(async (data: any) => {
+    const handleLoginSubmit = useCallback(async (loginData: any) => {
         try {
-            const result = await authenticateUser({ type: "default", params: { ...data, userType: "PRODUCER" } })
-            if (result) finalizeLogin(result)
+            const response = await authenticateUser({
+                type: "default",
+                params: { ...loginData, userType: "PRODUCER" }
+            })
+
+            if (response) {
+                await handleLoginSuccess(response)
+            }
         }
         catch (error) {
-            showToast({ message: error?.message || t('useLogin.errors.loginFailed'), type: "error" })
+            showToast({
+                message: error?.message || t('useLogin.errors.loginFailed'),
+                type: "error"
+            })
         }
-    }, [authenticateUser, finalizeLogin, showToast, t])
+    }, [authenticateUser, handleLoginSuccess, showToast, t])
 
-    return { authenticateUser, finalizeLogin, onLoginSubmit, loading }
+    return {
+        authenticateUser,
+        handleLoginSuccess,
+        handleLoginSubmit,
+        loading
+    }
 }

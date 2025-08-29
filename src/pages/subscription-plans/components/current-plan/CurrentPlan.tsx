@@ -11,7 +11,6 @@ import StatisticModal from './components/statistics/StatisticModal';
 function CurrentPlan() {
     const { isFetching, data } = useShopSubscriptionData();
     const subscriptionData = data?.data;
-    console.log(subscriptionData);
     const planType = subscriptionData?.subscriptionId?.type;
     const { t } = useLocaleResources('subscription');
 
