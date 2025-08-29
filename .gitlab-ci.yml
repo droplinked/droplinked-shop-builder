@@ -10,8 +10,8 @@ build_dev:
     - "npm install"
     - CI=false NODE_OPTIONS=--max-old-space-size=6144 npm run build:dev
     - cd build
-    - mv client/* .
-    - rmdir client
+    - cp -r client/. .
+    - rm -rf client
     
   artifacts:
     paths:
@@ -48,8 +48,8 @@ build_prod:
     - "npm install"
     - CI=false NODE_OPTIONS=--max-old-space-size=6144 npm run build:main
     - cd build
-    - mv client/* .
-    - rmdir client
+    - cp -r client/. .
+    - rm -rf client
 
   artifacts:
     paths:
