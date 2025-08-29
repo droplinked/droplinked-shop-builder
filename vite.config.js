@@ -2,11 +2,12 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import bundleAnalyzer from 'vite-bundle-analyzer'
 import svgr from 'vite-plugin-svgr'
-import { reactRouter } from "@react-router/dev/vite";
-import { cjsInterop } from "vite-plugin-cjs-interop";
+import { reactRouter } from "@react-router/dev/vite"
+import { cjsInterop } from "vite-plugin-cjs-interop"
 
+// 👇 dev-time polyfills for process/global (via esbuild)
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 
-// https://vitejs.dev/config/
 export default defineConfig({
     worker: {
         format: "es"
@@ -17,13 +18,7 @@ export default defineConfig({
             dependencies: ["react-to-pdf", "react-color", "react-dom/server", "lz-string", "react-dropzone"]
         }),
         svgr({
-            // Enable importing SVGs as React components
-            svgrOptions: {
-                exportType: 'named',
-                ref: true,
-                svgo: false,
-                titleProp: true,
-            },
+            svgrOptions: { exportType: 'named', ref: true, svgo: false, titleProp: true },
             include: '**/*.svg',
         }),
         process.env.ANALYZE && bundleAnalyzer({
@@ -35,7 +30,6 @@ export default defineConfig({
 
     resolve: {
         alias: {
-            // Set up path aliases to match your current jsconfig.json baseUrl
             '@': path.resolve(__dirname, './src'),
             'src': path.resolve(__dirname, './src'),
             'assets': path.resolve(__dirname, './src/assets'),
@@ -54,7 +48,6 @@ export default defineConfig({
             'context': path.resolve(__dirname, './src/context'),
             'hoc': path.resolve(__dirname, './src/hoc'),
             'data': path.resolve(__dirname, './src/data'),
-
         },
         extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
     },
@@ -73,8 +66,11 @@ export default defineConfig({
         outDir: 'build',
         assetsDir: 'static',
         sourcemap: false,
-        // Increase chunk size warning limit
         chunkSizeWarningLimit: 1000,
+        // 👇 ensure replacements also happen in production builds
+        rollupOptions: {
+            // nothing else needed `define` below handles globals in output
+        }
     },
 
     // Include Excel and CSV files as assets
@@ -87,5 +83,29 @@ export default defineConfig({
                 additionalData: `@import "src/assets/style/index.css";`
             }
         }
+    },
+
+    // ✅ Universal shims (dev + build)
+    // - Replace bare identifiers at bundle time so code doesn’t crash at runtime.
+    define: {
+        // map `global` usages to the browser global
+        global: 'globalThis',
+        // keep packages that read from process.env from exploding
+        'process.env': {},
+    },
+
+    // ✅ Extra help during dependency pre-bundling (dev server)
+    optimizeDeps: {
+        esbuildOptions: {
+            define: {
+                global: 'globalThis',
+            },
+            plugins: [
+                NodeGlobalsPolyfillPlugin({
+                    process: true,  // provides a tiny `process` shim
+                    buffer: true,   // (optional) if any deps use Buffer
+                }),
+            ],
+        },
     },
 })

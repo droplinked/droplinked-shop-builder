@@ -1,16 +1,16 @@
 // Dynamic partner page component that handles all partners based on partnerId prop
-import { OnchainKitProvider } from "@coinbase/onchainkit";
+import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
 import '@coinbase/onchainkit/styles.css';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import arLocale from 'locales/public-pages/landings/partner-pages/ar.json';
 import enLocale from 'locales/public-pages/landings/partner-pages/en.json';
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { base } from 'wagmi/chains';
 import { getPartnerConfigs } from './config/partners';
 import { PartnerId } from './config/types';
 import { PartnerLandingProvider } from './context/PartnerLandingContext';
 import { PartnerLayout } from './layout/PartnerLayout';
-import { useNavigate } from 'react-router-dom';
 
 interface PartnerPageProps {
   partnerId: string;
@@ -42,13 +42,13 @@ export default function PartnerPage({ partnerId }: PartnerPageProps) {
   }, [partnerId]);
 
   return (
-    <OnchainKitProvider
+    <MiniKitProvider
       apiKey={import.meta.env.VITE_ONCHAINKIT_API_KEY}
       chain={base}
     >
       <PartnerLandingProvider partnerConfig={config}>
         <PartnerLayout />
       </PartnerLandingProvider>
-    </OnchainKitProvider>
+    </MiniKitProvider>
   );
 } 
