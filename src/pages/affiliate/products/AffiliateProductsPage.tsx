@@ -21,7 +21,9 @@ const INITIAL_FILTERS: IGetProductsCommunityService = {
   sort: undefined
 };
 
-const AffiliateProductsPage = ({ isPublic = false }) => {
+const AffiliateProductsPage = (props) => {
+  const { isPublic } = props.loaderData;
+
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<IGetProductsCommunityService>(INITIAL_FILTERS);
 

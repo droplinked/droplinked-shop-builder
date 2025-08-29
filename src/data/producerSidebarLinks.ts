@@ -49,7 +49,6 @@ const createSidebarLinks = (t: TFunction) => [
                 linkTo: null,
                 list: [
                     { listTitle: t('Sidebar.NavLinks.lists.purchaseHistory'), linkTo: '/analytics/purchase-history' },
-                    { listTitle: t('Sidebar.NavLinks.lists.invoices'), linkTo: '/analytics/invoice-management' }
                 ]
             },
             {

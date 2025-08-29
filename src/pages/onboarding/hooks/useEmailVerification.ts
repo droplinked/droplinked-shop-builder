@@ -18,7 +18,7 @@ export const useEmailVerification = ({ mode }: Props) => {
 
     // Hooks
     const { credentials, updateOnboardingState } = useOnboardingStore()
-    const { onLoginSubmit, loading: loginLoading } = useLogin()
+    const { handleLoginSubmit, loading: loginLoading } = useLogin()
     const { showToast } = useAppToast()
     const { email } = credentials
     const { t } = useLocaleResources('onboarding')
@@ -37,7 +37,7 @@ export const useEmailVerification = ({ mode }: Props) => {
         setInputState("success")
 
         if (mode === 'signup') {
-            await onLoginSubmit(credentials)
+            await handleLoginSubmit(credentials)
             updateOnboardingState('currentStep', 'EXISTING_WEBSITE')
             return
         }

@@ -16,7 +16,6 @@
   "claimNow": "احصل عليه الآن",
   "return": "رجوع",
   "continue": "متابعة",
-
   "submit": "إرسال",
   "cancel": "إلغاء",
   "save": "حفظ",
@@ -29,7 +28,6 @@
   "success": "تم بنجاح",
   "error": "حدث خطأ",
   "genericError": "حدث خطأ ما. يرجى المحاولة لاحقًا.",
-
   "import": "استيراد",
   "export": "تصدير",
   "download": "تنزيل",
@@ -128,7 +126,6 @@
     "oopsSomethingWentWrong": "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى.",
     "oopsSomethingWentWrongShort": "عذراً! حدث خطأ ما.",
     "somethingWentWrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-    "failedToCreate": "فشل في الإنشاء. يرجى المحاولة مرة أخرى.",
     "anErrorOccurred": "حدث خطأ",
     "unexpectedError": "حدث خطأ غير متوقع.",
     "pdfGenerationFailed": "فشل في إنشاء ملف PDF. يرجى المحاولة مرة أخرى.",

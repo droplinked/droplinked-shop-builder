@@ -1,3 +1,7 @@
-# https://www.robotstxt.org/robotstxt.html
+# Robots.txt for dev environment
+# Block all crawlers
 User-agent: *
-Disallow:
+Disallow: /
+
+# Prevent indexing of development/staging sites
+Crawl-delay: 86400

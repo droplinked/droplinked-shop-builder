@@ -28,7 +28,6 @@
   "ProductTableActionMenu": {
     "actions": {
       "dropInfo": "DROP Information",
-      "orderPodSample": "Order POD Sample",
       "makeStatus": "Make {{status}}"
     }
   },

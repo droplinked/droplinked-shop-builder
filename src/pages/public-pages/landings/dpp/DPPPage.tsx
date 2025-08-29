@@ -11,6 +11,28 @@ import DPPFeatures from './DPPFeatures'
 import DPPHero from './DPPHero'
 import DPPModularStack from './DPPModularStack'
 
+export function meta() {
+    return [
+        { title: "Digital Product Passports (DPP) | Droplinked" },
+        {
+            name: "description",
+            content: "Futureproof your products with Droplinked's Digital Product Passports (DPPs). Create tokenized, onchain records for transparency and authenticity.",
+        },
+        {
+            name: "keywords",
+            content: "Digital Product Passport, DPP, traceability, sustainability, regulatory compliance, chain of custody, onchain records",
+        },
+        {
+            property: "og:title",
+            content: "Digital Product Passports (DPP) | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Futureproof your products with Droplinked's Digital Product Passports (DPPs). Create tokenized, onchain records for transparency and authenticity.",
+        },
+    ];
+}
+
 function DPPPage() {
     useLocaleResources('public-pages/landings/dpp', { en: enLocale, ar: arLocale })
 

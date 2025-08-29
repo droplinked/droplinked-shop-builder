@@ -11,6 +11,28 @@ import ProductTilesFeatures from './ProductTilesFeatures'
 import ProductTilesHero from './ProductTilesHero'
 import ProductTilesModularStack from './ProductTilesModularStack'
 
+export function meta() {
+    return [
+        { title: "Embeddable Product Tiles | Sell Anywhere | Droplinked" },
+        {
+            name: "description",
+            content: "Add e-commerce to any website or blog with Droplinked's embeddable Product Tiles. Make your content instantly shoppable.",
+        },
+        {
+            name: "keywords",
+            content: "product tiles, embeddable products, shoppable content, product widget, e-commerce embed, sell on blog",
+        },
+        {
+            property: "og:title",
+            content: "Embeddable Product Tiles | Sell Anywhere | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Add e-commerce to any website or blog with Droplinked's embeddable Product Tiles. Make your content instantly shoppable.",
+        },
+    ];
+}
+
 function ProductTilesPage() {
     useLocaleResources('public-pages/landings/product-tiles', { en: enLocale, ar: arLocale })
 

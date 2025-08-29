@@ -32,7 +32,7 @@ export const useWalletVerification = () => {
 		}
 	});
 
-	const UNSTOPPABLE_CLIENT_ID = process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID;
+	const UNSTOPPABLE_CLIENT_ID = import.meta.env.VITE_UNSTOPPABLE_CLIENT_ID;
 
 	const handleVerification = async (walletAddress: string, walletType: string) => {
 		try {

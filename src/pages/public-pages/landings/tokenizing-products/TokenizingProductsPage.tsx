@@ -11,6 +11,28 @@ import TokenizingProductsFeatures from './TokenizingProductsFeatures'
 import TokenizingProductsHero from './TokenizingProductsHero'
 import TokenizingProductsModularStack from './TokenizingProductsModularStack'
 
+export function meta() {
+    return [
+        { title: "No-Code Tokenization & NFT Minting | Droplinked" },
+        {
+            name: "description",
+            content: "Monetize your assets with Droplinked's no-code tools. Easily tokenize physical goods or mint NFTs for digital art, music, and more without any programming.",
+        },
+        {
+            name: "keywords",
+            content: "tokenization, NFT minting, no-code, monetize assets, create NFT, blockchain, digital assets, physical assets",
+        },
+        {
+            property: "og:title",
+            content: "No-Code Tokenization & NFT Minting | Droplinked",
+        },
+        {
+            property: "og:description",
+            content: "Monetize your assets with Droplinked's no-code tools. Easily tokenize physical goods or mint NFTs for digital art, music, and more without any programming.",
+        },
+    ];
+}
+
 function TokenizingProductsPage() {
     useLocaleResources('public-pages/landings/tokenizing-products', { en: enLocale, ar: arLocale })
 

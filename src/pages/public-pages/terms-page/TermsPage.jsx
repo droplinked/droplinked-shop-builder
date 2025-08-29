@@ -4,6 +4,30 @@ import arLocale from "locales/public-pages/terms-page/ar.json";
 import enLocale from "locales/public-pages/terms-page/en.json";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
+export function meta() {
+  return [
+    { title: "Terms of Service | Droplinked" },
+    {
+      name: "description",
+      content:
+        "Please read the Droplinked Terms of Service carefully. This agreement governs your use of the Droplinked platform and services.",
+    },
+    {
+      name: "keywords",
+      content: "terms of service, terms and conditions, user agreement, legal, service policy, rules",
+    },
+    {
+      property: "og:title",
+      content: "Terms of Service | Droplinked",
+    },
+    {
+      property: "og:description",
+      content:
+        "Please read the Droplinked Terms of Service carefully. This agreement governs your use of the Droplinked platform and services.",
+    },
+  ];
+}
+
 function TermsPage() {
   const { t } = useLocaleResources("termsPage", {
     ar: arLocale,

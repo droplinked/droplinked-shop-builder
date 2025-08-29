@@ -1,6 +1,7 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
 import confetti from 'canvas-confetti'
 import CommunityEngagement from 'components/redesign/community-engagement/CommunityEngagement'
+import useSubscription from 'hooks/subscription/useSubscription'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -12,12 +13,15 @@ function CompletionSlider() {
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
     const communityEngagementColumns = useBreakpointValue({ base: 1, md: 2, lg: 3 })
     const { updateOnboardingState } = useOnboardingStore()
+    const { hasPaidSubscription } = useSubscription()
 
     const handleSlideChange = (index: number) => setCurrentSlideIndex(index)
 
     const handlePreviousAction = () => {
-        if (currentSlideIndex === 0) return updateOnboardingState('currentStep', 'PLAN_SELECTION')
-        handleSlideChange(0)
+        if (currentSlideIndex > 0) return setCurrentSlideIndex(0)
+
+        const previousOnboardingStep = hasPaidSubscription ? 'PAYMENT_DETAILS' : 'PLAN_SELECTION'
+        updateOnboardingState('currentStep', previousOnboardingStep)
     }
 
     const handleNextAction = () => {
