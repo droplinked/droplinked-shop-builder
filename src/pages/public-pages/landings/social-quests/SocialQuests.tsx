@@ -11,22 +11,22 @@ import SocialQuestsModularStack from './SocialQuestsModularStack'
 
 export function meta() {
     return [
-        { title: "Web3 Rewards & Loyalty Programs | Droplinked" },
+        { title: "Droplinked Rewards | Complete Quests to Earn a Free Pro Plan" },
         {
             name: "description",
-            content: "Boost customer engagement and retention with a Web3-powered rewards program. Offer tokenized rewards and build a loyal community with Droplinked.",
+            content: "Join Droplinked quests and level up your account! Complete simple tasks to earn points, unlock credits, and get a free Pro Plan to start your onchain commerce journey.",
         },
         {
             name: "keywords",
-            content: "rewards program, loyalty program, customer rewards, token rewards, engagement, incentives, Web3 loyalty",
+            content: "Droplinked Rewards, Customer Loyalty Program, Earn Free Subscription, Social Media Quests",
         },
         {
             property: "og:title",
-            content: "Web3 Rewards & Loyalty Programs | Droplinked",
+            content: "Droplinked Rewards | Complete Quests to Earn a Free Pro Plan",
         },
         {
             property: "og:description",
-            content: "Boost customer engagement and retention with a Web3-powered rewards program. Offer tokenized rewards and build a loyal community with Droplinked.",
+            content: "Join Droplinked quests and level up your account! Complete simple tasks to earn points, unlock credits, and get a free Pro Plan to start your onchain commerce journey.",
         },
     ];
 }

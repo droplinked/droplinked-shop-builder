@@ -13,22 +13,22 @@ import DigitalGoodsModularStack from './DigitalGoodsModularStack'
 
 export function meta() {
     return [
-        { title: "Sell Digital Goods & Collectibles | Droplinked" },
+        { title: "Mint & Sell NFTs | Digital Collectibles & Royalties | Droplinked" },
         {
             name: "description",
-            content: "Easily sell any digital product, from software and ebooks to tokenized media and collectibles, using Droplinked's secure platform.",
+            content: "Easily mint and monetize your digital assets with Droplinked. Convert art, audio, and video into exclusive collectibles and earn more with royalty and loyalty programs",
         },
         {
             name: "keywords",
-            content: "digital goods, sell digital products, digital collectibles, ebooks, music, art, tokenized media, digital assets",
+            content: "Digital Minting Platform, Sell Digital Collectibles, Token-gated Commerce, Monetize Digital Assets",
         },
         {
             property: "og:title",
-            content: "Sell Digital Goods & Collectibles | Droplinked",
+            content: "Mint & Sell NFTs | Digital Collectibles & Royalties | Droplinked",
         },
         {
             property: "og:description",
-            content: "Easily sell any digital product, from software and ebooks to tokenized media and collectibles, using Droplinked's secure platform.",
+            content: "Easily mint and monetize your digital assets with Droplinked. Convert art, audio, and video into exclusive collectibles and earn more with royalty and loyalty programs",
         },
     ];
 }

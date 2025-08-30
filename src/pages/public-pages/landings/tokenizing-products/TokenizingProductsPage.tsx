@@ -13,22 +13,22 @@ import TokenizingProductsModularStack from './TokenizingProductsModularStack'
 
 export function meta() {
     return [
-        { title: "No-Code Tokenization & NFT Minting | Droplinked" },
+        { title: "Tokenize Inventory & Unlock Onchain Liquidity | Droplinked" },
         {
             name: "description",
-            content: "Monetize your assets with Droplinked's no-code tools. Easily tokenize physical goods or mint NFTs for digital art, music, and more without any programming.",
+            content: "Turn your inventory into tradable onchain assets with Droplinked. Our platform simplifies product tokenization for secure ownership, global liquidity, and secondary sales.",
         },
         {
             name: "keywords",
-            content: "tokenization, NFT minting, no-code, monetize assets, create NFT, blockchain, digital assets, physical assets",
+            content: "Product Tokenization, Tokenize Inventory, Asset Tokenization Platform, Onchain Asset Management",
         },
         {
             property: "og:title",
-            content: "No-Code Tokenization & NFT Minting | Droplinked",
+            content: "Tokenize Inventory & Unlock Onchain Liquidity | Droplinked",
         },
         {
             property: "og:description",
-            content: "Monetize your assets with Droplinked's no-code tools. Easily tokenize physical goods or mint NFTs for digital art, music, and more without any programming.",
+            content: "Turn your inventory into tradable onchain assets with Droplinked. Our platform simplifies product tokenization for secure ownership, global liquidity, and secondary sales.",
         },
     ];
 }

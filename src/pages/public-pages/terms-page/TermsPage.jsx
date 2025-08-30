@@ -10,11 +10,11 @@ export function meta() {
     {
       name: "description",
       content:
-        "Please read the Droplinked Terms of Service carefully. This agreement governs your use of the Droplinked platform and services.",
+        "Please read the official Droplinked Terms of Service. This agreement governs your use of our website, mobile apps, and onchain commerce platform.",
     },
     {
       name: "keywords",
-      content: "terms of service, terms and conditions, user agreement, legal, service policy, rules",
+      content: "Droplinked terms of service, Terms and conditions, User agreement, Droplinked legal",
     },
     {
       property: "og:title",
@@ -23,7 +23,7 @@ export function meta() {
     {
       property: "og:description",
       content:
-        "Please read the Droplinked Terms of Service carefully. This agreement governs your use of the Droplinked platform and services.",
+        "Please read the official Droplinked Terms of Service. This agreement governs your use of our website, mobile apps, and onchain commerce platform.",
     },
   ];
 }

@@ -3,22 +3,22 @@ import PartnerPage from "./PartnerPage";
 
 export function meta() {
     return [
-        { title: "D3 Network Members: Get 6 Months Free Pro Plan | ApeCoin, Shiba, Core Chain | Droplinked" },
+        { title: "Droplinked x D3 | Claim Your Free 6-Month Pro Plan" },
         {
             name: "description",
-            content: "D3 Network community members get 6 months free! Join with ApeCoin (.ape), Victorin (.vic), Shiba Inu (.shib), Core Chain (.core) domains. Build your Web3 business with premium tools.",
+            content: "Exclusive offer for D3 Network members! Verify ownership of your .ape, .vic, .shib, or .core domain to claim 6 months of the Droplinked Pro Plan for free.",
         },
         {
             name: "keywords",
-            content: "D3 Network, ApeCoin, Shiba Inu, Core Chain, Victorin, .ape domains, .shib domains, .core domains, .vic domains, Web3 community, crypto domains, blockchain business",
+            content: "D3 Network perks, Droplinked D3 promo, .ape domain benefits, Free onchain store",
         },
         {
             property: "og:title",
-            content: "D3 Network Members: Get 6 Months Free Pro Plan | Droplinked",
+            content: "Droplinked x D3 | Claim Your Free 6-Month Pro Plan",
         },
         {
             property: "og:description",
-            content: "D3 Network community members get 6 months free! Join with ApeCoin, Shiba Inu, Core Chain, and Victorin domains. Build your Web3 business with premium tools.",
+            content: "Exclusive offer for D3 Network members! Verify ownership of your .ape, .vic, .shib, or .core domain to claim 6 months of the Droplinked Pro Plan for free.",
         },
         {
             property: "og:type",

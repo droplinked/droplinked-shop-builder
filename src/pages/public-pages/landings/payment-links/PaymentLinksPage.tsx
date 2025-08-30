@@ -13,22 +13,22 @@ import PaymentLinksModularStack from './PaymentLinksModularStack'
 
 export function meta() {
     return [
-        { title: "Multi-Network Payment Links | Droplinked" },
+        { title: "Create Crypto & Fiat Payment Links | Shareable Checkout | Droplinked" },
         {
             name: "description",
-            content: "Create instant, customizable payment links to sell anywhere. Accept crypto across multiple blockchains or traditional fiat payments seamlessly.",
+            content: "Sell anywhere with Droplinked's payment links. Instantly create and share customizable payment pages via URL or QR code to accept crypto and traditional payments.",
         },
         {
             name: "keywords",
-            content: "payment links, crypto payments, fiat payments, Stripe, multi-network, sell anywhere, instant payments",
+            content: "Crypto Payment Links, Shareable Payment Pages, Sell with Crypto, QR Code Payments",
         },
         {
             property: "og:title",
-            content: "Multi-Network Payment Links | Droplinked",
+            content: "Create Crypto & Fiat Payment Links | Shareable Checkout | Droplinked",
         },
         {
             property: "og:description",
-            content: "Create instant, customizable payment links to sell anywhere. Accept crypto across multiple blockchains or traditional fiat payments seamlessly.",
+            content: "Sell anywhere with Droplinked's payment links. Instantly create and share customizable payment pages via URL or QR code to accept crypto and traditional payments.",
         },
     ];
 }

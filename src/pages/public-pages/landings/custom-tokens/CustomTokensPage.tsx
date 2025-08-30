@@ -13,22 +13,22 @@ import CustomTokensModularStack from './CustomTokensModularStack'
 
 export function meta() {
     return [
-        { title: "Create Custom Tokens | Droplinked" },
+        { title: "Enable Custom Token Payments | Boost Utility | Droplinked" },
         {
             name: "description",
-            content: "Design and launch your own custom-branded utility tokens with Droplinked's no-code tools. Build your brand on the blockchain.",
+            content: "Turn any BRC, ERC, or SPL token into a payment method with Droplinked. Our seamless integration helps businesses, games, and apps accept custom token payments.",
         },
         {
             name: "keywords",
-            content: "custom tokens, branded tokens, utility tokens, token creation, blockchain branding, no-code tokens",
+            content: "Custom Token Payments, Token Utility Platform, Crypto Token Gateway, Increase Token Adoption",
         },
         {
             property: "og:title",
-            content: "Create Custom Tokens | Droplinked",
+            content: "Enable Custom Token Payments | Boost Utility | Droplinked",
         },
         {
             property: "og:description",
-            content: "Design and launch your own custom-branded utility tokens with Droplinked's no-code tools. Build your brand on the blockchain.",
+            content: "Turn any BRC, ERC, or SPL token into a payment method with Droplinked. Our seamless integration helps businesses, games, and apps accept custom token payments.",
         },
     ];
 }
