@@ -10,22 +10,22 @@ import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection
 
 export function meta() {
     return [
-        { title: "TokenPay | Web3 Payment Gateway | Droplinked" },
+        { title: "Accept Custom Token Payments | ERC20, BRC20 & SPL | Droplinked" },
         {
             name: "description",
-            content: "Power your sales with TokenPay, Droplinked's secure Web3 payment gateway. Accept crypto payments and settle transactions on-chain.",
+            content: "Unlock token-powered commerce with TokenPay by Droplinked. Seamlessly accept any ERC20, BRC20, and SPL token to give real-world utility to digital assets.",
         },
         {
             name: "keywords",
-            content: "TokenPay, Web3 payments, crypto checkout, blockchain payment gateway, secure crypto payments, decentralized finance",
+            content: "Accept Custom Tokens, ERC20 Payments, Token Payment Gateway, Web3 E-commerce Payments",
         },
         {
             property: "og:title",
-            content: "TokenPay | Web3 Payment Gateway | Droplinked",
+            content: "Accept Custom Token Payments | ERC20, BRC20 & SPL | Droplinked",
         },
         {
             property: "og:description",
-            content: "Power your sales with TokenPay, Droplinked's secure Web3 payment gateway. Accept crypto payments and settle transactions on-chain.",
+            content: "Unlock token-powered commerce with TokenPay by Droplinked. Seamlessly accept any ERC20, BRC20, and SPL token to give real-world utility to digital assets.",
         },
     ];
 }

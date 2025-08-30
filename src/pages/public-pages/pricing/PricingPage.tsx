@@ -5,22 +5,22 @@ import React from 'react'
 
 export function meta() {
     return [
-        { title: "Pricing & Plans | Droplinked" },
+        { title: "Pricing & Plans | Droplinked Onchain Commerce Platform" },
         {
             name: "description",
-            content: "Explore Droplinked's flexible subscription plans. From a Free tier for starters to Pro, Premium, and custom Enterprise solutions for advanced Web3 commerce.",
+            content: "Explore Droplinked's pricing plans to find the perfect fit for your business. From our Free Starter plan to custom Enterprise solutions, get the tools you need.",
         },
         {
             name: "keywords",
-            content: "Droplinked pricing, subscription plans, free plan, pro plan, premium plan, enterprise plan, e-commerce pricing",
+            content: "Droplinked pricing, Onchain Store Pricing, Crypto E-commerce Fees, Web3 platform cost",
         },
         {
             property: "og:title",
-            content: "Pricing & Plans | Droplinked",
+            content: "Pricing & Plans | Droplinked Onchain Commerce Platform",
         },
         {
             property: "og:description",
-            content: "Explore Droplinked's flexible subscription plans. From a Free tier for starters to Pro, Premium, and custom Enterprise solutions for advanced Web3 commerce.",
+            content: "Explore Droplinked's pricing plans to find the perfect fit for your business. From our Free Starter plan to custom Enterprise solutions, get the tools you need.",
         },
     ];
 }

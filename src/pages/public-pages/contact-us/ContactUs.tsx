@@ -14,11 +14,11 @@ export function meta() {
         { title: "Contact Us | Get In Touch with Droplinked" },
         {
             name: "description",
-            content: "Have a question or need support? Contact the Droplinked team for sales, partnership, or general inquiries. We're here to help.",
+            content: "Have a question? Contact the Droplinked team for sales inquiries, customer support, or partnership opportunities. We're here to help you get started with onchain commerce.",
         },
         {
             name: "keywords",
-            content: "contact us, get in touch, support, sales, help, customer service, inquiry",
+            content: "Contact Droplinked, Droplinked Support, Droplinked Sales, Onchain Commerce Help",
         },
         {
             property: "og:title",
@@ -26,7 +26,7 @@ export function meta() {
         },
         {
             property: "og:description",
-            content: "Have a question or need support? Contact the Droplinked team for sales, partnership, or general inquiries. We're here to help.",
+            content: "Have a question? Contact the Droplinked team for sales inquiries, customer support, or partnership opportunities. We're here to help you get started with onchain commerce.",
         },
     ];
 }

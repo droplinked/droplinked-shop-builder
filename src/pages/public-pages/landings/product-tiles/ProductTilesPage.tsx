@@ -13,22 +13,22 @@ import ProductTilesModularStack from './ProductTilesModularStack'
 
 export function meta() {
     return [
-        { title: "Embeddable Product Tiles | Sell Anywhere | Droplinked" },
+        { title: "Embeddable Product Tiles | Sell On Any Website | Droplinked" },
         {
             name: "description",
-            content: "Add e-commerce to any website or blog with Droplinked's embeddable Product Tiles. Make your content instantly shoppable.",
+            content: "Create and embed customizable Product Tiles to sell directly from any third party website. Our simple copy-paste solution offers a seamless checkout with no coding.",
         },
         {
             name: "keywords",
-            content: "product tiles, embeddable products, shoppable content, product widget, e-commerce embed, sell on blog",
+            content: "Embeddable Product Tiles, Sell On Any Website, E-commerce Embed, Copy Paste Storefront",
         },
         {
             property: "og:title",
-            content: "Embeddable Product Tiles | Sell Anywhere | Droplinked",
+            content: "Embeddable Product Tiles | Sell On Any Website | Droplinked",
         },
         {
             property: "og:description",
-            content: "Add e-commerce to any website or blog with Droplinked's embeddable Product Tiles. Make your content instantly shoppable.",
+            content: "Create and embed customizable Product Tiles to sell directly from any third party website. Our simple copy-paste solution offers a seamless checkout with no coding.",
         },
     ];
 }

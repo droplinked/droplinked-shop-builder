@@ -3,22 +3,22 @@ import PartnerPage from "./PartnerPage";
 
 export function meta() {
     return [
-        { title: "Base Network Partnership: Onchain Business Solutions | Agentic Commerce | Droplinked" },
+        { title: "Build on Base with Droplinked | Onchain & Agentic Commerce" },
         {
             name: "description",
-            content: "Build onchain businesses with Base + Droplinked. Tokenize digital assets, physical inventory, and domains. Empower creators and communities with agentic commerce solutions on Base network.",
+            content: "Launch and grow your business on the Base network with Droplinked. Our agentic commerce tools make it simple to tokenize assets and sell onchain.",
         },
         {
             name: "keywords",
-            content: "Base network, Coinbase Base, onchain business, tokenize assets, digital IP tokenization, physical inventory, creators economy, Web3 commerce, agentic commerce, Base blockchain",
+            content: "Build on Base, Onchain Commerce Base, Droplinked Base, Agentic Commerce",
         },
         {
             property: "og:title",
-            content: "Base Network Partnership: Onchain Business Solutions | Droplinked",
+            content: "Build on Base with Droplinked | Onchain & Agentic Commerce",
         },
         {
             property: "og:description",
-            content: "Build onchain businesses with Base + Droplinked. Tokenize digital assets, physical inventory, and domains. Empower creators and communities with agentic commerce solutions.",
+            content: "Launch and grow your business on the Base network with Droplinked. Our agentic commerce tools make it simple to tokenize assets and sell onchain.",
         },
         {
             property: "og:type",

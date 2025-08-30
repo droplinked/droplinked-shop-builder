@@ -3,22 +3,22 @@ import PartnerPage from "./PartnerPage";
 
 export function meta() {
     return [
-        { title: "Unstoppable Domains Members: Get 3 Months Free Pro Plan | Droplinked" },
+        { title: "Droplinked x Unstoppable Domains | Claim Your Free Pro Plan" },
         {
             name: "description",
-            content: "Exclusive offer for Unstoppable Domains holders! Get 3 months of Droplinked Pro Plan free. Launch your Web3 shop with enterprise tools, NFT integration, and decentralized commerce features.",
+            content: "Exclusive offer for Unstoppable Domains members! Verify your domain ownership to claim 3 months of the Droplinked Pro Plan for free and start selling with our tools.",
         },
         {
             name: "keywords",
-            content: "Unstoppable Domains, Web3 domains, decentralized domains, NFT storefront, blockchain commerce, crypto payments, Web3 shop builder, domain holders benefits",
+            content: "Unstoppable Domains perks, Droplinked promo, Free e-commerce plan, Web3 domain benefits",
         },
         {
             property: "og:title",
-            content: "Unstoppable Domains Members: Get 3 Months Free Pro Plan | Droplinked",
+            content: "Droplinked x Unstoppable Domains | Claim Your Free Pro Plan",
         },
         {
             property: "og:description",
-            content: "Exclusive offer for Unstoppable Domains holders! Get 3 months of Droplinked Pro Plan free. Launch your Web3 shop with enterprise tools and NFT integration.",
+            content: "Exclusive offer for Unstoppable Domains members! Verify your domain ownership to claim 3 months of the Droplinked Pro Plan for free and start selling with our tools.",
         },
         {
             property: "og:type",

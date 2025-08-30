@@ -3,22 +3,22 @@ import PartnerPage from "./PartnerPage";
 
 export function meta() {
     return [
-        { title: "Polygon Domain Holders: Get 3 Months Free Pro Plan | .polygon Domains | Droplinked" },
+        { title: "Droplinked x Polygon | Claim Your Free 3-Month Pro Plan" },
         {
             name: "description",
-            content: "Exclusive for .polygon domain holders! Get 3 months of Droplinked Pro Plan free. Build your Polygon-powered Web3 store with advanced NFT integration and enterprise tools.",
+            content: "An exclusive offer for .polygon domain holders! Verify your domain to claim 3 months of the Droplinked Pro Plan for free to start building your onchain business.",
         },
         {
             name: "keywords",
-            content: "Polygon domains, .polygon, Polygon network, MATIC, Web3 store, NFT marketplace, Polygon ecosystem, blockchain commerce, crypto payments, decentralized commerce",
+            content: ".polygon domain perks, Droplinked Polygon promo, Free e-commerce plan, Web3 domain benefits",
         },
         {
             property: "og:title",
-            content: "Polygon Domain Holders: Get 3 Months Free Pro Plan | Droplinked",
+            content: "Droplinked x Polygon | Claim Your Free 3-Month Pro Plan",
         },
         {
             property: "og:description",
-            content: "Exclusive for .polygon domain holders! Get 3 months of Droplinked Pro Plan free. Build your Polygon-powered Web3 store with advanced NFT integration.",
+            content: "An exclusive offer for .polygon domain holders! Verify your domain to claim 3 months of the Droplinked Pro Plan for free to start building your onchain business.",
         },
         {
             property: "og:type",

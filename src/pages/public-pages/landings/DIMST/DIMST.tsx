@@ -11,22 +11,22 @@ import DIMSTHero from './DIMSTHero'
 
 export function meta() {
     return [
-        { title: "Product Record ROI Calculator | Droplinked" },
+        { title: "Enterprise Inventory ROI Calculator | Droplinked" },
         {
             name: "description",
-            content: "Use the Droplinked Product Record Calculator to project the ROI of using onchain inventory. Analyze costs, revenue, and profitability for your business.",
+            content: "Project your ROI with Droplinked. Our calculator analyzes the financial benefits of our onchain inventory management for both primary and secondary sales.",
         },
         {
             name: "keywords",
-            content: "ROI calculator, return on investment, financial planning, cost-benefit analysis, inventory management ROI, sales projection",
+            content: "ROI Calculator, Enterprise ROI, Inventory Management ROI, GMV Projection",
         },
         {
             property: "og:title",
-            content: "Product Record ROI Calculator | Droplinked",
+            content: "Enterprise Inventory ROI Calculator | Droplinked",
         },
         {
             property: "og:description",
-            content: "Use the Droplinked Product Record Calculator to project the ROI of using onchain inventory. Analyze costs, revenue, and profitability for your business.",
+            content: "Project your ROI with Droplinked. Our calculator analyzes the financial benefits of our onchain inventory management for both primary and secondary sales.",
         },
     ];
 }

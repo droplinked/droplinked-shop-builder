@@ -13,22 +13,22 @@ import PhysicalInventoryModularStack from './PhysicalInventoryModularStack'
 
 export function meta() {
     return [
-        { title: "Tokenize Physical Inventory | Onchain Inventory Management | Droplinked" },
+        { title: "AI-Powered Onchain Inventory Management | Droplinked" },
         {
             name: "description",
-            content: "Bridge the gap between physical and digital. Tokenize your physical inventory for transparent, onchain management and proof of ownership.",
+            content: "Digitize physical inventory onchain with Droplinked. Our AI assistant automates product creation and provides advanced analytics to streamline your entire operation.",
         },
         {
             name: "keywords",
-            content: "physical inventory, tokenized stock, onchain inventory management, supply chain, logistics, phygital, asset tokenization",
+            content: "Onchain Inventory Management, AI-Powered Commerce, RWA Tokenization, Automated Fulfillment",
         },
         {
             property: "og:title",
-            content: "Tokenize Physical Inventory | Onchain Inventory Management | Droplinked",
+            content: "AI-Powered Onchain Inventory Management | Droplinked",
         },
         {
             property: "og:description",
-            content: "Bridge the gap between physical and digital. Tokenize your physical inventory for transparent, onchain management and proof of ownership.",
+            content: "Digitize physical inventory onchain with Droplinked. Our AI assistant automates product creation and provides advanced analytics to streamline your entire operation.",
         },
     ];
 }
