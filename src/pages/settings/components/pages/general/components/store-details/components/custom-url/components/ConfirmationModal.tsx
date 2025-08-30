@@ -3,11 +3,11 @@ import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
-import { generateShopCustomURLService } from 'services/shop/shopServices'
-import useAppStore from 'stores/app/appStore'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { generateShopCustomURLService } from 'services/shop/shopServices'
+import useAppStore from 'stores/app/appStore'
 
 interface Props {
     isOpen: boolean
@@ -27,7 +27,7 @@ export default function ConfirmationModal({ isOpen, onClose, url, refetch }: Pro
         setLoading(true)
         try {
             await mutateAsync({ domain: url })
-            await fetchShop({ shopName: shop.name })
+            await fetchShop(shop.name)
             await refetch()
             showToast({ message: t("CustomURL.success.urlSet"), type: "success" })
             onClose()

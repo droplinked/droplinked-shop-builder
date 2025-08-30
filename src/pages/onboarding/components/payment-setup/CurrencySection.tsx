@@ -21,7 +21,7 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
       setIsLoading(true)
       onLoadingChange?.(true)
 
-      const latestShopData = await shopInfoService({ shopName: shop.shopName })
+      const latestShopData = await shopInfoService(shop.shopName)
       const latestShop = latestShopData.data.data
 
       // Create a new object with all existing shop data

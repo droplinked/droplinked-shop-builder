@@ -13,7 +13,7 @@ const ProPlanFooter: React.FC = () => {
   const handleButtonClick = async () => {
     try {
       await refetch();
-      await fetchShop({ shopName: shop.name });
+      await fetchShop(shop.name);
       navigate('/analytics/dashboard');
     } catch (error) {
       console.error('Failed to refresh subscription data:', error);

@@ -29,7 +29,7 @@ function SettingsPage() {
         try {
             //we use !!values.pre_purchase_data_fetch to handle active/deactive state of pre_purchase_data_fetch 
             await updateShop({ ...values, pre_purchase_data_fetch: { active: !!values.pre_purchase_data_fetch, title: values.pre_purchase_data_fetch } });
-            await fetchShop({ shopName: shop.name })
+            await fetchShop(shop.name)
             i18n.changeLanguage(values.defaultLanguage)
             resetForm({ values })
             showToast({ type: "success", message: t("SettingsPage.updateSuccess") })
@@ -41,7 +41,7 @@ function SettingsPage() {
     }
 
     useEffect(() => {
-        fetchShop({ shopName: shop.name })
+        fetchShop(shop.name)
     }, [])
 
     return (

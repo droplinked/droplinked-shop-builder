@@ -8,10 +8,6 @@ export interface ShopSetupParams {
     description: string
 }
 
-export interface IshopInfoService {
-    shopName: string;
-}
-
 export interface IShopCredit {
     data: {
         credit: number;

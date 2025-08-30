@@ -11,7 +11,6 @@ import {
 	IPostWithdrawCircleWallet,
 	IShopApiKey,
 	IShopCredit,
-	IshopInfoService,
 	IshopUpdateService,
 	IUpdateShopName,
 	ShopCustomURL,
@@ -34,7 +33,7 @@ export const getShopCredit = () =>
 export const productService = (productId: string) =>
 	axiosInstance.get(`product/${productId}`)
 
-export const shopInfoService = ({ shopName }: IshopInfoService) =>
+export const shopInfoService = (shopName: string) =>
 	axiosInstance.get(`shop/shopInfo/${shopName}`);
 
 export const shopUpdateService = (params: IshopUpdateService) =>

@@ -1,6 +1,6 @@
 import { ICompleteGoogleSignupService, IauthLoginService } from 'services/auth/interfaces'
 import { authLoginService, completeGoogleSignupService } from 'services/auth/services'
-import { IshopInfoService, IshopUpdateService } from 'services/shop/interfaces'
+import { IshopUpdateService } from 'services/shop/interfaces'
 import { shopInfoService, shopUpdateService } from 'services/shop/shopServices'
 import { ShopSubscriptionData } from 'services/subscription/interfaces'
 import { IGetUserService } from 'services/user/interfaces'
@@ -36,7 +36,7 @@ export interface IAppStore {
     // access_token: string | null
     // refresh_token: string | null
     login(method: { type: "default", params: IauthLoginService } | { type: "google", access_token: string, refresh_token: string, params: ICompleteGoogleSignupService } | { type: "get", access_token: string, refresh_token: string, params: IGetUserService }): Promise<any>
-    fetchShop(params: IshopInfoService): Promise<any>
+    fetchShop(shopName: string): Promise<any>
     reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
     updateState({ key, params }: IPropsUpdatestate): void
@@ -88,12 +88,12 @@ const states = (set, get): IAppStore => ({
             }
         })
     },
-    fetchShop: (params: IshopInfoService) => {
+    fetchShop: (shopName: string) => {
         const { shop: prevShop } = get()
         return new Promise<any>(async (resolve, reject) => {
             try {
                 set({ loading: true })
-                const data = await shopInfoService(params)
+                const data = await shopInfoService(shopName)
                 const shop = data.data.data
                 set({ shop: { ...prevShop, ...shop }, loading: false })
                 resolve(shop)

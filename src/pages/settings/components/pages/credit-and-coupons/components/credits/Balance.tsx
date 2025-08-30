@@ -1,14 +1,14 @@
 import { Flex, Image, Spinner, useDisclosure, useTabsContext } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
-import useAppStore from "stores/app/appStore";
-import React, { useState } from "react";
 import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal";
-import useAppToast from "hooks/toast/useToast";
 import BlueButton from "components/redesign/button/BlueButton";
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice";
+import useAppToast from "hooks/toast/useToast";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { getShopCredit } from "services/shop/shopServices";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import useAppStore from "stores/app/appStore";
 
 export default function Balance() {
     const { t } = useLocaleResources('settings');
@@ -26,7 +26,7 @@ export default function Balance() {
     const handleRefetchShop = async () => {
         setLoading(true);
         try {
-            await fetchShop({ shopName: name });
+            await fetchShop(name);
             await refetch()
         }
         catch {
