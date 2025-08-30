@@ -1,4 +1,4 @@
-import type { Config } from "@react-router/dev/config";
+import type { Config } from "@react-router/dev/config"
 
 export default {
     appDirectory: "src",
@@ -34,5 +34,5 @@ export default {
         "/explore",
         "/blogs",
         "/affiliate/products"
-    ],
-} satisfies Config;
+    ]
+} satisfies Config

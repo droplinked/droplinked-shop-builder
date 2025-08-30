@@ -1,10 +1,4 @@
-import {
-    type RouteConfig,
-    route,
-    index,
-    layout,
-    prefix,
-} from "@react-router/dev/routes";
+import { type RouteConfig, index, layout, prefix, route } from "@react-router/dev/routes"
 
 export default [
     // Public Routes with PublicLayout
@@ -108,11 +102,10 @@ export default [
 
     route("/analytics/style-center/template-builder", "./pages/template-designer/components/TemplateCreatePage.client.tsx"),
 
-
     // Standalone Routes
     route("onboarding", "./pages/onboarding/Onboarding.tsx"),
     route("invoice/:txId", "./pages/invoice-template/InvoiceTemplate.tsx"),
 
     // Catch-all route for 404
-    route("*", "./pages/404/NotFoundPage.tsx"),
-] satisfies RouteConfig;
+    route("*", "./pages/404/NotFoundPage.tsx")
+] satisfies RouteConfig

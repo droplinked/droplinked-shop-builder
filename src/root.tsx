@@ -1,44 +1,44 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import "assets/style/index.css";
-import "assets/style/App.scss";
-import AppGDPR from "components/common/app-gdpr/AppGDPR";
-import AppToastify from "components/common/toastify/AppToastify";
-import "lib/i18n";
-import React, { useEffect } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useNavigation } from "react-router";
-import { theme } from "./theme";
-import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
-import { useTranslation } from "react-i18next";
-import { getLanguageFromCookie, isRTLLanguage, setHTMLAttributes } from "./utils/languageUtils";
+import { ChakraProvider } from "@chakra-ui/react"
+import "assets/style/App.scss"
+import "assets/style/index.css"
+import AppGDPR from "components/common/app-gdpr/AppGDPR"
+import AppToastify from "components/common/toastify/AppToastify"
+import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
+import "lib/i18n"
+import React, { useEffect } from "react"
+import { useTranslation } from "react-i18next"
+import { QueryClient, QueryClientProvider } from "react-query"
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useNavigation } from "react-router"
+import { theme } from "./chakraTheme"
+import { getLanguageFromCookie, isRTLLanguage, setHTMLAttributes } from "./utils/languageUtils"
 
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            refetchOnWindowFocus: false,
-        },
-    },
-});
+            refetchOnWindowFocus: false
+        }
+    }
+})
 
 export function Layout({ children }: { children: React.ReactNode }) {
-    const { i18n } = useTranslation();
+    const { i18n } = useTranslation()
 
     useEffect(() => {
         // Get language from cookie on client side
-        const cookieLanguage = getLanguageFromCookie();
+        const cookieLanguage = getLanguageFromCookie()
 
         // If language in cookie differs from current i18n language, update it
         if (cookieLanguage !== i18n.language) {
-            i18n.changeLanguage(cookieLanguage);
+            i18n.changeLanguage(cookieLanguage)
         }
 
         // Set HTML attributes based on language
-        setHTMLAttributes(cookieLanguage);
-    }, [i18n]);
+        setHTMLAttributes(cookieLanguage)
+    }, [i18n])
 
     // Get initial language for SSR
-    const initialLanguage = typeof window !== 'undefined' ? getLanguageFromCookie() : 'en';
-    const isRTL = isRTLLanguage(initialLanguage);
+    const initialLanguage = typeof window !== 'undefined' ? getLanguageFromCookie() : 'en'
+    const isRTL = isRTLLanguage(initialLanguage)
 
     return (
         <html lang={initialLanguage} dir={isRTL ? 'rtl' : 'ltr'}>
@@ -112,7 +112,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Scripts />
             </body>
         </html>
-    );
+    )
 }
 
 export default function Root() {
@@ -128,5 +128,5 @@ export default function Root() {
                 <Outlet />
             </ChakraProvider>
         </QueryClientProvider>
-    );
+    )
 }
