@@ -22,7 +22,7 @@ const INITIAL_FILTERS: IGetProductsCommunityService = {
 };
 
 const AffiliateProductsPage = (props) => {
-  const { isPublic } = props.loaderData;
+  const { isPublic } = props.loaderData || { isPublic: false };
 
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<IGetProductsCommunityService>(INITIAL_FILTERS);
