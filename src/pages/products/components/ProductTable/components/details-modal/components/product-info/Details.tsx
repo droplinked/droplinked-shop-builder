@@ -1,8 +1,8 @@
 import { Box, Divider, Flex, HStack, Text, VStack } from '@chakra-ui/react';
-import { typesProperties } from 'data/types';
-import React from 'react';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
+import { attributeToIdMap } from 'pages/products/utils/types';
+import React from 'react';
 
 interface ProductDetailsProps {
   product: {
@@ -21,8 +21,12 @@ interface ProductDetailsProps {
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const getVariantOption = (sku, variantIndex) => {
+    const attributeNames = Object.keys(attributeToIdMap);
+    const attributeName = attributeNames[variantIndex];
+    const attributeId = attributeToIdMap[attributeName];
+
     return sku.options.find(
-      (option) => option.variantID === typesProperties[variantIndex]?._id
+      (option) => option.variantID === attributeId
     );
   };
 

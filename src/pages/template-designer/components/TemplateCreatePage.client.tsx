@@ -30,7 +30,6 @@ function TemplateCreatePage() {
         initialData: data,
         shopName: name,
         onUpdate: (data: Data) => {
-            console.log(data);
             updateTemplate(compressToBase64(JSON.stringify(data)))
         },
         publishLoading: isUpdatingTemplate,
