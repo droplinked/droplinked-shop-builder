@@ -11,12 +11,12 @@ export function meta() {
     {
       name: "description",
       content:
-        "Read the official Droplinked Privacy Policy to understand how we collect, use, and protect your data and personal information.",
+        "Read the official Droplinked Privacy Policy to understand how we collect, use, and protect your personal information and data when you use our services.",
     },
     {
       name: "keywords",
       content:
-        "privacy policy, data protection, user data, GDPR, terms of service, legal, data security",
+        "Droplinked privacy policy, Data privacy, User data protection, Cookie policy",
     },
     {
       property: "og:title",
@@ -25,7 +25,7 @@ export function meta() {
     {
       property: "og:description",
       content:
-        "Read the official Droplinked Privacy Policy to understand how we collect, use, and protect your data and personal information.",
+        "Read the official Droplinked Privacy Policy to understand how we collect, use, and protect your personal information and data when you use our services.",
     },
   ];
 }

@@ -17,25 +17,25 @@ import { createHomePageSchema } from "utils/jsonLdSchemas";
 
 export function meta() {
   return [
-    { title: "Droplinked: The No-Code Platform for Web3 & E-commerce" },
+    { title: "Droplinked | Onchain Commerce Platform" },
     {
       name: "description",
       content:
-        "Droplinked provides a no-code platform for Web3 commerce, enabling businesses to tokenize products, manage onchain inventory, and sell digital or physical goods with ease.",
+        "Discover Droplinked, the leading onchain commerce platform with agentic commerce. Sell goods, tokenize inventory, and manage affiliates transparently to maximize business earnings.",
     },
     {
       name: "keywords",
       content:
-        "Web3 commerce, e-commerce platform, no-code, tokenization, onchain inventory, digital product passport, NFT, blockchain, sell digital goods, sell physical goods",
+        "Onchain Commerce, Digital Goods, Agentic Commerce Tools, Onchain Affiliate",
     },
     {
       property: "og:title",
-      content: "Droplinked: The No-Code Platform for Web3 & E-commerce",
+      content: "Droplinked | Onchain Commerce Platform",
     },
     {
       property: "og:description",
       content:
-        "Droplinked provides a no-code platform for Web3 commerce, enabling businesses to tokenize products, manage onchain inventory, and sell digital or physical goods with ease.",
+        "Discover Droplinked, the leading onchain commerce platform with agentic commerce. Sell goods, tokenize inventory, and manage affiliates transparently to maximize business earnings.",
     },
   ];
 }

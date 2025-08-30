@@ -13,22 +13,22 @@ import OnchainSubscriptionsModularStack from './OnchainSubscriptionsModularStack
 
 export function meta() {
     return [
-        { title: "Onchain Subscriptions & Recurring Payments | Droplinked" },
+        { title: "Onchain Subscription Management | Secure Payouts | Droplinked" },
         {
             name: "description",
-            content: "Offer subscription services and accept recurring crypto payments with ease. Droplinked's onchain subscription service is secure and automated.",
+            content: "Sell subscriptions confidently with Droplinked. Our onchain platform provides secure affiliate tracking to eliminate fraud and ensure automated commission payouts.",
         },
         {
             name: "keywords",
-            content: "onchain subscriptions, recurring crypto payments, Web3 subscriptions, token subscriptions, decentralized billing",
+            content: "Onchain Subscriptions, SaaS Affiliate Tracking, Affiliate Fraud Prevention, Automated Commission Payouts",
         },
         {
             property: "og:title",
-            content: "Onchain Subscriptions & Recurring Payments | Droplinked",
+            content: "Onchain Subscription Management | Secure Payouts | Droplinked",
         },
         {
             property: "og:description",
-            content: "Offer subscription services and accept recurring crypto payments with ease. Droplinked's onchain subscription service is secure and automated.",
+            content: "Sell subscriptions confidently with Droplinked. Our onchain platform provides secure affiliate tracking to eliminate fraud and ensure automated commission payouts.",
         },
     ];
 }

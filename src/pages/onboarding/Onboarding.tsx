@@ -26,24 +26,24 @@ import { useOnboardingLifecycle } from './hooks/useOnboardingLifecycle'
 
 export function meta() {
   return [
-    { title: 'Create Your Droplinked Account' },
+    { title: 'Create an Account | Droplinked' },
     {
       name: 'description',
       content:
-        'Sign up for Droplinked today and get started with the future of Web3 commerce. Access no-code tools to tokenize and sell your products.',
+        'Sign up for Droplinked to access our powerful onchain commerce platform. Start selling physical goods, digital assets, and tokenized products today.',
     },
     {
       name: 'keywords',
-      content: 'sign up, create account, get started, join Droplinked, register, Web3 account',
+      content: 'Droplinked sign up, Create Droplinked account, Droplinked registration, Onchain commerce account',
     },
     {
       property: 'og:title',
-      content: 'Create Your Droplinked Account',
+      content: 'Create an Account | Droplinked',
     },
     {
       property: 'og:description',
       content:
-        'Sign up for Droplinked today and get started with the future of Web3 commerce. Access no-code tools to tokenize and sell your products.',
+        'Sign up for Droplinked to access our powerful onchain commerce platform. Start selling physical goods, digital assets, and tokenized products today.',
     },
   ]
 }

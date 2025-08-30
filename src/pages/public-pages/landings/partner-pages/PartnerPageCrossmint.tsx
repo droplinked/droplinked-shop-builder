@@ -3,22 +3,22 @@ import PartnerPage from "./PartnerPage";
 
 export function meta() {
     return [
-        { title: "Crossmint Partnership: Agentic Commerce Solutions | 3 Months Free | Droplinked" },
+        { title: "Droplinked x Crossmint | Claim Your Free 3-Month Pro Plan" },
         {
             name: "description",
-            content: "Power your agentic commerce with Crossmint + Droplinked. Get 3 months free Pro Plan. Build intelligent Web3 stores with AI-powered commerce tools and seamless NFT integration.",
+            content: "Exclusive offer for Crossmint members! Get 3 free months of the Droplinked Pro Plan to build your marketplace and sell with our agentic commerce tools.",
         },
         {
             name: "keywords",
-            content: "Crossmint, agentic commerce, AI commerce, intelligent shopping, Web3 payments, NFT commerce, automated commerce, smart contracts, blockchain payments",
+            content: "Crossmint perks, Droplinked Crossmint, Agentic commerce, Sell NFTs",
         },
         {
             property: "og:title",
-            content: "Crossmint Partnership: Agentic Commerce Solutions | Droplinked",
+            content: "Droplinked x Crossmint | Claim Your Free 3-Month Pro Plan",
         },
         {
             property: "og:description",
-            content: "Power your agentic commerce with Crossmint + Droplinked. Get 3 months free Pro Plan. Build intelligent Web3 stores with AI-powered commerce tools.",
+            content: "Exclusive offer for Crossmint members! Get 3 free months of the Droplinked Pro Plan to build your marketplace and sell with our agentic commerce tools.",
         },
         {
             property: "og:type",

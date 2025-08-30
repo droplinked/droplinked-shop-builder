@@ -13,22 +13,22 @@ import MetaverseShowroomModularStack from './MetaverseShowroomModularStack'
 
 export function meta() {
     return [
-        { title: "Metaverse Storefront | E-commerce for the Metaverse | Droplinked" },
+        { title: "Create a Metaverse Store | 3D Virtual Showrooms | Droplinked" },
         {
             name: "description",
-            content: "Launch your brand into the metaverse. Create and manage a virtual storefront with Droplinked and sell your digital and physical goods in the metaverse.",
+            content: "Launch your metaverse store with Droplinked. Transform your inventory into interactive 3D virtual showrooms and offer customers immersive AR/VR shopping experiences.",
         },
         {
             name: "keywords",
-            content: "metaverse store, virtual commerce, metaverse e-commerce, digital storefront, virtual reality, VR shopping",
+            content: "Metaverse Store, Virtual Showroom, 3D Shopping Experience, Immersive Commerce",
         },
         {
             property: "og:title",
-            content: "Metaverse Storefront | E-commerce for the Metaverse | Droplinked",
+            content: "Create a Metaverse Store | 3D Virtual Showrooms | Droplinked",
         },
         {
             property: "og:description",
-            content: "Launch your brand into the metaverse. Create and manage a virtual storefront with Droplinked and sell your digital and physical goods in the metaverse.",
+            content: "Launch your metaverse store with Droplinked. Transform your inventory into interactive 3D virtual showrooms and offer customers immersive AR/VR shopping experiences.",
         },
     ];
 }

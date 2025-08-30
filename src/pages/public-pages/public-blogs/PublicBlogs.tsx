@@ -16,22 +16,22 @@ import useBlogs from "./hooks/useBlogs";
 
 export function meta() {
     return [
-        { title: "The Droplinked Blog | Web3 & E-commerce Insights" },
+        { title: "The Droplinked Blog | Product Updates, Features & Onchain News" },
         {
             name: "description",
-            content: "Read the latest articles, insights, and company news from Droplinked. Stay ahead of the curve on Web3, tokenization, and the future of e-commerce.",
+            content: "Get the latest Droplinked news, feature announcements, and updates on new blockchain integrations. The official Droplinked blog is your #1 source for product information.",
         },
         {
             name: "keywords",
-            content: "blog, articles, Web3 insights, e-commerce trends, company news, updates, tokenization, blockchain news",
+            content: "Droplinked News, Onchain Commerce, Product Feature Updates, Blockchain Integrations",
         },
         {
             property: "og:title",
-            content: "The Droplinked Blog | Web3 & E-commerce Insights",
+            content: "The Droplinked Blog | Product Updates, Features & Onchain News",
         },
         {
             property: "og:description",
-            content: "Read the latest articles, insights, and company news from Droplinked. Stay ahead of the curve on Web3, tokenization, and the future of e-commerce.",
+            content: "Get the latest Droplinked news, feature announcements, and updates on new blockchain integrations. The official Droplinked blog is your #1 source for product information.",
         },
     ];
 }

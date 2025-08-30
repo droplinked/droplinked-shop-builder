@@ -13,22 +13,22 @@ import ProductsOnDemandModularStack from './ProductsOnDemandModularStack'
 
 export function meta() {
     return [
-        { title: "Products On-Demand | Create & Sell Custom Products | Droplinked" },
+        { title: "Print on Demand Merchandise | No Inventory Required | Droplinked" },
         {
             name: "description",
-            content: "Launch your own merchandise line with no upfront cost. Use Droplinked's on-demand service to create and sell custom products.",
+            content: "Create and sell custom merchandise on-demand with Droplinked. Turn your artwork, IP, or NFTs into premium products with no inventory or shipping hassles.",
         },
         {
             name: "keywords",
-            content: "products on demand, print on demand, custom products, create and sell, merchandise on demand, no inventory",
+            content: "Print on Demand, Custom Merchandise, Sell Custom Products, Mint to Merch",
         },
         {
             property: "og:title",
-            content: "Products On-Demand | Create & Sell Custom Products | Droplinked",
+            content: "Print on Demand Merchandise | No Inventory Required | Droplinked",
         },
         {
             property: "og:description",
-            content: "Launch your own merchandise line with no upfront cost. Use Droplinked's on-demand service to create and sell custom products.",
+            content: "Create and sell custom merchandise on-demand with Droplinked. Turn your artwork, IP, or NFTs into premium products with no inventory or shipping hassles.",
         },
     ];
 }

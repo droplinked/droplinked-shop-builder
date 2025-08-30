@@ -3,22 +3,22 @@ import AffiliateProductsPage from "./AffiliateProductsPage";
 
 export function meta() {
     return [
-        { title: "Affiliate Product Marketplace | Droplinked" },
+        { title: "Onchain Affiliate Marketplace | Co-Sell Products | Droplinked" },
         {
             name: "description",
-            content: "Discover and promote a wide range of digital and physical products in the Droplinked affiliate marketplace. Start earning commissions today.",
+            content: "Join the Droplinked onchain affiliate network. Discover products, launch stores, accept digital crypto assets and fiat, and earn with automated commission payouts.",
         },
         {
             name: "keywords",
-            content: "affiliate products, product catalog, promote products, earn rewards, commission, Web3 products, e-commerce marketplace",
+            content: "Onchain Affiliate, Affiliate Marketplace, Co-selling Platform, Automated Commissions",
         },
         {
             property: "og:title",
-            content: "Affiliate Product Marketplace | Droplinked",
+            content: "Onchain Affiliate Marketplace | Co-Sell Products | Droplinked",
         },
         {
             property: "og:description",
-            content: "Discover and promote a wide range of digital and physical products in the Droplinked affiliate marketplace. Start earning commissions today.",
+            content: "Join the Droplinked onchain affiliate network. Discover products, launch stores, accept digital crypto assets and fiat, and earn with automated commission payouts.",
         },
     ];
 }
