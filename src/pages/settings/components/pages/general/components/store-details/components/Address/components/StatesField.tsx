@@ -15,7 +15,7 @@ export default function StatesField() {
     const { isFetching: isStateFetching } = useQuery({
         queryKey: ["state", values.country],
         enabled: !!values.country,
-        queryFn: () => statesService({ country_name: values.country }),
+        queryFn: () => statesService(values.country),
         onSuccess(data) {
             const states = data?.data?.data?.states.map((state) => ({
                 label: state.name,

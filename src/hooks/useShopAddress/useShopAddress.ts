@@ -11,7 +11,7 @@ const useShopAddress = () => {
 
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["shopAddress", addressBookID],
-        queryFn: () => addressByIdService({ addressID: addressBookID }),
+        queryFn: () => addressByIdService(addressBookID),
         enabled: !!addressBookID,
         onError: () => {
             showToast({

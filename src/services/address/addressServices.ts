@@ -1,5 +1,5 @@
 import axiosInstance from "lib/axiosConfig"
-import { IaddressByIdService, IcitiesService, IcreateAddressService, IdeleteAddressService, IsatatesService, IupdateAddressService } from "./interfaces"
+import { IcitiesService, IcreateAddressService, IupdateAddressService } from "./interfaces"
 
 export const getShopAddressBookService = () => {
     return axiosInstance.get("address-book/shop")
@@ -13,20 +13,16 @@ export const updateAddressService = ({ addressID, params }: IupdateAddressServic
     return axiosInstance.put(`address-book/${addressID}`, params)
 }
 
-export const addressByIdService = ({ addressID }: IaddressByIdService) => {
+export const addressByIdService = (addressID: string) => {
     return axiosInstance.get(`address-book/${addressID}`).then(res => res.data)
-}
-
-export const deleteAddressService = ({ addressID }: IdeleteAddressService) => {
-    return axiosInstance.delete(`address-book/${addressID}`)
 }
 
 export const allCountriesService = () => {
     return axiosInstance.get(`locations/countries`)
 }
 
-export const statesService = ({ country_name }: IsatatesService) => {
-    return axiosInstance.get(`locations/states${country_name ? `?country_name=${country_name}` : ""}`)
+export const statesService = (countryName: string) => {
+    return axiosInstance.get(`locations/states${countryName ? `?country_name=${countryName}` : ""}`)
 }
 
 export const citiesService = ({ state_name, country_name }: IcitiesService) => {

@@ -23,7 +23,7 @@ function ShopAddressForm() {
 
     const { data: states, isLoading: isFetchingStates } = useQuery({
         queryKey: ['states', address.country],
-        queryFn: () => statesService({ country_name: address.country }),
+        queryFn: () => statesService(address.country),
         select: (data) => data.data.data.states || [],
         enabled: !!address.country
     })
