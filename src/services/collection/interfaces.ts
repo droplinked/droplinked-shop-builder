@@ -42,10 +42,6 @@ export interface IupdateCollectionVisibilityService {
     published: boolean;
 }
 
-export interface IdeleteCollectionService {
-    collectionID: string
-}
-
 export interface IReorderCollectionsService {
     collectionId: string;
     newPosition: number;

@@ -1,5 +1,5 @@
 import axiosInstance from "lib/axiosConfig";
-import { Collection, IcreateCollectionService, IdeleteCollectionService, IReorderCollectionsService, IupdateCollectionService, IupdateCollectionVisibilityService } from "./interfaces";
+import { Collection, IcreateCollectionService, IReorderCollectionsService, IupdateCollectionService, IupdateCollectionVisibilityService } from "./interfaces";
 
 export const collectionService = () => axiosInstance.get<{ data: Collection[] }>("collection/list/minimal").then(res => res.data)
 
@@ -13,7 +13,7 @@ export const updateCollectionService = ({ collectionID, title, description, imag
 export const updateCollectionVisiblityService = ({ collectionID, published }: IupdateCollectionVisibilityService) =>
     axiosInstance.put(`collection/${collectionID}`, { published })
 
-export const deleteCollectionService = ({ collectionID }: IdeleteCollectionService) =>
+export const deleteCollectionService = (collectionID: string) =>
     axiosInstance.delete(`collection/${collectionID}`)
 
 export const reorderCollectionsService = (params: IReorderCollectionsService) => {

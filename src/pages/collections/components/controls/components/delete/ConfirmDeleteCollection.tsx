@@ -4,7 +4,6 @@ import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useMutation } from 'react-query'
-import { IdeleteCollectionService } from 'services/collection/interfaces'
 import { deleteCollectionService } from 'services/collection/services'
 
 interface IProps {
@@ -15,13 +14,13 @@ interface IProps {
 }
 
 function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
-    const { mutateAsync, isLoading } = useMutation((params: IdeleteCollectionService) => deleteCollectionService(params))
+    const { mutateAsync, isLoading } = useMutation((collectionID: string) => deleteCollectionService(collectionID))
     const { showToast } = useAppToast()
     const { t } = useLocaleResources("collections")
 
     const handleDelete = async () => {
         try {
-            await mutateAsync({ collectionID })
+            await mutateAsync(collectionID)
             showToast({ message: t("ConfirmDeleteCollection.success"), type: "success" })
             fetch()
             close()
