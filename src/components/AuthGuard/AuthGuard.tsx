@@ -1,16 +1,13 @@
 import React, { PropsWithChildren } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
 
-interface AuthGuardProps extends PropsWithChildren { }
-
-function AuthGuard({ children }: AuthGuardProps) {
+function AuthGuard({ children }: PropsWithChildren) {
     const { user } = useAppStore()
-    const navigate = useNavigate()
 
     // If no user or user status is not authorized, redirect back
     if (!user || !['SHOP_INFO_COMPLETED', 'ACTIVE'].includes(user.status)) {
-        return navigate("/", { replace: true })
+        return <Navigate to="/" replace />
     }
 
     return <>{children}</>

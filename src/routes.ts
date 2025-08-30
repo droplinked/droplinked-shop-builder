@@ -49,7 +49,7 @@ export default [
     ]),
 
     // Protected Analytics Routes with AuthGuard and ProducerLayout
-    layout("./layouts/AuthGuardProducerLayout.tsx", [
+    layout("./layouts/ProtectedLayout.tsx", [
         ...prefix("analytics", [
             index("./pages/analytics/Analytics.tsx"),
             route("dashboard", "./pages/dashboard/Dashboard.tsx"),
@@ -96,7 +96,7 @@ export default [
     ]),
 
     // Shop Management Route with custom layout
-    layout("./layouts/AuthGuardProducerLayoutShop.tsx", [
+    layout("./layouts/ProtectedShopLayout.tsx", [
         route("shop-management", "./pages/shop-management/ShopManagement.tsx"),
     ]),
 

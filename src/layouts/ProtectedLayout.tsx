@@ -9,7 +9,7 @@ export function meta() {
     ];
 }
 
-export default function AuthGuardProducerLayout() {
+export default function ProtectedLayout() {
     return (
         <AuthGuard>
             <ProducerLayout>

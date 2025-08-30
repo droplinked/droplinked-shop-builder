@@ -9,7 +9,7 @@ export function meta() {
     ];
 }
 
-export default function AuthGuardProducerLayoutShop() {
+export default function ProtectedShopLayout() {
     return (
         <AuthGuard>
             <ProducerLayout hideSidebar={true} showBackground={true}>
