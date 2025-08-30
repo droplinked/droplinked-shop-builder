@@ -1,11 +1,11 @@
-import axiosInstance from "lib/axiosConfig"
-import { IAiImageStatusResponse, IGenerateTitleDescription, IGenerateWithAiDirectResponse, IGenerateWithAiRequest, IGenerateWithAiResponse, IImproveDescription, IImproveTitle } from "./interfaces"
+import axiosInstance from "lib/axiosConfig";
+import { IAiImageStatusResponse, IGenerateWithAiDirectResponse, IGenerateWithAiRequest, IGenerateWithAiResponse, IImproveDescription, IImproveTitle } from "./interfaces";
 
 export const improveTitle = ({ title, tone }: IImproveTitle) => axiosInstance.post('ai/improve-title', { title, tone });
 
 export const improveDescription = ({ description, tone, title }: IImproveDescription) => axiosInstance.post('ai/improve-description', { description, tone, title });
 
-export const generateTitleDescription = ({ imageUrl }: IGenerateTitleDescription) => axiosInstance.post('/ai/generate-title-description', { imageUrl });
+export const generateTitleDescription = (imageUrl: string) => axiosInstance.post('/ai/generate-title-description', { imageUrl });
 
 export const generateHeroSection = (params: IGenerateWithAiRequest) => axiosInstance.post<IGenerateWithAiResponse>('/ai/generate-hero-sections', params);
 

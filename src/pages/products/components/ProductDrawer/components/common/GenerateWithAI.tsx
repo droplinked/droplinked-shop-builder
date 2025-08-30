@@ -1,14 +1,13 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm'
 import UpgradePlanModalContainer from 'components/modals/upgrade-plan-modal/UpgradePlanModalContainer'
+import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import useUpgradeHandler from 'hooks/subscription/useUpgradeHandler'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { useMutation } from 'react-query'
-import { IGenerateTitleDescription } from 'services/ai/interfaces'
 import { generateTitleDescription } from 'services/ai/services'
 import AnimatedBox from './AnimatedBox'
 
@@ -18,8 +17,8 @@ function GenerateWithAI() {
     const { values: { media }, setFieldValue } = useProductForm()
     const { updateProductPageState, isAiGenerateLoading, isGenerateDisabled } = useProductPageStore()
     const { showToast } = useAppToast()
-   
-    const { mutateAsync } = useMutation((params: IGenerateTitleDescription) => generateTitleDescription(params),
+
+    const { mutateAsync } = useMutation((imageUrl: string) => generateTitleDescription(imageUrl),
         {
             onMutate() {
                 updateProductPageState('isAiGenerateLoading', true)
@@ -40,7 +39,7 @@ function GenerateWithAI() {
     const handleMutate = () => {
         handleFeatureAccess(() => {
             const mainImage = media.find((item) => item.isMain)
-            mutateAsync({ imageUrl: mainImage.url })
+            mutateAsync(mainImage.url)
         });
     }
 
@@ -61,7 +60,7 @@ function GenerateWithAI() {
                     cursor={"pointer"}
                 >
                     <Flex gap={2}>
-                        <MagicwandSm {...isDisabled ? { color: "#4F4F4F" } : {color: "#2bcfa1"}} />
+                        <MagicwandSm {...isDisabled ? { color: "#4F4F4F" } : { color: "#2bcfa1" }} />
                         <Flex flexDirection={"column"} gap={1}>
                             <Flex alignItems="center" gap="6px">
                                 <Text background={isDisabled ? "neutral.gray.650" : "#2bcfa1"} backgroundClip="text" fontSize={14} fontWeight={500}>
@@ -75,7 +74,7 @@ function GenerateWithAI() {
                     </Flex>
                 </Flex>
             </AnimatedBox>
-            
+
             <UpgradePlanModalContainer
                 isOpen={isUpgradeModalOpen}
                 onClose={closeUpgradeModal}
