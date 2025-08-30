@@ -76,7 +76,7 @@ export interface TopSeller {
     totalAmountDirect: number
     totalAmountAffiliate: number
     productName: string
-    shippingType: ShippingType
+    shippingType: 'EASY_POST' | 'NONE' | 'PRINTFUL'
     productMedia: ProductMedia[]
     productID: string
 }
@@ -87,5 +87,3 @@ interface ProductMedia {
     thumbnail: string
     _id: string
 }
-
-type ShippingType = 'EASY_POST' | 'NONE' | 'PRINTFUL'
